@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shadow SSO — Design Guidelines</title>
+<!-- Open directly in a browser. Styles come from dist/app.css (Tailwind build of src/app.css) and dist/guide.css. -->
+<link rel="stylesheet" href="fonts/lato.css">
+<link rel="stylesheet" href="dist/app.css">
+<link rel="stylesheet" href="dist/guide.css">
+</head>
+<body class="page-flow">
+<div class="guide">
+<nav class="toc" aria-label="Sections">
+    <strong>Guidelines</strong>
+    <a href="#principles">Principles</a>
+    <a href="#build">Build &amp; Tailwind</a>
+    <a href="#colors">Colors</a>
+    <a href="#background">Background</a>
+    <a href="#typography">Typography</a>
+    <a href="#spacing">Radius &amp; spacing</a>
+    <a href="#buttons">Buttons</a>
+    <a href="#forms">Form fields</a>
+    <a href="#dropdowns">Dropdowns</a>
+    <a href="#popovers">Popover &amp; popup</a>
+    <a href="#selectors">User &amp; device selector</a>
+    <a href="#alerts">Alerts</a>
+    <a href="#lists">Lists &amp; cards</a>
+    <a href="#social">Social &amp; dividers</a>
+    <a href="#mfa">MFA / OTP</a>
+    <a href="#device">Device flow</a>
+    <a href="#layout">Page layout</a>
+    <a href="#i18n">Language switcher</a>
+    <strong class="mt-4">Admin add-in</strong>
+    <a href="#admin-shell">Admin shell</a>
+    <a href="#admin-data">Tables &amp; badges</a>
+    <a href="#admin-audit">Audit log</a>
+    <a href="#admin-misc">Tabs, modal, toast</a>
+    <a href="#dodont">Do &amp; Don't</a>
+</nav>
+
+<main>
+<header class="guide-head mb-10">
+    <h1>Shadow SSO Design Guidelines</h1>
+    <p>Visual language of the hosted auth pages (<code>api/webauth/templates</code>) and the admin add-in, adopted from the Pirat UI: zinc surfaces over a deep crimson/navy gradient, blue accent, compact and calm. Every example below uses the real production stylesheet.</p>
+</header>
+
+<section id="principles">
+    <h2>Principles</h2>
+    <p class="lead">Keep it quiet: one accent colour, translucent surfaces, small radii, short motion.</p>
+    <div class="demo">
+        <ul class="list-disc pl-5 text-[0.9375rem] text-muted">
+            <li><b class="text-fg">Tokens only.</b> Use <code>var(--…)</code> or token utilities (<code>bg-primary</code>, <code>text-muted</code>) — no raw hex in templates.</li>
+            <li><b class="text-fg">Border radius never exceeds 4px.</b> Everything — cards, avatars, switches, badges — is 0–4px. No pills, no circles.</li>
+            <li><b class="text-fg">One accent.</b> <code>--primary</code> is tenant-brandable; text on it is always <code>--on-primary</code>.</li>
+            <li><b class="text-fg">Single column.</b> Auth pages are one centred card; injected UI stacks below it.</li>
+            <li><b class="text-fg">Text-length safe.</b> Pages are translated (en/hu/de/fr); never size UI to English strings.</li>
+        </ul>
+    </div>
+</section>
+
+<section id="build">
+    <h2>Build &amp; Tailwind</h2>
+    <p class="lead">Styles are written with Tailwind CSS v4 and imported by templates — no inline <code>&lt;style&gt;</code> blocks (the only exception is the tenant <code>--primary</code> override).</p>
+    <div class="demo">
+        <table class="spec">
+            <tr><th>File</th><th>Role</th></tr>
+            <tr><td><code>src/app.css</code></td><td>Tokens, <code>@theme</code>, auth components. Compiles to <code>dist/app.css</code></td></tr>
+            <tr><td><code>src/admin.css</code></td><td>Admin add-in; imported by <code>app.css</code></td></tr>
+            <tr><td><code>src/guide.css</code></td><td>Chrome for this page only. Compiles to <code>dist/guide.css</code></td></tr>
+        </table>
+        <pre>cd api/webauth/assets
+npm install
+npm run build      # or: npm run watch
+# commit the generated static/*.css — it is embedded in the Go binary</pre>
+        <p class="field-hint mt-3">Add new components as classes in <code>@layer components</code> using <code>@apply</code> with token utilities. Utilities such as <code>flex gap-3 mt-4</code> are fine directly in markup.</p>
+    </div>
+</section>
+
+<section id="colors">
+    <h2>Colors</h2>
+    <p class="lead">Brand colour may be overridden per tenant; surfaces and text are fixed.</p>
+    <h3 class="demo-title">Brand</h3>
+    <div class="swatch-grid">
+        <div class="swatch"><i class="bg-primary"></i><div><b>--primary</b>#54a2ff · <code>bg-primary</code></div></div>
+        <div class="swatch"><i class="bg-primary-hover"></i><div><b>--primary-hover</b>82% primary + black</div></div>
+        <div class="swatch"><i style="background:var(--primary-glow)"></i><div><b>--primary-glow</b>40% primary</div></div>
+        <div class="swatch"><i class="bg-on-primary"></i><div><b>--on-primary</b>#0b0b0d</div></div>
+    </div>
+    <h3 class="demo-title">Surfaces &amp; borders</h3>
+    <div class="swatch-grid">
+        <div class="swatch"><i style="background:var(--bg)"></i><div><b>--bg</b>#101012</div></div>
+        <div class="swatch"><i style="background:#18181b"></i><div><b>--bg-card</b>zinc-900 @ 78%</div></div>
+        <div class="swatch"><i class="bg-menu"></i><div><b>--bg-menu</b>#1c1c20 · menus, modals</div></div>
+        <div class="swatch"><i class="bg-input"></i><div><b>--bg-input</b>white @ 6%</div></div>
+        <div class="swatch"><i class="bg-muted-bg"></i><div><b>--bg-muted</b>white @ 4%</div></div>
+        <div class="swatch"><i class="bg-line"></i><div><b>--border</b>white @ 10%</div></div>
+        <div class="swatch"><i class="bg-line-strong"></i><div><b>--border-strong</b>white @ 18%</div></div>
+    </div>
+    <h3 class="demo-title">Text</h3>
+    <div class="swatch-grid">
+        <div class="swatch"><i class="bg-fg"></i><div><b>--text</b>#f3f4f6 · <code>text-fg</code></div></div>
+        <div class="swatch"><i class="bg-muted"></i><div><b>--text-muted</b>#99a1af · <code>text-muted</code></div></div>
+        <div class="swatch"><i class="bg-subtle"></i><div><b>--text-subtle</b>#64748b · <code>text-subtle</code></div></div>
+    </div>
+    <h3 class="demo-title">Status</h3>
+    <div class="swatch-grid">
+        <div class="swatch"><i class="bg-danger"></i><div><b>--error</b>#f87171 · <code>text-danger</code></div></div>
+        <div class="swatch"><i class="bg-ok"></i><div><b>--success</b>#34d399 · <code>text-ok</code></div></div>
+        <div class="swatch"><i class="bg-warn"></i><div><b>--warning</b>#fbbf24 · <code>text-warn</code></div></div>
+    </div>
+</section>
+
+<section id="background">
+    <h2>Background</h2>
+    <p class="lead">Fixed "Deep crimson" gradient from Pirat — no animated orbs. Cards are translucent with a 20px blur so the gradient shows through.</p>
+    <div class="page-demo min-h-40 justify-center"><span class="text-sm text-muted">body { background: var(--bg-image) fixed }</span></div>
+    <pre>--bg-image: radial-gradient(900px circle at 100% 100%, rgba(150,10,45,.55), transparent 60%),
+            linear-gradient(135deg, #0d1b33 0%, #1a0c1f 50%, #4a0a1e 100%);</pre>
+</section>
+
+<section id="typography">
+    <h2>Typography</h2>
+    <p class="lead">Lato (self-hosted, <code>fonts/lato.css</code>; weights 400/700/900 — medium and semibold snap to 400 and 700).</p>
+    <div class="demo">
+        <p class="text-3xl font-bold tracking-tight">Display 1.875rem / 700</p>
+        <p class="brand-name mt-3">Brand name — 1.25rem / 700</p>
+        <p class="page-title">Page title — 1.0625rem / 600</p>
+        <p class="page-subtitle mb-0">Page subtitle — 0.875rem / 400, text-muted</p>
+        <p class="form-label mt-3">Label — 0.8125rem / 500, text-muted</p>
+        <p class="text-xs text-subtle">Caption / footer — 0.75rem, text-subtle</p>
+        <p class="mt-3 font-mono">Mono — codes, secrets: 482 901</p>
+    </div>
+</section>
+
+<section id="spacing">
+    <h2>Radius &amp; spacing</h2>
+    <p class="lead"><b class="text-fg">Maximum radius is 4px.</b> Tailwind's <code>rounded-*</code> scale is clamped in <code>@theme</code>, so even <code>rounded-full</code> and <code>rounded-3xl</code> resolve to ≤ 4px. Form groups are 18px apart; card padding is 36×32 (28×22 on mobile).</p>
+    <div class="flex flex-wrap gap-3">
+        <div class="swatch w-32"><i class="m-3 rounded-xs bg-input"></i><div><b>rounded-xs / sm</b>2px — switches, knobs</div></div>
+        <div class="swatch w-32"><i class="m-3 rounded-md bg-input"></i><div><b>rounded-md</b>3px — controls</div></div>
+        <div class="swatch w-32"><i class="m-3 rounded-lg bg-input"></i><div><b>rounded-lg</b>4px — panels, icons</div></div>
+        <div class="swatch w-32"><i class="m-3 rounded-full bg-input"></i><div><b>rounded-full</b>4px — max</div></div>
+    </div>
+    <h3 class="demo-title">Motion</h3>
+    <table class="spec"><tr><th>Token</th><th>Value</th><th>Use</th></tr>
+    <tr><td><code>transition</code></td><td>150ms default</td><td>hover, focus, press</td></tr>
+    <tr><td><code>card-in</code></td><td>0.22s</td><td>card entrance</td></tr></table>
+</section>
+
+<section id="buttons">
+    <h2>Buttons</h2>
+    <p class="lead">Full-width inside cards. Weight 600, no text transform. Pressed state scales to 0.97. One primary action per view.</p>
+    <div class="demo narrow">
+        <div class="form-group"><button class="btn btn-primary">Primary — Sign in</button></div>
+        <div class="form-group"><button class="btn btn-secondary">Secondary — Cancel</button></div>
+        <div class="form-group"><button class="btn btn-ghost">Ghost — Skip</button></div>
+        <div class="form-group"><button class="btn btn-danger">Danger — Delete account</button></div>
+        <div class="form-group"><button class="btn btn-primary" disabled>Disabled</button></div>
+        <div class="actions mt-0"><button class="btn btn-secondary">Deny</button><button class="btn btn-primary">Allow</button></div>
+    </div>
+    <h3 class="demo-title">Inline &amp; small</h3>
+    <div class="flex flex-wrap items-center gap-3"><button class="btn btn-primary auto">Save</button><button class="btn btn-secondary auto">Back</button><button class="btn btn-secondary btn-sm auto">Small</button><button class="btn btn-danger btn-sm auto">Delete</button><a class="link" href="#buttons">Text link</a></div>
+    <pre>&lt;button class="btn btn-primary"&gt;Sign in&lt;/button&gt;
+&lt;div class="actions"&gt;&lt;button class="btn btn-secondary"&gt;Deny&lt;/button&gt;&lt;button class="btn btn-primary"&gt;Allow&lt;/button&gt;&lt;/div&gt;</pre>
+</section>
+
+<section id="forms">
+    <h2>Form fields</h2>
+    <p class="lead">Label above, 6px gap, input with 3px primary-tinted focus ring.</p>
+    <div class="demo narrow">
+        <div class="form-group"><label class="form-label">Default</label><input class="form-input" placeholder="you@example.com"></div>
+        <div class="form-group"><label class="form-label">Hover</label><input class="form-input is-hover" value="hovered"></div>
+        <div class="form-group"><label class="form-label">Focus</label><input class="form-input is-focus" value="focused"></div>
+        <div class="form-group"><label class="form-label">Error</label><input class="form-input error" value="not-an-email"><p class="field-error">Enter a valid e-mail address.</p></div>
+        <div class="form-group"><label class="form-label">Password</label><input class="form-input" type="password" value="secret123"><p class="field-hint">At least 12 characters.</p></div>
+        <div class="form-group"><label class="form-label">Disabled</label><input class="form-input" disabled value="read only"></div>
+        <div class="form-group"><label class="form-label">Textarea</label><textarea class="form-input" rows="3" placeholder="Description"></textarea></div>
+        <label class="check mb-3"><input type="checkbox" checked> Remember this device</label>
+        <label class="check"><span class="switch"><input type="checkbox" checked><span></span></span> Require MFA</label>
+    </div>
+    <h3 class="demo-title">Radio buttons</h3>
+    <p class="lead">18px box, 4px radius (no circles), inner square dot. Use <code>.device-option</code> for rich card choices.</p>
+    <div class="demo narrow">
+        <fieldset class="radio-group" aria-label="Second factor">
+            <label class="radio"><input type="radio" name="mfa" checked><span class="radio-mark"></span><span class="radio-text">Authenticator app<span class="radio-hint">Recommended · works offline</span></span></label>
+            <label class="radio"><input type="radio" name="mfa"><span class="radio-mark"></span><span class="radio-text">Passkey</span></label>
+            <label class="radio"><input type="radio" name="mfa"><span class="radio-mark"></span><span class="radio-text">E-mail code</span></label>
+            <label class="radio"><input type="radio" name="mfa" disabled><span class="radio-mark"></span><span class="radio-text">SMS (disabled)</span></label>
+        </fieldset>
+    </div>
+    <pre>&lt;label class="radio"&gt;
+  &lt;input type="radio" name="mfa" checked&gt;&lt;span class="radio-mark"&gt;&lt;/span&gt;
+  &lt;span class="radio-text"&gt;Passkey&lt;/span&gt;
+&lt;/label&gt;</pre>
+    <pre>&lt;div class="form-group"&gt;
+  &lt;label class="form-label"&gt;E-mail&lt;/label&gt;
+  &lt;input class="form-input" type="email"&gt;
+&lt;/div&gt;</pre>
+</section>
+
+<section id="dropdowns">
+    <h2>Dropdowns</h2>
+    <p class="lead">Use the native <code>select.form-select</code> for plain choices (best on mobile and for forms). Use the <code>details.dropdown</code> menu for rich or action menus — it opens without JavaScript.</p>
+    <div class="grid gap-4 md:grid-cols-2">
+        <div class="demo">
+            <h3 class="demo-title mt-0">Native select</h3>
+            <div class="form-group"><label class="form-label">Language</label>
+                <select class="form-select"><option>English</option><option selected>Magyar</option><option>Deutsch</option><option>Français</option></select></div>
+            <div class="form-group mb-0"><label class="form-label">Disabled</label><select class="form-select" disabled><option>Locked</option></select></div>
+        </div>
+        <div class="demo">
+            <h3 class="demo-title mt-0">Menu dropdown (open)</h3>
+            <div class="form-group mb-0 min-h-72"><label class="form-label">Role</label>
+                <details class="dropdown" open>
+                    <summary>Administrator</summary>
+                    <div class="dropdown-menu" role="listbox">
+                        <div class="dropdown-label">Roles</div>
+                        <button class="dropdown-item" role="option" aria-selected="true">Administrator</button>
+                        <button class="dropdown-item" role="option">Editor</button>
+                        <button class="dropdown-item" role="option">Viewer</button>
+                        <div class="dropdown-sep"></div>
+                        <button class="dropdown-item danger">Remove role</button>
+                    </div>
+                </details>
+            </div>
+        </div>
+    </div>
+    <h3 class="demo-title">Action menu (right-aligned)</h3>
+    <div class="demo flex min-h-52 justify-end">
+        <details class="dropdown w-auto">
+            <summary>Actions</summary>
+            <div class="dropdown-menu align-right">
+                <a class="dropdown-item" href="#dropdowns">Edit user</a>
+                <a class="dropdown-item" href="#dropdowns">Reset password</a>
+                <a class="dropdown-item" href="#dropdowns">Revoke sessions</a>
+                <div class="dropdown-sep"></div>
+                <button class="dropdown-item danger">Delete user</button>
+            </div>
+        </details>
+    </div>
+    <pre>&lt;details class="dropdown"&gt;
+  &lt;summary&gt;Administrator&lt;/summary&gt;
+  &lt;div class="dropdown-menu"&gt;&lt;button class="dropdown-item" aria-selected="true"&gt;…&lt;/button&gt;&lt;/div&gt;
+&lt;/details&gt;</pre>
+</section>
+
+<section id="popovers">
+    <h2>Popover &amp; popup</h2>
+    <p class="lead"><b class="text-fg">Popover</b> is a small anchored panel for hints and quick actions (<code>details.popover</code>, no JavaScript). <b class="text-fg">Popup</b> is a blocking dialog built on the native <code>&lt;dialog class="popup"&gt;</code>; open it with <code>showModal()</code> and it gets a blurred backdrop, focus trap and Esc-to-close for free.</p>
+    <div class="grid gap-4 md:grid-cols-2">
+        <div class="demo min-h-64">
+            <h3 class="demo-title mt-0">Popover (open)</h3>
+            <details class="popover" open>
+                <summary><span class="btn btn-secondary btn-sm auto">What is a passkey?</span></summary>
+                <div class="popover-panel">
+                    <p class="popover-title">Passkeys</p>
+                    <p>Sign in with your fingerprint, face or device PIN instead of a password. Nothing secret leaves your device.</p>
+                    <div class="popover-foot"><a class="link" href="#popovers">Learn more</a></div>
+                </div>
+            </details>
+        </div>
+        <div class="demo min-h-64">
+            <h3 class="demo-title mt-0">Popover — right aligned menu</h3>
+            <div class="flex justify-end">
+                <details class="popover" open>
+                    <summary><span class="avatar">G</span></summary>
+                    <div class="popover-panel align-right">
+                        <p class="popover-title">Gyula Paál</p>
+                        <p class="text-xs">gyula@example.com</p>
+                        <div class="popover-foot"><button class="btn btn-secondary btn-sm auto">Account</button><button class="btn btn-ghost btn-sm auto">Sign out</button></div>
+                    </div>
+                </details>
+            </div>
+        </div>
+    </div>
+    <h3 class="demo-title">Popup (dialog)</h3>
+    <div class="demo">
+        <dialog class="popup static mx-auto" open>
+            <div class="popup-head"><div><h3 class="popup-title">Rename device</h3><p class="popup-sub">Choose a name you will recognise.</p></div><button class="popup-close" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div>
+            <div class="popup-body"><div class="form-group mb-0"><label class="form-label">Device name</label><input class="form-input" value="Gyula's MacBook"></div></div>
+            <div class="popup-foot"><button class="btn btn-secondary btn-sm auto">Cancel</button><button class="btn btn-primary btn-sm auto">Save</button></div>
+        </dialog>
+        <p class="mt-4 text-center"><button class="btn btn-primary auto" onclick="document.getElementById('live-popup').showModal()">Open live popup</button></p>
+        <dialog class="popup" id="live-popup">
+            <div class="popup-head"><div><h3 class="popup-title">Sign out everywhere?</h3><p class="popup-sub">All sessions will be revoked.</p></div><button class="popup-close" aria-label="Close" onclick="this.closest('dialog').close()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div>
+            <div class="popup-body text-sm text-muted">You will need to sign in again on every device.</div>
+            <div class="popup-foot"><button class="btn btn-secondary btn-sm auto" onclick="this.closest('dialog').close()">Cancel</button><button class="btn btn-danger btn-sm auto" onclick="this.closest('dialog').close()">Sign out</button></div>
+        </dialog>
+    </div>
+    <pre>&lt;dialog class="popup" id="d"&gt;…&lt;/dialog&gt;
+&lt;button onclick="d.showModal()"&gt;Open&lt;/button&gt;   &lt;!-- auth pages: wire via a script served from 'self' (CSP) --&gt;</pre>
+</section>
+
+<section id="selectors">
+    <h2>User &amp; device selector</h2>
+    <p class="lead">Selectors pick people or devices from a list. Users use a searchable combobox with removable chips; devices use large radio cards (native radios, so they work in plain forms).</p>
+    <div class="grid gap-4 md:grid-cols-2">
+        <div class="demo min-h-96">
+            <h3 class="demo-title mt-0">User selector</h3>
+            <label class="form-label">Share with</label>
+            <div class="selector">
+                <div class="selector-field">
+                    <span class="chip"><span class="avatar">G</span>Gyula Paál<button aria-label="Remove"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></span>
+                    <span class="chip"><span class="avatar">A</span>Alex Editor<button aria-label="Remove"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></span>
+                    <input placeholder="Search users…" aria-label="Search users">
+                </div>
+                <div class="selector-menu" role="listbox">
+                    <div class="dropdown-label">Suggestions</div>
+                    <button class="option is-active" role="option" aria-selected="false"><span class="avatar">B</span><span class="option-main"><span class="option-title">Bea Viewer</span><span class="option-sub">bea@example.com</span></span><span class="badge badge-ok plain">Active</span></button>
+                    <button class="option" role="option" aria-selected="true"><span class="avatar">A</span><span class="option-main"><span class="option-title">Alex Editor</span><span class="option-sub">alex@example.com</span></span></button>
+                    <button class="option" role="option" aria-selected="false"><span class="avatar">D</span><span class="option-main"><span class="option-title">Dani Admin</span><span class="option-sub">dani@example.com</span></span><span class="badge badge-warn plain">Invited</span></button>
+                </div>
+            </div>
+        </div>
+        <div class="demo">
+            <h3 class="demo-title mt-0">Device selector</h3>
+            <p class="form-label">Send the approval prompt to</p>
+            <div class="device-list" role="radiogroup">
+                <label class="device-option"><input type="radio" name="dev" checked><span class="device-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="1"/><line x1="2" y1="20" x2="22" y2="20"/></svg></span><span class="device-meta"><span class="device-name">Gyula's MacBook</span><span class="device-sub">Chrome · Budapest · active now</span></span><span class="device-radio"></span></label>
+                <label class="device-option"><input type="radio" name="dev"><span class="device-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="1"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></span><span class="device-meta"><span class="device-name">Pixel 9</span><span class="device-sub">Passkey · last used 2 days ago</span></span><span class="device-radio"></span></label>
+                <label class="device-option"><input type="radio" name="dev"><span class="device-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="14" rx="1"/><line x1="8" y1="22" x2="16" y2="22"/><line x1="12" y1="18" x2="12" y2="22"/></svg></span><span class="device-meta"><span class="device-name">Living-room TV</span><span class="device-sub">Device flow · last used 3 weeks ago</span></span><span class="device-radio"></span></label>
+                <label class="device-option"><input type="radio" name="dev"><span class="device-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.78 7.78 5.5 5.5 0 0 1 7.78-7.78zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg></span><span class="device-meta"><span class="device-name">YubiKey 5C</span><span class="device-sub">Security key · never used</span></span><span class="device-radio"></span></label>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="alerts">
+    <h2>Alerts</h2>
+    <p class="lead">Tinted background + matching border. Use <code>role="alert"</code>.</p>
+    <div class="demo narrow">
+        <div class="alert alert-error" role="alert"><span class="alert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></span><span>Invalid e-mail or password.</span></div>
+        <div class="alert alert-success" role="alert"><span class="alert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></span><span>Password updated.</span></div>
+        <div class="alert alert-warning" role="alert"><span class="alert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/></svg></span><span><b>Review the permissions</b> before you approve.</span></div>
+        <div class="info-box mb-0"><p class="info-box-title">Password requirements</p><ul><li>At least 12 characters</li><li>One number</li></ul></div>
+    </div>
+</section>
+
+<section id="lists">
+    <h2>Lists &amp; cards</h2>
+    <p class="lead">Client info, scope lists and account choosers sit on <code>--bg-muted</code> with a 1px border.</p>
+    <div class="grid gap-4 md:grid-cols-2">
+        <div class="demo">
+            <div class="client-info"><div class="client-logo-placeholder">P</div><div class="client-details"><p class="client-name">Pirat Tracker</p><p class="client-description">Issue tracking for teams</p></div></div>
+            <ul class="scope-list mb-0">
+                <li class="scope-item"><svg class="scope-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Read your profile</li>
+                <li class="scope-item"><svg class="scope-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>See your e-mail address</li>
+            </ul>
+        </div>
+        <div class="demo">
+            <div class="account-list mb-0">
+                <button class="account-item"><span class="account-avatar account-avatar-initial">G</span><span class="account-details"><span class="account-name">Gyula Paál</span><span class="account-email">gyula@example.com</span></span></button>
+                <button class="account-item"><span class="account-avatar account-avatar-initial">A</span><span class="account-details"><span class="account-name">Alex Admin</span><span class="account-email">alex@example.com</span></span></button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="social">
+    <h2>Social &amp; dividers</h2>
+    <div class="demo narrow">
+        <div class="social-divider mt-0"><span>or continue with</span></div>
+        <div class="social-buttons">
+            <a class="btn-social" href="#social">Continue with GitHub</a>
+            <a class="btn-social" href="#social">Continue with Google</a>
+        </div>
+    </div>
+</section>
+
+<section id="mfa">
+    <h2>MFA / OTP</h2>
+    <div class="demo narrow">
+        <div class="mfa-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+        <div class="form-group"><input class="form-input otp-input" value="482901" aria-label="Code"></div>
+        <button class="btn btn-primary">Verify</button>
+    </div>
+</section>
+
+<section id="device">
+    <h2>Device flow</h2>
+    <p class="lead">OAuth device authorization (<code>templates/device.html</code>). Three states: enter the code, confirm the request, done. The code uses the monospace <code>.code-input</code> / <code>.code-display</code>; <b>Deny</b> is secondary so Approve is the single emphasised action.</p>
+    <div class="grid gap-4 lg:grid-cols-2">
+        <div>
+            <h3 class="demo-title mt-0">1 · Enter code</h3>
+            <div class="page-demo"><div class="container"><div class="card">
+                <div class="mfa-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="14" rx="2"/><line x1="8" y1="22" x2="16" y2="22"/><line x1="12" y1="18" x2="12" y2="22"/></svg></div>
+                <h2 class="page-title text-center">Activate Device</h2>
+                <p class="page-subtitle text-center">Enter the code shown on your device</p>
+                <ol class="device-steps">
+                    <li class="current">Open the app on your device</li>
+                    <li>Enter the code below</li>
+                    <li>Approve the request</li>
+                </ol>
+                <div class="form-group"><label class="form-label">Device code</label><input class="code-input" placeholder="ABCD-EFGH"><p class="field-hint">Enter the code shown on your device.</p></div>
+                <button class="btn btn-primary">Continue</button>
+            </div></div></div>
+        </div>
+        <div>
+            <h3 class="demo-title mt-0">2 · Confirm</h3>
+            <div class="page-demo"><div class="container"><div class="card">
+                <h2 class="page-title">Activate Device</h2>
+                <p class="page-subtitle">Approve this request to sign in on your device</p>
+                <div class="info-box"><p class="info-box-title">Signed in as</p><p class="info-value">gyula@example.com <a href="#device">Switch account</a></p></div>
+                <div class="info-box"><p class="info-box-title">Requesting application</p><p class="info-value">Pirat CLI</p></div>
+                <div class="form-group"><p class="form-label">Your code</p><p class="code-display">ABCD-EFGH</p></div>
+                <div class="actions mt-0">
+                    <button class="btn btn-secondary"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg>Deny</button>
+                    <button class="btn btn-primary"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Approve</button>
+                </div>
+                <p class="page-subtitle mt-4 mb-0">The code expires shortly after it is shown on your device.</p>
+            </div></div></div>
+        </div>
+    </div>
+    <h3 class="demo-title">3 · Result &amp; error</h3>
+    <div class="demo narrow">
+        <div class="alert alert-success" role="alert"><span class="alert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></span><span>Device approved. You can return to your device.</span></div>
+        <div class="alert alert-error mb-0" role="alert"><span class="alert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></span><span>That code is invalid or has expired.</span></div>
+    </div>
+</section>
+
+<section id="layout">
+    <h2>Page layout</h2>
+    <p class="lead">A complete page: <code>body</code> is a <b>column</b> flex container; the card, footer and language switcher stack vertically and are centred.</p>
+    <div class="page-demo">
+        <div class="container">
+            <div class="card">
+                <div class="header">
+                    <div class="brand-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+                    <h1 class="brand-name">Shadow SSO</h1>
+                </div>
+                <h2 class="page-title">Create your account</h2>
+                <p class="page-subtitle">Register to get started.</p>
+                <div class="form-group"><label class="form-label">Full name</label><input class="form-input"></div>
+                <div class="form-group"><label class="form-label">E-mail</label><input class="form-input" type="email"></div>
+                <div class="form-group"><label class="form-label">Password</label><input class="form-input" type="password"></div>
+                <button class="btn btn-primary">Create account</button>
+                <a class="link link-center" href="#layout">Already have an account? Sign in</a>
+            </div>
+            <div class="footer"><p class="footer-text"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Secured by Shadow SSO</p></div>
+            <nav class="lang-switch" aria-label="Language"><a href="#i18n" hreflang="en" lang="en">English</a><span aria-current="true">Magyar</span><a href="#i18n" hreflang="de" lang="de">Deutsch</a><a href="#i18n" hreflang="fr" lang="fr">Français</a></nav>
+        </div>
+    </div>
+</section>
+
+<section id="i18n">
+    <h2>Language switcher</h2>
+    <p class="lead">Injected by <code>i18n.go</code> before <code>&lt;/body&gt;</code> on GET pages. Style it only through <code>.lang-switch</code>; the current language uses <code>aria-current</code>.</p>
+    <div class="demo"><nav class="lang-switch m-0" aria-label="Language"><a href="#i18n">English</a><span aria-current="true">Magyar</span><a href="#i18n">Deutsch</a><a href="#i18n">Français</a></nav></div>
+</section>
+
+<section id="admin-shell">
+    <h2>Admin add-in · Shell</h2>
+    <p class="lead">Management consoles use the same tokens in a two-pane shell: translucent sidebar (<code>.admin-side</code>), sticky top bar (<code>.admin-top</code>) and a content area (<code>.admin-content</code>). Pages set <code>&lt;body class="page-flow"&gt;</code>.</p>
+    <div class="admin-demo">
+        <div class="admin">
+            <aside class="admin-side">
+                <div class="admin-brand"><span class="brand-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>Shadow SSO</div>
+                <a class="nav-link" href="#admin-shell" aria-current="page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/></svg>Dashboard</a>
+                <a class="nav-link" href="#admin-shell"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>Users<span class="badge badge-primary plain">128</span></a>
+                <a class="nav-link" href="#admin-shell"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/></svg>Clients</a>
+                <div class="nav-group">Security</div>
+                <a class="nav-link" href="#admin-shell"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Policies</a>
+                <a class="nav-link" href="#admin-shell"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Audit log</a>
+            </aside>
+            <div class="admin-main">
+                <header class="admin-top">
+                    <nav class="breadcrumb"><a href="#admin-shell">Admin</a><span>Dashboard</span></nav>
+                    <div class="search ml-auto max-w-xs"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><input class="form-input" placeholder="Search…"></div>
+                    <span class="avatar">G</span>
+                </header>
+                <div class="admin-content">
+                    <div class="page-head"><div><h1>Dashboard</h1><p>Overview of the last 24 hours</p></div><button class="btn btn-primary auto">New client</button></div>
+                    <div class="stat-grid">
+                        <div class="stat"><p class="stat-label">Sign-ins</p><p class="stat-value">12,480</p><p class="stat-delta">+8.2%</p></div>
+                        <div class="stat"><p class="stat-label">Active sessions</p><p class="stat-value">932</p><p class="stat-delta">+1.4%</p></div>
+                        <div class="stat"><p class="stat-label">Failed logins</p><p class="stat-value">47</p><p class="stat-delta down">+12%</p></div>
+                        <div class="stat"><p class="stat-label">MFA coverage</p><p class="stat-value">86%</p><p class="stat-delta">+2%</p></div>
+                    </div>
+                    <div class="panel"><div class="panel-head"><span class="panel-title">Recent activity</span><a class="link" href="#admin-shell">View all</a></div><div class="panel-body text-sm text-muted">Panels hold any content; use <code>.panel-head</code> for titles and actions.</div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="admin-data">
+    <h2>Admin add-in · Tables &amp; badges</h2>
+    <p class="lead">Toolbar with search, filters and a dropdown; dense table with status badges; pagination below.</p>
+    <div class="toolbar">
+        <div class="search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><input class="form-input" placeholder="Search users"></div>
+        <select class="form-select w-auto"><option>All roles</option><option>Admin</option><option>Editor</option></select>
+        <select class="form-select w-auto"><option>Any status</option><option>Active</option><option>Suspended</option></select>
+        <button class="btn btn-primary auto">Invite user</button>
+    </div>
+    <div class="table-wrap">
+        <table class="table">
+            <thead><tr><th>User</th><th>Role</th><th>Status</th><th>MFA</th><th>Last seen</th><th></th></tr></thead>
+            <tbody>
+                <tr><td><div class="cell-user"><span class="avatar">G</span><div><div>Gyula Paál</div><div class="cell-sub">gyula@example.com</div></div></div></td><td>Administrator</td><td><span class="badge badge-ok">Active</span></td><td><span class="badge badge-primary plain">TOTP</span></td><td class="cell-sub">2 min ago</td><td class="cell-actions"><button class="btn btn-secondary btn-sm auto">Edit</button></td></tr>
+                <tr><td><div class="cell-user"><span class="avatar">A</span><div><div>Alex Editor</div><div class="cell-sub">alex@example.com</div></div></div></td><td>Editor</td><td><span class="badge badge-warn">Invited</span></td><td><span class="badge plain">None</span></td><td class="cell-sub">—</td><td class="cell-actions"><button class="btn btn-secondary btn-sm auto">Edit</button></td></tr>
+                <tr><td><div class="cell-user"><span class="avatar">B</span><div><div>Bea Viewer</div><div class="cell-sub">bea@example.com</div></div></div></td><td>Viewer</td><td><span class="badge badge-danger">Suspended</span></td><td><span class="badge badge-primary plain">Passkey</span></td><td class="cell-sub">3 days ago</td><td class="cell-actions"><button class="btn btn-secondary btn-sm auto">Edit</button></td></tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="pagination"><span>Showing 1–3 of 128</span><div class="pages"><a class="page-btn" href="#admin-data">‹</a><a class="page-btn" href="#admin-data" aria-current="page">1</a><a class="page-btn" href="#admin-data">2</a><a class="page-btn" href="#admin-data">3</a><a class="page-btn" href="#admin-data">›</a></div></div>
+    <h3 class="demo-title">Badges</h3>
+    <div class="flex flex-wrap gap-2"><span class="badge">Neutral</span><span class="badge badge-primary">Primary</span><span class="badge badge-ok">Active</span><span class="badge badge-warn">Pending</span><span class="badge badge-danger">Revoked</span><span class="badge badge-primary plain">No dot</span></div>
+</section>
+
+<section id="admin-audit">
+    <h2>Admin add-in · Audit log</h2>
+    <p class="lead">Chronological events grouped by day. Each row shows time, severity icon, actor/event and outcome; click to expand technical details (IP, user agent, request id). Built on <code>details.audit-row</code>, so it works without JavaScript.</p>
+    <div class="toolbar">
+        <div class="search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><input class="form-input" placeholder="Search events, users, IPs"></div>
+        <select class="form-select w-auto"><option>All events</option><option>Sign-in</option><option>MFA</option><option>Admin changes</option></select>
+        <select class="form-select w-auto"><option>Last 24 hours</option><option>Last 7 days</option><option>Last 30 days</option></select>
+        <button class="btn btn-secondary auto">Export</button>
+    </div>
+    <div class="audit">
+        <div class="audit-day">Today</div>
+        <details class="audit-row"><summary><span class="audit-time">18:21</span><span class="audit-icon ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span class="audit-event"><b>Gyula Paál</b> signed in<small>Password + TOTP · Pirat Tracker</small></span><span class="badge badge-ok">Success</span></summary><dl class="audit-detail"><div><dt>Event</dt><dd>user.login</dd></div><div><dt>IP</dt><dd>84.2.31.17</dd></div><div><dt>User agent</dt><dd>Chrome 131 / macOS</dd></div><div><dt>Request ID</dt><dd>req_8f2c1a</dd></div></dl></details>
+        <details class="audit-row"><summary><span class="audit-time">18:04</span><span class="audit-icon warn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/></svg></span><span class="audit-event"><b>Alex Editor</b> failed MFA challenge<small>3rd attempt in 10 minutes</small></span><span class="badge badge-warn">Warning</span></summary><dl class="audit-detail"><div><dt>Event</dt><dd>mfa.failed</dd></div><div><dt>IP</dt><dd>91.120.4.9</dd></div><div><dt>Method</dt><dd>TOTP</dd></div><div><dt>Request ID</dt><dd>req_77b0e3</dd></div></dl></details>
+        <details class="audit-row"><summary><span class="audit-time">17:48</span><span class="audit-icon danger"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg></span><span class="audit-event"><b>Unknown</b> blocked by rate limit<small>12 failed logins for bea@example.com</small></span><span class="badge badge-danger">Blocked</span></summary><dl class="audit-detail"><div><dt>Event</dt><dd>login.rate_limited</dd></div><div><dt>IP</dt><dd>185.220.101.4</dd></div><div><dt>Target</dt><dd>bea@example.com</dd></div><div><dt>Request ID</dt><dd>req_5d19aa</dd></div></dl></details>
+        <div class="audit-day">Yesterday</div>
+        <details class="audit-row"><summary><span class="audit-time">21:12</span><span class="audit-icon "><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span><span class="audit-event"><b>Dani Admin</b> changed policy “Require MFA”<small>Admin console · scope: all clients</small></span><span class="badge badge-primary">Config</span></summary><dl class="audit-detail"><div><dt>Event</dt><dd>policy.updated</dd></div><div><dt>Before</dt><dd>mfa_required=false</dd></div><div><dt>After</dt><dd>mfa_required=true</dd></div><div><dt>Request ID</dt><dd>req_31c4f0</dd></div></dl></details>
+        <details class="audit-row"><summary><span class="audit-time">09:30</span><span class="audit-icon ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span class="audit-event"><b>Living-room TV</b> approved via device flow<small>Pirat CLI · code ABCD-EFGH</small></span><span class="badge badge-ok">Success</span></summary><dl class="audit-detail"><div><dt>Event</dt><dd>device.approved</dd></div><div><dt>Client</dt><dd>pirat-cli</dd></div><div><dt>IP</dt><dd>84.2.31.17</dd></div><div><dt>Request ID</dt><dd>req_0a7e92</dd></div></dl></details>
+    </div>
+    <div class="pagination"><span>Showing 1–5 of 2,481 events</span><div class="pages"><a class="page-btn" href="#admin-audit">‹</a><a class="page-btn" href="#admin-audit" aria-current="page">1</a><a class="page-btn" href="#admin-audit">2</a><a class="page-btn" href="#admin-audit">3</a><a class="page-btn" href="#admin-audit">›</a></div></div>
+</section>
+
+<section id="admin-misc">
+    <h2>Admin add-in · Tabs, modal, toast, empty state</h2>
+    <div class="tabs"><a class="tab" href="#admin-misc" aria-selected="true">Overview</a><a class="tab" href="#admin-misc">Sessions</a><a class="tab" href="#admin-misc">Audit</a><a class="tab" href="#admin-misc">Settings</a></div>
+    <div class="grid gap-4 md:grid-cols-2">
+        <div class="demo">
+            <h3 class="demo-title mt-0">Confirm modal</h3>
+            <div class="modal">
+                <div class="modal-head">Delete client?</div>
+                <div class="modal-body">This revokes all tokens issued to <b class="text-fg">Pirat CLI</b>. This cannot be undone.</div>
+                <div class="modal-foot"><button class="btn btn-secondary btn-sm auto">Cancel</button><button class="btn btn-danger btn-sm auto">Delete</button></div>
+            </div>
+            <p class="field-hint">Wrap in <code>.modal-backdrop</code> (fixed, blurred) when shown.</p>
+        </div>
+        <div class="demo">
+            <h3 class="demo-title mt-0">Toast</h3>
+            <div class="toast"><svg class="size-4 text-ok" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Client saved</div>
+            <h3 class="demo-title">Empty state</h3>
+            <div class="empty"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg><h3>No users yet</h3><p>Invite your first teammate to get started.</p><button class="btn btn-primary btn-sm auto">Invite user</button></div>
+        </div>
+    </div>
+</section>
+
+<section id="dodont">
+    <h2>Do &amp; Don't</h2>
+    <div class="grid grid-cols-[repeat(auto-fill,minmax(280px,1fr))] gap-3">
+        <p class="do">✓ Use token utilities (<code>bg-primary</code>, <code>text-muted</code>) and component classes.</p>
+        <p class="dont">✗ Hardcode <code>#6366f1</code>, or white text on the blue accent.</p>
+        <p class="do">✓ Keep radii at 4px or less — always.</p>
+        <p class="dont">✗ Pills, circles, <code>border-radius: 50%</code> or <code>99px</code>.</p>
+        <p class="do">✓ Keep layouts fluid so German/Hungarian strings wrap.</p>
+        <p class="dont">✗ Fixed-width buttons or labels sized to English.</p>
+        <p class="do">✓ Import <code>/dist/app.css</code>; add new styles under <code>src/</code> and rebuild.</p>
+        <p class="dont">✗ Inline <code>&lt;style&gt;</code> blocks or <code>style=""</code> attributes in templates.</p>
+    </div>
+</section>
+</main>
+</div>
+</body>
+</html>

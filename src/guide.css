@@ -1,0 +1,114 @@
+/* Chrome for styleguide.html only. Reuses app.css tokens/components without re-emitting them. */
+@reference "./app.css";
+
+@layer components {
+  .guide {
+    @apply mx-auto grid max-w-295 gap-10 px-6 pt-10 pb-20;
+    grid-template-columns: 220px 1fr;
+  }
+  .toc {
+    @apply sticky top-8 flex flex-col gap-0.5 self-start text-sm;
+  }
+  .toc strong {
+    @apply mb-2 text-xs tracking-widest text-subtle uppercase;
+  }
+  .toc a {
+    @apply rounded-sm px-2.5 py-1.5 text-muted no-underline hover:bg-surface-hover hover:text-fg;
+  }
+  .guide-head h1 {
+    @apply text-3xl font-bold tracking-tight;
+  }
+  .guide-head p {
+    @apply mt-2 max-w-2xl text-muted;
+  }
+  .guide section {
+    @apply mb-14 scroll-mt-6;
+  }
+  .guide section > h2 {
+    @apply mb-2 border-b border-line pb-2.5 text-xl font-semibold tracking-tight;
+  }
+  .guide .lead {
+    @apply mb-5 text-[0.9375rem] text-muted;
+  }
+  .demo-title {
+    @apply mt-6 mb-2.5 text-xs font-semibold tracking-widest text-subtle uppercase;
+  }
+  .demo {
+    @apply rounded-lg border border-dashed border-line p-6;
+    background: rgba(8, 10, 22, 0.45);
+  }
+  .demo.narrow {
+    @apply max-w-105;
+  }
+  .guide code {
+    @apply text-[0.8125rem] text-[#ffb74d];
+    font-family: var(--font-mono);
+  }
+  .guide pre {
+    @apply mt-2.5 overflow-x-auto rounded-md border border-line bg-black/40 p-3.5 text-xs leading-normal text-muted;
+    font-family: var(--font-mono);
+  }
+  .swatch-grid {
+    @apply grid gap-3;
+    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  }
+  .swatch {
+    @apply overflow-hidden rounded-md border border-line bg-muted-bg;
+  }
+  .swatch i {
+    @apply block h-14;
+  }
+  .swatch div {
+    @apply px-2.5 py-2 text-xs text-muted;
+  }
+  .swatch b {
+    @apply block text-[0.8125rem] font-semibold text-fg;
+  }
+  .guide table.spec {
+    @apply w-full border-collapse text-sm;
+  }
+  .guide table.spec th,
+  .guide table.spec td {
+    @apply border-b border-line px-2.5 py-2 text-left text-muted;
+  }
+  .guide table.spec th {
+    @apply font-semibold text-fg;
+  }
+  .do,
+  .dont {
+    @apply rounded-md border px-3.5 py-2.5 text-[0.8125rem];
+  }
+  .do {
+    @apply border-ok-line bg-ok-bg text-ok;
+  }
+  .dont {
+    @apply border-danger-line bg-danger-bg text-danger;
+  }
+  .page-demo {
+    @apply flex flex-col items-center rounded-lg border border-line px-4 py-10;
+    background-color: var(--bg);
+    background-image: var(--bg-image);
+  }
+  .admin-demo {
+    @apply overflow-hidden rounded-lg border border-line;
+    background-color: var(--bg);
+    background-image: var(--bg-image);
+  }
+  .admin-demo .admin {
+    @apply min-h-0;
+  }
+  .admin-demo .admin-side {
+    @apply static h-auto min-h-175;
+  }
+  .admin-demo .admin-top {
+    @apply static;
+  }
+  @media (max-width: 860px) {
+    .guide {
+      grid-template-columns: 1fr;
+    }
+    .toc {
+      @apply static flex-row flex-wrap;
+    }
+  }
+}
