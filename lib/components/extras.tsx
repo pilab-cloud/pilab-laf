@@ -1,4 +1,5 @@
-import { AlertTriangle, ChevronDown, Info, Minus, Plus, X, XCircle } from "lucide-react";
+import { labelSlotStyle, type LabelSlot } from "./label-slot";
+import { AlertTriangle, ChevronDown, ChevronLeft, ChevronRight, ChevronUp, Info, Minus, Plus, X, XCircle } from "lucide-react";
 import * as React from "react";
 import * as CollapsiblePrimitive from "@radix-ui/react-collapsible";
 import * as DialogPrimitive from "@radix-ui/react-dialog";
@@ -8,8 +9,10 @@ import { useControllableState } from "../utils";
 import { Input } from "./form";
 import { Badge } from "./display";
 import { Button } from "./button";
+import { Popover, PopoverContent, PopoverTrigger } from "./overlay";
 import { Combobox, type ComboboxOption } from "./combobox";
-import { VirtualList } from "./virtual";
+import { useVirtualizer } from "@tanstack/react-virtual";
+import { observeRectWithFallback } from "./virtual";
 import { useLaf } from "../i18n";
 
 /* ── Banner (global) ── */
@@ -96,33 +99,90 @@ export function Accordion({
   );
 }
 
-/* ── Split pane (horizontal, keyboard-resizable) ── */
+/* ── Split pane v2 (horizontal | vertical, nestable, collapsible, persisted, keyboard-resizable) ── */
+function readStored(key: string | undefined): { size?: number; collapsed?: boolean } {
+  if (!key || typeof window === "undefined") return {};
+  try {
+    const raw = window.localStorage.getItem(`laf:split:${key}`);
+    return raw ? (JSON.parse(raw) as { size?: number; collapsed?: boolean }) : {};
+  } catch {
+    return {};
+  }
+}
+
 export function SplitPane({
   start,
   end,
+  orientation = "horizontal",
+  primary = "start",
   defaultSize = 280,
+  size: sizeProp,
+  onSizeChange,
   min = 160,
   max = 600,
+  collapsible,
+  collapsed: collapsedProp,
+  defaultCollapsed = false,
+  onCollapsedChange,
+  persistKey,
   label: labelProp,
   className,
 }: {
   start: React.ReactNode;
   end: React.ReactNode;
+  /** `horizontal`: panes side by side; `vertical`: stacked. */
+  orientation?: "horizontal" | "vertical";
+  /** Which pane holds the fixed size (the other one flexes). */
+  primary?: "start" | "end";
   defaultSize?: number;
+  size?: number;
+  onSizeChange?: (size: number) => void;
   min?: number;
   max?: number;
+  /** Adds a toggle that collapses the primary pane to 0 (Enter on the separator does too). */
+  collapsible?: boolean;
+  collapsed?: boolean;
+  defaultCollapsed?: boolean;
+  onCollapsedChange?: (collapsed: boolean) => void;
+  /** Persists size + collapsed state in localStorage under this key. */
+  persistKey?: string;
   label?: string;
   className?: string;
 }) {
   const { t: laf } = useLaf();
   const label = labelProp ?? laf.resizePanels;
-  const [size, setSize] = React.useState(defaultSize);
-  const clamp = (n: number) => Math.min(max, Math.max(min, n));
+  const stored = React.useMemo(() => readStored(persistKey), [persistKey]);
+  const clamp = React.useCallback((n: number) => Math.min(max, Math.max(min, n)), [min, max]);
+  const [size, setSizeRaw] = useControllableState<number>({
+    value: sizeProp,
+    defaultValue: clamp(stored.size ?? defaultSize),
+    onChange: onSizeChange,
+  });
+  const [collapsed, setCollapsed] = useControllableState<boolean>({
+    value: collapsedProp,
+    defaultValue: collapsible ? (stored.collapsed ?? defaultCollapsed) : false,
+    onChange: onCollapsedChange,
+  });
+  const setSize = (n: number | ((p: number) => number)) => setSizeRaw((p) => clamp(typeof n === "function" ? n(p) : n));
+  React.useEffect(() => {
+    if (!persistKey) return;
+    try {
+      window.localStorage.setItem(`laf:split:${persistKey}`, JSON.stringify({ size, collapsed }));
+    } catch {
+      /* storage unavailable */
+    }
+  }, [persistKey, size, collapsed]);
+
+  const vertical = orientation === "vertical";
+  const sign = primary === "start" ? 1 : -1;
+  const dirOf = (el: Element) => (!vertical && getComputedStyle(el).direction === "rtl" ? -1 : 1);
+
   const onPointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
-    const startX = e.clientX;
+    if (collapsed) return;
+    const origin = vertical ? e.clientY : e.clientX;
     const startSize = size;
-    const rtl = getComputedStyle(e.currentTarget).direction === "rtl";
-    const move = (ev: PointerEvent) => setSize(clamp(startSize + (rtl ? -1 : 1) * (ev.clientX - startX)));
+    const dir = dirOf(e.currentTarget);
+    const move = (ev: PointerEvent) => setSize(startSize + sign * dir * ((vertical ? ev.clientY : ev.clientX) - origin));
     const up = () => {
       window.removeEventListener("pointermove", move);
       window.removeEventListener("pointerup", up);
@@ -132,31 +192,72 @@ export function SplitPane({
   };
   const onKeyDown = (e: React.KeyboardEvent) => {
     const step = e.shiftKey ? 50 : 10;
-    if (e.key === "ArrowLeft") setSize((s) => clamp(s - step));
-    else if (e.key === "ArrowRight") setSize((s) => clamp(s + step));
+    const dir = dirOf(e.currentTarget);
+    const grow = vertical ? "ArrowDown" : dir === 1 ? "ArrowRight" : "ArrowLeft";
+    const shrink = vertical ? "ArrowUp" : dir === 1 ? "ArrowLeft" : "ArrowRight";
+    if (e.key === "Enter" && collapsible) setCollapsed((c) => !c);
+    else if (e.key === "Home") setSize(min);
+    else if (e.key === "End") setSize(max);
+    else if (e.key === grow) setSize((s) => s + sign * step);
+    else if (e.key === shrink) setSize((s) => s - sign * step);
     else return;
     e.preventDefault();
   };
-  return (
-    <div className={cn("flex min-h-0 overflow-hidden rounded-lg border border-line bg-surface", className)}>
-      {/* dynamic user-resizable width */}
-      <div className="shrink-0 overflow-auto" style={{ width: size }}>
-        {start}
-      </div>
+
+  const px = collapsed ? 0 : size;
+  const fixedStyle = vertical ? { height: px } : { width: px };
+  const Chevron = vertical ? (primary === "start" ? ChevronUp : ChevronDown) : primary === "start" ? ChevronLeft : ChevronRight;
+  const paneCls = (fixed: boolean) =>
+    cn("overflow-auto", fixed ? "shrink-0" : vertical ? "min-h-0 flex-1" : "min-w-0 flex-1", fixed && collapsed && "overflow-hidden");
+  const fixedPane = (n: React.ReactNode) => (
+    // dynamic user-resizable size
+    <div className={paneCls(true)} style={fixedStyle} aria-hidden={collapsed || undefined} inert={collapsed || undefined}>
+      {n}
+    </div>
+  );
+  const separator = (
+    <div className={cn("relative shrink-0", vertical ? "h-1" : "w-1")}>
       <div
         role="separator"
-        aria-orientation="vertical"
+        aria-orientation={vertical ? "horizontal" : "vertical"}
         aria-label={label}
         aria-valuenow={size}
         aria-valuemin={min}
         aria-valuemax={max}
+        data-collapsed={collapsible ? collapsed : undefined}
         tabIndex={0}
         onPointerDown={onPointerDown}
         onKeyDown={onKeyDown}
         onDoubleClick={() => setSize(defaultSize)}
-        className="w-1 shrink-0 cursor-col-resize touch-none bg-line outline-none hover:bg-primary focus-visible:bg-primary"
+        className={cn(
+          "size-full touch-none bg-line outline-none hover:bg-primary focus-visible:bg-primary",
+          vertical ? "cursor-row-resize" : "cursor-col-resize",
+        )}
       />
-      <div className="min-w-0 flex-1 overflow-auto">{end}</div>
+      {collapsible && (
+        <button
+          type="button"
+          aria-label={collapsed ? laf.vsExpandPane : laf.vsCollapsePane}
+          aria-expanded={!collapsed}
+          onClick={() => setCollapsed((c) => !c)}
+          className={cn(
+            "absolute z-10 grid size-5 place-items-center rounded-sm border border-line bg-surface text-muted hover:text-fg",
+            vertical ? "start-2 -top-2" : "top-2 -start-2",
+          )}
+        >
+          <Chevron className={cn("size-3", collapsed && "rotate-180")} aria-hidden />
+        </button>
+      )}
+    </div>
+  );
+  return (
+    <div
+      data-orientation={orientation}
+      className={cn("flex min-h-0 overflow-hidden rounded-lg border border-line bg-surface", vertical && "flex-col", className)}
+    >
+      {primary === "start" ? fixedPane(start) : <div className={paneCls(false)}>{start}</div>}
+      {separator}
+      {primary === "start" ? <div className={paneCls(false)}>{end}</div> : fixedPane(end)}
     </div>
   );
 }
@@ -368,15 +469,21 @@ export function Chip({
   onRemove,
   removeLabel,
   tone = "neutral",
+  color,
   children,
 }: {
   onRemove?: () => void;
   removeLabel?: string;
   tone?: keyof typeof chipTone;
+  /** Label palette slot; overrides `tone`. */
+  color?: LabelSlot;
   children: React.ReactNode;
 }) {
   return (
-    <span className={cn("inline-flex h-6 items-center gap-1 rounded-sm border px-2 text-xs", chipTone[tone])}>
+    <span
+      className={cn("inline-flex h-6 items-center gap-1 rounded-sm border px-2 text-xs", !color && chipTone[tone])}
+      style={color ? labelSlotStyle(color) : undefined}
+    >
       {children}
       {onRemove && (
         <button type="button" aria-label={removeLabel ?? "Remove"} onClick={onRemove} className="opacity-70 hover:opacity-100">
@@ -629,16 +736,33 @@ export function TimeRangePicker({
   refresh,
   onRefreshChange,
   label: labelProp,
+  range,
+  onRangeChange,
+  showTimeZone,
 }: {
+  /** A preset (`"1h"`) or `"custom"` while an absolute range is active. */
   value: string;
   onChange: (value: string) => void;
   presets?: string[];
+  /** Absolute range (epoch ms) shown in the Custom… popover; providing `onRangeChange` enables Custom…. */
+  range?: { from: number; to: number };
+  onRangeChange?: (range: { from: number; to: number }) => void;
+  showTimeZone?: boolean;
   refresh?: string;
   onRefreshChange?: (value: string) => void;
   label?: string;
 }) {
-  const { t: laf } = useLaf();
+  const { t: laf, timeZone } = useLaf();
   const label = labelProp ?? laf.timeRange;
+  const [customOpen, setCustomOpen] = React.useState(false);
+  const [draft, setDraft] = React.useState({ from: "", to: "" });
+  const toLocal = (ms: number) => {
+    const d = new Date(ms);
+    return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}T${String(d.getHours()).padStart(2, "0")}:${String(d.getMinutes()).padStart(2, "0")}`;
+  };
+  const draftFrom = new Date(draft.from).getTime();
+  const draftTo = new Date(draft.to).getTime();
+  const draftValid = Number.isFinite(draftFrom) && Number.isFinite(draftTo) && draftFrom < draftTo;
   return (
     <div role="group" aria-label={label} className="inline-flex items-center gap-2">
       <div className="inline-flex overflow-hidden rounded-md border border-line">
@@ -653,7 +777,54 @@ export function TimeRangePicker({
             {p}
           </button>
         ))}
+        {onRangeChange && (
+          <Popover
+            open={customOpen}
+            onOpenChange={(o) => {
+              setCustomOpen(o);
+              if (o) {
+                const now = Date.now();
+                setDraft({ from: toLocal(range?.from ?? now - 3_600_000), to: toLocal(range?.to ?? now) });
+              }
+            }}
+          >
+            <PopoverTrigger asChild>
+              <button
+                type="button"
+                aria-pressed={value === "custom"}
+                className={cn("border-0 bg-input px-3 py-1.5 text-sm text-muted hover:text-fg", value === "custom" && "bg-primary-light text-primary")}
+              >
+                {laf.customRange}
+              </button>
+            </PopoverTrigger>
+            <PopoverContent className="w-64">
+              <div className="grid gap-2 text-sm">
+                <label className="grid gap-1">
+                  {laf.rangeFrom}
+                  <input type="datetime-local" className="form-input h-8 font-mono" value={draft.from} onChange={(e) => setDraft({ ...draft, from: e.target.value })} />
+                </label>
+                <label className="grid gap-1">
+                  {laf.rangeTo}
+                  <input type="datetime-local" className="form-input h-8 font-mono" value={draft.to} onChange={(e) => setDraft({ ...draft, to: e.target.value })} />
+                </label>
+                <span className="text-xs text-muted">{timeZone}</span>
+                <Button
+                  size="sm"
+                  disabled={!draftValid}
+                  onClick={() => {
+                    onRangeChange({ from: draftFrom, to: draftTo });
+                    onChange("custom");
+                    setCustomOpen(false);
+                  }}
+                >
+                  {laf.applyRange}
+                </Button>
+              </div>
+            </PopoverContent>
+          </Popover>
+        )}
       </div>
+      {showTimeZone && <span className="text-xs text-muted">{timeZone}</span>}
       {onRefreshChange && (
         <select className="form-input w-24" aria-label={laf.autoRefresh} value={refresh} onChange={(e) => onRefreshChange(e.target.value)}>
           {["off", "5s", "30s", "1m"].map((r) => (
@@ -674,49 +845,257 @@ export interface LogLine {
 
 const levelCls = { info: "text-muted", warn: "text-warn", error: "text-danger" };
 
-export function LogViewer({ lines, label, follow = true, className }: { lines: LogLine[]; label: string; follow?: boolean; className?: string }) {
+export interface LogViewerLabels {
+  search: string;
+  level: string;
+  all: string;
+  info: string;
+  warn: string;
+  error: string;
+  follow: string;
+  pause: string;
+  wrap: string;
+  download: string;
+  next: string;
+  previous: string;
+  loadOlder: string;
+  noLines: string;
+  invalidPattern: string;
+  matches: (current: number, total: number) => string;
+}
+
+const defaultLogLabels: LogViewerLabels = {
+  search: "Search",
+  level: "Level",
+  all: "All levels",
+  info: "Info",
+  warn: "Warning",
+  error: "Error",
+  follow: "Follow",
+  pause: "Pause",
+  wrap: "Wrap",
+  download: "Download",
+  next: "Next match",
+  previous: "Previous match",
+  loadOlder: "Load older",
+  noLines: "No log lines",
+  invalidPattern: "Invalid regular expression",
+  matches: (c, t) => `${t === 0 ? 0 : c} / ${t}`,
+};
+
+function highlight(text: string, re: RegExp | null) {
+  if (!re) return text;
+  const out: React.ReactNode[] = [];
+  let last = 0;
+  for (const m of text.matchAll(re)) {
+    if (m[0] === "") continue;
+    const i = m.index ?? 0;
+    if (i > last) out.push(text.slice(last, i));
+    out.push(
+      <mark key={i} className="rounded-sm bg-warn-bg text-warn">
+        {m[0]}
+      </mark>,
+    );
+    last = i + m[0].length;
+  }
+  if (last === 0) return text;
+  if (last < text.length) out.push(text.slice(last));
+  return out;
+}
+
+const levelRank = { info: 0, warn: 1, error: 2 } as const;
+
+export function LogViewer({
+  lines,
+  label,
+  follow: followProp = true,
+  height = 288,
+  rowHeight = 20,
+  onLoadOlder,
+  downloadName = "log.txt",
+  labels,
+  className,
+}: {
+  lines: LogLine[];
+  label: string;
+  /** Initial follow state; follow pauses automatically when the user scrolls up. */
+  follow?: boolean;
+  height?: number;
+  rowHeight?: number;
+  /** Called when the viewport reaches the top; the caller prepends older lines. */
+  onLoadOlder?: () => void;
+  downloadName?: string;
+  labels?: Partial<LogViewerLabels>;
+  className?: string;
+}) {
   const { t: laf } = useLaf();
+  const l = { ...defaultLogLabels, search: laf.search, wrap: laf.wrap, noLines: laf.noLines, ...labels };
   const [query, setQuery] = React.useState("");
   const [wrap, setWrap] = React.useState(false);
+  const [minLevel, setMinLevel] = React.useState<"all" | LogLine["level"]>("all");
+  const [follow, setFollow] = React.useState(followProp);
+  const [current, setCurrent] = React.useState(0);
   const box = React.useRef<HTMLDivElement>(null);
-  const shown = query ? lines.filter((l) => l.text.toLowerCase().includes(query.toLowerCase())) : lines;
+
+  const re = React.useMemo(() => {
+    if (!query) return { re: null as RegExp | null, bad: false };
+    try {
+      return { re: new RegExp(query, "gi"), bad: false };
+    } catch {
+      return { re: new RegExp(query.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "gi"), bad: true };
+    }
+  }, [query]);
+
+  const shown = React.useMemo(
+    () => (minLevel === "all" ? lines : lines.filter((x) => levelRank[x.level] >= levelRank[minLevel])),
+    [lines, minLevel],
+  );
+  const matchIdx = React.useMemo(() => {
+    if (!re.re) return [] as number[];
+    const r = new RegExp(re.re.source, "i");
+    const out: number[] = [];
+    shown.forEach((x, i) => {
+      if (r.test(x.text)) out.push(i);
+    });
+    return out;
+  }, [re, shown]);
+
+  const virt = useVirtualizer({
+    count: shown.length,
+    getScrollElement: () => box.current,
+    estimateSize: () => rowHeight,
+    overscan: 10,
+    initialRect: { width: 0, height },
+    observeElementRect: observeRectWithFallback,
+  });
+
   React.useEffect(() => {
-    if (follow && box.current) box.current.scrollTop = box.current.scrollHeight;
-  }, [shown.length, follow]);
+    if (follow && shown.length > 0) virt.scrollToIndex(shown.length - 1, { align: "end" });
+  }, [follow, shown.length, virt]);
+
+  React.useEffect(() => setCurrent(0), [query, minLevel]);
+  const goto = (n: number) => {
+    if (matchIdx.length === 0) return;
+    const next = (n + matchIdx.length) % matchIdx.length;
+    setCurrent(next);
+    setFollow(false);
+    virt.scrollToIndex(matchIdx[next]!, { align: "center" });
+  };
+
+  const onScroll = (e: React.UIEvent<HTMLDivElement>) => {
+    const el = e.currentTarget;
+    const atEnd = el.scrollHeight - el.scrollTop - el.clientHeight < rowHeight;
+    if (!atEnd && follow && el.clientHeight > 0) setFollow(false);
+    if (el.scrollTop === 0 && el.clientHeight > 0) onLoadOlder?.();
+  };
+
+  const download = () => {
+    const blob = new Blob([shown.map((x) => `${x.time} ${x.level.toUpperCase()} ${x.text}`).join("\n")], { type: "text/plain" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = downloadName;
+    a.click();
+    URL.revokeObjectURL(url);
+  };
+
+  const items = virt.getVirtualItems();
+  const width = String(shown.length).length;
   return (
     <div className={cn("overflow-hidden rounded-lg border border-line", className)}>
-      <div className="flex items-center gap-3 border-b border-line bg-surface px-3 py-2">
-        <input type="search" aria-label={`${laf.search} ${label}`} placeholder={`${laf.search}…`} className="form-input h-8 max-w-xs" value={query} onChange={(e) => setQuery(e.target.value)} />
-        <label className="check ms-auto text-xs">
-          <input type="checkbox" checked={wrap} onChange={(e) => setWrap(e.target.checked)} />
-          {laf.wrap}
-        </label>
-      </div>
-      {shown.length > 500 && !wrap ? (
-        <VirtualList
-          label={label}
-          items={shown}
-          rowHeight={20}
-          height={288}
-          className="bg-black/30 font-mono text-[0.8125rem]"
-          renderRow={(l) => (
-            <div className={cn("flex gap-3 px-3 whitespace-nowrap", levelCls[l.level])}>
-              <span className="text-subtle select-none">{l.time}</span>
-              <span>{l.text}</span>
-            </div>
-          )}
+      <div className="flex flex-wrap items-center gap-2 border-b border-line bg-surface px-3 py-2">
+        <input
+          type="search"
+          aria-label={`${l.search} ${label}`}
+          placeholder={`${l.search}…`}
+          aria-invalid={re.bad || undefined}
+          title={re.bad ? l.invalidPattern : undefined}
+          className="form-input h-8 max-w-xs"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              e.preventDefault();
+              goto(current + (e.shiftKey ? -1 : 1));
+            }
+          }}
         />
-      ) : (
-        <div ref={box} role="log" aria-label={label} tabIndex={0} className="max-h-72 overflow-auto bg-black/30 p-3 font-mono text-[0.8125rem]">
-          {shown.map((l, i) => (
-            <div key={i} className={cn("flex gap-3", levelCls[l.level], !wrap && "whitespace-nowrap")}>
-              <span className="text-subtle select-none">{l.time}</span>
-              <span className={wrap ? "break-all" : undefined}>{l.text}</span>
-            </div>
-          ))}
-          {shown.length === 0 && <div className="text-subtle">{laf.noLines}</div>}
+        {query && (
+          <>
+            <span className="text-xs text-muted tabular-nums" aria-live="polite">
+              {l.matches(current + 1, matchIdx.length)}
+            </span>
+            <Button size="sm" variant="ghost" aria-label={l.previous} onClick={() => goto(current - 1)} disabled={!matchIdx.length}>
+              <ChevronUp aria-hidden />
+            </Button>
+            <Button size="sm" variant="ghost" aria-label={l.next} onClick={() => goto(current + 1)} disabled={!matchIdx.length}>
+              <ChevronDown aria-hidden />
+            </Button>
+          </>
+        )}
+        <select aria-label={l.level} className="form-select h-8 w-auto" value={minLevel} onChange={(e) => setMinLevel(e.target.value as typeof minLevel)}>
+          <option value="all">{l.all}</option>
+          <option value="info">{l.info}+</option>
+          <option value="warn">{l.warn}+</option>
+          <option value="error">{l.error}</option>
+        </select>
+        <div className="ms-auto flex items-center gap-3">
+          <label className="check text-xs">
+            <input type="checkbox" checked={wrap} onChange={(e) => setWrap(e.target.checked)} />
+            {l.wrap}
+          </label>
+          <Button size="sm" variant="secondary" aria-pressed={follow} onClick={() => setFollow((f) => !f)}>
+            {follow ? l.pause : l.follow}
+          </Button>
+          <Button size="sm" variant="secondary" onClick={download} disabled={shown.length === 0}>
+            {l.download}
+          </Button>
         </div>
+      </div>
+      {onLoadOlder && (
+        <button type="button" className="w-full border-b border-line bg-surface px-3 py-1 text-xs text-muted hover:text-fg" onClick={onLoadOlder}>
+          {l.loadOlder}
+        </button>
       )}
+      <div
+        ref={box}
+        role="log"
+        aria-label={label}
+        tabIndex={0}
+        onScroll={onScroll}
+        className="overflow-auto bg-black/30 font-mono text-[0.8125rem]"
+        // dynamic viewport height
+        style={{ height }}
+      >
+        {shown.length === 0 ? (
+          <div className="p-3 text-subtle">{l.noLines}</div>
+        ) : (
+          // dynamic total scroll height
+          <div role="list" className="relative" style={{ height: virt.getTotalSize() }}>
+            {items.map((v) => {
+              const x = shown[v.index]!;
+              const active = matchIdx[current] === v.index;
+              return (
+                <div
+                  key={v.key}
+                  role="listitem"
+                  data-index={v.index}
+                  ref={wrap ? virt.measureElement : undefined}
+                  className={cn("absolute inset-x-0 flex gap-3 px-3", levelCls[x.level], wrap ? "break-all" : "whitespace-nowrap", active && "bg-primary-light")}
+                  // dynamic virtual offset
+                  style={{ top: 0, transform: `translateY(${v.start}px)`, ...(wrap ? {} : { height: rowHeight }) }}
+                >
+                  <span className="text-subtle tabular-nums select-none" style={{ minWidth: `${width}ch` }}>
+                    {v.index + 1}
+                  </span>
+                  <span className="text-subtle select-none">{x.time}</span>
+                  <span>{highlight(x.text, re.re)}</span>
+                </div>
+              );
+            })}
+          </div>
+        )}
+      </div>
     </div>
   );
 }

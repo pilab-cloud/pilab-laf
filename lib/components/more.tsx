@@ -4,6 +4,7 @@ import { cn } from "../cn";
 import { format, matchesAccept } from "../utils";
 import { Badge } from "./display";
 import { Input } from "./form";
+import { RelativeTime } from "./primitives";
 import { useLaf } from "../i18n";
 
 /* ── Kbd ── */
@@ -22,11 +23,20 @@ export function InlineEdit({
   onSave,
   label,
   validate,
+  as = "text",
+  options,
+  min,
+  max,
 }: {
   value: string;
   onSave: (value: string) => void | Promise<void>;
   label: string;
   validate?: (value: string) => string | undefined;
+  /** Editor kind; `select` needs `options`, `number` honours `min`/`max`. */
+  as?: "text" | "select" | "number";
+  options?: { value: string; label: string }[];
+  min?: number;
+  max?: number;
 }) {
   const { t: laf } = useLaf();
   const [editing, setEditing] = React.useState(false);
@@ -34,17 +44,22 @@ export function InlineEdit({
   const [error, setError] = React.useState<string>();
   const [pending, setPending] = React.useState(false);
   const cancelled = React.useRef(false);
+  const saving = React.useRef(false);
 
-  const save = async () => {
-    if (cancelled.current) return;
-    if (text === value) return setEditing(false);
-    const err = validate?.(text);
+  const shown = as === "select" ? (options?.find((o) => o.value === value)?.label ?? value) : value;
+
+  const save = async (next = text) => {
+    if (cancelled.current || saving.current) return;
+    if (next === value) return setEditing(false);
+    const err = validate?.(next);
     if (err) return setError(err);
     setPending(true);
+    saving.current = true;
     try {
-      await onSave(text);
+      await onSave(next);
       setEditing(false);
     } finally {
+      saving.current = false;
       setPending(false);
     }
   };
@@ -53,7 +68,7 @@ export function InlineEdit({
     return (
       <button
         type="button"
-        aria-label={`${label}: ${value}. ${laf.edit}`}
+        aria-label={`${label}: ${shown}. ${laf.edit}`}
         className="group inline-flex items-center gap-1.5 border-0 bg-transparent p-0 text-fg"
         onClick={() => {
           cancelled.current = false;
@@ -62,30 +77,58 @@ export function InlineEdit({
           setEditing(true);
         }}
       >
-        {value}
+        {shown}
         <Pencil className="size-3.5 text-subtle opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100" aria-hidden />
       </button>
     );
   }
+  const onKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter") save();
+    else if (e.key === "Escape") {
+      cancelled.current = true;
+      setEditing(false);
+    }
+  };
   return (
     <span className="inline-grid gap-1">
-      <Input
-        autoFocus
-        aria-label={label}
-        value={text}
-        invalid={!!error}
-        disabled={pending}
-        aria-busy={pending || undefined}
-        onChange={(e) => setText(e.target.value)}
-        onBlur={save}
-        onKeyDown={(e) => {
-          if (e.key === "Enter") save();
-          else if (e.key === "Escape") {
-            cancelled.current = true;
-            setEditing(false);
-          }
-        }}
-      />
+      {as === "select" ? (
+        <select
+          autoFocus
+          aria-label={label}
+          className="form-select"
+          value={text}
+          disabled={pending}
+          aria-busy={pending || undefined}
+          aria-invalid={!!error || undefined}
+          onChange={(e) => {
+            setText(e.target.value);
+            void save(e.target.value);
+          }}
+          onBlur={() => void save()}
+          onKeyDown={(e) => e.key === "Escape" && onKeyDown(e)}
+        >
+          {options?.map((o) => (
+            <option key={o.value} value={o.value}>
+              {o.label}
+            </option>
+          ))}
+        </select>
+      ) : (
+        <Input
+          autoFocus
+          aria-label={label}
+          type={as === "number" ? "number" : undefined}
+          min={as === "number" ? min : undefined}
+          max={as === "number" ? max : undefined}
+          value={text}
+          invalid={!!error}
+          disabled={pending}
+          aria-busy={pending || undefined}
+          onChange={(e) => setText(e.target.value)}
+          onBlur={() => void save()}
+          onKeyDown={onKeyDown}
+        />
+      )}
       {error && (
         <span className="field-error" role="alert">
           {error}
@@ -194,7 +237,10 @@ export interface AlarmItem {
   severity: "critical" | "warning" | "info";
   name: string;
   entity: string;
+  /** Pre-formatted text; ignored when `triggeredAt` is set. */
   triggered: string;
+  triggeredAt?: Date | string | number;
+  entityId?: string;
   acknowledged?: boolean;
 }
 
@@ -203,33 +249,99 @@ const alarmTone = { critical: "danger", warning: "warn", info: "neutral" } as co
 export function AlarmList({
   alarms,
   onAcknowledge,
+  onReset,
+  onOpenEntity,
+  selectable,
   empty: emptyProp,
 }: {
   alarms: AlarmItem[];
   onAcknowledge?: (id: string) => void;
+  /** Reset to green. */
+  onReset?: (id: string) => void;
+  onOpenEntity?: (alarm: AlarmItem) => void;
+  /** Checkboxes plus bulk acknowledge/reset (ids are passed one call per alarm). */
+  selectable?: boolean;
   empty?: string;
 }) {
   const { t: laf } = useLaf();
   const empty = emptyProp ?? laf.noActiveAlarms;
+  const [selected, setSelected] = React.useState<Set<string>>(() => new Set());
+  const chosen = alarms.filter((a) => selected.has(a.id));
+  const toggle = (id: string) =>
+    setSelected((s) => {
+      const n = new Set(s);
+      if (!n.delete(id)) n.add(id);
+      return n;
+    });
+  const allOn = alarms.length > 0 && chosen.length === alarms.length;
   if (alarms.length === 0) return <p className="px-4 py-6 text-center text-sm text-muted">{empty}</p>;
+  const linkBtn = "border-0 bg-transparent p-0 text-primary hover:underline";
   return (
-    <ul className="divide-y divide-line overflow-hidden rounded-lg border border-line bg-surface">
-      {alarms.map((a) => (
-        <li key={a.id} className="flex items-center gap-3 px-4 py-3 text-sm">
-          <Badge tone={alarmTone[a.severity]}>{a.severity}</Badge>
-          <span className="min-w-0 flex-1">
-            <b className="font-semibold text-fg">{a.name}</b>
-            <span className="ms-2 text-muted">{a.entity}</span>
-          </span>
-          <span className="font-mono text-xs text-subtle">{a.triggered}</span>
-          {onAcknowledge && !a.acknowledged && (
-            <button type="button" className="text-primary hover:underline" onClick={() => onAcknowledge(a.id)}>
-              {laf.acknowledge}
+    <div className="grid gap-2">
+      {selectable && (
+        <div className="flex items-center gap-3 px-1 text-sm">
+          <input
+            type="checkbox"
+            aria-label={laf.vsSelectAllAlarms}
+            checked={allOn}
+            onChange={() => setSelected(allOn ? new Set() : new Set(alarms.map((a) => a.id)))}
+          />
+          {onAcknowledge && (
+            <button
+              type="button"
+              className="btn btn-ghost btn-sm"
+              disabled={chosen.length === 0}
+              onClick={() => chosen.filter((a) => !a.acknowledged).forEach((a) => onAcknowledge(a.id))}
+            >
+              {laf.vsAcknowledgeSelected}
             </button>
           )}
-        </li>
-      ))}
-    </ul>
+          {onReset && (
+            <button
+              type="button"
+              className="btn btn-ghost btn-sm"
+              disabled={chosen.length === 0}
+              onClick={() => chosen.forEach((a) => onReset(a.id))}
+            >
+              {laf.vsResetAlarm}
+            </button>
+          )}
+        </div>
+      )}
+      <ul className="divide-y divide-line overflow-hidden rounded-lg border border-line bg-surface">
+        {alarms.map((a) => (
+          <li key={a.id} className="flex items-center gap-3 px-4 py-3 text-sm">
+            {selectable && (
+              <input type="checkbox" aria-label={`${laf.vsSelectAlarm}: ${a.name}`} checked={selected.has(a.id)} onChange={() => toggle(a.id)} />
+            )}
+            <Badge tone={alarmTone[a.severity]}>{a.severity}</Badge>
+            <span className="min-w-0 flex-1">
+              <b className="font-semibold text-fg">{a.name}</b>
+              {onOpenEntity ? (
+                <button type="button" className={cn(linkBtn, "ms-2")} onClick={() => onOpenEntity(a)}>
+                  {a.entity}
+                </button>
+              ) : (
+                <span className="ms-2 text-muted">{a.entity}</span>
+              )}
+            </span>
+            <span className="font-mono text-xs text-subtle">
+              {a.triggeredAt !== undefined ? <RelativeTime value={a.triggeredAt} /> : a.triggered}
+            </span>
+            {onAcknowledge && !a.acknowledged && (
+              <button type="button" className={linkBtn} onClick={() => onAcknowledge(a.id)}>
+                {laf.acknowledge}
+              </button>
+            )}
+            {onReset && (
+              <button type="button" className={linkBtn} onClick={() => onReset(a.id)}>
+                {laf.vsResetAlarm}
+              </button>
+            )}
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }
 

@@ -201,7 +201,8 @@ export function highlight(code: string, language: keyof typeof rules): { text: s
   return out;
 }
 
-export function CodeEditor({
+/** Dependency-free textarea editor; the CodeMirror one lives in `@pilab/laf/editor`. */
+export function CodeEditorLite({
   value,
   onChange,
   language = "json",
@@ -236,3 +237,6 @@ export function CodeEditor({
     </div>
   );
 }
+
+/** @deprecated alias kept for compatibility; prefer `CodeEditorLite`. */
+export const CodeEditor = CodeEditorLite;

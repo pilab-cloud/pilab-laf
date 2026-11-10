@@ -67,6 +67,27 @@ export interface LafMessages {
   signOut: string;
   dropFiles: string;
   noActiveAlarms: string;
+  vsCollapsePane: string;
+  vsExpandPane: string;
+  vsSummary: string;
+  vsMonitor: string;
+  vsConfigure: string;
+  vsUsed: string;
+  vsReserved: string;
+  vsFree: string;
+  vsCapacity: string;
+  vsFilterAll: string;
+  vsFilterMine: string;
+  vsStatusFilter: string;
+  vsDetails: string;
+  vsResetAlarm: string;
+  vsSelectAlarm: string;
+  vsAcknowledgeSelected: string;
+  vsOpenTarget: string;
+  vsInventoryTree: string;
+  vsRecentTasks: string;
+  vsSelectAllAlarms: string;
+  vsDuration: string;
   fixFollowing: string;
   moreTabs: string;
   next: string;
@@ -94,6 +115,40 @@ export interface LafMessages {
   mfaStored: string;
   manualSecret: string;
   addedToApp: string;
+  editorWrite: string;
+  editorPreview: string;
+  editorToolbar: string;
+  editorBold: string;
+  editorItalic: string;
+  editorCode: string;
+  editorLink: string;
+  editorList: string;
+  editorTaskList: string;
+  editorQuote: string;
+  editorUploading: string;
+  editorNothingToPreview: string;
+  editorMentions: string;
+  editorCodeEditor: string;
+  editorMarkdownEditor: string;
+  editorProblem: string;
+  recent: string;
+  shortcuts: string;
+  noShortcuts: string;
+  dragHandle: (name: string) => string;
+  dndInstructions: string;
+  dndLifted: (name: string, pos: number, total: number) => string;
+  dndMoved: (name: string, pos: number, total: number) => string;
+  dndMovedTo: (name: string, column: string, pos: number, total: number) => string;
+  dndDropped: (name: string, pos: number, total: number) => string;
+  dndDroppedTo: (name: string, column: string, pos: number, total: number) => string;
+  dndCancelled: (name: string) => string;
+  wipLimit: (count: number, limit: number) => string;
+  emptyColumn: string;
+  customRange: string;
+  rangeFrom: string;
+  rangeTo: string;
+  applyRange: string;
+  timeOfDay: string;
 }
 
 export const en: LafMessages = {
@@ -160,6 +215,27 @@ export const en: LafMessages = {
   signOut: "Sign out",
   dropFiles: "Drop files here or click to browse",
   noActiveAlarms: "No active alarms",
+  vsCollapsePane: "Collapse pane",
+  vsExpandPane: "Expand pane",
+  vsSummary: "Summary",
+  vsMonitor: "Monitor",
+  vsConfigure: "Configure",
+  vsUsed: "used",
+  vsReserved: "reserved",
+  vsFree: "free",
+  vsCapacity: "capacity",
+  vsFilterAll: "All",
+  vsFilterMine: "Mine",
+  vsStatusFilter: "Status",
+  vsDetails: "Details",
+  vsResetAlarm: "Reset to green",
+  vsSelectAlarm: "Select alarm",
+  vsAcknowledgeSelected: "Acknowledge selected",
+  vsOpenTarget: "Open target",
+  vsInventoryTree: "Inventory",
+  vsRecentTasks: "Recent tasks",
+  vsSelectAllAlarms: "Select all alarms",
+  vsDuration: "Duration",
   fixFollowing: "Fix the following",
   moreTabs: "More tabs",
   next: "Next",
@@ -187,6 +263,40 @@ export const en: LafMessages = {
   mfaStored: "I stored these codes",
   manualSecret: "Manual secret",
   addedToApp: "I added it to my app",
+  editorWrite: "Write",
+  editorPreview: "Preview",
+  editorToolbar: "Formatting",
+  editorBold: "Bold",
+  editorItalic: "Italic",
+  editorCode: "Code",
+  editorLink: "Link",
+  editorList: "Bulleted list",
+  editorTaskList: "Task list",
+  editorQuote: "Quote",
+  editorUploading: "Uploading",
+  editorNothingToPreview: "Nothing to preview",
+  editorMentions: "Suggestions",
+  editorCodeEditor: "Code editor",
+  editorMarkdownEditor: "Markdown editor",
+  editorProblem: "Problem",
+  recent: "Recent",
+  shortcuts: "Keyboard shortcuts",
+  noShortcuts: "No shortcuts registered",
+  dragHandle: (name) => `Drag ${name}`,
+  dndInstructions: "Press Space to lift, arrow keys to move, Space to drop, Escape to cancel.",
+  dndLifted: (name, pos, total) => `Picked up ${name}, position ${pos} of ${total}.`,
+  dndMoved: (name, pos, total) => `${name} moved to position ${pos} of ${total}.`,
+  dndMovedTo: (name, column, pos, total) => `${name} moved to ${column}, position ${pos} of ${total}.`,
+  dndDropped: (name, pos, total) => `${name} dropped at position ${pos} of ${total}.`,
+  dndDroppedTo: (name, column, pos, total) => `${name} dropped in ${column}, position ${pos} of ${total}.`,
+  dndCancelled: (name) => `Move of ${name} cancelled.`,
+  wipLimit: (count, limit) => `${count} of ${limit} (limit)`,
+  emptyColumn: "No cards",
+  customRange: "Custom…",
+  rangeFrom: "From",
+  rangeTo: "To",
+  applyRange: "Apply",
+  timeOfDay: "Time",
 };
 
 export interface LafContextValue {

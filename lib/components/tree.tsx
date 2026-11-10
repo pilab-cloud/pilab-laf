@@ -45,6 +45,10 @@ export interface TreeViewProps {
   loadChildren?: (id: string) => Promise<void>;
   /** Right-click, Shift+F10 and the Menu key. */
   contextMenu?: (id: string) => MenuItemSpec[];
+  /** Move request produced by a drag adapter (see `treeDragAdapter` in `@pilab/laf/dnd`). */
+  onMove?: (ids: string[], targetId: string, position: "inside" | "before" | "after") => void;
+  /** Hook point for drag & drop; keeps dnd-kit out of the core entry. */
+  dragAdapter?: TreeDragAdapter;
   /** Force (true) or disable (false) virtualization; automatic above 500 visible rows. */
   virtual?: boolean;
   /** Viewport height in px when virtualized. */
@@ -52,6 +56,19 @@ export interface TreeViewProps {
   rowHeight?: number;
   labels?: { loading?: string; error?: string; retry?: string; contextMenu?: string };
   className?: string;
+}
+
+export type TreeDropPosition = "inside" | "before" | "after";
+
+export interface TreeDragAdapter {
+  /** Wraps the tree; receives the move callback and the current selection. */
+  Root: React.ComponentType<{
+    children: React.ReactNode;
+    selectedIds: string[];
+    onMove: (ids: string[], targetId: string, position: TreeDropPosition) => void;
+  }>;
+  /** Rendered instead of the treeitem `div`; identifies the node through `data-tree-id`. */
+  Row: React.ElementType;
 }
 
 type Row =
@@ -87,6 +104,8 @@ export function TreeView({
   onActivate,
   loadChildren,
   contextMenu,
+  onMove,
+  dragAdapter,
   virtual,
   height = 400,
   rowHeight = 28,
@@ -346,10 +365,12 @@ export function TreeView({
     const can = expandable(node);
     const isOpen = open.has(node.id);
     const isSel = chosen.has(node.id);
+    const RowEl: React.ElementType = dragAdapter && onMove && !node.disabled ? dragAdapter.Row : "div";
     return (
-      <div
+      <RowEl
         key={node.id}
-        ref={(el) => {
+        data-tree-id={node.id}
+        ref={(el: HTMLDivElement | null) => {
           if (el) refs.current.set(node.id, el);
           else refs.current.delete(node.id);
         }}
@@ -362,13 +383,13 @@ export function TreeView({
         aria-disabled={node.disabled || undefined}
         tabIndex={focusId === node.id ? 0 : -1}
         onFocus={() => setFocusId(node.id)}
-        onKeyDown={(e) => onKeyDown(e, idx)}
-        onClick={(e) => {
+        onKeyDown={(e: React.KeyboardEvent) => onKeyDown(e, idx)}
+        onClick={(e: React.MouseEvent) => {
           if (node.disabled) return;
           select(idx, e.shiftKey ? "range" : e.metaKey || e.ctrlKey ? "toggle" : "replace");
         }}
         onDoubleClick={() => !node.disabled && onActivate?.(node.id)}
-        onContextMenu={(e) => {
+        onContextMenu={(e: React.MouseEvent) => {
           if (!contextMenu) return;
           e.preventDefault();
           openMenuAt(node.id, e.clientX, e.clientY);
@@ -396,7 +417,7 @@ export function TreeView({
         {node.status && <span aria-hidden className={cn("size-2 shrink-0 rounded-full", dot[node.status])} />}
         {node.status && <span className="sr-only">{node.status}</span>}
         {node.badge}
-      </div>
+      </RowEl>
     );
   };
 
@@ -415,12 +436,24 @@ export function TreeView({
     />
   );
 
+  const Root = dragAdapter && onMove ? dragAdapter.Root : null;
+  const wrap = (el: React.ReactElement) =>
+    Root ? (
+      <Root selectedIds={selectedIds} onMove={onMove!}>
+        {el}
+      </Root>
+    ) : (
+      el
+    );
+
   if (!useVirt) {
     return (
       <>
-        <div role="tree" aria-label={label} aria-multiselectable={multi || undefined} className={className}>
-          {rows.map((_, i) => renderRow(i))}
-        </div>
+        {wrap(
+          <div role="tree" aria-label={label} aria-multiselectable={multi || undefined} className={className}>
+            {rows.map((_, i) => renderRow(i))}
+          </div>,
+        )}
         {menuEl}
       </>
     );
@@ -428,6 +461,7 @@ export function TreeView({
 
   return (
     <>
+      {wrap(
       <div
         ref={scrollRef}
         role="tree"
@@ -443,7 +477,8 @@ export function TreeView({
             renderRow(v.index, { position: "absolute", insetInline: 0, top: v.start, height: v.size }),
           )}
         </div>
-      </div>
+      </div>,
+      )}
       {menuEl}
     </>
   );

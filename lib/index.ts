@@ -36,3 +36,7 @@ export { TreeTable as TreeTableV2 } from "./components/treetable";
 export type { TreeTableNode, TreeTableProps } from "./components/treetable";
 export * from "./components/account";
 export * from "./components/admin";
+export * from "./components/hotkeys";
+export * from "./components/vsphere-layout";
+export * from "./components/tracker";
+export * from "./components/vsphere-objects";

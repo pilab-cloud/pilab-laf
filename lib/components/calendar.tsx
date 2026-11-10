@@ -9,27 +9,44 @@ import { useLaf } from "../i18n";
 const pad = (n: number) => String(n).padStart(2, "0");
 const iso = (y: number, m: number, d: number) => `${y}-${pad(m + 1)}-${pad(d)}`;
 
-export function DatePicker({
-  value,
-  onChange,
-  label: labelProp,
-  placeholder: placeholderProp,
-  min,
-  max,
-}: {
-  value?: string;
-  onChange: (value: string) => void;
+export interface DateRangeValue {
+  from?: string;
+  to?: string;
+}
+
+interface DatePickerCommon {
   label?: string;
   placeholder?: string;
   min?: string;
   max?: string;
-}) {
-  const { t: laf } = useLaf();
+  /** Extra disabled days, given as `yyyy-mm-dd`. */
+  disabledDates?: (date: string) => boolean;
+  /** Show the active time-zone label (default: on for datetime/range). */
+  showTimeZone?: boolean;
+}
+export type DatePickerProps = DatePickerCommon &
+  (
+    | { mode?: "date"; value?: string; onChange: (value: string) => void }
+    | { mode: "datetime"; /** `yyyy-mm-ddThh:mm` */ value?: string; onChange: (value: string) => void }
+    | { mode: "range"; value?: DateRangeValue; onChange: (value: DateRangeValue) => void }
+  );
+
+const ISO_DATE = /^\d{4}-\d{2}-\d{2}$/;
+
+export function DatePicker(props: DatePickerProps) {
+  const { label: labelProp, placeholder: placeholderProp, min, max, disabledDates, showTimeZone } = props;
+  const mode = props.mode ?? "date";
+  const { t: laf, timeZone } = useLaf();
   const label = labelProp ?? laf.chooseDate;
   const placeholder = placeholderProp ?? laf.datePlaceholder;
   const [open, setOpen] = React.useState(false);
-  const base = value ? new Date(`${value}T00:00:00`) : new Date();
+  const range: DateRangeValue = mode === "range" ? ((props.value as DateRangeValue | undefined) ?? {}) : {};
+  const single = mode === "range" ? undefined : (props.value as string | undefined);
+  const day = mode === "range" ? range.from : single?.slice(0, 10);
+  const time = mode === "datetime" ? (single?.slice(11, 16) || "00:00") : "00:00";
+  const base = day ? new Date(`${day}T00:00:00`) : new Date();
   const [view, setView] = React.useState({ y: base.getFullYear(), m: base.getMonth() });
+  const [typed, setTyped] = React.useState<string | null>(null);
   const first = new Date(view.y, view.m, 1);
   const offset = (first.getDay() + 6) % 7; // Monday first
   const days = new Date(view.y, view.m + 1, 0).getDate();
@@ -39,15 +56,65 @@ export function DatePicker({
     setView({ y: d.getFullYear(), m: d.getMonth() });
   };
   const title = first.toLocaleDateString(undefined, { month: "long", year: "numeric" });
+  const isDisabled = (v: string) => (min !== undefined && v < min) || (max !== undefined && v > max) || !!disabledDates?.(v);
+
+  const commitDay = (v: string) => {
+    if (props.mode === "range") {
+      if (!range.from || range.to) {
+        props.onChange({ from: v });
+      } else {
+        props.onChange(v < range.from ? { from: v, to: range.from } : { from: range.from, to: v });
+        setOpen(false);
+      }
+    } else if (props.mode === "datetime") {
+      props.onChange(`${v}T${time}`);
+    } else {
+      props.onChange(v);
+      setOpen(false);
+    }
+  };
+  const commitTyped = () => {
+    if (typed !== null && ISO_DATE.test(typed) && !isDisabled(typed) && !Number.isNaN(new Date(`${typed}T00:00:00`).getTime())) {
+      commitDay(typed);
+      const d = new Date(`${typed}T00:00:00`);
+      setView({ y: d.getFullYear(), m: d.getMonth() });
+    }
+    setTyped(null);
+  };
+  const text =
+    mode === "range"
+      ? range.from && `${range.from} – ${range.to ?? "…"}`
+      : mode === "datetime"
+        ? single && single.replace("T", " ")
+        : single;
+  const inRange = (v: string) => mode === "range" && !!range.from && !!range.to && v >= range.from && v <= range.to;
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
-        <button type="button" aria-label={label} className="input inline-flex w-44 items-center text-start font-mono">
-          {value ?? <span className="text-muted">{placeholder}</span>}
+        <button type="button" aria-label={label} className={cn("input inline-flex items-center text-start font-mono", mode === "date" ? "w-44" : "w-56")}>
+          {text || <span className="text-muted">{placeholder}</span>}
         </button>
       </PopoverTrigger>
       <PopoverContent className="w-64">
+        {mode !== "range" && (
+          <input
+            type="text"
+            inputMode="numeric"
+            aria-label={label}
+            placeholder={laf.datePlaceholder}
+            className="form-input mb-2 h-8 font-mono"
+            value={typed ?? day ?? ""}
+            onChange={(e) => setTyped(e.target.value)}
+            onBlur={commitTyped}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                e.preventDefault();
+                commitTyped();
+              }
+            }}
+          />
+        )}
         <div className="mb-2 flex items-center justify-between">
           <Button variant="ghost" size="sm" aria-label={laf.previousMonth} onClick={() => shift(-1)}>
             <ChevronLeft size={14} />
@@ -64,22 +131,20 @@ export function DatePicker({
           {cells.map((d, i) => {
             if (d < 1 || d > days) return <span key={i} role="gridcell" />;
             const v = iso(view.y, view.m, d);
-            const disabled = (min !== undefined && v < min) || (max !== undefined && v > max);
+            const selected = v === day || (mode === "range" && v === range.to);
             return (
               <button
                 key={i}
                 type="button"
                 role="gridcell"
-                disabled={disabled}
-                aria-selected={v === value}
+                disabled={isDisabled(v)}
+                aria-selected={selected || inRange(v)}
                 aria-label={v}
-                onClick={() => {
-                  onChange(v);
-                  setOpen(false);
-                }}
+                onClick={() => commitDay(v)}
                 className={cn(
                   "h-8 rounded-sm border-0 bg-transparent font-mono text-fg hover:bg-muted-bg disabled:opacity-40",
-                  v === value && "bg-primary text-primary-fg hover:bg-primary",
+                  inRange(v) && "bg-primary-light",
+                  selected && "bg-primary text-primary-fg hover:bg-primary",
                 )}
               >
                 {d}
@@ -87,6 +152,16 @@ export function DatePicker({
             );
           })}
         </div>
+        {mode === "datetime" && (
+          <input
+            type="time"
+            aria-label={laf.timeOfDay}
+            className="form-input mt-2 h-8 font-mono"
+            value={time}
+            onChange={(e) => props.onChange(`${day ?? iso(base.getFullYear(), base.getMonth(), base.getDate())}T${e.target.value || "00:00"}`)}
+          />
+        )}
+        {(showTimeZone ?? mode !== "date") && <div className="mt-2 text-xs text-muted">{timeZone}</div>}
       </PopoverContent>
     </Popover>
   );

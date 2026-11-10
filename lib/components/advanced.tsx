@@ -48,12 +48,21 @@ export function CommandPalette({
   onOpenChange,
   placeholder: placeholderProp,
   emptyText: emptyTextProp,
+  search,
+  recent,
+  onCommandRun,
 }: {
   commands: Command[];
   open: boolean;
   onOpenChange: (open: boolean) => void;
   placeholder?: string;
   emptyText?: string;
+  /** Async source merged after the local matches; stale responses are dropped. */
+  search?: (query: string) => Promise<Command[]>;
+  /** Shown under a "Recent" heading while the query is empty. */
+  recent?: Command[];
+  /** Called after a command ran, e.g. to maintain `recent`. */
+  onCommandRun?: (command: Command) => void;
 }) {
   const { t } = useLaf();
   const portalContainer = usePortalContainer();
@@ -61,6 +70,8 @@ export function CommandPalette({
   const emptyText = emptyTextProp ?? t.noResults;
   const [query, setQuery] = React.useState("");
   const [active, setActive] = React.useState(0);
+  const [remote, setRemote] = React.useState<{ query: string; items: Command[] } | null>(null);
+  const [pending, setPending] = React.useState(false);
   const listId = React.useId();
 
   React.useEffect(() => {
@@ -75,18 +86,65 @@ export function CommandPalette({
   }, [open, onOpenChange]);
 
   React.useEffect(() => {
-    if (!open) setQuery("");
+    if (!open) {
+      setQuery("");
+      setRemote(null);
+    }
   }, [open]);
 
+  React.useEffect(() => {
+    if (!search || !open || !query) {
+      setRemote(null);
+      setPending(false);
+      return;
+    }
+    let stale = false;
+    setPending(true);
+    search(query).then(
+      (items) => {
+        if (stale) return;
+        setRemote({ query, items });
+        setPending(false);
+      },
+      () => {
+        if (stale) return;
+        setRemote({ query, items: [] });
+        setPending(false);
+      },
+    );
+    return () => {
+      stale = true;
+    };
+  }, [search, query, open]);
+
   const q = query.toLowerCase();
-  const results = commands.filter((c) => c.label.toLowerCase().includes(q));
+  const sections = React.useMemo(() => {
+    const out: { heading?: string; items: Command[] }[] = [];
+    if (!q) {
+      if (recent?.length) out.push({ heading: t.recent, items: recent });
+    }
+    const seen = new Set<string>();
+    const all = [...commands.filter((c) => c.label.toLowerCase().includes(q)), ...(remote?.query === query ? remote.items : [])].filter((c) => {
+      if (seen.has(c.id)) return false;
+      seen.add(c.id);
+      return true;
+    });
+    const byGroup = new Map<string | undefined, Command[]>();
+    all.forEach((c) => byGroup.set(c.group, [...(byGroup.get(c.group) ?? []), c]));
+    const grouped = [...byGroup.keys()].some((g) => g !== undefined);
+    byGroup.forEach((items, group) => out.push({ heading: grouped ? group : undefined, items }));
+    return out;
+  }, [commands, remote, q, query, recent, t.recent]);
+  const results = sections.flatMap((s) => s.items.map((c) => ({ c, section: s })));
   React.useEffect(() => setActive(0), [query]);
 
   const run = (c: Command) => {
     onOpenChange(false);
     c.onSelect();
+    onCommandRun?.(c);
   };
 
+  let flat = 0;
   return (
     <DialogPrimitive.Root open={open} onOpenChange={onOpenChange}>
       <DialogPrimitive.Portal container={portalContainer}>
@@ -112,30 +170,45 @@ export function CommandPalette({
               onKeyDown={(e) => {
                 if (e.key === "ArrowDown") setActive((a) => Math.min(a + 1, results.length - 1));
                 else if (e.key === "ArrowUp") setActive((a) => Math.max(a - 1, 0));
-                else if (e.key === "Enter" && results[active]) run(results[active]!);
+                else if (e.key === "Enter" && results[active]) run(results[active]!.c);
                 else return;
                 e.preventDefault();
               }}
             />
           </div>
-          <ul id={listId} role="listbox" className="m-0 max-h-72 list-none overflow-auto p-1">
-            {results.length === 0 && <li className="px-3 py-2 text-sm text-muted">{emptyText}</li>}
-            {results.map((c, i) => (
-              <li
-                key={c.id}
-                id={`${listId}-${i}`}
-                role="option"
-                aria-selected={i === active}
-                onMouseEnter={() => setActive(i)}
-                onClick={() => run(c)}
-                className={cn("flex cursor-pointer items-center gap-2 rounded-sm px-3 py-2 text-sm text-muted", i === active && "bg-surface-hover text-fg")}
-              >
-                <span className="flex-1">{c.label}</span>
-                {c.group && <span className="text-xs text-subtle">{c.group}</span>}
-                {c.shortcut && <Kbd>{c.shortcut}</Kbd>}
-              </li>
-            ))}
-          </ul>
+          <div id={listId} role="listbox" aria-busy={pending} className="m-0 max-h-72 overflow-auto p-1">
+            {results.length === 0 && <div className="px-3 py-2 text-sm text-muted">{pending ? t.loading : emptyText}</div>}
+            {sections.map((sec, si) => {
+              const headId = `${listId}-h${si}`;
+              return (
+                <div key={si} role="group" aria-labelledby={sec.heading ? headId : undefined}>
+                  {sec.heading && (
+                    <div id={headId} role="presentation" className="px-3 pt-2 pb-1 text-xs font-medium text-subtle">
+                      {sec.heading}
+                    </div>
+                  )}
+                  {sec.items.map((c) => {
+                    const i = flat++;
+                    return (
+                      <div
+                        key={`${si}-${c.id}`}
+                        id={`${listId}-${i}`}
+                        role="option"
+                        aria-selected={i === active}
+                        onMouseEnter={() => setActive(i)}
+                        onClick={() => run(c)}
+                        className={cn("flex cursor-pointer items-center gap-2 rounded-sm px-3 py-2 text-sm text-muted", i === active && "bg-surface-hover text-fg")}
+                      >
+                        <span className="flex-1">{c.label}</span>
+                        {c.group && !sec.heading && <span className="text-xs text-subtle">{c.group}</span>}
+                        {c.shortcut && <Kbd>{c.shortcut}</Kbd>}
+                      </div>
+                    );
+                  })}
+                </div>
+              );
+            })}
+          </div>
         </DialogPrimitive.Content>
       </DialogPrimitive.Portal>
     </DialogPrimitive.Root>

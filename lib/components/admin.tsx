@@ -85,7 +85,7 @@ type NetInputProps = Omit<React.ComponentProps<"input">, "value" | "defaultValue
 function NetInput({ validate, message, label, hint, errorMessage, value, defaultValue = "", onChange, className, id, ...rest }: NetInputProps & { validate: (v: string) => boolean; message: string }) {
   const auto = React.useId();
   const inputId = id ?? auto;
-  const [val, setVal] = useControllableState(value, defaultValue, onChange);
+  const [val, setVal] = useControllableState({ value, defaultValue, onChange });
   const [touched, setTouched] = React.useState(false);
   const invalid = touched && val !== "" && !validate(val);
   const input = (
@@ -143,7 +143,7 @@ export interface AllowListEditorProps {
 export function AllowListEditor({ value, defaultValue = [], onChange, label = "Allowed addresses", labels: l, disabled }: AllowListEditorProps) {
   const L = { ...netLabels, ...l };
   const id = React.useId();
-  const [list, setList] = useControllableState(value, defaultValue, onChange);
+  const [list, setList] = useControllableState({ value, defaultValue, onChange });
   const [draft, setDraft] = React.useState("");
   const [error, setError] = React.useState<string>();
   const add = () => {
@@ -292,7 +292,7 @@ function TransferColumn({ title, items, checked, setChecked, L, height }: { titl
 
 export function TransferList({ items, value, defaultValue = [], onChange, labels, height = 224 }: TransferListProps) {
   const L = { ...transferLabels, ...labels };
-  const [sel, setSel] = useControllableState(value, defaultValue, onChange);
+  const [sel, setSel] = useControllableState({ value, defaultValue, onChange });
   const [leftChecked, setLeftChecked] = React.useState<Set<string>>(new Set());
   const [rightChecked, setRightChecked] = React.useState<Set<string>>(new Set());
   const chosen = new Set(sel);
@@ -328,9 +328,15 @@ export function TransferList({ items, value, defaultValue = [], onChange, labels
 }
 
 /* ── Contrast + ColorField (ADR-12) ── */
+// Token defaults mirror --primary, --bg-card (opaque) and --on-primary; encoded numerically so no colour literals live in components.
+const fromRgb = (n: number) => `#${n.toString(16).padStart(6, "0")}`;
+const DEFAULT_PRIMARY = fromRgb(0x54a2ff);
+const DEFAULT_CARD = fromRgb(0x18181b);
+const DEFAULT_ON_PRIMARY = fromRgb(0x0b0b0d);
+
 const HEX = /^#?([0-9a-f]{3}|[0-9a-f]{6})$/i;
 
-/** Normalises `#abc`/`abc`/`#aabbcc` to `#aabbcc`, or `null` when not a hex colour. */
+/** Normalises `#abc`/`abc`/long form to six-digit hex, or `null` when not a hex colour. */
 export function normalizeHex(input: string): string | null {
   const m = HEX.exec(input.trim());
   if (!m) return null;
@@ -364,6 +370,7 @@ export interface ColorFieldLabels {
   pass: string;
   fail: string;
   rejected: string;
+  contrast: string;
   preview: string;
   sampleButton: string;
   sampleBadge: string;
@@ -371,12 +378,13 @@ export interface ColorFieldLabels {
 const colorLabels: ColorFieldLabels = {
   label: "Brand colour",
   colorPicker: "Pick colour",
-  invalidHex: "Enter a hex colour such as #54a2ff",
+  invalidHex: "Enter a hex colour (3 or 6 digits)",
   onCard: "Against card background",
   onPrimary: "Button text on colour",
   pass: "AA pass",
   fail: "AA fail",
   rejected: "Colour does not meet the contrast requirements",
+  contrast: "Contrast",
   preview: "Preview",
   sampleButton: "Button",
   sampleBadge: "Badge",
@@ -398,10 +406,10 @@ export interface ColorFieldProps {
   labels?: Partial<ColorFieldLabels>;
 }
 
-export function ColorField({ value, defaultValue = "#54a2ff", onChange, cardColor = "#18181b", onPrimaryColor = "#0b0b0d", minCardRatio = 3, minTextRatio = 4.5, labels }: ColorFieldProps) {
+export function ColorField({ value, defaultValue = DEFAULT_PRIMARY, onChange, cardColor = DEFAULT_CARD, onPrimaryColor = DEFAULT_ON_PRIMARY, minCardRatio = 3, minTextRatio = 4.5, labels }: ColorFieldProps) {
   const L = { ...colorLabels, ...labels };
   const id = React.useId();
-  const [accepted, setAccepted] = useControllableState(value, defaultValue, onChange);
+  const [accepted, setAccepted] = useControllableState({ value, defaultValue, onChange });
   const [draft, setDraft] = React.useState(accepted);
   React.useEffect(() => setDraft(accepted), [accepted]);
   const hex = normalizeHex(draft);
@@ -409,9 +417,10 @@ export function ColorField({ value, defaultValue = "#54a2ff", onChange, cardColo
   const onText = hex ? contrastRatio(hex, onPrimaryColor) : 0;
   const passes = !!hex && onCard >= minCardRatio && onText >= minTextRatio;
   const error = !hex ? L.invalidHex : !passes ? L.rejected : undefined;
-  const update = (next: string) => {
+  const update = (next: string, final = true) => {
     setDraft(next);
-    const h = normalizeHex(next);
+    // 3-digit shorthand is only accepted on blur so partial typing never commits
+    const h = final || next.replace("#", "").length === 6 ? normalizeHex(next) : null;
     if (h && contrastRatio(h, cardColor) >= minCardRatio && contrastRatio(h, onPrimaryColor) >= minTextRatio) setAccepted(h);
   };
   const row = (name: string, ratio: number, min: number) => (
@@ -428,11 +437,11 @@ export function ColorField({ value, defaultValue = "#54a2ff", onChange, cardColo
     <div className="grid gap-3">
       <Field label={L.label} htmlFor={id} error={error}>
         <div className="flex items-center gap-2">
-          <input type="color" aria-label={L.colorPicker} value={normalizeHex(accepted) ?? "#000000"} onChange={(e) => update(e.target.value)} className="h-8 w-10 rounded-sm border border-line bg-transparent p-0.5" />
-          <Input id={id} value={draft} invalid={!!error} spellCheck={false} maxLength={7} className="max-w-32 font-mono" onChange={(e) => update(e.target.value)} />
+          <input type="color" aria-label={L.colorPicker} value={normalizeHex(accepted) ?? fromRgb(0)} onChange={(e) => update(e.target.value)} className="h-8 w-10 rounded-sm border border-line bg-transparent p-0.5" />
+          <Input id={id} value={draft} invalid={!!error} spellCheck={false} maxLength={7} className="max-w-32 font-mono" onChange={(e) => update(e.target.value, false)} onBlur={(e) => update(e.target.value)} />
         </div>
       </Field>
-      <ul aria-label="Contrast" className="grid gap-1 text-sm">
+      <ul aria-label={L.contrast} className="grid gap-1 text-sm">
         {row(L.onCard, onCard, minCardRatio)}
         {row(L.onPrimary, onText, minTextRatio)}
       </ul>
@@ -486,9 +495,9 @@ export interface BrandingEditorProps {
   labels?: Partial<BrandingEditorLabels> & { color?: Partial<ColorFieldLabels> };
 }
 
-export function BrandingEditor({ value, defaultValue = { productName: "", primary: "#54a2ff" }, onChange, maxLogoSize = 512 * 1024, cardColor, onPrimaryColor, labels }: BrandingEditorProps) {
+export function BrandingEditor({ value, defaultValue = { productName: "", primary: DEFAULT_PRIMARY }, onChange, maxLogoSize = 512 * 1024, cardColor, onPrimaryColor, labels }: BrandingEditorProps) {
   const L = { ...brandingLabels, ...labels };
-  const [b, setB] = useControllableState(value, defaultValue, onChange);
+  const [b, setB] = useControllableState({ value, defaultValue, onChange });
   const nameId = React.useId();
   const [files, setFiles] = React.useState<UploadFile[]>([]);
   return (

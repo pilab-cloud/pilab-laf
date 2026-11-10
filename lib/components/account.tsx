@@ -271,7 +271,7 @@ export function ApiKeyManager({ keys, scopes, expiryPresets = [30, 90, 365, null
         </Button>
       </div>
       {error && !form && (
-        <Alert tone="danger">
+        <Alert tone="error">
           <span role="alert">{error}</span>
         </Alert>
       )}
