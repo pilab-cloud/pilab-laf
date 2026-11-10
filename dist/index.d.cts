@@ -1,4 +1,6 @@
 import { ClassValue } from 'clsx';
+import { F as Formatters } from './i18n-BlMqNcgW.cjs';
+export { B as BytesOptions, D as DateTimeOptions, a as DurationOptions, b as LafContextValue, L as LafMessages, c as LafProvider, R as RelativeOptions, d as createFormatters, e as en, u as useLaf, f as usePortalContainer } from './i18n-BlMqNcgW.cjs';
 import * as class_variance_authority_types from 'class-variance-authority/types';
 import { VariantProps } from 'class-variance-authority';
 import * as React from 'react';
@@ -8,8 +10,9 @@ import * as PopoverPrimitive from '@radix-ui/react-popover';
 import * as TabsPrimitive from '@radix-ui/react-tabs';
 import * as TooltipPrimitive from '@radix-ui/react-tooltip';
 import * as lucide_react from 'lucide-react';
+import { LucideIcon } from 'lucide-react';
 import * as ContextPrimitive from '@radix-ui/react-context-menu';
-export { L as LafMessages, a as LafProvider, e as en, u as useLaf } from './i18n-_Wsnj9t7.cjs';
+import { Virtualizer } from '@tanstack/react-virtual';
 
 declare function cn(...inputs: ClassValue[]): string;
 
@@ -19,9 +22,9 @@ declare function useControllableState<T>({ value, defaultValue, onChange, }: {
     defaultValue: T;
     onChange?: (next: T) => void;
 }): [T, (next: T | ((prev: T) => T)) => void];
-declare const format: {
-    bytes(n: number, locale?: string): string;
-};
+
+/** Default formatters (browser locale/time zone); `useLaf().format` binds the provider's. */
+declare const format: Formatters;
 /** Line diff via LCS. */
 type DiffOp = {
     type: "same" | "add" | "del";
@@ -145,12 +148,13 @@ declare function EmptyState({ icon, title, description, action, }: {
     description?: string;
     action?: React.ReactNode;
 }): React.JSX.Element;
-declare function Breadcrumb({ items, maxItems }: {
+declare function Breadcrumb({ items, maxItems, label }: {
     items: {
         label: string;
         href?: string;
     }[];
     maxItems?: number;
+    label?: string;
 }): React.JSX.Element;
 declare function PageHead({ title, description, actions, breadcrumb, }: {
     title: string;
@@ -344,7 +348,7 @@ declare function OtpInput({ length, value, defaultValue, onChange, onComplete, c
     onComplete?: (value: string) => void;
 }): React.JSX.Element;
 declare function CodeInput({ className, ...props }: React.ComponentProps<"input">): React.JSX.Element;
-declare function CodeDisplay({ code, copyLabel, copiedLabel, className, }: {
+declare function CodeDisplay({ code, copyLabel: copyLabelProp, copiedLabel: copiedLabelProp, className, }: {
     code: string;
     copyLabel?: string;
     copiedLabel?: string;
@@ -362,7 +366,7 @@ declare function InfoBox({ title, items, className, }: {
     items: React.ReactNode[];
     className?: string;
 }): React.JSX.Element;
-declare function LanguageSwitcher({ languages, current, className, }: {
+declare function LanguageSwitcher({ languages, current, className, label, }: {
     languages: {
         code: string;
         label: string;
@@ -370,6 +374,7 @@ declare function LanguageSwitcher({ languages, current, className, }: {
     }[];
     current: string;
     className?: string;
+    label?: string;
 }): React.JSX.Element;
 declare function AuthFooter({ icon, className, children, }: {
     icon?: React.ReactNode;
@@ -387,8 +392,14 @@ interface PasswordFieldProps extends Omit<InputProps, "type"> {
     showLabel?: string;
     hideLabel?: string;
     capsLockHint?: string;
+    /** Caller-supplied scorer (e.g. zxcvbn); renders a 4-segment meter and a text label. */
+    strength?: (value: string) => 0 | 1 | 2 | 3 | 4;
+    strengthLabels?: [string, string, string, string, string];
+    /** Value this field must match (confirm field); shows an error when different. */
+    confirmOf?: string;
+    mismatchLabel?: string;
 }
-declare function PasswordField({ showLabel: showLabelProp, hideLabel: hideLabelProp, capsLockHint: capsLockHintProp, className, onKeyUp, onBlur, ...props }: PasswordFieldProps): React.JSX.Element;
+declare function PasswordField({ showLabel: showLabelProp, hideLabel: hideLabelProp, capsLockHint: capsLockHintProp, strength, strengthLabels: strengthLabelsProp, confirmOf, mismatchLabel: mismatchLabelProp, className, onKeyUp, onBlur, onChange, ...props }: PasswordFieldProps): React.JSX.Element;
 declare function DefinitionList({ items, className, }: {
     items: {
         label: React.ReactNode;
@@ -398,7 +409,7 @@ declare function DefinitionList({ items, className, }: {
     }[];
     className?: string;
 }): React.JSX.Element;
-declare function ConfirmDialog({ open, onOpenChange, title, description, items, confirmLabel, cancelLabel, confirmText, confirmTextLabel, pending, onConfirm, }: {
+declare function ConfirmDialog({ open, onOpenChange, title, description, items, confirmLabel, cancelLabel: cancelLabelProp, confirmText, confirmTextLabel: confirmTextLabelProp, pending, onConfirm, }: {
     open: boolean;
     onOpenChange: (open: boolean) => void;
     title: string;
@@ -447,68 +458,30 @@ declare function SecretDisplay({ value, label, acknowledgeLabel, onAcknowledge, 
     masked?: boolean;
 }): React.JSX.Element;
 
-interface ComboboxOption {
-    value: string;
-    label: string;
-    description?: string;
-}
-interface ComboboxProps {
-    options: ComboboxOption[] | ((query: string) => ComboboxOption[] | Promise<ComboboxOption[]>);
-    value: ComboboxOption[];
-    onChange: (value: ComboboxOption[]) => void;
-    multiple?: boolean;
-    label: string;
-    placeholder?: string;
-    emptyText?: string;
-    loadingText?: string;
-    disabled?: boolean;
-}
-declare function Combobox({ options, value, onChange, multiple, label, placeholder, emptyText: emptyTextProp, loadingText: loadingTextProp, disabled, }: ComboboxProps): React.JSX.Element;
-interface TreeNode {
-    id: string;
-    label: React.ReactNode;
-    icon?: React.ReactNode;
-    badge?: React.ReactNode;
-    children?: TreeNode[];
-}
-interface TreeViewProps {
-    nodes: TreeNode[];
-    label: string;
-    /** Controlled expanded ids; omit for uncontrolled. */
-    expanded?: string[];
-    defaultExpanded?: string[];
-    onExpandedChange?: (ids: string[]) => void;
-    /** Controlled selection; omit for uncontrolled. */
-    selected?: string;
-    defaultSelected?: string;
-    onSelect?: (id: string) => void;
-    className?: string;
-}
-declare function TreeView({ nodes, label, expanded: expandedProp, defaultExpanded, onExpandedChange, selected: selectedProp, defaultSelected, onSelect: onSelectProp, className }: TreeViewProps): React.JSX.Element;
-interface GridColumn<T> {
+interface GridColumnLegacy<T> {
     id: string;
     header: React.ReactNode;
     cell: (row: T) => React.ReactNode;
     sortable?: boolean;
     numeric?: boolean;
 }
-interface GridSort {
+interface GridSortLegacy {
     id: string;
     dir: "asc" | "desc";
 }
-interface DataGridProps<T> {
-    columns: GridColumn<T>[];
+interface DataGridLegacyProps<T> {
+    columns: GridColumnLegacy<T>[];
     rows: T[];
     rowId: (row: T) => string;
-    sort?: GridSort;
-    onSortChange?: (sort: GridSort | undefined) => void;
+    sort?: GridSortLegacy;
+    onSortChange?: (sort: GridSortLegacy | undefined) => void;
     selected?: string[];
     onSelectedChange?: (ids: string[]) => void;
     loading?: boolean;
     emptyTitle?: string;
     emptyDescription?: string;
 }
-declare function DataGrid<T>({ columns, rows, rowId, sort, onSortChange, selected, onSelectedChange, loading, emptyTitle, emptyDescription, }: DataGridProps<T>): React.JSX.Element;
+declare function DataGridLegacy<T>({ columns, rows, rowId, sort, onSortChange, selected, onSelectedChange, loading, emptyTitle: emptyTitleProp, emptyDescription, }: DataGridLegacyProps<T>): React.JSX.Element;
 type TaskStatus = "queued" | "running" | "ok" | "failed" | "cancelled";
 interface TaskItem {
     id: string;
@@ -521,7 +494,7 @@ interface TaskItem {
     started?: string;
     error?: string;
 }
-declare function TaskPanel({ tasks, onCancel, onRetry, labels, }: {
+declare function TaskPanel({ tasks, onCancel, onRetry, labels: labelsProp, }: {
     tasks: TaskItem[];
     onCancel?: (id: string) => void;
     onRetry?: (id: string) => void;
@@ -531,7 +504,7 @@ declare function TaskPanel({ tasks, onCancel, onRetry, labels, }: {
         empty: string;
     };
 }): React.JSX.Element;
-declare function UserMenu({ name, email, tenant, items, signOutLabel, onSignOut, }: {
+declare function UserMenu({ name, email, tenant, items, signOutLabel: signOutLabelProp, onSignOut, }: {
     name: string;
     email?: string;
     tenant?: string;
@@ -544,6 +517,38 @@ declare function UserMenu({ name, email, tenant, items, signOutLabel, onSignOut,
     signOutLabel?: string;
     onSignOut: () => void;
 }): React.JSX.Element;
+
+interface ComboboxOption {
+    value: string;
+    label: string;
+    description?: string;
+    group?: string;
+    disabled?: boolean;
+}
+interface ComboboxProps {
+    options: ComboboxOption[] | ((query: string) => ComboboxOption[] | Promise<ComboboxOption[]>);
+    value: ComboboxOption[];
+    onChange: (value: ComboboxOption[]) => void;
+    multiple?: boolean;
+    label: string;
+    placeholder?: string;
+    emptyText?: string;
+    loadingText?: string;
+    disabled?: boolean;
+    /** Offer a "Create “query”" row; receives the typed text. */
+    onCreate?: (query: string) => void;
+    createLabel?: (query: string) => string;
+    clearable?: boolean;
+    clearLabel?: string;
+    renderOption?: (option: ComboboxOption, state: {
+        selected: boolean;
+    }) => React.ReactNode;
+    /** Controlled open state; omit for uncontrolled. */
+    open?: boolean;
+    onOpenChange?: (open: boolean) => void;
+    className?: string;
+}
+declare function Combobox({ options, value, onChange, multiple, label, placeholder, emptyText: emptyTextProp, loadingText: loadingTextProp, disabled, onCreate, createLabel, clearable, clearLabel, renderOption, open: openProp, onOpenChange, className, }: ComboboxProps): React.JSX.Element;
 
 declare const bannerTone: {
     info: {
@@ -580,7 +585,7 @@ declare function Accordion({ items, multiple, defaultOpen, open: openProp, onOpe
     onOpenChange?: (ids: string[]) => void;
     className?: string;
 }): React.JSX.Element;
-declare function SplitPane({ start, end, defaultSize, min, max, label, className, }: {
+declare function SplitPane({ start, end, defaultSize, min, max, label: labelProp, className, }: {
     start: React.ReactNode;
     end: React.ReactNode;
     defaultSize?: number;
@@ -616,10 +621,42 @@ declare function NumberInput({ value, onChange, min, max, step, units, unit, onU
     onUnitChange?: (unit: string) => void;
     label: string;
 }): React.JSX.Element;
-declare function Slider({ className, ...props }: Omit<React.ComponentProps<"input">, "type">): React.JSX.Element;
-declare function Chip({ onRemove, removeLabel, children }: {
+interface SliderProps {
+    /** Single value, or `[min, max]` for a range with two thumbs. */
+    value?: number | [number, number];
+    defaultValue?: number | [number, number];
+    onValueChange?: (value: number | [number, number]) => void;
+    /** Single-value compatibility with the former native input: receives `{ target: { value } }`. */
+    onChange?: (e: {
+        target: {
+            value: string;
+        };
+    }) => void;
+    min?: number;
+    max?: number;
+    step?: number;
+    marks?: {
+        value: number;
+        label?: React.ReactNode;
+    }[];
+    /** Paired NumberInput (single value only). */
+    withInput?: boolean;
+    disabled?: boolean;
+    "aria-label"?: string;
+    className?: string;
+}
+declare function Slider({ value: valueProp, defaultValue, onValueChange, onChange, min, max, step, marks, withInput, disabled, className, "aria-label": ariaLabel, }: SliderProps): React.JSX.Element;
+declare const chipTone: {
+    neutral: string;
+    primary: string;
+    ok: string;
+    warn: string;
+    danger: string;
+};
+declare function Chip({ onRemove, removeLabel, tone, children, }: {
     onRemove?: () => void;
     removeLabel?: string;
+    tone?: keyof typeof chipTone;
     children: React.ReactNode;
 }): React.JSX.Element;
 declare function TagInput({ value, onChange, label, placeholder, max, validate, }: {
@@ -635,7 +672,7 @@ interface KeyValue {
     key: string;
     value: string;
 }
-declare function KeyValueEditor({ value, onChange, addLabel, keyLabel, valueLabel, duplicateMessage, }: {
+declare function KeyValueEditor({ value, onChange, addLabel: addLabelProp, keyLabel: keyLabelProp, valueLabel: valueLabelProp, duplicateMessage: duplicateMessageProp, }: {
     value: KeyValue[];
     onChange: (value: KeyValue[]) => void;
     addLabel?: string;
@@ -659,7 +696,7 @@ declare function LineChart({ series, xLabels, label, unit, className, }: {
     unit?: string;
     className?: string;
 }): React.JSX.Element;
-declare function TimeRangePicker({ value, onChange, presets, refresh, onRefreshChange, label, }: {
+declare function TimeRangePicker({ value, onChange, presets, refresh, onRefreshChange, label: labelProp, }: {
     value: string;
     onChange: (value: string) => void;
     presets?: string[];
@@ -678,7 +715,7 @@ declare function LogViewer({ lines, label, follow, className }: {
     follow?: boolean;
     className?: string;
 }): React.JSX.Element;
-declare function TenantSwitcher({ tenants, current, onSwitch, label, }: {
+declare function TenantSwitcher({ tenants, current, onSwitch, label: labelProp, }: {
     tenants: ComboboxOption[];
     current: string;
     onSwitch: (id: string) => void;
@@ -692,7 +729,15 @@ interface PermissionGroup {
         label: string;
     }[];
 }
-declare function PermissionMatrix({ roles, groups, value, onChange, readOnly, }: {
+interface PermissionMatrixLabels {
+    search: string;
+    inheritedFrom: (from: string) => string;
+    pending: (n: number) => string;
+    save: string;
+    discard: string;
+    noMatch: string;
+}
+declare function PermissionMatrix({ roles, groups, value, onChange, readOnly, inherited, baseline, searchable, onSave, onDiscard, labels: labelsProp, }: {
     roles: {
         id: string;
         label: string;
@@ -702,6 +747,17 @@ declare function PermissionMatrix({ roles, groups, value, onChange, readOnly, }:
     value: Record<string, string[]>;
     onChange: (value: Record<string, string[]>) => void;
     readOnly?: boolean;
+    /** Permissions a role gets from elsewhere: shown checked, disabled, with a source badge. */
+    inherited?: Record<string, {
+        permission: string;
+        from: string;
+    }[]>;
+    /** Saved state; cells that differ are highlighted and counted in the pending-changes bar. */
+    baseline?: Record<string, string[]>;
+    searchable?: boolean;
+    onSave?: () => void;
+    onDiscard?: () => void;
+    labels?: Partial<PermissionMatrixLabels>;
 }): React.JSX.Element;
 
 declare function Kbd({ className, ...props }: React.ComponentProps<"kbd">): React.JSX.Element;
@@ -718,7 +774,7 @@ interface UploadFile {
     progress?: number;
     error?: string;
 }
-declare function FileDropzone({ files, onFiles, onRemove, accept, maxSize, multiple, label, }: {
+declare function FileDropzone({ files, onFiles, onRemove, accept, maxSize, multiple, label: labelProp, }: {
     files: UploadFile[];
     onFiles: (files: File[]) => void;
     onRemove?: (id: string) => void;
@@ -736,7 +792,7 @@ interface AlarmItem {
     triggered: string;
     acknowledged?: boolean;
 }
-declare function AlarmList({ alarms, onAcknowledge, empty, }: {
+declare function AlarmList({ alarms, onAcknowledge, empty: emptyProp, }: {
     alarms: AlarmItem[];
     onAcknowledge?: (id: string) => void;
     empty?: string;
@@ -777,7 +833,7 @@ declare function FormField({ id: idProp, label, description, error, children, }:
         "aria-describedby"?: string;
     }) => React.ReactNode;
 }): React.JSX.Element;
-declare function ErrorSummary({ errors, title }: {
+declare function ErrorSummary({ errors, title: titleProp }: {
     errors: {
         id: string;
         message: string;
@@ -811,7 +867,7 @@ interface TreeTableRow<T> {
     data: T;
     children?: TreeTableRow<T>[];
 }
-declare function TreeTable<T>({ rows, columns, label, }: {
+declare function TreeTable$1<T>({ rows, columns, label, }: {
     rows: TreeTableRow<T>[];
     columns: {
         id: string;
@@ -827,8 +883,13 @@ declare function DiffView({ before, after, label, mode }: {
     mode?: "split" | "unified";
 }): React.JSX.Element;
 
-/** Fixed-row-height windowing for long lists. Rows render with absolute offsets. */
-declare function VirtualList<T>({ items, rowHeight, height, overscan, renderRow, label, className, }: {
+/** Falls back to `initialRect` while the element has no layout (hidden or jsdom) so rows still render. */
+declare function observeRectWithFallback(inst: Virtualizer<HTMLDivElement, Element>, cb: (rect: {
+    width: number;
+    height: number;
+}) => void): (() => void) | undefined;
+/** Fixed-row-height windowing for long lists (TanStack Virtual). Rows render with absolute offsets. */
+declare function VirtualList<T>({ items, rowHeight, height, overscan, renderRow, label, className, onRangeChange, }: {
     items: T[];
     rowHeight: number;
     height: number;
@@ -836,7 +897,28 @@ declare function VirtualList<T>({ items, rowHeight, height, overscan, renderRow,
     renderRow: (item: T, index: number) => React.ReactNode;
     label: string;
     className?: string;
+    /** Called with the last rendered index whenever the window moves. */
+    onRangeChange?: (lastIndex: number) => void;
 }): React.JSX.Element;
+interface InfiniteListProps<T> {
+    items: T[];
+    rowHeight: number;
+    height: number;
+    renderRow: (item: T, index: number) => React.ReactNode;
+    label: string;
+    hasMore: boolean;
+    loading?: boolean;
+    /** Fired when the last row scrolls into view while `hasMore` and not `loading`. */
+    onEndReached: () => void;
+    overscan?: number;
+    className?: string;
+    labels?: {
+        loading?: string;
+        loadMore?: string;
+    };
+}
+/** Virtualized list with end-reached paging, a loading row and a keyboard-accessible "Load more" button. */
+declare function InfiniteList<T>({ items, rowHeight, height, renderRow, label, hasMore, loading, onEndReached, overscan, className, labels, }: InfiniteListProps<T>): React.JSX.Element;
 
 type MfaMethod = "totp" | "passkey";
 interface MfaEnrolmentProps {
@@ -849,9 +931,9 @@ interface MfaEnrolmentProps {
     /** Start WebAuthn registration; resolve when the authenticator succeeded. */
     onRegisterPasskey?: () => Promise<void>;
     onComplete: () => void;
-    labels?: Partial<typeof defaultLabels>;
+    labels?: Partial<MfaLabels>;
 }
-declare const defaultLabels: {
+interface MfaLabels {
     method: string;
     scan: string;
     verify: string;
@@ -865,31 +947,12 @@ declare const defaultLabels: {
     passkeyWaiting: string;
     passkeyFailed: string;
     stored: string;
-};
-declare function MfaEnrolment({ qr, secret, recoveryCodes, onVerify, onRegisterPasskey, onComplete, labels }: MfaEnrolmentProps): React.JSX.Element;
-interface OidcClient {
-    id: string;
-    name: string;
-    clientId: string;
-    redirectUris: string[];
-    scopes: string[];
-    pkce: boolean;
-    claimMappings: KeyValue[];
+    manualSecret: string;
+    addedToApp: string;
 }
-/** @deprecated Use the OIDC screens in `shadow-sso-accounts`. Removed in 0.2. */
-declare function OidcClientList({ clients, selected, onSelect, }: {
-    clients: OidcClient[];
-    selected?: string;
-    onSelect: (id: string) => void;
-}): React.JSX.Element;
-/** @deprecated Use the OIDC screens in `shadow-sso-accounts`. Removed in 0.2. */
-declare function OidcClientForm({ client, onChange, onRotateSecret, }: {
-    client: OidcClient;
-    onChange: (client: OidcClient) => void;
-    onRotateSecret?: () => void;
-}): React.JSX.Element;
+declare function MfaEnrolment({ qr, secret, recoveryCodes, onVerify, onRegisterPasskey, onComplete, labels }: MfaEnrolmentProps): React.JSX.Element;
 
-declare function DatePicker({ value, onChange, label, placeholder, min, max, }: {
+declare function DatePicker({ value, onChange, label: labelProp, placeholder: placeholderProp, min, max, }: {
     value?: string;
     onChange: (value: string) => void;
     label?: string;
@@ -913,7 +976,7 @@ declare function Heatmap({ rows, columns, values, label, max, }: {
     max?: number;
 }): React.JSX.Element;
 
-declare function OverflowTabs({ tabs, maxVisible, moreLabel, onSelect, }: {
+declare function OverflowTabs({ tabs, maxVisible, moreLabel: moreLabelProp, onSelect, }: {
     tabs: {
         value: string;
         label: string;
@@ -923,7 +986,7 @@ declare function OverflowTabs({ tabs, maxVisible, moreLabel, onSelect, }: {
     /** Needed so menu items can switch a controlled <Tabs>. */
     onSelect: (value: string) => void;
 }): React.JSX.Element;
-declare function DockedTaskPanel({ tasks, onCancel, onRetry, title, defaultOpen, }: {
+declare function DockedTaskPanel({ tasks, onCancel, onRetry, title: titleProp, defaultOpen, }: {
     tasks: TaskItem[];
     onCancel?: (id: string) => void;
     onRetry?: (id: string) => void;
@@ -963,4 +1026,751 @@ declare function CodeEditor({ value, onChange, language, label, rows, }: {
     rows?: number;
 }): React.JSX.Element;
 
-export { Accordion, type AccordionItem, AccountItem, AccountList, AdminShell, type AlarmItem, AlarmList, Alert, type AuditEvent, AuditLog, AuthFooter, Avatar, Badge, Banner, BarChart, BrandHeader, Breadcrumb, Button, type ButtonProps, Card, type ChartSeries, Checkbox, Chip, ClientInfo, CodeDisplay, CodeEditor, CodeInput, Combobox, type ComboboxOption, type ComboboxProps, type Command, CommandPalette, ConfirmDialog, ContextMenu, ContextMenuContent, ContextMenuItem, ContextMenuSeparator, ContextMenuTrigger, CopyButton, DataGrid, type DataGridProps, DatePicker, DateTimeInput, DefinitionList, type Device, type DeviceKind, DeviceSelector, DeviceSteps, type DeviceStepsProps, Dialog, DialogClose, DialogContent, DialogTrigger, type DiffOp, DiffView, DockedTaskPanel, Donut, Drawer, DrawerClose, DrawerContent, DrawerTrigger, DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger, EmptyState, ErrorSummary, Field, type FieldProps, FileDropzone, FormField, Gauge, type GridColumn, type GridSort, Heatmap, InfoBox, InlineEdit, Input, type InputProps, Kbd, type KeyValue, KeyValueEditor, LanguageSwitcher, LineChart, type LogLine, LogViewer, MfaEnrolment, type MfaEnrolmentProps, type MfaMethod, NavGroup, NavLink, NumberInput, type OidcClient, OidcClientForm, OidcClientList, OtpInput, OverflowTabs, PageHead, Pagination, type PaginationProps, Panel, PasswordField, type PasswordFieldProps, type PermissionGroup, PermissionMatrix, Popover, PopoverClose, PopoverContent, PopoverTrigger, Progress, Radio, RadioGroup, type RadioGroupProps, type RadioProps, ScopeList, SearchInput, SecretDisplay, Select, type Severity, Skeleton, Slider, SocialButton, SocialButtons, SocialDivider, Sparkline, Spinner, SplitPane, StackedBarChart, Stat, StatGrid, type Step, Stepper, Switch, Table, Tabs, TabsContent, TabsList, TabsTrigger, TagInput, type TaskItem, TaskPanel, type TaskStatus, TenantSwitcher, Textarea, TimeRangePicker, type ToastOptions, ToastProvider, type ToastTone, Toolbar, Tooltip, TooltipProvider, type TopologyEdge, TopologyGraph, type TopologyNode, type TreeNode, TreeTable, type TreeTableRow, TreeView, type TreeViewProps, type UnitOption, type UploadFile, type User, UserCell, UserMenu, UserSelector, type UserSelectorProps, VirtualList, buttonVariants, cn, diffLines, format, highlight, matchesAccept, useControllableState, useToast };
+interface SelectOption {
+    value: string;
+    label: React.ReactNode;
+    description?: React.ReactNode;
+    icon?: React.ReactNode;
+    disabled?: boolean;
+}
+interface SelectGroup {
+    label: string;
+    options: SelectOption[];
+}
+interface SelectProps {
+    options: (SelectOption | SelectGroup)[];
+    value?: string;
+    defaultValue?: string;
+    onValueChange?: (value: string) => void;
+    placeholder?: string;
+    invalid?: boolean;
+    disabled?: boolean;
+    name?: string;
+    id?: string;
+    "aria-label"?: string;
+    className?: string;
+}
+declare function SelectMenu({ options, value, defaultValue, onValueChange, placeholder, invalid, disabled, name, id, className, "aria-label": ariaLabel, }: SelectProps): React.JSX.Element;
+interface SegmentedItem {
+    value: string;
+    label?: React.ReactNode;
+    icon?: React.ReactNode;
+    /** Required for icon-only items. */
+    "aria-label"?: string;
+    disabled?: boolean;
+}
+type SegmentedBase = {
+    items: SegmentedItem[];
+    "aria-label": string;
+    className?: string;
+    disabled?: boolean;
+};
+type SegmentedControlProps = SegmentedBase & ({
+    type?: "single";
+    value?: string;
+    defaultValue?: string;
+    onValueChange?: (v: string) => void;
+} | {
+    type: "multiple";
+    value?: string[];
+    defaultValue?: string[];
+    onValueChange?: (v: string[]) => void;
+});
+declare function SegmentedControl(props: SegmentedControlProps): React.JSX.Element;
+type IconButtonProps = Omit<ButtonProps, "children" | "leftIcon" | "rightIcon" | "aria-label"> & {
+    /** Accessible name; also shown as the tooltip. */
+    label: string;
+    icon: React.ReactNode;
+};
+declare function IconButton({ label, icon, className, ...props }: IconButtonProps): React.JSX.Element;
+declare const dotTone: {
+    ok: string;
+    warn: string;
+    danger: string;
+    neutral: string;
+    primary: string;
+};
+declare function StatusDot({ tone, pulse, label, srOnly, className, }: {
+    tone?: keyof typeof dotTone;
+    pulse?: boolean;
+    label: string;
+    /** Hide the text visually (still announced). */
+    srOnly?: boolean;
+    className?: string;
+}): React.JSX.Element;
+declare function formatRelative(date: Date, now: number, locale?: string): string;
+declare function RelativeTime({ value, className }: {
+    value: Date | string | number;
+    className?: string;
+}): React.JSX.Element;
+declare function ButtonGroup({ className, ...props }: React.ComponentProps<"div">): React.JSX.Element;
+declare function SplitButton({ children, onClick, variant, size, disabled, menuLabel, menu, className, }: {
+    children: React.ReactNode;
+    onClick?: React.MouseEventHandler<HTMLButtonElement>;
+    variant?: ButtonProps["variant"];
+    size?: ButtonProps["size"];
+    disabled?: boolean;
+    /** Accessible name of the chevron button. */
+    menuLabel?: string;
+    /** DropdownMenuItem children. */
+    menu: React.ReactNode;
+    className?: string;
+}): React.JSX.Element;
+declare function AvatarGroup({ users, max, size, className, }: {
+    users: {
+        name: string;
+        src?: string;
+    }[];
+    max?: number;
+    size?: "sm" | "md" | "lg";
+    className?: string;
+}): React.JSX.Element;
+
+type MenuItemSpec$1 = {
+    type?: "item";
+    id: string;
+    label: string;
+    icon?: React.ReactNode;
+    shortcut?: string;
+    danger?: boolean;
+    /** `true`, or a reason string shown as a tooltip. */
+    disabled?: boolean | string;
+    onSelect(): void;
+} | {
+    type: "checkbox";
+    id: string;
+    label: string;
+    checked: boolean;
+    onCheckedChange(v: boolean): void;
+    disabled?: boolean | string;
+} | {
+    type: "radio";
+    id: string;
+    value: string;
+    onValueChange(v: string): void;
+    options: {
+        value: string;
+        label: string;
+    }[];
+} | {
+    type: "submenu";
+    id: string;
+    label: string;
+    icon?: React.ReactNode;
+    items: MenuItemSpec$1[];
+    disabled?: boolean | string;
+} | {
+    type: "separator";
+    id?: string;
+} | {
+    type: "label";
+    id?: string;
+    label: string;
+};
+declare function MenuShortcut({ className, ...props }: React.ComponentProps<typeof Kbd>): React.JSX.Element;
+declare function Menu({ items, trigger, align, open, onOpenChange, }: {
+    items: MenuItemSpec$1[];
+    /** Element that opens the menu (rendered via asChild). */
+    trigger: React.ReactNode;
+    align?: "start" | "center" | "end";
+    open?: boolean;
+    onOpenChange?: (open: boolean) => void;
+}): React.JSX.Element;
+declare function ContextMenuFor({ items, children, disabled }: {
+    items: MenuItemSpec$1[];
+    children: React.ReactNode;
+    disabled?: boolean;
+}): React.JSX.Element;
+
+interface UnsavedChangesGuard {
+    /** True while a guarded action is waiting for confirmation. */
+    pending: boolean;
+    dirty: boolean;
+    /** Runs `action` now when clean, otherwise asks for confirmation first. Returns true if it ran immediately. */
+    guard: (action: () => void) => boolean;
+    confirm: () => void;
+    cancel: () => void;
+}
+/**
+ * Warns on tab close / reload (beforeunload) while `dirty`, and exposes `guard()` for in-app
+ * navigation (router callbacks, Cancel buttons). Pair it with `UnsavedChangesDialog`.
+ */
+declare function useUnsavedChangesGuard(dirty: boolean): UnsavedChangesGuard;
+declare function UnsavedChangesDialog({ guard, title, description, confirmLabel, cancelLabel, }: {
+    guard: UnsavedChangesGuard;
+    title?: string;
+    description?: string;
+    confirmLabel?: string;
+    cancelLabel?: string;
+}): React.JSX.Element;
+declare function FormSection({ title, description, columns, children, className, }: {
+    title: React.ReactNode;
+    description?: React.ReactNode;
+    columns?: 1 | 2;
+    children: React.ReactNode;
+    className?: string;
+}): React.JSX.Element;
+declare function FormFooter({ onCancel, onSave, saveLabel, cancelLabel, pending, dirty, guard, saveType, sticky, children, className, }: {
+    onCancel?: () => void;
+    onSave?: () => void;
+    saveLabel?: string;
+    cancelLabel?: string;
+    pending?: boolean;
+    /** When set, Save is disabled until the form is dirty. */
+    dirty?: boolean;
+    /** Routes Cancel through the unsaved-changes guard. */
+    guard?: UnsavedChangesGuard;
+    saveType?: "button" | "submit";
+    sticky?: boolean;
+    /** Extra content on the start side (status text, errors). */
+    children?: React.ReactNode;
+    className?: string;
+}): React.JSX.Element;
+interface TopBarCounter {
+    id: string;
+    label: string;
+    count: number;
+    icon?: React.ReactNode;
+    onClick?: () => void;
+}
+declare function TopBar({ logo, search, counters, notifications, userMenu, start, className, }: {
+    logo?: React.ReactNode;
+    /** Global search slot (e.g. an Input or command-palette trigger). */
+    search?: React.ReactNode;
+    counters?: TopBarCounter[];
+    /** NotificationCenter slot. */
+    notifications?: React.ReactNode;
+    userMenu?: React.ReactNode;
+    /** Slot before the logo, e.g. `MobileNav`. */
+    start?: React.ReactNode;
+    className?: string;
+}): React.JSX.Element;
+declare function DetailPage({ breadcrumb, icon, title, status, actions, tabs, side, children, className, }: {
+    breadcrumb?: {
+        label: string;
+        href?: string;
+    }[];
+    /** ObjectIcon slot. */
+    icon?: React.ReactNode;
+    title: React.ReactNode;
+    /** Status badge / dot slot next to the title. */
+    status?: React.ReactNode;
+    /** ActionBar slot. */
+    actions?: React.ReactNode;
+    /** Tabs slot, rendered under the head. */
+    tabs?: React.ReactNode;
+    side?: React.ReactNode;
+    children: React.ReactNode;
+    className?: string;
+}): React.JSX.Element;
+declare function FormPage({ breadcrumb, title, description, onSubmit, footer, children, className, }: {
+    breadcrumb?: {
+        label: string;
+        href?: string;
+    }[];
+    title: React.ReactNode;
+    description?: React.ReactNode;
+    onSubmit?: (e: React.FormEvent<HTMLFormElement>) => void;
+    /** Usually a `FormFooter`. */
+    footer?: React.ReactNode;
+    children: React.ReactNode;
+    className?: string;
+}): React.JSX.Element;
+interface SubNavItem {
+    id: string;
+    label: React.ReactNode;
+    icon?: React.ReactNode;
+    href?: string;
+    disabled?: boolean;
+}
+interface SubNavGroup {
+    id: string;
+    label?: string;
+    items: SubNavItem[];
+}
+/** Vertical secondary navigation (Configure / Settings). */
+declare function SubNav({ groups, value, onSelect, label, className, }: {
+    groups: SubNavGroup[];
+    value?: string;
+    onSelect?: (id: string) => void;
+    label?: string;
+    className?: string;
+}): React.JSX.Element;
+/** Hamburger that opens the sidebar in a Drawer; hidden from 860px up. */
+declare function MobileNav({ children, title, triggerLabel, open, onOpenChange, className, }: {
+    children: React.ReactNode;
+    title?: string;
+    triggerLabel?: string;
+    open?: boolean;
+    onOpenChange?: (open: boolean) => void;
+    className?: string;
+}): React.JSX.Element;
+
+interface WizardStep {
+    id: string;
+    label: React.ReactNode;
+    render: () => React.ReactNode;
+    /** Return messages to block navigation; return nothing when valid. */
+    validate?: () => Promise<string[] | void> | string[] | void;
+    /** Optional steps can be skipped without validation. */
+    optional?: boolean;
+}
+interface WizardLabels {
+    back: string;
+    next: string;
+    finish: string;
+    skip: string;
+    cancel: string;
+    optional: string;
+    steps: string;
+}
+interface WizardProps {
+    steps: WizardStep[];
+    onFinish: () => void | Promise<void>;
+    onCancel?: () => void;
+    /** When true, cancelling asks for confirmation first. */
+    dirty?: boolean;
+    title?: string;
+    /** "dialog" renders in a large Dialog controlled by `open`; "page" renders inline. */
+    mode?: "page" | "dialog";
+    open?: boolean;
+    onOpenChange?: (open: boolean) => void;
+    current?: number;
+    defaultCurrent?: number;
+    onCurrentChange?: (index: number) => void;
+    labels?: Partial<WizardLabels>;
+    className?: string;
+}
+declare function Wizard({ steps, onFinish, onCancel, dirty, title, mode, open, onOpenChange, current: currentProp, defaultCurrent, onCurrentChange, labels: labelsProp, className, }: WizardProps): React.JSX.Element;
+/** Review step helper: lists the collected values. */
+declare function WizardReview({ items, className, }: {
+    items: {
+        label: React.ReactNode;
+        value?: React.ReactNode;
+        mono?: boolean;
+    }[];
+    className?: string;
+}): React.JSX.Element;
+
+type ErrorVariant = "403" | "404" | "500" | "offline" | "session-expired";
+declare function ErrorPage({ variant, title, description, action, requestId, requestIdLabel, className, }: {
+    variant: ErrorVariant;
+    title?: string;
+    description?: React.ReactNode;
+    /** Primary action, e.g. a "Back to dashboard" Button. */
+    action?: React.ReactNode;
+    /** Copyable correlation id for support. */
+    requestId?: string;
+    requestIdLabel?: string;
+    className?: string;
+}): React.JSX.Element;
+interface BoundaryProps {
+    children: React.ReactNode;
+    /** Custom fallback; defaults to the 500 ErrorPage with a retry button. */
+    fallback?: (error: Error, reset: () => void) => React.ReactNode;
+    onError?: (error: Error, info: React.ErrorInfo) => void;
+    onReset?: () => void;
+    /** Changing any value resets the boundary. */
+    resetKeys?: unknown[];
+    retryLabel?: string;
+    requestId?: (error: Error) => string | undefined;
+}
+declare class LafErrorBoundary extends React.Component<BoundaryProps, {
+    error: Error | null;
+}> {
+    state: {
+        error: Error | null;
+    };
+    static getDerivedStateFromError(error: Error): {
+        error: Error;
+    };
+    componentDidCatch(error: Error, info: React.ErrorInfo): void;
+    componentDidUpdate(prev: BoundaryProps): void;
+    reset: () => void;
+    render(): string | number | bigint | boolean | Iterable<React.ReactNode> | Promise<string | number | bigint | boolean | React.ReactPortal | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | null | undefined> | React.JSX.Element | null | undefined;
+}
+
+type ObjectKind = "datacenter" | "cluster" | "host" | "vm" | "template" | "vapp" | "folder" | "resource-pool" | "datastore" | "datastore-cluster" | "network" | "dvswitch" | "portgroup" | "snapshot" | "user" | "group" | "client" | "issue" | "project";
+type ObjectState = "on" | "off" | "suspended" | "maintenance" | "disconnected" | "warning" | "error";
+/** Register (or override) an icon for an app-specific kind. Call it from app start-up, not at import time of this library. */
+declare function registerObjectKind(kind: string, icon: LucideIcon): void;
+interface ObjectIconProps {
+    kind: ObjectKind | (string & {});
+    state?: ObjectState;
+    size?: 16 | 20;
+    /** Accessible name of the object kind/instance; without it (and without a state) the icon is decorative. */
+    label?: string;
+    className?: string;
+}
+declare function ObjectIcon({ kind, state, size, label, className }: ObjectIconProps): React.JSX.Element;
+
+type FilterOp = ":" | ">" | ">=" | "<" | "<=";
+interface Filter {
+    key: string;
+    op: FilterOp;
+    /** Comma-separated alternatives (OR). */
+    values: string[];
+    negated: boolean;
+}
+interface TextTerm {
+    value: string;
+    negated: boolean;
+}
+type FilterToken = ({
+    type: "field";
+} & Filter) | ({
+    type: "text";
+} & TextTerm);
+interface ParsedFilter {
+    tokens: FilterToken[];
+    filters: Filter[];
+    text: TextTerm[];
+}
+declare function parseFilter(input: string): ParsedFilter;
+declare function serializeToken(t: FilterToken | Filter | TextTerm): string;
+/** Accepts `parseFilter()` output, a token list, or `Filter[]` (+ optional free text terms). */
+declare function serializeFilter(input: ParsedFilter | Array<FilterToken | Filter | TextTerm>, text?: TextTerm[]): string;
+interface FilterOption {
+    value: string;
+    label?: string;
+    description?: string;
+}
+interface FilterField {
+    key: string;
+    label?: string;
+    type?: "text" | "enum" | "boolean" | "number" | "date";
+    /** Static list or (async) lookup used for value autocomplete. */
+    options?: FilterOption[] | ((query: string) => FilterOption[] | Promise<FilterOption[]>);
+    /** Allow `key:a,b`. Default true. */
+    multiple?: boolean;
+    /** Allow `>` `>=` `<` `<=` (default for number/date). */
+    comparable?: boolean;
+    description?: string;
+}
+interface SavedView {
+    id: string;
+    name: string;
+    query: string;
+}
+interface SavedViewsStorage {
+    getItem(key: string): string | null;
+    setItem(key: string, value: string): void;
+}
+interface SavedViewsLabels {
+    views: string;
+    saveCurrent: string;
+    name: string;
+    save: string;
+    rename: string;
+    remove: (name: string) => string;
+    renameView: (name: string) => string;
+    setDefault: (name: string) => string;
+    unsetDefault: (name: string) => string;
+    empty: string;
+    confirm: string;
+}
+interface UseSavedViewsOptions {
+    views?: SavedView[];
+    defaultViews?: SavedView[];
+    onViewsChange?: (views: SavedView[]) => void;
+    defaultViewId?: string | null;
+    onDefaultViewChange?: (id: string | null) => void;
+    /** Persistence adapter; defaults to `localStorage`. Pass `null` to disable. Ignored when `views` is controlled. */
+    storage?: SavedViewsStorage | null;
+    storageKey?: string;
+}
+declare function useSavedViews(opts?: UseSavedViewsOptions): {
+    views: SavedView[];
+    defaultId: string | null;
+    defaultView: SavedView | undefined;
+    save: (name: string, query: string) => {
+        id: string;
+        name: string;
+        query: string;
+    };
+    rename: (id: string, name: string) => void;
+    update: (id: string, query: string) => void;
+    remove: (id: string) => void;
+    setDefault: (id: string | null) => void;
+};
+interface SavedViewsProps extends UseSavedViewsOptions {
+    /** Current raw query (used by "save current"). */
+    query: string;
+    onApply: (query: string, view: SavedView) => void;
+    labels?: Partial<SavedViewsLabels>;
+    className?: string;
+}
+declare function SavedViews({ query, onApply, labels: labelsProp, className, ...opts }: SavedViewsProps): React.JSX.Element;
+interface FilterBarLabels {
+    label: string;
+    placeholder: string;
+    clear: string;
+    removeFilter: (text: string) => string;
+    editFilter: (text: string) => string;
+    invalid: string;
+    noSuggestions: string;
+    negate: string;
+}
+interface FilterBarProps {
+    fields: FilterField[];
+    /** Raw query string (controlled). */
+    value?: string;
+    defaultValue?: string;
+    onChange?: (query: string, parsed: ParsedFilter) => void;
+    /** Saved views: false hides the menu; an object configures persistence. */
+    savedViews?: false | UseSavedViewsOptions;
+    /** Apply the default saved view on mount when the query is empty. Default true. */
+    applyDefaultView?: boolean;
+    labels?: Partial<FilterBarLabels> & {
+        views?: Partial<SavedViewsLabels>;
+    };
+    disabled?: boolean;
+    className?: string;
+}
+declare function FilterBar({ fields, value, defaultValue, onChange, savedViews, applyDefaultView, labels: labelsProp, disabled, className, }: FilterBarProps): React.JSX.Element;
+
+/**
+ * Local, structurally compatible copy of the design.md U4 `MenuItemSpec`.
+ * Internal to tree/action-bar until lib/components/menu.tsx lands; not re-exported from lib/index.ts.
+ */
+type MenuItemSpec = {
+    type?: "item";
+    id: string;
+    label: string;
+    icon?: React.ReactNode;
+    shortcut?: string;
+    danger?: boolean;
+    disabled?: boolean | string;
+    onSelect(): void;
+} | {
+    type: "checkbox";
+    id: string;
+    label: string;
+    checked: boolean;
+    onCheckedChange(v: boolean): void;
+} | {
+    type: "radio";
+    id: string;
+    value: string;
+    onValueChange(v: string): void;
+    options: {
+        value: string;
+        label: string;
+    }[];
+} | {
+    type: "submenu";
+    id: string;
+    label: string;
+    icon?: React.ReactNode;
+    items: MenuItemSpec[];
+} | {
+    type: "separator";
+} | {
+    type: "label";
+    label: string;
+};
+
+type TreeStatus = "success" | "warning" | "danger" | "info" | "neutral";
+interface TreeNode {
+    id: string;
+    label: React.ReactNode;
+    icon?: React.ReactNode;
+    badge?: React.ReactNode;
+    children?: TreeNode[];
+    /** Children exist but are not loaded yet; expanding calls `loadChildren`. */
+    hasChildren?: boolean;
+    disabled?: boolean;
+    /** Renders a status dot. */
+    status?: TreeStatus;
+    /** Plain-text label used for type-ahead when `label` is not a string. */
+    textValue?: string;
+}
+interface TreeViewProps {
+    nodes: TreeNode[];
+    label: string;
+    /** Controlled expanded ids; omit for uncontrolled. */
+    expanded?: string[];
+    defaultExpanded?: string[];
+    onExpandedChange?: (ids: string[]) => void;
+    /** Controlled selection (a string in single mode, string[] also accepted); omit for uncontrolled. */
+    selected?: string | string[];
+    defaultSelected?: string | string[];
+    /** Called with the id that was just selected (single mode: the selected id). */
+    onSelect?: (id: string) => void;
+    selection?: "single" | "multiple";
+    onSelectedChange?: (ids: string[]) => void;
+    /** Enter / double-click on an enabled node. */
+    onActivate?: (id: string) => void;
+    /** Lazily load children of a node with `hasChildren`; the parent should then update `nodes`. */
+    loadChildren?: (id: string) => Promise<void>;
+    /** Right-click, Shift+F10 and the Menu key. */
+    contextMenu?: (id: string) => MenuItemSpec[];
+    /** Force (true) or disable (false) virtualization; automatic above 500 visible rows. */
+    virtual?: boolean;
+    /** Viewport height in px when virtualized. */
+    height?: number;
+    rowHeight?: number;
+    labels?: {
+        loading?: string;
+        error?: string;
+        retry?: string;
+        contextMenu?: string;
+    };
+    className?: string;
+}
+declare function TreeView({ nodes, label, expanded: expandedProp, defaultExpanded, onExpandedChange, selected: selectedProp, defaultSelected, onSelect: onSelectProp, selection, onSelectedChange, onActivate, loadChildren, contextMenu, virtual, height, rowHeight, labels, className, }: TreeViewProps): React.JSX.Element;
+
+interface ActionBarProps {
+    items: MenuItemSpec[];
+    label: string;
+    className?: string;
+    labels?: {
+        actions?: string;
+    };
+}
+/** Toolbar fed by `MenuItemSpec[]`; items that do not fit move into an overflow "Actions" menu. */
+declare function ActionBar({ items, label, className, labels }: ActionBarProps): React.JSX.Element;
+
+interface GridSort {
+    id: string;
+    dir: "asc" | "desc";
+}
+interface GridFilter {
+    id: string;
+    value: unknown;
+}
+type GridFilterRenderer = (props: {
+    value: unknown;
+    onChange: (value: unknown) => void;
+    label: string;
+}) => React.ReactNode;
+interface GridColumn<T> {
+    id: string;
+    header: React.ReactNode;
+    cell: (row: T) => React.ReactNode;
+    accessor?: (row: T) => unknown;
+    sortable?: boolean;
+    filter?: "text" | "select" | "range" | GridFilterRenderer;
+    numeric?: boolean;
+    width?: number;
+    minWidth?: number;
+    hideable?: boolean;
+    pin?: "start";
+}
+/** Same shape idea as the shared menu model (U4); kept local until that lands. */
+interface GridMenuItem {
+    id: string;
+    label: React.ReactNode;
+    icon?: React.ReactNode;
+    danger?: boolean;
+    disabled?: boolean;
+    separatorBefore?: boolean;
+    onSelect: () => void;
+}
+type GridDensity = "compact" | "default";
+interface GridLabels {
+    selectAll?: string;
+    selectRow?: string;
+    actions?: string;
+    expand?: string;
+    collapse?: string;
+    resize?: string;
+    columns?: string;
+    density?: string;
+    compact?: string;
+    comfortable?: string;
+    search?: string;
+    clearSelection?: string;
+    selectedCount?: (n: number) => string;
+    empty?: string;
+    filter?: string;
+}
+interface DataGridProps<T> {
+    columns: GridColumn<T>[];
+    rows: T[];
+    rowId: (row: T) => string;
+    label: string;
+    /** Array. A single object is accepted for backwards compatibility (deprecated, warns once in dev). */
+    sort?: GridSort[] | GridSort;
+    onSortChange?: (sort: GridSort[]) => void;
+    /** Array. A string is accepted for backwards compatibility (deprecated, warns once in dev). */
+    selected?: string[] | string;
+    onSelectedChange?: (ids: string[]) => void;
+    /** Show the checkbox column. Implied by `selected`, `onSelectedChange` and `bulkActions`. */
+    selectable?: boolean;
+    columnVisibility?: Record<string, boolean>;
+    onColumnVisibilityChange?: (v: Record<string, boolean>) => void;
+    columnOrder?: string[];
+    onColumnOrderChange?: (order: string[]) => void;
+    columnSizing?: Record<string, number>;
+    onColumnSizingChange?: (s: Record<string, number>) => void;
+    filters?: GridFilter[];
+    onFiltersChange?: (f: GridFilter[]) => void;
+    search?: string;
+    onSearchChange?: (q: string) => void;
+    /** Server-side: the grid only emits sort/filter/search state and renders `rows` as given. */
+    manual?: boolean;
+    rowCount?: number;
+    /** Default: on above 200 rows. */
+    virtual?: boolean | {
+        rowHeight: number;
+        overscan?: number;
+    };
+    density?: GridDensity;
+    onDensityChange?: (d: GridDensity) => void;
+    stickyHeader?: boolean;
+    stickyFirstColumn?: boolean;
+    /** Scroll viewport height (px or CSS length). Default 480 when sticky/virtual. */
+    height?: number | string;
+    onRowActivate?: (row: T) => void;
+    rowActions?: (row: T) => GridMenuItem[];
+    renderExpanded?: (row: T) => React.ReactNode;
+    bulkActions?: (ids: string[]) => React.ReactNode;
+    toolbar?: React.ReactNode;
+    loading?: boolean;
+    error?: React.ReactNode;
+    empty?: React.ReactNode;
+    /** Persists visibility/order/sizing/density in localStorage under this key. */
+    viewKey?: string;
+    labels?: GridLabels;
+    className?: string;
+    /** @internal used by TreeTable */
+    gridRole?: "grid" | "treegrid";
+    /** @internal */
+    getRowProps?: (row: T) => React.HTMLAttributes<HTMLDivElement>;
+    /** @internal called before default key handling; call preventDefault() to take over */
+    onRowKeyDown?: (e: React.KeyboardEvent, row: T) => void;
+}
+declare function GridSearch({ className, placeholder }: {
+    className?: string;
+    placeholder?: string;
+}): React.JSX.Element;
+declare function GridDensityToggle(): React.JSX.Element;
+declare function GridColumnsMenu(): React.JSX.Element;
+declare function DataGrid<T>(props: DataGridProps<T>): React.JSX.Element;
+
+interface TreeTableNode<T> {
+    id: string;
+    data: T;
+    children?: TreeTableNode<T>[];
+}
+interface TreeTableProps<T> extends Omit<DataGridProps<T>, "rows" | "rowId" | "manual" | "renderExpanded" | "gridRole" | "getRowProps" | "onRowKeyDown" | "onRowActivate" | "rowActions" | "bulkActions" | "columns" | "filters" | "onFiltersChange" | "sort" | "onSortChange"> {
+    nodes: TreeTableNode<T>[];
+    columns: GridColumn<T>[];
+    expanded?: string[];
+    defaultExpanded?: string[];
+    onExpandedChange?: (ids: string[]) => void;
+    /** Column that carries the indent and toggle. Default: first column. */
+    treeColumn?: string;
+    /** Indent per level in px. */
+    indent?: number;
+    sort?: GridSort[];
+    onSortChange?: (sort: GridSort[]) => void;
+    onRowActivate?: (row: T) => void;
+    rowActions?: DataGridProps<T>["rowActions"];
+    bulkActions?: DataGridProps<T>["bulkActions"];
+}
+/** Data grid with expandable hierarchy (§4.30): `role="treegrid"`, sorting applies per sibling group. */
+declare function TreeTable<T>({ nodes, columns, expanded, defaultExpanded, onExpandedChange, treeColumn, indent, sort: sortProp, onSortChange, onRowActivate, rowActions, bulkActions, ...rest }: TreeTableProps<T>): React.JSX.Element;
+
+export { Accordion, type AccordionItem, AccountItem, AccountList, ActionBar, type ActionBarProps, AdminShell, type AlarmItem, AlarmList, Alert, type AuditEvent, AuditLog, AuthFooter, Avatar, AvatarGroup, Badge, Banner, BarChart, BrandHeader, Breadcrumb, Button, ButtonGroup, type ButtonProps, Card, type ChartSeries, Checkbox, Chip, ClientInfo, CodeDisplay, CodeEditor, CodeInput, Combobox, type ComboboxOption, type ComboboxProps, type Command, CommandPalette, ConfirmDialog, ContextMenu, ContextMenuContent, ContextMenuFor, ContextMenuItem, ContextMenuSeparator, ContextMenuTrigger, CopyButton, DataGrid, DataGridLegacy, type DataGridLegacyProps, type DataGridProps, DatePicker, DateTimeInput, DefinitionList, DetailPage, type Device, type DeviceKind, DeviceSelector, DeviceSteps, type DeviceStepsProps, Dialog, DialogClose, DialogContent, DialogTrigger, type DiffOp, DiffView, DockedTaskPanel, Donut, Drawer, DrawerClose, DrawerContent, DrawerTrigger, DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger, EmptyState, ErrorPage, ErrorSummary, type ErrorVariant, Field, type FieldProps, FileDropzone, type Filter, FilterBar, type FilterBarLabels, type FilterBarProps, type FilterField, type FilterOp, type FilterOption, type FilterToken, FormField, FormFooter, FormPage, FormSection, Formatters, Gauge, type GridColumn, type GridColumnLegacy, GridColumnsMenu, type GridDensity, GridDensityToggle, type GridFilter, type GridFilterRenderer, type GridLabels, type GridMenuItem, GridSearch, type GridSort, type GridSortLegacy, Heatmap, IconButton, type IconButtonProps, InfiniteList, type InfiniteListProps, InfoBox, InlineEdit, Input, type InputProps, Kbd, type KeyValue, KeyValueEditor, LafErrorBoundary, LanguageSwitcher, LineChart, type LogLine, LogViewer, Menu, type MenuItemSpec$1 as MenuItemSpec, MenuShortcut, MfaEnrolment, type MfaEnrolmentProps, type MfaMethod, MobileNav, NavGroup, NavLink, NumberInput, ObjectIcon, type ObjectIconProps, type ObjectKind, type ObjectState, OtpInput, OverflowTabs, PageHead, Pagination, type PaginationProps, Panel, type ParsedFilter, PasswordField, type PasswordFieldProps, type PermissionGroup, PermissionMatrix, type PermissionMatrixLabels, Popover, PopoverClose, PopoverContent, PopoverTrigger, Progress, Radio, RadioGroup, type RadioGroupProps, type RadioProps, RelativeTime, type SavedView, SavedViews, type SavedViewsLabels, type SavedViewsProps, type SavedViewsStorage, ScopeList, SearchInput, SecretDisplay, SegmentedControl, type SegmentedControlProps, type SegmentedItem, Select, type SelectGroup, SelectMenu, type SelectOption, type SelectProps, type Severity, Skeleton, Slider, type SliderProps, SocialButton, SocialButtons, SocialDivider, Sparkline, Spinner, SplitButton, SplitPane, StackedBarChart, Stat, StatGrid, StatusDot, type Step, Stepper, SubNav, type SubNavGroup, type SubNavItem, Switch, Table, Tabs, TabsContent, TabsList, TabsTrigger, TagInput, type TaskItem, TaskPanel, type TaskStatus, TenantSwitcher, type TextTerm, Textarea, TimeRangePicker, type ToastOptions, ToastProvider, type ToastTone, Toolbar, Tooltip, TooltipProvider, TopBar, type TopBarCounter, type TopologyEdge, TopologyGraph, type TopologyNode, type TreeNode, type TreeStatus, TreeTable$1 as TreeTable, type TreeTableNode, type TreeTableProps, type TreeTableRow, TreeTable as TreeTableV2, TreeView, type TreeViewProps, type UnitOption, UnsavedChangesDialog, type UnsavedChangesGuard, type UploadFile, type UseSavedViewsOptions, type User, UserCell, UserMenu, UserSelector, type UserSelectorProps, VirtualList, Wizard, type WizardLabels, type WizardProps, WizardReview, type WizardStep, buttonVariants, cn, diffLines, format, formatRelative, highlight, matchesAccept, observeRectWithFallback, parseFilter, registerObjectKind, serializeFilter, serializeToken, useControllableState, useSavedViews, useToast, useUnsavedChangesGuard };

@@ -1,5 +1,6 @@
 import { ChevronDown, ChevronUp, MoreHorizontal } from "lucide-react";
 import * as React from "react";
+import { useLaf } from "../i18n";
 import { cn } from "../cn";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger, TabsList, TabsTrigger } from "./overlay";
 import { TaskPanel, type TaskItem } from "./inventory";
@@ -8,7 +9,7 @@ import { TaskPanel, type TaskItem } from "./inventory";
 export function OverflowTabs({
   tabs,
   maxVisible = 4,
-  moreLabel = "More tabs",
+  moreLabel: moreLabelProp,
   onSelect,
 }: {
   tabs: { value: string; label: string }[];
@@ -17,6 +18,8 @@ export function OverflowTabs({
   /** Needed so menu items can switch a controlled <Tabs>. */
   onSelect: (value: string) => void;
 }) {
+  const { t: laf } = useLaf();
+  const moreLabel = moreLabelProp ?? laf.moreTabs;
   const visible = tabs.slice(0, maxVisible);
   const rest = tabs.slice(maxVisible);
   return (
@@ -53,7 +56,7 @@ export function DockedTaskPanel({
   tasks,
   onCancel,
   onRetry,
-  title = "Recent tasks",
+  title: titleProp,
   defaultOpen = false,
 }: {
   tasks: TaskItem[];
@@ -62,6 +65,8 @@ export function DockedTaskPanel({
   title?: string;
   defaultOpen?: boolean;
 }) {
+  const { t: laf } = useLaf();
+  const title = titleProp ?? laf.recentTasks;
   const [open, setOpen] = React.useState(defaultOpen);
   const running = tasks.filter((t) => t.status === "running").length;
   return (

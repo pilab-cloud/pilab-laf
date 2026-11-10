@@ -1,5 +1,6 @@
 import { AlertTriangle, CheckCircle2, Info, XCircle } from "lucide-react";
 import * as React from "react";
+import { useLaf } from "../i18n";
 import { cn } from "../cn";
 
 type Tone = "error" | "success" | "warning" | "info";
@@ -157,17 +158,18 @@ export function EmptyState({
   );
 }
 
-export function Breadcrumb({ items, maxItems }: { items: { label: string; href?: string }[]; maxItems?: number }) {
+export function Breadcrumb({ items, maxItems, label }: { items: { label: string; href?: string }[]; maxItems?: number; label?: string }) {
+  const { t: laf } = useLaf();
   const [expanded, setExpanded] = React.useState(false);
   const collapsed = !expanded && maxItems !== undefined && maxItems >= 2 && items.length > maxItems;
   const hidden = collapsed ? items.length - (maxItems - 1) : 0;
   return (
-    <nav className="breadcrumb" aria-label="Breadcrumb">
+    <nav className="breadcrumb" aria-label={label ?? laf.breadcrumb}>
       {items.map((it, i) => {
         if (collapsed && i > 0 && i <= hidden) {
           return i === 1 ? (
             <span key="more">
-              <button type="button" aria-label={`Show ${hidden} hidden levels`} onClick={() => setExpanded(true)} className="border-0 bg-transparent p-0 text-muted">
+              <button type="button" aria-label={laf.showHiddenLevels(hidden)} onClick={() => setExpanded(true)} className="border-0 bg-transparent p-0 text-muted">
                 …
               </button>
             </span>

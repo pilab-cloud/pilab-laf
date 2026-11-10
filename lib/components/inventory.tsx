@@ -1,7 +1,5 @@
-import { ArrowDown, ArrowUp, ChevronDown, ChevronRight, LogOut, X } from "lucide-react";
-import * as PopoverPrimitive from "@radix-ui/react-popover";
+import { ArrowDown, ArrowUp, LogOut, X } from "lucide-react";
 import * as React from "react";
-import { useControllableState } from "../utils";
 import { cn } from "../cn";
 import { Badge } from "./display";
 import { EmptyState } from "./display";
@@ -19,308 +17,8 @@ import {
 } from "./overlay";
 import { useLaf } from "../i18n";
 
-/* ── Combobox (generic, single or multi, async) ── */
-export interface ComboboxOption {
-  value: string;
-  label: string;
-  description?: string;
-}
-
-export interface ComboboxProps {
-  options: ComboboxOption[] | ((query: string) => ComboboxOption[] | Promise<ComboboxOption[]>);
-  value: ComboboxOption[];
-  onChange: (value: ComboboxOption[]) => void;
-  multiple?: boolean;
-  label: string;
-  placeholder?: string;
-  emptyText?: string;
-  loadingText?: string;
-  disabled?: boolean;
-}
-
-export function Combobox({
-  options,
-  value,
-  onChange,
-  multiple,
-  label,
-  placeholder,
-  emptyText: emptyTextProp,
-  loadingText: loadingTextProp,
-  disabled,
-}: ComboboxProps) {
-  const { t } = useLaf();
-  const emptyText = emptyTextProp ?? t.noResults;
-  const loadingText = loadingTextProp ?? `${t.loading}…`;
-  const id = React.useId();
-  const [query, setQuery] = React.useState("");
-  const [open, setOpen] = React.useState(false);
-  const [list, setList] = React.useState<ComboboxOption[]>([]);
-  const [loading, setLoading] = React.useState(false);
-  const [active, setActive] = React.useState(0);
-  const root = React.useRef<HTMLDivElement>(null);
-
-  React.useEffect(() => {
-    if (!open) return;
-    let cancelled = false;
-    setLoading(true);
-    const t = window.setTimeout(
-      async () => {
-        const res =
-          typeof options === "function"
-            ? await options(query)
-            : options.filter((o) => (o.label + (o.description ?? "")).toLowerCase().includes(query.toLowerCase()));
-        if (!cancelled) {
-          setList(res);
-          setActive(0);
-          setLoading(false);
-        }
-      },
-      typeof options === "function" ? 250 : 0,
-    );
-    return () => {
-      cancelled = true;
-      window.clearTimeout(t);
-    };
-  }, [query, open, options]);
-
-  const isSelected = (o: ComboboxOption) => value.some((v) => v.value === o.value);
-  const pick = (o: ComboboxOption) => {
-    if (isSelected(o)) onChange(value.filter((v) => v.value !== o.value));
-    else if (multiple) onChange([...value, o]);
-    else {
-      onChange([o]);
-      setOpen(false);
-    }
-    setQuery("");
-  };
-
-  const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "ArrowDown") {
-      e.preventDefault();
-      setOpen(true);
-      setActive((a) => Math.min(a + 1, list.length - 1));
-    } else if (e.key === "ArrowUp") {
-      e.preventDefault();
-      setActive((a) => Math.max(a - 1, 0));
-    } else if (e.key === "Enter" && open && list[active]) {
-      e.preventDefault();
-      pick(list[active]!);
-    } else if (e.key === "Escape") setOpen(false);
-    else if (e.key === "Backspace" && !query && value.length) onChange(value.slice(0, -1));
-  };
-
-  const listId = `${id}-list`;
-  return (
-    <PopoverPrimitive.Root open={open} onOpenChange={setOpen}>
-    <PopoverPrimitive.Anchor asChild>
-    <div ref={root} className="relative">
-      <div className="form-input flex flex-wrap items-center gap-1.5 focus-within:border-primary">
-        {value.map((v) => (
-          <span key={v.value} className="inline-flex h-6 items-center gap-1 rounded-sm border border-line bg-muted-bg px-2 text-xs">
-            {v.label}
-            {multiple && (
-              <button type="button" aria-label={t.removeItem(v.label)} className="text-muted hover:text-fg" onClick={() => pick(v)}>
-                <X className="size-3" aria-hidden />
-              </button>
-            )}
-          </span>
-        ))}
-        <input
-          role="combobox"
-          aria-label={label}
-          aria-expanded={open}
-          aria-controls={listId}
-          aria-autocomplete="list"
-          aria-activedescendant={open && list[active] ? `${id}-${active}` : undefined}
-          className="min-w-24 flex-1 border-0 bg-transparent p-0 text-fg outline-none"
-          placeholder={value.length && multiple ? undefined : placeholder}
-          disabled={disabled}
-          value={query}
-          onChange={(e) => {
-            setQuery(e.target.value);
-            setOpen(true);
-          }}
-          onFocus={() => setOpen(true)}
-          onKeyDown={onKeyDown}
-        />
-      </div>
-    </div>
-    </PopoverPrimitive.Anchor>
-      <PopoverPrimitive.Portal>
-      <PopoverPrimitive.Content
-        sideOffset={4}
-        align="start"
-        collisionPadding={8}
-        onOpenAutoFocus={(e) => e.preventDefault()}
-        onCloseAutoFocus={(e) => e.preventDefault()}
-        onInteractOutside={(e) => {
-          if (root.current?.contains(e.target as Node)) e.preventDefault();
-        }}
-        className="z-50 w-(--radix-popover-trigger-width)"
-      >
-        <ul id={listId} role="listbox" aria-multiselectable={multiple || undefined} className="dropdown-menu max-h-64 w-full overflow-auto">
-          {loading ? (
-            <li className="px-3 py-2 text-sm text-muted">{loadingText}</li>
-          ) : list.length === 0 ? (
-            <li className="px-3 py-2 text-sm text-muted">{emptyText}</li>
-          ) : (
-            list.map((o, i) => (
-              <li
-                key={o.value}
-                id={`${id}-${i}`}
-                role="option"
-                aria-selected={isSelected(o)}
-                className={cn("dropdown-item cursor-pointer", i === active && "bg-surface-hover text-fg", isSelected(o) && "font-semibold")}
-                onMouseEnter={() => setActive(i)}
-                onMouseDown={(e) => e.preventDefault()}
-                onClick={() => pick(o)}
-              >
-                <span>{o.label}</span>
-                {o.description && <span className="ms-2 text-xs text-subtle">{o.description}</span>}
-              </li>
-            ))
-          )}
-        </ul>
-      </PopoverPrimitive.Content>
-      </PopoverPrimitive.Portal>
-    </PopoverPrimitive.Root>
-  );
-}
-
-/* ── Tree view (WAI-ARIA tree) ── */
-export interface TreeNode {
-  id: string;
-  label: React.ReactNode;
-  icon?: React.ReactNode;
-  badge?: React.ReactNode;
-  children?: TreeNode[];
-}
-
-export interface TreeViewProps {
-  nodes: TreeNode[];
-  label: string;
-  /** Controlled expanded ids; omit for uncontrolled. */
-  expanded?: string[];
-  defaultExpanded?: string[];
-  onExpandedChange?: (ids: string[]) => void;
-  /** Controlled selection; omit for uncontrolled. */
-  selected?: string;
-  defaultSelected?: string;
-  onSelect?: (id: string) => void;
-  className?: string;
-}
-
-function flatten(nodes: TreeNode[], expanded: Set<string>, level = 1, out: { node: TreeNode; level: number; set: number; pos: number }[] = []) {
-  nodes.forEach((node, i) => {
-    out.push({ node, level, set: nodes.length, pos: i + 1 });
-    if (node.children?.length && expanded.has(node.id)) flatten(node.children, expanded, level + 1, out);
-  });
-  return out;
-}
-
-export function TreeView({ nodes, label, expanded: expandedProp, defaultExpanded = [], onExpandedChange, selected: selectedProp, defaultSelected, onSelect: onSelectProp, className }: TreeViewProps) {
-  const [expanded, setExpanded] = useControllableState<string[]>({ value: expandedProp, defaultValue: defaultExpanded, onChange: onExpandedChange });
-  const [selected, setSelected] = useControllableState<string | undefined>({ value: selectedProp, defaultValue: defaultSelected });
-  const onSelect = (id: string) => {
-    setSelected(id);
-    onSelectProp?.(id);
-  };
-  const open = React.useMemo(() => new Set(expanded), [expanded]);
-  const rows = React.useMemo(() => flatten(nodes, open), [nodes, open]);
-  const [focusId, setFocusId] = React.useState(selected ?? rows[0]?.node.id);
-  const refs = React.useRef(new Map<string, HTMLDivElement>());
-
-  const parentOf = (id: string) => {
-    const find = (list: TreeNode[], parent?: TreeNode): TreeNode | undefined => {
-      for (const n of list) {
-        if (n.id === id) return parent;
-        const r = n.children && find(n.children, n);
-        if (r) return r;
-      }
-    };
-    return find(nodes);
-  };
-
-  const toggle = (id: string, to: boolean) =>
-    setExpanded(to ? [...new Set([...expanded, id])] : expanded.filter((e) => e !== id));
-  const move = (id: string) => {
-    setFocusId(id);
-    refs.current.get(id)?.focus();
-  };
-
-  const onKeyDown = (e: React.KeyboardEvent, idx: number) => {
-    const { node } = rows[idx]!;
-    const hasKids = !!node.children?.length;
-    if (e.key === "ArrowDown") move(rows[Math.min(idx + 1, rows.length - 1)]!.node.id);
-    else if (e.key === "ArrowUp") move(rows[Math.max(idx - 1, 0)]!.node.id);
-    else if (e.key === "Home") move(rows[0]!.node.id);
-    else if (e.key === "End") move(rows[rows.length - 1]!.node.id);
-    else if (e.key === "ArrowRight") {
-      if (hasKids && !open.has(node.id)) toggle(node.id, true);
-      else if (hasKids) move(node.children![0]!.id);
-    } else if (e.key === "ArrowLeft") {
-      if (hasKids && open.has(node.id)) toggle(node.id, false);
-      else {
-        const p = parentOf(node.id);
-        if (p) move(p.id);
-      }
-    } else if (e.key === "Enter" || e.key === " ") onSelect?.(node.id);
-    else return;
-    e.preventDefault();
-  };
-
-  return (
-    <div role="tree" aria-label={label} className={className}>
-      {rows.map(({ node, level, set, pos }, idx) => {
-        const hasKids = !!node.children?.length;
-        const isOpen = open.has(node.id);
-        return (
-          <div
-            key={node.id}
-            ref={(el) => {
-              if (el) refs.current.set(node.id, el);
-              else refs.current.delete(node.id);
-            }}
-            role="treeitem"
-            aria-level={level}
-            aria-setsize={set}
-            aria-posinset={pos}
-            aria-expanded={hasKids ? isOpen : undefined}
-            aria-selected={selected === node.id}
-            tabIndex={focusId === node.id ? 0 : -1}
-            onFocus={() => setFocusId(node.id)}
-            onKeyDown={(e) => onKeyDown(e, idx)}
-            onClick={() => onSelect?.(node.id)}
-            className={cn(
-              "flex h-7 cursor-pointer items-center gap-1.5 rounded-sm border-s-2 border-transparent pe-2 text-sm text-muted outline-none hover:bg-surface-hover hover:text-fg focus-visible:ring-2 focus-visible:ring-primary",
-              selected === node.id && "border-primary bg-primary-light text-fg",
-            )}
-            // dynamic depth indent
-            style={{ paddingInlineStart: `${(level - 1) * 16 + 4}px` }}
-          >
-            <span
-              className="flex size-4 shrink-0 items-center justify-center"
-              onClick={(e) => {
-                if (!hasKids) return;
-                e.stopPropagation();
-                toggle(node.id, !isOpen);
-              }}
-            >
-              {hasKids && (isOpen ? <ChevronDown className="size-4" aria-hidden /> : <ChevronRight className="size-4" aria-hidden />)}
-            </span>
-            {node.icon && <span className="flex size-4 shrink-0 items-center justify-center [&>svg]:size-4">{node.icon}</span>}
-            <span className="min-w-0 flex-1 truncate">{node.label}</span>
-            {node.badge}
-          </div>
-        );
-      })}
-    </div>
-  );
-}
-
-/* ── Data grid (sortable, selectable) ── */
-export interface GridColumn<T> {
+/* ── Legacy data grid (sortable, selectable) — superseded by DataGrid in datagrid.tsx; kept for one minor ── */
+export interface GridColumnLegacy<T> {
   id: string;
   header: React.ReactNode;
   cell: (row: T) => React.ReactNode;
@@ -328,17 +26,17 @@ export interface GridColumn<T> {
   numeric?: boolean;
 }
 
-export interface GridSort {
+export interface GridSortLegacy {
   id: string;
   dir: "asc" | "desc";
 }
 
-export interface DataGridProps<T> {
-  columns: GridColumn<T>[];
+export interface DataGridLegacyProps<T> {
+  columns: GridColumnLegacy<T>[];
   rows: T[];
   rowId: (row: T) => string;
-  sort?: GridSort;
-  onSortChange?: (sort: GridSort | undefined) => void;
+  sort?: GridSortLegacy;
+  onSortChange?: (sort: GridSortLegacy | undefined) => void;
   selected?: string[];
   onSelectedChange?: (ids: string[]) => void;
   loading?: boolean;
@@ -346,7 +44,7 @@ export interface DataGridProps<T> {
   emptyDescription?: string;
 }
 
-export function DataGrid<T>({
+export function DataGridLegacy<T>({
   columns,
   rows,
   rowId,
@@ -355,10 +53,11 @@ export function DataGrid<T>({
   selected,
   onSelectedChange,
   loading,
-  emptyTitle = "Nothing here",
+  emptyTitle: emptyTitleProp,
   emptyDescription,
-}: DataGridProps<T>) {
+}: DataGridLegacyProps<T>) {
   const { t: laf } = useLaf();
+  const emptyTitle = emptyTitleProp ?? laf.nothingHere;
   const selectable = !!onSelectedChange;
   const ids = rows.map(rowId);
   const sel = new Set(selected);
@@ -468,13 +167,15 @@ export function TaskPanel({
   tasks,
   onCancel,
   onRetry,
-  labels = { cancel: "Cancel", retry: "Retry", empty: "No recent tasks" },
+  labels: labelsProp,
 }: {
   tasks: TaskItem[];
   onCancel?: (id: string) => void;
   onRetry?: (id: string) => void;
   labels?: { cancel: string; retry: string; empty: string };
 }) {
+  const { t: laf } = useLaf();
+  const labels = labelsProp ?? { cancel: laf.cancel, retry: laf.retry, empty: laf.noRecentTasks };
   if (tasks.length === 0) return <p className="px-4 py-6 text-center text-sm text-muted">{labels.empty}</p>;
   return (
     <ul className="divide-y divide-line rounded-lg border border-line bg-surface">
@@ -516,8 +217,12 @@ export function UserMenu({
   email,
   tenant,
   items,
-  signOutLabel = "Sign out",
+  signOutLabel: signOutLabelProp,
   onSignOut,
+  impersonating,
+  expiresAt,
+  expiryWarnMs = 300_000,
+  expiryLabel = (r) => `Session expires in ${r}`,
 }: {
   name: string;
   email?: string;
@@ -525,7 +230,17 @@ export function UserMenu({
   items?: { id: string; label: string; icon?: React.ReactNode; onSelect: () => void }[];
   signOutLabel?: string;
   onSignOut: () => void;
+  /** Admin acting as another user. */
+  impersonating?: { as: string; onStop: () => void; stopLabel?: string };
+  /** Session expiry; a warning row appears once less than `expiryWarnMs` remain. */
+  expiresAt?: Date | string | number;
+  expiryWarnMs?: number;
+  expiryLabel?: (remaining: string) => string;
 }) {
+  const { t: laf, format } = useLaf();
+  const signOutLabel = signOutLabelProp ?? laf.signOut;
+  const remainingMs = expiresAt === undefined ? undefined : new Date(expiresAt).getTime() - Date.now();
+  const showExpiry = remainingMs !== undefined && remainingMs <= expiryWarnMs;
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -539,6 +254,17 @@ export function UserMenu({
           {email && <div className="text-xs font-normal text-muted">{email}</div>}
           {tenant && <div className="text-xs font-normal text-subtle">{tenant}</div>}
         </DropdownMenuLabel>
+        {(impersonating || showExpiry) && <DropdownMenuSeparator />}
+        {impersonating && (
+          <DropdownMenuItem onSelect={impersonating.onStop}>
+            {`${impersonating.stopLabel ?? "Stop impersonating"}: ${impersonating.as}`}
+          </DropdownMenuItem>
+        )}
+        {showExpiry && (
+          <div role="status" className="px-2 py-1.5 text-xs text-warn">
+            {expiryLabel(format.duration(Math.max(0, remainingMs!)))}
+          </div>
+        )}
         <DropdownMenuSeparator />
         {items?.map((it) => (
           <DropdownMenuItem key={it.id} onSelect={it.onSelect}>

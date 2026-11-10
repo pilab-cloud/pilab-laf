@@ -66,10 +66,7 @@ import {
   DiffView,
   TreeTable,
   MfaEnrolment,
-  OidcClientForm,
-  OidcClientList,
   VirtualList,
-  type OidcClient,
   AccountItem,
   AccountList,
   AuditLog,
@@ -201,7 +198,7 @@ const sections = [
   ["charts2", "Gauge, donut, bar"],
   ["formwire", "Form field wiring"],
   ["advanced", "Context menu, palette, tree table, diff"],
-  ["screens", "MFA enrolment & OIDC clients"],
+  ["screens", "MFA enrolment"],
   ["virtual", "Virtual list"],
 ] as const;
 
@@ -305,11 +302,6 @@ export function App() {
     { id: "2", severity: "warning" as const, name: "Datastore usage high", entity: "ds-02", triggered: "13:40" },
   ]);
   const [palette, setPalette] = React.useState(false);
-  const [clients, setClients] = React.useState<OidcClient[]>([
-    { id: "c1", name: "Pirat CLI", clientId: "pirat-cli", redirectUris: ["http://localhost:8765/cb"], scopes: ["openid", "profile"], pkce: true, claimMappings: [{ key: "email", value: "user.email" }] },
-    { id: "c2", name: "vSphere UI", clientId: "vsphere-ui", redirectUris: ["https://vs.pilab.hu/cb"], scopes: ["openid"], pkce: true, claimMappings: [] },
-  ]);
-  const [client, setClient] = React.useState("c1");
   const bigList = React.useMemo(() => Array.from({ length: 20000 }, (_, i) => `vm-${String(i).padStart(5, "0")}`), []);
   const vms = React.useMemo(
     () => (sort ? [...VMS].sort((a, b) => String(a[sort.id as "name"]).localeCompare(String(b[sort.id as "name"]), undefined, { numeric: true }) * (sort.dir === "asc" ? 1 : -1)) : VMS),
@@ -880,7 +872,7 @@ export function App() {
           />
           <DiffView label="Config diff" before={"cpu: 4\nmem: 8192\nnet: vmxnet3"} after={"cpu: 8\nmem: 8192\nnet: e1000"} />
         </Demo>
-        <Demo id="screens" title="MFA enrolment & OIDC clients">
+        <Demo id="screens" title="MFA enrolment">
           <MfaEnrolment
             qr={<div className="grid size-32 place-items-center text-xs">QR placeholder</div>}
             secret="JBSWY3DPEHPK3PXP"
@@ -889,16 +881,6 @@ export function App() {
             onRegisterPasskey={async () => {}}
             onComplete={() => {}}
           />
-          <div className="grid gap-6 md:grid-cols-[16rem_1fr]">
-            <OidcClientList clients={clients} selected={client} onSelect={setClient} />
-            <div className="card">
-              <OidcClientForm
-                client={clients.find((c) => c.id === client)!}
-                onChange={(c) => setClients((l) => l.map((x) => (x.id === c.id ? c : x)))}
-                onRotateSecret={() => {}}
-              />
-            </div>
-          </div>
         </Demo>
 
         <Demo id="virtual" title="Virtual list">

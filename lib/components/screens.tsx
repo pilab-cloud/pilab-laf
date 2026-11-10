@@ -1,14 +1,10 @@
-import { Fingerprint, KeyRound, Smartphone } from "lucide-react";
+import { Fingerprint, KeyRound } from "lucide-react";
 import * as React from "react";
-import { cn } from "../cn";
+import { useLaf } from "../i18n";
 import { Button } from "./button";
-import { Badge } from "./display";
-import { Input } from "./form";
 import { OtpInput } from "./auth";
 import { RadioGroup } from "./form";
 import { SecretDisplay, Stepper } from "./helpers";
-import { KeyValueEditor, TagInput, type KeyValue } from "./extras";
-import { DefinitionList } from "./helpers";
 
 /* ── MFA enrolment flow ── */
 export type MfaMethod = "totp" | "passkey";
@@ -23,27 +19,55 @@ export interface MfaEnrolmentProps {
   /** Start WebAuthn registration; resolve when the authenticator succeeded. */
   onRegisterPasskey?: () => Promise<void>;
   onComplete: () => void;
-  labels?: Partial<typeof defaultLabels>;
+  labels?: Partial<MfaLabels>;
 }
 
-const defaultLabels = {
-  method: "Choose method",
-  scan: "Scan code",
-  verify: "Verify",
-  recovery: "Recovery codes",
-  totp: "Authenticator app",
-  passkey: "Passkey",
-  next: "Next",
-  back: "Back",
-  finish: "Finish",
-  invalid: "That code is not valid. Try again.",
-  passkeyWaiting: "Waiting for your authenticator…",
-  passkeyFailed: "Passkey registration failed.",
-  stored: "I stored these codes",
-};
+interface MfaLabels {
+  method: string;
+  scan: string;
+  verify: string;
+  recovery: string;
+  totp: string;
+  passkey: string;
+  next: string;
+  back: string;
+  finish: string;
+  invalid: string;
+  passkeyWaiting: string;
+  passkeyFailed: string;
+  stored: string;
+  manualSecret: string;
+  addedToApp: string;
+  download: string;
+  print: string;
+  switchMethod: string;
+  genericError: string;
+}
 
 export function MfaEnrolment({ qr, secret, recoveryCodes, onVerify, onRegisterPasskey, onComplete, labels }: MfaEnrolmentProps) {
-  const l = { ...defaultLabels, ...labels };
+  const { t: laf } = useLaf();
+  const l: MfaLabels = {
+    method: laf.mfaMethod,
+    scan: laf.mfaScan,
+    verify: laf.mfaVerify,
+    recovery: laf.mfaRecovery,
+    totp: laf.mfaTotp,
+    passkey: laf.mfaPasskey,
+    next: laf.next,
+    back: laf.back,
+    finish: laf.finish,
+    invalid: laf.mfaInvalid,
+    passkeyWaiting: laf.mfaPasskeyWaiting,
+    passkeyFailed: laf.mfaPasskeyFailed,
+    stored: laf.mfaStored,
+    manualSecret: laf.manualSecret,
+    addedToApp: laf.addedToApp,
+    download: "Download .txt",
+    print: "Print",
+    switchMethod: "Use a different method",
+    genericError: "Something went wrong. Try again.",
+    ...labels,
+  };
   const [step, setStep] = React.useState(0);
   const [method, setMethod] = React.useState<MfaMethod>("totp");
   const [code, setCode] = React.useState("");
@@ -69,6 +93,8 @@ export function MfaEnrolment({ qr, secret, recoveryCodes, onVerify, onRegisterPa
     try {
       if (await onVerify(code)) setStep(step + 1);
       else setError(l.invalid);
+    } catch {
+      setError(l.genericError);
     } finally {
       setBusy(false);
     }
@@ -85,6 +111,22 @@ export function MfaEnrolment({ qr, secret, recoveryCodes, onVerify, onRegisterPa
       setBusy(false);
     }
   };
+
+  const downloadCodes = () => {
+    const url = URL.createObjectURL(new Blob([recoveryCodes.join("\n") + "\n"], { type: "text/plain" }));
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "recovery-codes.txt";
+    a.click();
+    URL.revokeObjectURL(url);
+  };
+  const switchMethod = () => {
+    setError(undefined);
+    setCode("");
+    setMethod(method === "totp" ? "passkey" : "totp");
+    setStep(0);
+  };
+  const canSwitch = !!onRegisterPasskey && (id === "s" || id === "v" || id === "p");
 
   return (
     <div className="grid gap-6 md:grid-cols-[13rem_1fr]">
@@ -105,7 +147,7 @@ export function MfaEnrolment({ qr, secret, recoveryCodes, onVerify, onRegisterPa
         {id === "s" && (
           <div className="grid gap-4">
             <div className="mx-auto rounded-md bg-white p-3 text-black">{qr}</div>
-            <SecretDisplay label="Manual secret" value={secret} acknowledgeLabel="I added it to my app" />
+            <SecretDisplay label={l.manualSecret} value={secret} acknowledgeLabel={l.addedToApp} />
           </div>
         )}
         {id === "v" && (
@@ -140,11 +182,24 @@ export function MfaEnrolment({ qr, secret, recoveryCodes, onVerify, onRegisterPa
                 </li>
               ))}
             </ul>
+            <div className="flex gap-2">
+              <Button variant="secondary" size="sm" onClick={downloadCodes}>
+                {l.download}
+              </Button>
+              <Button variant="secondary" size="sm" onClick={() => window.print()}>
+                {l.print}
+              </Button>
+            </div>
             <label className="check text-sm">
               <input type="checkbox" checked={stored} onChange={(e) => setStored(e.target.checked)} />
               {l.stored}
             </label>
           </div>
+        )}
+        {canSwitch && (
+          <button type="button" className="mt-3 border-0 bg-transparent p-0 text-sm text-primary hover:underline" disabled={busy} onClick={switchMethod}>
+            {l.switchMethod}
+          </button>
         )}
         <div className="mt-4 flex gap-2">
           <Button variant="secondary" size="sm" disabled={step === 0 || busy} onClick={() => setStep(step - 1)}>
@@ -169,95 +224,6 @@ export function MfaEnrolment({ qr, secret, recoveryCodes, onVerify, onRegisterPa
           )}
         </div>
       </div>
-    </div>
-  );
-}
-
-/* ── OIDC client management ── */
-export interface OidcClient {
-  id: string;
-  name: string;
-  clientId: string;
-  redirectUris: string[];
-  scopes: string[];
-  pkce: boolean;
-  claimMappings: KeyValue[];
-}
-
-/** @deprecated Use the OIDC screens in `shadow-sso-accounts`. Removed in 0.2. */
-export function OidcClientList({
-  clients,
-  selected,
-  onSelect,
-}: {
-  clients: OidcClient[];
-  selected?: string;
-  onSelect: (id: string) => void;
-}) {
-  return (
-    <ul className="divide-y divide-line overflow-hidden rounded-lg border border-line bg-surface">
-      {clients.map((c) => (
-        <li key={c.id}>
-          <button
-            type="button"
-            aria-current={selected === c.id ? "true" : undefined}
-            onClick={() => onSelect(c.id)}
-            className={cn("flex w-full items-center gap-3 border-0 bg-transparent px-4 py-3 text-start text-sm hover:bg-surface-hover", selected === c.id && "bg-primary-light")}
-          >
-            <Smartphone className="size-4 text-subtle" aria-hidden />
-            <span className="flex-1 font-medium text-fg">{c.name}</span>
-            {c.pkce && <Badge tone="ok">PKCE</Badge>}
-          </button>
-        </li>
-      ))}
-    </ul>
-  );
-}
-
-/** @deprecated Use the OIDC screens in `shadow-sso-accounts`. Removed in 0.2. */
-export function OidcClientForm({
-  client,
-  onChange,
-  onRotateSecret,
-}: {
-  client: OidcClient;
-  onChange: (client: OidcClient) => void;
-  onRotateSecret?: () => void;
-}) {
-  const set = (patch: Partial<OidcClient>) => onChange({ ...client, ...patch });
-  const https = (t: string) => (/^https:\/\/|^http:\/\/localhost/.test(t) ? undefined : "Must be https:// (or http://localhost)");
-  return (
-    <div className="grid gap-5">
-      <DefinitionList items={[{ label: "Client ID", value: client.clientId, mono: true, copy: client.clientId }]} />
-      <div className="form-group">
-        <label className="form-label" htmlFor={`${client.id}-name`}>
-          Name
-        </label>
-        <Input id={`${client.id}-name`} value={client.name} onChange={(e) => set({ name: e.target.value })} />
-      </div>
-      <div className="form-group">
-        <span className="form-label">Redirect URIs</span>
-        <TagInput label="Redirect URIs" value={client.redirectUris} onChange={(v) => set({ redirectUris: v })} validate={https} />
-      </div>
-      <div className="form-group">
-        <span className="form-label">Scopes</span>
-        <TagInput label="Scopes" value={client.scopes} onChange={(v) => set({ scopes: v })} />
-      </div>
-      <label className="check text-sm">
-        <input type="checkbox" checked={client.pkce} onChange={(e) => set({ pkce: e.target.checked })} />
-        Require PKCE
-      </label>
-      <div className="form-group">
-        <span className="form-label">Claim mappings</span>
-        <KeyValueEditor value={client.claimMappings} onChange={(v) => set({ claimMappings: v })} addLabel="Add mapping" keyLabel="Claim" valueLabel="Source" />
-      </div>
-      {onRotateSecret && (
-        <div>
-          <Button variant="danger" size="sm" onClick={onRotateSecret}>
-            Rotate client secret
-          </Button>
-        </div>
-      )}
     </div>
   );
 }

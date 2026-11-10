@@ -1,4 +1,5 @@
 import * as React from "react";
+import { createFormatters, type BytesOptions, type DateTimeOptions, type DurationOptions, type Formatters, type RelativeOptions } from "./foundation-format";
 
 /** Works controlled (value !== undefined) or uncontrolled (defaultValue). */
 export function useControllableState<T>({
@@ -27,19 +28,11 @@ export function useControllableState<T>({
   return [current, set];
 }
 
-export const format = {
-  bytes(n: number, locale?: string): string {
-    const units = ["B", "KB", "MB", "GB", "TB", "PB"];
-    let i = 0;
-    let v = n;
-    while (Math.abs(v) >= 1024 && i < units.length - 1) {
-      v /= 1024;
-      i++;
-    }
-    const num = new Intl.NumberFormat(locale, { maximumFractionDigits: i === 0 ? 0 : v < 10 ? 1 : 0 }).format(v);
-    return `${num} ${units[i]}`;
-  },
-};
+export { createFormatters };
+export type { Formatters, BytesOptions, DurationOptions, DateTimeOptions, RelativeOptions };
+
+/** Default formatters (browser locale/time zone); `useLaf().format` binds the provider's. */
+export const format: Formatters = /* @__PURE__ */ createFormatters();
 
 /** Line diff via LCS. */
 export type DiffOp = { type: "same" | "add" | "del"; text: string };

@@ -5,15 +5,16 @@ import * as React from "react";
 import { cn } from "../cn";
 import { diffLines } from "../utils";
 import { Kbd } from "./more";
-import { useLaf } from "../i18n";
+import { useLaf, usePortalContainer } from "../i18n";
 
 /* ── Context menu ── */
 export const ContextMenu = ContextPrimitive.Root;
 export const ContextMenuTrigger = ContextPrimitive.Trigger;
 
 export function ContextMenuContent({ className, ...props }: React.ComponentProps<typeof ContextPrimitive.Content>) {
+  const container = usePortalContainer();
   return (
-    <ContextPrimitive.Portal>
+    <ContextPrimitive.Portal container={container}>
       <ContextPrimitive.Content className={cn("dropdown-menu relative! top-auto! left-auto! z-30 min-w-48", className)} {...props} />
     </ContextPrimitive.Portal>
   );
@@ -55,6 +56,7 @@ export function CommandPalette({
   emptyText?: string;
 }) {
   const { t } = useLaf();
+  const portalContainer = usePortalContainer();
   const placeholder = placeholderProp ?? t.commandPlaceholder;
   const emptyText = emptyTextProp ?? t.noResults;
   const [query, setQuery] = React.useState("");
@@ -87,7 +89,7 @@ export function CommandPalette({
 
   return (
     <DialogPrimitive.Root open={open} onOpenChange={onOpenChange}>
-      <DialogPrimitive.Portal>
+      <DialogPrimitive.Portal container={portalContainer}>
         <DialogPrimitive.Overlay className="fixed inset-0 z-50 bg-[rgba(5,5,10,0.7)] backdrop-blur-xs" />
         <DialogPrimitive.Content
           aria-describedby={undefined}

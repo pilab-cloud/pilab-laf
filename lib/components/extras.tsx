@@ -1,10 +1,14 @@
 import { AlertTriangle, ChevronDown, Info, Minus, Plus, X, XCircle } from "lucide-react";
 import * as React from "react";
+import * as CollapsiblePrimitive from "@radix-ui/react-collapsible";
 import * as DialogPrimitive from "@radix-ui/react-dialog";
+import * as SliderPrimitive from "@radix-ui/react-slider";
 import { cn } from "../cn";
 import { useControllableState } from "../utils";
 import { Input } from "./form";
-import { Combobox, type ComboboxOption } from "./inventory";
+import { Badge } from "./display";
+import { Button } from "./button";
+import { Combobox, type ComboboxOption } from "./combobox";
 import { VirtualList } from "./virtual";
 import { useLaf } from "../i18n";
 
@@ -19,7 +23,7 @@ export function Banner({
   tone = "info",
   action,
   onDismiss,
-  dismissLabel = "Dismiss",
+  dismissLabel,
   children,
 }: {
   tone?: keyof typeof bannerTone;
@@ -29,13 +33,14 @@ export function Banner({
   children: React.ReactNode;
 }) {
   const { cls, Icon } = bannerTone[tone];
+  const { t: laf } = useLaf();
   return (
     <div role={tone === "danger" ? "alert" : "status"} className={cn("flex items-center gap-2.5 border-b px-4 py-2 text-sm", cls)}>
       <Icon className="size-4 shrink-0" aria-hidden />
       <div className="min-w-0 flex-1">{children}</div>
       {action}
       {onDismiss && (
-        <button type="button" aria-label={dismissLabel} onClick={onDismiss} className="opacity-80 hover:opacity-100">
+        <button type="button" aria-label={dismissLabel ?? laf.dismiss} onClick={onDismiss} className="opacity-80 hover:opacity-100">
           <X className="size-4" aria-hidden />
         </button>
       )}
@@ -67,31 +72,24 @@ export function Accordion({
   className?: string;
 }) {
   const [open, setOpen] = useControllableState<string[]>({ value: openProp, defaultValue: defaultOpen, onChange: onOpenChange });
-  const uid = React.useId();
-  const toggle = (id: string) =>
-    setOpen((o) => (o.includes(id) ? o.filter((x) => x !== id) : multiple ? [...o, id] : [id]));
+  const setItem = (id: string, next: boolean) =>
+    setOpen((o) => (next ? (multiple ? (o.includes(id) ? o : [...o, id]) : [id]) : o.filter((x) => x !== id)));
   return (
     <div className={cn("divide-y divide-line overflow-hidden rounded-lg border border-line bg-surface", className)}>
       {items.map((it) => {
         const isOpen = open.includes(it.id);
         return (
-          <div key={it.id}>
+          <CollapsiblePrimitive.Root key={it.id} open={isOpen} onOpenChange={(v) => setItem(it.id, v)}>
             <h3>
-              <button
-                type="button"
-                aria-expanded={isOpen}
-                aria-controls={`${uid}-${it.id}`}
-                onClick={() => toggle(it.id)}
-                className="flex w-full items-center gap-2 px-4 py-3 text-start text-sm font-medium text-fg hover:bg-surface-hover"
-              >
+              <CollapsiblePrimitive.Trigger className="flex w-full items-center gap-2 px-4 py-3 text-start text-sm font-medium text-fg hover:bg-surface-hover">
                 <span className="flex-1">{it.title}</span>
                 <ChevronDown className={cn("size-4 transition-transform motion-reduce:transition-none", isOpen && "rotate-180")} aria-hidden />
-              </button>
+              </CollapsiblePrimitive.Trigger>
             </h3>
-            <div id={`${uid}-${it.id}`} hidden={!isOpen} className="border-t border-line px-4 py-3 text-sm text-muted">
-              {it.content}
-            </div>
-          </div>
+            <CollapsiblePrimitive.Content className="overflow-hidden border-t border-line text-sm text-muted data-[state=closed]:animate-[laf-collapse-up_150ms_ease-out] data-[state=open]:animate-[laf-collapse-down_150ms_ease-out] motion-reduce:animate-none">
+              <div className="px-4 py-3">{it.content}</div>
+            </CollapsiblePrimitive.Content>
+          </CollapsiblePrimitive.Root>
         );
       })}
     </div>
@@ -105,7 +103,7 @@ export function SplitPane({
   defaultSize = 280,
   min = 160,
   max = 600,
-  label = "Resize panels",
+  label: labelProp,
   className,
 }: {
   start: React.ReactNode;
@@ -116,6 +114,8 @@ export function SplitPane({
   label?: string;
   className?: string;
 }) {
+  const { t: laf } = useLaf();
+  const label = labelProp ?? laf.resizePanels;
   const [size, setSize] = React.useState(defaultSize);
   const clamp = (n: number) => Math.min(max, Math.max(min, n));
   const onPointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
@@ -179,10 +179,10 @@ export function DrawerContent({
   width?: "sm" | "md" | "lg";
   children: React.ReactNode;
 }) {
-  const { t: laf } = useLaf();
+  const { t: laf, portalContainer } = useLaf();
   const w = { sm: "w-[360px]", md: "w-[480px]", lg: "w-[640px]" }[width];
   return (
-    <DialogPrimitive.Portal>
+    <DialogPrimitive.Portal container={portalContainer}>
       <DialogPrimitive.Overlay className="fixed inset-0 z-50 bg-[rgba(5,5,10,0.7)] backdrop-blur-xs" />
       <DialogPrimitive.Content
         {...(description ? {} : { "aria-describedby": undefined })}
@@ -233,6 +233,7 @@ export function NumberInput({
   onUnitChange?: (unit: string) => void;
   label: string;
 }) {
+  const { t: laf } = useLaf();
   const factor = units?.find((u) => u.label === unit)?.factor ?? 1;
   const shown = value / factor;
   const [text, setText] = React.useState(String(shown));
@@ -241,7 +242,7 @@ export function NumberInput({
   const bump = (d: number) => commit(shown + d * step);
   return (
     <div className="inline-flex items-stretch gap-1.5">
-      <button type="button" className="btn btn-secondary btn-sm auto" aria-label={`Decrease ${label}`} disabled={value <= min} onClick={() => bump(-1)}>
+      <button type="button" className="btn btn-secondary btn-sm auto" aria-label={laf.decrease(label)} disabled={value <= min} onClick={() => bump(-1)}>
         <Minus aria-hidden />
       </button>
       <Input
@@ -257,11 +258,11 @@ export function NumberInput({
           else commit(n);
         }}
       />
-      <button type="button" className="btn btn-secondary btn-sm auto" aria-label={`Increase ${label}`} disabled={value >= max} onClick={() => bump(1)}>
+      <button type="button" className="btn btn-secondary btn-sm auto" aria-label={laf.increase(label)} disabled={value >= max} onClick={() => bump(1)}>
         <Plus aria-hidden />
       </button>
       {units && (
-        <select className="form-input w-20" aria-label={`${label} unit`} value={unit} onChange={(e) => onUnitChange?.(e.target.value)}>
+        <select className="form-input w-20" aria-label={laf.unitOf(label)} value={unit} onChange={(e) => onUnitChange?.(e.target.value)}>
           {units.map((u) => (
             <option key={u.label}>{u.label}</option>
           ))}
@@ -271,17 +272,114 @@ export function NumberInput({
   );
 }
 
-export function Slider({ className, ...props }: Omit<React.ComponentProps<"input">, "type">) {
-  return <input type="range" className={cn("h-1 w-full cursor-pointer accent-primary", className)} {...props} />;
+export interface SliderProps {
+  /** Single value, or `[min, max]` for a range with two thumbs. */
+  value?: number | [number, number];
+  defaultValue?: number | [number, number];
+  onValueChange?: (value: number | [number, number]) => void;
+  /** Single-value compatibility with the former native input: receives `{ target: { value } }`. */
+  onChange?: (e: { target: { value: string } }) => void;
+  min?: number;
+  max?: number;
+  step?: number;
+  marks?: { value: number; label?: React.ReactNode }[];
+  /** Paired NumberInput (single value only). */
+  withInput?: boolean;
+  disabled?: boolean;
+  "aria-label"?: string;
+  className?: string;
+}
+
+export function Slider({
+  value: valueProp,
+  defaultValue,
+  onValueChange,
+  onChange,
+  min = 0,
+  max = 100,
+  step = 1,
+  marks,
+  withInput,
+  disabled,
+  className,
+  "aria-label": ariaLabel,
+}: SliderProps) {
+  const { t: laf } = useLaf();
+  const [value, setValue] = useControllableState<number | [number, number]>({
+    value: valueProp,
+    defaultValue: defaultValue ?? min,
+    onChange: (v) => {
+      onValueChange?.(v);
+      if (typeof v === "number") onChange?.({ target: { value: String(v) } });
+    },
+  });
+  const arr = Array.isArray(value) ? value : [value];
+  const pct = (n: number) => `${((n - min) / (max - min || 1)) * 100}%`;
+  return (
+    <div className={cn("flex w-full items-center gap-3", className)}>
+      <div className="min-w-0 flex-1">
+        <SliderPrimitive.Root
+          className="relative flex h-5 w-full touch-none items-center select-none data-[disabled]:opacity-50"
+          value={arr}
+          min={min}
+          max={max}
+          step={step}
+          disabled={disabled}
+          onValueChange={(v) => setValue(Array.isArray(value) ? ([v[0]!, v[1]!] as [number, number]) : v[0]!)}
+        >
+          <SliderPrimitive.Track className="relative h-1 grow rounded-xs bg-muted-bg">
+            <SliderPrimitive.Range className="absolute h-full rounded-xs bg-primary" />
+          </SliderPrimitive.Track>
+          {arr.map((_, i) => (
+            <SliderPrimitive.Thumb
+              key={i}
+              aria-label={arr.length > 1 && ariaLabel ? `${ariaLabel} ${i === 0 ? laf.minimum : laf.maximum}` : ariaLabel}
+              className="block size-4 rounded-sm border border-primary bg-surface outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
+            />
+          ))}
+        </SliderPrimitive.Root>
+        {marks && (
+          <div className="relative mt-1 h-4 text-xs text-muted" aria-hidden>
+            {marks.map((m) => (
+              <span key={m.value} className="absolute -translate-x-1/2 rtl:translate-x-1/2" style={{ insetInlineStart: pct(m.value) }}>
+                {m.label ?? m.value}
+              </span>
+            ))}
+          </div>
+        )}
+      </div>
+      {withInput && typeof value === "number" && (
+        <NumberInput label={ariaLabel ?? laf.value} value={value} min={min} max={max} step={step} onChange={(n) => setValue(n)} />
+      )}
+    </div>
+  );
 }
 
 /* ── Tag input & chips ── */
-export function Chip({ onRemove, removeLabel, children }: { onRemove?: () => void; removeLabel?: string; children: React.ReactNode }) {
+const chipTone = {
+  neutral: "border-line bg-muted-bg text-fg",
+  primary: "border-primary/35 bg-primary-light text-primary",
+  ok: "border-ok-line bg-ok-bg text-ok",
+  warn: "border-warn-line bg-warn-bg text-warn",
+  danger: "border-danger-line bg-danger-bg text-danger",
+};
+
+export function Chip({
+  onRemove,
+  removeLabel,
+  tone = "neutral",
+  children,
+}: {
+  onRemove?: () => void;
+  removeLabel?: string;
+  tone?: keyof typeof chipTone;
+  children: React.ReactNode;
+}) {
   return (
-    <span className="inline-flex h-6 items-center gap-1 rounded-sm border border-line bg-muted-bg px-2 text-xs text-fg">
+    <span className={cn("inline-flex h-6 items-center gap-1 rounded-sm border px-2 text-xs", chipTone[tone])}>
       {children}
       {onRemove && (
-        <button type="button" aria-label={removeLabel ?? "Remove"} onClick={onRemove} className="text-muted hover:text-fg">
+        <button type="button" aria-label={removeLabel ?? "Remove"} onClick={onRemove} className="opacity-70 hover:opacity-100">
           <X className="size-3" aria-hidden />
         </button>
       )}
@@ -365,10 +463,10 @@ export interface KeyValue {
 export function KeyValueEditor({
   value,
   onChange,
-  addLabel = "Add",
-  keyLabel = "Key",
-  valueLabel = "Value",
-  duplicateMessage = "Duplicate key",
+  addLabel: addLabelProp,
+  keyLabel: keyLabelProp,
+  valueLabel: valueLabelProp,
+  duplicateMessage: duplicateMessageProp,
 }: {
   value: KeyValue[];
   onChange: (value: KeyValue[]) => void;
@@ -378,6 +476,10 @@ export function KeyValueEditor({
   duplicateMessage?: string;
 }) {
   const { t: laf } = useLaf();
+  const addLabel = addLabelProp ?? laf.add;
+  const keyLabel = keyLabelProp ?? laf.key;
+  const valueLabel = valueLabelProp ?? laf.value;
+  const duplicateMessage = duplicateMessageProp ?? laf.duplicateKey;
   const ids = React.useRef<number[]>([]);
   const next = React.useRef(0);
   while (ids.current.length < value.length) ids.current.push(next.current++);
@@ -526,7 +628,7 @@ export function TimeRangePicker({
   presets = ["15m", "1h", "24h", "7d"],
   refresh,
   onRefreshChange,
-  label = "Time range",
+  label: labelProp,
 }: {
   value: string;
   onChange: (value: string) => void;
@@ -536,6 +638,7 @@ export function TimeRangePicker({
   label?: string;
 }) {
   const { t: laf } = useLaf();
+  const label = labelProp ?? laf.timeRange;
   return (
     <div role="group" aria-label={label} className="inline-flex items-center gap-2">
       <div className="inline-flex overflow-hidden rounded-md border border-line">
@@ -554,7 +657,7 @@ export function TimeRangePicker({
       {onRefreshChange && (
         <select className="form-input w-24" aria-label={laf.autoRefresh} value={refresh} onChange={(e) => onRefreshChange(e.target.value)}>
           {["off", "5s", "30s", "1m"].map((r) => (
-            <option key={r}>{r}</option>
+            <option key={r} value={r}>{r === "off" ? laf.off : r}</option>
           ))}
         </select>
       )}
@@ -586,7 +689,7 @@ export function LogViewer({ lines, label, follow = true, className }: { lines: L
         <input type="search" aria-label={`${laf.search} ${label}`} placeholder={`${laf.search}…`} className="form-input h-8 max-w-xs" value={query} onChange={(e) => setQuery(e.target.value)} />
         <label className="check ms-auto text-xs">
           <input type="checkbox" checked={wrap} onChange={(e) => setWrap(e.target.checked)} />
-          Wrap
+          {laf.wrap}
         </label>
       </div>
       {shown.length > 500 && !wrap ? (
@@ -611,7 +714,7 @@ export function LogViewer({ lines, label, follow = true, className }: { lines: L
               <span className={wrap ? "break-all" : undefined}>{l.text}</span>
             </div>
           ))}
-          {shown.length === 0 && <div className="text-subtle">No lines</div>}
+          {shown.length === 0 && <div className="text-subtle">{laf.noLines}</div>}
         </div>
       )}
     </div>
@@ -623,15 +726,16 @@ export function TenantSwitcher({
   tenants,
   current,
   onSwitch,
-  label = "Tenant",
+  label: labelProp,
 }: {
   tenants: ComboboxOption[];
   current: string;
   onSwitch: (id: string) => void;
   label?: string;
 }) {
+  const { t: laf } = useLaf();
   const sel = tenants.filter((t) => t.value === current);
-  return <Combobox label={label} options={tenants} value={sel} onChange={(v) => v[0] && onSwitch(v[0].value)} />;
+  return <Combobox label={labelProp ?? laf.tenant} options={tenants} value={sel} onChange={(v) => v[0] && onSwitch(v[0].value)} />;
 }
 
 /* ── Permission matrix (RBAC) ── */
@@ -641,12 +745,35 @@ export interface PermissionGroup {
   permissions: { id: string; label: string }[];
 }
 
+export interface PermissionMatrixLabels {
+  search: string;
+  inheritedFrom: (from: string) => string;
+  pending: (n: number) => string;
+  save: string;
+  discard: string;
+  noMatch: string;
+}
+const pmLabels: PermissionMatrixLabels = {
+  search: "Search permissions",
+  inheritedFrom: (from) => `Inherited from ${from}`,
+  pending: (n) => `${n} pending change${n === 1 ? "" : "s"}`,
+  save: "Save",
+  discard: "Discard",
+  noMatch: "No matching permissions",
+};
+
 export function PermissionMatrix({
   roles,
   groups,
   value,
   onChange,
   readOnly,
+  inherited,
+  baseline,
+  searchable,
+  onSave,
+  onDiscard,
+  labels: labelsProp,
 }: {
   roles: { id: string; label: string }[];
   groups: PermissionGroup[];
@@ -654,66 +781,133 @@ export function PermissionMatrix({
   value: Record<string, string[]>;
   onChange: (value: Record<string, string[]>) => void;
   readOnly?: boolean;
+  /** Permissions a role gets from elsewhere: shown checked, disabled, with a source badge. */
+  inherited?: Record<string, { permission: string; from: string }[]>;
+  /** Saved state; cells that differ are highlighted and counted in the pending-changes bar. */
+  baseline?: Record<string, string[]>;
+  searchable?: boolean;
+  onSave?: () => void;
+  onDiscard?: () => void;
+  labels?: Partial<PermissionMatrixLabels>;
 }) {
-  const has = (r: string, p: string) => value[r]?.includes(p) ?? false;
+  const { t: laf } = useLaf();
+  const L = { ...pmLabels, ...labelsProp };
+  const [query, setQuery] = React.useState("");
+  const inh = (r: string, p: string) => inherited?.[r]?.find((x) => x.permission === p);
+  const has = (r: string, p: string) => (value[r]?.includes(p) ?? false) || !!inh(r, p);
+  const was = (r: string, p: string) => baseline?.[r]?.includes(p) ?? false;
+  const changed = (r: string, p: string) => !!baseline && (value[r]?.includes(p) ?? false) !== was(r, p);
   const set = (r: string, ps: string[], on: boolean) => {
     const cur = new Set(value[r] ?? []);
     ps.forEach((p) => (on ? cur.add(p) : cur.delete(p)));
     onChange({ ...value, [r]: [...cur] });
   };
+  const pending = baseline
+    ? roles.reduce((n, r) => n + groups.reduce((m, g) => m + g.permissions.filter((p) => changed(r.id, p.id)).length, 0), 0)
+    : 0;
+  const q = query.trim().toLowerCase();
+  const shown = groups
+    .map((g) => ({ ...g, permissions: q && !g.label.toLowerCase().includes(q) ? g.permissions.filter((p) => p.label.toLowerCase().includes(q)) : g.permissions }))
+    .filter((g) => g.permissions.length > 0);
+  const onKeyDown = (e: React.KeyboardEvent<HTMLTableElement>) => {
+    const dx = e.key === "ArrowRight" ? 1 : e.key === "ArrowLeft" ? -1 : 0;
+    const dy = e.key === "ArrowDown" ? 1 : e.key === "ArrowUp" ? -1 : 0;
+    const cell = (e.target as HTMLElement).closest("td");
+    if ((!dx && !dy) || !cell || !(e.target as HTMLElement).matches("input[type=checkbox]")) return;
+    const rows = [...e.currentTarget.querySelectorAll("tbody tr")];
+    const row = cell.parentElement as HTMLTableRowElement;
+    const ri = rows.indexOf(row);
+    const ci = [...row.children].indexOf(cell);
+    const next = (rows[ri + dy] as HTMLTableRowElement | undefined)?.children[ci + dx]?.querySelector<HTMLInputElement>("input[type=checkbox]");
+    if (next) {
+      e.preventDefault();
+      next.focus();
+    }
+  };
+  const matrixBox = (r: { id: string; label: string }, label: string, p: string | undefined, ids: string[]) => {
+    const src = p ? inh(r.id, p) : undefined;
+    const n = ids.filter((x) => has(r.id, x)).length;
+    return (
+      <span className="inline-flex items-center gap-1">
+        <input
+          type="checkbox"
+          aria-label={`${label} for ${r.label}`}
+          title={src ? L.inheritedFrom(src.from) : undefined}
+          disabled={readOnly || !!src}
+          checked={p ? has(r.id, p) : n === ids.length}
+          ref={(el) => {
+            if (el && !p) el.indeterminate = n > 0 && n < ids.length;
+          }}
+          onChange={(e) => set(r.id, ids, e.target.checked)}
+        />
+        {src && <Badge tone="neutral">{src.from}</Badge>}
+      </span>
+    );
+  };
   return (
-    <div className="table-wrap">
-      <table className="table">
-        <thead>
-          <tr>
-            <th>Permission</th>
-            {roles.map((r) => (
-              <th key={r.id} className="text-center">
-                {r.label}
-              </th>
-            ))}
-          </tr>
-        </thead>
-        {groups.map((g) => {
-          const ids = g.permissions.map((p) => p.id);
-          return (
-            <tbody key={g.id}>
-              <tr>
-                <th scope="rowgroup" className="bg-muted-bg">
-                  {g.label}
+    <div className="grid gap-3">
+      {(searchable || baseline) && (
+        <div className="flex flex-wrap items-center gap-3">
+          {searchable && <Input type="search" aria-label={L.search} placeholder={L.search} value={query} onChange={(e) => setQuery(e.target.value)} className="max-w-xs" />}
+          {baseline && pending > 0 && (
+            <div className="ms-auto flex items-center gap-2 text-sm" role="status">
+              <span className="text-muted">{L.pending(pending)}</span>
+              {onDiscard && (
+                <Button size="sm" variant="ghost" onClick={onDiscard}>
+                  {L.discard}
+                </Button>
+              )}
+              {onSave && (
+                <Button size="sm" onClick={onSave}>
+                  {L.save}
+                </Button>
+              )}
+            </div>
+          )}
+        </div>
+      )}
+      <div className="table-wrap">
+        <table className="table" onKeyDown={onKeyDown}>
+          <thead>
+            <tr>
+              <th>{laf.permission}</th>
+              {roles.map((r) => (
+                <th key={r.id} className="text-center">
+                  {r.label}
                 </th>
-                {roles.map((r) => {
-                  const n = ids.filter((p) => has(r.id, p)).length;
-                  return (
-                    <td key={r.id} className="bg-muted-bg text-center">
-                      <input
-                        type="checkbox"
-                        aria-label={`${g.label} for ${r.label}`}
-                        disabled={readOnly}
-                        checked={n === ids.length}
-                        ref={(el) => {
-                          if (el) el.indeterminate = n > 0 && n < ids.length;
-                        }}
-                        onChange={(e) => set(r.id, ids, e.target.checked)}
-                      />
-                    </td>
-                  );
-                })}
-              </tr>
-              {g.permissions.map((p) => (
-                <tr key={p.id}>
-                  <td className="ps-6">{p.label}</td>
+              ))}
+            </tr>
+          </thead>
+          {shown.map((g) => {
+            const ids = g.permissions.map((p) => p.id);
+            return (
+              <tbody key={g.id}>
+                <tr>
+                  <th scope="rowgroup" className="bg-muted-bg">
+                    {g.label}
+                  </th>
                   {roles.map((r) => (
-                    <td key={r.id} className="text-center">
-                      <input type="checkbox" aria-label={`${p.label} for ${r.label}`} disabled={readOnly} checked={has(r.id, p.id)} onChange={(e) => set(r.id, [p.id], e.target.checked)} />
+                    <td key={r.id} className="bg-muted-bg text-center">
+                      {matrixBox(r, g.label, undefined, ids)}
                     </td>
                   ))}
                 </tr>
-              ))}
-            </tbody>
-          );
-        })}
-      </table>
+                {g.permissions.map((p) => (
+                  <tr key={p.id}>
+                    <td className="ps-6">{p.label}</td>
+                    {roles.map((r) => (
+                      <td key={r.id} className={cn("text-center", changed(r.id, p.id) && "bg-warn-bg")} data-changed={changed(r.id, p.id) || undefined}>
+                        {matrixBox(r, p.label, p.id, [p.id])}
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            );
+          })}
+        </table>
+        {shown.length === 0 && <p className="p-4 text-sm text-muted">{L.noMatch}</p>}
+      </div>
     </div>
   );
 }

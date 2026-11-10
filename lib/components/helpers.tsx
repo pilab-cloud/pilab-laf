@@ -59,20 +59,40 @@ export interface PasswordFieldProps extends Omit<InputProps, "type"> {
   showLabel?: string;
   hideLabel?: string;
   capsLockHint?: string;
+  /** Caller-supplied scorer (e.g. zxcvbn); renders a 4-segment meter and a text label. */
+  strength?: (value: string) => 0 | 1 | 2 | 3 | 4;
+  strengthLabels?: [string, string, string, string, string];
+  /** Value this field must match (confirm field); shows an error when different. */
+  confirmOf?: string;
+  mismatchLabel?: string;
 }
+
+const strengthTone = ["bg-danger", "bg-danger", "bg-warn", "bg-ok", "bg-ok"];
 
 export function PasswordField({
   showLabel: showLabelProp,
   hideLabel: hideLabelProp,
   capsLockHint: capsLockHintProp,
+  strength,
+  strengthLabels: strengthLabelsProp,
+  confirmOf,
+  mismatchLabel: mismatchLabelProp,
   className,
   onKeyUp,
   onBlur,
+  onChange,
   ...props
 }: PasswordFieldProps) {
+  const [text, setText] = React.useState(String(props.value ?? props.defaultValue ?? ""));
+  const current = props.value !== undefined ? String(props.value) : text;
+  const score = strength ? strength(current) : 0;
+  const mismatch = confirmOf !== undefined && current !== "" && current !== confirmOf;
+  const uid = React.useId();
   const { t } = useLaf();
   const showLabel = showLabelProp ?? t.showPassword;
   const hideLabel = hideLabelProp ?? t.hidePassword;
+  const strengthLabels = strengthLabelsProp ?? t.passwordStrength;
+  const mismatchLabel = mismatchLabelProp ?? t.passwordMismatch;
   const capsLockHint = capsLockHintProp ?? t.capsLock;
   const [visible, setVisible] = React.useState(false);
   const [caps, setCaps] = React.useState(false);
@@ -80,8 +100,15 @@ export function PasswordField({
     <div className="grid gap-1">
       <div className="relative">
         <Input
+          {...props}
           type={visible ? "text" : "password"}
           className={cn("pe-10", className)}
+          invalid={mismatch || props.invalid}
+          aria-describedby={cn(mismatch && `${uid}-mismatch`, strength && `${uid}-strength`, props["aria-describedby"]) || undefined}
+          onChange={(e) => {
+            setText(e.target.value);
+            onChange?.(e);
+          }}
           onKeyUp={(e) => {
             setCaps(e.getModifierState("CapsLock"));
             onKeyUp?.(e);
@@ -90,7 +117,6 @@ export function PasswordField({
             setCaps(false);
             onBlur?.(e);
           }}
-          {...props}
         />
         <button
           type="button"
@@ -102,6 +128,23 @@ export function PasswordField({
           {visible ? <EyeOff className="size-4" aria-hidden /> : <Eye className="size-4" aria-hidden />}
         </button>
       </div>
+      {strength && current !== "" && (
+        <div id={`${uid}-strength`} className="grid gap-1">
+          <div className="grid grid-cols-4 gap-1" aria-hidden>
+            {[1, 2, 3, 4].map((n) => (
+              <span key={n} className={cn("h-1 rounded-xs", n <= score ? strengthTone[score] : "bg-muted-bg")} />
+            ))}
+          </div>
+          <p className="field-hint" role="status">
+            {strengthLabels[score]}
+          </p>
+        </div>
+      )}
+      {mismatch && (
+        <p id={`${uid}-mismatch`} className="field-hint text-danger" role="alert">
+          {mismatchLabel}
+        </p>
+      )}
       {caps && (
         <p className="field-hint" role="status">
           {capsLockHint}
@@ -140,9 +183,9 @@ export function ConfirmDialog({
   description,
   items,
   confirmLabel,
-  cancelLabel = "Cancel",
+  cancelLabel: cancelLabelProp,
   confirmText,
-  confirmTextLabel = "Type to confirm",
+  confirmTextLabel: confirmTextLabelProp,
   pending,
   onConfirm,
 }: {
@@ -160,6 +203,9 @@ export function ConfirmDialog({
   pending?: boolean;
   onConfirm: () => void;
 }) {
+  const { t: laf } = useLaf();
+  const cancelLabel = cancelLabelProp ?? laf.cancel;
+  const confirmTextLabel = confirmTextLabelProp ?? laf.typeToConfirm;
   const [typed, setTyped] = React.useState("");
   React.useEffect(() => {
     if (!open) setTyped("");

@@ -9,7 +9,7 @@ import {
   Breadcrumb,
   DatePicker,
   Combobox,
-  DataGrid,
+  DataGridLegacy as DataGrid,
   DeviceSteps,
   OtpInput,
   PasswordField,

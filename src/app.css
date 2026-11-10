@@ -40,6 +40,45 @@
   --warning-bg: rgba(251, 191, 36, 0.1);
   --warning-border: rgba(251, 191, 36, 0.3);
 
+
+  /* Label palette slots (ADR-11): base colour for dots/borders, -bg/-fg pair for chips (fg/bg ≥ 4.5:1). */
+  --label-1: #e75555;
+  --label-1-bg: #4a1c1c;
+  --label-1-fg: #fcc5c5;
+  --label-2: #e79955;
+  --label-2-bg: #4a311c;
+  --label-2-fg: #fcdfc5;
+  --label-3: #e7c255;
+  --label-3-bg: #4a3e1c;
+  --label-3-fg: #fceec5;
+  --label-4: #c2e755;
+  --label-4-bg: #3e4a1c;
+  --label-4-fg: #eefcc5;
+  --label-5: #55e786;
+  --label-5-bg: #1c4a2b;
+  --label-5-fg: #c5fcd7;
+  --label-6: #55e7c2;
+  --label-6-bg: #1c4a3e;
+  --label-6-fg: #c5fcee;
+  --label-7: #55cfe7;
+  --label-7-bg: #1c424a;
+  --label-7-fg: #c5f3fc;
+  --label-8: #559ee7;
+  --label-8-bg: #1c334a;
+  --label-8-fg: #c5e0fc;
+  --label-9: #5555e7;
+  --label-9-bg: #1c1c4a;
+  --label-9-fg: #c5c5fc;
+  --label-10: #9e55e7;
+  --label-10-bg: #331c4a;
+  --label-10-fg: #e0c5fc;
+  --label-11: #e755e7;
+  --label-11-bg: #4a1c4a;
+  --label-11-fg: #fcc5fc;
+  --label-12: #e7559e;
+  --label-12-bg: #4a1c33;
+  --label-12-fg: #fcc5e0;
+
   --shadow-card: 0 24px 48px rgba(0, 0, 0, 0.4), 0 0 0 1px var(--border);
   --font: "Lato", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --font-mono: "SF Mono", "Fira Code", monospace;
@@ -70,6 +109,43 @@
   --color-warn: var(--warning);
   --color-warn-bg: var(--warning-bg);
   --color-warn-line: var(--warning-border);
+  /* Label palette: bg-label-n, text-label-n, bg-label-n-bg, text-label-n-fg */
+  --color-label-1: var(--label-1);
+  --color-label-1-bg: var(--label-1-bg);
+  --color-label-1-fg: var(--label-1-fg);
+  --color-label-2: var(--label-2);
+  --color-label-2-bg: var(--label-2-bg);
+  --color-label-2-fg: var(--label-2-fg);
+  --color-label-3: var(--label-3);
+  --color-label-3-bg: var(--label-3-bg);
+  --color-label-3-fg: var(--label-3-fg);
+  --color-label-4: var(--label-4);
+  --color-label-4-bg: var(--label-4-bg);
+  --color-label-4-fg: var(--label-4-fg);
+  --color-label-5: var(--label-5);
+  --color-label-5-bg: var(--label-5-bg);
+  --color-label-5-fg: var(--label-5-fg);
+  --color-label-6: var(--label-6);
+  --color-label-6-bg: var(--label-6-bg);
+  --color-label-6-fg: var(--label-6-fg);
+  --color-label-7: var(--label-7);
+  --color-label-7-bg: var(--label-7-bg);
+  --color-label-7-fg: var(--label-7-fg);
+  --color-label-8: var(--label-8);
+  --color-label-8-bg: var(--label-8-bg);
+  --color-label-8-fg: var(--label-8-fg);
+  --color-label-9: var(--label-9);
+  --color-label-9-bg: var(--label-9-bg);
+  --color-label-9-fg: var(--label-9-fg);
+  --color-label-10: var(--label-10);
+  --color-label-10-bg: var(--label-10-bg);
+  --color-label-10-fg: var(--label-10-fg);
+  --color-label-11: var(--label-11);
+  --color-label-11-bg: var(--label-11-bg);
+  --color-label-11-fg: var(--label-11-fg);
+  --color-label-12: var(--label-12);
+  --color-label-12-bg: var(--label-12-bg);
+  --color-label-12-fg: var(--label-12-fg);
   --font-sans: var(--font);
   --font-mono: var(--font-mono);
 }
@@ -613,6 +689,24 @@
   }
   .lang-switch [aria-current] {
     @apply font-semibold text-fg;
+  }
+}
+
+@keyframes laf-collapse-down {
+  from {
+    height: 0;
+  }
+  to {
+    height: var(--radix-collapsible-content-height);
+  }
+}
+
+@keyframes laf-collapse-up {
+  from {
+    height: var(--radix-collapsible-content-height);
+  }
+  to {
+    height: 0;
   }
 }
 

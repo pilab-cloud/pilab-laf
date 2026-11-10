@@ -6,7 +6,7 @@ import * as TooltipPrimitive from "@radix-ui/react-tooltip";
 import { X } from "lucide-react";
 import * as React from "react";
 import { cn } from "../cn";
-import { useLaf } from "../i18n";
+import { useLaf, usePortalContainer } from "../i18n";
 
 /* ── Dialog (modal "popup") ── */
 export const Dialog = DialogPrimitive.Root;
@@ -25,9 +25,9 @@ export function DialogContent({
   description?: string;
   footer?: React.ReactNode;
 }) {
-  const { t: laf } = useLaf();
+  const { t: laf, portalContainer } = useLaf();
   return (
-    <DialogPrimitive.Portal>
+    <DialogPrimitive.Portal container={portalContainer}>
       <DialogPrimitive.Overlay className="fixed inset-0 z-50 bg-[rgba(5,5,10,0.7)] backdrop-blur-xs" />
       <DialogPrimitive.Content
         className={cn("popup fixed top-1/2 left-1/2 z-50 -translate-x-1/2 -translate-y-1/2", className)}
@@ -68,8 +68,9 @@ export function PopoverContent({
   title?: string;
   footer?: React.ReactNode;
 }) {
+  const container = usePortalContainer();
   return (
-    <PopoverPrimitive.Portal>
+    <PopoverPrimitive.Portal container={container}>
       <PopoverPrimitive.Content
         align={align}
         sideOffset={8}
@@ -94,8 +95,9 @@ export function DropdownMenuContent({
   align = "end",
   ...props
 }: React.ComponentProps<typeof DropdownPrimitive.Content>) {
+  const container = usePortalContainer();
   return (
-    <DropdownPrimitive.Portal>
+    <DropdownPrimitive.Portal container={container}>
       <DropdownPrimitive.Content
         align={align}
         sideOffset={4}
@@ -159,10 +161,11 @@ export function Tooltip({
   children: React.ReactNode;
   side?: "top" | "right" | "bottom" | "left";
 }) {
+  const container = usePortalContainer();
   return (
     <TooltipPrimitive.Root delayDuration={400}>
       <TooltipPrimitive.Trigger asChild>{children}</TooltipPrimitive.Trigger>
-      <TooltipPrimitive.Portal>
+      <TooltipPrimitive.Portal container={container}>
         <TooltipPrimitive.Content
           side={side}
           sideOffset={6}

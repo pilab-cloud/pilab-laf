@@ -12,8 +12,8 @@ const iso = (y: number, m: number, d: number) => `${y}-${pad(m + 1)}-${pad(d)}`;
 export function DatePicker({
   value,
   onChange,
-  label = "Choose date",
-  placeholder = "yyyy-mm-dd",
+  label: labelProp,
+  placeholder: placeholderProp,
   min,
   max,
 }: {
@@ -25,6 +25,8 @@ export function DatePicker({
   max?: string;
 }) {
   const { t: laf } = useLaf();
+  const label = labelProp ?? laf.chooseDate;
+  const placeholder = placeholderProp ?? laf.datePlaceholder;
   const [open, setOpen] = React.useState(false);
   const base = value ? new Date(`${value}T00:00:00`) : new Date();
   const [view, setView] = React.useState({ y: base.getFullYear(), m: base.getMonth() });
@@ -56,7 +58,7 @@ export function DatePicker({
           </Button>
         </div>
         <div role="grid" aria-label={title} className="grid grid-cols-7 gap-0.5 text-center text-xs">
-          {["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"].map((d) => (
+          {laf.weekdaysShort.map((d) => (
             <span key={d} role="columnheader" className="py-1 text-muted">{d}</span>
           ))}
           {cells.map((d, i) => {

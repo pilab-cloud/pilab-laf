@@ -28,6 +28,7 @@ export function InlineEdit({
   label: string;
   validate?: (value: string) => string | undefined;
 }) {
+  const { t: laf } = useLaf();
   const [editing, setEditing] = React.useState(false);
   const [text, setText] = React.useState(value);
   const [error, setError] = React.useState<string>();
@@ -52,7 +53,7 @@ export function InlineEdit({
     return (
       <button
         type="button"
-        aria-label={`${label}: ${value}. Edit`}
+        aria-label={`${label}: ${value}. ${laf.edit}`}
         className="group inline-flex items-center gap-1.5 border-0 bg-transparent p-0 text-fg"
         onClick={() => {
           cancelled.current = false;
@@ -110,7 +111,7 @@ export function FileDropzone({
   accept,
   maxSize,
   multiple = true,
-  label = "Drop files here or click to browse",
+  label: labelProp,
 }: {
   files: UploadFile[];
   onFiles: (files: File[]) => void;
@@ -122,6 +123,7 @@ export function FileDropzone({
   label?: string;
 }) {
   const { t: laf } = useLaf();
+  const label = labelProp ?? laf.dropFiles;
   const input = React.useRef<HTMLInputElement>(null);
   const [over, setOver] = React.useState(false);
   const [rejected, setRejected] = React.useState<string>();
@@ -201,13 +203,14 @@ const alarmTone = { critical: "danger", warning: "warn", info: "neutral" } as co
 export function AlarmList({
   alarms,
   onAcknowledge,
-  empty = "No active alarms",
+  empty: emptyProp,
 }: {
   alarms: AlarmItem[];
   onAcknowledge?: (id: string) => void;
   empty?: string;
 }) {
   const { t: laf } = useLaf();
+  const empty = emptyProp ?? laf.noActiveAlarms;
   if (alarms.length === 0) return <p className="px-4 py-6 text-center text-sm text-muted">{empty}</p>;
   return (
     <ul className="divide-y divide-line overflow-hidden rounded-lg border border-line bg-surface">
@@ -341,7 +344,9 @@ export function FormField({
   );
 }
 
-export function ErrorSummary({ errors, title = "Fix the following" }: { errors: { id: string; message: string }[]; title?: string }) {
+export function ErrorSummary({ errors, title: titleProp }: { errors: { id: string; message: string }[]; title?: string }) {
+  const { t: laf } = useLaf();
+  const title = titleProp ?? laf.fixFollowing;
   if (errors.length === 0) return null;
   return (
     <div role="alert" className="alert alert-error">

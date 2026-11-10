@@ -403,3 +403,31 @@ Withdrawn (OIDC, §1.3): 4.83 AuthorizedApps, 4.87 IdpConfigForm, 4.88 SigningKe
 | ~~Q4~~ | ~~Where does `@pilab/auth` live?~~ | **Resolved:** not built; apps use `@pilab/shadow-sso` (§1.3). |
 | Q5 | Storybook or promote the playground? | Promote the playground + Playwright screenshots (lighter). |
 | Q6 | Is the FilterBar query syntax shared with the backends? | Yes: publish the grammar (`key:value`, `-key:value`, quoted values, `is:` / `has:`) when built. |
+
+---
+
+## 9. Filter query grammar (FilterBar, 4.98 — resolves Q6)
+
+Published so backends can share it. Implemented by `parseFilter` / `serializeFilter` in `lib/components/filterbar.tsx` (pure, no I/O).
+
+```
+query   = term *( WS term )
+term    = [ "-" ] ( field / text )          ; "-" negates; must be directly followed by a non-space
+field   = key ":" [ op ] value *( "," value )   ; comma = OR between alternatives
+key     = ALPHA / "_" , *( ALPHA / DIGIT / "_" / "." / "-" )
+op      = ">=" / "<=" / ">" / "<"           ; omitted = equality / contains
+value   = quoted / bare
+quoted  = DQUOTE *( "\\" / "\"" / any-but-DQUOTE ) DQUOTE   ; only \" and \\ are escapes
+bare    = 1*( any except WS and "," )
+text    = quoted / bare                     ; free text (e.g. full-text search)
+```
+
+Rules:
+- Example: `status:open assignee:@me label:"bug fix" -label:wontfix priority:>=2 crash` → four filters, one negated, plus free text `crash`. `is:` / `has:` are ordinary keys (`is:open`, `-has:assignee`).
+- Keys are case-insensitive for matching against field definitions; values are case-preserved (`@me` is a plain value the app resolves).
+- `key:` with no value, a lone `-`, and a `"quoted phrase"` that merely looks like a field (`"status:open"`) are free text.
+- An unterminated quote runs to the end of input. Whitespace is collapsed on serialize.
+- `parseFilter(q)` → `{ tokens, filters, text }`; `Filter = { key, op, values[], negated }` (compatible with DataGrid `filters`), `TextTerm = { value, negated }`. Token order is preserved; `parseFilter(serializeFilter(p))` deep-equals `p`.
+- Values are quoted on serialize when empty or containing whitespace, `,`, `"`, `\`, or a leading `<`/`>`.
+
+**FilterBar** takes typed `fields` (`key`, `type: text|enum|boolean|number|date`, static or async `options`, `multiple`, `comparable`). Chips are rendered per token (invalid ones — unknown key, bad enum/number, operator on a non-comparable field — get `data-invalid`). Keyboard: typing suggests field names, then values; ↑/↓ + Enter or Tab picks; Enter/space commits; Backspace on an empty input pulls the last chip back for editing; Esc closes the list. **SavedViews** (`SavedViews`, `useSavedViews`) list/apply/save/rename/delete/default; persisted as `{ views, defaultId }` JSON via a `storage` adapter (`getItem/setItem`, default `localStorage`, `null` to disable) or controlled with `views` / `onViewsChange` / `defaultViewId`. Not built: view sharing (needs a backend).

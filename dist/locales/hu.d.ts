@@ -1,4 +1,4 @@
-import { L as LafMessages } from '../i18n-_Wsnj9t7.js';
+import { L as LafMessages } from '../i18n-BlMqNcgW.js';
 import 'react';
 
 declare const hu: LafMessages;

@@ -1,5 +1,6 @@
 import { Check, Copy } from "lucide-react";
 import * as React from "react";
+import { useLaf } from "../i18n";
 import { cn } from "../cn";
 
 export function BrandHeader({
@@ -161,6 +162,7 @@ export function OtpInput({
 }) {
   const [inner, setInner] = React.useState(defaultValue);
   const current = value ?? inner;
+  const { t: laf } = useLaf();
 
   return (
     <input
@@ -169,7 +171,7 @@ export function OtpInput({
       autoComplete="one-time-code"
       pattern={`[0-9]{${length}}`}
       maxLength={length}
-      aria-label="One-time code"
+      aria-label={laf.oneTimeCode}
       className={cn("form-input otp-input", className)}
       value={current}
       onChange={(e) => {
@@ -198,8 +200,8 @@ export function CodeInput({ className, ...props }: React.ComponentProps<"input">
 
 export function CodeDisplay({
   code,
-  copyLabel = "Copy code",
-  copiedLabel = "Copied",
+  copyLabel: copyLabelProp,
+  copiedLabel: copiedLabelProp,
   className,
 }: {
   code: string;
@@ -207,6 +209,9 @@ export function CodeDisplay({
   copiedLabel?: string;
   className?: string;
 }) {
+  const { t: laf } = useLaf();
+  const copyLabel = copyLabelProp ?? laf.copyCode;
+  const copiedLabel = copiedLabelProp ?? laf.copied;
   const [copied, setCopied] = React.useState(false);
 
   React.useEffect(() => {
@@ -290,13 +295,16 @@ export function LanguageSwitcher({
   languages,
   current,
   className,
+  label,
 }: {
   languages: { code: string; label: string; href: string }[];
   current: string;
   className?: string;
+  label?: string;
 }) {
+  const { t: laf } = useLaf();
   return (
-    <nav className={cn("lang-switch", className)} aria-label="Language">
+    <nav className={cn("lang-switch", className)} aria-label={label ?? laf.language}>
       {languages.map((l) => (
         <a
           key={l.code}

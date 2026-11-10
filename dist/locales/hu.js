@@ -1,5 +1,3 @@
-"use client";
-
 // lib/locales/hu.ts
 var hu = {
   close: "Bez\xE1r\xE1s",
@@ -30,9 +28,70 @@ var hu = {
   acknowledge: "Tudom\xE1sul v\xE9tel",
   unsupportedType: (n) => `${n} f\xE1jl t\xEDpusa nem t\xE1mogatott`,
   exceedsSize: (n) => `${n} f\xE1jl meghaladja a m\xE9retkorl\xE1tot`,
-  autoRefresh: "Automatikus friss\xEDt\xE9s"
+  autoRefresh: "Automatikus friss\xEDt\xE9s",
+  oneTimeCode: "Egyszer haszn\xE1latos k\xF3d",
+  copyCode: "K\xF3d m\xE1sol\xE1sa",
+  language: "Nyelv",
+  chooseDate: "D\xE1tum kiv\xE1laszt\xE1sa",
+  datePlaceholder: "\xE9\xE9\xE9\xE9-hh-nn",
+  weekdaysShort: ["H", "K", "Sze", "Cs", "P", "Szo", "V"],
+  breadcrumb: "Navig\xE1ci\xF3s \xFAtvonal",
+  showHiddenLevels: (n) => `${n} rejtett szint megjelen\xEDt\xE9se`,
+  dismiss: "Elvet\xE9s",
+  resizePanels: "Panelek \xE1tm\xE9retez\xE9se",
+  increase: (l) => `${l} n\xF6vel\xE9se`,
+  decrease: (l) => `${l} cs\xF6kkent\xE9se`,
+  unitOf: (l) => `${l} m\xE9rt\xE9kegys\xE9ge`,
+  value: "\xC9rt\xE9k",
+  add: "Hozz\xE1ad\xE1s",
+  key: "Kulcs",
+  duplicateKey: "Ism\xE9tl\u0151d\u0151 kulcs",
+  timeRange: "Id\u0151tartom\xE1ny",
+  off: "ki",
+  wrap: "Sort\xF6r\xE9s",
+  noLines: "Nincs sor",
+  tenant: "B\xE9rl\u0151",
+  permission: "Jogosults\xE1g",
+  passwordStrength: ["Nagyon gyenge", "Gyenge", "Elfogadhat\xF3", "J\xF3", "Er\u0151s"],
+  passwordMismatch: "A jelszavak nem egyeznek",
+  cancel: "M\xE9gse",
+  retry: "\xDAjra",
+  typeToConfirm: "\xCDrja be a meger\u0151s\xEDt\xE9shez",
+  nothingHere: "Itt nincs semmi",
+  noRecentTasks: "Nincsenek legut\xF3bbi feladatok",
+  recentTasks: "Legut\xF3bbi feladatok",
+  signOut: "Kijelentkez\xE9s",
+  dropFiles: "H\xFAzza ide a f\xE1jlokat, vagy kattintson a tall\xF3z\xE1shoz",
+  noActiveAlarms: "Nincs akt\xEDv riaszt\xE1s",
+  fixFollowing: "Jav\xEDtsa a k\xF6vetkez\u0151ket",
+  moreTabs: "Tov\xE1bbi lapok",
+  next: "Tov\xE1bb",
+  back: "Vissza",
+  finish: "Befejez\xE9s",
+  minimum: "minimum",
+  maximum: "maximum",
+  edit: "Szerkeszt\xE9s",
+  stateOn: "Bekapcsolva",
+  stateOff: "Kikapcsolva",
+  stateSuspended: "Felf\xFCggesztve",
+  stateMaintenance: "Karbantart\xE1sban",
+  stateDisconnected: "Sz\xE9tkapcsolva",
+  stateWarning: "Figyelmeztet\xE9s",
+  stateError: "Hiba",
+  mfaMethod: "M\xF3dszer kiv\xE1laszt\xE1sa",
+  mfaScan: "K\xF3d beolvas\xE1sa",
+  mfaVerify: "Ellen\u0151rz\xE9s",
+  mfaRecovery: "Helyre\xE1ll\xEDt\xE1si k\xF3dok",
+  mfaTotp: "Hiteles\xEDt\u0151 alkalmaz\xE1s",
+  mfaPasskey: "Hozz\xE1f\xE9r\xE9si kulcs",
+  mfaInvalid: "A k\xF3d \xE9rv\xE9nytelen. Pr\xF3b\xE1lja \xFAjra.",
+  mfaPasskeyWaiting: "V\xE1rakoz\xE1s a hiteles\xEDt\u0151re\u2026",
+  mfaPasskeyFailed: "A hozz\xE1f\xE9r\xE9si kulcs regisztr\xE1l\xE1sa sikertelen.",
+  mfaStored: "Elmentettem a k\xF3dokat",
+  manualSecret: "K\xE9zi titkos kulcs",
+  addedToApp: "Hozz\xE1adtam az alkalmaz\xE1somhoz"
 };
-export {
-  hu
-};
+
+export { hu };
+//# sourceMappingURL=hu.js.map
 //# sourceMappingURL=hu.js.map
