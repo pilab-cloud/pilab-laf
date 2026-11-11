@@ -146,14 +146,9 @@ function ListboxBody({
         onMouseDown={(ev) => ev.preventDefault()}
         onMouseMove={() => i !== active && !e.disabled && onActive(i)}
         onClick={() => !e.disabled && e.onPick()}
-        className={cn("dropdown-item cursor-pointer data-[active]:bg-surface-hover data-[active]:text-fg aria-disabled:cursor-default aria-disabled:opacity-50", e.selected && "font-semibold")}
+        className="dropdown-item cursor-pointer py-1.5 data-[active]:bg-surface-hover data-[active]:text-fg aria-disabled:cursor-default aria-disabled:opacity-50"
       >
         {e.node}
-        {e.selected && (
-          <span aria-hidden className="ms-auto text-primary">
-            ✓
-          </span>
-        )}
       </div>
     );
   };

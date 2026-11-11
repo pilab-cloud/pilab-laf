@@ -7788,7 +7788,7 @@ function ListboxBody({
   const hasEntries = sections.some((s) => s.entries.length);
   const renderEntry = (e) => {
     const i = index++;
-    return /* @__PURE__ */ jsxRuntime.jsxs(
+    return /* @__PURE__ */ jsxRuntime.jsx(
       "div",
       {
         id: optionId(listId, i),
@@ -7799,11 +7799,8 @@ function ListboxBody({
         onMouseDown: (ev) => ev.preventDefault(),
         onMouseMove: () => i !== active && !e.disabled && onActive(i),
         onClick: () => !e.disabled && e.onPick(),
-        className: chunkFTHFEMX6_cjs.cn("dropdown-item cursor-pointer data-[active]:bg-surface-hover data-[active]:text-fg aria-disabled:cursor-default aria-disabled:opacity-50", e.selected && "font-semibold"),
-        children: [
-          e.node,
-          e.selected && /* @__PURE__ */ jsxRuntime.jsx("span", { "aria-hidden": true, className: "ms-auto text-primary", children: "\u2713" })
-        ]
+        className: "dropdown-item cursor-pointer py-1.5 data-[active]:bg-surface-hover data-[active]:text-fg aria-disabled:cursor-default aria-disabled:opacity-50",
+        children: e.node
       },
       e.key
     );
