@@ -2928,6 +2928,29 @@ function DataGrid(props) {
     setSearch,
     labels: L
   };
+  const anyWrap = leaf.some((c) => colById.get(c.id)?.wrap);
+  const autoFit = (id) => {
+    const root = scrollRef.current;
+    const spec = colById.get(id);
+    if (!root || !spec) return;
+    let w = 0;
+    root.querySelectorAll(`[data-col="${CSS.escape(id)}"]`).forEach((cell) => {
+      const inner = cell.querySelector("[data-cell]") ?? cell.firstElementChild;
+      if (!inner) return;
+      const prev = inner.style.cssText;
+      inner.style.flexWrap = "nowrap";
+      inner.style.whiteSpace = "nowrap";
+      inner.style.textOverflow = "clip";
+      inner.style.width = "max-content";
+      inner.style.maxWidth = "none";
+      inner.style.flexShrink = "0";
+      w = Math.max(w, inner.getBoundingClientRect().width, inner.scrollWidth);
+      inner.style.cssText = prev;
+    });
+    if (!w) return;
+    const next = Math.min(spec.maxWidth ?? 640, Math.max(spec.minWidth ?? 60, Math.ceil(w) + 28));
+    setSizing({ ...sizing, [id]: next });
+  };
   const cellBase = "flex min-w-0 items-center overflow-hidden px-3 text-sm";
   const stickyCell = "sticky z-[1] bg-surface";
   const renderRow = (index, style, measure) => {
@@ -2947,7 +2970,7 @@ function DataGrid(props) {
           "data-row-index": index,
           "aria-rowindex": rowOffset + index + 2,
           "aria-selected": selectable ? isSel : void 0,
-          style: { display: "grid", gridTemplateColumns: template, height: rowH, minWidth: totalWidth },
+          style: { display: "grid", gridTemplateColumns: template, ...anyWrap ? { minHeight: rowH } : { height: rowH }, minWidth: totalWidth },
           className: cn(
             "border-b border-line",
             isSel ? "bg-primary/15" : "hover:bg-surface-hover",
@@ -2986,9 +3009,10 @@ function DataGrid(props) {
                 "div",
                 {
                   role: "gridcell",
+                  "data-col": c.id,
                   className: cn(cellBase, spec.numeric && "justify-end font-mono", left !== void 0 && stickyCell),
                   style: left !== void 0 && Number.isFinite(left) ? { insetInlineStart: left } : void 0,
-                  children: /* @__PURE__ */ jsx("span", { className: "truncate", children: spec.cell(row) })
+                  children: spec.wrap ? /* @__PURE__ */ jsx("div", { "data-cell": true, className: "flex min-w-0 flex-wrap items-center gap-1 py-1", children: spec.cell(row) }) : /* @__PURE__ */ jsx("span", { "data-cell": true, className: "truncate", children: spec.cell(row) })
                 },
                 c.id
               );
@@ -3069,6 +3093,7 @@ function DataGrid(props) {
                     "div",
                     {
                       role: "columnheader",
+                      "data-col": c.id,
                       "aria-sort": s ? s.dir === "asc" ? "ascending" : "descending" : spec.sortable ? "none" : void 0,
                       draggable: true,
                       onDragStart: (e) => {
@@ -3116,13 +3141,15 @@ function DataGrid(props) {
                             draggable: false,
                             onMouseDown: (e) => {
                               e.stopPropagation();
+                              const head = e.currentTarget.parentElement;
+                              if (head) {
+                                head.draggable = false;
+                                window.addEventListener("mouseup", () => head.draggable = true, { once: true });
+                              }
                               table.getHeaderGroups()[0]?.headers.find((h) => h.id === c.id)?.getResizeHandler()(e);
                             },
                             onDragStart: (e) => e.preventDefault(),
-                            onDoubleClick: () => {
-                              const { [c.id]: _, ...rest } = sizing;
-                              setSizing(rest);
-                            },
+                            onDoubleClick: () => autoFit(c.id),
                             onKeyDown: (e) => {
                               if (e.key !== "ArrowLeft" && e.key !== "ArrowRight") return;
                               e.preventDefault();

@@ -1594,6 +1594,10 @@ interface GridColumn<T> {
     minWidth?: number;
     hideable?: boolean;
     pin?: "start";
+    /** Let rich cell content (chips, badges) wrap onto several lines; the row grows instead of clipping. */
+    wrap?: boolean;
+    /** Upper bound for double-click auto-fit. Default 640. */
+    maxWidth?: number;
 }
 /** Same shape idea as the shared menu model (U4); kept local until that lands. */
 interface GridMenuItem {

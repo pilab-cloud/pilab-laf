@@ -1,5 +1,5 @@
 import * as React from "react";
-import { DataGrid, GridColumnsMenu, GridDensityToggle, GridSearch, TreeTable, type GridColumn, type GridFilter, type GridSort } from "../../lib";
+import { Chip, DataGrid, GridColumnsMenu, GridDensityToggle, GridSearch, TreeTable, type GridColumn, type GridFilter, type GridSort } from "../../lib";
 
 interface Row {
   id: string;
@@ -110,12 +110,34 @@ function TreeDemo() {
   );
 }
 
+const TAGS = ["prod", "linux", "db", "backup", "pci", "eu-west", "gpu"];
+const tagRows = Array.from({ length: 6 }, (_, i) => ({ id: `t${i}`, name: `vm-tags-${i}`, tags: TAGS.slice(0, [1, 5, 3, 7, 2, 4][i]) }));
+
+function WrapDemo() {
+  return (
+    <section className="flex flex-col gap-2">
+      <h2 className="text-lg">Wrapping cells &amp; auto-fit (double-click a resize handle)</h2>
+      <DataGrid
+        label="Tagged machines"
+        columns={[
+          { id: "name", header: "Name", cell: (r: (typeof tagRows)[number]) => r.name, width: 160 },
+          { id: "tags", header: "Tags", wrap: true, width: 240, cell: (r: (typeof tagRows)[number]) => r.tags.map((t) => <Chip key={t}>{t}</Chip>) },
+          { id: "tags2", header: "Tags (no wrap)", width: 160, cell: (r: (typeof tagRows)[number]) => r.tags.map((t) => <Chip key={t}>{t}</Chip>) },
+        ]}
+        rows={tagRows}
+        rowId={(r) => r.id}
+      />
+    </section>
+  );
+}
+
 export default function DataGridBench() {
   const bench = flag("bench") === "grid";
   const rows = React.useMemo(() => makeRows(bench ? 50_000 : 1_000), [bench]);
   const [selected, setSelected] = React.useState<string[]>([]);
   return (
     <div className="flex flex-col gap-8 p-4">
+      {!bench && <WrapDemo />}
       <section className="flex flex-col gap-2">
         <h2 className="text-lg">DataGrid — {rows.length.toLocaleString()} rows{bench ? " (?bench=grid)" : " (add ?bench=grid for 50 000)"}</h2>
         <DataGrid

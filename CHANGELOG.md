@@ -7,6 +7,10 @@ Follows [semver](https://semver.org). Pre-1.0, minor versions may contain breaki
 See [`docs/MIGRATION.md`](docs/MIGRATION.md).
 
 ### Added
+- `GridColumn.wrap` (chips/badges wrap and the row grows) and `maxWidth`; double-clicking a resize handle now auto-fits the column to its widest cell/header instead of resetting.
+
+### Fixed
+- `DataGrid`: dragging a column resize handle no longer starts an HTML5 header drag (reorder).
 - `Chip` takes an `icon` (clamped to 0.75rem, inline padding so it never touches the border).
 - `Autocomplete` (single/multi, free-solo, async with debounce/abort), `ChipsInput` (TagInput superset: Enter/comma/paste, validation, icons) and `QuickSearch` (masthead inventory search, Ctrl/⌘+K, recents); `docs/autocomplete.md`, `?demo=inputs`.
 - Realtime: `useConnectionState`/`useRealtime` (backoff + jitter, online/offline), `RealtimeProvider`, `ConnectionBadge`, `StaleDataBanner`; `docs/realtime.md`, `?demo=realtime`.

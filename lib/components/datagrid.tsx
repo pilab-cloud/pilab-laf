@@ -40,6 +40,10 @@ export interface GridColumn<T> {
   minWidth?: number;
   hideable?: boolean;
   pin?: "start";
+  /** Let rich cell content (chips, badges) wrap onto several lines; the row grows instead of clipping. */
+  wrap?: boolean;
+  /** Upper bound for double-click auto-fit. Default 640. */
+  maxWidth?: number;
 }
 
 /** Same shape idea as the shared menu model (U4); kept local until that lands. */
@@ -627,6 +631,31 @@ export function DataGrid<T>(props: DataGridProps<T>) {
     labels: L,
   };
 
+  const anyWrap = leaf.some((c) => colById.get(c.id)?.wrap);
+  /** Fit a column to its widest rendered cell (header included), without wrapping; capped by `maxWidth`. */
+  const autoFit = (id: string) => {
+    const root = scrollRef.current;
+    const spec = colById.get(id);
+    if (!root || !spec) return;
+    let w = 0;
+    root.querySelectorAll<HTMLElement>(`[data-col="${CSS.escape(id)}"]`).forEach((cell) => {
+      const inner = cell.querySelector<HTMLElement>("[data-cell]") ?? (cell.firstElementChild as HTMLElement | null);
+      if (!inner) return;
+      const prev = inner.style.cssText;
+      inner.style.flexWrap = "nowrap";
+      inner.style.whiteSpace = "nowrap";
+      inner.style.textOverflow = "clip";
+      inner.style.width = "max-content";
+      inner.style.maxWidth = "none";
+      inner.style.flexShrink = "0";
+      w = Math.max(w, inner.getBoundingClientRect().width, inner.scrollWidth);
+      inner.style.cssText = prev;
+    });
+    if (!w) return;
+    const next = Math.min(spec.maxWidth ?? 640, Math.max(spec.minWidth ?? 60, Math.ceil(w) + 28));
+    setSizing({ ...sizing, [id]: next });
+  };
+
   const cellBase = "flex min-w-0 items-center overflow-hidden px-3 text-sm";
   const stickyCell = "sticky z-[1] bg-surface";
   const renderRow = (index: number, style?: React.CSSProperties, measure?: (el: HTMLElement | null) => void) => {
@@ -645,7 +674,7 @@ export function DataGrid<T>(props: DataGridProps<T>) {
           data-row-index={index}
           aria-rowindex={rowOffset + index + 2}
           aria-selected={selectable ? isSel : undefined}
-          style={{ display: "grid", gridTemplateColumns: template, height: rowH, minWidth: totalWidth }}
+          style={{ display: "grid", gridTemplateColumns: template, ...(anyWrap ? { minHeight: rowH } : { height: rowH }), minWidth: totalWidth }}
           className={cn(
             "border-b border-line",
             isSel ? "bg-primary/15" : "hover:bg-surface-hover",
@@ -695,10 +724,19 @@ export function DataGrid<T>(props: DataGridProps<T>) {
               <div
                 key={c.id}
                 role="gridcell"
+                data-col={c.id}
                 className={cn(cellBase, spec.numeric && "justify-end font-mono", left !== undefined && stickyCell)}
                 style={left !== undefined && Number.isFinite(left) ? { insetInlineStart: left } : undefined}
               >
-                <span className="truncate">{spec.cell(row)}</span>
+                {spec.wrap ? (
+                  <div data-cell className="flex min-w-0 flex-wrap items-center gap-1 py-1">
+                    {spec.cell(row)}
+                  </div>
+                ) : (
+                  <span data-cell className="truncate">
+                    {spec.cell(row)}
+                  </span>
+                )}
               </div>
             );
           })}
@@ -797,6 +835,7 @@ export function DataGrid<T>(props: DataGridProps<T>) {
                   <div
                     key={c.id}
                     role="columnheader"
+                    data-col={c.id}
                     aria-sort={s ? (s.dir === "asc" ? "ascending" : "descending") : spec.sortable ? "none" : undefined}
                     draggable
                     onDragStart={(e) => {
@@ -843,13 +882,16 @@ export function DataGrid<T>(props: DataGridProps<T>) {
                         draggable={false}
                         onMouseDown={(e) => {
                           e.stopPropagation();
+                          // the header is draggable (reorder); suppress it for the duration of a resize gesture
+                          const head = e.currentTarget.parentElement;
+                          if (head) {
+                            head.draggable = false;
+                            window.addEventListener("mouseup", () => (head.draggable = true), { once: true });
+                          }
                           table.getHeaderGroups()[0]?.headers.find((h) => h.id === c.id)?.getResizeHandler()(e);
                         }}
                         onDragStart={(e) => e.preventDefault()}
-                        onDoubleClick={() => {
-                          const { [c.id]: _, ...rest } = sizing;
-                          setSizing(rest);
-                        }}
+                        onDoubleClick={() => autoFit(c.id)}
                         onKeyDown={(e) => {
                           if (e.key !== "ArrowLeft" && e.key !== "ArrowRight") return;
                           e.preventDefault();
