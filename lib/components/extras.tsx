@@ -440,8 +440,10 @@ export function Chip({
   tone = "neutral",
   color,
   icon,
+  className,
   children,
 }: {
+  className?: string;
   onRemove?: () => void;
   removeLabel?: string;
   /** Leading icon; sized to the text (0.75rem) with inline padding so it never touches the border. */
@@ -453,7 +455,7 @@ export function Chip({
 }) {
   return (
     <span
-      className={cn("inline-flex h-6 items-center gap-1.5 rounded-sm border px-2 text-xs [&_svg]:size-3 [&_svg]:shrink-0", icon && "ps-1.5", !color && chipTone[tone])}
+      className={cn("inline-flex h-6 shrink-0 items-center gap-1.5 whitespace-nowrap rounded-sm border px-2 text-xs [&_svg]:size-3 [&_svg]:shrink-0", icon && "ps-1.5", !color && chipTone[tone], className)}
       style={color ? labelSlotStyle(color) : undefined}
     >
       {icon && (

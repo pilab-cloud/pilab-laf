@@ -701,7 +701,8 @@ declare const chipTone: {
     warn: string;
     danger: string;
 };
-declare function Chip({ onRemove, removeLabel, tone, color, icon, children, }: {
+declare function Chip({ onRemove, removeLabel, tone, color, icon, className, children, }: {
+    className?: string;
     onRemove?: () => void;
     removeLabel?: string;
     /** Leading icon; sized to the text (0.75rem) with inline padding so it never touches the border. */

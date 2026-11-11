@@ -1,7 +1,7 @@
 'use strict';
 
-var chunkPNRO35YW_cjs = require('./chunk-PNRO35YW.cjs');
-var chunkGEJA4YGN_cjs = require('./chunk-GEJA4YGN.cjs');
+var chunkPJNERQD3_cjs = require('./chunk-PJNERQD3.cjs');
+var chunkRVZRTG5N_cjs = require('./chunk-RVZRTG5N.cjs');
 require('./chunk-S4QID4TP.cjs');
 var chunkIP6HZMS5_cjs = require('./chunk-IP6HZMS5.cjs');
 require('./chunk-VUZVPUQ7.cjs');
@@ -197,7 +197,7 @@ function Terminal({ url, transport, onClose, onStateChange, fontSize = 13, class
   };
   return /* @__PURE__ */ jsxRuntime.jsxs("div", { ref: root, className: chunkFTHFEMX6_cjs.cn("flex flex-col overflow-hidden rounded-md border border-line bg-menu", className), children: [
     /* @__PURE__ */ jsxRuntime.jsxs("div", { role: "toolbar", "aria-label": l.toolbar, className: "flex flex-wrap items-center gap-2 border-b border-line px-3 py-1.5", children: [
-      /* @__PURE__ */ jsxRuntime.jsx("span", { role: "status", children: /* @__PURE__ */ jsxRuntime.jsx(chunkGEJA4YGN_cjs.StatusDot, { tone: tone[state], pulse: state === "connecting", label: l[state] }) }),
+      /* @__PURE__ */ jsxRuntime.jsx("span", { role: "status", children: /* @__PURE__ */ jsxRuntime.jsx(chunkRVZRTG5N_cjs.StatusDot, { tone: tone[state], pulse: state === "connecting", label: l[state] }) }),
       (state === "closed" || state === "error") && /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { size: "sm", variant: "secondary", leftIcon: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.RotateCw, { "aria-hidden": true }), onClick: () => setAttempt((n) => n + 1), children: l.reconnect }),
       /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "ms-auto flex items-center gap-1", children: [
         /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { size: "sm", variant: "ghost", leftIcon: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Copy, { "aria-hidden": true }), disabled: !term, onClick: copy, children: l.copy }),
@@ -208,9 +208,9 @@ function Terminal({ url, transport, onClose, onStateChange, fontSize = 13, class
     /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "relative min-h-0 flex-1 p-2", style: { height: full ? void 0 : height }, children: [
       /* @__PURE__ */ jsxRuntime.jsx("div", { ref: host, role: "group", "aria-label": l.terminal, className: "size-full" }),
       !term && /* @__PURE__ */ jsxRuntime.jsxs("div", { role: "status", "aria-label": l.loading, className: "absolute inset-2 grid content-start gap-2", children: [
-        /* @__PURE__ */ jsxRuntime.jsx(chunkGEJA4YGN_cjs.Skeleton, { className: "h-4 w-1/2" }),
-        /* @__PURE__ */ jsxRuntime.jsx(chunkGEJA4YGN_cjs.Skeleton, { className: "h-4 w-3/4" }),
-        /* @__PURE__ */ jsxRuntime.jsx(chunkGEJA4YGN_cjs.Skeleton, { className: "h-4 w-1/3" })
+        /* @__PURE__ */ jsxRuntime.jsx(chunkRVZRTG5N_cjs.Skeleton, { className: "h-4 w-1/2" }),
+        /* @__PURE__ */ jsxRuntime.jsx(chunkRVZRTG5N_cjs.Skeleton, { className: "h-4 w-3/4" }),
+        /* @__PURE__ */ jsxRuntime.jsx(chunkRVZRTG5N_cjs.Skeleton, { className: "h-4 w-1/3" })
       ] })
     ] })
   ] });
@@ -304,7 +304,7 @@ function VncConsole({ url, password, username, viewOnly: viewOnlyProp = false, s
   };
   return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: chunkFTHFEMX6_cjs.cn("grid gap-2", className), children: [
     /* @__PURE__ */ jsxRuntime.jsx(
-      chunkPNRO35YW_cjs.ConsoleFrame,
+      chunkPJNERQD3_cjs.ConsoleFrame,
       {
         status,
         errorMessage: error,
@@ -321,8 +321,8 @@ function VncConsole({ url, password, username, viewOnly: viewOnlyProp = false, s
       /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { size: "sm", variant: "ghost", "aria-pressed": viewOnly, onClick: () => setViewOnly((v) => !v), children: viewOnly ? l.interactive : l.viewOnly }),
       /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { size: "sm", variant: "ghost", disabled: !live_ || viewOnly, onClick: () => setPasteOpen(true), children: l.paste })
     ] }),
-    /* @__PURE__ */ jsxRuntime.jsx(chunkGEJA4YGN_cjs.Dialog, { open: pasteOpen, onOpenChange: setPasteOpen, children: /* @__PURE__ */ jsxRuntime.jsx(
-      chunkGEJA4YGN_cjs.DialogContent,
+    /* @__PURE__ */ jsxRuntime.jsx(chunkRVZRTG5N_cjs.Dialog, { open: pasteOpen, onOpenChange: setPasteOpen, children: /* @__PURE__ */ jsxRuntime.jsx(
+      chunkRVZRTG5N_cjs.DialogContent,
       {
         title: l.paste,
         size: "sm",
@@ -330,7 +330,7 @@ function VncConsole({ url, password, username, viewOnly: viewOnlyProp = false, s
           /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { variant: "ghost", onClick: () => setPasteOpen(false), children: l.cancel }),
           /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { onClick: send, disabled: !pasteText, children: l.send })
         ] }),
-        children: /* @__PURE__ */ jsxRuntime.jsx(chunkGEJA4YGN_cjs.Textarea, { "aria-label": l.pasteDialog, placeholder: l.pastePlaceholder, value: pasteText, onChange: (e) => setPasteText(e.target.value) })
+        children: /* @__PURE__ */ jsxRuntime.jsx(chunkRVZRTG5N_cjs.Textarea, { "aria-label": l.pasteDialog, placeholder: l.pastePlaceholder, value: pasteText, onChange: (e) => setPasteText(e.target.value) })
       }
     ) })
   ] });
