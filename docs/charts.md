@@ -75,6 +75,22 @@ Planned shape for the missing charts (same contract: `label`, `loading`/`error`/
 
 Shared building blocks (exported): `ChartLegend`, `ChartTooltip`, `chartTone(i)` / `CHART_TONES`.
 
+## Synced crosshair, zoom/pan and live streaming
+
+```tsx
+<ChartSyncProvider>
+  <AreaChart label="CPU" series={cpu} wheelZoom />
+  <LineChart label="Memory" series={mem} wheelZoom />   {/* same default group */}
+</ChartSyncProvider>
+
+const { series, push } = useLiveSeries([{ id: "rx", name: "rx", unit: "bitrate" }], { windowMs: 60_000, maxPoints: 600 });
+<LineChart label="Live" series={series} live={{ windowMs: 60_000 }} />
+```
+
+- **Sync**: charts under a `ChartSyncProvider` join `syncGroup` (default `"default"`, `false` opts out) and share the hover crosshair/tooltip (by time) and the zoom range. Outside a provider nothing changes. `useChartSync(group)` is exported for custom charts.
+- **Zoom/pan** (`TimeSeriesChart`, `AreaChart`, `LineChart`): drag-brush zooms; Shift-drag (or touch drag when zoomed) pans; `wheelZoom` adds wheel/trackpad-pinch and two-finger touch pinch; double-click, the Reset button or Alt+Home resets; keyboard `+`/`-` zoom at the crosshair, Alt+←/→ pan. `range` (controlled) / `onRangeChange` as before; the range is also synced through the provider. Pure helpers: `zoomAt`, `panBy`, `clampRange`.
+- **Live**: `live` (`true` or `{ windowMs }`) shows only the latest window and follows new points; it pauses while hovered/focused (temporary) or zoomed/after "Pause" (sticky, shows "Paused — Resume"). `useLiveSeries(meta, {windowMs, maxPoints})` is a rolling buffer (`push(values, t?)`, `clear()`); updates are throttled to 1/s under `prefers-reduced-motion`, and live updates never tween. Labels: `components.charts.interactive` (`paused`, `resume`, `pause`, `live`, `zoomHint`).
+
 ## Animation
 
 Every chart (`AreaChart`, `LineChart`, `TimeSeriesChart`, `BarChart`, `DonutChart`, `SegmentedBar`, `ThresholdDonut`, `UtilizationCard`, `StackedBarChart`, `Heatmap`, `RadialGauge`, `GaugeCard`, `Gauge`, `Sparkline`) takes `animate?: boolean | { duration?: number; easing?: string; stagger?: number }` (default `true`; duration 600 ms, stagger 40 ms).

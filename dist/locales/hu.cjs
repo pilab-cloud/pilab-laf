@@ -146,6 +146,15 @@ var adminHu = {
   }
 };
 
+// lib/locales/charts-interactive.hu.ts
+var chartsInteractiveHu = {
+  paused: "Sz\xFCneteltetve",
+  resume: "Folytat\xE1s",
+  live: "\xC9l\u0151",
+  pause: "Sz\xFCnet",
+  zoomHint: "A plusz \xE9s m\xEDnusz billenty\u0171 nagy\xEDt \xE9s kicsiny\xEDt, az Alt \xE9s a nyilak g\xF6rgetnek, az Alt+Home vissza\xE1ll\xEDtja a nagy\xEDt\xE1st. A dupla kattint\xE1s vagy dupla koppint\xE1s is vissza\xE1ll\xEDt."
+};
+
 // lib/locales/charts.hu.ts
 var chartsHu = {
   perfPanel: {
@@ -160,6 +169,7 @@ var chartsHu = {
     summary: "\xD6sszes\xEDt\u0151 statisztika",
     noMetrics: "V\xE1lasszon ki legal\xE1bb egy metrik\xE1t"
   },
+  interactive: chartsInteractiveHu,
   timeSeries: {
     showData: "Adatok megjelen\xEDt\xE9se",
     hideData: "Adatok elrejt\xE9se",
@@ -265,6 +275,73 @@ var mailHu = {
     state: { verified: "Ellen\u0151rizve", missing: "Hi\xE1nyzik", mismatch: "Elt\xE9r\xE9s", optional: "Opcion\xE1lis", unknown: "Nincs ellen\u0151rizve" }
   },
   timeline: { label: "K\xE9zbes\xEDt\xE9si id\u0151vonal", elapsed: (ms) => `+${ms}`, empty: "Nincs r\xF6gz\xEDtett l\xE9p\xE9s" }
+};
+
+// lib/locales/console.hu.ts
+var consoleHu = {
+  terminal: {
+    terminal: "Termin\xE1l",
+    toolbar: "Termin\xE1lm\u0171veletek",
+    connecting: "Csatlakoz\xE1s",
+    open: "Csatlakoztatva",
+    closed: "Lecsatlakozva",
+    error: "Kapcsolati hiba",
+    reconnect: "\xDAjracsatlakoz\xE1s",
+    copy: "Kijel\xF6l\xE9s m\xE1sol\xE1sa",
+    clear: "T\xF6rl\xE9s",
+    fullscreen: "Teljes k\xE9perny\u0151",
+    exitFullscreen: "Kil\xE9p\xE9s a teljes k\xE9perny\u0151b\u0151l",
+    loading: "Termin\xE1l bet\xF6lt\xE9se"
+  },
+  vnc: {
+    console: "T\xE1voli konzol",
+    viewOnly: "Csak megtekint\xE9s",
+    interactive: "Interakt\xEDv",
+    paste: "Beilleszt\xE9s a t\xE1voli g\xE9pre",
+    pasteDialog: "A t\xE1voli v\xE1g\xF3lapra k\xFCldend\u0151 sz\xF6veg",
+    pastePlaceholder: "K\xFCldend\u0151 sz\xF6veg",
+    send: "K\xFCld\xE9s",
+    cancel: "M\xE9gse",
+    credentialsRequired: "Hiteles\xEDt\u0151 adatok sz\xFCks\xE9gesek",
+    loadError: "A konzol nem t\xF6lthet\u0151 be",
+    extraTools: "Konzol beviteli eszk\xF6z\xF6k"
+  }
+};
+
+// lib/locales/settings.hu.ts
+var settingsHu = {
+  dialog: {
+    sections: "Szakaszok",
+    apply: "Alkalmaz",
+    reset: "Vissza\xE1ll\xEDt\xE1s",
+    cancel: "M\xE9gse",
+    ok: "OK",
+    errors: (n) => n === 1 ? "1 hiba" : `${n} hiba`,
+    unsaved: "Nem mentett m\xF3dos\xEDt\xE1sok"
+  },
+  row: {
+    overridden: "Fel\xFCl\xEDrva",
+    inherited: "\xD6r\xF6k\xF6lt",
+    resetToDefault: "Alap\xE9rtelmez\xE9s vissza\xE1ll\xEDt\xE1sa",
+    resetNamed: (name) => `${name} vissza\xE1ll\xEDt\xE1sa alap\xE9rtelmezettre`
+  },
+  deviceList: {
+    add: "Hozz\xE1ad\xE1s",
+    edit: "Szerkeszt\xE9s",
+    editNamed: (name) => `${name} szerkeszt\xE9se`,
+    done: "K\xE9sz",
+    remove: "Elt\xE1vol\xEDt\xE1s",
+    removeNamed: (name) => `${name} elt\xE1vol\xEDt\xE1sa`,
+    removeSelected: (n) => `Kijel\xF6ltek elt\xE1vol\xEDt\xE1sa (${n})`,
+    moveUp: (name) => `${name} feljebb`,
+    moveDown: (name) => `${name} lejjebb`,
+    selectRow: (name) => `${name} kijel\xF6l\xE9se`,
+    selectAll: "\xD6sszes kijel\xF6l\xE9se",
+    actions: "M\u0171veletek",
+    status: "\xC1llapot",
+    empty: "Nincs eszk\xF6z",
+    emptyHint: "Adjon hozz\xE1 egy eszk\xF6zt a kezd\xE9shez."
+  }
 };
 
 // lib/locales/overview.hu.ts
@@ -545,7 +622,7 @@ var vsphereObjectsHu = {
 
 // lib/locales/hu.ts
 var hu = {
-  components: { account: accountHu, admin: adminHu, tracker: trackerHu, vsphereObjects: vsphereObjectsHu, charts: chartsHu, ui: uiHu, content: contentHu, dashboard: dashboardHu, portal: portalHu, mail: mailHu, overview: overviewHu },
+  components: { account: accountHu, admin: adminHu, tracker: trackerHu, vsphereObjects: vsphereObjectsHu, charts: chartsHu, ui: uiHu, content: contentHu, dashboard: dashboardHu, portal: portalHu, mail: mailHu, console: consoleHu, settings: settingsHu, overview: overviewHu },
   close: "Bez\xE1r\xE1s",
   noResults: "Nincs tal\xE1lat",
   loading: "Bet\xF6lt\xE9s",

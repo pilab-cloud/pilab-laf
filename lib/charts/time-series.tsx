@@ -7,10 +7,14 @@ import { cn } from "../cn";
 import type { Formatters } from "../foundation-format";
 import { useLafDefaults } from "../i18n";
 import { chartsEn } from "../messages/charts.en";
+import type { ChartsInteractiveLabels } from "../messages/charts-interactive.en";
 import { useControllableState } from "../utils";
 import { entryAnim, motionVars, tweenClass, useChartMotion, useTweenProgress, type ChartAnimate } from "./chart-motion";
 import { ChartTooltipFor, useTooltipDismiss, type ChartTooltipContext, type ChartTooltipOption } from "./chart-tooltip";
+import { useFrozen, type LiveOptions } from "./live";
 import { downsample, type Point } from "./lttb";
+import { useChartSync } from "./sync";
+import { panBy, zoomAt } from "./zoom";
 
 const lafDefaults = { charts: chartsEn };
 const useLaf = () => useLafDefaults(lafDefaults);
@@ -62,7 +66,13 @@ export interface TimeSeriesChartProps {
   tooltip?: ChartTooltipOption;
   /** Rows shown in the data-table alternative. */
   maxTableRows?: number;
-  labels?: Partial<TimeSeriesChartLabels>;
+  /** Group id for the crosshair and zoom range shared with other charts under a `ChartSyncProvider` (default `"default"`); `false` opts out. */
+  syncGroup?: string | false;
+  /** Zoom with the mouse wheel / trackpad pinch and two-finger touch pinch. Default off. */
+  wheelZoom?: boolean;
+  /** Streaming mode: show only the latest `windowMs` of the data and follow new points. Pauses while hovered, focused or zoomed. */
+  live?: boolean | Pick<LiveOptions, "windowMs">;
+  labels?: Partial<TimeSeriesChartLabels & ChartsInteractiveLabels>;
   className?: string;
 }
 
@@ -118,7 +128,7 @@ function nearest(points: Point[], t: number): number {
 }
 
 export function TimeSeriesChart({
-  series,
+  series: seriesProp,
   type = "line",
   range: rangeProp,
   onRangeChange,
@@ -133,34 +143,56 @@ export function TimeSeriesChart({
   maxTableRows = 200,
   animate,
   tooltip = true,
+  syncGroup,
+  wheelZoom,
+  live,
   labels: labelsProp,
   className,
 }: TimeSeriesChartProps) {
   const { format, locale, timeZone, t: laf } = useLaf();
-  const l = { ...laf.components.charts.timeSeries, ...labelsProp };
+  const l = { ...laf.components.charts.timeSeries, ...laf.components.charts.interactive, ...labelsProp };
   const uid = React.useId();
   const [wrap, width] = useWidth(widthProp);
   const [hidden, setHidden] = useControllableState<string[]>({ value: hiddenProp, defaultValue: [], onChange: onHiddenSeriesChange });
-  const [zoom, setZoom] = useControllableState<ChartRange | null>({ value: rangeProp, defaultValue: null, onChange: (r) => r && onRangeChange?.(r) });
-  const [cursor, setCursor] = React.useState<number | null>(null);
+  const sync = useChartSync(syncGroup);
+  const [zoom, setZoom] = useControllableState<ChartRange | null>({
+    value: rangeProp ?? (sync ? sync.range : undefined),
+    defaultValue: null,
+    onChange: (r) => {
+      if (r) onRangeChange?.(r);
+      sync?.publishRange(r);
+    },
+  });
+  const liveOn = !!live;
+  const windowMs = (typeof live === "object" ? live.windowMs : undefined) ?? 60_000;
+  const [holding, setHolding] = React.useState(false);
+  const [manualPause, setManualPause] = React.useState(false);
+  const stickyPause = liveOn && (manualPause || zoom !== null);
+  const paused = liveOn && (stickyPause || holding);
+  const series = useFrozen(seriesProp, paused);
+  const [localCursor, setCursor] = React.useState<number | null>(null);
   const [sel, setSel] = React.useState<ChartRange | null>(null);
   const [kbd, setKbd] = React.useState(false);
   const [showTable, setShowTable] = React.useState(false);
-  const drag = React.useRef<{ anchor: number; moved: boolean } | null>(null);
+  const drag = React.useRef<{ anchor: number; moved: boolean; pan?: { x0: number; range: ChartRange } } | null>(null);
+  const touches = React.useRef(new Map<number, number>());
+  const pinch = React.useRef<{ dist: number; range: ChartRange } | null>(null);
+  const published = React.useRef(false);
   const anchor = React.useRef<number | null>(null);
   const svgRef = React.useRef<SVGSVGElement>(null);
   const motion = useChartMotion(animate);
   const [legendEmph, setLegendEmph] = React.useState<string | null>(null);
   const [ptrY, setPtrY] = React.useState<number | null>(null);
   const tipId = `${uid}-tip`;
-  useTooltipDismiss(cursor !== null, wrap, () => (setCursor(null), setPtrY(null)));
+  useTooltipDismiss(localCursor !== null, wrap, () => (setCursor(null), setPtrY(null)));
 
   // Value-change tween: pixel positions of the previous render are interpolated toward the new ones (same point count only).
   const sig = React.useMemo(
     () => `${type}|${hidden.join()}|${zoom?.from}-${zoom?.to}|${series.map((s) => `${s.id}:${s.points.length}:${s.points.reduce((a, p) => a + (p[1] ?? 0) * ((p[0] % 97) + 1), 0)}`).join()}`,
     [series, hidden, zoom, type],
   );
-  const progress = useTweenProgress(sig, motion);
+  const tweenProgress = useTweenProgress(sig, motion);
+  const progress = liveOn ? 1 : tweenProgress;
   const settled = React.useRef(new Map<string, number[]>());
   const fromPx = React.useRef(new Map<string, number[]>());
   const lastSig = React.useRef(sig);
@@ -190,7 +222,18 @@ export function TimeSeriesChart({
     }
     return from <= to ? { from, to: to === from ? to + 1 : to } : null;
   }, [series]);
-  const domain = zoom ?? full;
+  const liveDomain = liveOn && !paused && full ? { from: Math.max(full.from, full.to - windowMs), to: full.to } : null;
+  const domain = zoom ?? liveDomain ?? full;
+  const remote = sync?.remoteCursor ?? null;
+  const cursor = localCursor ?? (remote !== null && domain && remote >= domain.from && remote <= domain.to ? remote : null);
+  React.useEffect(() => {
+    if (localCursor === null && !published.current) return;
+    published.current = localCursor !== null;
+    sync?.publishCursor(localCursor);
+  }, [localCursor, sync?.publishCursor]); // eslint-disable-line react-hooks/exhaustive-deps
+  const syncRef = React.useRef(sync);
+  syncRef.current = sync;
+  React.useEffect(() => () => void (published.current && syncRef.current?.publishCursor(null)), []);
   const zoomed = !!zoom && !!full && (zoom.from > full.from || zoom.to < full.to);
 
   const shown = React.useMemo(() => series.filter((s) => !hidden.includes(s.id)), [series, hidden]);
@@ -289,10 +332,37 @@ export function TimeSeriesChart({
     anchor.current = null;
   };
 
+  const latest = React.useRef({ domain, full, x, setZoom });
+  latest.current = { domain, full, x, setZoom };
+  React.useEffect(() => {
+    const el = svgRef.current;
+    if (!wheelZoom || !el) return;
+    const onWheel = (e: WheelEvent) => {
+      const { domain: d, full: f, x: sx } = latest.current;
+      if (!d || !f) return;
+      e.preventDefault();
+      const px = e.clientX - el.getBoundingClientRect().left - MARGIN.left;
+      latest.current.setZoom(zoomAt(d, f, Math.exp(e.deltaY * (e.ctrlKey ? 0.01 : 0.002)), sx.invert(px)));
+    };
+    el.addEventListener("wheel", onWheel, { passive: false });
+    return () => el.removeEventListener("wheel", onWheel);
+  });
+
   const onPointerDown = (e: React.PointerEvent) => {
     if (!domain || e.button > 0) return;
     const px = localX(e);
-    drag.current = { anchor: clampT(px), moved: false };
+    if (wheelZoom && e.pointerType === "touch") {
+      touches.current.set(e.pointerId, e.clientX);
+      if (touches.current.size === 2) {
+        const [a, b] = [...touches.current.values()] as [number, number];
+        pinch.current = { dist: Math.max(Math.abs(a - b), 1), range: domain };
+        drag.current = null;
+        setSel(null);
+        return;
+      }
+    }
+    const panning = !!full && (e.shiftKey || (e.pointerType === "touch" && zoomed));
+    drag.current = { anchor: clampT(px), moved: false, pan: panning ? { x0: px, range: domain } : undefined };
     setCursor(clampT(px));
     setPtrY(localY(e));
     setKbd(false);
@@ -304,6 +374,23 @@ export function TimeSeriesChart({
   };
   const onPointerMove = (e: React.PointerEvent) => {
     if (!domain || !stamps.length) return;
+    if (touches.current.has(e.pointerId)) {
+      touches.current.set(e.pointerId, e.clientX);
+      const p = pinch.current;
+      if (p && full && touches.current.size === 2) {
+        const [a, b] = [...touches.current.values()] as [number, number];
+        const mid = p.range.from + ((p.range.to - p.range.from) * ((a + b) / 2 - (svgRef.current?.getBoundingClientRect().left ?? 0) - MARGIN.left)) / innerW;
+        setZoom(zoomAt(p.range, full, p.dist / Math.max(Math.abs(a - b), 1), mid));
+        return;
+      }
+    }
+    const pan = drag.current?.pan;
+    if (pan && full) {
+      const dx = localX(e) - pan.x0;
+      if (Math.abs(dx) > 3) drag.current!.moved = true;
+      if (drag.current!.moved) setZoom(panBy(pan.range, full, (-dx / innerW) * (pan.range.to - pan.range.from)));
+      return;
+    }
     const t = clampT(localX(e));
     setCursor(t);
     setPtrY(localY(e));
@@ -314,15 +401,35 @@ export function TimeSeriesChart({
       if (d.moved) setSel({ from: Math.min(d.anchor, t), to: Math.max(d.anchor, t) });
     }
   };
-  const onPointerUp = () => {
+  const onPointerUp = (e: React.PointerEvent) => {
+    touches.current.delete(e.pointerId);
+    if (touches.current.size < 2) pinch.current = null;
     const d = drag.current;
     drag.current = null;
+    if (d?.pan) return;
     if (d?.moved && sel) applySel(sel);
     else setSel(null);
   };
 
   const onKeyDown = (e: React.KeyboardEvent) => {
     if (!stamps.length) return;
+    if (domain && full && !e.ctrlKey && !e.metaKey) {
+      const key = e.key;
+      let next: ChartRange | null = null;
+      if (key === "+" || key === "=") next = zoomAt(domain, full, 0.5, cursor ?? undefined);
+      else if (key === "-" || key === "_") next = zoomAt(domain, full, 2, cursor ?? undefined);
+      else if (e.altKey && (key === "ArrowLeft" || key === "ArrowRight")) next = panBy(domain, full, (key === "ArrowLeft" ? -0.2 : 0.2) * (domain.to - domain.from));
+      else if (e.altKey && key === "Home") {
+        resetZoom();
+        e.preventDefault();
+        return;
+      }
+      if (next) {
+        setZoom(next);
+        e.preventDefault();
+        return;
+      }
+    }
     const cur = cursor ?? stamps[0]!;
     const idx = nearest(stamps.map((t) => [t, 0] as Point), cur);
     const go = (i: number) => {
@@ -354,7 +461,12 @@ export function TimeSeriesChart({
     if (e.key === "Shift") anchor.current = null;
   };
 
-  const resetZoom = () => full && setZoom({ ...full });
+  function resetZoom() {
+    setManualPause(false);
+    if (liveOn) setZoom(null);
+    else if (full) setZoom({ ...full });
+    sync?.publishRange(null);
+  }
 
   const toggle = (id: string) => setHidden(hidden.includes(id) ? hidden.filter((h) => h !== id) : [...hidden, id]);
 
@@ -399,6 +511,7 @@ export function TimeSeriesChart({
   const tableRows = stamps.length > maxTableRows ? stamps.filter((_, i) => i % Math.ceil(stamps.length / maxTableRows) === 0) : stamps;
   const tableId = `${uid}-table`;
   const hintId = `${uid}-hint`;
+  const zoomHintId = `${uid}-zoomhint`;
   const empty = !loading && (!domain || series.every((s) => s.points.length === 0));
   const tipLeft = tip ? MARGIN.left + x(tip.t) : 0;
 
@@ -417,18 +530,23 @@ export function TimeSeriesChart({
               height={height}
               role="img"
               aria-label={label}
-              aria-describedby={tipOn ? `${hintId} ${tipId}` : hintId}
+              aria-describedby={tipOn ? `${hintId} ${zoomHintId} ${tipId}` : `${hintId} ${zoomHintId}`}
               tabIndex={0}
               className="touch-none text-muted select-none focus-visible:outline-2 focus-visible:outline-primary"
               onPointerDown={onPointerDown}
               onPointerMove={onPointerMove}
               onPointerUp={onPointerUp}
+              onPointerCancel={onPointerUp}
+              onDoubleClick={() => (zoomed || zoom !== null) && resetZoom()}
+              onPointerEnter={(e) => e.pointerType !== "touch" && setHolding(true)}
+              onFocus={() => setHolding(true)}
               onPointerLeave={(e) => {
-                if (!drag.current && e.pointerType !== "touch") (setCursor(null), setPtrY(null));
+                if (!drag.current && e.pointerType !== "touch") (setCursor(null), setPtrY(null), setHolding(false));
               }}
               onKeyDown={onKeyDown}
               onKeyUp={onKeyUp}
               onBlur={() => {
+                setHolding(false);
                 setKbd(false);
                 anchor.current = null;
               }}
@@ -523,6 +641,7 @@ export function TimeSeriesChart({
               </Group>
             </svg>
             <span id={hintId} className="sr-only">{l.keyboardHint}</span>
+            <span id={zoomHintId} className="sr-only">{l.zoomHint}</span>
             {tipOn && <ChartTooltipFor option={tooltip} ctx={tipCtx} x={tipLeft} y={MARGIN.top + 4} id={tipId} container={wrap} placement="side" />}
             <span className="sr-only" aria-live="polite">{kbd ? tipText : ""}</span>
           </>
@@ -554,7 +673,24 @@ export function TimeSeriesChart({
           })}
         </div>}
         <span className="ms-auto inline-flex items-center gap-3">
-          {zoomed && (
+          {liveOn && (
+            <span data-live={paused ? "paused" : "running"} className="inline-flex items-center gap-1.5">
+              <span aria-hidden className={cn("size-2 rounded-full", paused ? "bg-muted" : "bg-ok")} />
+              {paused ? l.paused : l.live}
+              {stickyPause ? (
+                <button type="button" className="cursor-pointer border-0 bg-transparent p-0 text-xs text-primary hover:underline" onClick={resetZoom}>
+                  {l.resume}
+                </button>
+              ) : (
+                !paused && (
+                  <button type="button" className="cursor-pointer border-0 bg-transparent p-0 text-xs text-primary hover:underline" onClick={() => setManualPause(true)}>
+                    {l.pause}
+                  </button>
+                )
+              )}
+            </span>
+          )}
+          {zoomed && !liveOn && (
             <button type="button" className="cursor-pointer border-0 bg-transparent p-0 text-xs text-primary hover:underline" onClick={resetZoom}>
               {l.resetZoom}
             </button>

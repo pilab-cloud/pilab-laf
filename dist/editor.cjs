@@ -1,7 +1,7 @@
 'use strict';
 
-var chunkRNP4RJYX_cjs = require('./chunk-RNP4RJYX.cjs');
-var chunkRDHTRBBP_cjs = require('./chunk-RDHTRBBP.cjs');
+var chunkI2W5ZNMR_cjs = require('./chunk-I2W5ZNMR.cjs');
+var chunkSCEXK6L4_cjs = require('./chunk-SCEXK6L4.cjs');
 var chunkFTHFEMX6_cjs = require('./chunk-FTHFEMX6.cjs');
 var React3 = require('react');
 var commands = require('@codemirror/commands');
@@ -185,7 +185,7 @@ function tabKeymap() {
 }
 var languages = { json: () => langJson.json(), yaml: () => langYaml.yaml(), text: () => [] };
 function CodeEditor({ value, onChange, language: language$1 = "json", label, rows = 10, readOnly, diagnostics, className }) {
-  const { t } = chunkRDHTRBBP_cjs.useLaf();
+  const { t } = chunkSCEXK6L4_cjs.useLaf();
   const view$1 = React3__namespace.useRef(null);
   const diagRef = React3__namespace.useRef(diagnostics);
   diagRef.current = diagnostics;
@@ -390,7 +390,7 @@ function highlightCode(code) {
   return out;
 }
 function CodeBlock({ language, code }) {
-  const { t } = chunkRDHTRBBP_cjs.useLaf();
+  const { t } = chunkSCEXK6L4_cjs.useLaf();
   const [copied, setCopied] = React3__namespace.useState(false);
   const timer = React3__namespace.useRef(void 0);
   React3__namespace.useEffect(() => () => clearTimeout(timer.current), []);
@@ -420,7 +420,7 @@ function heading(Tag, cls, anchors, label) {
   };
 }
 function Markdown({ children, className, resolveLink, renderReference, onTaskToggle, headingAnchors = true }) {
-  const { t } = chunkRDHTRBBP_cjs.useLaf();
+  const { t } = chunkSCEXK6L4_cjs.useLaf();
   const resolveRef = React3__namespace.useRef(resolveLink);
   resolveRef.current = resolveLink;
   const toggleRef = React3__namespace.useRef(onTaskToggle);
@@ -589,7 +589,7 @@ function MarkdownEditor({
   labels,
   className
 }) {
-  const { t } = chunkRDHTRBBP_cjs.useLaf();
+  const { t } = chunkSCEXK6L4_cjs.useLaf();
   const L = {
     write: t.editorWrite,
     preview: t.editorPreview,
@@ -607,7 +607,7 @@ function MarkdownEditor({
     editor: t.editorMarkdownEditor,
     ...labels
   };
-  const [text, setText] = chunkRNP4RJYX_cjs.useControllableState({ value, defaultValue, onChange });
+  const [text, setText] = chunkI2W5ZNMR_cjs.useControllableState({ value, defaultValue, onChange });
   const [tab, setTab] = React3__namespace.useState("write");
   const view$1 = React3__namespace.useRef(null);
   const textRef = React3__namespace.useRef(text);

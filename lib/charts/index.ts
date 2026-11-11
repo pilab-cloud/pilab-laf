@@ -20,3 +20,7 @@ export { useChartMotion, usePrefersReducedMotion, type ChartAnimate, type ChartM
 export { SegmentedBar, type BarSegment, type SegmentedBarProps } from "./segmented-bar";
 export { ThresholdDonut, thresholdTone, type ThresholdDonutProps } from "./threshold-donut";
 export { UtilizationCard, type UtilizationBarCardProps, type UtilizationCardProps, type UtilizationDonutCardProps } from "./utilization-card";
+export { ChartSyncProvider, useChartSync, type ChartSync } from "./sync";
+export { clampRange, panBy, zoomAt } from "./zoom";
+export { trimWindow, useLiveSeries, type LiveOptions } from "./live";
+export { chartsInteractiveEn, type ChartsInteractiveLabels } from "../messages/charts-interactive.en";

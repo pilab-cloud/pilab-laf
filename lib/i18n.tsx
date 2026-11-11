@@ -6,6 +6,8 @@ import type { chartsEn } from "./messages/charts.en";
 import type { contentEn } from "./messages/content.en";
 import type { dashboardEn } from "./messages/dashboard.en";
 import type { mailEn } from "./messages/mail.en";
+import type { consoleEn } from "./messages/console.en";
+import type { settingsEn } from "./messages/settings.en";
 import type { overviewEn } from "./messages/overview.en";
 import type { portalEn } from "./messages/portal.en";
 import type { trackerEn } from "./messages/tracker.en";
@@ -27,6 +29,8 @@ export interface ComponentMessages {
   dashboard: typeof dashboardEn;
   portal: typeof portalEn;
   mail: typeof mailEn;
+  console: typeof consoleEn;
+  settings: typeof settingsEn;
   overview: typeof overviewEn;
 }
 type Overrides<G> = { [S in keyof G]?: G[S] extends string ? string : Partial<G[S]> };

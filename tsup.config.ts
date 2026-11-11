@@ -8,6 +8,7 @@ export default defineConfig({
     dnd: "lib/dnd/index.ts",
     topology: "lib/topology/index.ts",
     "os-icons": "lib/os-icons/index.ts",
+    console: "lib/console/index.ts",
     "locales/hu": "lib/locales/hu.ts",
   },
   format: ["esm", "cjs"],
@@ -16,6 +17,6 @@ export default defineConfig({
   splitting: true, // shared chunks between entries; ESM keeps statements shakeable
   treeshake: true,
   clean: false, // dist/ also holds the built CSS
-  external: [/^react($|\/)/, /^react-dom($|\/)/, /^@visx\//, /^@codemirror\//, /^@dnd-kit\//, /^@xyflow\//, /^simple-icons$/, /^react-markdown$/, /^remark-/, /^rehype-/],
+  external: [/^react($|\/)/, /^react-dom($|\/)/, /^@visx\//, /^@codemirror\//, /^@dnd-kit\//, /^@xyflow\//, /^simple-icons$/, /^@xterm\//, /^@novnc\//, /^react-markdown$/, /^remark-/, /^rehype-/],
   banner: { js: '"use client";' },
 });

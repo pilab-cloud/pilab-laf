@@ -1,15 +1,17 @@
-import { useChartMotion, useTooltipDismiss, useTweenProgress, entryAnim, tweenClass, ChartTooltipFor, motionVars, useChartLaf, useActiveIndex, Combobox, TimeRangePicker, useChartWidth, chartTone, ChartFrame, ChartLegend, useTweenedNumbers, Card, CardHeader, CardTitle, CardDescription, CardActions, SegmentedControl, CardBody, ThresholdDonut, CardFooter } from './chunk-NDL5UKMK.js';
-export { CHART_TONES, ChartLegend, ChartTooltip, ChartTooltipFor, ThresholdDonut, chartTone, thresholdTone, useChartMotion, usePrefersReducedMotion, useTooltipDismiss } from './chunk-NDL5UKMK.js';
-import { useControllableState } from './chunk-MKSQNVMP.js';
+import { useChartLaf, useActiveIndex, useChartWidth, chartTone, ChartFrame, ChartLegend, ThresholdDonut } from './chunk-BD3BSZZQ.js';
+export { CHART_TONES, ChartLegend, ThresholdDonut, chartTone, thresholdTone } from './chunk-BD3BSZZQ.js';
+import { usePrefersReducedMotion, useChartMotion, useTooltipDismiss, useTweenProgress, entryAnim, tweenClass, ChartTooltipFor, motionVars, Combobox, TimeRangePicker, useTweenedNumbers, Card, CardHeader, CardTitle, CardDescription, CardActions, SegmentedControl, CardBody, CardFooter } from './chunk-GG3HQY6A.js';
+export { ChartTooltip, ChartTooltipFor, useChartMotion, usePrefersReducedMotion, useTooltipDismiss } from './chunk-GG3HQY6A.js';
+import { useControllableState } from './chunk-S3G7Q24I.js';
 import { Button } from './chunk-2O5Y6D5F.js';
-import { useLafDefaults } from './chunk-FEC55RDP.js';
+import { useLafDefaults } from './chunk-IIQMUFUD.js';
 import { cn } from './chunk-3TRXGDSZ.js';
 import { AxisBottom, AxisLeft, AxisRight } from '@visx/axis';
 import { Group } from '@visx/group';
 import { scaleLinear, scaleBand } from '@visx/scale';
 import { Area, LinePath, Bar, Pie } from '@visx/shape';
-import * as React from 'react';
-import { jsxs, jsx, Fragment } from 'react/jsx-runtime';
+import * as React3 from 'react';
+import { jsx, jsxs, Fragment } from 'react/jsx-runtime';
 import { Eye, EyeOff, RefreshCw, Download, AlertCircle } from 'lucide-react';
 
 // lib/charts/lttb.ts
@@ -71,6 +73,15 @@ function downsample(points, maxPoints) {
   return out;
 }
 
+// lib/messages/charts-interactive.en.ts
+var chartsInteractiveEn = {
+  paused: "Paused",
+  resume: "Resume",
+  live: "Live",
+  pause: "Pause",
+  zoomHint: "Plus and minus zoom, Alt with arrows pans, Alt+Home resets the zoom. Double-click or double-tap also resets."
+};
+
 // lib/messages/charts.en.ts
 var chartsEn = {
   perfPanel: {
@@ -85,6 +96,7 @@ var chartsEn = {
     summary: "Summary statistics",
     noMetrics: "Select at least one metric"
   },
+  interactive: chartsInteractiveEn,
   timeSeries: {
     showData: "Show data",
     hideData: "Hide data",
@@ -96,6 +108,109 @@ var chartsEn = {
     legend: "Series"
   }
 };
+function trimWindow(points, { windowMs = 6e4, maxPoints = 600 } = {}) {
+  if (!points.length) return points;
+  const min = points[points.length - 1][0] - windowMs;
+  let i = 0;
+  while (i < points.length - 1 && points[i][0] < min) i++;
+  const out = i ? points.slice(i) : points;
+  return out.length > maxPoints ? out.slice(out.length - maxPoints) : out;
+}
+function useLiveSeries(meta, options = {}) {
+  const { windowMs = 6e4, maxPoints = 600 } = options;
+  const reduced = usePrefersReducedMotion();
+  const buf = React3.useRef(/* @__PURE__ */ new Map());
+  const timer = React3.useRef(null);
+  const [tick2, setTick] = React3.useState(0);
+  const flush = React3.useCallback(() => {
+    if (timer.current) return;
+    const run = () => {
+      timer.current = null;
+      setTick((n) => n + 1);
+    };
+    if (reduced) timer.current = setTimeout(run, 1e3);
+    else run();
+  }, [reduced]);
+  React3.useEffect(() => () => void (timer.current && clearTimeout(timer.current)), []);
+  const push = React3.useCallback(
+    (values, t = Date.now()) => {
+      for (const [id, v] of Object.entries(values)) buf.current.set(id, trimWindow([...buf.current.get(id) ?? [], [t, v]], { windowMs, maxPoints }));
+      flush();
+    },
+    [windowMs, maxPoints, flush]
+  );
+  const clear = React3.useCallback(() => {
+    buf.current.clear();
+    setTick((n) => n + 1);
+  }, []);
+  const metaKey = meta.map((m) => `${m.id}|${m.name}|${m.unit}`).join();
+  const series = React3.useMemo(
+    () => meta.map((m) => ({ ...m, points: buf.current.get(m.id) ?? [] })),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [metaKey, tick2]
+  );
+  return { series, push, clear, windowMs, maxPoints };
+}
+function useFrozen(value, frozen) {
+  const held = React3.useRef(value);
+  if (!frozen) held.current = value;
+  return held.current;
+}
+var Ctx = React3.createContext(null);
+var EMPTY = { cursor: null, range: null };
+function ChartSyncProvider({ children }) {
+  const [groups, setGroups] = React3.useState({});
+  const actions = React3.useMemo(
+    () => ({
+      setCursor: (g, cursor) => setGroups((s) => {
+        const cur = s[g] ?? EMPTY;
+        if (cursor === null ? !cur.cursor : cur.cursor?.t === cursor.t && cur.cursor.source === cursor.source) return s;
+        return { ...s, [g]: { ...cur, cursor } };
+      }),
+      setRange: (g, range) => setGroups((s) => {
+        const cur = s[g] ?? EMPTY;
+        if (cur.range?.from === range?.from && cur.range?.to === range?.to) return s;
+        return { ...s, [g]: { ...cur, range } };
+      })
+    }),
+    []
+  );
+  const value = React3.useMemo(() => ({ groups, ...actions }), [groups, actions]);
+  return /* @__PURE__ */ jsx(Ctx.Provider, { value, children });
+}
+function useChartSync(group = "default") {
+  const ctx = React3.useContext(Ctx);
+  const id = React3.useId();
+  const g = group === false ? null : group;
+  const state = (ctx && g !== null ? ctx.groups[g] : void 0) ?? EMPTY;
+  const { setCursor, setRange } = ctx ?? { setCursor: void 0, setRange: void 0 };
+  const publishCursor = React3.useCallback((t) => g !== null && setCursor?.(g, t === null ? null : { t, source: id }), [g, id, setCursor]);
+  const publishRange = React3.useCallback((r) => g !== null && setRange?.(g, r), [g, setRange]);
+  if (!ctx || g === null) return null;
+  return {
+    remoteCursor: state.cursor && state.cursor.source !== id ? state.cursor.t : null,
+    range: state.range,
+    publishCursor,
+    publishRange
+  };
+}
+
+// lib/charts/zoom.ts
+var MIN_SPAN = 1;
+function clampRange(r, full) {
+  const span = Math.min(Math.max(r.to - r.from, MIN_SPAN), full.to - full.from);
+  const from = Math.min(Math.max(r.from, full.from), full.to - span);
+  return { from, to: from + span };
+}
+function zoomAt(r, full, factor, at = (r.from + r.to) / 2) {
+  const span = Math.max((r.to - r.from) * factor, MIN_SPAN);
+  const k = r.to === r.from ? 0.5 : (at - r.from) / (r.to - r.from);
+  const from = at - span * k;
+  return clampRange({ from, to: from + span }, full);
+}
+function panBy(r, full, dt) {
+  return clampRange({ from: r.from + dt, to: r.to + dt }, full);
+}
 var lafDefaults = { charts: chartsEn };
 var useLaf = () => useLafDefaults(lafDefaults);
 var SERIES_TONES = ["text-primary", "text-ok", "text-warn", "text-danger"];
@@ -119,9 +234,9 @@ function formatUnit(f, unit, v) {
   }
 }
 function useWidth(fixed) {
-  const ref = React.useRef(null);
-  const [w, setW] = React.useState(640);
-  React.useEffect(() => {
+  const ref = React3.useRef(null);
+  const [w, setW] = React3.useState(640);
+  React3.useEffect(() => {
     const el = ref.current;
     if (fixed !== void 0 || !el || typeof ResizeObserver === "undefined") return;
     const apply = () => el.clientWidth > 0 && setW(el.clientWidth);
@@ -144,7 +259,7 @@ function nearest(points, t) {
   return lo;
 }
 function TimeSeriesChart({
-  series,
+  series: seriesProp,
   type = "line",
   range: rangeProp,
   onRangeChange,
@@ -159,35 +274,57 @@ function TimeSeriesChart({
   maxTableRows = 200,
   animate,
   tooltip = true,
+  syncGroup,
+  wheelZoom,
+  live,
   labels: labelsProp,
   className
 }) {
   const { format, locale, timeZone, t: laf } = useLaf();
-  const l = { ...laf.components.charts.timeSeries, ...labelsProp };
-  const uid = React.useId();
+  const l = { ...laf.components.charts.timeSeries, ...laf.components.charts.interactive, ...labelsProp };
+  const uid = React3.useId();
   const [wrap, width] = useWidth(widthProp);
   const [hidden, setHidden] = useControllableState({ value: hiddenProp, defaultValue: [], onChange: onHiddenSeriesChange });
-  const [zoom, setZoom] = useControllableState({ value: rangeProp, defaultValue: null, onChange: (r) => r && onRangeChange?.(r) });
-  const [cursor, setCursor] = React.useState(null);
-  const [sel, setSel] = React.useState(null);
-  const [kbd, setKbd] = React.useState(false);
-  const [showTable, setShowTable] = React.useState(false);
-  const drag = React.useRef(null);
-  const anchor = React.useRef(null);
-  const svgRef = React.useRef(null);
+  const sync = useChartSync(syncGroup);
+  const [zoom, setZoom] = useControllableState({
+    value: rangeProp ?? (sync ? sync.range : void 0),
+    defaultValue: null,
+    onChange: (r) => {
+      if (r) onRangeChange?.(r);
+      sync?.publishRange(r);
+    }
+  });
+  const liveOn = !!live;
+  const windowMs = (typeof live === "object" ? live.windowMs : void 0) ?? 6e4;
+  const [holding, setHolding] = React3.useState(false);
+  const [manualPause, setManualPause] = React3.useState(false);
+  const stickyPause = liveOn && (manualPause || zoom !== null);
+  const paused = liveOn && (stickyPause || holding);
+  const series = useFrozen(seriesProp, paused);
+  const [localCursor, setCursor] = React3.useState(null);
+  const [sel, setSel] = React3.useState(null);
+  const [kbd, setKbd] = React3.useState(false);
+  const [showTable, setShowTable] = React3.useState(false);
+  const drag = React3.useRef(null);
+  const touches = React3.useRef(/* @__PURE__ */ new Map());
+  const pinch = React3.useRef(null);
+  const published = React3.useRef(false);
+  const anchor = React3.useRef(null);
+  const svgRef = React3.useRef(null);
   const motion = useChartMotion(animate);
-  const [legendEmph, setLegendEmph] = React.useState(null);
-  const [ptrY, setPtrY] = React.useState(null);
+  const [legendEmph, setLegendEmph] = React3.useState(null);
+  const [ptrY, setPtrY] = React3.useState(null);
   const tipId = `${uid}-tip`;
-  useTooltipDismiss(cursor !== null, wrap, () => (setCursor(null), setPtrY(null)));
-  const sig = React.useMemo(
+  useTooltipDismiss(localCursor !== null, wrap, () => (setCursor(null), setPtrY(null)));
+  const sig = React3.useMemo(
     () => `${type}|${hidden.join()}|${zoom?.from}-${zoom?.to}|${series.map((s) => `${s.id}:${s.points.length}:${s.points.reduce((a, p) => a + (p[1] ?? 0) * (p[0] % 97 + 1), 0)}`).join()}`,
     [series, hidden, zoom, type]
   );
-  const progress = useTweenProgress(sig, motion);
-  const settled = React.useRef(/* @__PURE__ */ new Map());
-  const fromPx = React.useRef(/* @__PURE__ */ new Map());
-  const lastSig = React.useRef(sig);
+  const tweenProgress = useTweenProgress(sig, motion);
+  const progress = liveOn ? 1 : tweenProgress;
+  const settled = React3.useRef(/* @__PURE__ */ new Map());
+  const fromPx = React3.useRef(/* @__PURE__ */ new Map());
+  const lastSig = React3.useRef(sig);
   if (lastSig.current !== sig) {
     fromPx.current = settled.current;
     lastSig.current = sig;
@@ -199,10 +336,10 @@ function TimeSeriesChart({
     rendered.set(id, out);
     return out;
   };
-  React.useLayoutEffect(() => {
+  React3.useLayoutEffect(() => {
     settled.current = rendered;
   });
-  const full = React.useMemo(() => {
+  const full = React3.useMemo(() => {
     let from = Infinity;
     let to = -Infinity;
     for (const s of series) {
@@ -213,11 +350,22 @@ function TimeSeriesChart({
     }
     return from <= to ? { from, to: to === from ? to + 1 : to } : null;
   }, [series]);
-  const domain = zoom ?? full;
+  const liveDomain = liveOn && !paused && full ? { from: Math.max(full.from, full.to - windowMs), to: full.to } : null;
+  const domain = zoom ?? liveDomain ?? full;
+  const remote = sync?.remoteCursor ?? null;
+  const cursor = localCursor ?? (remote !== null && domain && remote >= domain.from && remote <= domain.to ? remote : null);
+  React3.useEffect(() => {
+    if (localCursor === null && !published.current) return;
+    published.current = localCursor !== null;
+    sync?.publishCursor(localCursor);
+  }, [localCursor, sync?.publishCursor]);
+  const syncRef = React3.useRef(sync);
+  syncRef.current = sync;
+  React3.useEffect(() => () => void (published.current && syncRef.current?.publishCursor(null)), []);
   const zoomed = !!zoom && !!full && (zoom.from > full.from || zoom.to < full.to);
-  const shown = React.useMemo(() => series.filter((s) => !hidden.includes(s.id)), [series, hidden]);
+  const shown = React3.useMemo(() => series.filter((s) => !hidden.includes(s.id)), [series, hidden]);
   const stacked = type === "stacked-area";
-  const units = React.useMemo(() => {
+  const units = React3.useMemo(() => {
     const u = [];
     for (const s of shown) if (!u.includes(s.unit)) u.push(s.unit);
     return stacked ? u.slice(0, 1) : u;
@@ -226,17 +374,17 @@ function TimeSeriesChart({
   const dual = !stacked && units.length > 1;
   const innerW = Math.max(width - MARGIN.left - (dual ? MARGIN.right2 : MARGIN.right), 10);
   const innerH = Math.max(height - MARGIN.top - MARGIN.bottom, 10);
-  const visible = React.useMemo(
+  const visible = React3.useMemo(
     () => shown.map((s) => domain ? s.points.filter(([t]) => t >= domain.from && t <= domain.to) : s.points),
     [shown, domain]
   );
-  const stamps = React.useMemo(() => {
+  const stamps = React3.useMemo(() => {
     const set = /* @__PURE__ */ new Set();
     for (const pts of visible) for (const [t] of pts) set.add(t);
     return [...set].sort((a, b) => a - b);
   }, [visible]);
-  const lookups = React.useMemo(() => visible.map((pts) => new Map(pts)), [visible]);
-  const stackedRows = React.useMemo(() => {
+  const lookups = React3.useMemo(() => visible.map((pts) => new Map(pts)), [visible]);
+  const stackedRows = React3.useMemo(() => {
     if (!stacked) return null;
     const step = Math.max(1, Math.ceil(stamps.length / (innerW * 2)));
     const ts = stamps.filter((_, i) => i % step === 0 || i === stamps.length - 1);
@@ -250,9 +398,9 @@ function TimeSeriesChart({
       return { t, layers };
     });
   }, [stacked, stamps, lookups, innerW]);
-  const lines = React.useMemo(() => stacked ? [] : visible.map((pts) => downsample(pts, Math.max(Math.floor(innerW), 3))), [stacked, visible, innerW]);
-  const x = React.useMemo(() => scaleLinear({ domain: [domain?.from ?? 0, domain?.to ?? 1], range: [0, innerW] }), [domain, innerW]);
-  const ys = React.useMemo(() => {
+  const lines = React3.useMemo(() => stacked ? [] : visible.map((pts) => downsample(pts, Math.max(Math.floor(innerW), 3))), [stacked, visible, innerW]);
+  const x = React3.useMemo(() => scaleLinear({ domain: [domain?.from ?? 0, domain?.to ?? 1], range: [0, innerW] }), [domain, innerW]);
+  const ys = React3.useMemo(() => {
     return [0, 1].map((axis) => {
       let min = Infinity;
       let max = -Infinity;
@@ -270,7 +418,7 @@ function TimeSeriesChart({
       return scaleLinear({ domain: [lo, hi], range: [innerH, 0], nice: true });
     });
   }, [shown, visible, stackedRows, thresholds, innerH, type, stacked, units]);
-  const tickT = React.useMemo(() => {
+  const tickT = React3.useMemo(() => {
     const span = domain ? domain.to - domain.from : 0;
     const dtf = new Intl.DateTimeFormat(locale, {
       timeZone,
@@ -280,7 +428,7 @@ function TimeSeriesChart({
     });
     return (v) => dtf.format(v);
   }, [domain, locale, timeZone]);
-  const fullT = React.useMemo(() => {
+  const fullT = React3.useMemo(() => {
     const dtf = new Intl.DateTimeFormat(locale, { timeZone, dateStyle: "medium", timeStyle: "medium" });
     return (v) => dtf.format(v);
   }, [locale, timeZone]);
@@ -295,10 +443,36 @@ function TimeSeriesChart({
     setSel(null);
     anchor.current = null;
   };
+  const latest = React3.useRef({ domain, full, x, setZoom });
+  latest.current = { domain, full, x, setZoom };
+  React3.useEffect(() => {
+    const el = svgRef.current;
+    if (!wheelZoom || !el) return;
+    const onWheel = (e) => {
+      const { domain: d, full: f, x: sx } = latest.current;
+      if (!d || !f) return;
+      e.preventDefault();
+      const px = e.clientX - el.getBoundingClientRect().left - MARGIN.left;
+      latest.current.setZoom(zoomAt(d, f, Math.exp(e.deltaY * (e.ctrlKey ? 0.01 : 2e-3)), sx.invert(px)));
+    };
+    el.addEventListener("wheel", onWheel, { passive: false });
+    return () => el.removeEventListener("wheel", onWheel);
+  });
   const onPointerDown = (e) => {
     if (!domain || e.button > 0) return;
     const px = localX(e);
-    drag.current = { anchor: clampT(px), moved: false };
+    if (wheelZoom && e.pointerType === "touch") {
+      touches.current.set(e.pointerId, e.clientX);
+      if (touches.current.size === 2) {
+        const [a, b] = [...touches.current.values()];
+        pinch.current = { dist: Math.max(Math.abs(a - b), 1), range: domain };
+        drag.current = null;
+        setSel(null);
+        return;
+      }
+    }
+    const panning = !!full && (e.shiftKey || e.pointerType === "touch" && zoomed);
+    drag.current = { anchor: clampT(px), moved: false, pan: panning ? { x0: px, range: domain } : void 0 };
     setCursor(clampT(px));
     setPtrY(localY(e));
     setKbd(false);
@@ -309,6 +483,23 @@ function TimeSeriesChart({
   };
   const onPointerMove = (e) => {
     if (!domain || !stamps.length) return;
+    if (touches.current.has(e.pointerId)) {
+      touches.current.set(e.pointerId, e.clientX);
+      const p = pinch.current;
+      if (p && full && touches.current.size === 2) {
+        const [a, b] = [...touches.current.values()];
+        const mid = p.range.from + (p.range.to - p.range.from) * ((a + b) / 2 - (svgRef.current?.getBoundingClientRect().left ?? 0) - MARGIN.left) / innerW;
+        setZoom(zoomAt(p.range, full, p.dist / Math.max(Math.abs(a - b), 1), mid));
+        return;
+      }
+    }
+    const pan = drag.current?.pan;
+    if (pan && full) {
+      const dx = localX(e) - pan.x0;
+      if (Math.abs(dx) > 3) drag.current.moved = true;
+      if (drag.current.moved) setZoom(panBy(pan.range, full, -dx / innerW * (pan.range.to - pan.range.from)));
+      return;
+    }
     const t = clampT(localX(e));
     setCursor(t);
     setPtrY(localY(e));
@@ -319,14 +510,34 @@ function TimeSeriesChart({
       if (d.moved) setSel({ from: Math.min(d.anchor, t), to: Math.max(d.anchor, t) });
     }
   };
-  const onPointerUp = () => {
+  const onPointerUp = (e) => {
+    touches.current.delete(e.pointerId);
+    if (touches.current.size < 2) pinch.current = null;
     const d = drag.current;
     drag.current = null;
+    if (d?.pan) return;
     if (d?.moved && sel) applySel(sel);
     else setSel(null);
   };
   const onKeyDown = (e) => {
     if (!stamps.length) return;
+    if (domain && full && !e.ctrlKey && !e.metaKey) {
+      const key = e.key;
+      let next = null;
+      if (key === "+" || key === "=") next = zoomAt(domain, full, 0.5, cursor ?? void 0);
+      else if (key === "-" || key === "_") next = zoomAt(domain, full, 2, cursor ?? void 0);
+      else if (e.altKey && (key === "ArrowLeft" || key === "ArrowRight")) next = panBy(domain, full, (key === "ArrowLeft" ? -0.2 : 0.2) * (domain.to - domain.from));
+      else if (e.altKey && key === "Home") {
+        resetZoom();
+        e.preventDefault();
+        return;
+      }
+      if (next) {
+        setZoom(next);
+        e.preventDefault();
+        return;
+      }
+    }
     const cur = cursor ?? stamps[0];
     const idx = nearest(stamps.map((t) => [t, 0]), cur);
     const go = (i) => {
@@ -357,11 +568,16 @@ function TimeSeriesChart({
   const onKeyUp = (e) => {
     if (e.key === "Shift") anchor.current = null;
   };
-  const resetZoom = () => full && setZoom({ ...full });
+  function resetZoom() {
+    setManualPause(false);
+    if (liveOn) setZoom(null);
+    else if (full) setZoom({ ...full });
+    sync?.publishRange(null);
+  }
   const toggle = (id) => setHidden(hidden.includes(id) ? hidden.filter((h) => h !== id) : [...hidden, id]);
   const unitFor = (u) => (v) => formatUnit(format, u, v);
   const axisUnit = (axis) => units[axis] ?? units[0] ?? "count";
-  const tip = React.useMemo(() => {
+  const tip = React3.useMemo(() => {
     if (cursor === null || !stamps.length) return null;
     const t = stamps[nearest(stamps.map((s) => [s, 0]), cursor)];
     const rows = shown.map((s, i) => {
@@ -392,6 +608,7 @@ function TimeSeriesChart({
   const tableRows = stamps.length > maxTableRows ? stamps.filter((_, i) => i % Math.ceil(stamps.length / maxTableRows) === 0) : stamps;
   const tableId = `${uid}-table`;
   const hintId = `${uid}-hint`;
+  const zoomHintId = `${uid}-zoomhint`;
   const empty = !loading && (!domain || series.every((s) => s.points.length === 0));
   const tipLeft = tip ? MARGIN.left + x(tip.t) : 0;
   return /* @__PURE__ */ jsxs("figure", { "aria-label": label, "aria-busy": loading || void 0, "data-animate": motion.enabled ? "on" : "off", className: cn("m-0 grid grid-cols-1 gap-2", className), children: [
@@ -404,18 +621,23 @@ function TimeSeriesChart({
           height,
           role: "img",
           "aria-label": label,
-          "aria-describedby": tipOn ? `${hintId} ${tipId}` : hintId,
+          "aria-describedby": tipOn ? `${hintId} ${zoomHintId} ${tipId}` : `${hintId} ${zoomHintId}`,
           tabIndex: 0,
           className: "touch-none text-muted select-none focus-visible:outline-2 focus-visible:outline-primary",
           onPointerDown,
           onPointerMove,
           onPointerUp,
+          onPointerCancel: onPointerUp,
+          onDoubleClick: () => (zoomed || zoom !== null) && resetZoom(),
+          onPointerEnter: (e) => e.pointerType !== "touch" && setHolding(true),
+          onFocus: () => setHolding(true),
           onPointerLeave: (e) => {
-            if (!drag.current && e.pointerType !== "touch") setCursor(null), setPtrY(null);
+            if (!drag.current && e.pointerType !== "touch") setCursor(null), setPtrY(null), setHolding(false);
           },
           onKeyDown,
           onKeyUp,
           onBlur: () => {
+            setHolding(false);
             setKbd(false);
             anchor.current = null;
           },
@@ -505,13 +727,14 @@ function TimeSeriesChart({
         }
       ),
       /* @__PURE__ */ jsx("span", { id: hintId, className: "sr-only", children: l.keyboardHint }),
+      /* @__PURE__ */ jsx("span", { id: zoomHintId, className: "sr-only", children: l.zoomHint }),
       tipOn && /* @__PURE__ */ jsx(ChartTooltipFor, { option: tooltip, ctx: tipCtx, x: tipLeft, y: MARGIN.top + 4, id: tipId, container: wrap, placement: "side" }),
       /* @__PURE__ */ jsx("span", { className: "sr-only", "aria-live": "polite", children: kbd ? tipText : "" })
     ] }) }),
     /* @__PURE__ */ jsxs("figcaption", { className: "flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-muted", children: [
       legend && /* @__PURE__ */ jsx("div", { role: "group", "aria-label": l.legend, className: "flex flex-wrap gap-x-3 gap-y-1", children: series.map((s, si) => {
         const on = !hidden.includes(s.id);
-        return /* @__PURE__ */ jsx(React.Fragment, { children: /* @__PURE__ */ jsxs(
+        return /* @__PURE__ */ jsx(React3.Fragment, { children: /* @__PURE__ */ jsxs(
           "button",
           {
             type: "button",
@@ -530,7 +753,12 @@ function TimeSeriesChart({
         ) }, s.id);
       }) }),
       /* @__PURE__ */ jsxs("span", { className: "ms-auto inline-flex items-center gap-3", children: [
-        zoomed && /* @__PURE__ */ jsx("button", { type: "button", className: "cursor-pointer border-0 bg-transparent p-0 text-xs text-primary hover:underline", onClick: resetZoom, children: l.resetZoom }),
+        liveOn && /* @__PURE__ */ jsxs("span", { "data-live": paused ? "paused" : "running", className: "inline-flex items-center gap-1.5", children: [
+          /* @__PURE__ */ jsx("span", { "aria-hidden": true, className: cn("size-2 rounded-full", paused ? "bg-muted" : "bg-ok") }),
+          paused ? l.paused : l.live,
+          stickyPause ? /* @__PURE__ */ jsx("button", { type: "button", className: "cursor-pointer border-0 bg-transparent p-0 text-xs text-primary hover:underline", onClick: resetZoom, children: l.resume }) : !paused && /* @__PURE__ */ jsx("button", { type: "button", className: "cursor-pointer border-0 bg-transparent p-0 text-xs text-primary hover:underline", onClick: () => setManualPause(true), children: l.pause })
+        ] }),
+        zoomed && !liveOn && /* @__PURE__ */ jsx("button", { type: "button", className: "cursor-pointer border-0 bg-transparent p-0 text-xs text-primary hover:underline", onClick: resetZoom, children: l.resetZoom }),
         /* @__PURE__ */ jsx("button", { type: "button", "aria-expanded": showTable, "aria-controls": tableId, className: "cursor-pointer border-0 bg-transparent p-0 text-xs text-primary hover:underline", onClick: () => setShowTable((v) => !v), children: showTable ? l.hideData : l.showData })
       ] })
     ] }),
@@ -565,9 +793,9 @@ function StackedBarChart({
   const { t } = useChartLaf();
   const c = t.components.dashboard.chart;
   const motion = useChartMotion(animate);
-  const box = React.useRef(null);
-  const hintId = React.useId();
-  const tipId = React.useId();
+  const box = React3.useRef(null);
+  const hintId = React3.useId();
+  const tipId = React3.useId();
   const cells = data.flatMap((d, ri) => d.values.map((v, si) => ({ ri, si, v })));
   const nav = useActiveIndex(cells.length, box);
   const nameW = 96;
@@ -657,15 +885,15 @@ function Heatmap({
   className
 }) {
   const motion = useChartMotion(animate);
-  const box = React.useRef(null);
-  const tipId = React.useId();
-  const [tip, setTip] = React.useState(null);
+  const box = React3.useRef(null);
+  const tipId = React3.useId();
+  const [tip, setTip] = React3.useState(null);
   useTooltipDismiss(tip !== null, box, () => setTip(null));
   const top = max ?? Math.max(...values.flat(), 1);
   const headW = 96;
   const headH = 20;
-  const [active, setActive] = React.useState([0, 0]);
-  const refs = React.useRef(/* @__PURE__ */ new Map());
+  const [active, setActive] = React3.useState([0, 0]);
+  const refs = React3.useRef(/* @__PURE__ */ new Map());
   const move = (r, c) => {
     const nr = Math.min(rows.length - 1, Math.max(0, r));
     const nc = Math.min(columns.length - 1, Math.max(0, c));
@@ -794,18 +1022,18 @@ function PerfPanel({
     onChange: onSelectedChange
   });
   const [preset, setPreset] = useControllableState({ value: rangeProp, defaultValue: presets.includes("1h") ? "1h" : presets[0], onChange: onTimeRangeChange });
-  const [custom, setCustom] = React.useState();
-  const newest = React.useMemo(() => nowProp ?? metrics.reduce((m, s) => s.points.reduce((a, p) => Math.max(a, p[0]), m), -Infinity), [metrics, nowProp]);
-  const win = React.useMemo(() => {
+  const [custom, setCustom] = React3.useState();
+  const newest = React3.useMemo(() => nowProp ?? metrics.reduce((m, s) => s.points.reduce((a, p) => Math.max(a, p[0]), m), -Infinity), [metrics, nowProp]);
+  const win = React3.useMemo(() => {
     if (preset === "custom" && custom) return custom;
     const ms = presetToMs(preset);
     return ms && Number.isFinite(newest) ? { from: newest - ms, to: newest } : void 0;
   }, [preset, custom, newest]);
-  const options = React.useMemo(() => metrics.map((m) => ({ value: m.id, label: m.name, group: m.group })), [metrics]);
-  const chosen = React.useMemo(() => options.filter((o) => selected.includes(o.value)), [options, selected]);
-  const active = React.useMemo(() => metrics.filter((m) => selected.includes(m.id)), [metrics, selected]);
+  const options = React3.useMemo(() => metrics.map((m) => ({ value: m.id, label: m.name, group: m.group })), [metrics]);
+  const chosen = React3.useMemo(() => options.filter((o) => selected.includes(o.value)), [options, selected]);
+  const active = React3.useMemo(() => metrics.filter((m) => selected.includes(m.id)), [metrics, selected]);
   const inWin = (t) => !win || t >= win.from && t <= win.to;
-  const stats = React.useMemo(
+  const stats = React3.useMemo(
     () => active.map((m) => {
       const vs = m.points.filter(([t, v]) => v !== null && inWin(t)).map((p) => p[1]);
       if (!vs.length) return { m, empty: true };
@@ -871,13 +1099,13 @@ function BarChart({ categories, series, stacked, orientation = "vertical", forma
   const { t } = useChartLaf();
   const c = t.components.dashboard.chart;
   const [wrap, width] = useChartWidth(widthProp);
-  const [hidden, setHidden] = React.useState([]);
-  const svgRef = React.useRef(null);
-  const hintId = React.useId();
+  const [hidden, setHidden] = React3.useState([]);
+  const svgRef = React3.useRef(null);
+  const hintId = React3.useId();
   const nav = useActiveIndex(categories.length, wrap);
   const motion = useChartMotion(animate);
-  const [emph, setEmph] = React.useState(null);
-  const tipId = React.useId();
+  const [emph, setEmph] = React3.useState(null);
+  const tipId = React3.useId();
   const horizontal = orientation === "horizontal";
   const margin = { ...M, left: horizontal ? 72 : M.left };
   const shown = series.filter((s) => !hidden.includes(s.id));
@@ -996,17 +1224,17 @@ function BarChart({ categories, series, stacked, orientation = "vertical", forma
 function DonutChart({ data, centerLabel, centerValue, formatValue = (v) => String(Math.round(v * 10) / 10), label, size = 200, thickness = 28, legend = true, animate, tooltip = true, loading, error, onRetry, className }) {
   const { t, format } = useChartLaf();
   const c = t.components.dashboard.chart;
-  const [hidden, setHidden] = React.useState([]);
+  const [hidden, setHidden] = React3.useState([]);
   const shown = data.filter((d) => !hidden.includes(d.id) && d.value > 0);
   const total = shown.reduce((a, d) => a + d.value, 0);
-  const box = React.useRef(null);
+  const box = React3.useRef(null);
   const nav = useActiveIndex(shown.length, box);
   const motion = useChartMotion(animate);
   const tweened = useTweenedNumbers(shown.map((d) => d.value), motion);
   const drawn = shown.map((d, i) => ({ ...d, value: tweened[i] ?? d.value }));
-  const hintId = React.useId();
-  const tipId = React.useId();
-  const maskId = `${React.useId().replace(/:/g, "")}-sweep`;
+  const hintId = React3.useId();
+  const tipId = React3.useId();
+  const maskId = `${React3.useId().replace(/:/g, "")}-sweep`;
   const r = size / 2;
   const line = (d) => `${d.name}: ${formatValue(d.value)} (${format.percent(total ? d.value / total : 0, { fractionDigits: 1 })})`;
   const active = nav.active === null ? null : shown[nav.active];
@@ -1128,9 +1356,9 @@ function SegmentedBar({ segments, label, formatValue = (v) => String(v), legend 
   const u = t.components.dashboard.utilization;
   const c = t.components.dashboard.chart;
   const motion = useChartMotion(animate);
-  const box = React.useRef(null);
-  const hintId = React.useId();
-  const tipId = React.useId();
+  const box = React3.useRef(null);
+  const hintId = React3.useId();
+  const tipId = React3.useId();
   const total = segments.reduce((a, s) => a + Math.max(0, s.value), 0);
   const toneOf = (s, i) => s.tone ?? chartTone(i);
   const visible = segments.map((s, i) => ({ s, i })).filter(({ s }) => s.value > 0);
@@ -1139,8 +1367,8 @@ function SegmentedBar({ segments, label, formatValue = (v) => String(v), legend 
   const share = (v) => format.percent(total ? v / total : 0, { fractionDigits: 1 });
   const ctx = cur ? { point: { label: cur.s.name, x: cur.s.id, value: cur.s.value, formatted: formatValue(cur.s.value) }, index: nav.active, series: [{ id: cur.s.id, name: c.value, value: cur.s.value, formatted: `${formatValue(cur.s.value)} (${share(cur.s.value)})`, tone: toneOf(cur.s, cur.i) }] } : null;
   const tipOn = !!ctx && tooltip !== false;
-  const [anchorX, setAnchorX] = React.useState(0);
-  React.useLayoutEffect(() => {
+  const [anchorX, setAnchorX] = React3.useState(0);
+  React3.useLayoutEffect(() => {
     const el = cur && Array.from(box.current?.querySelectorAll("[data-segment]") ?? []).find((e) => e.dataset.segment === cur.s.id);
     if (el) setAnchorX(el.offsetLeft + el.offsetWidth / 2);
   }, [cur]);
@@ -1213,6 +1441,6 @@ function UtilizationCard(props) {
   ] });
 }
 
-export { AreaChart, BarChart, ChartCard, DonutChart, Heatmap, LineChart, PerfPanel, SegmentedBar, StackedBarChart, TimeSeriesChart, UtilizationCard, downsample, formatUnit, lttb, presetToMs, seriesToCsv };
+export { AreaChart, BarChart, ChartCard, ChartSyncProvider, DonutChart, Heatmap, LineChart, PerfPanel, SegmentedBar, StackedBarChart, TimeSeriesChart, UtilizationCard, chartsInteractiveEn, clampRange, downsample, formatUnit, lttb, panBy, presetToMs, seriesToCsv, trimWindow, useChartSync, useLiveSeries, zoomAt };
 //# sourceMappingURL=charts.js.map
 //# sourceMappingURL=charts.js.map

@@ -624,3 +624,7 @@ packages/ui/
 ## 8. Anti-patterns (reject in review)
 
 Pill buttons or circular avatars · gradients other than brand/page · coloured text on coloured fill without a token pair · more than one primary button per region · tooltips as the only label · modals opening modals · hover-only disclosure · hardcoded `#54a2ff` · `font-weight: 500/600` expectations with Lato · centring the whole admin table layout · a second font.
+
+## 9. Console, interactive charts, settings dialogs
+
+`@pilab/laf/console`: `Terminal`, `VncConsole` (lazy xterm / noVNC; see `docs/console.md`). Charts: `ChartSyncProvider`, `useChartSync`, `useLiveSeries`, zoom/pan/live on `TimeSeriesChart` (`docs/charts.md`). `SettingsDialog`, `SettingsSection`, `SettingRow`, `DeviceList` (`docs/settings-dialog.md`). Demos `?demo=console`, `?demo=settings-dialog`.

@@ -16,5 +16,8 @@ export default defineConfig({
       { find: /^@pilab\/laf$/, replacement: fileURLToPath(new URL("../lib/index.ts", import.meta.url)) },
     ],
   },
+  // @novnc/novnc uses top-level await
+  optimizeDeps: { esbuildOptions: { target: "esnext" } },
+  build: { target: "esnext" },
   server: { port: 5173, open: false, fs: { allow: [fileURLToPath(new URL("..", import.meta.url))] } },
 });

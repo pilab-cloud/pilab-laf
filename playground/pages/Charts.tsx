@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Heatmap, PerfPanel, StackedBarChart, TimeSeriesChart, type PerfMetric } from "../../lib/charts";
+import { AreaChart, ChartSyncProvider, Heatmap, LineChart, PerfPanel, StackedBarChart, TimeSeriesChart, useLiveSeries, type PerfMetric } from "../../lib/charts";
 import { DatePicker, type DateRangeValue } from "../../lib/components/calendar";
 
 const NOW = Date.UTC(2026, 5, 1, 12, 0, 0);
@@ -22,6 +22,28 @@ const metrics: PerfMetric[] = [
   { id: "net", group: "Network", name: "Network rx", unit: "bitrate", points: wave(N, 2e8, 1.5e8, 5) },
 ];
 
+const LIVE_META = [{ id: "rx", name: "Network rx", unit: "bitrate" as const }];
+
+function SyncedZoomLive() {
+  const { series, push } = useLiveSeries(LIVE_META, { windowMs: 60_000, maxPoints: 120 });
+  React.useEffect(() => {
+    let i = 0;
+    const id = setInterval(() => push({ rx: 2e8 + 1.5e8 * Math.sin(i++ / 6) + Math.random() * 3e7 }), 1000);
+    return () => clearInterval(id);
+  }, [push]);
+  return (
+    <div className="space-y-3">
+      <h3 className="text-base font-semibold">Synced, zoomable, live</h3>
+      <p className="text-sm text-muted">Hover one chart to see the crosshair on both · drag to zoom (zoom is shared) · Shift-drag to pan · wheel zooms · double-click resets · +/− and Alt+←/→ from the keyboard.</p>
+      <ChartSyncProvider>
+        <AreaChart label="CPU (synced)" series={[metrics[0]!]} wheelZoom height={180} />
+        <LineChart label="Memory (synced)" series={[metrics[2]!]} wheelZoom height={180} />
+      </ChartSyncProvider>
+      <LineChart label="Live network" series={series} live={{ windowMs: 60_000 }} height={180} />
+    </div>
+  );
+}
+
 export default function ChartsDemo() {
   const [range, setRange] = React.useState<DateRangeValue>({});
   const [dt, setDt] = React.useState<string | undefined>();
@@ -43,6 +65,7 @@ export default function ChartsDemo() {
         series={[metrics[0]!, metrics[2]!].map((m) => ({ ...m }))}
         thresholds={[{ value: 80, tone: "danger" }]}
       />
+      <SyncedZoomLive />
       <PerfPanel label="VM performance" metrics={metrics} thresholds={[{ value: 80, tone: "warn" }]} />
       <div className="grid gap-6 md:grid-cols-2">
         <StackedBarChart label="Datastore usage" series={["VMs", "Snapshots", "Free"]} data={[{ name: "ds-01", values: [40, 10, 50] }, { name: "ds-02", values: [70, 5, 25] }]} formatValue={(v) => `${v} GB`} />

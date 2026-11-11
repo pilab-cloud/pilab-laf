@@ -74,3 +74,4 @@ export {
   type RaidGlyphProps,
 } from "./components/storage-glyphs";
 export { ClusterGlyph, DatacenterGlyph, ServerGlyph, TemplateGlyph, VmGlyph, type ObjectGlyph } from "./components/object-glyphs";
+export * from "./components/settings";

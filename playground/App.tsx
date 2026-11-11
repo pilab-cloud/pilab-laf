@@ -32,6 +32,8 @@ export const DEMOS = [
   { id: "dashboard", label: "Dashboard", Component: page(() => import("./pages/Dashboard")) },
   { id: "portal", label: "Portal", Component: page(() => import("./pages/Portal")) },
   { id: "mail-admin", label: "Mail admin", Component: page(() => import("./pages/MailAdmin")) },
+  { id: "console", label: "Terminal & VNC", Component: page(() => import("./pages/Console")) },
+  { id: "settings-dialog", label: "Settings dialogs", Component: page(() => import("./pages/SettingsDialogs")) },
   { id: "resource-overview", label: "Resource overview", Component: page(() => import("./pages/ResourceOverview")) },
 ];
 

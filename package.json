@@ -1,7 +1,7 @@
 {
   "name": "@pilab/laf",
   "version": "1.0.0",
-  "description": "Pilab Look & Feel — React component kit",
+  "description": "Pilab Look & Feel \u2014 React component kit",
   "type": "module",
   "sideEffects": [
     "**/*.css"
@@ -39,6 +39,11 @@
       "types": "./dist/os-icons.d.ts",
       "import": "./dist/os-icons.js",
       "require": "./dist/os-icons.cjs"
+    },
+    "./console": {
+      "types": "./dist/console.d.ts",
+      "import": "./dist/console.js",
+      "require": "./dist/console.cjs"
     },
     "./locales/hu": {
       "types": "./dist/locales/hu.d.ts",
@@ -94,7 +99,10 @@
     "@xyflow/react": "^12.12.1",
     "react-markdown": "^10.1.0",
     "rehype-sanitize": "^6.0.0",
-    "remark-gfm": "^4.0.1"
+    "remark-gfm": "^4.0.1",
+    "@xterm/xterm": "^6.0.0",
+    "@xterm/addon-fit": "^0.11.0",
+    "@novnc/novnc": "^1.7.0"
   },
   "dependencies": {
     "@radix-ui/react-collapsible": "^1.2.1",
@@ -132,6 +140,7 @@
     "@dnd-kit/core": "^6.3.1",
     "@dnd-kit/sortable": "^10.0.0",
     "@dnd-kit/utilities": "^3.2.2",
+    "@novnc/novnc": "^1.7.0",
     "@playwright/test": "^1.65.0",
     "@tailwindcss/cli": "^4.3.5",
     "@testing-library/jest-dom": "^7.0.1",
@@ -139,6 +148,7 @@
     "@testing-library/user-event": "^14.6.9",
     "@types/jest-axe": "^3.5.9",
     "@types/node": "^26.6.6",
+    "@types/novnc__novnc": "^1.6.0",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
     "@visx/axis": "^4.0.0",
@@ -152,6 +162,8 @@
     "@visx/shape": "^4.0.0",
     "@visx/tooltip": "^4.0.0",
     "@vitejs/plugin-react": "^4.3.0",
+    "@xterm/addon-fit": "^0.11.0",
+    "@xterm/xterm": "^6.0.0",
     "@xyflow/react": "^12.12.1",
     "concurrently": "^9.0.0",
     "jest-axe": "^11.0.0",
@@ -241,6 +253,15 @@
       "optional": true
     },
     "remark-gfm": {
+      "optional": true
+    },
+    "@xterm/xterm": {
+      "optional": true
+    },
+    "@xterm/addon-fit": {
+      "optional": true
+    },
+    "@novnc/novnc": {
       "optional": true
     }
   }

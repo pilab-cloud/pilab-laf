@@ -1,8 +1,10 @@
 import * as React from 'react';
-import { b as ObjectGlyph, a as ObjectState } from './object-icon-1uNCkZBX.js';
+import { b as ObjectGlyph, a as ObjectState } from './object-icon-BJ0r6e2e.js';
 import 'lucide-react';
-import './i18n-CWjDK5Jp.js';
-import './perf-panel-WnUE1l-N.js';
+import './i18n-D7-T2u5f.js';
+import './perf-panel-BIwzrNjF.js';
+import './chart-motion-BTO5GOqJ.js';
+import './vsphere-objects-CWkhU0R6.js';
 
 type OsFamily = "linux" | "bsd" | "windows" | "apple" | "unix" | "mobile" | "hypervisor" | "container" | "other";
 declare const osIds: readonly ["ubuntu", "debian", "arch", "freebsd", "kali", "rhel", "centos", "almalinux", "rocky", "fedora", "mint", "opensuse", "suse", "alpine", "gentoo", "nixos", "manjaro", "oracle-linux", "amazon-linux", "linux", "windows", "macos", "android", "openbsd", "netbsd", "solaris", "esxi", "photon", "proxmox", "ovirt", "docker", "kubernetes", "unknown"];

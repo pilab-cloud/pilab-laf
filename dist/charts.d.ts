@@ -1,6 +1,8 @@
-import { C as ChartAnimate, a as ChartTooltipOption, T as TimeSeriesChartProps } from './perf-panel-WnUE1l-N.js';
-export { b as ChartMotion, c as ChartRange, d as ChartTooltip, e as ChartTooltipContext, f as ChartTooltipFor, g as ChartTooltipPoint, h as ChartTooltipSeries, i as ChartUnit, P as PerfMetric, j as PerfPanel, k as PerfPanelLabels, l as PerfPanelProps, m as Point, n as TimeSeries, o as TimeSeriesChart, p as TimeSeriesChartLabels, q as TooltipRow, r as downsample, s as formatUnit, t as lttb, u as presetToMs, v as seriesToCsv, w as useChartMotion, x as usePrefersReducedMotion, y as useTooltipDismiss } from './perf-panel-WnUE1l-N.js';
+import { C as ChartTooltipOption, T as TimeSeriesChartProps, a as ChartRange } from './perf-panel-BIwzrNjF.js';
+export { b as ChartTooltip, c as ChartTooltipContext, d as ChartTooltipFor, e as ChartTooltipPoint, f as ChartTooltipSeries, g as ChartUnit, h as ChartsInteractiveLabels, L as LiveOptions, P as PerfMetric, i as PerfPanel, j as PerfPanelLabels, k as PerfPanelProps, l as Point, m as TimeSeries, n as TimeSeriesChart, o as TimeSeriesChartLabels, p as TooltipRow, q as chartsInteractiveEn, r as downsample, s as formatUnit, t as lttb, u as presetToMs, v as seriesToCsv, w as trimWindow, x as useLiveSeries, y as useTooltipDismiss } from './perf-panel-BIwzrNjF.js';
 import * as React from 'react';
+import { C as ChartAnimate } from './chart-motion-BTO5GOqJ.js';
+export { a as ChartMotion, u as useChartMotion, b as usePrefersReducedMotion } from './chart-motion-BTO5GOqJ.js';
 import { C as CardProps } from './card-D00VCi3j.js';
 
 /** Categorical palette: the label colours (`--label-n`) so charts follow the theme and stay ≥ 3:1 on the background. */
@@ -262,4 +264,25 @@ type UtilizationCardProps = UtilizationBarCardProps | UtilizationDonutCardProps;
 /** PatternFly-style utilization card: `variant="bar"` (segmented severity bar) or `variant="donut"` (threshold ring). */
 declare function UtilizationCard(props: UtilizationCardProps): React.JSX.Element;
 
-export { AreaChart, type AreaChartProps, BarChart, type BarChartProps, type BarSegment, type BarSeries, CHART_TONES, ChartAnimate, ChartCard, type ChartCardContext, type ChartCardProps, type ChartCardRange, ChartLegend, ChartTooltipOption, DonutChart, type DonutChartProps, type DonutDatum, Heatmap, type LegendItem, LineChart, type LineChartProps, SegmentedBar, type SegmentedBarProps, StackedBarChart, ThresholdDonut, type ThresholdDonutProps, TimeSeriesChartProps, type UtilizationBarCardProps, UtilizationCard, type UtilizationCardProps, type UtilizationDonutCardProps, chartTone, thresholdTone };
+/** Charts below it that share a `syncGroup` (default `"default"`) share crosshair and zoom range. */
+declare function ChartSyncProvider({ children }: {
+    children: React.ReactNode;
+}): React.JSX.Element;
+interface ChartSync {
+    /** Crosshair time set by another chart in the group (null when this chart owns it or nobody hovers). */
+    remoteCursor: number | null;
+    range: ChartRange | null;
+    publishCursor: (t: number | null) => void;
+    publishRange: (r: ChartRange | null) => void;
+}
+/** Join a sync group. Returns `null` outside a `ChartSyncProvider` or when `group` is `false`. */
+declare function useChartSync(group?: string | false): ChartSync | null;
+
+/** Keep `r` inside `full` without changing its span (unless it is wider than `full`). */
+declare function clampRange(r: ChartRange, full: ChartRange): ChartRange;
+/** Scale the window by `factor` (<1 zooms in) keeping the time `at` fixed on screen. */
+declare function zoomAt(r: ChartRange, full: ChartRange, factor: number, at?: number): ChartRange;
+/** Shift the window by `dt` ms, stopping at the edges of `full`. */
+declare function panBy(r: ChartRange, full: ChartRange, dt: number): ChartRange;
+
+export { AreaChart, type AreaChartProps, BarChart, type BarChartProps, type BarSegment, type BarSeries, CHART_TONES, ChartAnimate, ChartCard, type ChartCardContext, type ChartCardProps, type ChartCardRange, ChartLegend, ChartRange, type ChartSync, ChartSyncProvider, ChartTooltipOption, DonutChart, type DonutChartProps, type DonutDatum, Heatmap, type LegendItem, LineChart, type LineChartProps, SegmentedBar, type SegmentedBarProps, StackedBarChart, ThresholdDonut, type ThresholdDonutProps, TimeSeriesChartProps, type UtilizationBarCardProps, UtilizationCard, type UtilizationCardProps, type UtilizationDonutCardProps, chartTone, clampRange, panBy, thresholdTone, useChartSync, zoomAt };

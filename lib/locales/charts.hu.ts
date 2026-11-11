@@ -1,3 +1,4 @@
+import { chartsInteractiveHu } from "./charts-interactive.hu";
 import type { chartsEn } from "../messages/charts.en";
 
 export const chartsHu: typeof chartsEn = {
@@ -13,6 +14,7 @@ export const chartsHu: typeof chartsEn = {
     summary: "Összesítő statisztika",
     noMetrics: "Válasszon ki legalább egy metrikát",
   },
+  interactive: chartsInteractiveHu,
   timeSeries: {
     showData: "Adatok megjelenítése",
     hideData: "Adatok elrejtése",

@@ -1,6 +1,8 @@
-import { a6 as LafMessages } from '../i18n-DjhLT_8J.cjs';
+import { s as LafMessages } from '../i18n-DlJBgcx_.cjs';
 import 'react';
-import '../perf-panel-WnUE1l-N.cjs';
+import '../perf-panel-oLl-Txms.cjs';
+import '../chart-motion-BTO5GOqJ.cjs';
+import '../vsphere-objects-CX3SL4vx.cjs';
 
 declare const hu: LafMessages;
 

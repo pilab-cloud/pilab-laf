@@ -1,15 +1,16 @@
 'use strict';
 
-var chunkBAOO6ECK_cjs = require('./chunk-BAOO6ECK.cjs');
-var chunkRNP4RJYX_cjs = require('./chunk-RNP4RJYX.cjs');
+var chunk66X4PO5P_cjs = require('./chunk-66X4PO5P.cjs');
+var chunkTDOSI6VH_cjs = require('./chunk-TDOSI6VH.cjs');
+var chunkI2W5ZNMR_cjs = require('./chunk-I2W5ZNMR.cjs');
 var chunkIP6HZMS5_cjs = require('./chunk-IP6HZMS5.cjs');
-var chunkRDHTRBBP_cjs = require('./chunk-RDHTRBBP.cjs');
+var chunkSCEXK6L4_cjs = require('./chunk-SCEXK6L4.cjs');
 var chunkFTHFEMX6_cjs = require('./chunk-FTHFEMX6.cjs');
 var axis = require('@visx/axis');
 var group = require('@visx/group');
 var scale = require('@visx/scale');
 var shape = require('@visx/shape');
-var React = require('react');
+var React3 = require('react');
 var jsxRuntime = require('react/jsx-runtime');
 var lucideReact = require('lucide-react');
 
@@ -31,7 +32,7 @@ function _interopNamespace(e) {
   return Object.freeze(n);
 }
 
-var React__namespace = /*#__PURE__*/_interopNamespace(React);
+var React3__namespace = /*#__PURE__*/_interopNamespace(React3);
 
 // lib/charts/lttb.ts
 function lttb(points, threshold) {
@@ -92,6 +93,15 @@ function downsample(points, maxPoints) {
   return out;
 }
 
+// lib/messages/charts-interactive.en.ts
+var chartsInteractiveEn = {
+  paused: "Paused",
+  resume: "Resume",
+  live: "Live",
+  pause: "Pause",
+  zoomHint: "Plus and minus zoom, Alt with arrows pans, Alt+Home resets the zoom. Double-click or double-tap also resets."
+};
+
 // lib/messages/charts.en.ts
 var chartsEn = {
   perfPanel: {
@@ -106,6 +116,7 @@ var chartsEn = {
     summary: "Summary statistics",
     noMetrics: "Select at least one metric"
   },
+  interactive: chartsInteractiveEn,
   timeSeries: {
     showData: "Show data",
     hideData: "Hide data",
@@ -117,8 +128,111 @@ var chartsEn = {
     legend: "Series"
   }
 };
+function trimWindow(points, { windowMs = 6e4, maxPoints = 600 } = {}) {
+  if (!points.length) return points;
+  const min = points[points.length - 1][0] - windowMs;
+  let i = 0;
+  while (i < points.length - 1 && points[i][0] < min) i++;
+  const out = i ? points.slice(i) : points;
+  return out.length > maxPoints ? out.slice(out.length - maxPoints) : out;
+}
+function useLiveSeries(meta, options = {}) {
+  const { windowMs = 6e4, maxPoints = 600 } = options;
+  const reduced = chunkTDOSI6VH_cjs.usePrefersReducedMotion();
+  const buf = React3__namespace.useRef(/* @__PURE__ */ new Map());
+  const timer = React3__namespace.useRef(null);
+  const [tick2, setTick] = React3__namespace.useState(0);
+  const flush = React3__namespace.useCallback(() => {
+    if (timer.current) return;
+    const run = () => {
+      timer.current = null;
+      setTick((n) => n + 1);
+    };
+    if (reduced) timer.current = setTimeout(run, 1e3);
+    else run();
+  }, [reduced]);
+  React3__namespace.useEffect(() => () => void (timer.current && clearTimeout(timer.current)), []);
+  const push = React3__namespace.useCallback(
+    (values, t = Date.now()) => {
+      for (const [id, v] of Object.entries(values)) buf.current.set(id, trimWindow([...buf.current.get(id) ?? [], [t, v]], { windowMs, maxPoints }));
+      flush();
+    },
+    [windowMs, maxPoints, flush]
+  );
+  const clear = React3__namespace.useCallback(() => {
+    buf.current.clear();
+    setTick((n) => n + 1);
+  }, []);
+  const metaKey = meta.map((m) => `${m.id}|${m.name}|${m.unit}`).join();
+  const series = React3__namespace.useMemo(
+    () => meta.map((m) => ({ ...m, points: buf.current.get(m.id) ?? [] })),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [metaKey, tick2]
+  );
+  return { series, push, clear, windowMs, maxPoints };
+}
+function useFrozen(value, frozen) {
+  const held = React3__namespace.useRef(value);
+  if (!frozen) held.current = value;
+  return held.current;
+}
+var Ctx = React3__namespace.createContext(null);
+var EMPTY = { cursor: null, range: null };
+function ChartSyncProvider({ children }) {
+  const [groups, setGroups] = React3__namespace.useState({});
+  const actions = React3__namespace.useMemo(
+    () => ({
+      setCursor: (g, cursor) => setGroups((s) => {
+        const cur = s[g] ?? EMPTY;
+        if (cursor === null ? !cur.cursor : cur.cursor?.t === cursor.t && cur.cursor.source === cursor.source) return s;
+        return { ...s, [g]: { ...cur, cursor } };
+      }),
+      setRange: (g, range) => setGroups((s) => {
+        const cur = s[g] ?? EMPTY;
+        if (cur.range?.from === range?.from && cur.range?.to === range?.to) return s;
+        return { ...s, [g]: { ...cur, range } };
+      })
+    }),
+    []
+  );
+  const value = React3__namespace.useMemo(() => ({ groups, ...actions }), [groups, actions]);
+  return /* @__PURE__ */ jsxRuntime.jsx(Ctx.Provider, { value, children });
+}
+function useChartSync(group = "default") {
+  const ctx = React3__namespace.useContext(Ctx);
+  const id = React3__namespace.useId();
+  const g = group === false ? null : group;
+  const state = (ctx && g !== null ? ctx.groups[g] : void 0) ?? EMPTY;
+  const { setCursor, setRange } = ctx ?? { setCursor: void 0, setRange: void 0 };
+  const publishCursor = React3__namespace.useCallback((t) => g !== null && setCursor?.(g, t === null ? null : { t, source: id }), [g, id, setCursor]);
+  const publishRange = React3__namespace.useCallback((r) => g !== null && setRange?.(g, r), [g, setRange]);
+  if (!ctx || g === null) return null;
+  return {
+    remoteCursor: state.cursor && state.cursor.source !== id ? state.cursor.t : null,
+    range: state.range,
+    publishCursor,
+    publishRange
+  };
+}
+
+// lib/charts/zoom.ts
+var MIN_SPAN = 1;
+function clampRange(r, full) {
+  const span = Math.min(Math.max(r.to - r.from, MIN_SPAN), full.to - full.from);
+  const from = Math.min(Math.max(r.from, full.from), full.to - span);
+  return { from, to: from + span };
+}
+function zoomAt(r, full, factor, at = (r.from + r.to) / 2) {
+  const span = Math.max((r.to - r.from) * factor, MIN_SPAN);
+  const k = r.to === r.from ? 0.5 : (at - r.from) / (r.to - r.from);
+  const from = at - span * k;
+  return clampRange({ from, to: from + span }, full);
+}
+function panBy(r, full, dt) {
+  return clampRange({ from: r.from + dt, to: r.to + dt }, full);
+}
 var lafDefaults = { charts: chartsEn };
-var useLaf = () => chunkRDHTRBBP_cjs.useLafDefaults(lafDefaults);
+var useLaf = () => chunkSCEXK6L4_cjs.useLafDefaults(lafDefaults);
 var SERIES_TONES = ["text-primary", "text-ok", "text-warn", "text-danger"];
 var SERIES_DASH = [void 0, "4 2", "1 3", "6 2 1 2"];
 var MARGIN = { top: 8, bottom: 24, left: 56, right: 12, right2: 56 };
@@ -140,9 +254,9 @@ function formatUnit(f, unit, v) {
   }
 }
 function useWidth(fixed) {
-  const ref = React__namespace.useRef(null);
-  const [w, setW] = React__namespace.useState(640);
-  React__namespace.useEffect(() => {
+  const ref = React3__namespace.useRef(null);
+  const [w, setW] = React3__namespace.useState(640);
+  React3__namespace.useEffect(() => {
     const el = ref.current;
     if (fixed !== void 0 || !el || typeof ResizeObserver === "undefined") return;
     const apply = () => el.clientWidth > 0 && setW(el.clientWidth);
@@ -165,7 +279,7 @@ function nearest(points, t) {
   return lo;
 }
 function TimeSeriesChart({
-  series,
+  series: seriesProp,
   type = "line",
   range: rangeProp,
   onRangeChange,
@@ -180,35 +294,57 @@ function TimeSeriesChart({
   maxTableRows = 200,
   animate,
   tooltip = true,
+  syncGroup,
+  wheelZoom,
+  live,
   labels: labelsProp,
   className
 }) {
   const { format, locale, timeZone, t: laf } = useLaf();
-  const l = { ...laf.components.charts.timeSeries, ...labelsProp };
-  const uid = React__namespace.useId();
+  const l = { ...laf.components.charts.timeSeries, ...laf.components.charts.interactive, ...labelsProp };
+  const uid = React3__namespace.useId();
   const [wrap, width] = useWidth(widthProp);
-  const [hidden, setHidden] = chunkRNP4RJYX_cjs.useControllableState({ value: hiddenProp, defaultValue: [], onChange: onHiddenSeriesChange });
-  const [zoom, setZoom] = chunkRNP4RJYX_cjs.useControllableState({ value: rangeProp, defaultValue: null, onChange: (r) => r && onRangeChange?.(r) });
-  const [cursor, setCursor] = React__namespace.useState(null);
-  const [sel, setSel] = React__namespace.useState(null);
-  const [kbd, setKbd] = React__namespace.useState(false);
-  const [showTable, setShowTable] = React__namespace.useState(false);
-  const drag = React__namespace.useRef(null);
-  const anchor = React__namespace.useRef(null);
-  const svgRef = React__namespace.useRef(null);
-  const motion = chunkBAOO6ECK_cjs.useChartMotion(animate);
-  const [legendEmph, setLegendEmph] = React__namespace.useState(null);
-  const [ptrY, setPtrY] = React__namespace.useState(null);
+  const [hidden, setHidden] = chunkI2W5ZNMR_cjs.useControllableState({ value: hiddenProp, defaultValue: [], onChange: onHiddenSeriesChange });
+  const sync = useChartSync(syncGroup);
+  const [zoom, setZoom] = chunkI2W5ZNMR_cjs.useControllableState({
+    value: rangeProp ?? (sync ? sync.range : void 0),
+    defaultValue: null,
+    onChange: (r) => {
+      if (r) onRangeChange?.(r);
+      sync?.publishRange(r);
+    }
+  });
+  const liveOn = !!live;
+  const windowMs = (typeof live === "object" ? live.windowMs : void 0) ?? 6e4;
+  const [holding, setHolding] = React3__namespace.useState(false);
+  const [manualPause, setManualPause] = React3__namespace.useState(false);
+  const stickyPause = liveOn && (manualPause || zoom !== null);
+  const paused = liveOn && (stickyPause || holding);
+  const series = useFrozen(seriesProp, paused);
+  const [localCursor, setCursor] = React3__namespace.useState(null);
+  const [sel, setSel] = React3__namespace.useState(null);
+  const [kbd, setKbd] = React3__namespace.useState(false);
+  const [showTable, setShowTable] = React3__namespace.useState(false);
+  const drag = React3__namespace.useRef(null);
+  const touches = React3__namespace.useRef(/* @__PURE__ */ new Map());
+  const pinch = React3__namespace.useRef(null);
+  const published = React3__namespace.useRef(false);
+  const anchor = React3__namespace.useRef(null);
+  const svgRef = React3__namespace.useRef(null);
+  const motion = chunkTDOSI6VH_cjs.useChartMotion(animate);
+  const [legendEmph, setLegendEmph] = React3__namespace.useState(null);
+  const [ptrY, setPtrY] = React3__namespace.useState(null);
   const tipId = `${uid}-tip`;
-  chunkBAOO6ECK_cjs.useTooltipDismiss(cursor !== null, wrap, () => (setCursor(null), setPtrY(null)));
-  const sig = React__namespace.useMemo(
+  chunkTDOSI6VH_cjs.useTooltipDismiss(localCursor !== null, wrap, () => (setCursor(null), setPtrY(null)));
+  const sig = React3__namespace.useMemo(
     () => `${type}|${hidden.join()}|${zoom?.from}-${zoom?.to}|${series.map((s) => `${s.id}:${s.points.length}:${s.points.reduce((a, p) => a + (p[1] ?? 0) * (p[0] % 97 + 1), 0)}`).join()}`,
     [series, hidden, zoom, type]
   );
-  const progress = chunkBAOO6ECK_cjs.useTweenProgress(sig, motion);
-  const settled = React__namespace.useRef(/* @__PURE__ */ new Map());
-  const fromPx = React__namespace.useRef(/* @__PURE__ */ new Map());
-  const lastSig = React__namespace.useRef(sig);
+  const tweenProgress = chunkTDOSI6VH_cjs.useTweenProgress(sig, motion);
+  const progress = liveOn ? 1 : tweenProgress;
+  const settled = React3__namespace.useRef(/* @__PURE__ */ new Map());
+  const fromPx = React3__namespace.useRef(/* @__PURE__ */ new Map());
+  const lastSig = React3__namespace.useRef(sig);
   if (lastSig.current !== sig) {
     fromPx.current = settled.current;
     lastSig.current = sig;
@@ -220,10 +356,10 @@ function TimeSeriesChart({
     rendered.set(id, out);
     return out;
   };
-  React__namespace.useLayoutEffect(() => {
+  React3__namespace.useLayoutEffect(() => {
     settled.current = rendered;
   });
-  const full = React__namespace.useMemo(() => {
+  const full = React3__namespace.useMemo(() => {
     let from = Infinity;
     let to = -Infinity;
     for (const s of series) {
@@ -234,11 +370,22 @@ function TimeSeriesChart({
     }
     return from <= to ? { from, to: to === from ? to + 1 : to } : null;
   }, [series]);
-  const domain = zoom ?? full;
+  const liveDomain = liveOn && !paused && full ? { from: Math.max(full.from, full.to - windowMs), to: full.to } : null;
+  const domain = zoom ?? liveDomain ?? full;
+  const remote = sync?.remoteCursor ?? null;
+  const cursor = localCursor ?? (remote !== null && domain && remote >= domain.from && remote <= domain.to ? remote : null);
+  React3__namespace.useEffect(() => {
+    if (localCursor === null && !published.current) return;
+    published.current = localCursor !== null;
+    sync?.publishCursor(localCursor);
+  }, [localCursor, sync?.publishCursor]);
+  const syncRef = React3__namespace.useRef(sync);
+  syncRef.current = sync;
+  React3__namespace.useEffect(() => () => void (published.current && syncRef.current?.publishCursor(null)), []);
   const zoomed = !!zoom && !!full && (zoom.from > full.from || zoom.to < full.to);
-  const shown = React__namespace.useMemo(() => series.filter((s) => !hidden.includes(s.id)), [series, hidden]);
+  const shown = React3__namespace.useMemo(() => series.filter((s) => !hidden.includes(s.id)), [series, hidden]);
   const stacked = type === "stacked-area";
-  const units = React__namespace.useMemo(() => {
+  const units = React3__namespace.useMemo(() => {
     const u = [];
     for (const s of shown) if (!u.includes(s.unit)) u.push(s.unit);
     return stacked ? u.slice(0, 1) : u;
@@ -247,17 +394,17 @@ function TimeSeriesChart({
   const dual = !stacked && units.length > 1;
   const innerW = Math.max(width - MARGIN.left - (dual ? MARGIN.right2 : MARGIN.right), 10);
   const innerH = Math.max(height - MARGIN.top - MARGIN.bottom, 10);
-  const visible = React__namespace.useMemo(
+  const visible = React3__namespace.useMemo(
     () => shown.map((s) => domain ? s.points.filter(([t]) => t >= domain.from && t <= domain.to) : s.points),
     [shown, domain]
   );
-  const stamps = React__namespace.useMemo(() => {
+  const stamps = React3__namespace.useMemo(() => {
     const set = /* @__PURE__ */ new Set();
     for (const pts of visible) for (const [t] of pts) set.add(t);
     return [...set].sort((a, b) => a - b);
   }, [visible]);
-  const lookups = React__namespace.useMemo(() => visible.map((pts) => new Map(pts)), [visible]);
-  const stackedRows = React__namespace.useMemo(() => {
+  const lookups = React3__namespace.useMemo(() => visible.map((pts) => new Map(pts)), [visible]);
+  const stackedRows = React3__namespace.useMemo(() => {
     if (!stacked) return null;
     const step = Math.max(1, Math.ceil(stamps.length / (innerW * 2)));
     const ts = stamps.filter((_, i) => i % step === 0 || i === stamps.length - 1);
@@ -271,9 +418,9 @@ function TimeSeriesChart({
       return { t, layers };
     });
   }, [stacked, stamps, lookups, innerW]);
-  const lines = React__namespace.useMemo(() => stacked ? [] : visible.map((pts) => downsample(pts, Math.max(Math.floor(innerW), 3))), [stacked, visible, innerW]);
-  const x = React__namespace.useMemo(() => scale.scaleLinear({ domain: [domain?.from ?? 0, domain?.to ?? 1], range: [0, innerW] }), [domain, innerW]);
-  const ys = React__namespace.useMemo(() => {
+  const lines = React3__namespace.useMemo(() => stacked ? [] : visible.map((pts) => downsample(pts, Math.max(Math.floor(innerW), 3))), [stacked, visible, innerW]);
+  const x = React3__namespace.useMemo(() => scale.scaleLinear({ domain: [domain?.from ?? 0, domain?.to ?? 1], range: [0, innerW] }), [domain, innerW]);
+  const ys = React3__namespace.useMemo(() => {
     return [0, 1].map((axis) => {
       let min = Infinity;
       let max = -Infinity;
@@ -291,7 +438,7 @@ function TimeSeriesChart({
       return scale.scaleLinear({ domain: [lo, hi], range: [innerH, 0], nice: true });
     });
   }, [shown, visible, stackedRows, thresholds, innerH, type, stacked, units]);
-  const tickT = React__namespace.useMemo(() => {
+  const tickT = React3__namespace.useMemo(() => {
     const span = domain ? domain.to - domain.from : 0;
     const dtf = new Intl.DateTimeFormat(locale, {
       timeZone,
@@ -301,7 +448,7 @@ function TimeSeriesChart({
     });
     return (v) => dtf.format(v);
   }, [domain, locale, timeZone]);
-  const fullT = React__namespace.useMemo(() => {
+  const fullT = React3__namespace.useMemo(() => {
     const dtf = new Intl.DateTimeFormat(locale, { timeZone, dateStyle: "medium", timeStyle: "medium" });
     return (v) => dtf.format(v);
   }, [locale, timeZone]);
@@ -316,10 +463,36 @@ function TimeSeriesChart({
     setSel(null);
     anchor.current = null;
   };
+  const latest = React3__namespace.useRef({ domain, full, x, setZoom });
+  latest.current = { domain, full, x, setZoom };
+  React3__namespace.useEffect(() => {
+    const el = svgRef.current;
+    if (!wheelZoom || !el) return;
+    const onWheel = (e) => {
+      const { domain: d, full: f, x: sx } = latest.current;
+      if (!d || !f) return;
+      e.preventDefault();
+      const px = e.clientX - el.getBoundingClientRect().left - MARGIN.left;
+      latest.current.setZoom(zoomAt(d, f, Math.exp(e.deltaY * (e.ctrlKey ? 0.01 : 2e-3)), sx.invert(px)));
+    };
+    el.addEventListener("wheel", onWheel, { passive: false });
+    return () => el.removeEventListener("wheel", onWheel);
+  });
   const onPointerDown = (e) => {
     if (!domain || e.button > 0) return;
     const px = localX(e);
-    drag.current = { anchor: clampT(px), moved: false };
+    if (wheelZoom && e.pointerType === "touch") {
+      touches.current.set(e.pointerId, e.clientX);
+      if (touches.current.size === 2) {
+        const [a, b] = [...touches.current.values()];
+        pinch.current = { dist: Math.max(Math.abs(a - b), 1), range: domain };
+        drag.current = null;
+        setSel(null);
+        return;
+      }
+    }
+    const panning = !!full && (e.shiftKey || e.pointerType === "touch" && zoomed);
+    drag.current = { anchor: clampT(px), moved: false, pan: panning ? { x0: px, range: domain } : void 0 };
     setCursor(clampT(px));
     setPtrY(localY(e));
     setKbd(false);
@@ -330,6 +503,23 @@ function TimeSeriesChart({
   };
   const onPointerMove = (e) => {
     if (!domain || !stamps.length) return;
+    if (touches.current.has(e.pointerId)) {
+      touches.current.set(e.pointerId, e.clientX);
+      const p = pinch.current;
+      if (p && full && touches.current.size === 2) {
+        const [a, b] = [...touches.current.values()];
+        const mid = p.range.from + (p.range.to - p.range.from) * ((a + b) / 2 - (svgRef.current?.getBoundingClientRect().left ?? 0) - MARGIN.left) / innerW;
+        setZoom(zoomAt(p.range, full, p.dist / Math.max(Math.abs(a - b), 1), mid));
+        return;
+      }
+    }
+    const pan = drag.current?.pan;
+    if (pan && full) {
+      const dx = localX(e) - pan.x0;
+      if (Math.abs(dx) > 3) drag.current.moved = true;
+      if (drag.current.moved) setZoom(panBy(pan.range, full, -dx / innerW * (pan.range.to - pan.range.from)));
+      return;
+    }
     const t = clampT(localX(e));
     setCursor(t);
     setPtrY(localY(e));
@@ -340,14 +530,34 @@ function TimeSeriesChart({
       if (d.moved) setSel({ from: Math.min(d.anchor, t), to: Math.max(d.anchor, t) });
     }
   };
-  const onPointerUp = () => {
+  const onPointerUp = (e) => {
+    touches.current.delete(e.pointerId);
+    if (touches.current.size < 2) pinch.current = null;
     const d = drag.current;
     drag.current = null;
+    if (d?.pan) return;
     if (d?.moved && sel) applySel(sel);
     else setSel(null);
   };
   const onKeyDown = (e) => {
     if (!stamps.length) return;
+    if (domain && full && !e.ctrlKey && !e.metaKey) {
+      const key = e.key;
+      let next = null;
+      if (key === "+" || key === "=") next = zoomAt(domain, full, 0.5, cursor ?? void 0);
+      else if (key === "-" || key === "_") next = zoomAt(domain, full, 2, cursor ?? void 0);
+      else if (e.altKey && (key === "ArrowLeft" || key === "ArrowRight")) next = panBy(domain, full, (key === "ArrowLeft" ? -0.2 : 0.2) * (domain.to - domain.from));
+      else if (e.altKey && key === "Home") {
+        resetZoom();
+        e.preventDefault();
+        return;
+      }
+      if (next) {
+        setZoom(next);
+        e.preventDefault();
+        return;
+      }
+    }
     const cur = cursor ?? stamps[0];
     const idx = nearest(stamps.map((t) => [t, 0]), cur);
     const go = (i) => {
@@ -378,11 +588,16 @@ function TimeSeriesChart({
   const onKeyUp = (e) => {
     if (e.key === "Shift") anchor.current = null;
   };
-  const resetZoom = () => full && setZoom({ ...full });
+  function resetZoom() {
+    setManualPause(false);
+    if (liveOn) setZoom(null);
+    else if (full) setZoom({ ...full });
+    sync?.publishRange(null);
+  }
   const toggle = (id) => setHidden(hidden.includes(id) ? hidden.filter((h) => h !== id) : [...hidden, id]);
   const unitFor = (u) => (v) => formatUnit(format, u, v);
   const axisUnit = (axis) => units[axis] ?? units[0] ?? "count";
-  const tip = React__namespace.useMemo(() => {
+  const tip = React3__namespace.useMemo(() => {
     if (cursor === null || !stamps.length) return null;
     const t = stamps[nearest(stamps.map((s) => [s, 0]), cursor)];
     const rows = shown.map((s, i) => {
@@ -413,10 +628,11 @@ function TimeSeriesChart({
   const tableRows = stamps.length > maxTableRows ? stamps.filter((_, i) => i % Math.ceil(stamps.length / maxTableRows) === 0) : stamps;
   const tableId = `${uid}-table`;
   const hintId = `${uid}-hint`;
+  const zoomHintId = `${uid}-zoomhint`;
   const empty = !loading && (!domain || series.every((s) => s.points.length === 0));
   const tipLeft = tip ? MARGIN.left + x(tip.t) : 0;
   return /* @__PURE__ */ jsxRuntime.jsxs("figure", { "aria-label": label, "aria-busy": loading || void 0, "data-animate": motion.enabled ? "on" : "off", className: chunkFTHFEMX6_cjs.cn("m-0 grid grid-cols-1 gap-2", className), children: [
-    /* @__PURE__ */ jsxRuntime.jsx("div", { ref: wrap, className: "relative min-w-0", style: { height, ...chunkBAOO6ECK_cjs.motionVars(motion) }, children: loading ? /* @__PURE__ */ jsxRuntime.jsx("div", { role: "status", "aria-label": l.loading, className: "size-full animate-pulse rounded-sm bg-muted-bg" }) : empty ? /* @__PURE__ */ jsxRuntime.jsx("div", { className: "grid size-full place-items-center text-sm text-muted", children: l.noData }) : /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
+    /* @__PURE__ */ jsxRuntime.jsx("div", { ref: wrap, className: "relative min-w-0", style: { height, ...chunkTDOSI6VH_cjs.motionVars(motion) }, children: loading ? /* @__PURE__ */ jsxRuntime.jsx("div", { role: "status", "aria-label": l.loading, className: "size-full animate-pulse rounded-sm bg-muted-bg" }) : empty ? /* @__PURE__ */ jsxRuntime.jsx("div", { className: "grid size-full place-items-center text-sm text-muted", children: l.noData }) : /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
       /* @__PURE__ */ jsxRuntime.jsx(
         "svg",
         {
@@ -425,18 +641,23 @@ function TimeSeriesChart({
           height,
           role: "img",
           "aria-label": label,
-          "aria-describedby": tipOn ? `${hintId} ${tipId}` : hintId,
+          "aria-describedby": tipOn ? `${hintId} ${zoomHintId} ${tipId}` : `${hintId} ${zoomHintId}`,
           tabIndex: 0,
           className: "touch-none text-muted select-none focus-visible:outline-2 focus-visible:outline-primary",
           onPointerDown,
           onPointerMove,
           onPointerUp,
+          onPointerCancel: onPointerUp,
+          onDoubleClick: () => (zoomed || zoom !== null) && resetZoom(),
+          onPointerEnter: (e) => e.pointerType !== "touch" && setHolding(true),
+          onFocus: () => setHolding(true),
           onPointerLeave: (e) => {
-            if (!drag.current && e.pointerType !== "touch") setCursor(null), setPtrY(null);
+            if (!drag.current && e.pointerType !== "touch") setCursor(null), setPtrY(null), setHolding(false);
           },
           onKeyDown,
           onKeyUp,
           onBlur: () => {
+            setHolding(false);
             setKbd(false);
             anchor.current = null;
           },
@@ -460,7 +681,7 @@ function TimeSeriesChart({
               const rows = stackedRows ?? [];
               const lo = lerp(`${s.id}:lo`, rows.map((d) => ys[0](d.layers[i][0])));
               const hi = lerp(`${s.id}:hi`, rows.map((d) => ys[0](d.layers[i][1])));
-              const enter = chunkBAOO6ECK_cjs.entryAnim(motion, "reveal", i);
+              const enter = chunkTDOSI6VH_cjs.entryAnim(motion, "reveal", i);
               return /* @__PURE__ */ jsxRuntime.jsx(
                 shape.Area,
                 {
@@ -471,7 +692,7 @@ function TimeSeriesChart({
                   fill: "currentColor",
                   fillOpacity: 0.45,
                   stroke: "currentColor",
-                  className: chunkFTHFEMX6_cjs.cn(SERIES_TONES[series.indexOf(s) % 4], chunkBAOO6ECK_cjs.tweenClass(motion), enter.className, emph !== null && emph !== s.id && "opacity-40"),
+                  className: chunkFTHFEMX6_cjs.cn(SERIES_TONES[series.indexOf(s) % 4], chunkTDOSI6VH_cjs.tweenClass(motion), enter.className, emph !== null && emph !== s.id && "opacity-40"),
                   style: enter.style
                 },
                 s.id
@@ -481,9 +702,9 @@ function TimeSeriesChart({
               const ys_ = ys[axisOf(s.unit)];
               const tone = SERIES_TONES[si % 4];
               const py = lerp(s.id, lines[i].map((d) => d[1] === null ? 0 : ys_(d[1])));
-              const enter = chunkBAOO6ECK_cjs.entryAnim(motion, "reveal", i);
-              const fade = chunkBAOO6ECK_cjs.entryAnim(motion, "fade", i);
-              return /* @__PURE__ */ jsxRuntime.jsxs("g", { className: chunkFTHFEMX6_cjs.cn(tone, chunkBAOO6ECK_cjs.tweenClass(motion), enter.className, emph !== null && emph !== s.id && "opacity-30"), style: enter.style, "data-series": s.id, children: [
+              const enter = chunkTDOSI6VH_cjs.entryAnim(motion, "reveal", i);
+              const fade = chunkTDOSI6VH_cjs.entryAnim(motion, "fade", i);
+              return /* @__PURE__ */ jsxRuntime.jsxs("g", { className: chunkFTHFEMX6_cjs.cn(tone, chunkTDOSI6VH_cjs.tweenClass(motion), enter.className, emph !== null && emph !== s.id && "opacity-30"), style: enter.style, "data-series": s.id, children: [
                 type === "area" && /* @__PURE__ */ jsxRuntime.jsx(
                   shape.Area,
                   {
@@ -526,13 +747,14 @@ function TimeSeriesChart({
         }
       ),
       /* @__PURE__ */ jsxRuntime.jsx("span", { id: hintId, className: "sr-only", children: l.keyboardHint }),
-      tipOn && /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.ChartTooltipFor, { option: tooltip, ctx: tipCtx, x: tipLeft, y: MARGIN.top + 4, id: tipId, container: wrap, placement: "side" }),
+      /* @__PURE__ */ jsxRuntime.jsx("span", { id: zoomHintId, className: "sr-only", children: l.zoomHint }),
+      tipOn && /* @__PURE__ */ jsxRuntime.jsx(chunkTDOSI6VH_cjs.ChartTooltipFor, { option: tooltip, ctx: tipCtx, x: tipLeft, y: MARGIN.top + 4, id: tipId, container: wrap, placement: "side" }),
       /* @__PURE__ */ jsxRuntime.jsx("span", { className: "sr-only", "aria-live": "polite", children: kbd ? tipText : "" })
     ] }) }),
     /* @__PURE__ */ jsxRuntime.jsxs("figcaption", { className: "flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-muted", children: [
       legend && /* @__PURE__ */ jsxRuntime.jsx("div", { role: "group", "aria-label": l.legend, className: "flex flex-wrap gap-x-3 gap-y-1", children: series.map((s, si) => {
         const on = !hidden.includes(s.id);
-        return /* @__PURE__ */ jsxRuntime.jsx(React__namespace.Fragment, { children: /* @__PURE__ */ jsxRuntime.jsxs(
+        return /* @__PURE__ */ jsxRuntime.jsx(React3__namespace.Fragment, { children: /* @__PURE__ */ jsxRuntime.jsxs(
           "button",
           {
             type: "button",
@@ -551,7 +773,12 @@ function TimeSeriesChart({
         ) }, s.id);
       }) }),
       /* @__PURE__ */ jsxRuntime.jsxs("span", { className: "ms-auto inline-flex items-center gap-3", children: [
-        zoomed && /* @__PURE__ */ jsxRuntime.jsx("button", { type: "button", className: "cursor-pointer border-0 bg-transparent p-0 text-xs text-primary hover:underline", onClick: resetZoom, children: l.resetZoom }),
+        liveOn && /* @__PURE__ */ jsxRuntime.jsxs("span", { "data-live": paused ? "paused" : "running", className: "inline-flex items-center gap-1.5", children: [
+          /* @__PURE__ */ jsxRuntime.jsx("span", { "aria-hidden": true, className: chunkFTHFEMX6_cjs.cn("size-2 rounded-full", paused ? "bg-muted" : "bg-ok") }),
+          paused ? l.paused : l.live,
+          stickyPause ? /* @__PURE__ */ jsxRuntime.jsx("button", { type: "button", className: "cursor-pointer border-0 bg-transparent p-0 text-xs text-primary hover:underline", onClick: resetZoom, children: l.resume }) : !paused && /* @__PURE__ */ jsxRuntime.jsx("button", { type: "button", className: "cursor-pointer border-0 bg-transparent p-0 text-xs text-primary hover:underline", onClick: () => setManualPause(true), children: l.pause })
+        ] }),
+        zoomed && !liveOn && /* @__PURE__ */ jsxRuntime.jsx("button", { type: "button", className: "cursor-pointer border-0 bg-transparent p-0 text-xs text-primary hover:underline", onClick: resetZoom, children: l.resetZoom }),
         /* @__PURE__ */ jsxRuntime.jsx("button", { type: "button", "aria-expanded": showTable, "aria-controls": tableId, className: "cursor-pointer border-0 bg-transparent p-0 text-xs text-primary hover:underline", onClick: () => setShowTable((v) => !v), children: showTable ? l.hideData : l.showData })
       ] })
     ] }),
@@ -583,14 +810,14 @@ function StackedBarChart({
   tooltip = true,
   className
 }) {
-  const { t } = chunkBAOO6ECK_cjs.useChartLaf();
+  const { t } = chunk66X4PO5P_cjs.useChartLaf();
   const c = t.components.dashboard.chart;
-  const motion = chunkBAOO6ECK_cjs.useChartMotion(animate);
-  const box = React__namespace.useRef(null);
-  const hintId = React__namespace.useId();
-  const tipId = React__namespace.useId();
+  const motion = chunkTDOSI6VH_cjs.useChartMotion(animate);
+  const box = React3__namespace.useRef(null);
+  const hintId = React3__namespace.useId();
+  const tipId = React3__namespace.useId();
   const cells = data.flatMap((d, ri) => d.values.map((v, si) => ({ ri, si, v })));
-  const nav = chunkBAOO6ECK_cjs.useActiveIndex(cells.length, box);
+  const nav = chunk66X4PO5P_cjs.useActiveIndex(cells.length, box);
   const nameW = 96;
   const gap = 8;
   const rowH = barHeight + gap;
@@ -608,7 +835,7 @@ function StackedBarChart({
   const ctx = cur ? { point: { label: segName, x: data[cur.ri].name, value: cur.v, formatted: formatValue(cur.v) }, index: nav.active, series: [{ id: String(cur.si), name: String(series[cur.si]), value: cur.v, formatted: formatValue(cur.v), tone: TONES[cur.si % TONES.length] }] } : null;
   const tipOn = !!ctx && tooltip !== false;
   return /* @__PURE__ */ jsxRuntime.jsxs("figure", { "aria-label": label, "data-animate": motion.enabled ? "on" : "off", className: chunkFTHFEMX6_cjs.cn("m-0 grid gap-2", className), children: [
-    /* @__PURE__ */ jsxRuntime.jsxs("div", { ref: box, className: "relative", style: chunkBAOO6ECK_cjs.motionVars(motion), children: [
+    /* @__PURE__ */ jsxRuntime.jsxs("div", { ref: box, className: "relative", style: chunkTDOSI6VH_cjs.motionVars(motion), children: [
       /* @__PURE__ */ jsxRuntime.jsx(
         "svg",
         {
@@ -631,7 +858,7 @@ function StackedBarChart({
                 const x0 = x(acc);
                 acc += v;
                 const flat = cells.findIndex((cc) => cc.ri === ri && cc.si === i);
-                const enter = chunkBAOO6ECK_cjs.entryAnim(motion, "grow-x", ri);
+                const enter = chunkTDOSI6VH_cjs.entryAnim(motion, "grow-x", ri);
                 return /* @__PURE__ */ jsxRuntime.jsx(
                   shape.Bar,
                   {
@@ -640,7 +867,7 @@ function StackedBarChart({
                     width: Math.max(x(acc) - x0, 0),
                     height: barHeight,
                     fill: "currentColor",
-                    className: chunkFTHFEMX6_cjs.cn(TONES[i % TONES.length], chunkBAOO6ECK_cjs.tweenClass(motion), enter.className, nav.active !== null && nav.active !== flat && "opacity-40"),
+                    className: chunkFTHFEMX6_cjs.cn(TONES[i % TONES.length], chunkTDOSI6VH_cjs.tweenClass(motion), enter.className, nav.active !== null && nav.active !== flat && "opacity-40"),
                     style: enter.style,
                     onPointerEnter: () => (nav.setKeyboard(false), nav.setActive(flat)),
                     onPointerDown: () => (nav.setKeyboard(false), nav.setActive(flat)),
@@ -654,7 +881,7 @@ function StackedBarChart({
           })
         }
       ),
-      tipOn && /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.ChartTooltipFor, { option: tooltip, ctx, x: tipX, y: (cur.ri + 0.5) * rowH, id: tipId, container: box }),
+      tipOn && /* @__PURE__ */ jsxRuntime.jsx(chunkTDOSI6VH_cjs.ChartTooltipFor, { option: tooltip, ctx, x: tipX, y: (cur.ri + 0.5) * rowH, id: tipId, container: box }),
       /* @__PURE__ */ jsxRuntime.jsx("span", { id: hintId, className: "sr-only", children: c.keyboardHint })
     ] }),
     /* @__PURE__ */ jsxRuntime.jsx("div", { className: "sr-only", role: "status", "aria-live": "polite", children: nav.keyboard && cur ? `${segName}: ${formatValue(cur.v)}` : "" }),
@@ -677,16 +904,16 @@ function Heatmap({
   tooltip = true,
   className
 }) {
-  const motion = chunkBAOO6ECK_cjs.useChartMotion(animate);
-  const box = React__namespace.useRef(null);
-  const tipId = React__namespace.useId();
-  const [tip, setTip] = React__namespace.useState(null);
-  chunkBAOO6ECK_cjs.useTooltipDismiss(tip !== null, box, () => setTip(null));
+  const motion = chunkTDOSI6VH_cjs.useChartMotion(animate);
+  const box = React3__namespace.useRef(null);
+  const tipId = React3__namespace.useId();
+  const [tip, setTip] = React3__namespace.useState(null);
+  chunkTDOSI6VH_cjs.useTooltipDismiss(tip !== null, box, () => setTip(null));
   const top = max ?? Math.max(...values.flat(), 1);
   const headW = 96;
   const headH = 20;
-  const [active, setActive] = React__namespace.useState([0, 0]);
-  const refs = React__namespace.useRef(/* @__PURE__ */ new Map());
+  const [active, setActive] = React3__namespace.useState([0, 0]);
+  const refs = React3__namespace.useRef(/* @__PURE__ */ new Map());
   const move = (r, c) => {
     const nr = Math.min(rows.length - 1, Math.max(0, r));
     const nc = Math.min(columns.length - 1, Math.max(0, c));
@@ -711,7 +938,7 @@ function Heatmap({
   const tipValue = tip ? values[tip[0]]?.[tip[1]] ?? 0 : 0;
   const ctx = tip ? { point: { label: `${rows[tip[0]]} \xB7 ${columns[tip[1]]}`, x: columns[tip[1]], value: tipValue, formatted: formatValue(tipValue) }, index: tip[0] * columns.length + tip[1], series: [{ id: `${tip[0]}:${tip[1]}`, name: String(rows[tip[0]]), value: tipValue, formatted: formatValue(tipValue), tone: "text-primary" }] } : null;
   const tipOn = !!ctx && tooltip !== false;
-  return /* @__PURE__ */ jsxRuntime.jsxs("div", { ref: box, className: "relative inline-block max-w-full align-top", style: chunkBAOO6ECK_cjs.motionVars(motion), "data-animate": motion.enabled ? "on" : "off", children: [
+  return /* @__PURE__ */ jsxRuntime.jsxs("div", { ref: box, className: "relative inline-block max-w-full align-top", style: chunkTDOSI6VH_cjs.motionVars(motion), "data-animate": motion.enabled ? "on" : "off", children: [
     /* @__PURE__ */ jsxRuntime.jsxs(
       "svg",
       {
@@ -759,8 +986,8 @@ function Heatmap({
                         rx: 2,
                         fill: "currentColor",
                         fillOpacity: 0.1 + 0.9 * Math.min(v / top, 1),
-                        className: chunkFTHFEMX6_cjs.cn(chunkBAOO6ECK_cjs.tweenClass(motion), chunkBAOO6ECK_cjs.entryAnim(motion, "fade", ri + ci).className, tip && !(tip[0] === ri && tip[1] === ci) && "opacity-60"),
-                        style: chunkBAOO6ECK_cjs.entryAnim(motion, "fade", ri + ci).style
+                        className: chunkFTHFEMX6_cjs.cn(chunkTDOSI6VH_cjs.tweenClass(motion), chunkTDOSI6VH_cjs.entryAnim(motion, "fade", ri + ci).className, tip && !(tip[0] === ri && tip[1] === ci) && "opacity-60"),
+                        style: chunkTDOSI6VH_cjs.entryAnim(motion, "fade", ri + ci).style
                       }
                     )
                   ]
@@ -772,11 +999,11 @@ function Heatmap({
         ]
       }
     ),
-    tipOn && /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.ChartTooltipFor, { option: tooltip, ctx, x: headW + tip[1] * cell + cell / 2, y: headH + tip[0] * cell, id: tipId, container: box })
+    tipOn && /* @__PURE__ */ jsxRuntime.jsx(chunkTDOSI6VH_cjs.ChartTooltipFor, { option: tooltip, ctx, x: headW + tip[1] * cell + cell / 2, y: headH + tip[0] * cell, id: tipId, container: box })
   ] });
 }
 var lafDefaults2 = { charts: chartsEn };
-var useLaf2 = () => chunkRDHTRBBP_cjs.useLafDefaults(lafDefaults2);
+var useLaf2 = () => chunkSCEXK6L4_cjs.useLafDefaults(lafDefaults2);
 var UNIT_MS = { m: 6e4, h: 36e5, d: 864e5 };
 function presetToMs(preset) {
   const m = /^(\d+)([mhd])$/.exec(preset);
@@ -809,24 +1036,24 @@ function PerfPanel({
 }) {
   const { format, t: laf } = useLaf2();
   const l = { ...laf.components.charts.perfPanel, ...labelsProp };
-  const [selected, setSelected] = chunkRNP4RJYX_cjs.useControllableState({
+  const [selected, setSelected] = chunkI2W5ZNMR_cjs.useControllableState({
     value: selectedProp,
     defaultValue: metrics.length ? [metrics[0].id] : [],
     onChange: onSelectedChange
   });
-  const [preset, setPreset] = chunkRNP4RJYX_cjs.useControllableState({ value: rangeProp, defaultValue: presets.includes("1h") ? "1h" : presets[0], onChange: onTimeRangeChange });
-  const [custom, setCustom] = React__namespace.useState();
-  const newest = React__namespace.useMemo(() => nowProp ?? metrics.reduce((m, s) => s.points.reduce((a, p) => Math.max(a, p[0]), m), -Infinity), [metrics, nowProp]);
-  const win = React__namespace.useMemo(() => {
+  const [preset, setPreset] = chunkI2W5ZNMR_cjs.useControllableState({ value: rangeProp, defaultValue: presets.includes("1h") ? "1h" : presets[0], onChange: onTimeRangeChange });
+  const [custom, setCustom] = React3__namespace.useState();
+  const newest = React3__namespace.useMemo(() => nowProp ?? metrics.reduce((m, s) => s.points.reduce((a, p) => Math.max(a, p[0]), m), -Infinity), [metrics, nowProp]);
+  const win = React3__namespace.useMemo(() => {
     if (preset === "custom" && custom) return custom;
     const ms = presetToMs(preset);
     return ms && Number.isFinite(newest) ? { from: newest - ms, to: newest } : void 0;
   }, [preset, custom, newest]);
-  const options = React__namespace.useMemo(() => metrics.map((m) => ({ value: m.id, label: m.name, group: m.group })), [metrics]);
-  const chosen = React__namespace.useMemo(() => options.filter((o) => selected.includes(o.value)), [options, selected]);
-  const active = React__namespace.useMemo(() => metrics.filter((m) => selected.includes(m.id)), [metrics, selected]);
+  const options = React3__namespace.useMemo(() => metrics.map((m) => ({ value: m.id, label: m.name, group: m.group })), [metrics]);
+  const chosen = React3__namespace.useMemo(() => options.filter((o) => selected.includes(o.value)), [options, selected]);
+  const active = React3__namespace.useMemo(() => metrics.filter((m) => selected.includes(m.id)), [metrics, selected]);
   const inWin = (t) => !win || t >= win.from && t <= win.to;
-  const stats = React__namespace.useMemo(
+  const stats = React3__namespace.useMemo(
     () => active.map((m) => {
       const vs = m.points.filter(([t, v]) => v !== null && inWin(t)).map((p) => p[1]);
       if (!vs.length) return { m, empty: true };
@@ -853,7 +1080,7 @@ function PerfPanel({
   return /* @__PURE__ */ jsxRuntime.jsxs("section", { "aria-label": label, className: chunkFTHFEMX6_cjs.cn("grid gap-3", className), children: [
     /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex flex-wrap items-center gap-3", children: [
       /* @__PURE__ */ jsxRuntime.jsx(
-        chunkBAOO6ECK_cjs.Combobox,
+        chunkTDOSI6VH_cjs.Combobox,
         {
           multiple: true,
           label: l.metrics,
@@ -864,7 +1091,7 @@ function PerfPanel({
           className: "min-w-56"
         }
       ),
-      /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.TimeRangePicker, { value: preset, onChange: setPreset, presets, range: win, onRangeChange: zoomTo, showTimeZone: true }),
+      /* @__PURE__ */ jsxRuntime.jsx(chunkTDOSI6VH_cjs.TimeRangePicker, { value: preset, onChange: setPreset, presets, range: win, onRangeChange: zoomTo, showTimeZone: true }),
       /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { variant: "ghost", size: "sm", className: "ms-auto", onClick: doExport, disabled: !active.length, children: l.exportCsv })
     ] }),
     active.length || loading ? /* @__PURE__ */ jsxRuntime.jsx(TimeSeriesChart, { label, series: active, type, thresholds, height, loading, range: win, onRangeChange: zoomTo }) : /* @__PURE__ */ jsxRuntime.jsx("p", { className: "m-0 text-sm text-muted", children: l.noMetrics }),
@@ -889,16 +1116,16 @@ function LineChart(props) {
 var M = { top: 8, right: 12, bottom: 24, left: 44 };
 var tick = { fill: "currentColor", fontSize: 10 };
 function BarChart({ categories, series, stacked, orientation = "vertical", formatValue = (v) => String(Math.round(v * 10) / 10), label, height = 240, width: widthProp, legend = true, animate, tooltip = true, loading, error, onRetry, className }) {
-  const { t } = chunkBAOO6ECK_cjs.useChartLaf();
+  const { t } = chunk66X4PO5P_cjs.useChartLaf();
   const c = t.components.dashboard.chart;
-  const [wrap, width] = chunkBAOO6ECK_cjs.useChartWidth(widthProp);
-  const [hidden, setHidden] = React__namespace.useState([]);
-  const svgRef = React__namespace.useRef(null);
-  const hintId = React__namespace.useId();
-  const nav = chunkBAOO6ECK_cjs.useActiveIndex(categories.length, wrap);
-  const motion = chunkBAOO6ECK_cjs.useChartMotion(animate);
-  const [emph, setEmph] = React__namespace.useState(null);
-  const tipId = React__namespace.useId();
+  const [wrap, width] = chunk66X4PO5P_cjs.useChartWidth(widthProp);
+  const [hidden, setHidden] = React3__namespace.useState([]);
+  const svgRef = React3__namespace.useRef(null);
+  const hintId = React3__namespace.useId();
+  const nav = chunk66X4PO5P_cjs.useActiveIndex(categories.length, wrap);
+  const motion = chunkTDOSI6VH_cjs.useChartMotion(animate);
+  const [emph, setEmph] = React3__namespace.useState(null);
+  const tipId = React3__namespace.useId();
   const horizontal = orientation === "horizontal";
   const margin = { ...M, left: horizontal ? 72 : M.left };
   const shown = series.filter((s) => !hidden.includes(s.id));
@@ -911,7 +1138,7 @@ function BarChart({ categories, series, stacked, orientation = "vertical", forma
   const band = scale.scaleBand({ domain: categories, range: [0, along], padding: 0.25 });
   const inner = scale.scaleBand({ domain: shown.map((s) => s.id), range: [0, band.bandwidth()], padding: 0.1 });
   const val = scale.scaleLinear({ domain: [0, maxV], range: horizontal ? [0, across] : [across, 0], nice: true });
-  const tones = (s) => chunkBAOO6ECK_cjs.chartTone(series.indexOf(s));
+  const tones = (s) => chunk66X4PO5P_cjs.chartTone(series.indexOf(s));
   const rects = categories.flatMap((cat2, ci) => {
     let acc = 0;
     return shown.map((s, si) => {
@@ -956,9 +1183,9 @@ function BarChart({ categories, series, stacked, orientation = "vertical", forma
     nav.setKeyboard(false);
     nav.setActive(i >= 0 && i < categories.length ? i : null);
   };
-  const legendItems = series.map((s, i) => ({ id: s.id, name: s.name, tone: chunkBAOO6ECK_cjs.chartTone(i) }));
+  const legendItems = series.map((s, i) => ({ id: s.id, name: s.name, tone: chunk66X4PO5P_cjs.chartTone(i) }));
   return /* @__PURE__ */ jsxRuntime.jsx(
-    chunkBAOO6ECK_cjs.ChartFrame,
+    chunk66X4PO5P_cjs.ChartFrame,
     {
       label,
       className,
@@ -970,7 +1197,7 @@ function BarChart({ categories, series, stacked, orientation = "vertical", forma
       onRetry,
       empty: !categories.length || !series.length,
       announce: nav.keyboard ? announce : "",
-      legend: legend && /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.ChartLegend, { items: legendItems, hidden, onHover: setEmph, onToggle: (id) => setHidden((h) => h.includes(id) ? h.filter((x) => x !== id) : [...h, id]) }),
+      legend: legend && /* @__PURE__ */ jsxRuntime.jsx(chunk66X4PO5P_cjs.ChartLegend, { items: legendItems, hidden, onHover: setEmph, onToggle: (id) => setHidden((h) => h.includes(id) ? h.filter((x) => x !== id) : [...h, id]) }),
       table: { head: [c.category, ...series.map((s) => s.name)], rows: categories.map((name, i) => [name, ...series.map((s) => formatValue(s.data[i] ?? 0))]) },
       plot: /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
         /* @__PURE__ */ jsxRuntime.jsx(
@@ -983,7 +1210,7 @@ function BarChart({ categories, series, stacked, orientation = "vertical", forma
             "aria-label": label,
             "aria-describedby": tipOn ? `${hintId} ${tipId}` : hintId,
             tabIndex: 0,
-            style: chunkBAOO6ECK_cjs.motionVars(motion),
+            style: chunkTDOSI6VH_cjs.motionVars(motion),
             className: "text-muted outline-none select-none focus-visible:outline-2 focus-visible:outline-primary",
             onKeyDown: nav.onKeyDown,
             onBlur: nav.onBlur,
@@ -994,9 +1221,9 @@ function BarChart({ categories, series, stacked, orientation = "vertical", forma
               val.ticks(4).map((tv) => /* @__PURE__ */ jsxRuntime.jsx("line", { x1: horizontal ? val(tv) : 0, x2: horizontal ? val(tv) : innerW, y1: horizontal ? 0 : val(tv), y2: horizontal ? innerH : val(tv), stroke: "var(--border)" }, tv)),
               nav.active !== null && /* @__PURE__ */ jsxRuntime.jsx("rect", { "data-active": categories[nav.active], x: horizontal ? 0 : band(categories[nav.active]) - 2, y: horizontal ? band(categories[nav.active]) - 2 : 0, width: horizontal ? innerW : band.bandwidth() + 4, height: horizontal ? band.bandwidth() + 4 : innerH, fill: "var(--bg-muted)", opacity: 0.6 }),
               rects.map((r) => {
-                const enter = chunkBAOO6ECK_cjs.entryAnim(motion, horizontal ? "grow-x" : "grow-y", r.ci);
+                const enter = chunkTDOSI6VH_cjs.entryAnim(motion, horizontal ? "grow-x" : "grow-y", r.ci);
                 const dim = nav.active !== null && nav.active !== r.ci || emph !== null && emph !== r.s.id;
-                return /* @__PURE__ */ jsxRuntime.jsx("rect", { "data-bar": r.key, x: r.x, y: r.y, width: Math.max(r.w, 0), height: Math.max(r.h, 0), rx: 1, fill: "currentColor", className: chunkFTHFEMX6_cjs.cn(tones(r.s), chunkBAOO6ECK_cjs.tweenClass(motion), enter.className, dim && "opacity-40"), style: enter.style }, r.key);
+                return /* @__PURE__ */ jsxRuntime.jsx("rect", { "data-bar": r.key, x: r.x, y: r.y, width: Math.max(r.w, 0), height: Math.max(r.h, 0), rx: 1, fill: "currentColor", className: chunkFTHFEMX6_cjs.cn(tones(r.s), chunkTDOSI6VH_cjs.tweenClass(motion), enter.className, dim && "opacity-40"), style: enter.style }, r.key);
               }),
               horizontal ? /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
                 /* @__PURE__ */ jsxRuntime.jsx(axis.AxisLeft, { scale: band, stroke: "var(--border-strong)", tickStroke: "var(--border-strong)", tickLabelProps: { ...tick, textAnchor: "end", dy: "0.33em" } }),
@@ -1008,30 +1235,30 @@ function BarChart({ categories, series, stacked, orientation = "vertical", forma
             ] })
           }
         ),
-        tipOn && /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.ChartTooltipFor, { option: tooltip, ctx, x: tipX, y: tipY, id: tipId, container: wrap }),
+        tipOn && /* @__PURE__ */ jsxRuntime.jsx(chunkTDOSI6VH_cjs.ChartTooltipFor, { option: tooltip, ctx, x: tipX, y: tipY, id: tipId, container: wrap }),
         /* @__PURE__ */ jsxRuntime.jsx("span", { id: hintId, className: "sr-only", children: c.keyboardHint })
       ] })
     }
   );
 }
 function DonutChart({ data, centerLabel, centerValue, formatValue = (v) => String(Math.round(v * 10) / 10), label, size = 200, thickness = 28, legend = true, animate, tooltip = true, loading, error, onRetry, className }) {
-  const { t, format } = chunkBAOO6ECK_cjs.useChartLaf();
+  const { t, format } = chunk66X4PO5P_cjs.useChartLaf();
   const c = t.components.dashboard.chart;
-  const [hidden, setHidden] = React__namespace.useState([]);
+  const [hidden, setHidden] = React3__namespace.useState([]);
   const shown = data.filter((d) => !hidden.includes(d.id) && d.value > 0);
   const total = shown.reduce((a, d) => a + d.value, 0);
-  const box = React__namespace.useRef(null);
-  const nav = chunkBAOO6ECK_cjs.useActiveIndex(shown.length, box);
-  const motion = chunkBAOO6ECK_cjs.useChartMotion(animate);
-  const tweened = chunkBAOO6ECK_cjs.useTweenedNumbers(shown.map((d) => d.value), motion);
+  const box = React3__namespace.useRef(null);
+  const nav = chunk66X4PO5P_cjs.useActiveIndex(shown.length, box);
+  const motion = chunkTDOSI6VH_cjs.useChartMotion(animate);
+  const tweened = chunkTDOSI6VH_cjs.useTweenedNumbers(shown.map((d) => d.value), motion);
   const drawn = shown.map((d, i) => ({ ...d, value: tweened[i] ?? d.value }));
-  const hintId = React__namespace.useId();
-  const tipId = React__namespace.useId();
-  const maskId = `${React__namespace.useId().replace(/:/g, "")}-sweep`;
+  const hintId = React3__namespace.useId();
+  const tipId = React3__namespace.useId();
+  const maskId = `${React3__namespace.useId().replace(/:/g, "")}-sweep`;
   const r = size / 2;
   const line = (d) => `${d.name}: ${formatValue(d.value)} (${format.percent(total ? d.value / total : 0, { fractionDigits: 1 })})`;
   const active = nav.active === null ? null : shown[nav.active];
-  const toneOf = (d) => chunkBAOO6ECK_cjs.chartTone(data.findIndex((x) => x.id === d.id));
+  const toneOf = (d) => chunk66X4PO5P_cjs.chartTone(data.findIndex((x) => x.id === d.id));
   const share = (d) => format.percent(total ? d.value / total : 0, { fractionDigits: 1 });
   const ctx = active ? { point: { label: active.name, x: active.id, value: active.value, formatted: formatValue(active.value) }, index: nav.active, series: [{ id: active.id, name: c.value, value: active.value, formatted: `${formatValue(active.value)} (${share(active)})`, tone: toneOf(active) }] } : null;
   const tipOn = !!ctx && tooltip !== false;
@@ -1039,9 +1266,9 @@ function DonutChart({ data, centerLabel, centerValue, formatValue = (v) => Strin
   for (let i = 0; i < (nav.active ?? 0); i++) before += shown[i].value;
   const mid = active && total ? (before + active.value / 2) / total * 2 * Math.PI : 0;
   const rm = r - thickness / 2;
-  const legendItems = data.map((d, i) => ({ id: d.id, name: d.name, tone: chunkBAOO6ECK_cjs.chartTone(i), value: formatValue(d.value) }));
+  const legendItems = data.map((d, i) => ({ id: d.id, name: d.name, tone: chunk66X4PO5P_cjs.chartTone(i), value: formatValue(d.value) }));
   return /* @__PURE__ */ jsxRuntime.jsx(
-    chunkBAOO6ECK_cjs.ChartFrame,
+    chunk66X4PO5P_cjs.ChartFrame,
     {
       label,
       className,
@@ -1052,9 +1279,9 @@ function DonutChart({ data, centerLabel, centerValue, formatValue = (v) => Strin
       onRetry,
       empty: !data.length || data.every((d) => d.value <= 0),
       announce: nav.keyboard && active ? line(active) : "",
-      legend: legend && /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.ChartLegend, { items: legendItems, hidden, onToggle: (id) => setHidden((h) => h.includes(id) ? h.filter((x) => x !== id) : [...h, id]) }),
+      legend: legend && /* @__PURE__ */ jsxRuntime.jsx(chunk66X4PO5P_cjs.ChartLegend, { items: legendItems, hidden, onToggle: (id) => setHidden((h) => h.includes(id) ? h.filter((x) => x !== id) : [...h, id]) }),
       table: { head: [c.category, c.value, c.share], rows: data.map((d) => [d.name, formatValue(d.value), format.percent(total ? d.value / total : 0, { fractionDigits: 1 })]) },
-      plot: /* @__PURE__ */ jsxRuntime.jsxs("div", { ref: box, className: "relative mx-auto", style: { width: size, height: size, ...chunkBAOO6ECK_cjs.motionVars(motion) }, children: [
+      plot: /* @__PURE__ */ jsxRuntime.jsxs("div", { ref: box, className: "relative mx-auto", style: { width: size, height: size, ...chunkTDOSI6VH_cjs.motionVars(motion) }, children: [
         /* @__PURE__ */ jsxRuntime.jsxs(
           "svg",
           {
@@ -1069,13 +1296,13 @@ function DonutChart({ data, centerLabel, centerValue, formatValue = (v) => Strin
             onBlur: nav.onBlur,
             onPointerLeave: (e) => e.pointerType !== "touch" && !nav.keyboard && nav.setActive(null),
             children: [
-              motion.enabled && /* @__PURE__ */ jsxRuntime.jsx("defs", { children: /* @__PURE__ */ jsxRuntime.jsx("mask", { id: maskId, children: /* @__PURE__ */ jsxRuntime.jsx("circle", { r: r / 2, cx: r, cy: r, fill: "none", stroke: "white", strokeWidth: r + 4, pathLength: 100, strokeDasharray: "100 100", transform: `rotate(-90 ${r} ${r})`, ...chunkBAOO6ECK_cjs.entryAnim(motion, "sweep") }) }) }),
+              motion.enabled && /* @__PURE__ */ jsxRuntime.jsx("defs", { children: /* @__PURE__ */ jsxRuntime.jsx("mask", { id: maskId, children: /* @__PURE__ */ jsxRuntime.jsx("circle", { r: r / 2, cx: r, cy: r, fill: "none", stroke: "white", strokeWidth: r + 4, pathLength: 100, strokeDasharray: "100 100", transform: `rotate(-90 ${r} ${r})`, ...chunkTDOSI6VH_cjs.entryAnim(motion, "sweep") }) }) }),
               /* @__PURE__ */ jsxRuntime.jsx("g", { transform: `translate(${r} ${r})`, mask: motion.enabled ? `url(#${maskId})` : void 0, children: /* @__PURE__ */ jsxRuntime.jsx(shape.Pie, { data: drawn, pieValue: (d) => d.value, outerRadius: r - 2, innerRadius: r - thickness, padAngle: shown.length > 1 ? 0.02 : 0, pieSort: null, children: (pie) => pie.arcs.map((arc, i) => /* @__PURE__ */ jsxRuntime.jsx(
                 "path",
                 {
                   d: pie.path(arc) ?? void 0,
                   fill: "currentColor",
-                  className: chunkFTHFEMX6_cjs.cn(toneOf(arc.data), chunkBAOO6ECK_cjs.tweenClass(motion), nav.active !== null && nav.active !== i && "opacity-40"),
+                  className: chunkFTHFEMX6_cjs.cn(toneOf(arc.data), chunkTDOSI6VH_cjs.tweenClass(motion), nav.active !== null && nav.active !== i && "opacity-40"),
                   onPointerEnter: () => (nav.setKeyboard(false), nav.setActive(i)),
                   onPointerDown: () => (nav.setKeyboard(false), nav.setActive(i))
                 },
@@ -1088,7 +1315,7 @@ function DonutChart({ data, centerLabel, centerValue, formatValue = (v) => Strin
           /* @__PURE__ */ jsxRuntime.jsx("span", { className: "text-xl font-semibold tabular-nums", children: active ? formatValue(active.value) : centerValue ?? formatValue(total) }),
           /* @__PURE__ */ jsxRuntime.jsx("span", { className: "max-w-24 truncate text-xs text-muted", children: active ? active.name : centerLabel ?? c.total })
         ] }),
-        tipOn && /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.ChartTooltipFor, { option: tooltip, ctx, x: r + Math.sin(mid) * rm, y: r - Math.cos(mid) * rm, id: tipId, container: box }),
+        tipOn && /* @__PURE__ */ jsxRuntime.jsx(chunkTDOSI6VH_cjs.ChartTooltipFor, { option: tooltip, ctx, x: r + Math.sin(mid) * rm, y: r - Math.cos(mid) * rm, id: tipId, container: box }),
         /* @__PURE__ */ jsxRuntime.jsx("span", { id: hintId, className: "sr-only", children: c.keyboardHint })
       ] })
     }
@@ -1118,56 +1345,56 @@ function ChartCard({
   className,
   ...rest
 }) {
-  const { t } = chunkBAOO6ECK_cjs.useChartLaf();
+  const { t } = chunk66X4PO5P_cjs.useChartLaf();
   const c = t.components.dashboard.chart;
-  const [range, setRange] = chunkRNP4RJYX_cjs.useControllableState({ value: rangeProp, defaultValue: defaultRange ?? ranges?.[0]?.value, onChange: (v) => v !== void 0 && onRangeChange?.(v) });
-  const [legend, setLegend] = chunkRNP4RJYX_cjs.useControllableState({ value: legendProp, defaultValue: true, onChange: onLegendChange });
+  const [range, setRange] = chunkI2W5ZNMR_cjs.useControllableState({ value: rangeProp, defaultValue: defaultRange ?? ranges?.[0]?.value, onChange: (v) => v !== void 0 && onRangeChange?.(v) });
+  const [legend, setLegend] = chunkI2W5ZNMR_cjs.useControllableState({ value: legendProp, defaultValue: true, onChange: onLegendChange });
   const state = loading ? /* @__PURE__ */ jsxRuntime.jsx("div", { role: "status", "aria-label": c.loading, className: "h-48 animate-pulse rounded-sm bg-muted-bg motion-reduce:animate-none" }) : error ? /* @__PURE__ */ jsxRuntime.jsxs("div", { role: "alert", className: "grid h-48 place-content-center justify-items-center gap-2 text-sm text-danger", children: [
     /* @__PURE__ */ jsxRuntime.jsx("span", { children: typeof error === "string" ? error : c.error }),
     onRetry && /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { size: "sm", variant: "secondary", onClick: onRetry, children: c.retry })
   ] }) : empty ? /* @__PURE__ */ jsxRuntime.jsx("div", { className: "grid h-48 place-items-center text-sm text-muted", children: c.empty }) : null;
-  return /* @__PURE__ */ jsxRuntime.jsxs(chunkBAOO6ECK_cjs.Card, { variant: "default", ...rest, className: chunkFTHFEMX6_cjs.cn("gap-3", className), "aria-busy": loading || void 0, children: [
-    /* @__PURE__ */ jsxRuntime.jsxs(chunkBAOO6ECK_cjs.CardHeader, { className: "flex-wrap", children: [
+  return /* @__PURE__ */ jsxRuntime.jsxs(chunkTDOSI6VH_cjs.Card, { variant: "default", ...rest, className: chunkFTHFEMX6_cjs.cn("gap-3", className), "aria-busy": loading || void 0, children: [
+    /* @__PURE__ */ jsxRuntime.jsxs(chunkTDOSI6VH_cjs.CardHeader, { className: "flex-wrap", children: [
       /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "min-w-0", children: [
-        /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.CardTitle, { as: `h${headingLevel}`, children: title }),
-        description && /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.CardDescription, { className: "mt-0.5", children: description })
+        /* @__PURE__ */ jsxRuntime.jsx(chunkTDOSI6VH_cjs.CardTitle, { as: `h${headingLevel}`, children: title }),
+        description && /* @__PURE__ */ jsxRuntime.jsx(chunkTDOSI6VH_cjs.CardDescription, { className: "mt-0.5", children: description })
       ] }),
-      /* @__PURE__ */ jsxRuntime.jsxs(chunkBAOO6ECK_cjs.CardActions, { className: "flex-wrap", children: [
+      /* @__PURE__ */ jsxRuntime.jsxs(chunkTDOSI6VH_cjs.CardActions, { className: "flex-wrap", children: [
         actions,
-        ranges && ranges.length > 0 && /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.SegmentedControl, { "aria-label": c.range, items: ranges.map((r) => ({ value: r.value, label: r.label })), value: range, onValueChange: setRange, className: "h-7" }),
+        ranges && ranges.length > 0 && /* @__PURE__ */ jsxRuntime.jsx(chunkTDOSI6VH_cjs.SegmentedControl, { "aria-label": c.range, items: ranges.map((r) => ({ value: r.value, label: r.label })), value: range, onValueChange: setRange, className: "h-7" }),
         legendToggle && /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { size: "sm", variant: "ghost", "aria-pressed": legend, "aria-label": legend ? c.hideLegend : c.showLegend, onClick: () => setLegend(!legend), className: "px-0 w-7", children: legend ? /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Eye, { "aria-hidden": true }) : /* @__PURE__ */ jsxRuntime.jsx(lucideReact.EyeOff, { "aria-hidden": true }) }),
         onRefresh && /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { size: "sm", variant: "ghost", "aria-label": c.refresh, disabled: refreshing, onClick: onRefresh, className: "px-0 w-7", children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.RefreshCw, { "aria-hidden": true, className: chunkFTHFEMX6_cjs.cn(refreshing && "animate-spin motion-reduce:animate-none") }) }),
         onExport && /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { size: "sm", variant: "ghost", "aria-label": c.export, onClick: onExport, className: "px-0 w-7", children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Download, { "aria-hidden": true }) })
       ] })
     ] }),
-    /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.CardBody, { children: state ?? (typeof children === "function" ? children({ range, legend }) : children) }),
+    /* @__PURE__ */ jsxRuntime.jsx(chunkTDOSI6VH_cjs.CardBody, { children: state ?? (typeof children === "function" ? children({ range, legend }) : children) }),
     footer && /* @__PURE__ */ jsxRuntime.jsx("div", { className: "text-xs text-muted", children: footer })
   ] });
 }
 function SegmentedBar({ segments, label, formatValue = (v) => String(v), legend = true, height = 16, animate, tooltip = true, className }) {
-  const { t, format } = chunkBAOO6ECK_cjs.useChartLaf();
+  const { t, format } = chunk66X4PO5P_cjs.useChartLaf();
   const u = t.components.dashboard.utilization;
   const c = t.components.dashboard.chart;
-  const motion = chunkBAOO6ECK_cjs.useChartMotion(animate);
-  const box = React__namespace.useRef(null);
-  const hintId = React__namespace.useId();
-  const tipId = React__namespace.useId();
+  const motion = chunkTDOSI6VH_cjs.useChartMotion(animate);
+  const box = React3__namespace.useRef(null);
+  const hintId = React3__namespace.useId();
+  const tipId = React3__namespace.useId();
   const total = segments.reduce((a, s) => a + Math.max(0, s.value), 0);
-  const toneOf = (s, i) => s.tone ?? chunkBAOO6ECK_cjs.chartTone(i);
+  const toneOf = (s, i) => s.tone ?? chunk66X4PO5P_cjs.chartTone(i);
   const visible = segments.map((s, i) => ({ s, i })).filter(({ s }) => s.value > 0);
-  const nav = chunkBAOO6ECK_cjs.useActiveIndex(visible.length, box);
+  const nav = chunk66X4PO5P_cjs.useActiveIndex(visible.length, box);
   const cur = nav.active === null ? null : visible[nav.active];
   const share = (v) => format.percent(total ? v / total : 0, { fractionDigits: 1 });
   const ctx = cur ? { point: { label: cur.s.name, x: cur.s.id, value: cur.s.value, formatted: formatValue(cur.s.value) }, index: nav.active, series: [{ id: cur.s.id, name: c.value, value: cur.s.value, formatted: `${formatValue(cur.s.value)} (${share(cur.s.value)})`, tone: toneOf(cur.s, cur.i) }] } : null;
   const tipOn = !!ctx && tooltip !== false;
-  const [anchorX, setAnchorX] = React__namespace.useState(0);
-  React__namespace.useLayoutEffect(() => {
+  const [anchorX, setAnchorX] = React3__namespace.useState(0);
+  React3__namespace.useLayoutEffect(() => {
     const el = cur && Array.from(box.current?.querySelectorAll("[data-segment]") ?? []).find((e) => e.dataset.segment === cur.s.id);
     if (el) setAnchorX(el.offsetLeft + el.offsetWidth / 2);
   }, [cur]);
   const summary = u.barSummary(label, formatValue(total), segments.map((s) => u.percentLine(s.name, formatValue(s.value))).join(", "));
   const items = segments.map((s, i) => ({ id: s.id, name: s.name, tone: toneOf(s, i) }));
-  return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: chunkFTHFEMX6_cjs.cn("grid min-w-0 gap-2", className), "data-animate": motion.enabled ? "on" : "off", style: chunkBAOO6ECK_cjs.motionVars(motion), children: [
+  return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: chunkFTHFEMX6_cjs.cn("grid min-w-0 gap-2", className), "data-animate": motion.enabled ? "on" : "off", style: chunkTDOSI6VH_cjs.motionVars(motion), children: [
     /* @__PURE__ */ jsxRuntime.jsxs("div", { ref: box, className: "relative", children: [
       /* @__PURE__ */ jsxRuntime.jsx(
         "div",
@@ -1184,13 +1411,13 @@ function SegmentedBar({ segments, label, formatValue = (v) => String(v), legend 
           children: segments.map((s, i) => {
             if (s.value <= 0) return null;
             const k = visible.findIndex((v) => v.s === s);
-            const enter = chunkBAOO6ECK_cjs.entryAnim(motion, "grow-x", k);
+            const enter = chunkTDOSI6VH_cjs.entryAnim(motion, "grow-x", k);
             return /* @__PURE__ */ jsxRuntime.jsx(
               "div",
               {
                 "aria-hidden": true,
                 "data-segment": s.id,
-                className: chunkFTHFEMX6_cjs.cn("h-full bg-current", toneOf(s, i), chunkBAOO6ECK_cjs.tweenClass(motion), enter.className, nav.active !== null && nav.active !== k && "opacity-40"),
+                className: chunkFTHFEMX6_cjs.cn("h-full bg-current", toneOf(s, i), chunkTDOSI6VH_cjs.tweenClass(motion), enter.className, nav.active !== null && nav.active !== k && "opacity-40"),
                 style: { flexGrow: s.value, flexBasis: 0, ...enter.style },
                 onPointerEnter: () => (nav.setKeyboard(false), nav.setActive(k)),
                 onPointerDown: () => (nav.setKeyboard(false), nav.setActive(k))
@@ -1200,11 +1427,11 @@ function SegmentedBar({ segments, label, formatValue = (v) => String(v), legend 
           })
         }
       ),
-      tipOn && /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.ChartTooltipFor, { option: tooltip, ctx, x: anchorX, y: 0, id: tipId, container: box }),
+      tipOn && /* @__PURE__ */ jsxRuntime.jsx(chunkTDOSI6VH_cjs.ChartTooltipFor, { option: tooltip, ctx, x: anchorX, y: 0, id: tipId, container: box }),
       /* @__PURE__ */ jsxRuntime.jsx("span", { id: hintId, className: "sr-only", children: c.keyboardHint }),
       /* @__PURE__ */ jsxRuntime.jsx("span", { className: "sr-only", role: "status", "aria-live": "polite", children: nav.keyboard && cur ? `${cur.s.name}: ${formatValue(cur.s.value)} (${share(cur.s.value)})` : "" })
     ] }),
-    legend && /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.ChartLegend, { items, label: u.segments })
+    legend && /* @__PURE__ */ jsxRuntime.jsx(chunk66X4PO5P_cjs.ChartLegend, { items, label: u.segments })
   ] });
 }
 var linkClass = "text-sm text-primary underline-offset-2 hover:underline focus-visible:outline-2 focus-visible:outline-primary";
@@ -1213,16 +1440,16 @@ function DetailsLink({ href, onClick, children }) {
   return href ? /* @__PURE__ */ jsxRuntime.jsx("a", { href, onClick, className: linkClass, children }) : /* @__PURE__ */ jsxRuntime.jsx("button", { type: "button", onClick, className: `${linkClass} cursor-pointer border-0 bg-transparent p-0`, children });
 }
 function UtilizationCard(props) {
-  const { t } = chunkBAOO6ECK_cjs.useChartLaf();
+  const { t } = chunk66X4PO5P_cjs.useChartLaf();
   const u = t.components.dashboard.utilization;
   const { title, filter, detailsHref, onDetails, headingLevel = 3, animate, tooltip, className } = props;
   const label = props.chartLabel ?? (typeof title === "string" ? title : u.segments);
-  return /* @__PURE__ */ jsxRuntime.jsxs(chunkBAOO6ECK_cjs.Card, { className, children: [
-    /* @__PURE__ */ jsxRuntime.jsxs(chunkBAOO6ECK_cjs.CardHeader, { children: [
-      /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.CardTitle, { as: `h${headingLevel}`, className: "flex-1", children: title }),
-      filter && /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.CardActions, { children: filter })
+  return /* @__PURE__ */ jsxRuntime.jsxs(chunkTDOSI6VH_cjs.Card, { className, children: [
+    /* @__PURE__ */ jsxRuntime.jsxs(chunkTDOSI6VH_cjs.CardHeader, { children: [
+      /* @__PURE__ */ jsxRuntime.jsx(chunkTDOSI6VH_cjs.CardTitle, { as: `h${headingLevel}`, className: "flex-1", children: title }),
+      filter && /* @__PURE__ */ jsxRuntime.jsx(chunkTDOSI6VH_cjs.CardActions, { children: filter })
     ] }),
-    /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.CardBody, { className: "grid gap-2", children: props.variant === "donut" ? /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.ThresholdDonut, { value: props.value, max: props.max, warnAt: props.warnAt, dangerAt: props.dangerAt, subtext: props.subtext, label, animate, tooltip }) : /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
+    /* @__PURE__ */ jsxRuntime.jsx(chunkTDOSI6VH_cjs.CardBody, { className: "grid gap-2", children: props.variant === "donut" ? /* @__PURE__ */ jsxRuntime.jsx(chunk66X4PO5P_cjs.ThresholdDonut, { value: props.value, max: props.max, warnAt: props.warnAt, dangerAt: props.dangerAt, subtext: props.subtext, label, animate, tooltip }) : /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
       props.subtitle && /* @__PURE__ */ jsxRuntime.jsx("div", { className: "text-fg", children: props.subtitle }),
       props.alertText && /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex items-center gap-2 text-sm", children: [
         /* @__PURE__ */ jsxRuntime.jsx(lucideReact.AlertCircle, { "aria-hidden": true, className: "size-4 shrink-0 text-danger" }),
@@ -1230,53 +1457,54 @@ function UtilizationCard(props) {
       ] }),
       /* @__PURE__ */ jsxRuntime.jsx(SegmentedBar, { segments: props.segments, label, formatValue: props.formatValue, animate, tooltip })
     ] }) }),
-    (detailsHref || onDetails) && /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.CardFooter, { children: /* @__PURE__ */ jsxRuntime.jsx(DetailsLink, { href: detailsHref, onClick: onDetails, children: u.seeDetails }) })
+    (detailsHref || onDetails) && /* @__PURE__ */ jsxRuntime.jsx(chunkTDOSI6VH_cjs.CardFooter, { children: /* @__PURE__ */ jsxRuntime.jsx(DetailsLink, { href: detailsHref, onClick: onDetails, children: u.seeDetails }) })
   ] });
 }
 
 Object.defineProperty(exports, "CHART_TONES", {
   enumerable: true,
-  get: function () { return chunkBAOO6ECK_cjs.CHART_TONES; }
+  get: function () { return chunk66X4PO5P_cjs.CHART_TONES; }
 });
 Object.defineProperty(exports, "ChartLegend", {
   enumerable: true,
-  get: function () { return chunkBAOO6ECK_cjs.ChartLegend; }
-});
-Object.defineProperty(exports, "ChartTooltip", {
-  enumerable: true,
-  get: function () { return chunkBAOO6ECK_cjs.ChartTooltip; }
-});
-Object.defineProperty(exports, "ChartTooltipFor", {
-  enumerable: true,
-  get: function () { return chunkBAOO6ECK_cjs.ChartTooltipFor; }
+  get: function () { return chunk66X4PO5P_cjs.ChartLegend; }
 });
 Object.defineProperty(exports, "ThresholdDonut", {
   enumerable: true,
-  get: function () { return chunkBAOO6ECK_cjs.ThresholdDonut; }
+  get: function () { return chunk66X4PO5P_cjs.ThresholdDonut; }
 });
 Object.defineProperty(exports, "chartTone", {
   enumerable: true,
-  get: function () { return chunkBAOO6ECK_cjs.chartTone; }
+  get: function () { return chunk66X4PO5P_cjs.chartTone; }
 });
 Object.defineProperty(exports, "thresholdTone", {
   enumerable: true,
-  get: function () { return chunkBAOO6ECK_cjs.thresholdTone; }
+  get: function () { return chunk66X4PO5P_cjs.thresholdTone; }
+});
+Object.defineProperty(exports, "ChartTooltip", {
+  enumerable: true,
+  get: function () { return chunkTDOSI6VH_cjs.ChartTooltip; }
+});
+Object.defineProperty(exports, "ChartTooltipFor", {
+  enumerable: true,
+  get: function () { return chunkTDOSI6VH_cjs.ChartTooltipFor; }
 });
 Object.defineProperty(exports, "useChartMotion", {
   enumerable: true,
-  get: function () { return chunkBAOO6ECK_cjs.useChartMotion; }
+  get: function () { return chunkTDOSI6VH_cjs.useChartMotion; }
 });
 Object.defineProperty(exports, "usePrefersReducedMotion", {
   enumerable: true,
-  get: function () { return chunkBAOO6ECK_cjs.usePrefersReducedMotion; }
+  get: function () { return chunkTDOSI6VH_cjs.usePrefersReducedMotion; }
 });
 Object.defineProperty(exports, "useTooltipDismiss", {
   enumerable: true,
-  get: function () { return chunkBAOO6ECK_cjs.useTooltipDismiss; }
+  get: function () { return chunkTDOSI6VH_cjs.useTooltipDismiss; }
 });
 exports.AreaChart = AreaChart;
 exports.BarChart = BarChart;
 exports.ChartCard = ChartCard;
+exports.ChartSyncProvider = ChartSyncProvider;
 exports.DonutChart = DonutChart;
 exports.Heatmap = Heatmap;
 exports.LineChart = LineChart;
@@ -1285,10 +1513,17 @@ exports.SegmentedBar = SegmentedBar;
 exports.StackedBarChart = StackedBarChart;
 exports.TimeSeriesChart = TimeSeriesChart;
 exports.UtilizationCard = UtilizationCard;
+exports.chartsInteractiveEn = chartsInteractiveEn;
+exports.clampRange = clampRange;
 exports.downsample = downsample;
 exports.formatUnit = formatUnit;
 exports.lttb = lttb;
+exports.panBy = panBy;
 exports.presetToMs = presetToMs;
 exports.seriesToCsv = seriesToCsv;
+exports.trimWindow = trimWindow;
+exports.useChartSync = useChartSync;
+exports.useLiveSeries = useLiveSeries;
+exports.zoomAt = zoomAt;
 //# sourceMappingURL=charts.cjs.map
 //# sourceMappingURL=charts.cjs.map

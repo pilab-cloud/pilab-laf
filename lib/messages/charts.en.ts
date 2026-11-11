@@ -1,7 +1,8 @@
+import { chartsInteractiveEn } from "./charts-interactive.en";
 import type { PerfPanelLabels } from "../charts/perf-panel";
 import type { TimeSeriesChartLabels } from "../charts/time-series";
 
-export const chartsEn: { perfPanel: PerfPanelLabels; timeSeries: TimeSeriesChartLabels } = {
+export const chartsEn: { perfPanel: PerfPanelLabels; timeSeries: TimeSeriesChartLabels; interactive: typeof chartsInteractiveEn } = {
   perfPanel: {
     metrics: "Metrics",
     pickMetrics: "Choose metrics…",
@@ -14,6 +15,7 @@ export const chartsEn: { perfPanel: PerfPanelLabels; timeSeries: TimeSeriesChart
     summary: "Summary statistics",
     noMetrics: "Select at least one metric",
   },
+  interactive: chartsInteractiveEn,
   timeSeries: {
     showData: "Show data",
     hideData: "Hide data",
