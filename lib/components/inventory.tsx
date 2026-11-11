@@ -195,6 +195,7 @@ export function UserMenu({
   name,
   email,
   tenant,
+  avatarSrc,
   items,
   signOutLabel: signOutLabelProp,
   onSignOut,
@@ -206,6 +207,8 @@ export function UserMenu({
   name: string;
   email?: string;
   tenant?: string;
+  /** Photo for the trigger; initials of `name` otherwise. */
+  avatarSrc?: string;
   items?: { id: string; label: string; icon?: React.ReactNode; onSelect: () => void }[];
   signOutLabel?: string;
   onSignOut: () => void;
@@ -224,7 +227,7 @@ export function UserMenu({
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <button className="border-0 bg-transparent p-0">
-          <Avatar name={name} />
+          <Avatar name={name} src={avatarSrc} />
         </button>
       </DropdownMenuTrigger>
       <DropdownMenuContent>

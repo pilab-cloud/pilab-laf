@@ -1,41 +1,9 @@
-import { AlertTriangle, CheckCircle2, Info, XCircle } from "lucide-react";
 import * as React from "react";
 import { useLaf } from "../i18n";
 import { cn } from "../cn";
 import { Tooltip, TooltipProvider } from "./overlay";
 
-type Tone = "error" | "success" | "warning" | "info";
-
-const alertIcon = { error: XCircle, success: CheckCircle2, warning: AlertTriangle, info: Info };
-const alertClass: Record<Tone, string> = {
-  error: "alert-error",
-  success: "alert-success",
-  warning: "alert-warning",
-  info: "border-primary/35 bg-primary-light text-primary",
-};
-
-export function Alert({
-  tone = "info",
-  className,
-  children,
-}: {
-  tone?: Tone;
-  className?: string;
-  children: React.ReactNode;
-}) {
-  const Icon = alertIcon[tone];
-  return (
-    <div
-      className={cn("alert", alertClass[tone], className)}
-      role={tone === "error" || tone === "warning" ? "alert" : "status"}
-    >
-      <span className="alert-icon">
-        <Icon aria-hidden />
-      </span>
-      <div>{children}</div>
-    </div>
-  );
-}
+export { Alert, type AlertProps, type AlertTone } from "./alerts";
 
 const badgeClass = {
   neutral: "",
@@ -84,9 +52,7 @@ export function Avatar({
   );
 }
 
-export function Card({ className, ...props }: React.ComponentProps<"div">) {
-  return <div className={cn("card", className)} {...props} />;
-}
+export { Card, type CardProps } from "./card";
 
 export function Panel({
   title,

@@ -187,6 +187,111 @@ var contentHu = {
   form: { required: "k\xF6telez\u0151" }
 };
 
+// lib/locales/dashboard.hu.ts
+var dashboardHu = {
+  card: { loading: "Bet\xF6lt\xE9s" },
+  metric: {
+    loading: "M\xE9r\u0151sz\xE1m bet\xF6lt\xE9se",
+    error: "A m\xE9r\u0151sz\xE1m nem t\xF6lthet\u0151 be",
+    retry: "\xDAjra",
+    increase: (v) => `${v}-vel n\u0151tt`,
+    decrease: (v) => `${v}-vel cs\xF6kkent`,
+    unchanged: "Nincs v\xE1ltoz\xE1s",
+    good: "kedvez\u0151",
+    bad: "kedvez\u0151tlen",
+    trend: (name) => `${name} trendje`
+  },
+  gauge: { valueText: (value, max) => `${value} / ${max}`, ok: "Norm\xE1l", warn: "Figyelmeztet\xE9s", danger: "Kritikus" },
+  status: { total: "\xD6sszesen", showStatus: (name, n) => `${name}: ${n}` },
+  alert: { showDetails: "R\xE9szletek megjelen\xEDt\xE9se", hideDetails: "R\xE9szletek elrejt\xE9se", more: (n) => `Tov\xE1bbi ${n} megjelen\xEDt\xE9se`, less: "Kevesebb megjelen\xEDt\xE9se" },
+  toast: { region: "\xC9rtes\xEDt\xE9sek", dismiss: "\xC9rtes\xEDt\xE9s elvet\xE9se" },
+  chart: {
+    range: "Id\u0151tartom\xE1ny",
+    showLegend: "Jelmagyar\xE1zat megjelen\xEDt\xE9se",
+    hideLegend: "Jelmagyar\xE1zat elrejt\xE9se",
+    export: "Export\xE1l\xE1s",
+    refresh: "Friss\xEDt\xE9s",
+    empty: "Nincs adat erre az id\u0151szakra",
+    error: "A diagram nem t\xF6lthet\u0151 be",
+    retry: "\xDAjra",
+    loading: "Diagram bet\xF6lt\xE9se",
+    showData: "Adatt\xE1bla megjelen\xEDt\xE9se",
+    hideData: "Adatt\xE1bla elrejt\xE9se",
+    category: "Kateg\xF3ria",
+    value: "\xC9rt\xE9k",
+    share: "Ar\xE1ny",
+    total: "\xD6sszesen",
+    legend: "Jelmagyar\xE1zat",
+    toggleSeries: (name) => `${name} be- \xE9s kikapcsol\xE1sa`,
+    keyboardHint: "A ny\xEDlbillenty\u0171kkel l\xE9pkedhet az adatpontok k\xF6z\xF6tt, a Home \xE9s End ugrik, az Escape elrejti a bubor\xE9kot.",
+    point: (name, value) => `${name}: ${value}`
+  },
+  utilization: {
+    seeDetails: "R\xE9szletek",
+    filter: "Sz\u0171r\u0151",
+    capacity: "Kapacit\xE1s",
+    warning: "Figyelmeztet\xE9s",
+    danger: "Kritikus",
+    segments: "Szakaszok",
+    percentLine: (name, pct) => `${name}: ${pct}`,
+    barSummary: (label, total, parts) => `${label}: \xF6sszesen ${total}. ${parts}`,
+    donutSummary: (label, value, of, warn, danger) => `${label}: ${value} ${of}. Figyelmeztet\xE9si k\xFCsz\xF6b: ${warn}, kritikus k\xFCsz\xF6b: ${danger}.`,
+    status: { ok: "Norm\xE1l", warn: "A figyelmeztet\xE9si k\xFCsz\xF6b felett", danger: "A kritikus k\xFCsz\xF6b felett" }
+  }
+};
+
+// lib/locales/portal.hu.ts
+var portalHu = {
+  layout: {
+    home: "F\u0151oldal",
+    search: "Keres\xE9s",
+    searchPlaceholder: "Alkalmaz\xE1sok, oldalak \xE9s szem\xE9lyek keres\xE9se\u2026",
+    appSwitcher: "Alkalmaz\xE1sok",
+    appSwitcherTitle: "Alkalmaz\xE1s v\xE1lt\xE1sa",
+    currentApp: "Aktu\xE1lis alkalmaz\xE1s",
+    allApps: "\xD6sszes alkalmaz\xE1s",
+    noApps: "Nincs el\xE9rhet\u0151 alkalmaz\xE1s",
+    navigation: "Port\xE1l navig\xE1ci\xF3",
+    pageSections: "Oldalszakaszok",
+    external: "\xFAj lapon ny\xEDlik meg",
+    pages: "Oldalak",
+    apps: "Alkalmaz\xE1sok",
+    goTo: (title) => `Ugr\xE1s: ${title}`,
+    openApp: (name) => `${name} megnyit\xE1sa`
+  },
+  home: {
+    welcome: (name) => `\xDCdv \xFAjra, ${name}`,
+    welcomeAnonymous: "\xDCdv \xFAjra",
+    subtitle: "Folytassa ott, ahol abbahagyta, vagy ugorjon b\xE1rmelyik alkalmaz\xE1sra.",
+    favourites: "Kedvenc alkalmaz\xE1sok",
+    recent: "Legut\xF3bbi alkalmaz\xE1sok",
+    allApps: "\xD6sszes alkalmaz\xE1s",
+    announcements: "K\xF6zlem\xE9nyek",
+    quickActions: "Gyorsm\u0171veletek",
+    noFavourites: "Csillagozzon meg egy alkalmaz\xE1st, hogy ide ker\xFClj\xF6n.",
+    noRecent: "A megnyitott alkalmaz\xE1sok itt jelennek meg.",
+    noAnnouncements: "Jelenleg nincs k\xF6zlem\xE9ny.",
+    addFavourite: (name) => `${name} hozz\xE1ad\xE1sa a kedvencekhez`,
+    removeFavourite: (name) => `${name} elt\xE1vol\xEDt\xE1sa a kedvencek k\xF6z\xFCl`,
+    lastOpened: (when) => `Megnyitva: ${when}`,
+    dismiss: (title) => `K\xF6zlem\xE9ny elrejt\xE9se: ${title}`
+  },
+  serverGrid: {
+    retry: "\xDAjra",
+    loadFailed: "Az adatok bet\xF6lt\xE9se nem siker\xFClt.",
+    rowsPerPage: "Sorok oldalank\xE9nt",
+    loadingData: "Adatok bet\xF6lt\xE9se",
+    refreshing: "Friss\xEDt\xE9s\u2026",
+    results: (from, to, total) => `${from}\u2013${to} / ${total}`,
+    resultsUnknown: (from, to) => `${from}\u2013${to}`,
+    noResults: "Nincs tal\xE1lat",
+    search: "Keres\xE9s",
+    page: (page) => `${page}. oldal`,
+    clearFilters: "Sz\u0171r\u0151k t\xF6rl\xE9se",
+    refresh: "Friss\xEDt\xE9s"
+  }
+};
+
 // lib/locales/tracker.hu.ts
 var trackerHu = {
   labelPicker: {
@@ -395,7 +500,7 @@ var vsphereObjectsHu = {
 
 // lib/locales/hu.ts
 var hu = {
-  components: { account: accountHu, admin: adminHu, tracker: trackerHu, vsphereObjects: vsphereObjectsHu, charts: chartsHu, ui: uiHu, content: contentHu },
+  components: { account: accountHu, admin: adminHu, tracker: trackerHu, vsphereObjects: vsphereObjectsHu, charts: chartsHu, ui: uiHu, content: contentHu, dashboard: dashboardHu, portal: portalHu },
   close: "Bez\xE1r\xE1s",
   noResults: "Nincs tal\xE1lat",
   loading: "Bet\xF6lt\xE9s",

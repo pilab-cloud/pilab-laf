@@ -3,12 +3,14 @@ import { accountHu } from "./account.hu";
 import { adminHu } from "./admin.hu";
 import { chartsHu } from "./charts.hu";
 import { contentHu } from "./content.hu";
+import { dashboardHu } from "./dashboard.hu";
+import { portalHu } from "./portal.hu";
 import { trackerHu } from "./tracker.hu";
 import { uiHu } from "./ui.hu";
 import { vsphereObjectsHu } from "./vsphere-objects.hu";
 
 export const hu: LafMessages = {
-  components: { account: accountHu, admin: adminHu, tracker: trackerHu, vsphereObjects: vsphereObjectsHu, charts: chartsHu, ui: uiHu, content: contentHu },
+  components: { account: accountHu, admin: adminHu, tracker: trackerHu, vsphereObjects: vsphereObjectsHu, charts: chartsHu, ui: uiHu, content: contentHu, dashboard: dashboardHu, portal: portalHu },
   close: "Bezárás",
   noResults: "Nincs találat",
   loading: "Betöltés",

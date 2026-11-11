@@ -1,6 +1,6 @@
 import { ClassValue } from 'clsx';
-import { F as Formatters } from './perf-panel-CcKCFsOd.cjs';
-export { B as BytesOptions, D as DateTimeOptions, k as DurationOptions, R as RelativeOptions, m as createFormatters } from './perf-panel-CcKCFsOd.cjs';
+import { F as Formatters } from './perf-panel-uUu6HJmZ.cjs';
+export { B as BytesOptions, D as DateTimeOptions, k as DurationOptions, R as RelativeOptions, m as createFormatters } from './perf-panel-uUu6HJmZ.cjs';
 import * as class_variance_authority_types from 'class-variance-authority/types';
 import { VariantProps } from 'class-variance-authority';
 import * as React from 'react';
@@ -9,14 +9,15 @@ import * as DropdownPrimitive from '@radix-ui/react-dropdown-menu';
 import * as PopoverPrimitive from '@radix-ui/react-popover';
 import * as TabsPrimitive from '@radix-ui/react-tabs';
 import * as TooltipPrimitive from '@radix-ui/react-tooltip';
-import { C as ComboboxOption, K as Kbd, t as trackerEn, u as uiEn } from './i18n-ClzQ4E35.cjs';
-export { A as AccountSession, a as AlarmItem, b as AlarmList, c as AllowListEditor, d as AllowListEditorProps, e as ApiKeyCreateInput, f as ApiKeyItem, g as ApiKeyManager, h as ApiKeyManagerLabels, i as ApiKeyManagerProps, B as BarChart, j as Branding, k as BrandingEditor, l as BrandingEditorLabels, m as BrandingEditorProps, n as CidrInput, o as ColorField, p as ColorFieldLabels, q as ColorFieldProps, r as Combobox, s as ComboboxProps, v as ComponentMessageOverrides, w as ComponentMessages, x as ConsoleEvent, y as ConsoleFrame, z as ConsoleFrameLabels, D as ConsoleFrameProps, E as ConsoleStatus, F as DatastoreBrowser, G as DatastoreBrowserLabels, H as DatastoreBrowserProps, I as DatastoreEntry, J as DateTimeInput, L as Device, M as DeviceKind, N as DeviceSelector, O as Donut, P as ErrorSummary, Q as EventConsole, R as EventConsoleLabels, S as EventConsoleProps, T as EventSeverity, U as FileDropzone, V as FormField, W as Gauge, X as HardwareCapabilities, Y as HardwareEditor, Z as HardwareEditorLabels, _ as HardwareEditorProps, $ as HwDevice, a0 as HwKind, a1 as InlineEdit, a2 as IpInput, a3 as LafContextValue, a4 as LafMessages, a5 as LafProvider, a6 as NetworkLabels, a7 as NotificationCenter, a8 as NotificationCenterLabels, a9 as NotificationCenterProps, aa as NotificationItem, ab as PasskeyItem, ac as PermissionAssignDialog, ad as PermissionAssignDialogProps, ae as PermissionAssignLabels, af as PermissionAssignment, ag as PermissionRole, ah as ReauthDialog, ai as ReauthDialogLabels, aj as ReauthDialogProps, ak as ReauthMethod, al as SecurityFactors, am as SecurityFactorsLabels, an as SecurityFactorsProps, ao as SessionExpiryDialog, ap as SessionExpiryDialogLabels, aq as SessionExpiryDialogProps, ar as SessionList, as as SessionListLabels, at as SessionListProps, au as SnapshotNode, av as SnapshotTree, aw as SnapshotTreeLabels, ax as SnapshotTreeProps, ay as TransferItem, az as TransferList, aA as TransferListLabels, aB as TransferListProps, aC as UploadFile, aD as User, aE as UserSelector, aF as UserSelectorProps, aG as contrastRatio, aH as en, aI as isCidr, aJ as isIPv4, aK as isIPv6, aL as isIp, aM as normalizeHex, aN as parseCidr, aO as useLaf, aP as useLafDefaults, aQ as usePortalContainer } from './i18n-ClzQ4E35.cjs';
-import * as lucide_react from 'lucide-react';
-import { LucideIcon } from 'lucide-react';
+import { C as ComboboxOption, K as Kbd, t as trackerEn, u as uiEn, p as portalEn, N as NotificationCenterProps } from './i18n-DGrAxmDd.cjs';
+export { A as AccountSession, a as AlarmItem, b as AlarmList, c as AllowListEditor, d as AllowListEditorProps, e as ApiKeyCreateInput, f as ApiKeyItem, g as ApiKeyManager, h as ApiKeyManagerLabels, i as ApiKeyManagerProps, B as BarChart, j as Branding, k as BrandingEditor, l as BrandingEditorLabels, m as BrandingEditorProps, n as CidrInput, o as ColorField, q as ColorFieldLabels, r as ColorFieldProps, s as Combobox, v as ComboboxProps, w as ComponentMessageOverrides, x as ComponentMessages, y as ConsoleEvent, z as ConsoleFrame, D as ConsoleFrameLabels, E as ConsoleFrameProps, F as ConsoleStatus, G as DatastoreBrowser, H as DatastoreBrowserLabels, I as DatastoreBrowserProps, J as DatastoreEntry, L as DateTimeInput, M as Device, O as DeviceKind, P as DeviceSelector, Q as Donut, R as ErrorSummary, S as EventConsole, T as EventConsoleLabels, U as EventConsoleProps, V as EventSeverity, W as FileDropzone, X as FormField, Y as Gauge, Z as HardwareCapabilities, _ as HardwareEditor, $ as HardwareEditorLabels, a0 as HardwareEditorProps, a1 as HwDevice, a2 as HwKind, a3 as InlineEdit, a4 as IpInput, a5 as LafContextValue, a6 as LafMessages, a7 as LafProvider, a8 as NetworkLabels, a9 as NotificationCenter, aa as NotificationCenterLabels, ab as NotificationItem, ac as PasskeyItem, ad as PermissionAssignDialog, ae as PermissionAssignDialogProps, af as PermissionAssignLabels, ag as PermissionAssignment, ah as PermissionRole, ai as ReauthDialog, aj as ReauthDialogLabels, ak as ReauthDialogProps, al as ReauthMethod, am as SecurityFactors, an as SecurityFactorsLabels, ao as SecurityFactorsProps, ap as SessionExpiryDialog, aq as SessionExpiryDialogLabels, ar as SessionExpiryDialogProps, as as SessionList, at as SessionListLabels, au as SessionListProps, av as SnapshotNode, aw as SnapshotTree, ax as SnapshotTreeLabels, ay as SnapshotTreeProps, az as TransferItem, aA as TransferList, aB as TransferListLabels, aC as TransferListProps, aD as UploadFile, aE as User, aF as UserSelector, aG as UserSelectorProps, aH as contrastRatio, aI as en, aJ as isCidr, aK as isIPv4, aL as isIPv6, aM as isIp, aN as normalizeHex, aO as parseCidr, aP as useLaf, aQ as useLafDefaults, aR as usePortalContainer } from './i18n-DGrAxmDd.cjs';
 import * as ContextPrimitive from '@radix-ui/react-context-menu';
 import { Virtualizer } from '@tanstack/react-virtual';
+import { LucideIcon } from 'lucide-react';
 import { M as MenuItemSpec$1, a as TreeViewProps } from './tree-Cv6L-PZI.cjs';
 export { T as TreeDragAdapter, b as TreeDropPosition, c as TreeNode, d as TreeStatus, e as TreeView } from './tree-Cv6L-PZI.cjs';
+import { C as CardProps } from './card-D00VCi3j.cjs';
+export { a as Card, b as CardActions, c as CardBody, d as CardDescription, e as CardFooter, f as CardGrid, g as CardHeader, h as CardStatus, i as CardTitle, j as CardVariant, E as ExpandableCard, k as ExpandableCardProps } from './card-D00VCi3j.cjs';
 
 declare function cn(...inputs: ClassValue[]): string;
 
@@ -104,12 +105,50 @@ interface RadioGroupProps {
 /** Controlled radio group built from native inputs (arrow-key navigation comes from the browser). */
 declare function RadioGroup({ name, value, onValueChange, options, className, ...rest }: RadioGroupProps): React.JSX.Element;
 
-type Tone = "error" | "success" | "warning" | "info";
-declare function Alert({ tone, className, children, }: {
-    tone?: Tone;
+/** `error`/`danger` and `warn`/`warning` are aliases (the original `Alert` used `error`/`warning`, `Banner` used `warn`). */
+type AlertTone = "info" | "success" | "warning" | "warn" | "danger" | "error" | "neutral";
+interface AlertProps {
+    tone?: AlertTone;
+    /** Alias of `tone`; wins when both are given. */
+    variant?: AlertTone;
+    title?: React.ReactNode;
+    description?: React.ReactNode;
+    /** Buttons/links shown below the text. */
+    actions?: React.ReactNode;
+    /** Shows a close button. */
+    onClose?: () => void;
+    closeLabel?: string;
+    /** Tighter padding, no icon spacing. */
+    compact?: boolean;
+    /** No box: just icon and text, for use inside forms and cards. */
+    inline?: boolean;
+    /** Extra content revealed by a "Show details" disclosure. */
+    detail?: React.ReactNode;
+    /** Overrides the severity-based role (`alert` for warning/danger, `status` otherwise). */
+    role?: "alert" | "status" | "note";
+    className?: string;
+    children?: React.ReactNode;
+}
+declare function Alert({ tone, variant, title, description, actions, onClose, closeLabel, compact, inline, detail, role, className, children }: AlertProps): React.JSX.Element;
+/** Vertical stack of alerts; with `max`, the rest hide behind a "Show N more" button. */
+declare function AlertGroup({ max, label, className, children }: {
+    max?: number;
+    label?: string;
     className?: string;
     children: React.ReactNode;
 }): React.JSX.Element;
+/** Page-wide message above the app chrome. `danger` is announced assertively (`role="alert"`), the rest politely. */
+declare function Banner({ tone, action, onDismiss, dismissLabel, sticky, className, children, }: {
+    tone?: AlertTone;
+    action?: React.ReactNode;
+    onDismiss?: () => void;
+    dismissLabel?: string;
+    /** Sticks to the top of the scroll container. */
+    sticky?: boolean;
+    className?: string;
+    children: React.ReactNode;
+}): React.JSX.Element;
+
 declare const badgeClass: {
     readonly neutral: "";
     readonly ok: "badge-ok";
@@ -129,7 +168,7 @@ declare function Avatar({ name, src, size, className, }: {
     size?: "sm" | "md" | "lg";
     className?: string;
 }): React.JSX.Element;
-declare function Card({ className, ...props }: React.ComponentProps<"div">): React.JSX.Element;
+
 declare function Panel({ title, actions, children, className, bodyClassName, headingLevel, }: {
     /** Heading level of the title; pick the one that follows the page's outline. */
     headingLevel?: 2 | 3 | 4;
@@ -282,6 +321,12 @@ type ToastTone = "success" | "error" | "warning" | "info";
 interface ToastOptions {
     tone?: ToastTone;
     title: React.ReactNode;
+    /** Secondary line under the title. */
+    description?: React.ReactNode;
+    /** Close button; default true. */
+    dismissible?: boolean;
+    /** Called when the toast goes away for any reason (timeout, close button, action, `dismiss`). */
+    onClose?: () => void;
     action?: {
         label: string;
         onClick: () => void;
@@ -292,12 +337,30 @@ interface ToastOptions {
 interface ToastContextValue {
     toast: (options: ToastOptions) => number;
     dismiss: (id: number) => void;
+    dismissAll: () => void;
 }
+/** Alias of `useToast` (same API: `toast`, `dismiss`, `dismissAll`). */
+declare function useToasts(): ToastContextValue;
 declare function useToast(): ToastContextValue;
-/** Mount once near the app root; render toasts with `useToast().toast(...)`. */
-declare function ToastProvider({ children }: {
+declare const positionClass: {
+    "bottom-end": string;
+    "bottom-start": string;
+    "top-end": string;
+    "top-start": string;
+};
+/**
+ * Mount once near the app root; render toasts with `useToast().toast(...)`. At most `max` toasts are visible, the rest
+ * queue and appear (with a fresh timer) as space frees up. Timers pause while a toast is hovered or focused.
+ */
+type ToastProviderProps = {
     children: React.ReactNode;
-}): React.JSX.Element;
+    max?: number;
+    position?: keyof typeof positionClass;
+    /** Accessible name of the notification region. */
+    label?: string;
+};
+/** A provider nested inside another one reuses the outer region (one live landmark per page). */
+declare function ToastProvider(props: ToastProviderProps): React.JSX.Element;
 
 declare function BrandHeader({ icon, logoSrc, name, title, subtitle, className, }: {
     /** Gradient brand tile content (used when no `logoSrc`). */
@@ -495,10 +558,12 @@ declare function TaskPanel({ tasks, onCancel, onRetry, onOpenTarget, filterable,
         openTarget?: string;
     };
 }): React.JSX.Element;
-declare function UserMenu({ name, email, tenant, items, signOutLabel: signOutLabelProp, onSignOut, impersonating, expiresAt, expiryWarnMs, expiryLabel, }: {
+declare function UserMenu({ name, email, tenant, avatarSrc, items, signOutLabel: signOutLabelProp, onSignOut, impersonating, expiresAt, expiryWarnMs, expiryLabel, }: {
     name: string;
     email?: string;
     tenant?: string;
+    /** Photo for the trigger; initials of `name` otherwise. */
+    avatarSrc?: string;
     items?: {
         id: string;
         label: string;
@@ -522,27 +587,6 @@ declare function UserMenu({ name, email, tenant, items, signOutLabel: signOutLab
 /** Palette slot 1–12 (design F4); colours come from the --label-N tokens, never free hex. */
 type LabelSlot = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
 
-declare const bannerTone: {
-    info: {
-        cls: string;
-        Icon: lucide_react.LucideIcon;
-    };
-    warn: {
-        cls: string;
-        Icon: lucide_react.LucideIcon;
-    };
-    danger: {
-        cls: string;
-        Icon: lucide_react.LucideIcon;
-    };
-};
-declare function Banner({ tone, action, onDismiss, dismissLabel, children, }: {
-    tone?: keyof typeof bannerTone;
-    action?: React.ReactNode;
-    onDismiss?: () => void;
-    dismissLabel?: string;
-    children: React.ReactNode;
-}): React.JSX.Element;
 interface AccordionItem {
     id: string;
     title: React.ReactNode;
@@ -1523,6 +1567,8 @@ interface GridColumn<T> {
     accessor?: (row: T) => unknown;
     sortable?: boolean;
     filter?: "text" | "select" | "range" | GridFilterRenderer;
+    /** Options of a `select` filter; needed in `manual` mode, where the loaded page is not the whole data set. */
+    filterOptions?: string[];
     numeric?: boolean;
     width?: number;
     minWidth?: number;
@@ -1556,6 +1602,27 @@ interface GridLabels {
     selectedCount?: (n: number) => string;
     empty?: string;
     filter?: string;
+    retry?: string;
+    rowsPerPage?: string;
+    loadingData?: string;
+    refreshing?: string;
+    loadFailed?: string;
+    results?: (from: number, to: number, total: number) => string;
+    resultsUnknown?: (from: number, to: number) => string;
+    page?: (page: number) => string;
+}
+/** Page state of a server-driven grid; renders the footer (summary, page size, previous/next). */
+interface GridPagination {
+    /** 1-based. */
+    page: number;
+    pageSize: number;
+    /** Total rows on the server; leave out for cursor/unknown-total APIs. */
+    total?: number;
+    pageSizes?: number[];
+    /** With an unknown `total`: whether a next page exists. */
+    hasNext?: boolean;
+    onPageChange: (page: number) => void;
+    onPageSizeChange?: (pageSize: number) => void;
 }
 interface DataGridProps<T> {
     columns: GridColumn<T>[];
@@ -1578,9 +1645,16 @@ interface DataGridProps<T> {
     onFiltersChange?: (f: GridFilter[]) => void;
     search?: string;
     onSearchChange?: (q: string) => void;
-    /** Server-side: the grid only emits sort/filter/search state and renders `rows` as given. */
+    /**
+     * Server-side: the grid only emits sort/filter/search state and renders `rows` as given. Rows stay visible
+     * (dimmed, `aria-busy`) while `loading` and after an `error`, so a refetch never blanks the table.
+     */
     manual?: boolean;
+    /** Total rows on the server (`aria-rowcount`); defaults to `pagination.total`, else unknown (-1). */
     rowCount?: number;
+    pagination?: GridPagination;
+    /** Shows a retry button in the error row. */
+    onRetry?: () => void;
     /** Default: on above 200 rows. */
     virtual?: boolean | {
         rowHeight: number;
@@ -2528,4 +2602,434 @@ declare function DrawerPanel({ open: openProp, defaultOpen, onOpenChange, placem
 /** Alias of `DrawerPanel`, for readers looking for the inline counterpart of the modal `Drawer`. */
 declare const InlineDrawer: typeof DrawerPanel;
 
-export { Accordion, type AccordionItem, AccountItem, AccountList, ActionBar, type ActionBarProps, ActionGroup, type ActivityComment, type ActivityEvent, type ActivityItem, ActivityTimeline, AdminShell, Alert, AppFooter, type AppFooterBuild, type AppFooterProps, AppFrame, type AppFrameContextValue, type AppFrameLabels, type AppFrameProps, type AuditEvent, AuditLog, AuthFooter, Avatar, AvatarGroup, Badge, Banner, BrandHeader, Breadcrumb, type BreadcrumbItemProps, Button, ButtonGroup, type ButtonProps, CapacityBar, type CapacityBarProps, Card, type ChartSeries, Checkbox, Chip, ClientInfo, ClipboardCopy, type ClipboardCopyProps, CodeBlock, CodeBlockCode, type CodeBlockProps, CodeDisplay, CodeEditor, CodeEditorLite, CodeInput, ComboboxOption, type Command, CommandPalette, ConfirmDialog, ContextMenu, ContextMenuContent, ContextMenuFor, ContextMenuItem, ContextMenuSeparator, ContextMenuTrigger, CopyButton, DataGrid, type DataGridProps, DatePicker, type DatePickerProps, type DateRangeValue, DefinitionList, DescriptionList, DescriptionListDescription, DescriptionListGroup, type DescriptionListProps, DescriptionListTerm, DetailPage, DeviceSteps, type DeviceStepsProps, Dialog, DialogClose, DialogContent, DialogTrigger, type DiffOp, DiffView, Divider, DockedTaskPanel, Drawer, DrawerClose, DrawerContent, DrawerPanel, type DrawerPanelProps, type DrawerPlacement, DrawerTrigger, Dropdown, DropdownGroup, DropdownItem, DropdownList, DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger, type DropdownProps, DropdownSeparator, EmptyState, ErrorPage, type ErrorVariant, Field, type FieldProps, type Filter, FilterBar, type FilterBarLabels, type FilterBarProps, type FilterField, type FilterOp, type FilterOption, type FilterToken, Flex, FlexItem, type FlexProps, type FooterLink, type FooterLinkGroup, Form, FormFooter, FormGroup, type FormGroupProps, FormHelperText, FormPage, FormSection, Formatters, type Gap, Grid, type GridColumn, GridColumnsMenu, type GridDensity, GridDensityToggle, type GridFilter, type GridFilterRenderer, GridItem, type GridItemProps, type GridLabels, type GridMenuItem, GridSearch, type GridSort, Heatmap, HelperText, HelperTextItem, type HotkeyOptions, HotkeysProvider, HoverCard, IconButton, type IconButtonProps, InfiniteList, type InfiniteListProps, InfoBox, InlineDrawer, Input, type InputProps, InventoryLayout, type InventoryLayoutProps, IssueCard, type IssueData, IssueRow, Kbd, type KeyValue, KeyValueEditor, Label, type LabelDef, LabelPicker, type LabelSlot, LabelSwatch, LafErrorBoundary, LanguageSwitcher, LineChart, type LogLine, LogViewer, type LogViewerLabels, Masthead, MastheadActions, MastheadBrand, type MastheadBrandProps, MastheadContent, MastheadToggle, Menu, type MenuItemSpec, MenuShortcut, MenuToggle, type MenuToggleProps, MfaEnrolment, type MfaEnrolmentProps, type MfaMethod, MobileNav, Modal, ModalBody, ModalClose, ModalFooter, ModalHeader, type ModalProps, ModalTrigger, type NavDivider, type NavEntry, NavGroup, type NavHeading, type NavItem, NavLink, type NavRenderProps, NavTree, type NavTreeProps, NumberInput, ObjectIcon, type ObjectIconProps, type ObjectKind, ObjectPage, type ObjectPageCard, type ObjectPageProps, type ObjectState, OptionPicker, type OptionPickerProps, OtpInput, OverflowTabs, PageHead, PageHeader, type PageHeaderProps, PageSection, type PageSectionProps, Pagination, type PaginationProps, Panel, type ParsedFilter, PasswordField, type PasswordFieldProps, type PermissionGroup, PermissionMatrix, type PermissionMatrixLabels, type PickerOption, Popover, PopoverClose, PopoverContent, PopoverTrigger, Progress, ProgressSummary, PropertiesPane, type PropertyField, type PropertyGroup, Radio, RadioGroup, type RadioGroupProps, type RadioProps, type Reaction, Reactions, type RegisteredHotkey, RelativeTime, type ResolvedTheme, type SavedView, SavedViews, type SavedViewsLabels, type SavedViewsProps, type SavedViewsStorage, ScopeList, SearchInput, SecretDisplay, SegmentedControl, type SegmentedControlProps, type SegmentedItem, Select, type SelectGroup, SelectMenu, type SelectOption, type SelectProps, type Severity, ShortcutHelp, Sidebar, type SidebarProps, Skeleton, Slider, type SliderProps, SocialButton, SocialButtons, SocialDivider, Sparkline, Spinner, SplitButton, SplitPane, Stack, StackItem, StackedBarChart, Stat, StatGrid, StatusDot, type Step, Stepper, SubNav, type SubNavGroup, type SubNavItem, Switch, Table, Tabs, TabsContent, TabsList, TabsTrigger, TagInput, type TaskItem, TaskPanel, type TaskStatus, TenantSwitcher, Textarea as TextArea, Input as TextInput, type TextTerm, Textarea, type ThemeMode, ThemeToggle, type ThemeToggleProps, TimeRangePicker, Title, type TitleSize, type ToastOptions, ToastProvider, type ToastTone, Toolbar, ToolbarActions, ToolbarBulk, type ToolbarBulkProps, ToolbarContent, ToolbarDivider, type ToolbarFilter, ToolbarFilterChips, type ToolbarFilterChipsProps, ToolbarGroup, type ToolbarGroupProps, ToolbarItem, type ToolbarProps, ToolbarSpacer, Tooltip, TooltipProvider, TopBar, type TopBarCounter, type TopologyEdge, TopologyGraph, type TopologyNode, TreeTable, type TreeTableNode, type TreeTableProps, TreeViewProps, TruncatedText, type UnitOption, UnsavedChangesDialog, type UnsavedChangesGuard, type UseSavedViewsOptions, UserCell, UserMenu, VirtualList, Wizard, type WizardLabels, type WizardProps, WizardReview, type WizardStep, buttonVariants, cn, diffLines, format, formatHotkey, formatRelative, highlight, isMacPlatform, matchesAccept, observeRectWithFallback, parseFilter, parseHotkey, registerObjectKind, serializeFilter, serializeToken, useAppFrame, useControllableState, useHotkeys, useRegisteredHotkeys, useSavedViews, useToast, useUnsavedChangesGuard };
+type MetricTrend = "up" | "down" | "neutral";
+type MetricTone = "ok" | "warn" | "danger" | "primary";
+interface MetricDelta {
+    /** Signed change; the sign decides the trend unless `trend` is given. Shown as a percentage unless `text` is set. */
+    value: number;
+    text?: string;
+    trend?: MetricTrend;
+}
+interface MetricCardProps extends Omit<CardProps, "title" | "children" | "onSelect"> {
+    label: string;
+    value: React.ReactNode;
+    unit?: string;
+    /** Percentage change (`12.5` → "+12.5%") or a full `MetricDelta`. */
+    delta?: number | MetricDelta;
+    /** Which direction is good news; colours the delta (and adds text, never colour alone). Default `up`. */
+    goodWhen?: "up" | "down";
+    /** What the delta compares with, e.g. "vs last 7 days". */
+    period?: string;
+    icon?: React.ReactNode;
+    sparkline?: number[];
+    loading?: boolean;
+    /** `true` or a message. */
+    error?: boolean | string;
+    onRetry?: () => void;
+}
+/** KPI tile: label, big value with unit, trend delta, sparkline, loading and error states; a link when `href`/`onClick` is set. */
+declare function MetricCard({ label, value, unit, delta, goodWhen, period, icon, sparkline, loading, error, onRetry, className, ...rest }: MetricCardProps): React.JSX.Element;
+/** Responsive row/grid of `MetricCard`s. */
+declare function MetricGrid({ min, label, className, children }: {
+    min?: string;
+    label?: string;
+    className?: string;
+    children: React.ReactNode;
+}): React.JSX.Element;
+interface GaugeThreshold {
+    /** Applies from this value upwards. */
+    value: number;
+    tone: Exclude<MetricTone, "primary">;
+}
+declare function gaugeTone(value: number, thresholds?: GaugeThreshold[]): MetricTone;
+interface RadialGaugeProps {
+    value: number;
+    min?: number;
+    max?: number;
+    unit?: string;
+    /** Accessible name. */
+    label: string;
+    thresholds?: GaugeThreshold[];
+    /** Formats the centre value; default plain number. */
+    formatValue?: (v: number) => string;
+    /** Diameter in px. */
+    size?: number;
+    /** Hide the visible centre text (it stays in `aria-valuetext`). */
+    className?: string;
+}
+/** Radial meter (270° dial; the older half-dial `Gauge` is unchanged); colour follows `thresholds`, and the state is also spelled out as text. */
+declare function RadialGauge({ value, min, max, unit, label, thresholds, formatValue, size, className }: RadialGaugeProps): React.JSX.Element;
+interface GaugeCardProps extends Omit<CardProps, "title" | "children" | "onSelect">, Omit<RadialGaugeProps, "label" | "className"> {
+    title: string;
+    description?: React.ReactNode;
+    loading?: boolean;
+    error?: boolean | string;
+    onRetry?: () => void;
+}
+declare function GaugeCard({ title, description, loading, error, onRetry, value, min, max, unit, thresholds, formatValue, size, className, ...rest }: GaugeCardProps): React.JSX.Element;
+interface ProgressCardProps extends Omit<CardProps, "title" | "children" | "onSelect"> {
+    title: string;
+    description?: React.ReactNode;
+    value: number;
+    max?: number;
+    unit?: string;
+    /** Capacity style: colour shifts at `warnAt`/`dangerAt` percent. */
+    meter?: boolean;
+    warnAt?: number;
+    dangerAt?: number;
+    formatValue?: (v: number) => string;
+    loading?: boolean;
+    error?: boolean | string;
+    onRetry?: () => void;
+    actions?: React.ReactNode;
+}
+declare function ProgressCard({ title, description, value, max, unit, meter, warnAt, dangerAt, formatValue, loading, error, onRetry, actions, className, ...rest }: ProgressCardProps): React.JSX.Element;
+interface StatusSummaryItem {
+    id: string;
+    label: string;
+    count: number;
+    tone?: "ok" | "warn" | "danger" | "neutral" | "primary";
+    href?: string;
+    onClick?: () => void;
+}
+interface StatusSummaryCardProps extends Omit<CardProps, "title" | "children" | "onSelect"> {
+    title: string;
+    items: StatusSummaryItem[];
+    loading?: boolean;
+    headingLevel?: 2 | 3 | 4;
+}
+/** Counts by status with `StatusDot`s and a proportion bar; each row is a button/link when it has `onClick`/`href`. */
+declare function StatusSummaryCard({ title, items, loading, headingLevel, className, ...rest }: StatusSummaryCardProps): React.JSX.Element;
+
+type PortalLabels = (typeof portalEn)["layout"];
+type PortalHomeLabels = (typeof portalEn)["home"];
+type PortalParams = Record<string, string>;
+type Resolvable<T> = T | ((params: PortalParams) => T);
+interface PortalTab {
+    /** Absolute path; prefix-matched, so `/users/:id/audit/page-2` still lights up `/users/:id/audit`. */
+    path: string;
+    title: string;
+    badge?: React.ReactNode;
+    disabled?: boolean;
+}
+interface PortalRoute {
+    /** Absolute path. `:name` matches one segment (`/users/:id`), a trailing `*` matches the rest. */
+    path: string;
+    /** Page title, nav label and breadcrumb; may depend on route params (`/users/:id` → the user's name). */
+    title: Resolvable<string>;
+    icon?: React.ReactNode;
+    /** `PageHeader` subtitle. */
+    description?: Resolvable<string | undefined>;
+    /** Sidebar heading this top-level route is grouped under. */
+    section?: string;
+    /** Keep it out of the sidebar (detail pages); the nearest visible ancestor stays highlighted. */
+    hidden?: boolean;
+    badge?: React.ReactNode;
+    disabled?: boolean;
+    /** Nested routes: an expandable nav group and the parents in the breadcrumb. Give the group an overview child to keep its own page reachable. */
+    children?: PortalRoute[];
+    /** Tabs in the page header; the tab paths belong to this route. */
+    tabs?: PortalTab[];
+    /** Badges next to the page title / actions at the end of the header. */
+    badges?: Resolvable<React.ReactNode>;
+    actions?: Resolvable<React.ReactNode>;
+    /** `false` renders no `PageHeader` and breadcrumb (the page brings its own, e.g. `PortalHome`). */
+    header?: boolean;
+}
+interface PortalMatch {
+    /** Root → leaf routes that contain the path. */
+    chain: PortalRoute[];
+    route: PortalRoute | undefined;
+    tab: PortalTab | undefined;
+    params: PortalParams;
+}
+/** Finds the route (and tab) a pathname belongs to: an exact match wins, else the most specific prefix. The root path only matches exactly. */
+declare function resolvePortalRoute(routes: PortalRoute[], path: string): PortalMatch;
+/** Links rendered by the layout; spread everything onto your router's `<Link to={to}>`. */
+type PortalLinkProps = React.HTMLAttributes<HTMLElement> & {
+    to: string;
+    href: string;
+    className?: string;
+    children?: React.ReactNode;
+    "aria-current"?: "page";
+};
+type PortalLinkRenderer = (props: PortalLinkProps) => React.ReactElement;
+/** Breadcrumb trail of a match: `home` › parents › current page (› tab). Empty on the home route. */
+declare function portalBreadcrumbs(routes: PortalRoute[], path: string, opts: {
+    homeLabel: string;
+    homePath?: string;
+    link?: (to: string) => Omit<BreadcrumbItemProps, "label">;
+}): BreadcrumbItemProps[];
+/** Sidebar model of a route tree: sections become headings, `current` follows the matched route. */
+declare function portalNavEntries(routes: PortalRoute[], path: string, opts?: {
+    link?: (route: PortalRoute) => Pick<NavItem, "href" | "onSelect" | "render">;
+}): NavEntry[];
+interface PortalApp {
+    id: string;
+    name: string;
+    description?: string;
+    icon?: React.ReactNode;
+    href?: string;
+    /** Opens in a new tab. */
+    external?: boolean;
+    badge?: React.ReactNode;
+    /** Initial favourite state for `PortalHome` when `favourites` is not controlled. */
+    favourite?: boolean;
+    /** When the user last opened it (`PortalHome` › Recent apps). */
+    lastOpened?: Date | string | number;
+    onSelect?: (app: PortalApp) => void;
+}
+interface AppSwitcherProps {
+    apps: PortalApp[];
+    /** Id of the app the user is in now; marked with `aria-current`. */
+    current?: string;
+    onSelect?: (app: PortalApp) => void;
+    /** Footer link to the launchpad. */
+    allApps?: {
+        href?: string;
+        onClick?: (e: React.MouseEvent<HTMLElement>) => void;
+    };
+    labels?: Partial<PortalLabels>;
+}
+/** Masthead grid menu of the portal's apps. */
+declare function AppSwitcher({ apps, current, onSelect, allApps, labels }: AppSwitcherProps): React.JSX.Element;
+interface PortalUser {
+    name: string;
+    email?: string;
+    tenant?: string;
+    avatarSrc?: string;
+    items?: {
+        id: string;
+        label: string;
+        icon?: React.ReactNode;
+        onSelect: () => void;
+    }[];
+    onSignOut?: () => void;
+}
+interface PortalSearch {
+    /** Extra commands next to the automatic page and app commands. */
+    commands?: Command[];
+    /** Async source (people, documents …), merged into the palette results. */
+    onSearch?: (query: string) => Promise<Command[]>;
+    recent?: Command[];
+    placeholder?: string;
+}
+interface PortalPageContext {
+    route: PortalRoute | undefined;
+    tab: PortalTab | undefined;
+    params: PortalParams;
+    breadcrumbs: BreadcrumbItemProps[];
+    title: string;
+}
+interface PortalLayoutProps extends Pick<AppFrameProps, "persistKey" | "sidebarCollapse" | "drawer" | "drawerPlacement" | "className"> {
+    brand: {
+        logo?: React.ReactNode;
+        title: React.ReactNode;
+        subtitle?: React.ReactNode;
+    };
+    routes: PortalRoute[];
+    /** Current pathname (`useLocation().pathname`). */
+    path: string;
+    /** Called for plain left-clicks on links instead of a full page load. Omit to let `href`s navigate normally. */
+    onNavigate?: (path: string) => void;
+    /** Router `<Link>` escape hatch for nav items, breadcrumbs, tabs and the brand. */
+    render?: PortalLinkRenderer;
+    /** `path` → `href` (base paths, hash routers …). Default: identity. */
+    hrefFor?: (path: string) => string;
+    /** Route of the brand link and the first breadcrumb. Default `/`. */
+    homePath?: string;
+    /** Apps of the switcher (and of the palette). */
+    apps?: PortalApp[];
+    currentApp?: string;
+    onAppSelect?: (app: PortalApp) => void;
+    allAppsPath?: string;
+    /** `false` removes the search trigger and palette. */
+    search?: false | PortalSearch;
+    notifications?: NotificationCenterProps;
+    user?: PortalUser;
+    /** `false` hides the toggle. */
+    theme?: false | ThemeToggleProps;
+    /** Extra masthead actions before the built-ins. */
+    mastheadActions?: React.ReactNode;
+    sidebarHeader?: React.ReactNode;
+    sidebarFooter?: React.ReactNode;
+    /** `AppFooter` props or your own element. */
+    footer?: AppFooterProps | React.ReactElement;
+    /** Replaces the route-derived `PageHeader`; `false` removes it. */
+    pageHeader?: false | React.ReactNode | ((ctx: PortalPageContext) => React.ReactNode);
+    /** Page header actions; the route's own `actions` win. */
+    pageActions?: React.ReactNode;
+    labels?: Partial<PortalLabels>;
+    frameLabels?: Partial<AppFrameLabels>;
+    children?: React.ReactNode;
+}
+/**
+ * Multi-app portal shell on top of `AppFrame`: masthead (brand, global search palette, app switcher, notifications,
+ * theme, user menu), a sidebar built from `routes`, and a `PageHeader` whose breadcrumb, title and tabs follow the
+ * current `path`. Router-agnostic: pass `path`, `onNavigate` and optionally `render` for your `<Link>`.
+ */
+declare function PortalLayout({ brand, routes, path, onNavigate, render, hrefFor, homePath, apps, currentApp, onAppSelect, allAppsPath, search, notifications, user, theme, mastheadActions, sidebarHeader, sidebarFooter, footer, pageHeader, pageActions, labels, frameLabels, persistKey, sidebarCollapse, drawer, drawerPlacement, className, children, }: PortalLayoutProps): React.JSX.Element;
+interface PortalAnnouncement {
+    id: string;
+    title: string;
+    body?: React.ReactNode;
+    date?: Date | string | number;
+    tone?: "info" | "ok" | "warn" | "danger";
+    href?: string;
+    onClick?: (e: React.MouseEvent<HTMLElement>) => void;
+}
+interface PortalQuickAction {
+    id: string;
+    label: string;
+    description?: string;
+    icon?: React.ReactNode;
+    href?: string;
+    onSelect?: () => void;
+}
+interface PortalHomeProps {
+    /** Greets by name; `title` overrides the greeting. */
+    user?: {
+        name: string;
+    };
+    title?: React.ReactNode;
+    subtitle?: React.ReactNode;
+    apps: PortalApp[];
+    /** Favourite app ids (controlled); uncontrolled starts from the apps' `favourite` flags. */
+    favourites?: string[];
+    onFavouritesChange?: (ids: string[]) => void;
+    /** Called when an app card is opened (e.g. to record "recent"). */
+    onAppOpen?: (app: PortalApp) => void;
+    /** Recent apps in display order; default: apps with `lastOpened`, newest first. */
+    recent?: PortalApp[];
+    announcements?: PortalAnnouncement[];
+    onDismissAnnouncement?: (id: string) => void;
+    quickActions?: PortalQuickAction[];
+    labels?: Partial<PortalHomeLabels>;
+    className?: string;
+}
+/** Launchpad: favourite and recent apps, announcements and quick actions. */
+declare function PortalHome({ user, title, subtitle, apps, favourites, onFavouritesChange, onAppOpen, recent, announcements, onDismissAnnouncement, quickActions, labels, className }: PortalHomeProps): React.JSX.Element;
+
+interface ServerGridQuery {
+    sort: GridSort[];
+    /** 1-based. */
+    page: number;
+    pageSize: number;
+    filters: GridFilter[];
+    /** Debounced search text. */
+    search: string;
+}
+interface ServerGridRequest extends ServerGridQuery {
+    /** Cursor returned with the previous page (`nextCursor`); undefined for the first page or offset APIs. */
+    cursor?: string;
+    /** Aborted as soon as a newer request supersedes this one or the grid unmounts. */
+    signal: AbortSignal;
+}
+interface ServerGridResult<T> {
+    rows: T[];
+    /** Total rows matching the query; leave out for cursor APIs that cannot count. */
+    total?: number;
+    /** Cursor of the next page; `null` marks the last page. */
+    nextCursor?: string | null;
+}
+type ServerGridFetcher<T> = (request: ServerGridRequest) => Promise<ServerGridResult<T>>;
+/** Where the grid state is mirrored: the browser URL by default, or a router's search params. */
+interface ServerGridUrlAdapter {
+    /** Current search string (with or without the leading `?`). */
+    read: () => string;
+    write: (search: string, mode: "push" | "replace") => void;
+    /** Notify on external changes (back/forward); returns the unsubscribe function. */
+    subscribe?: (onChange: () => void) => () => void;
+}
+interface ServerGridUrlOptions {
+    adapter?: ServerGridUrlAdapter;
+    /** Namespaces the parameters (`<prefix>sort`, `<prefix>page` …) when several grids share a URL. */
+    prefix?: string;
+    /** `replace` (default) keeps the back button usable; `push` adds a history entry per change. */
+    history?: "push" | "replace";
+}
+interface UseServerGridOptions<T> {
+    fetcher: ServerGridFetcher<T>;
+    initialSort?: GridSort[];
+    initialFilters?: GridFilter[];
+    initialSearch?: string;
+    initialPage?: number;
+    /** Default 25. */
+    pageSize?: number;
+    /** Delay before typing in the search box triggers a request. Default 300; 0 disables. */
+    debounceMs?: number;
+    /** `true` uses the browser URL (`history.replaceState`). */
+    urlSync?: boolean | ServerGridUrlOptions;
+    /** Hold off fetching (e.g. until a tenant is known). Default true. */
+    enabled?: boolean;
+    /** Keep showing the previous rows while a new query loads (stale-while-revalidate). Default true. */
+    keepPreviousData?: boolean;
+    onError?: (error: unknown) => void;
+}
+interface ServerGridController<T> {
+    rows: T[];
+    total: number | undefined;
+    pageCount: number | undefined;
+    hasNext: boolean;
+    sort: GridSort[];
+    page: number;
+    pageSize: number;
+    filters: GridFilter[];
+    /** Live value of the search box; the request uses the debounced `query.search`. */
+    search: string;
+    /** What the latest request was (or is being) made with. */
+    query: ServerGridQuery;
+    /** A request is in flight. */
+    loading: boolean;
+    /** In flight with nothing to show yet. */
+    initialLoading: boolean;
+    /** `rows` belong to an earlier query while the current one loads. */
+    stale: boolean;
+    error: unknown;
+    setSort: (sort: GridSort[]) => void;
+    setFilters: (filters: GridFilter[]) => void;
+    setSearch: (search: string) => void;
+    /** Applies the pending search text without waiting for the debounce. */
+    flushSearch: () => void;
+    setPage: (page: number) => void;
+    setPageSize: (pageSize: number) => void;
+    /** Back to the initial sort, filters, search and page. */
+    reset: () => void;
+    /** Refetches the current query (keeps the rows visible). */
+    refresh: () => void;
+    /** Spread onto `<DataGrid>`; it already sets `manual`. */
+    gridProps: Pick<DataGridProps<T>, "rows" | "manual" | "sort" | "onSortChange" | "filters" | "onFiltersChange" | "search" | "onSearchChange" | "loading" | "error" | "onRetry" | "rowCount" | "pagination">;
+}
+declare const browserSearchParams: ServerGridUrlAdapter;
+/** Reads `q`, `sort` (`name:asc,age:desc`), `page`, `size` and `f.<id>` / `fj.<id>` (JSON) back into grid state. */
+declare function serverGridFromSearchParams(search: string | URLSearchParams, defaults?: Partial<ServerGridQuery>, prefix?: string): ServerGridQuery;
+/** Inverse of {@link serverGridFromSearchParams}: writes the non-default parts of `state` into `params` (other parameters stay). */
+declare function serverGridToSearchParams(state: ServerGridQuery, params?: URLSearchParams, defaults?: Partial<ServerGridQuery>, prefix?: string): URLSearchParams;
+/**
+ * State and data loading for a server-driven table: sort, page/cursor, page size, filters and debounced search.
+ * Every change refetches; the previous request is aborted, stale responses are dropped, and the previous rows
+ * stay on screen (`stale`) until the new ones arrive. Changing sort, filters, search or page size returns to page 1.
+ */
+declare function useServerGrid<T>(options: UseServerGridOptions<T>): ServerGridController<T>;
+type Owned = "rows" | "manual" | "sort" | "onSortChange" | "filters" | "onFiltersChange" | "search" | "onSearchChange" | "loading" | "error" | "onRetry" | "rowCount" | "pagination" | "toolbar";
+interface ServerDataGridProps<T> extends Omit<DataGridProps<T>, Owned>, UseServerGridOptions<T> {
+    /** Page sizes offered in the footer. Default 10/25/50/100. */
+    pageSizes?: number[];
+    /** Search box above the grid (debounced). Default true. */
+    searchable?: boolean;
+    searchPlaceholder?: string;
+    /** Adds a `FilterBar` whose parsed filters become `filters` in the request. */
+    filterFields?: FilterField[];
+    filterBar?: Partial<Omit<FilterBarProps, "fields" | "value" | "onChange">>;
+    /** Extra toolbar content before / after the built-in controls; inside the grid, so `GridColumnsMenu` & co. work. */
+    toolbarStart?: React.ReactNode;
+    toolbarEnd?: React.ReactNode;
+    /** Show the refresh button. Default true. */
+    refreshable?: boolean;
+    /** Imperative access to the grid state (e.g. to refresh after a mutation). */
+    controllerRef?: React.Ref<ServerGridController<T>>;
+}
+/** `DataGrid` + `useServerGrid` + `Toolbar`/`SearchInput`/`FilterBar`: a sortable, paginated, searchable server table in one element. */
+declare function ServerDataGrid<T>({ fetcher, initialSort, initialFilters, initialSearch, initialPage, pageSize, debounceMs, urlSync, enabled, keepPreviousData, onError, pageSizes, searchable, searchPlaceholder, filterFields, filterBar, toolbarStart, toolbarEnd, refreshable, controllerRef, ...grid }: ServerDataGridProps<T>): React.JSX.Element;
+
+export { Accordion, type AccordionItem, AccountItem, AccountList, ActionBar, type ActionBarProps, ActionGroup, type ActivityComment, type ActivityEvent, type ActivityItem, ActivityTimeline, AdminShell, Alert, AlertGroup, type AlertProps, type AlertTone, AppFooter, type AppFooterBuild, type AppFooterProps, AppFrame, type AppFrameContextValue, type AppFrameLabels, type AppFrameProps, AppSwitcher, type AppSwitcherProps, type AuditEvent, AuditLog, AuthFooter, Avatar, AvatarGroup, Badge, Banner, BrandHeader, Breadcrumb, type BreadcrumbItemProps, Button, ButtonGroup, type ButtonProps, CapacityBar, type CapacityBarProps, CardProps, type ChartSeries, Checkbox, Chip, ClientInfo, ClipboardCopy, type ClipboardCopyProps, CodeBlock, CodeBlockCode, type CodeBlockProps, CodeDisplay, CodeEditor, CodeEditorLite, CodeInput, ComboboxOption, type Command, CommandPalette, ConfirmDialog, ContextMenu, ContextMenuContent, ContextMenuFor, ContextMenuItem, ContextMenuSeparator, ContextMenuTrigger, CopyButton, DataGrid, type DataGridProps, DatePicker, type DatePickerProps, type DateRangeValue, DefinitionList, DescriptionList, DescriptionListDescription, DescriptionListGroup, type DescriptionListProps, DescriptionListTerm, DetailPage, DeviceSteps, type DeviceStepsProps, Dialog, DialogClose, DialogContent, DialogTrigger, type DiffOp, DiffView, Divider, DockedTaskPanel, Drawer, DrawerClose, DrawerContent, DrawerPanel, type DrawerPanelProps, type DrawerPlacement, DrawerTrigger, Dropdown, DropdownGroup, DropdownItem, DropdownList, DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger, type DropdownProps, DropdownSeparator, EmptyState, ErrorPage, type ErrorVariant, Field, type FieldProps, type Filter, FilterBar, type FilterBarLabels, type FilterBarProps, type FilterField, type FilterOp, type FilterOption, type FilterToken, Flex, FlexItem, type FlexProps, type FooterLink, type FooterLinkGroup, Form, FormFooter, FormGroup, type FormGroupProps, FormHelperText, FormPage, FormSection, Formatters, type Gap, GaugeCard, type GaugeCardProps, type GaugeThreshold, Grid, type GridColumn, GridColumnsMenu, type GridDensity, GridDensityToggle, type GridFilter, type GridFilterRenderer, GridItem, type GridItemProps, type GridLabels, type GridMenuItem, type GridPagination, GridSearch, type GridSort, Heatmap, HelperText, HelperTextItem, type HotkeyOptions, HotkeysProvider, HoverCard, IconButton, type IconButtonProps, InfiniteList, type InfiniteListProps, InfoBox, InlineDrawer, Input, type InputProps, InventoryLayout, type InventoryLayoutProps, IssueCard, type IssueData, IssueRow, Kbd, type KeyValue, KeyValueEditor, Label, type LabelDef, LabelPicker, type LabelSlot, LabelSwatch, LafErrorBoundary, LanguageSwitcher, LineChart, type LogLine, LogViewer, type LogViewerLabels, Masthead, MastheadActions, MastheadBrand, type MastheadBrandProps, MastheadContent, MastheadToggle, Menu, type MenuItemSpec, MenuShortcut, MenuToggle, type MenuToggleProps, MetricCard, type MetricCardProps, type MetricDelta, MetricGrid, type MetricTone, type MetricTrend, MfaEnrolment, type MfaEnrolmentProps, type MfaMethod, MobileNav, Modal, ModalBody, ModalClose, ModalFooter, ModalHeader, type ModalProps, ModalTrigger, type NavDivider, type NavEntry, NavGroup, type NavHeading, type NavItem, NavLink, type NavRenderProps, NavTree, type NavTreeProps, NotificationCenterProps, NumberInput, ObjectIcon, type ObjectIconProps, type ObjectKind, ObjectPage, type ObjectPageCard, type ObjectPageProps, type ObjectState, OptionPicker, type OptionPickerProps, OtpInput, OverflowTabs, PageHead, PageHeader, type PageHeaderProps, PageSection, type PageSectionProps, Pagination, type PaginationProps, Panel, type ParsedFilter, PasswordField, type PasswordFieldProps, type PermissionGroup, PermissionMatrix, type PermissionMatrixLabels, type PickerOption, Popover, PopoverClose, PopoverContent, PopoverTrigger, type PortalAnnouncement, type PortalApp, PortalHome, type PortalHomeLabels, type PortalHomeProps, type PortalLabels, PortalLayout, type PortalLayoutProps, type PortalLinkProps, type PortalLinkRenderer, type PortalMatch, type PortalPageContext, type PortalParams, type PortalQuickAction, type PortalRoute, type PortalSearch, type PortalTab, type PortalUser, Progress, ProgressCard, type ProgressCardProps, ProgressSummary, PropertiesPane, type PropertyField, type PropertyGroup, RadialGauge, type RadialGaugeProps, Radio, RadioGroup, type RadioGroupProps, type RadioProps, type Reaction, Reactions, type RegisteredHotkey, RelativeTime, type ResolvedTheme, type SavedView, SavedViews, type SavedViewsLabels, type SavedViewsProps, type SavedViewsStorage, ScopeList, SearchInput, SecretDisplay, SegmentedControl, type SegmentedControlProps, type SegmentedItem, Select, type SelectGroup, SelectMenu, type SelectOption, type SelectProps, ServerDataGrid, type ServerDataGridProps, type ServerGridController, type ServerGridFetcher, type ServerGridQuery, type ServerGridRequest, type ServerGridResult, type ServerGridUrlAdapter, type ServerGridUrlOptions, type Severity, ShortcutHelp, Sidebar, type SidebarProps, Skeleton, Slider, type SliderProps, SocialButton, SocialButtons, SocialDivider, Sparkline, Spinner, SplitButton, SplitPane, Stack, StackItem, StackedBarChart, Stat, StatGrid, StatusDot, StatusSummaryCard, type StatusSummaryCardProps, type StatusSummaryItem, type Step, Stepper, SubNav, type SubNavGroup, type SubNavItem, Switch, Table, Tabs, TabsContent, TabsList, TabsTrigger, TagInput, type TaskItem, TaskPanel, type TaskStatus, TenantSwitcher, Textarea as TextArea, Input as TextInput, type TextTerm, Textarea, type ThemeMode, ThemeToggle, type ThemeToggleProps, TimeRangePicker, Title, type TitleSize, type ToastOptions, ToastProvider, type ToastTone, Toolbar, ToolbarActions, ToolbarBulk, type ToolbarBulkProps, ToolbarContent, ToolbarDivider, type ToolbarFilter, ToolbarFilterChips, type ToolbarFilterChipsProps, ToolbarGroup, type ToolbarGroupProps, ToolbarItem, type ToolbarProps, ToolbarSpacer, Tooltip, TooltipProvider, TopBar, type TopBarCounter, type TopologyEdge, TopologyGraph, type TopologyNode, TreeTable, type TreeTableNode, type TreeTableProps, TreeViewProps, TruncatedText, type UnitOption, UnsavedChangesDialog, type UnsavedChangesGuard, type UseSavedViewsOptions, type UseServerGridOptions, UserCell, UserMenu, VirtualList, Wizard, type WizardLabels, type WizardProps, WizardReview, type WizardStep, browserSearchParams, buttonVariants, cn, diffLines, format, formatHotkey, formatRelative, gaugeTone, highlight, isMacPlatform, matchesAccept, observeRectWithFallback, parseFilter, parseHotkey, portalBreadcrumbs, portalNavEntries, registerObjectKind, resolvePortalRoute, serializeFilter, serializeToken, serverGridFromSearchParams, serverGridToSearchParams, useAppFrame, useControllableState, useHotkeys, useRegisteredHotkeys, useSavedViews, useServerGrid, useToast, useToasts, useUnsavedChangesGuard };

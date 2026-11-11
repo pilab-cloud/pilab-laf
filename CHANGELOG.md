@@ -7,6 +7,8 @@ Follows [semver](https://semver.org). Pre-1.0, minor versions may contain breaki
 See [`docs/MIGRATION.md`](docs/MIGRATION.md).
 
 ### Added
+- Portal kit: `PortalLayout`, `PortalHome`, `AppSwitcher`, route model helpers; `useServerGrid` and `ServerDataGrid`; `DataGrid` `pagination`/`onRetry`/`GridColumn.filterOptions` (manual mode keeps rows while loading, in-grid error row, total/page-size footer, page-scoped select-all); `portal` catalogue group (en/hu); demo `?demo=portal`.
+- Dashboard kit: Card v2, `MetricCard`/`MetricGrid`/`RadialGauge`/`GaugeCard`/`ProgressCard`/`StatusSummaryCard`, charts `AreaChart`/`LineChart`/`BarChart`/`DonutChart`/`ChartCard`/`ChartLegend`/`ChartTooltip`, `SegmentedBar`/`ThresholdDonut`/`UtilizationCard`, upgraded `Alert`/`Banner`, `AlertGroup`, toasts (`max`, `position`, `description`, `useToasts`), `UserMenu avatarSrc`, `TimeSeriesChart legend`, `dashboard` catalogue group (en/hu), `docs/charts.md`, demo `?demo=dashboard`. `Gauge` and `Heatmap` already existed and are unchanged; the new gauge is `RadialGauge`.
 - App shell: `AppFrame`, `Masthead*`, `ThemeToggle`, `NavTree`/`Sidebar` (nested nav, rail, tree mode), `AppFooter`, `PageHeader`/`PageSection`, inline `DrawerPanel`/`InlineDrawer`; `Breadcrumb` gains `onClick`/`icon`/`render`/`current`/`separator`; `TopBar as="div"`; `Tooltip` `open`/`onOpenChange`. Demo `?demo=app-frame`.
 - `@pilab/laf/topology` entry (`TopologyGraphFlow`, optional peer `@xyflow/react`).
 - Per-component label sets (account, admin, tracker, vSphere objects, charts) in `messages.components` with Hungarian translations; `useLafDefaults`.

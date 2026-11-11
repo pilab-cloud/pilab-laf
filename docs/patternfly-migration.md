@@ -62,6 +62,7 @@ Conventions to know before porting:
 | PatternFly | LAF replacement | Notes |
 |---|---|---|
 | `Table` (`variant="compact"`) | `Table` (native semantics, `.table` styling) for small static lists; `DataGrid` for sort/filter/selection/virtual rows | Default to `DataGrid` for TokensView, PackagesView, OCIView, RepositoriesView, ACLView and AuditView; `Table` is enough for the dashboard's "Top consumers"/"Recent events". `variant="compact"` → `density="compact"`. |
+| `Table` backed by an API (server-side sort/page/search) | `ServerDataGrid` (`fetcher({ sort, page, pageSize, filters, search, signal })` → `{ rows, total }`) or `useServerGrid` + `DataGrid manual` | Replaces hand-rolled `useEffect` + `Pagination` + `Toolbar`: debounce, request abort, stale rows while loading, retry, `urlSync` for shareable state. |
 | `Thead`, `Tr`, `Th` | `GridColumn[]` (`id`, `header`, `sortable`, `numeric`, `width`) | `sort={{ sortBy, onSort }}` → `sort={[{ id, dir }]}` + `onSortChange`; `Th width` → `width`; hidden columns → column visibility menu. With `Table`: plain `<thead><tr><th>`. |
 | `Tbody`, `Td` | `cell: (row) => ReactNode` per column | `Td dataLabel` not needed (grid cells expose their column header); `Td isActionCell`/`ActionsColumn` → `rowActions={(row) => GridMenuItem[]}` (kebab); `expand` → `renderExpanded`; row click → `onRowActivate`. |
 | Selection (`isSelected`, `onSelect`) | `selected`, `onSelectedChange`, `bulkActions={(ids) => …}` | Pair with `<Toolbar selectedCount>` when bulk actions live in a page toolbar. |

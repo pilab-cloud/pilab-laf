@@ -1,16 +1,13 @@
 'use strict';
 
-var chunkAN24WGJJ_cjs = require('./chunk-AN24WGJJ.cjs');
-var chunkXNG22HMC_cjs = require('./chunk-XNG22HMC.cjs');
-var chunkGWTYGDXC_cjs = require('./chunk-GWTYGDXC.cjs');
+var chunk77S32ZEH_cjs = require('./chunk-77S32ZEH.cjs');
+var chunkYGX6XE22_cjs = require('./chunk-YGX6XE22.cjs');
+var chunkE6JUACLJ_cjs = require('./chunk-E6JUACLJ.cjs');
 var chunkIP6HZMS5_cjs = require('./chunk-IP6HZMS5.cjs');
 var chunkFTHFEMX6_cjs = require('./chunk-FTHFEMX6.cjs');
 var lucideReact = require('lucide-react');
 var jsxRuntime = require('react/jsx-runtime');
-var React25 = require('react');
-var SelectPrimitive = require('@radix-ui/react-select');
-var ToggleGroupPrimitive = require('@radix-ui/react-toggle-group');
-var TooltipPrimitive = require('@radix-ui/react-tooltip');
+var React24 = require('react');
 var ContextPrimitive = require('@radix-ui/react-context-menu');
 var DialogPrimitive3 = require('@radix-ui/react-dialog');
 var DropdownPrimitive2 = require('@radix-ui/react-dropdown-menu');
@@ -19,6 +16,7 @@ var reactVirtual = require('@tanstack/react-virtual');
 var legacy = require('@tanstack/react-table/legacy');
 var cmdk = require('cmdk');
 var HoverCardPrimitive = require('@radix-ui/react-hover-card');
+var TooltipPrimitive = require('@radix-ui/react-tooltip');
 
 function _interopNamespace(e) {
   if (e && e.__esModule) return e;
@@ -38,22 +36,20 @@ function _interopNamespace(e) {
   return Object.freeze(n);
 }
 
-var React25__namespace = /*#__PURE__*/_interopNamespace(React25);
-var SelectPrimitive__namespace = /*#__PURE__*/_interopNamespace(SelectPrimitive);
-var ToggleGroupPrimitive__namespace = /*#__PURE__*/_interopNamespace(ToggleGroupPrimitive);
-var TooltipPrimitive__namespace = /*#__PURE__*/_interopNamespace(TooltipPrimitive);
+var React24__namespace = /*#__PURE__*/_interopNamespace(React24);
 var ContextPrimitive__namespace = /*#__PURE__*/_interopNamespace(ContextPrimitive);
 var DialogPrimitive3__namespace = /*#__PURE__*/_interopNamespace(DialogPrimitive3);
 var DropdownPrimitive2__namespace = /*#__PURE__*/_interopNamespace(DropdownPrimitive2);
 var PopoverPrimitive__namespace = /*#__PURE__*/_interopNamespace(PopoverPrimitive);
 var HoverCardPrimitive__namespace = /*#__PURE__*/_interopNamespace(HoverCardPrimitive);
+var TooltipPrimitive__namespace = /*#__PURE__*/_interopNamespace(TooltipPrimitive);
 
 function Table({ className, children, ...props }) {
   return /* @__PURE__ */ jsxRuntime.jsx("div", { className: "table-wrap", children: /* @__PURE__ */ jsxRuntime.jsx("table", { className: chunkFTHFEMX6_cjs.cn("table", className), ...props, children }) });
 }
 function UserCell({ name, email }) {
   return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "cell-user", children: [
-    /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Avatar, { name }),
+    /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.Avatar, { name }),
     /* @__PURE__ */ jsxRuntime.jsxs("div", { children: [
       /* @__PURE__ */ jsxRuntime.jsx("div", { children: name }),
       email && /* @__PURE__ */ jsxRuntime.jsx("div", { className: "cell-sub", children: email })
@@ -71,7 +67,7 @@ function pageWindow(page, count) {
   return out;
 }
 function Pagination({ page, pageCount, total, pageSize, onPageChange }) {
-  const { t } = chunkGWTYGDXC_cjs.useLaf();
+  const { t } = chunkE6JUACLJ_cjs.useLaf();
   const from = total && pageSize ? (page - 1) * pageSize + 1 : void 0;
   const to = total && pageSize ? Math.min(page * pageSize, total) : void 0;
   return /* @__PURE__ */ jsxRuntime.jsxs("nav", { className: "pagination", "aria-label": t.pagination, children: [
@@ -134,23 +130,23 @@ function UserSelector({
   disabled,
   label: labelProp
 }) {
-  const { t } = chunkGWTYGDXC_cjs.useLaf();
+  const { t } = chunkE6JUACLJ_cjs.useLaf();
   const placeholder = placeholderProp ?? t.searchUsers;
   const label = labelProp ?? t.users;
   const limitReached = max !== void 0 && value.length >= max;
-  const known = React25__namespace.useRef(/* @__PURE__ */ new Map());
+  const known = React24__namespace.useRef(/* @__PURE__ */ new Map());
   const toOption = (u) => {
     known.current.set(u.id, u);
     return { value: u.id, label: u.name, description: u.email };
   };
-  const search = React25__namespace.useCallback(
+  const search = React24__namespace.useCallback(
     async (q) => (await onSearch(q)).map(toOption),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [onSearch]
   );
   const opts = value.map(toOption);
   return /* @__PURE__ */ jsxRuntime.jsx(
-    chunkAN24WGJJ_cjs.Combobox,
+    chunk77S32ZEH_cjs.Combobox,
     {
       label,
       placeholder,
@@ -160,7 +156,7 @@ function UserSelector({
       value: opts,
       emptyText: limitReached ? `Limit of ${max} reached` : void 0,
       renderOption: (o) => /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
-        /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Avatar, { name: o.label }),
+        /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.Avatar, { name: o.label }),
         /* @__PURE__ */ jsxRuntime.jsxs("span", { className: "flex flex-col", children: [
           /* @__PURE__ */ jsxRuntime.jsx("span", { children: o.label }),
           o.description && /* @__PURE__ */ jsxRuntime.jsx("span", { className: "text-xs text-subtle", children: o.description })
@@ -184,10 +180,10 @@ function DeviceSelector({
   return /* @__PURE__ */ jsxRuntime.jsxs("fieldset", { className: "device-list border-0 p-0", children: [
     /* @__PURE__ */ jsxRuntime.jsx("legend", { className: "sr-only", children: legend }),
     devices.map((d) => {
-      const Icon2 = deviceIcon[d.kind];
+      const Icon = deviceIcon[d.kind];
       return /* @__PURE__ */ jsxRuntime.jsxs("label", { className: "device-option", children: [
         /* @__PURE__ */ jsxRuntime.jsx("input", { type: "radio", name, value: d.id, checked: value === d.id, onChange: () => onValueChange(d.id) }),
-        /* @__PURE__ */ jsxRuntime.jsx("span", { className: "device-icon", children: /* @__PURE__ */ jsxRuntime.jsx(Icon2, { "aria-hidden": true }) }),
+        /* @__PURE__ */ jsxRuntime.jsx("span", { className: "device-icon", children: /* @__PURE__ */ jsxRuntime.jsx(Icon, { "aria-hidden": true }) }),
         /* @__PURE__ */ jsxRuntime.jsxs("span", { className: "device-meta", children: [
           /* @__PURE__ */ jsxRuntime.jsx("span", { className: "device-name", children: d.name }),
           d.detail && /* @__PURE__ */ jsxRuntime.jsx("span", { className: "device-sub", children: d.detail })
@@ -202,7 +198,7 @@ var iconTone = { ok: "ok", warn: "warn", danger: "danger", neutral: "" };
 var badgeTone = { ok: "ok", warn: "warn", danger: "danger", neutral: "neutral" };
 function AuditLog({ events }) {
   const days = [...new Set(events.map((e) => e.day))];
-  return /* @__PURE__ */ jsxRuntime.jsx("div", { className: "audit", children: days.map((day) => /* @__PURE__ */ jsxRuntime.jsxs(React25__namespace.Fragment, { children: [
+  return /* @__PURE__ */ jsxRuntime.jsx("div", { className: "audit", children: days.map((day) => /* @__PURE__ */ jsxRuntime.jsxs(React24__namespace.Fragment, { children: [
     /* @__PURE__ */ jsxRuntime.jsx("div", { className: "audit-day", children: day }),
     events.filter((e) => e.day === day).map((e) => /* @__PURE__ */ jsxRuntime.jsxs("details", { className: "audit-row", children: [
       /* @__PURE__ */ jsxRuntime.jsxs("summary", { children: [
@@ -214,7 +210,7 @@ function AuditLog({ events }) {
           e.action,
           e.target && /* @__PURE__ */ jsxRuntime.jsx("small", { children: e.target })
         ] }),
-        e.result ? /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Badge, { tone: badgeTone[e.severity], children: e.result }) : /* @__PURE__ */ jsxRuntime.jsx("span", {})
+        e.result ? /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.Badge, { tone: badgeTone[e.severity], children: e.result }) : /* @__PURE__ */ jsxRuntime.jsx("span", {})
       ] }),
       e.details && /* @__PURE__ */ jsxRuntime.jsx("dl", { className: "audit-detail", children: Object.entries(e.details).map(([k, v]) => /* @__PURE__ */ jsxRuntime.jsxs("div", { children: [
         /* @__PURE__ */ jsxRuntime.jsx("dt", { children: k }),
@@ -306,9 +302,9 @@ function OtpInput({
   className,
   ...props
 }) {
-  const [inner, setInner] = React25__namespace.useState(defaultValue);
+  const [inner, setInner] = React24__namespace.useState(defaultValue);
   const current = value ?? inner;
-  const { t: laf } = chunkGWTYGDXC_cjs.useLaf();
+  const { t: laf } = chunkE6JUACLJ_cjs.useLaf();
   return /* @__PURE__ */ jsxRuntime.jsx(
     "input",
     {
@@ -349,11 +345,11 @@ function CodeDisplay({
   copiedLabel: copiedLabelProp,
   className
 }) {
-  const { t: laf } = chunkGWTYGDXC_cjs.useLaf();
+  const { t: laf } = chunkE6JUACLJ_cjs.useLaf();
   const copyLabel = copyLabelProp ?? laf.copyCode;
   const copiedLabel = copiedLabelProp ?? laf.copied;
-  const [copied, setCopied] = React25__namespace.useState(false);
-  React25__namespace.useEffect(() => {
+  const [copied, setCopied] = React24__namespace.useState(false);
+  React24__namespace.useEffect(() => {
     if (!copied) return;
     const t = window.setTimeout(() => setCopied(false), 2e3);
     return () => window.clearTimeout(t);
@@ -407,7 +403,7 @@ function LanguageSwitcher({
   className,
   label
 }) {
-  const { t: laf } = chunkGWTYGDXC_cjs.useLaf();
+  const { t: laf } = chunkE6JUACLJ_cjs.useLaf();
   return /* @__PURE__ */ jsxRuntime.jsx("nav", { className: chunkFTHFEMX6_cjs.cn("lang-switch", className), "aria-label": label ?? laf.language, children: languages.map((l) => /* @__PURE__ */ jsxRuntime.jsx(
     "a",
     {
@@ -436,11 +432,11 @@ function CopyButton({
   copiedLabel: copiedLabelProp,
   className
 }) {
-  const { t } = chunkGWTYGDXC_cjs.useLaf();
+  const { t } = chunkE6JUACLJ_cjs.useLaf();
   const label = labelProp ?? t.copy;
   const copiedLabel = copiedLabelProp ?? t.copied;
-  const [copied, setCopied] = React25__namespace.useState(false);
-  React25__namespace.useEffect(() => {
+  const [copied, setCopied] = React24__namespace.useState(false);
+  React24__namespace.useEffect(() => {
     if (!copied) return;
     const t2 = window.setTimeout(() => setCopied(false), 2e3);
     return () => window.clearTimeout(t2);
@@ -482,23 +478,23 @@ function PasswordField({
   onChange,
   ...props
 }) {
-  const [text, setText] = React25__namespace.useState(String(props.value ?? props.defaultValue ?? ""));
+  const [text, setText] = React24__namespace.useState(String(props.value ?? props.defaultValue ?? ""));
   const current = props.value !== void 0 ? String(props.value) : text;
   const score = strength ? strength(current) : 0;
   const mismatch = confirmOf !== void 0 && current !== "" && current !== confirmOf;
-  const uid = React25__namespace.useId();
-  const { t } = chunkGWTYGDXC_cjs.useLaf();
+  const uid = React24__namespace.useId();
+  const { t } = chunkE6JUACLJ_cjs.useLaf();
   const showLabel = showLabelProp ?? t.showPassword;
   const hideLabel = hideLabelProp ?? t.hidePassword;
   const strengthLabels = strengthLabelsProp ?? t.passwordStrength;
   const mismatchLabel = mismatchLabelProp ?? t.passwordMismatch;
   const capsLockHint = capsLockHintProp ?? t.capsLock;
-  const [visible, setVisible] = React25__namespace.useState(false);
-  const [caps, setCaps] = React25__namespace.useState(false);
+  const [visible, setVisible] = React24__namespace.useState(false);
+  const [caps, setCaps] = React24__namespace.useState(false);
   return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "grid gap-1", children: [
     /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "relative", children: [
       /* @__PURE__ */ jsxRuntime.jsx(
-        chunkAN24WGJJ_cjs.Input,
+        chunk77S32ZEH_cjs.Input,
         {
           ...props,
           type: visible ? "text" : "password",
@@ -564,21 +560,21 @@ function ConfirmDialog({
   pending,
   onConfirm
 }) {
-  const { t: laf } = chunkGWTYGDXC_cjs.useLaf();
+  const { t: laf } = chunkE6JUACLJ_cjs.useLaf();
   const cancelLabel = cancelLabelProp ?? laf.cancel;
   const confirmTextLabel = confirmTextLabelProp ?? laf.typeToConfirm;
-  const [typed, setTyped] = React25__namespace.useState("");
-  React25__namespace.useEffect(() => {
+  const [typed, setTyped] = React24__namespace.useState("");
+  React24__namespace.useEffect(() => {
     if (!open) setTyped("");
   }, [open]);
   const blocked = confirmText !== void 0 && typed !== confirmText;
-  return /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Dialog, { open, onOpenChange, children: /* @__PURE__ */ jsxRuntime.jsxs(
-    chunkAN24WGJJ_cjs.DialogContent,
+  return /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.Dialog, { open, onOpenChange, children: /* @__PURE__ */ jsxRuntime.jsxs(
+    chunk77S32ZEH_cjs.DialogContent,
     {
       role: "alertdialog",
       title,
       footer: /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
-        /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.DialogClose, { asChild: true, children: /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { variant: "secondary", size: "sm", autoFocus: true, children: cancelLabel }) }),
+        /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.DialogClose, { asChild: true, children: /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { variant: "secondary", size: "sm", autoFocus: true, children: cancelLabel }) }),
         /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { variant: "danger", size: "sm", loading: pending, disabled: blocked, onClick: onConfirm, children: confirmLabel })
       ] }),
       children: [
@@ -590,7 +586,7 @@ function ConfirmDialog({
             ": ",
             /* @__PURE__ */ jsxRuntime.jsx("b", { className: "font-mono text-fg", children: confirmText })
           ] }),
-          /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Input, { value: typed, onChange: (e) => setTyped(e.target.value), autoComplete: "off" })
+          /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.Input, { value: typed, onChange: (e) => setTyped(e.target.value), autoComplete: "off" })
         ] })
       ]
     }
@@ -674,7 +670,7 @@ function SecretDisplay({
   acknowledged,
   masked = false
 }) {
-  const { t: laf } = chunkGWTYGDXC_cjs.useLaf();
+  const { t: laf } = chunkE6JUACLJ_cjs.useLaf();
   const shown = masked ? `${"\u2022".repeat(Math.max(0, Math.min(value.length - 4, 12)))}${value.slice(-4)}` : value;
   return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "grid gap-2.5", children: [
     /* @__PURE__ */ jsxRuntime.jsx("span", { className: "form-label", children: label }),
@@ -700,7 +696,7 @@ function TaskPanel({
   docked,
   labels: labelsProp
 }) {
-  const { t: laf, format: format2 } = chunkGWTYGDXC_cjs.useLaf();
+  const { t: laf, format: format2 } = chunkE6JUACLJ_cjs.useLaf();
   const labels = {
     cancel: laf.cancel,
     retry: laf.retry,
@@ -712,9 +708,9 @@ function TaskPanel({
     openTarget: laf.vsOpenTarget,
     ...labelsProp
   };
-  const [scope, setScope] = React25__namespace.useState("all");
-  const [status, setStatus] = React25__namespace.useState("all");
-  const [open, setOpen] = React25__namespace.useState(() => /* @__PURE__ */ new Set());
+  const [scope, setScope] = React24__namespace.useState("all");
+  const [status, setStatus] = React24__namespace.useState("all");
+  const [open, setOpen] = React24__namespace.useState(() => /* @__PURE__ */ new Set());
   const visible = tasks.filter(
     (t) => (scope === "all" || t.initiator === currentUser) && (status === "all" || t.status === status)
   );
@@ -771,7 +767,7 @@ function TaskPanel({
             t.name,
             t.target && (onOpenTarget ? /* @__PURE__ */ jsxRuntime.jsx("button", { type: "button", className: chunkFTHFEMX6_cjs.cn(linkBtn, "ms-2 font-normal"), onClick: () => onOpenTarget(t), children: t.target }) : /* @__PURE__ */ jsxRuntime.jsx("span", { className: "ms-2 font-normal text-muted", children: t.target }))
           ] }),
-          /* @__PURE__ */ jsxRuntime.jsx("span", { "aria-live": "polite", children: /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Badge, { tone: taskTone[t.status], children: t.status }) }),
+          /* @__PURE__ */ jsxRuntime.jsx("span", { "aria-live": "polite", children: /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.Badge, { tone: taskTone[t.status], children: t.status }) }),
           t.status === "running" && onCancel && /* @__PURE__ */ jsxRuntime.jsx("button", { type: "button", className: linkBtn, onClick: () => onCancel(t.id), children: labels.cancel }),
           t.status === "failed" && onRetry && /* @__PURE__ */ jsxRuntime.jsx("button", { type: "button", className: linkBtn, onClick: () => onRetry(t.id), children: labels.retry })
         ] }),
@@ -787,6 +783,7 @@ function UserMenu({
   name,
   email,
   tenant,
+  avatarSrc,
   items,
   signOutLabel: signOutLabelProp,
   onSignOut,
@@ -795,285 +792,32 @@ function UserMenu({
   expiryWarnMs = 3e5,
   expiryLabel = (r) => `Session expires in ${r}`
 }) {
-  const { t: laf, format: format2 } = chunkGWTYGDXC_cjs.useLaf();
+  const { t: laf, format: format2 } = chunkE6JUACLJ_cjs.useLaf();
   const signOutLabel = signOutLabelProp ?? laf.signOut;
   const remainingMs = expiresAt === void 0 ? void 0 : new Date(expiresAt).getTime() - Date.now();
   const showExpiry = remainingMs !== void 0 && remainingMs <= expiryWarnMs;
-  return /* @__PURE__ */ jsxRuntime.jsxs(chunkAN24WGJJ_cjs.DropdownMenu, { children: [
-    /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.DropdownMenuTrigger, { asChild: true, children: /* @__PURE__ */ jsxRuntime.jsx("button", { className: "border-0 bg-transparent p-0", children: /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Avatar, { name }) }) }),
-    /* @__PURE__ */ jsxRuntime.jsxs(chunkAN24WGJJ_cjs.DropdownMenuContent, { children: [
-      /* @__PURE__ */ jsxRuntime.jsxs(chunkAN24WGJJ_cjs.DropdownMenuLabel, { children: [
+  return /* @__PURE__ */ jsxRuntime.jsxs(chunk77S32ZEH_cjs.DropdownMenu, { children: [
+    /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.DropdownMenuTrigger, { asChild: true, children: /* @__PURE__ */ jsxRuntime.jsx("button", { className: "border-0 bg-transparent p-0", children: /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.Avatar, { name, src: avatarSrc }) }) }),
+    /* @__PURE__ */ jsxRuntime.jsxs(chunk77S32ZEH_cjs.DropdownMenuContent, { children: [
+      /* @__PURE__ */ jsxRuntime.jsxs(chunk77S32ZEH_cjs.DropdownMenuLabel, { children: [
         /* @__PURE__ */ jsxRuntime.jsx("div", { className: "text-fg", children: name }),
         email && /* @__PURE__ */ jsxRuntime.jsx("div", { className: "text-xs font-normal text-muted", children: email }),
         tenant && /* @__PURE__ */ jsxRuntime.jsx("div", { className: "text-xs font-normal text-subtle", children: tenant })
       ] }),
-      (impersonating || showExpiry) && /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.DropdownMenuSeparator, {}),
-      impersonating && /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.DropdownMenuItem, { onSelect: impersonating.onStop, children: `${impersonating.stopLabel ?? "Stop impersonating"}: ${impersonating.as}` }),
+      (impersonating || showExpiry) && /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.DropdownMenuSeparator, {}),
+      impersonating && /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.DropdownMenuItem, { onSelect: impersonating.onStop, children: `${impersonating.stopLabel ?? "Stop impersonating"}: ${impersonating.as}` }),
       showExpiry && /* @__PURE__ */ jsxRuntime.jsx("div", { role: "status", className: "px-2 py-1.5 text-xs text-warn", children: expiryLabel(format2.duration(Math.max(0, remainingMs))) }),
-      /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.DropdownMenuSeparator, {}),
-      items?.map((it) => /* @__PURE__ */ jsxRuntime.jsxs(chunkAN24WGJJ_cjs.DropdownMenuItem, { onSelect: it.onSelect, children: [
+      /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.DropdownMenuSeparator, {}),
+      items?.map((it) => /* @__PURE__ */ jsxRuntime.jsxs(chunk77S32ZEH_cjs.DropdownMenuItem, { onSelect: it.onSelect, children: [
         it.icon,
         it.label
       ] }, it.id)),
-      items && items.length > 0 && /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.DropdownMenuSeparator, {}),
-      /* @__PURE__ */ jsxRuntime.jsxs(chunkAN24WGJJ_cjs.DropdownMenuItem, { danger: true, onSelect: onSignOut, children: [
+      items && items.length > 0 && /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.DropdownMenuSeparator, {}),
+      /* @__PURE__ */ jsxRuntime.jsxs(chunk77S32ZEH_cjs.DropdownMenuItem, { danger: true, onSelect: onSignOut, children: [
         /* @__PURE__ */ jsxRuntime.jsx(lucideReact.LogOut, { "aria-hidden": true }),
         signOutLabel
       ] })
     ] })
-  ] });
-}
-function Tip({ content, children }) {
-  return /* @__PURE__ */ jsxRuntime.jsx(TooltipPrimitive__namespace.Provider, { delayDuration: 400, children: /* @__PURE__ */ jsxRuntime.jsxs(TooltipPrimitive__namespace.Root, { children: [
-    /* @__PURE__ */ jsxRuntime.jsx(TooltipPrimitive__namespace.Trigger, { asChild: true, children }),
-    /* @__PURE__ */ jsxRuntime.jsx(TooltipPrimitive__namespace.Portal, { children: /* @__PURE__ */ jsxRuntime.jsx(
-      TooltipPrimitive__namespace.Content,
-      {
-        sideOffset: 6,
-        className: "z-60 rounded-md border border-line-strong bg-menu px-2 py-1 text-xs text-fg shadow-[0_16px_32px_rgba(0,0,0,0.5)]",
-        children: content
-      }
-    ) })
-  ] }) });
-}
-var isGroup = (o) => "options" in o;
-function SelectItem({ o }) {
-  return /* @__PURE__ */ jsxRuntime.jsxs(
-    SelectPrimitive__namespace.Item,
-    {
-      value: o.value,
-      disabled: o.disabled,
-      textValue: typeof o.label === "string" ? o.label : void 0,
-      className: "dropdown-item outline-none data-[disabled]:opacity-50 data-[highlighted]:bg-surface-hover data-[highlighted]:text-fg",
-      children: [
-        o.icon,
-        /* @__PURE__ */ jsxRuntime.jsxs("span", { className: "min-w-0 flex-1", children: [
-          /* @__PURE__ */ jsxRuntime.jsx(SelectPrimitive__namespace.ItemText, { children: o.label }),
-          o.description && /* @__PURE__ */ jsxRuntime.jsx("span", { className: "block text-xs text-muted", children: o.description })
-        ] }),
-        /* @__PURE__ */ jsxRuntime.jsx(SelectPrimitive__namespace.ItemIndicator, { children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Check, { className: "size-4", "aria-hidden": true }) })
-      ]
-    }
-  );
-}
-function SelectMenu({
-  options,
-  value,
-  defaultValue,
-  onValueChange,
-  placeholder,
-  invalid,
-  disabled,
-  name,
-  id,
-  className,
-  "aria-label": ariaLabel
-}) {
-  return /* @__PURE__ */ jsxRuntime.jsxs(SelectPrimitive__namespace.Root, { value, defaultValue, onValueChange, disabled, name, children: [
-    /* @__PURE__ */ jsxRuntime.jsxs(
-      SelectPrimitive__namespace.Trigger,
-      {
-        id,
-        "aria-label": ariaLabel,
-        "aria-invalid": invalid || void 0,
-        className: chunkFTHFEMX6_cjs.cn("form-input flex items-center justify-between gap-2 text-start", invalid && "error", className),
-        children: [
-          /* @__PURE__ */ jsxRuntime.jsx("span", { className: "min-w-0 flex-1 truncate", children: /* @__PURE__ */ jsxRuntime.jsx(SelectPrimitive__namespace.Value, { placeholder }) }),
-          /* @__PURE__ */ jsxRuntime.jsx(SelectPrimitive__namespace.Icon, { children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.ChevronDown, { className: "size-4 text-muted", "aria-hidden": true }) })
-        ]
-      }
-    ),
-    /* @__PURE__ */ jsxRuntime.jsx(SelectPrimitive__namespace.Portal, { children: /* @__PURE__ */ jsxRuntime.jsx(
-      SelectPrimitive__namespace.Content,
-      {
-        position: "popper",
-        sideOffset: 4,
-        className: "dropdown-menu relative! top-auto! start-auto! z-60 max-h-72 min-w-(--radix-select-trigger-width) overflow-auto",
-        children: /* @__PURE__ */ jsxRuntime.jsx(SelectPrimitive__namespace.Viewport, { children: options.map(
-          (o, i) => isGroup(o) ? /* @__PURE__ */ jsxRuntime.jsxs(SelectPrimitive__namespace.Group, { children: [
-            /* @__PURE__ */ jsxRuntime.jsx(SelectPrimitive__namespace.Label, { className: "dropdown-label", children: o.label }),
-            o.options.map((c) => /* @__PURE__ */ jsxRuntime.jsx(SelectItem, { o: c }, c.value))
-          ] }, `${o.label}-${i}`) : /* @__PURE__ */ jsxRuntime.jsx(SelectItem, { o }, o.value)
-        ) })
-      }
-    ) })
-  ] });
-}
-function SegmentedControl(props) {
-  const { items, className, disabled, "aria-label": ariaLabel } = props;
-  const common = {
-    "aria-label": ariaLabel,
-    disabled,
-    className: chunkFTHFEMX6_cjs.cn("inline-flex h-8 items-stretch rounded-md border border-line", className)
-  };
-  const children = items.map((it) => /* @__PURE__ */ jsxRuntime.jsxs(
-    ToggleGroupPrimitive__namespace.Item,
-    {
-      value: it.value,
-      disabled: it.disabled,
-      "aria-label": it["aria-label"],
-      className: "inline-flex items-center gap-1.5 border-s border-line px-3 text-sm text-muted outline-none first:border-s-0 first:rounded-s-md last:rounded-e-md hover:text-fg focus-visible:z-10 focus-visible:ring-2 focus-visible:ring-primary/50 disabled:opacity-50 data-[state=on]:bg-primary-light data-[state=on]:text-primary",
-      children: [
-        it.icon,
-        it.label
-      ]
-    },
-    it.value
-  ));
-  if (props.type === "multiple") {
-    return /* @__PURE__ */ jsxRuntime.jsx(ToggleGroupPrimitive__namespace.Root, { type: "multiple", value: props.value, defaultValue: props.defaultValue, onValueChange: props.onValueChange, ...common, children });
-  }
-  return /* @__PURE__ */ jsxRuntime.jsx(
-    ToggleGroupPrimitive__namespace.Root,
-    {
-      type: "single",
-      value: props.value,
-      defaultValue: props.defaultValue,
-      onValueChange: (v) => v && props.onValueChange?.(v),
-      ...common,
-      children
-    }
-  );
-}
-function IconButton({ label, icon, className, ...props }) {
-  return /* @__PURE__ */ jsxRuntime.jsx(Tip, { content: label, children: /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { variant: "ghost", "aria-label": label, className: chunkFTHFEMX6_cjs.cn("px-0", props.size === "sm" ? "w-7" : "w-8", className), ...props, children: /* @__PURE__ */ jsxRuntime.jsx("span", { "aria-hidden": true, className: "inline-flex", children: icon }) }) });
-}
-var dotTone = {
-  ok: "bg-ok",
-  warn: "bg-warn",
-  danger: "bg-danger",
-  neutral: "bg-muted",
-  primary: "bg-primary"
-};
-function StatusDot({
-  tone = "neutral",
-  pulse,
-  label,
-  srOnly,
-  className
-}) {
-  return /* @__PURE__ */ jsxRuntime.jsxs("span", { className: chunkFTHFEMX6_cjs.cn("inline-flex items-center gap-1.5 text-sm", className), children: [
-    /* @__PURE__ */ jsxRuntime.jsx(
-      "span",
-      {
-        "aria-hidden": true,
-        className: chunkFTHFEMX6_cjs.cn("inline-block size-2 shrink-0 rounded-xs", dotTone[tone], pulse && "animate-pulse motion-reduce:animate-none")
-      }
-    ),
-    /* @__PURE__ */ jsxRuntime.jsx("span", { className: chunkFTHFEMX6_cjs.cn(srOnly && "sr-only"), children: label })
-  ] });
-}
-var tickListeners = /* @__PURE__ */ new Set();
-var tickTimer;
-var tickNow = 0;
-function subscribeTick(fn) {
-  tickListeners.add(fn);
-  if (!tickTimer) {
-    tickTimer = setInterval(() => {
-      tickNow = Date.now();
-      tickListeners.forEach((l) => l());
-    }, 3e4);
-  }
-  return () => {
-    tickListeners.delete(fn);
-    if (!tickListeners.size && tickTimer) {
-      clearInterval(tickTimer);
-      tickTimer = void 0;
-    }
-  };
-}
-var getTick = () => tickNow ||= Date.now();
-var relUnits = [
-  ["year", 31536e3],
-  ["month", 2592e3],
-  ["week", 604800],
-  ["day", 86400],
-  ["hour", 3600],
-  ["minute", 60],
-  ["second", 1]
-];
-function formatRelative(date, now, locale) {
-  const diff = Math.round((date.getTime() - now) / 1e3);
-  const abs = Math.abs(diff);
-  const rtf = new Intl.RelativeTimeFormat(locale, { numeric: "auto" });
-  if (abs < 45) return rtf.format(0, "second");
-  const [unit, secs] = relUnits.find(([, s]) => abs >= s) ?? relUnits[relUnits.length - 1];
-  return rtf.format(Math.round(diff / secs), unit);
-}
-function RelativeTime({ value, className }) {
-  const { locale } = chunkGWTYGDXC_cjs.useLaf();
-  const now = React25__namespace.useSyncExternalStore(subscribeTick, getTick, getTick);
-  const date = new Date(value);
-  const local = date.toLocaleString(locale);
-  const utc = date.toLocaleString(locale, { timeZone: "UTC", timeZoneName: "short" });
-  return /* @__PURE__ */ jsxRuntime.jsx(
-    Tip,
-    {
-      content: /* @__PURE__ */ jsxRuntime.jsxs("span", { className: "grid gap-0.5", children: [
-        /* @__PURE__ */ jsxRuntime.jsx("span", { children: local }),
-        /* @__PURE__ */ jsxRuntime.jsx("span", { className: "text-muted", children: utc })
-      ] }),
-      children: /* @__PURE__ */ jsxRuntime.jsx("time", { dateTime: date.toISOString(), className, children: formatRelative(date, now, locale) })
-    }
-  );
-}
-function ButtonGroup({ className, ...props }) {
-  return /* @__PURE__ */ jsxRuntime.jsx(
-    "div",
-    {
-      role: "group",
-      className: chunkFTHFEMX6_cjs.cn(
-        "inline-flex items-stretch [&>*:not(:first-child)]:-ms-px [&>*:not(:first-child)]:rounded-s-none [&>*:not(:last-child)]:rounded-e-none",
-        className
-      ),
-      ...props
-    }
-  );
-}
-var lafDefaults = { ui: chunkAN24WGJJ_cjs.uiEn };
-function SplitButton({
-  children,
-  onClick,
-  variant = "primary",
-  size,
-  disabled,
-  menuLabel: menuLabelProp,
-  menu,
-  className
-}) {
-  const { t } = chunkGWTYGDXC_cjs.useLafDefaults(lafDefaults);
-  const menuLabel = menuLabelProp ?? t.components.ui.splitButton.more;
-  return /* @__PURE__ */ jsxRuntime.jsxs(ButtonGroup, { className, children: [
-    /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { variant, size, disabled, onClick, children }),
-    /* @__PURE__ */ jsxRuntime.jsxs(chunkAN24WGJJ_cjs.DropdownMenu, { children: [
-      /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.DropdownMenuTrigger, { asChild: true, children: /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { variant, size, disabled, "aria-label": menuLabel, className: "px-2", children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.ChevronDown, { "aria-hidden": true }) }) }),
-      /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.DropdownMenuContent, { children: menu })
-    ] })
-  ] });
-}
-function AvatarGroup({
-  users,
-  max = 4,
-  size = "md",
-  className
-}) {
-  const shown = users.slice(0, max);
-  const rest = users.slice(max);
-  const ring = "ring-2 ring-surface";
-  return /* @__PURE__ */ jsxRuntime.jsxs("div", { role: "group", "aria-label": users.map((u) => u.name).join(", "), className: chunkFTHFEMX6_cjs.cn("flex items-center", className), children: [
-    shown.map((u, i) => /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Avatar, { name: u.name, src: u.src, size, className: chunkFTHFEMX6_cjs.cn(ring, i > 0 && "-ms-2") }, `${u.name}-${i}`)),
-    rest.length > 0 && /* @__PURE__ */ jsxRuntime.jsx(Tip, { content: rest.map((u) => u.name).join(", "), children: /* @__PURE__ */ jsxRuntime.jsxs(
-      "span",
-      {
-        tabIndex: 0,
-        "aria-label": `+${rest.length}`,
-        className: chunkFTHFEMX6_cjs.cn("avatar -ms-2 outline-none focus-visible:ring-primary", ring, size === "sm" ? "size-5 text-[0.625rem]" : size === "lg" ? "size-10 text-base" : ""),
-        children: [
-          "+",
-          rest.length
-        ]
-      }
-    ) })
   ] });
 }
 function Kbd({ className, ...props }) {
@@ -1095,13 +839,13 @@ function InlineEdit({
   min,
   max
 }) {
-  const { t: laf } = chunkGWTYGDXC_cjs.useLaf();
-  const [editing, setEditing] = React25__namespace.useState(false);
-  const [text, setText] = React25__namespace.useState(value);
-  const [error, setError] = React25__namespace.useState();
-  const [pending, setPending] = React25__namespace.useState(false);
-  const cancelled = React25__namespace.useRef(false);
-  const saving = React25__namespace.useRef(false);
+  const { t: laf } = chunkE6JUACLJ_cjs.useLaf();
+  const [editing, setEditing] = React24__namespace.useState(false);
+  const [text, setText] = React24__namespace.useState(value);
+  const [error, setError] = React24__namespace.useState();
+  const [pending, setPending] = React24__namespace.useState(false);
+  const cancelled = React24__namespace.useRef(false);
+  const saving = React24__namespace.useRef(false);
   const shown = as === "select" ? options?.find((o) => o.value === value)?.label ?? value : value;
   const save = async (next = text) => {
     if (cancelled.current || saving.current) return;
@@ -1165,7 +909,7 @@ function InlineEdit({
         children: options?.map((o) => /* @__PURE__ */ jsxRuntime.jsx("option", { value: o.value, children: o.label }, o.value))
       }
     ) : /* @__PURE__ */ jsxRuntime.jsx(
-      chunkAN24WGJJ_cjs.Input,
+      chunk77S32ZEH_cjs.Input,
       {
         autoFocus: true,
         "aria-label": label,
@@ -1193,15 +937,15 @@ function FileDropzone({
   multiple = true,
   label: labelProp
 }) {
-  const { t: laf } = chunkGWTYGDXC_cjs.useLaf();
+  const { t: laf } = chunkE6JUACLJ_cjs.useLaf();
   const label = labelProp ?? laf.dropFiles;
-  const input = React25__namespace.useRef(null);
-  const [over, setOver] = React25__namespace.useState(false);
-  const [rejected, setRejected] = React25__namespace.useState();
+  const input = React24__namespace.useRef(null);
+  const [over, setOver] = React24__namespace.useState(false);
+  const [rejected, setRejected] = React24__namespace.useState();
   const take = (list) => {
     if (!list) return;
     const all = [...list];
-    const typed = all.filter((f) => chunkXNG22HMC_cjs.matchesAccept(f, accept));
+    const typed = all.filter((f) => chunkYGX6XE22_cjs.matchesAccept(f, accept));
     const ok = maxSize ? typed.filter((f) => f.size <= maxSize) : typed;
     const badType = all.length - typed.length;
     const tooBig = typed.length - ok.length;
@@ -1240,7 +984,7 @@ function FileDropzone({
     rejected && /* @__PURE__ */ jsxRuntime.jsx("p", { className: "field-error", role: "alert", children: rejected }),
     files.length > 0 && /* @__PURE__ */ jsxRuntime.jsx("ul", { className: "divide-y divide-line rounded-md border border-line text-sm", children: files.map((f) => /* @__PURE__ */ jsxRuntime.jsxs("li", { className: "flex items-center gap-3 px-3 py-2", children: [
       /* @__PURE__ */ jsxRuntime.jsx("span", { className: "min-w-0 flex-1 truncate text-fg", children: f.name }),
-      /* @__PURE__ */ jsxRuntime.jsx("span", { className: "font-mono text-xs text-subtle", children: chunkXNG22HMC_cjs.format.bytes(f.size) }),
+      /* @__PURE__ */ jsxRuntime.jsx("span", { className: "font-mono text-xs text-subtle", children: chunkYGX6XE22_cjs.format.bytes(f.size) }),
       f.error ? /* @__PURE__ */ jsxRuntime.jsx("span", { className: "text-xs text-danger", children: f.error }) : f.progress !== void 0 && f.progress < 100 ? /* @__PURE__ */ jsxRuntime.jsxs("span", { className: "font-mono text-xs text-muted", children: [
         f.progress,
         "%"
@@ -1258,9 +1002,9 @@ function AlarmList({
   selectable,
   empty: emptyProp
 }) {
-  const { t: laf } = chunkGWTYGDXC_cjs.useLaf();
+  const { t: laf } = chunkE6JUACLJ_cjs.useLaf();
   const empty = emptyProp ?? laf.noActiveAlarms;
-  const [selected, setSelected] = React25__namespace.useState(() => /* @__PURE__ */ new Set());
+  const [selected, setSelected] = React24__namespace.useState(() => /* @__PURE__ */ new Set());
   const chosen = alarms.filter((a) => selected.has(a.id));
   const toggle = (id) => setSelected((s) => {
     const n = new Set(s);
@@ -1304,12 +1048,12 @@ function AlarmList({
     ] }),
     /* @__PURE__ */ jsxRuntime.jsx("ul", { className: "divide-y divide-line overflow-hidden rounded-lg border border-line bg-surface", children: alarms.map((a) => /* @__PURE__ */ jsxRuntime.jsxs("li", { className: "flex items-center gap-3 px-4 py-3 text-sm", children: [
       selectable && /* @__PURE__ */ jsxRuntime.jsx("input", { type: "checkbox", "aria-label": `${laf.vsSelectAlarm}: ${a.name}`, checked: selected.has(a.id), onChange: () => toggle(a.id) }),
-      /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Badge, { tone: alarmTone[a.severity], children: a.severity }),
+      /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.Badge, { tone: alarmTone[a.severity], children: a.severity }),
       /* @__PURE__ */ jsxRuntime.jsxs("span", { className: "min-w-0 flex-1", children: [
         /* @__PURE__ */ jsxRuntime.jsx("b", { className: "font-semibold text-fg", children: a.name }),
         onOpenEntity ? /* @__PURE__ */ jsxRuntime.jsx("button", { type: "button", className: chunkFTHFEMX6_cjs.cn(linkBtn, "ms-2"), onClick: () => onOpenEntity(a), children: a.entity }) : /* @__PURE__ */ jsxRuntime.jsx("span", { className: "ms-2 text-muted", children: a.entity })
       ] }),
-      /* @__PURE__ */ jsxRuntime.jsx("span", { className: "font-mono text-xs text-subtle", children: a.triggeredAt !== void 0 ? /* @__PURE__ */ jsxRuntime.jsx(RelativeTime, { value: a.triggeredAt }) : a.triggered }),
+      /* @__PURE__ */ jsxRuntime.jsx("span", { className: "font-mono text-xs text-subtle", children: a.triggeredAt !== void 0 ? /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.RelativeTime, { value: a.triggeredAt }) : a.triggered }),
       onAcknowledge && !a.acknowledged && /* @__PURE__ */ jsxRuntime.jsx("button", { type: "button", className: linkBtn, onClick: () => onAcknowledge(a.id), children: laf.acknowledge }),
       onReset && /* @__PURE__ */ jsxRuntime.jsx("button", { type: "button", className: linkBtn, onClick: () => onReset(a.id), children: laf.vsResetAlarm })
     ] }, a.id)) })
@@ -1361,7 +1105,7 @@ function BarChart({ data, label }) {
   ] }, d.name)) });
 }
 function DateTimeInput({ mode = "date", className, ...props }) {
-  return /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Input, { type: mode, className: chunkFTHFEMX6_cjs.cn("font-mono [color-scheme:dark]", className), ...props });
+  return /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.Input, { type: mode, className: chunkFTHFEMX6_cjs.cn("font-mono [color-scheme:dark]", className), ...props });
 }
 function FormField({
   id: idProp,
@@ -1370,7 +1114,7 @@ function FormField({
   error,
   children
 }) {
-  const generated = React25__namespace.useId();
+  const generated = React24__namespace.useId();
   const id = idProp ?? generated;
   const descId = `${id}-d`;
   const errId = `${id}-e`;
@@ -1383,7 +1127,7 @@ function FormField({
   ] });
 }
 function ErrorSummary({ errors, title: titleProp }) {
-  const { t: laf } = chunkGWTYGDXC_cjs.useLaf();
+  const { t: laf } = chunkE6JUACLJ_cjs.useLaf();
   const title = titleProp ?? laf.fixFollowing;
   if (errors.length === 0) return null;
   return /* @__PURE__ */ jsxRuntime.jsx("div", { role: "alert", className: "alert alert-error", children: /* @__PURE__ */ jsxRuntime.jsxs("div", { children: [
@@ -1394,7 +1138,7 @@ function ErrorSummary({ errors, title: titleProp }) {
 var ContextMenu = ContextPrimitive__namespace.Root;
 var ContextMenuTrigger = ContextPrimitive__namespace.Trigger;
 function ContextMenuContent({ className, ...props }) {
-  const container = chunkGWTYGDXC_cjs.usePortalContainer();
+  const container = chunkE6JUACLJ_cjs.usePortalContainer();
   return /* @__PURE__ */ jsxRuntime.jsx(ContextPrimitive__namespace.Portal, { container, children: /* @__PURE__ */ jsxRuntime.jsx(ContextPrimitive__namespace.Content, { className: chunkFTHFEMX6_cjs.cn("dropdown-menu relative! top-auto! start-auto! z-30 min-w-48", className), ...props }) });
 }
 function ContextMenuItem({ danger, className, ...props }) {
@@ -1419,16 +1163,16 @@ function CommandPalette({
   recent,
   onCommandRun
 }) {
-  const { t } = chunkGWTYGDXC_cjs.useLaf();
-  const portalContainer = chunkGWTYGDXC_cjs.usePortalContainer();
+  const { t } = chunkE6JUACLJ_cjs.useLaf();
+  const portalContainer = chunkE6JUACLJ_cjs.usePortalContainer();
   const placeholder = placeholderProp ?? t.commandPlaceholder;
   const emptyText = emptyTextProp ?? t.noResults;
-  const [query, setQuery] = React25__namespace.useState("");
-  const [active, setActive] = React25__namespace.useState(0);
-  const [remote, setRemote] = React25__namespace.useState(null);
-  const [pending, setPending] = React25__namespace.useState(false);
-  const listId = React25__namespace.useId();
-  React25__namespace.useEffect(() => {
+  const [query, setQuery] = React24__namespace.useState("");
+  const [active, setActive] = React24__namespace.useState(0);
+  const [remote, setRemote] = React24__namespace.useState(null);
+  const [pending, setPending] = React24__namespace.useState(false);
+  const listId = React24__namespace.useId();
+  React24__namespace.useEffect(() => {
     const onKey = (e) => {
       if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
         e.preventDefault();
@@ -1438,13 +1182,13 @@ function CommandPalette({
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [open, onOpenChange]);
-  React25__namespace.useEffect(() => {
+  React24__namespace.useEffect(() => {
     if (!open) {
       setQuery("");
       setRemote(null);
     }
   }, [open]);
-  React25__namespace.useEffect(() => {
+  React24__namespace.useEffect(() => {
     if (!search || !open || !query) {
       setRemote(null);
       setPending(false);
@@ -1469,7 +1213,7 @@ function CommandPalette({
     };
   }, [search, query, open]);
   const q = query.toLowerCase();
-  const sections = React25__namespace.useMemo(() => {
+  const sections = React24__namespace.useMemo(() => {
     const out = [];
     if (!q) {
       if (recent?.length) out.push({ heading: t.recent, items: recent });
@@ -1487,7 +1231,7 @@ function CommandPalette({
     return out;
   }, [commands, remote, q, query, recent, t.recent]);
   const results = sections.flatMap((s) => s.items.map((c) => ({ c, section: s })));
-  React25__namespace.useEffect(() => setActive(0), [query]);
+  React24__namespace.useEffect(() => setActive(0), [query]);
   const run = (c) => {
     onOpenChange(false);
     c.onSelect();
@@ -1563,7 +1307,7 @@ function CommandPalette({
   ] }) });
 }
 function DiffView({ before, after, label, mode = "split" }) {
-  const ops = React25__namespace.useMemo(() => chunkXNG22HMC_cjs.diffLines(before, after), [before, after]);
+  const ops = React24__namespace.useMemo(() => chunkYGX6XE22_cjs.diffLines(before, after), [before, after]);
   const wrap = "overflow-auto rounded-md border border-line bg-black/30 font-mono text-[0.8125rem]";
   if (mode === "unified")
     return /* @__PURE__ */ jsxRuntime.jsx("div", { role: "group", "aria-label": label, className: wrap, children: ops.map((op, i) => /* @__PURE__ */ jsxRuntime.jsxs("div", { className: chunkFTHFEMX6_cjs.cn("px-3 whitespace-pre", op.type === "del" && "bg-danger-bg text-danger", op.type === "add" && "bg-ok-bg text-ok"), children: [
@@ -1589,7 +1333,7 @@ function DiffView({ before, after, label, mode = "split" }) {
   ] }, i)) });
 }
 function MfaEnrolment({ qr, secret, recoveryCodes, onVerify, onRegisterPasskey, onComplete, labels }) {
-  const { t: laf } = chunkGWTYGDXC_cjs.useLaf();
+  const { t: laf } = chunkE6JUACLJ_cjs.useLaf();
   const l = {
     method: laf.mfaMethod,
     scan: laf.mfaScan,
@@ -1612,12 +1356,12 @@ function MfaEnrolment({ qr, secret, recoveryCodes, onVerify, onRegisterPasskey, 
     genericError: "Something went wrong. Try again.",
     ...labels
   };
-  const [step, setStep] = React25__namespace.useState(0);
-  const [method, setMethod] = React25__namespace.useState("totp");
-  const [code, setCode] = React25__namespace.useState("");
-  const [error, setError] = React25__namespace.useState();
-  const [busy, setBusy] = React25__namespace.useState(false);
-  const [stored, setStored] = React25__namespace.useState(false);
+  const [step, setStep] = React24__namespace.useState(0);
+  const [method, setMethod] = React24__namespace.useState("totp");
+  const [code, setCode] = React24__namespace.useState("");
+  const [error, setError] = React24__namespace.useState();
+  const [busy, setBusy] = React24__namespace.useState(false);
+  const [stored, setStored] = React24__namespace.useState(false);
   const steps = [
     { id: "m", label: l.method },
     ...method === "totp" ? [
@@ -1670,7 +1414,7 @@ function MfaEnrolment({ qr, secret, recoveryCodes, onVerify, onRegisterPasskey, 
     /* @__PURE__ */ jsxRuntime.jsx(Stepper, { steps, current: step, onStepClick: (i) => setStep(i) }),
     /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "card", children: [
       id === "m" && /* @__PURE__ */ jsxRuntime.jsx(
-        chunkAN24WGJJ_cjs.RadioGroup,
+        chunk77S32ZEH_cjs.RadioGroup,
         {
           name: "mfa-method",
           value: method,
@@ -1720,17 +1464,17 @@ var ISO_DATE = /^\d{4}-\d{2}-\d{2}$/;
 function DatePicker(props) {
   const { label: labelProp, placeholder: placeholderProp, min, max, disabledDates, showTimeZone } = props;
   const mode = props.mode ?? "date";
-  const { t: laf, timeZone } = chunkGWTYGDXC_cjs.useLaf();
+  const { t: laf, timeZone } = chunkE6JUACLJ_cjs.useLaf();
   const label = labelProp ?? laf.chooseDate;
   const placeholder = placeholderProp ?? laf.datePlaceholder;
-  const [open, setOpen] = React25__namespace.useState(false);
+  const [open, setOpen] = React24__namespace.useState(false);
   const range = mode === "range" ? props.value ?? {} : {};
   const single = mode === "range" ? void 0 : props.value;
   const day = mode === "range" ? range.from : single?.slice(0, 10);
   const time = mode === "datetime" ? single?.slice(11, 16) || "00:00" : "00:00";
   const base = day ? /* @__PURE__ */ new Date(`${day}T00:00:00`) : /* @__PURE__ */ new Date();
-  const [view, setView] = React25__namespace.useState({ y: base.getFullYear(), m: base.getMonth() });
-  const [typed, setTyped] = React25__namespace.useState(null);
+  const [view, setView] = React24__namespace.useState({ y: base.getFullYear(), m: base.getMonth() });
+  const [typed, setTyped] = React24__namespace.useState(null);
   const first = new Date(view.y, view.m, 1);
   const offset = (first.getDay() + 6) % 7;
   const days = new Date(view.y, view.m + 1, 0).getDate();
@@ -1766,9 +1510,9 @@ function DatePicker(props) {
   };
   const text = mode === "range" ? range.from && `${range.from} \u2013 ${range.to ?? "\u2026"}` : mode === "datetime" ? single && single.replace("T", " ") : single;
   const inRange = (v) => mode === "range" && !!range.from && !!range.to && v >= range.from && v <= range.to;
-  return /* @__PURE__ */ jsxRuntime.jsxs(chunkAN24WGJJ_cjs.Popover, { open, onOpenChange: setOpen, children: [
-    /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.PopoverTrigger, { asChild: true, children: /* @__PURE__ */ jsxRuntime.jsx("button", { type: "button", "aria-label": `${label}: ${text || placeholder}`, className: chunkFTHFEMX6_cjs.cn("input inline-flex items-center text-start font-mono", mode === "date" ? "w-44" : "w-56"), children: text || /* @__PURE__ */ jsxRuntime.jsx("span", { className: "text-muted", children: placeholder }) }) }),
-    /* @__PURE__ */ jsxRuntime.jsxs(chunkAN24WGJJ_cjs.PopoverContent, { className: "w-64", children: [
+  return /* @__PURE__ */ jsxRuntime.jsxs(chunk77S32ZEH_cjs.Popover, { open, onOpenChange: setOpen, children: [
+    /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.PopoverTrigger, { asChild: true, children: /* @__PURE__ */ jsxRuntime.jsx("button", { type: "button", "aria-label": `${label}: ${text || placeholder}`, className: chunkFTHFEMX6_cjs.cn("input inline-flex items-center text-start font-mono", mode === "date" ? "w-44" : "w-56"), children: text || /* @__PURE__ */ jsxRuntime.jsx("span", { className: "text-muted", children: placeholder }) }) }),
+    /* @__PURE__ */ jsxRuntime.jsxs(chunk77S32ZEH_cjs.PopoverContent, { className: "w-64", children: [
       mode !== "range" && /* @__PURE__ */ jsxRuntime.jsx(
         "input",
         {
@@ -1898,15 +1642,15 @@ function OverflowTabs({
   moreLabel: moreLabelProp,
   onSelect
 }) {
-  const { t: laf } = chunkGWTYGDXC_cjs.useLaf();
+  const { t: laf } = chunkE6JUACLJ_cjs.useLaf();
   const moreLabel = moreLabelProp ?? laf.moreTabs;
   const visible = tabs.slice(0, maxVisible);
   const rest = tabs.slice(maxVisible);
   return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex min-w-0 flex-wrap items-center", children: [
-    /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.TabsList, { children: visible.map((t) => /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.TabsTrigger, { value: t.value, children: t.label }, t.value)) }),
-    rest.length > 0 && /* @__PURE__ */ jsxRuntime.jsxs(chunkAN24WGJJ_cjs.DropdownMenu, { children: [
-      /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.DropdownMenuTrigger, { asChild: true, children: /* @__PURE__ */ jsxRuntime.jsx("button", { type: "button", "aria-label": moreLabel, className: "ms-1 border-0 bg-transparent px-2 text-muted hover:text-fg", children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.MoreHorizontal, { size: 16 }) }) }),
-      /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.DropdownMenuContent, { children: rest.map((t) => /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.DropdownMenuItem, { onSelect: () => onSelect(t.value), children: t.label }, t.value)) })
+    /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.TabsList, { children: visible.map((t) => /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.TabsTrigger, { value: t.value, children: t.label }, t.value)) }),
+    rest.length > 0 && /* @__PURE__ */ jsxRuntime.jsxs(chunk77S32ZEH_cjs.DropdownMenu, { children: [
+      /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.DropdownMenuTrigger, { asChild: true, children: /* @__PURE__ */ jsxRuntime.jsx("button", { type: "button", "aria-label": moreLabel, className: "ms-1 border-0 bg-transparent px-2 text-muted hover:text-fg", children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.MoreHorizontal, { size: 16 }) }) }),
+      /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.DropdownMenuContent, { children: rest.map((t) => /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.DropdownMenuItem, { onSelect: () => onSelect(t.value), children: t.label }, t.value)) })
     ] })
   ] });
 }
@@ -1917,9 +1661,9 @@ function DockedTaskPanel({
   title: titleProp,
   defaultOpen = false
 }) {
-  const { t: laf } = chunkGWTYGDXC_cjs.useLaf();
+  const { t: laf } = chunkE6JUACLJ_cjs.useLaf();
   const title = titleProp ?? laf.recentTasks;
-  const [open, setOpen] = React25__namespace.useState(defaultOpen);
+  const [open, setOpen] = React24__namespace.useState(defaultOpen);
   const running = tasks.filter((t) => t.status === "running").length;
   return /* @__PURE__ */ jsxRuntime.jsxs("section", { "aria-label": title, className: "absolute inset-x-0 bottom-0 border-t border-line bg-surface", children: [
     /* @__PURE__ */ jsxRuntime.jsxs(
@@ -2127,8 +1871,8 @@ function ContextMenuFor({ items, children, disabled }) {
   ] });
 }
 function useUnsavedChangesGuard(dirty) {
-  const [queued, setQueued] = React25__namespace.useState(null);
-  React25__namespace.useEffect(() => {
+  const [queued, setQueued] = React24__namespace.useState(null);
+  React24__namespace.useEffect(() => {
     if (!dirty) return;
     const onBeforeUnload = (e) => {
       e.preventDefault();
@@ -2137,7 +1881,7 @@ function useUnsavedChangesGuard(dirty) {
     window.addEventListener("beforeunload", onBeforeUnload);
     return () => window.removeEventListener("beforeunload", onBeforeUnload);
   }, [dirty]);
-  const guard = React25__namespace.useCallback(
+  const guard = React24__namespace.useCallback(
     (action) => {
       if (!dirty) {
         action();
@@ -2148,12 +1892,12 @@ function useUnsavedChangesGuard(dirty) {
     },
     [dirty]
   );
-  const confirm = React25__namespace.useCallback(() => {
+  const confirm = React24__namespace.useCallback(() => {
     const action = queued;
     setQueued(null);
     action?.();
   }, [queued]);
-  const cancel = React25__namespace.useCallback(() => setQueued(null), []);
+  const cancel = React24__namespace.useCallback(() => setQueued(null), []);
   return { pending: queued !== null, dirty, guard, confirm, cancel };
 }
 function UnsavedChangesDialog({
@@ -2163,7 +1907,7 @@ function UnsavedChangesDialog({
   confirmLabel: confirmLabelProp,
   cancelLabel: cancelLabelProp
 }) {
-  const u = chunkGWTYGDXC_cjs.useLafDefaults(lafDefaults2).t.components.ui.unsavedChanges;
+  const u = chunkE6JUACLJ_cjs.useLafDefaults(lafDefaults).t.components.ui.unsavedChanges;
   const title = titleProp ?? u.title;
   const description = descriptionProp ?? u.description;
   const confirmLabel = confirmLabelProp ?? u.confirm;
@@ -2181,7 +1925,7 @@ function UnsavedChangesDialog({
     }
   );
 }
-var lafDefaults2 = { ui: chunkAN24WGJJ_cjs.uiEn };
+var lafDefaults = { ui: chunk77S32ZEH_cjs.uiEn };
 function FormSection({
   title,
   description,
@@ -2189,7 +1933,7 @@ function FormSection({
   children,
   className
 }) {
-  const id = React25__namespace.useId();
+  const id = React24__namespace.useId();
   return /* @__PURE__ */ jsxRuntime.jsxs("section", { "aria-labelledby": `${id}-t`, className: chunkFTHFEMX6_cjs.cn("grid gap-4 border-b border-line py-6 first:pt-0 last:border-b-0", className), children: [
     /* @__PURE__ */ jsxRuntime.jsxs("header", { children: [
       /* @__PURE__ */ jsxRuntime.jsx("h2", { id: `${id}-t`, className: "text-base font-semibold text-fg", children: title }),
@@ -2211,7 +1955,7 @@ function FormFooter({
   children,
   className
 }) {
-  const f = chunkGWTYGDXC_cjs.useLafDefaults(lafDefaults2).t.components.ui.formFooter;
+  const f = chunkE6JUACLJ_cjs.useLafDefaults(lafDefaults).t.components.ui.formFooter;
   const saveLabel = saveLabelProp ?? f.save;
   const cancelLabel = cancelLabelProp ?? f.cancel;
   return /* @__PURE__ */ jsxRuntime.jsxs(
@@ -2276,7 +2020,7 @@ function DetailPage({
   className
 }) {
   return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: chunkFTHFEMX6_cjs.cn("grid gap-4", className), children: [
-    breadcrumb && /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Breadcrumb, { items: breadcrumb }),
+    breadcrumb && /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.Breadcrumb, { items: breadcrumb }),
     /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex flex-wrap items-center gap-3", children: [
       icon,
       /* @__PURE__ */ jsxRuntime.jsx("h1", { className: "min-w-0 text-xl font-semibold text-fg", children: title }),
@@ -2300,7 +2044,7 @@ function FormPage({
   className
 }) {
   return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: chunkFTHFEMX6_cjs.cn("mx-auto grid w-full max-w-3xl gap-4", className), children: [
-    breadcrumb && /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Breadcrumb, { items: breadcrumb }),
+    breadcrumb && /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.Breadcrumb, { items: breadcrumb }),
     /* @__PURE__ */ jsxRuntime.jsxs("header", { children: [
       /* @__PURE__ */ jsxRuntime.jsx("h1", { className: "text-xl font-semibold text-fg", children: title }),
       description && /* @__PURE__ */ jsxRuntime.jsx("p", { className: "mt-1 text-sm text-muted", children: description })
@@ -2328,7 +2072,7 @@ function SubNav({
   label: labelProp,
   className
 }) {
-  const { t } = chunkGWTYGDXC_cjs.useLafDefaults(lafDefaults2);
+  const { t } = chunkE6JUACLJ_cjs.useLafDefaults(lafDefaults);
   const label = labelProp ?? t.components.ui.subNav.label;
   return /* @__PURE__ */ jsxRuntime.jsx("nav", { "aria-label": label, className: chunkFTHFEMX6_cjs.cn("grid w-56 gap-4 text-sm", className), children: groups.map((g) => /* @__PURE__ */ jsxRuntime.jsxs("div", { role: "group", "aria-label": g.label, children: [
     g.label && /* @__PURE__ */ jsxRuntime.jsx("div", { className: "mb-1 px-2 text-[0.6875rem] tracking-wider text-subtle uppercase", "aria-hidden": true, children: g.label }),
@@ -2370,15 +2114,15 @@ function MobileNav({
   onOpenChange,
   className
 }) {
-  const m = chunkGWTYGDXC_cjs.useLafDefaults(lafDefaults2).t.components.ui.mobileNav;
+  const m = chunkE6JUACLJ_cjs.useLafDefaults(lafDefaults).t.components.ui.mobileNav;
   const title = titleProp ?? m.title;
   const triggerLabel = triggerLabelProp ?? m.trigger;
-  return /* @__PURE__ */ jsxRuntime.jsxs(chunkAN24WGJJ_cjs.Drawer, { open, onOpenChange, children: [
-    /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.DrawerTrigger, { asChild: true, children: /* @__PURE__ */ jsxRuntime.jsx("button", { type: "button", "aria-label": triggerLabel, className: chunkFTHFEMX6_cjs.cn("btn btn-ghost btn-sm min-[860px]:hidden", className), children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Menu, { "aria-hidden": true }) }) }),
-    /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.DrawerContent, { title, width: "sm", children })
+  return /* @__PURE__ */ jsxRuntime.jsxs(chunk77S32ZEH_cjs.Drawer, { open, onOpenChange, children: [
+    /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.DrawerTrigger, { asChild: true, children: /* @__PURE__ */ jsxRuntime.jsx("button", { type: "button", "aria-label": triggerLabel, className: chunkFTHFEMX6_cjs.cn("btn btn-ghost btn-sm min-[860px]:hidden", className), children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Menu, { "aria-hidden": true }) }) }),
+    /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.DrawerContent, { title, width: "sm", children })
   ] });
 }
-var lafDefaults3 = { ui: chunkAN24WGJJ_cjs.uiEn };
+var lafDefaults2 = { ui: chunk77S32ZEH_cjs.uiEn };
 function Wizard({
   steps,
   onFinish,
@@ -2394,20 +2138,20 @@ function Wizard({
   labels: labelsProp,
   className
 }) {
-  const { title: defaultTitle, ...defaultLabels3 } = chunkGWTYGDXC_cjs.useLafDefaults(lafDefaults3).t.components.ui.wizard;
+  const { title: defaultTitle, ...defaultLabels3 } = chunkE6JUACLJ_cjs.useLafDefaults(lafDefaults2).t.components.ui.wizard;
   const labels = { ...defaultLabels3, ...labelsProp };
   const title = titleProp ?? defaultTitle;
-  const [current, setCurrent] = chunkXNG22HMC_cjs.useControllableState({ value: currentProp, defaultValue: defaultCurrent, onChange: onCurrentChange });
-  const [errors, setErrors] = React25__namespace.useState([]);
-  const [failed, setFailed] = React25__namespace.useState({});
-  const [busy, setBusy] = React25__namespace.useState(false);
+  const [current, setCurrent] = chunkYGX6XE22_cjs.useControllableState({ value: currentProp, defaultValue: defaultCurrent, onChange: onCurrentChange });
+  const [errors, setErrors] = React24__namespace.useState([]);
+  const [failed, setFailed] = React24__namespace.useState({});
+  const [busy, setBusy] = React24__namespace.useState(false);
   const guard = useUnsavedChangesGuard(!!dirty);
-  const headingRef = React25__namespace.useRef(null);
-  const mounted = React25__namespace.useRef(false);
-  const errId = React25__namespace.useId();
+  const headingRef = React24__namespace.useRef(null);
+  const mounted = React24__namespace.useRef(false);
+  const errId = React24__namespace.useId();
   const step = steps[current];
   const last = current === steps.length - 1;
-  React25__namespace.useEffect(() => {
+  React24__namespace.useEffect(() => {
     if (mounted.current) headingRef.current?.focus();
     mounted.current = true;
   }, [current]);
@@ -2495,7 +2239,7 @@ function Wizard({
     }
   );
   if (mode === "dialog") {
-    return /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Dialog, { open, onOpenChange: (o) => o ? onOpenChange?.(true) : cancel(), children: /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.DialogContent, { title, className: "w-[min(56rem,95vw)]", children: body }) });
+    return /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.Dialog, { open, onOpenChange: (o) => o ? onOpenChange?.(true) : cancel(), children: /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.DialogContent, { title, className: "w-[min(56rem,95vw)]", children: body }) });
   }
   return /* @__PURE__ */ jsxRuntime.jsx("section", { "aria-label": title, children: body });
 }
@@ -2505,7 +2249,7 @@ function WizardReview({
 }) {
   return /* @__PURE__ */ jsxRuntime.jsx(DefinitionList, { items, className });
 }
-var lafDefaults4 = { ui: chunkAN24WGJJ_cjs.uiEn };
+var lafDefaults3 = { ui: chunk77S32ZEH_cjs.uiEn };
 var icons = {
   "403": /* @__PURE__ */ jsxRuntime.jsx(lucideReact.LockKeyhole, {}),
   "404": /* @__PURE__ */ jsxRuntime.jsx(lucideReact.FileQuestion, {}),
@@ -2523,7 +2267,7 @@ function ErrorPage({
   requestIdLabel: requestIdLabelProp,
   className
 }) {
-  const { t } = chunkGWTYGDXC_cjs.useLafDefaults(lafDefaults4);
+  const { t } = chunkE6JUACLJ_cjs.useLafDefaults(lafDefaults3);
   const ui = t.components.ui;
   const d = { icon: icons[variant], ...ui[textKey[variant]] };
   const requestIdLabel = requestIdLabelProp ?? ui.errors.requestId;
@@ -2551,7 +2295,7 @@ function ErrorPage({
     }
   );
 }
-var LafErrorBoundary = class extends React25__namespace.Component {
+var LafErrorBoundary = class extends React24__namespace.Component {
   state = { error: null };
   static getDerivedStateFromError(error) {
     return { error };
@@ -2576,7 +2320,7 @@ var LafErrorBoundary = class extends React25__namespace.Component {
   }
 };
 function BoundaryFallback({ requestId, retryLabel, reset }) {
-  const { t } = chunkGWTYGDXC_cjs.useLafDefaults(lafDefaults4);
+  const { t } = chunkE6JUACLJ_cjs.useLafDefaults(lafDefaults3);
   return /* @__PURE__ */ jsxRuntime.jsx(ErrorPage, { variant: "500", requestId, action: /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { onClick: reset, children: retryLabel ?? t.components.ui.errors.tryAgain }) });
 }
 var baseKinds = {
@@ -2614,8 +2358,8 @@ var stateGlyph = {
   error: { Icon: lucideReact.CircleX, tone: "text-danger", text: "stateError" }
 };
 function ObjectIcon({ kind, state, size = 16, label, className }) {
-  const { t } = chunkGWTYGDXC_cjs.useLaf();
-  const Icon2 = custom.get(kind) ?? baseKinds[kind] ?? lucideReact.Cable;
+  const { t } = chunkE6JUACLJ_cjs.useLaf();
+  const Icon = custom.get(kind) ?? baseKinds[kind] ?? lucideReact.Cable;
   const glyph = state ? stateGlyph[state] : void 0;
   const stateText = glyph ? t[glyph.text] : void 0;
   const name = [label, stateText].filter(Boolean).join(", ");
@@ -2632,7 +2376,7 @@ function ObjectIcon({ kind, state, size = 16, label, className }) {
       className: chunkFTHFEMX6_cjs.cn("relative inline-flex shrink-0 items-center justify-center text-muted", className),
       style: { width: px, height: px },
       children: [
-        /* @__PURE__ */ jsxRuntime.jsx(Icon2, { width: px, height: px, "aria-hidden": true }),
+        /* @__PURE__ */ jsxRuntime.jsx(Icon, { width: px, height: px, "aria-hidden": true }),
         glyph && /* @__PURE__ */ jsxRuntime.jsx("span", { "aria-hidden": true, className: "absolute -end-1 -bottom-1 inline-flex rounded-xs bg-menu leading-none", children: /* @__PURE__ */ jsxRuntime.jsx(glyph.Icon, { width: badge, height: badge, className: glyph.tone, fill: state === "on" ? "currentColor" : "none" }) })
       ]
     }
@@ -2788,20 +2532,20 @@ var newId = () => typeof crypto !== "undefined" && "randomUUID" in crypto ? cryp
 function useSavedViews(opts = {}) {
   const { storageKey: storageKey2 = "pilab.savedViews", storage: storageProp } = opts;
   const storage = storageProp === null ? void 0 : storageProp ?? localStorageAdapter();
-  const [initial] = React25__namespace.useState(() => opts.views === void 0 ? readStored(storage, storageKey2) : { views: [] });
-  const [views, setViews] = chunkXNG22HMC_cjs.useControllableState({
+  const [initial] = React24__namespace.useState(() => opts.views === void 0 ? readStored(storage, storageKey2) : { views: [] });
+  const [views, setViews] = chunkYGX6XE22_cjs.useControllableState({
     value: opts.views,
     defaultValue: opts.defaultViews && initial.views.length === 0 ? opts.defaultViews : initial.views,
     onChange: opts.onViewsChange
   });
-  const [defaultId, setDefaultId] = chunkXNG22HMC_cjs.useControllableState({
+  const [defaultId, setDefaultId] = chunkYGX6XE22_cjs.useControllableState({
     value: opts.defaultViewId,
     defaultValue: initial.defaultId ?? null,
     onChange: opts.onDefaultViewChange
   });
   const persist = opts.views === void 0 && !!storage;
-  const first = React25__namespace.useRef(true);
-  React25__namespace.useEffect(() => {
+  const first = React24__namespace.useRef(true);
+  React24__namespace.useEffect(() => {
     if (first.current) {
       first.current = false;
       return;
@@ -2833,10 +2577,10 @@ function useSavedViews(opts = {}) {
 function SavedViews({ query, onApply, labels: labelsProp, className, ...opts }) {
   const l = { ...defaultViewLabels, ...labelsProp };
   const sv = useSavedViews(opts);
-  const [open, setOpen] = React25__namespace.useState(false);
-  const [name, setName] = React25__namespace.useState("");
-  const [renaming, setRenaming] = React25__namespace.useState(null);
-  const [renameValue, setRenameValue] = React25__namespace.useState("");
+  const [open, setOpen] = React24__namespace.useState(false);
+  const [name, setName] = React24__namespace.useState("");
+  const [renaming, setRenaming] = React24__namespace.useState(null);
+  const [renameValue, setRenameValue] = React24__namespace.useState("");
   const commitRename = () => {
     if (renaming && renameValue.trim()) sv.rename(renaming, renameValue);
     setRenaming(null);
@@ -2967,26 +2711,26 @@ function FilterBar({
 }) {
   const { views: viewLabels, ...barLabels } = labelsProp ?? {};
   const l = { ...defaultLabels, ...barLabels };
-  const id = React25__namespace.useId();
-  const [query, setQuery] = chunkXNG22HMC_cjs.useControllableState({
+  const id = React24__namespace.useId();
+  const [query, setQuery] = chunkYGX6XE22_cjs.useControllableState({
     value,
     defaultValue,
     onChange: (q) => onChange?.(q, parseFilter(q))
   });
-  const [draft, setDraft] = React25__namespace.useState("");
-  const [open, setOpen] = React25__namespace.useState(false);
-  const [active, setActive] = React25__namespace.useState(0);
-  const [asyncOpts, setAsyncOpts] = React25__namespace.useState([]);
-  const inputRef = React25__namespace.useRef(null);
-  const userNavigated = React25__namespace.useRef(false);
-  const root = React25__namespace.useRef(null);
-  const parsed = React25__namespace.useMemo(() => parseFilter(query), [query]);
+  const [draft, setDraft] = React24__namespace.useState("");
+  const [open, setOpen] = React24__namespace.useState(false);
+  const [active, setActive] = React24__namespace.useState(0);
+  const [asyncOpts, setAsyncOpts] = React24__namespace.useState([]);
+  const inputRef = React24__namespace.useRef(null);
+  const userNavigated = React24__namespace.useRef(false);
+  const root = React24__namespace.useRef(null);
+  const parsed = React24__namespace.useMemo(() => parseFilter(query), [query]);
   const tokens = parsed.tokens;
   const svOpts = savedViews === false ? void 0 : savedViews ?? {};
-  const defaultViewRef = React25__namespace.useRef(void 0);
+  const defaultViewRef = React24__namespace.useRef(void 0);
   const applyDefault = applyDefaultView && !!svOpts && !query && value === void 0;
-  const defaultInit = React25__namespace.useRef(false);
-  React25__namespace.useEffect(() => {
+  const defaultInit = React24__namespace.useRef(false);
+  React24__namespace.useEffect(() => {
     if (defaultInit.current || !applyDefault) return;
     defaultInit.current = true;
     const st = svOpts?.storage === null ? void 0 : svOpts?.storage ?? localStorageAdapter();
@@ -3004,7 +2748,7 @@ function FilterBar({
   const valuePart = colon > 0 ? body.slice(colon + 1) : "";
   const lastSegment = field && (field.multiple ?? true) ? valuePart.slice(valuePart.lastIndexOf(",") + 1) : valuePart;
   const lastQuery = lastSegment.replace(/^(>=|<=|>|<)/, "").replace(/^"/, "");
-  React25__namespace.useEffect(() => {
+  React24__namespace.useEffect(() => {
     if (!field || typeof field.options !== "function") {
       setAsyncOpts([]);
       return;
@@ -3019,7 +2763,7 @@ function FilterBar({
       window.clearTimeout(h);
     };
   }, [field, lastQuery]);
-  const suggestions = React25__namespace.useMemo(() => {
+  const suggestions = React24__namespace.useMemo(() => {
     if (!open) return [];
     const prefix = neg ? "-" : "";
     if (colon < 0) {
@@ -3037,7 +2781,7 @@ function FilterBar({
       commit: true
     }));
   }, [open, fields, body, colon, field, asyncOpts, lastQuery, lastSegment, draft, neg]);
-  React25__namespace.useEffect(() => setActive(0), [draft]);
+  React24__namespace.useEffect(() => setActive(0), [draft]);
   const commitDraft = (text) => {
     const add = parseFilter(text).tokens;
     if (add.length) emit([...tokens, ...add]);
@@ -3352,20 +3096,20 @@ function TreeView({
 }) {
   const l = { loading: "Loading\u2026", error: "Failed to load", retry: "Retry", contextMenu: "Actions", ...labels };
   const multi = selection === "multiple";
-  const [expanded, setExpanded] = chunkXNG22HMC_cjs.useControllableState({
+  const [expanded, setExpanded] = chunkYGX6XE22_cjs.useControllableState({
     value: expandedProp,
     defaultValue: defaultExpanded,
     onChange: onExpandedChange
   });
-  const [selectedIds, setSelectedIds] = chunkXNG22HMC_cjs.useControllableState({
+  const [selectedIds, setSelectedIds] = chunkYGX6XE22_cjs.useControllableState({
     value: toArr(selectedProp),
     defaultValue: toArr(defaultSelected) ?? [],
     onChange: onSelectedChange
   });
-  const open = React25__namespace.useMemo(() => new Set(expanded), [expanded]);
-  const chosen = React25__namespace.useMemo(() => new Set(selectedIds), [selectedIds]);
-  const [loadState, setLoadState] = React25__namespace.useState({});
-  const rows = React25__namespace.useMemo(() => {
+  const open = React24__namespace.useMemo(() => new Set(expanded), [expanded]);
+  const chosen = React24__namespace.useMemo(() => new Set(selectedIds), [selectedIds]);
+  const [loadState, setLoadState] = React24__namespace.useState({});
+  const rows = React24__namespace.useMemo(() => {
     const out = [];
     const walk = (list, level, parent) => {
       list.forEach((node, i) => {
@@ -3379,20 +3123,20 @@ function TreeView({
     walk(nodes, 1, -1);
     return out;
   }, [nodes, open, loadState]);
-  const indexOf = React25__namespace.useMemo(() => {
+  const indexOf = React24__namespace.useMemo(() => {
     const m = /* @__PURE__ */ new Map();
     rows.forEach((r, i) => r.kind === "node" && m.set(r.node.id, i));
     return m;
   }, [rows]);
-  const [focusId, setFocusId] = React25__namespace.useState(selectedIds[0] ?? rows[0]?.node?.id);
+  const [focusId, setFocusId] = React24__namespace.useState(selectedIds[0] ?? rows[0]?.node?.id);
   const focusIdx = focusId !== void 0 ? indexOf.get(focusId) ?? 0 : 0;
-  const anchor = React25__namespace.useRef(void 0);
-  const pendingFocus = React25__namespace.useRef(void 0);
-  const refs = React25__namespace.useRef(/* @__PURE__ */ new Map());
-  const scrollRef = React25__namespace.useRef(null);
-  const [menu, setMenu] = React25__namespace.useState(null);
+  const anchor = React24__namespace.useRef(void 0);
+  const pendingFocus = React24__namespace.useRef(void 0);
+  const refs = React24__namespace.useRef(/* @__PURE__ */ new Map());
+  const scrollRef = React24__namespace.useRef(null);
+  const [menu, setMenu] = React24__namespace.useState(null);
   const useVirt = virtual ?? rows.length > 500;
-  const focusIdxRef = React25__namespace.useRef(focusIdx);
+  const focusIdxRef = React24__namespace.useRef(focusIdx);
   focusIdxRef.current = focusIdx;
   const virt = reactVirtual.useVirtualizer({
     count: useVirt ? rows.length : 0,
@@ -3400,7 +3144,7 @@ function TreeView({
     estimateSize: () => rowHeight,
     overscan: 8,
     initialRect: { width: 0, height },
-    observeElementRect: chunkAN24WGJJ_cjs.observeRectWithFallback,
+    observeElementRect: chunk77S32ZEH_cjs.observeRectWithFallback,
     // keep the roving-tabindex row mounted so the tree stays reachable by Tab
     rangeExtractor: (range) => {
       const base = reactVirtual.defaultRangeExtractor(range);
@@ -3408,7 +3152,7 @@ function TreeView({
       return f < range.count && !base.includes(f) ? [...base, f].sort((a, b) => a - b) : base;
     }
   });
-  const load = React25__namespace.useCallback(
+  const load = React24__namespace.useCallback(
     (id) => {
       if (!loadChildren) return;
       setLoadState((s) => ({ ...s, [id]: "loading" }));
@@ -3436,7 +3180,7 @@ function TreeView({
     pendingFocus.current = r.node.id;
     if (useVirt) virt.scrollToIndex(idx);
   };
-  React25__namespace.useEffect(() => {
+  React24__namespace.useEffect(() => {
     const id = pendingFocus.current;
     if (id === void 0) return;
     const el = refs.current.get(id);
@@ -3466,7 +3210,7 @@ function TreeView({
       commit(ids, id);
     }
   };
-  const typed = React25__namespace.useRef({ buf: "", t: 0 });
+  const typed = React24__namespace.useRef({ buf: "", t: 0 });
   const typeAhead = (ch, from) => {
     const ta = typed.current;
     if (ta.t) clearTimeout(ta.t);
@@ -3564,7 +3308,7 @@ function TreeView({
           className: "flex h-7 items-center gap-2 pe-2 text-sm text-muted outline-none",
           style: { ...style, paddingInlineStart: `${indent + 20}px` },
           children: r.kind === "loading" ? /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
-            /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Skeleton, { className: "h-3 w-24" }),
+            /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.Skeleton, { className: "h-3 w-24" }),
             /* @__PURE__ */ jsxRuntime.jsx("span", { className: "sr-only", children: l.loading })
           ] }) : /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
             /* @__PURE__ */ jsxRuntime.jsx("span", { className: "text-danger", children: l.error }),
@@ -3654,8 +3398,8 @@ function TreeView({
       }
     }
   );
-  const Root16 = dragAdapter && onMove ? dragAdapter.Root : null;
-  const wrap = (el) => Root16 ? /* @__PURE__ */ jsxRuntime.jsx(Root16, { selectedIds, onMove, children: el }) : el;
+  const Root13 = dragAdapter && onMove ? dragAdapter.Root : null;
+  const wrap = (el) => Root13 ? /* @__PURE__ */ jsxRuntime.jsx(Root13, { selectedIds, onMove, children: el }) : el;
   if (!useVirt) {
     return /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
       wrap(
@@ -3726,11 +3470,11 @@ function BarItem({ it }) {
 var keyOf = (it, i) => "id" in it ? it.id : `${it.type}-${i}`;
 function ActionBar({ items, label, className, labels }) {
   const actions = labels?.actions ?? "Actions";
-  const ref = React25__namespace.useRef(null);
-  const widths = React25__namespace.useRef([]);
-  const moreW = React25__namespace.useRef(0);
-  const [visible, setVisible] = React25__namespace.useState(items.length);
-  const measure = React25__namespace.useCallback(() => {
+  const ref = React24__namespace.useRef(null);
+  const widths = React24__namespace.useRef([]);
+  const moreW = React24__namespace.useRef(0);
+  const [visible, setVisible] = React24__namespace.useState(items.length);
+  const measure = React24__namespace.useCallback(() => {
     const el = ref.current;
     if (!el) return;
     el.querySelectorAll("[data-ab]").forEach((c) => {
@@ -3749,14 +3493,14 @@ function ActionBar({ items, label, className, labels }) {
     }
     setVisible(n);
   }, [items.length]);
-  React25__namespace.useLayoutEffect(() => {
+  React24__namespace.useLayoutEffect(() => {
     widths.current = [];
     setVisible(items.length);
   }, [items]);
-  React25__namespace.useLayoutEffect(() => {
+  React24__namespace.useLayoutEffect(() => {
     measure();
   });
-  React25__namespace.useEffect(() => {
+  React24__namespace.useEffect(() => {
     const el = ref.current;
     if (!el || typeof ResizeObserver === "undefined") return;
     const ro = new ResizeObserver(() => setVisible(items.length));
@@ -3773,6 +3517,58 @@ function ActionBar({ items, label, className, labels }) {
     ] }), items: hidden }) })
   ] });
 }
+
+// lib/messages/portal.en.ts
+var portalEn = {
+  layout: {
+    home: "Home",
+    search: "Search",
+    searchPlaceholder: "Search apps, pages and people\u2026",
+    appSwitcher: "Apps",
+    appSwitcherTitle: "Switch app",
+    currentApp: "Current app",
+    allApps: "All apps",
+    noApps: "No apps available",
+    navigation: "Portal navigation",
+    pageSections: "Page sections",
+    external: "opens in a new tab",
+    pages: "Pages",
+    apps: "Apps",
+    goTo: (title) => `Go to ${title}`,
+    openApp: (name) => `Open ${name}`
+  },
+  home: {
+    welcome: (name) => `Welcome back, ${name}`,
+    welcomeAnonymous: "Welcome back",
+    subtitle: "Pick up where you left off or jump to any app.",
+    favourites: "Favourite apps",
+    recent: "Recent apps",
+    allApps: "All apps",
+    announcements: "Announcements",
+    quickActions: "Quick actions",
+    noFavourites: "Star an app to pin it here.",
+    noRecent: "Apps you open show up here.",
+    noAnnouncements: "No announcements right now.",
+    addFavourite: (name) => `Add ${name} to favourites`,
+    removeFavourite: (name) => `Remove ${name} from favourites`,
+    lastOpened: (when) => `Opened ${when}`,
+    dismiss: (title) => `Dismiss announcement: ${title}`
+  },
+  serverGrid: {
+    retry: "Retry",
+    loadFailed: "The data could not be loaded.",
+    rowsPerPage: "Rows per page",
+    loadingData: "Loading data",
+    refreshing: "Refreshing\u2026",
+    results: (from, to, total) => `Showing ${from}\u2013${to} of ${total}`,
+    resultsUnknown: (from, to) => `Showing ${from}\u2013${to}`,
+    noResults: "No results",
+    search: "Search",
+    page: (page) => `Page ${page}`,
+    clearFilters: "Clear filters",
+    refresh: "Refresh"
+  }
+};
 var defaultLabels2 = {
   actions: "Row actions",
   expand: "Expand row",
@@ -3797,14 +3593,15 @@ function readView(viewKey) {
     return {};
   }
 }
+var portalDefaults = { portal: portalEn };
 var SELECT_W = 40;
 var ACTION_W = 40;
 var EXPAND_W = 32;
 var interactive = "button,a,input,select,textarea,[role=button],[role=menuitem]";
 var textOf2 = (n, fallback) => typeof n === "string" || typeof n === "number" ? String(n) : fallback;
-var GridContext = React25__namespace.createContext(null);
+var GridContext = React24__namespace.createContext(null);
 function useGrid() {
-  const c = React25__namespace.useContext(GridContext);
+  const c = React24__namespace.useContext(GridContext);
   if (!c) throw new Error("Grid toolbar components must be rendered inside <DataGrid toolbar={\u2026}>");
   return c;
 }
@@ -3844,12 +3641,12 @@ function GridDensityToggle() {
 }
 function GridColumnsMenu() {
   const g = useGrid();
-  return /* @__PURE__ */ jsxRuntime.jsxs(chunkAN24WGJJ_cjs.Popover, { children: [
-    /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.PopoverTrigger, { asChild: true, children: /* @__PURE__ */ jsxRuntime.jsxs("button", { type: "button", className: "inline-flex h-8 items-center gap-1 border border-line px-2 text-xs text-muted hover:bg-surface-hover", children: [
+  return /* @__PURE__ */ jsxRuntime.jsxs(chunk77S32ZEH_cjs.Popover, { children: [
+    /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.PopoverTrigger, { asChild: true, children: /* @__PURE__ */ jsxRuntime.jsxs("button", { type: "button", className: "inline-flex h-8 items-center gap-1 border border-line px-2 text-xs text-muted hover:bg-surface-hover", children: [
       /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Columns3, { className: "size-3.5", "aria-hidden": true }),
       g.labels.columns
     ] }) }),
-    /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.PopoverContent, { align: "end", className: "w-60 p-2", children: /* @__PURE__ */ jsxRuntime.jsx("ul", { className: "flex flex-col gap-0.5", children: g.columns.map((c, i) => /* @__PURE__ */ jsxRuntime.jsxs("li", { className: "flex items-center gap-2 px-1 py-0.5 text-sm", children: [
+    /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.PopoverContent, { align: "end", className: "w-60 p-2", children: /* @__PURE__ */ jsxRuntime.jsx("ul", { className: "flex flex-col gap-0.5", children: g.columns.map((c, i) => /* @__PURE__ */ jsxRuntime.jsxs("li", { className: "flex items-center gap-2 px-1 py-0.5 text-sm", children: [
       /* @__PURE__ */ jsxRuntime.jsxs("label", { className: "flex flex-1 items-center gap-2", children: [
         /* @__PURE__ */ jsxRuntime.jsx("input", { type: "checkbox", checked: c.visible, disabled: !c.hideable, onChange: (e) => g.setVisible(c.id, e.target.checked) }),
         /* @__PURE__ */ jsxRuntime.jsx("span", { className: "truncate", children: c.label })
@@ -3866,7 +3663,7 @@ function FilterCell({ column, value, onChange, rows, label }) {
   if (typeof f === "function") return /* @__PURE__ */ jsxRuntime.jsx(jsxRuntime.Fragment, { children: f({ value, onChange, label: name }) });
   if (f === "select") {
     const get = column.accessor ?? ((r) => r[column.id]);
-    const opts = Array.from(new Set(rows.slice(0, 5e3).map((r) => String(get(r) ?? "")))).slice(0, 100).sort();
+    const opts = column.filterOptions ?? Array.from(new Set(rows.slice(0, 5e3).map((r) => String(get(r) ?? "")))).slice(0, 100).sort();
     return /* @__PURE__ */ jsxRuntime.jsxs("select", { "aria-label": name, className: base, value: value ?? "", onChange: (e) => onChange(e.target.value || void 0), children: [
       /* @__PURE__ */ jsxRuntime.jsx("option", { value: "" }),
       opts.map((o) => /* @__PURE__ */ jsxRuntime.jsx("option", { children: o }, o))
@@ -3909,32 +3706,35 @@ function DataGrid(props) {
     loading,
     error,
     empty,
+    pagination: pg,
+    onRetry,
     viewKey,
     className,
     gridRole = "grid",
     getRowProps,
     onRowKeyDown
   } = props;
-  const { t: laf } = chunkGWTYGDXC_cjs.useLaf();
+  const { t: laf } = chunkE6JUACLJ_cjs.useLafDefaults(portalDefaults);
   const L = { ...defaultLabels2, ...props.labels };
+  const SG = { ...laf.components.portal.serverGrid, ...props.labels };
   const selectAllLabel = props.labels?.selectAll ?? laf.selectAllRows;
   const selectRowLabel = props.labels?.selectRow ?? laf.selectRow;
-  const uid = React25__namespace.useId();
-  const persisted = React25__namespace.useMemo(() => readView(viewKey), [viewKey]);
-  const [sort, setSort] = chunkXNG22HMC_cjs.useControllableState({ value: props.sort, defaultValue: [], onChange: props.onSortChange });
-  const [selected, setSelected] = chunkXNG22HMC_cjs.useControllableState({ value: props.selected, defaultValue: [], onChange: props.onSelectedChange });
-  const [visibility, setVisibility] = chunkXNG22HMC_cjs.useControllableState({
+  const uid = React24__namespace.useId();
+  const persisted = React24__namespace.useMemo(() => readView(viewKey), [viewKey]);
+  const [sort, setSort] = chunkYGX6XE22_cjs.useControllableState({ value: props.sort, defaultValue: [], onChange: props.onSortChange });
+  const [selected, setSelected] = chunkYGX6XE22_cjs.useControllableState({ value: props.selected, defaultValue: [], onChange: props.onSelectedChange });
+  const [visibility, setVisibility] = chunkYGX6XE22_cjs.useControllableState({
     value: props.columnVisibility,
     defaultValue: persisted.columnVisibility ?? {},
     onChange: props.onColumnVisibilityChange
   });
-  const [order, setOrder] = chunkXNG22HMC_cjs.useControllableState({ value: props.columnOrder, defaultValue: persisted.columnOrder ?? [], onChange: props.onColumnOrderChange });
-  const [sizing, setSizing] = chunkXNG22HMC_cjs.useControllableState({ value: props.columnSizing, defaultValue: persisted.columnSizing ?? {}, onChange: props.onColumnSizingChange });
-  const [filters, setFilters] = chunkXNG22HMC_cjs.useControllableState({ value: props.filters, defaultValue: [], onChange: props.onFiltersChange });
-  const [search, setSearch] = chunkXNG22HMC_cjs.useControllableState({ value: props.search, defaultValue: "", onChange: props.onSearchChange });
-  const [density, setDensity] = chunkXNG22HMC_cjs.useControllableState({ value: props.density, defaultValue: persisted.density ?? "default", onChange: props.onDensityChange });
-  const [expandedIds, setExpandedIds] = React25__namespace.useState(() => /* @__PURE__ */ new Set());
-  React25__namespace.useEffect(() => {
+  const [order, setOrder] = chunkYGX6XE22_cjs.useControllableState({ value: props.columnOrder, defaultValue: persisted.columnOrder ?? [], onChange: props.onColumnOrderChange });
+  const [sizing, setSizing] = chunkYGX6XE22_cjs.useControllableState({ value: props.columnSizing, defaultValue: persisted.columnSizing ?? {}, onChange: props.onColumnSizingChange });
+  const [filters, setFilters] = chunkYGX6XE22_cjs.useControllableState({ value: props.filters, defaultValue: [], onChange: props.onFiltersChange });
+  const [search, setSearch] = chunkYGX6XE22_cjs.useControllableState({ value: props.search, defaultValue: "", onChange: props.onSearchChange });
+  const [density, setDensity] = chunkYGX6XE22_cjs.useControllableState({ value: props.density, defaultValue: persisted.density ?? "default", onChange: props.onDensityChange });
+  const [expandedIds, setExpandedIds] = React24__namespace.useState(() => /* @__PURE__ */ new Set());
+  React24__namespace.useEffect(() => {
     if (!viewKey || typeof window === "undefined") return;
     try {
       window.localStorage.setItem(storageKey(viewKey), JSON.stringify({ columnVisibility: visibility, columnOrder: order, columnSizing: sizing, density }));
@@ -3942,9 +3742,9 @@ function DataGrid(props) {
     }
   }, [viewKey, visibility, order, sizing, density]);
   const selectable = props.selectable ?? (props.selected !== void 0 || !!props.onSelectedChange || !!bulkActions);
-  const selectedSet = React25__namespace.useMemo(() => new Set(selected), [selected]);
-  const colById = React25__namespace.useMemo(() => new Map(columns.map((c) => [c.id, c])), [columns]);
-  const defs = React25__namespace.useMemo(
+  const selectedSet = React24__namespace.useMemo(() => new Set(selected), [selected]);
+  const colById = React24__namespace.useMemo(() => new Map(columns.map((c) => [c.id, c])), [columns]);
+  const defs = React24__namespace.useMemo(
     () => columns.map((c) => ({
       id: c.id,
       accessorFn: c.accessor ?? ((r) => r[c.id]),
@@ -3958,7 +3758,7 @@ function DataGrid(props) {
     [columns]
   );
   const wrap = (get, set) => (u) => set(typeof u === "function" ? u(get()) : u);
-  const sorting = React25__namespace.useMemo(() => sort.map((s) => ({ id: s.id, desc: s.dir === "desc" })), [sort]);
+  const sorting = React24__namespace.useMemo(() => sort.map((s) => ({ id: s.id, desc: s.dir === "desc" })), [sort]);
   const columnFilters = filters;
   const table = legacy.useLegacyTable({
     data: rows,
@@ -3978,6 +3778,11 @@ function DataGrid(props) {
   });
   const modelRows = table.getRowModel().rows;
   const n = modelRows.length;
+  const totalRows = rowCount ?? pg?.total;
+  const rowOffset = pg ? (pg.page - 1) * pg.pageSize : 0;
+  const skeleton = !!loading && (!manual || n === 0);
+  const refreshing = !!loading && !!manual && n > 0;
+  const showRows = manual ? !skeleton : !loading && !error;
   const leaf = table.getVisibleLeafColumns();
   const allLeafIds = table.getAllLeafColumns().map((c) => c.id);
   const leading = (selectable ? SELECT_W : 0) + (renderExpanded ? EXPAND_W : 0);
@@ -3999,9 +3804,9 @@ function DataGrid(props) {
   const overscan = typeof virtual === "object" ? virtual.overscan ?? 8 : 8;
   const virtualOn = virtual === void 0 ? n > 200 : virtual !== false;
   const viewportH = height ?? 480;
-  const scrollRef = React25__namespace.useRef(null);
+  const scrollRef = React24__namespace.useRef(null);
   const fallbackH = typeof viewportH === "number" ? viewportH : 480;
-  const estimate = React25__namespace.useCallback((i) => rowH + (modelRows[i] && expandedIds.has(modelRows[i].id) ? 120 : 0), [rowH, modelRows, expandedIds]);
+  const estimate = React24__namespace.useCallback((i) => rowH + (modelRows[i] && expandedIds.has(modelRows[i].id) ? 120 : 0), [rowH, modelRows, expandedIds]);
   const virtualizer = reactVirtual.useVirtualizer({
     count: virtualOn ? n : 0,
     getScrollElement: () => scrollRef.current,
@@ -4025,15 +3830,15 @@ function DataGrid(props) {
       return h > 0 ? h : estimate(Number(el.dataset.index ?? 0));
     }
   });
-  const [active, setActive] = React25__namespace.useState(-1);
-  const anchor = React25__namespace.useRef(0);
-  const [menu, setMenu] = React25__namespace.useState(null);
+  const [active, setActive] = React24__namespace.useState(-1);
+  const anchor = React24__namespace.useRef(0);
+  const [menu, setMenu] = React24__namespace.useState(null);
   const activeIdx = Math.min(active, n - 1);
   const reveal = (i) => {
     if (virtualOn) virtualizer.scrollToIndex(i, { align: "auto" });
     else scrollRef.current?.querySelector(`[data-row-index="${i}"]`)?.scrollIntoView?.({ block: "nearest" });
   };
-  const ids = React25__namespace.useMemo(() => modelRows.map((r) => r.id), [modelRows]);
+  const ids = React24__namespace.useMemo(() => modelRows.map((r) => r.id), [modelRows]);
   const select = (i, mods, checkbox = false) => {
     const id = ids[i];
     if (id === void 0) return;
@@ -4110,7 +3915,7 @@ function DataGrid(props) {
       case "A":
         if ((e.ctrlKey || e.metaKey) && selectable) {
           e.preventDefault();
-          setSelected(ids);
+          setSelected(manual ? Array.from(/* @__PURE__ */ new Set([...selected, ...ids])) : ids);
         }
         return;
       case "Escape":
@@ -4155,7 +3960,7 @@ function DataGrid(props) {
     base.splice(to, 0, base.splice(from, 1)[0]);
     setOrder(base);
   };
-  const dragId = React25__namespace.useRef(null);
+  const dragId = React24__namespace.useRef(null);
   const setFilter = (id, value) => setFilters([...filters.filter((f) => f.id !== id), ...value === void 0 || value === "" ? [] : [{ id, value }]]);
   const hasFilters = columns.some((c) => c.filter);
   const ctx = {
@@ -4185,7 +3990,7 @@ function DataGrid(props) {
           id: `${uid}-r${index}`,
           role: "row",
           "data-row-index": index,
-          "aria-rowindex": index + 2,
+          "aria-rowindex": rowOffset + index + 2,
           "aria-selected": selectable ? isSel : void 0,
           style: { display: "grid", gridTemplateColumns: template, height: rowH, minWidth: totalWidth },
           className: chunkFTHFEMX6_cjs.cn(
@@ -4256,161 +4061,190 @@ function DataGrid(props) {
   const menuRow = menu ? modelRows.find((r) => r.id === menu.id)?.original : void 0;
   const menuItems = menuRow !== void 0 && rowActions ? rowActions(menuRow) : [];
   const showEmpty = !loading && !error && n === 0;
+  const skeletonRows = pg ? Math.min(pg.pageSize, 10) : 4;
+  const summary = loading ? SG.loadingData : error ? SG.loadFailed : totalRows !== void 0 ? SG.results(n === 0 ? 0 : rowOffset + 1, rowOffset + n, totalRows) : SG.resultsUnknown(n === 0 ? 0 : rowOffset + 1, rowOffset + n);
   const scrollStyle = { height: virtualOn || stickyHeader ? viewportH : void 0, maxHeight: virtualOn || stickyHeader ? void 0 : viewportH };
   return /* @__PURE__ */ jsxRuntime.jsx(GridContext.Provider, { value: ctx, children: /* @__PURE__ */ jsxRuntime.jsxs("div", { className: chunkFTHFEMX6_cjs.cn("flex flex-col", className), children: [
     toolbar && /* @__PURE__ */ jsxRuntime.jsx("div", { className: "mb-2 flex flex-wrap items-center gap-2", children: toolbar }),
-    /* @__PURE__ */ jsxRuntime.jsxs(
-      "div",
-      {
-        ref: scrollRef,
-        role: gridRole,
-        "aria-label": label,
-        "aria-rowcount": (manual && rowCount !== void 0 ? rowCount : n) + 1,
-        "aria-colcount": colCount,
-        "aria-multiselectable": selectable || void 0,
-        "aria-busy": loading || void 0,
-        "aria-activedescendant": activeIdx >= 0 && !loading && n > 0 ? `${uid}-r${activeIdx}` : void 0,
-        tabIndex: 0,
-        style: scrollStyle,
-        className: "relative overflow-auto border border-line bg-surface text-fg outline-none focus-visible:ring-2 focus-visible:ring-primary",
-        onKeyDown,
-        onFocus: (e) => {
-          if (e.target === e.currentTarget && activeIdx < 0 && n > 0) setActive(0);
-        },
-        children: [
-          /* @__PURE__ */ jsxRuntime.jsxs("div", { role: "rowgroup", className: chunkFTHFEMX6_cjs.cn(stickyHeader && "sticky top-0 z-10", "bg-surface"), style: { minWidth: totalWidth }, children: [
-            /* @__PURE__ */ jsxRuntime.jsxs("div", { role: "row", "aria-rowindex": 1, style: { display: "grid", gridTemplateColumns: template, height: rowH, minWidth: totalWidth }, className: "border-b border-line-strong text-xs uppercase text-muted", children: [
-              selectable && /* @__PURE__ */ jsxRuntime.jsx("div", { role: "columnheader", className: chunkFTHFEMX6_cjs.cn(cellBase, "justify-center px-0", stickyCell), style: { insetInlineStart: 0 }, children: /* @__PURE__ */ jsxRuntime.jsx(
-                "input",
-                {
-                  type: "checkbox",
-                  "aria-label": selectAllLabel,
-                  checked: n > 0 && ids.every((i) => selectedSet.has(i)),
-                  ref: (el) => {
-                    if (el) el.indeterminate = selected.length > 0 && !ids.every((i) => selectedSet.has(i));
-                  },
-                  onChange: () => setSelected(ids.every((i) => selectedSet.has(i)) ? [] : ids)
-                }
-              ) }),
-              renderExpanded && /* @__PURE__ */ jsxRuntime.jsx("div", { role: "columnheader", className: chunkFTHFEMX6_cjs.cn(stickyCell), style: { insetInlineStart: selectable ? SELECT_W : 0 }, children: /* @__PURE__ */ jsxRuntime.jsx("span", { className: "sr-only", children: L.expand }) }),
-              leaf.map((c) => {
-                const spec = colById.get(c.id);
-                const sIdx = sort.findIndex((s2) => s2.id === c.id);
-                const s = sort[sIdx];
-                const left = pinnedLeft.get(c.id);
-                return /* @__PURE__ */ jsxRuntime.jsxs(
-                  "div",
+    /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "relative", children: [
+      /* @__PURE__ */ jsxRuntime.jsxs(
+        "div",
+        {
+          ref: scrollRef,
+          role: gridRole,
+          "aria-label": label,
+          "aria-rowcount": manual && pg && totalRows === void 0 ? -1 : (manual && totalRows !== void 0 ? totalRows : n) + 1,
+          "aria-colcount": colCount,
+          "aria-multiselectable": selectable || void 0,
+          "aria-busy": loading || void 0,
+          "aria-activedescendant": activeIdx >= 0 && showRows && n > 0 ? `${uid}-r${activeIdx}` : void 0,
+          tabIndex: 0,
+          style: scrollStyle,
+          className: chunkFTHFEMX6_cjs.cn("relative overflow-auto border border-line bg-surface text-fg outline-none focus-visible:ring-2 focus-visible:ring-primary", refreshing && "opacity-60"),
+          onKeyDown,
+          onFocus: (e) => {
+            if (e.target === e.currentTarget && activeIdx < 0 && n > 0) setActive(0);
+          },
+          children: [
+            /* @__PURE__ */ jsxRuntime.jsxs("div", { role: "rowgroup", className: chunkFTHFEMX6_cjs.cn(stickyHeader && "sticky top-0 z-10", "bg-surface"), style: { minWidth: totalWidth }, children: [
+              /* @__PURE__ */ jsxRuntime.jsxs("div", { role: "row", "aria-rowindex": 1, style: { display: "grid", gridTemplateColumns: template, height: rowH, minWidth: totalWidth }, className: "border-b border-line-strong text-xs uppercase text-muted", children: [
+                selectable && /* @__PURE__ */ jsxRuntime.jsx("div", { role: "columnheader", className: chunkFTHFEMX6_cjs.cn(cellBase, "justify-center px-0", stickyCell), style: { insetInlineStart: 0 }, children: /* @__PURE__ */ jsxRuntime.jsx(
+                  "input",
                   {
-                    role: "columnheader",
-                    "aria-sort": s ? s.dir === "asc" ? "ascending" : "descending" : spec.sortable ? "none" : void 0,
-                    draggable: true,
-                    onDragStart: (e) => {
-                      dragId.current = c.id;
-                      e.dataTransfer.effectAllowed = "move";
+                    type: "checkbox",
+                    "aria-label": selectAllLabel,
+                    checked: n > 0 && ids.every((i) => selectedSet.has(i)),
+                    ref: (el) => {
+                      if (el) el.indeterminate = selected.length > 0 && !ids.every((i) => selectedSet.has(i));
                     },
-                    onDragOver: (e) => dragId.current && e.preventDefault(),
-                    onDrop: (e) => {
-                      e.preventDefault();
-                      if (dragId.current) dropColumn(dragId.current, c.id);
-                      dragId.current = null;
-                    },
-                    onKeyDown: (e) => {
-                      if (e.altKey && (e.key === "ArrowLeft" || e.key === "ArrowRight")) {
+                    onChange: () => {
+                      const all = ids.every((i) => selectedSet.has(i));
+                      if (manual) setSelected(all ? selected.filter((x) => !ids.includes(x)) : Array.from(/* @__PURE__ */ new Set([...selected, ...ids])));
+                      else setSelected(all ? [] : ids);
+                    }
+                  }
+                ) }),
+                renderExpanded && /* @__PURE__ */ jsxRuntime.jsx("div", { role: "columnheader", className: chunkFTHFEMX6_cjs.cn(stickyCell), style: { insetInlineStart: selectable ? SELECT_W : 0 }, children: /* @__PURE__ */ jsxRuntime.jsx("span", { className: "sr-only", children: L.expand }) }),
+                leaf.map((c) => {
+                  const spec = colById.get(c.id);
+                  const sIdx = sort.findIndex((s2) => s2.id === c.id);
+                  const s = sort[sIdx];
+                  const left = pinnedLeft.get(c.id);
+                  return /* @__PURE__ */ jsxRuntime.jsxs(
+                    "div",
+                    {
+                      role: "columnheader",
+                      "aria-sort": s ? s.dir === "asc" ? "ascending" : "descending" : spec.sortable ? "none" : void 0,
+                      draggable: true,
+                      onDragStart: (e) => {
+                        dragId.current = c.id;
+                        e.dataTransfer.effectAllowed = "move";
+                      },
+                      onDragOver: (e) => dragId.current && e.preventDefault(),
+                      onDrop: (e) => {
                         e.preventDefault();
-                        const rtl = getComputedStyle(e.currentTarget).direction === "rtl";
-                        moveColumn(c.id, e.key === "ArrowRight" !== rtl ? 1 : -1);
-                      }
+                        if (dragId.current) dropColumn(dragId.current, c.id);
+                        dragId.current = null;
+                      },
+                      onKeyDown: (e) => {
+                        if (e.altKey && (e.key === "ArrowLeft" || e.key === "ArrowRight")) {
+                          e.preventDefault();
+                          const rtl = getComputedStyle(e.currentTarget).direction === "rtl";
+                          moveColumn(c.id, e.key === "ArrowRight" !== rtl ? 1 : -1);
+                        }
+                      },
+                      className: chunkFTHFEMX6_cjs.cn("relative", cellBase, spec.numeric && "justify-end", left !== void 0 && stickyCell),
+                      style: left !== void 0 && Number.isFinite(left) ? { insetInlineStart: left } : void 0,
+                      children: [
+                        spec.sortable ? /* @__PURE__ */ jsxRuntime.jsxs(
+                          "button",
+                          {
+                            type: "button",
+                            className: "inline-flex min-w-0 items-center gap-1 font-[inherit] uppercase hover:text-fg",
+                            onClick: (e) => cycleSort(c.id, e.shiftKey),
+                            children: [
+                              /* @__PURE__ */ jsxRuntime.jsx("span", { className: "truncate", children: spec.header }),
+                              s && (s.dir === "asc" ? /* @__PURE__ */ jsxRuntime.jsx(lucideReact.ArrowUp, { className: "size-3 shrink-0", "aria-hidden": true }) : /* @__PURE__ */ jsxRuntime.jsx(lucideReact.ArrowDown, { className: "size-3 shrink-0", "aria-hidden": true })),
+                              s && sort.length > 1 && /* @__PURE__ */ jsxRuntime.jsx("span", { className: "text-[10px]", children: sIdx + 1 })
+                            ]
+                          }
+                        ) : /* @__PURE__ */ jsxRuntime.jsx("span", { className: "truncate", children: spec.header }),
+                        c.getCanResize() && /* @__PURE__ */ jsxRuntime.jsx(
+                          "div",
+                          {
+                            role: "separator",
+                            "aria-orientation": "vertical",
+                            "aria-label": `${L.resize}: ${textOf2(spec.header, c.id)}`,
+                            "aria-valuenow": c.getSize(),
+                            "aria-valuemin": spec.minWidth ?? 60,
+                            tabIndex: 0,
+                            draggable: false,
+                            onMouseDown: (e) => {
+                              e.stopPropagation();
+                              table.getHeaderGroups()[0]?.headers.find((h) => h.id === c.id)?.getResizeHandler()(e);
+                            },
+                            onDragStart: (e) => e.preventDefault(),
+                            onDoubleClick: () => {
+                              const { [c.id]: _, ...rest } = sizing;
+                              setSizing(rest);
+                            },
+                            onKeyDown: (e) => {
+                              if (e.key !== "ArrowLeft" && e.key !== "ArrowRight") return;
+                              e.preventDefault();
+                              e.stopPropagation();
+                              const step = (e.shiftKey ? 50 : 10) * (e.key === "ArrowRight" ? 1 : -1);
+                              setSizing({ ...sizing, [c.id]: Math.max(spec.minWidth ?? 60, c.getSize() + step) });
+                            },
+                            className: "absolute inset-y-0 end-0 w-1.5 cursor-col-resize touch-none bg-transparent hover:bg-primary focus-visible:bg-primary"
+                          }
+                        )
+                      ]
                     },
-                    className: chunkFTHFEMX6_cjs.cn("relative", cellBase, spec.numeric && "justify-end", left !== void 0 && stickyCell),
-                    style: left !== void 0 && Number.isFinite(left) ? { insetInlineStart: left } : void 0,
-                    children: [
-                      spec.sortable ? /* @__PURE__ */ jsxRuntime.jsxs(
-                        "button",
-                        {
-                          type: "button",
-                          className: "inline-flex min-w-0 items-center gap-1 font-[inherit] uppercase hover:text-fg",
-                          onClick: (e) => cycleSort(c.id, e.shiftKey),
-                          children: [
-                            /* @__PURE__ */ jsxRuntime.jsx("span", { className: "truncate", children: spec.header }),
-                            s && (s.dir === "asc" ? /* @__PURE__ */ jsxRuntime.jsx(lucideReact.ArrowUp, { className: "size-3 shrink-0", "aria-hidden": true }) : /* @__PURE__ */ jsxRuntime.jsx(lucideReact.ArrowDown, { className: "size-3 shrink-0", "aria-hidden": true })),
-                            s && sort.length > 1 && /* @__PURE__ */ jsxRuntime.jsx("span", { className: "text-[10px]", children: sIdx + 1 })
-                          ]
-                        }
-                      ) : /* @__PURE__ */ jsxRuntime.jsx("span", { className: "truncate", children: spec.header }),
-                      c.getCanResize() && /* @__PURE__ */ jsxRuntime.jsx(
-                        "div",
-                        {
-                          role: "separator",
-                          "aria-orientation": "vertical",
-                          "aria-label": `${L.resize}: ${textOf2(spec.header, c.id)}`,
-                          "aria-valuenow": c.getSize(),
-                          "aria-valuemin": spec.minWidth ?? 60,
-                          tabIndex: 0,
-                          draggable: false,
-                          onMouseDown: (e) => {
-                            e.stopPropagation();
-                            table.getHeaderGroups()[0]?.headers.find((h) => h.id === c.id)?.getResizeHandler()(e);
-                          },
-                          onDragStart: (e) => e.preventDefault(),
-                          onDoubleClick: () => {
-                            const { [c.id]: _, ...rest } = sizing;
-                            setSizing(rest);
-                          },
-                          onKeyDown: (e) => {
-                            if (e.key !== "ArrowLeft" && e.key !== "ArrowRight") return;
-                            e.preventDefault();
-                            e.stopPropagation();
-                            const step = (e.shiftKey ? 50 : 10) * (e.key === "ArrowRight" ? 1 : -1);
-                            setSizing({ ...sizing, [c.id]: Math.max(spec.minWidth ?? 60, c.getSize() + step) });
-                          },
-                          className: "absolute inset-y-0 end-0 w-1.5 cursor-col-resize touch-none bg-transparent hover:bg-primary focus-visible:bg-primary"
-                        }
-                      )
-                    ]
-                  },
-                  c.id
-                );
-              }),
-              rowActions && /* @__PURE__ */ jsxRuntime.jsx("div", { role: "columnheader", className: "relative", children: /* @__PURE__ */ jsxRuntime.jsx("span", { className: "sr-only", children: L.actions }) })
+                    c.id
+                  );
+                }),
+                rowActions && /* @__PURE__ */ jsxRuntime.jsx("div", { role: "columnheader", className: "relative", children: /* @__PURE__ */ jsxRuntime.jsx("span", { className: "sr-only", children: L.actions }) })
+              ] }),
+              hasFilters && /* @__PURE__ */ jsxRuntime.jsxs("div", { role: "row", style: { display: "grid", gridTemplateColumns: template, minWidth: totalWidth }, className: "border-b border-line", children: [
+                selectable && /* @__PURE__ */ jsxRuntime.jsx("div", { role: "gridcell", className: stickyCell, style: { insetInlineStart: 0 } }),
+                renderExpanded && /* @__PURE__ */ jsxRuntime.jsx("div", { role: "gridcell", className: stickyCell, style: { insetInlineStart: selectable ? SELECT_W : 0 } }),
+                leaf.map((c) => {
+                  const spec = colById.get(c.id);
+                  const left = pinnedLeft.get(c.id);
+                  return /* @__PURE__ */ jsxRuntime.jsx("div", { role: "gridcell", className: chunkFTHFEMX6_cjs.cn("min-w-0 px-2 py-1", left !== void 0 && stickyCell), style: left !== void 0 && Number.isFinite(left) ? { insetInlineStart: left } : void 0, children: spec.filter && /* @__PURE__ */ jsxRuntime.jsx(FilterCell, { column: spec, value: filters.find((f) => f.id === c.id)?.value, onChange: (v) => setFilter(c.id, v), rows, label: L.filter }) }, c.id);
+                }),
+                rowActions && /* @__PURE__ */ jsxRuntime.jsx("div", { role: "gridcell" })
+              ] }),
+              error && /* @__PURE__ */ jsxRuntime.jsx("div", { role: "row", style: { minWidth: totalWidth }, className: "border-b border-danger-line bg-danger-bg", children: /* @__PURE__ */ jsxRuntime.jsxs("div", { role: "gridcell", "aria-colspan": colCount, className: "sticky z-[1] flex w-[min(100%,40rem)] items-center gap-3 p-3 text-sm text-danger", style: { insetInlineStart: 0 }, children: [
+                /* @__PURE__ */ jsxRuntime.jsx("div", { role: "alert", className: "min-w-0 flex-1", children: error }),
+                onRetry && /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { variant: "secondary", size: "sm", leftIcon: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.RefreshCw, { "aria-hidden": true }), onClick: onRetry, children: SG.retry })
+              ] }) })
             ] }),
-            hasFilters && /* @__PURE__ */ jsxRuntime.jsxs("div", { role: "row", style: { display: "grid", gridTemplateColumns: template, minWidth: totalWidth }, className: "border-b border-line", children: [
-              selectable && /* @__PURE__ */ jsxRuntime.jsx("div", { role: "gridcell", className: stickyCell, style: { insetInlineStart: 0 } }),
-              renderExpanded && /* @__PURE__ */ jsxRuntime.jsx("div", { role: "gridcell", className: stickyCell, style: { insetInlineStart: selectable ? SELECT_W : 0 } }),
-              leaf.map((c) => {
-                const spec = colById.get(c.id);
-                const left = pinnedLeft.get(c.id);
-                return /* @__PURE__ */ jsxRuntime.jsx("div", { role: "gridcell", className: chunkFTHFEMX6_cjs.cn("min-w-0 px-2 py-1", left !== void 0 && stickyCell), style: left !== void 0 && Number.isFinite(left) ? { insetInlineStart: left } : void 0, children: spec.filter && /* @__PURE__ */ jsxRuntime.jsx(FilterCell, { column: spec, value: filters.find((f) => f.id === c.id)?.value, onChange: (v) => setFilter(c.id, v), rows, label: L.filter }) }, c.id);
-              }),
-              rowActions && /* @__PURE__ */ jsxRuntime.jsx("div", { role: "gridcell" })
+            /* @__PURE__ */ jsxRuntime.jsxs("div", { role: "rowgroup", style: virtualOn ? { height: virtualizer.getTotalSize() - rowH, position: "relative", minWidth: totalWidth } : { minWidth: totalWidth }, children: [
+              skeleton && Array.from({ length: skeletonRows }, (_, i) => /* @__PURE__ */ jsxRuntime.jsx("div", { role: "row", style: { display: "grid", gridTemplateColumns: template, height: rowH }, className: "border-b border-line", children: Array.from({ length: colCount }, (_2, j) => /* @__PURE__ */ jsxRuntime.jsx("div", { role: "gridcell", className: "flex items-center px-3", children: /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.Skeleton, {}) }, j)) }, i)),
+              showRows && (virtualOn ? virtualizer.getVirtualItems().map((v) => renderRow(v.index, { transform: `translateY(${v.start - rowH}px)` }, virtualizer.measureElement)) : modelRows.map((_, i) => renderRow(i)))
             ] })
-          ] }),
-          /* @__PURE__ */ jsxRuntime.jsxs("div", { role: "rowgroup", style: virtualOn ? { height: virtualizer.getTotalSize() - rowH, position: "relative", minWidth: totalWidth } : { minWidth: totalWidth }, children: [
-            loading && Array.from({ length: 4 }, (_, i) => /* @__PURE__ */ jsxRuntime.jsx("div", { role: "row", style: { display: "grid", gridTemplateColumns: template, height: rowH }, className: "border-b border-line", children: Array.from({ length: colCount }, (_2, j) => /* @__PURE__ */ jsxRuntime.jsx("div", { role: "gridcell", className: "flex items-center px-3", children: /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Skeleton, {}) }, j)) }, i)),
-            !loading && !error && (virtualOn ? virtualizer.getVirtualItems().map((v) => renderRow(v.index, { transform: `translateY(${v.start - rowH}px)` }, virtualizer.measureElement)) : modelRows.map((_, i) => renderRow(i)))
-          ] })
-        ]
-      }
-    ),
-    error && /* @__PURE__ */ jsxRuntime.jsx("div", { role: "alert", className: "border border-danger-line bg-danger-bg p-3 text-sm text-danger", children: error }),
-    showEmpty && (empty ?? /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.EmptyState, { title: L.empty })),
+          ]
+        }
+      ),
+      refreshing && /* @__PURE__ */ jsxRuntime.jsx("div", { "aria-hidden": true, className: "pointer-events-none absolute inset-0 z-20 flex items-center justify-center", children: /* @__PURE__ */ jsxRuntime.jsxs("span", { className: "flex items-center gap-2 rounded-md border border-line bg-menu px-3 py-1.5 text-sm text-muted", children: [
+        /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Loader2, { className: "size-4 animate-spin motion-reduce:animate-none" }),
+        SG.refreshing
+      ] }) })
+    ] }),
+    pg && /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex flex-wrap items-center gap-x-4 gap-y-2 border border-t-0 border-line bg-surface px-3 py-2 text-sm text-muted", children: [
+      /* @__PURE__ */ jsxRuntime.jsx("div", { role: "status", "aria-live": "polite", className: "sr-only", children: summary }),
+      pg.onPageSizeChange && /* @__PURE__ */ jsxRuntime.jsxs("label", { className: "flex items-center gap-2", children: [
+        /* @__PURE__ */ jsxRuntime.jsx("span", { children: SG.rowsPerPage }),
+        /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.Select, { className: "h-8 w-20", value: pg.pageSize, onChange: (e) => pg.onPageSizeChange?.(Number(e.target.value)), children: Array.from(/* @__PURE__ */ new Set([...pg.pageSizes ?? [10, 25, 50, 100], pg.pageSize])).sort((x, y) => x - y).map((size) => /* @__PURE__ */ jsxRuntime.jsx("option", { value: size, children: size }, size)) })
+      ] }),
+      /* @__PURE__ */ jsxRuntime.jsx("div", { className: "ms-auto [&_.pagination]:p-0", children: totalRows !== void 0 ? /* @__PURE__ */ jsxRuntime.jsx(Pagination, { page: pg.page, pageCount: Math.max(1, Math.ceil(totalRows / pg.pageSize)), total: totalRows, pageSize: pg.pageSize, onPageChange: pg.onPageChange }) : /* @__PURE__ */ jsxRuntime.jsxs("nav", { className: "pagination p-0", "aria-label": laf.pagination, children: [
+        /* @__PURE__ */ jsxRuntime.jsx("span", { children: SG.page(pg.page) }),
+        /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "pages", children: [
+          /* @__PURE__ */ jsxRuntime.jsx("button", { type: "button", className: "page-btn", "aria-label": laf.previousPage, disabled: pg.page <= 1, onClick: () => pg.onPageChange(pg.page - 1), children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.ChevronLeft, { className: "size-4", "aria-hidden": true }) }),
+          /* @__PURE__ */ jsxRuntime.jsx("button", { type: "button", className: "page-btn", "aria-label": laf.nextPage, disabled: !pg.hasNext, onClick: () => pg.onPageChange(pg.page + 1), children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.ChevronRight, { className: "size-4", "aria-hidden": true }) })
+        ] })
+      ] }) })
+    ] }),
+    showEmpty && (empty ?? /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.EmptyState, { title: L.empty })),
     bulkActions && selected.length > 0 && /* @__PURE__ */ jsxRuntime.jsxs("div", { role: "toolbar", "aria-label": L.selectedCount(selected.length), className: "sticky bottom-0 z-10 flex items-center gap-3 border border-line bg-surface px-3 py-2 text-sm", children: [
       /* @__PURE__ */ jsxRuntime.jsx("span", { className: "font-medium", children: L.selectedCount(selected.length) }),
       bulkActions(selected),
       /* @__PURE__ */ jsxRuntime.jsx("button", { type: "button", "aria-label": L.clearSelection, className: "ms-auto text-muted hover:text-fg", onClick: () => setSelected([]), children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.X, { className: "size-4", "aria-hidden": true }) })
     ] }),
-    rowActions && /* @__PURE__ */ jsxRuntime.jsxs(chunkAN24WGJJ_cjs.DropdownMenu, { open: !!menu && menuItems.length > 0, onOpenChange: (o) => !o && setMenu(null), children: [
-      /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.DropdownMenuTrigger, { asChild: true, children: /* @__PURE__ */ jsxRuntime.jsx("span", { "aria-hidden": true, className: "pointer-events-none fixed size-0", style: menu ? { left: menu.x, top: menu.y } : void 0 }) }),
+    rowActions && /* @__PURE__ */ jsxRuntime.jsxs(chunk77S32ZEH_cjs.DropdownMenu, { open: !!menu && menuItems.length > 0, onOpenChange: (o) => !o && setMenu(null), children: [
+      /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.DropdownMenuTrigger, { asChild: true, children: /* @__PURE__ */ jsxRuntime.jsx("span", { "aria-hidden": true, className: "pointer-events-none fixed size-0", style: menu ? { left: menu.x, top: menu.y } : void 0 }) }),
       /* @__PURE__ */ jsxRuntime.jsx(
-        chunkAN24WGJJ_cjs.DropdownMenuContent,
+        chunk77S32ZEH_cjs.DropdownMenuContent,
         {
           align: "start",
           onCloseAutoFocus: (e) => {
             e.preventDefault();
             scrollRef.current?.focus();
           },
-          children: menuItems.map((m) => /* @__PURE__ */ jsxRuntime.jsxs(React25__namespace.Fragment, { children: [
-            m.separatorBefore && /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.DropdownMenuSeparator, {}),
-            /* @__PURE__ */ jsxRuntime.jsxs(chunkAN24WGJJ_cjs.DropdownMenuItem, { danger: m.danger, disabled: m.disabled, onSelect: () => m.onSelect(), children: [
+          children: menuItems.map((m) => /* @__PURE__ */ jsxRuntime.jsxs(React24__namespace.Fragment, { children: [
+            m.separatorBefore && /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.DropdownMenuSeparator, {}),
+            /* @__PURE__ */ jsxRuntime.jsxs(chunk77S32ZEH_cjs.DropdownMenuItem, { danger: m.danger, disabled: m.disabled, onSelect: () => m.onSelect(), children: [
               m.icon,
               m.label
             ] })
@@ -4441,12 +4275,12 @@ function TreeTable({
   bulkActions,
   ...rest
 }) {
-  const [open, setOpen] = chunkXNG22HMC_cjs.useControllableState({ value: expanded, defaultValue: defaultExpanded ?? [], onChange: onExpandedChange });
-  const [sort, setSort] = chunkXNG22HMC_cjs.useControllableState({ value: sortProp, defaultValue: [], onChange: onSortChange });
-  const openSet = React25__namespace.useMemo(() => new Set(open), [open]);
+  const [open, setOpen] = chunkYGX6XE22_cjs.useControllableState({ value: expanded, defaultValue: defaultExpanded ?? [], onChange: onExpandedChange });
+  const [sort, setSort] = chunkYGX6XE22_cjs.useControllableState({ value: sortProp, defaultValue: [], onChange: onSortChange });
+  const openSet = React24__namespace.useMemo(() => new Set(open), [open]);
   const treeCol = treeColumn ?? columns[0]?.id;
-  const getters = React25__namespace.useMemo(() => new Map(columns.map((c) => [c.id, c.accessor ?? ((r) => r[c.id])])), [columns]);
-  const flat = React25__namespace.useMemo(() => {
+  const getters = React24__namespace.useMemo(() => new Map(columns.map((c) => [c.id, c.accessor ?? ((r) => r[c.id])])), [columns]);
+  const flat = React24__namespace.useMemo(() => {
     const out = [];
     const cmp = (x, y) => {
       for (const s of sort) {
@@ -4469,8 +4303,8 @@ function TreeTable({
     walk(nodes, 1);
     return out;
   }, [nodes, openSet, sort, getters]);
-  const toggle = React25__namespace.useCallback((id) => setOpen((prev) => prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]), [setOpen]);
-  const cols = React25__namespace.useMemo(
+  const toggle = React24__namespace.useCallback((id) => setOpen((prev) => prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]), [setOpen]);
+  const cols = React24__namespace.useMemo(
     () => columns.map((c) => {
       const base = { ...c, cell: (f) => c.cell(f.node.data), accessor: (f) => getters.get(c.id)(f.node.data), filter: void 0 };
       if (c.id !== treeCol) return base;
@@ -4615,25 +4449,25 @@ var accountEn = {
     announce: (t) => `Session expires in ${t}`
   }
 };
-var lafDefaults5 = { account: accountEn };
-var useLaf2 = () => chunkGWTYGDXC_cjs.useLafDefaults(lafDefaults5);
+var lafDefaults4 = { account: accountEn };
+var useLaf2 = () => chunkE6JUACLJ_cjs.useLafDefaults(lafDefaults4);
 var deviceIcon2 = { phone: lucideReact.Smartphone, laptop: lucideReact.Laptop, tablet: lucideReact.Tablet, key: lucideReact.KeyRound };
 function SessionList({ sessions, onRevoke, onRevokeOthers, showUser, labels }) {
   const l = { ...useLaf2().t.components.account.sessions, ...labels };
-  const [confirm, setConfirm] = React25__namespace.useState(false);
-  const [pending, setPending] = React25__namespace.useState(false);
+  const [confirm, setConfirm] = React24__namespace.useState(false);
+  const [pending, setPending] = React24__namespace.useState(false);
   const others = sessions.filter((s) => !s.current).length;
   return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "grid gap-3", children: [
     onRevokeOthers && /* @__PURE__ */ jsxRuntime.jsx("div", { className: "flex justify-end", children: /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { variant: "secondary", size: "sm", leftIcon: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.LogOut, {}), disabled: others === 0, onClick: () => setConfirm(true), children: l.revokeOthers }) }),
     sessions.length === 0 ? /* @__PURE__ */ jsxRuntime.jsx("p", { className: "text-sm text-muted", children: l.empty }) : /* @__PURE__ */ jsxRuntime.jsx("ul", { className: "m-0 grid list-none gap-2 p-0", children: sessions.map((s) => {
-      const Icon2 = deviceIcon2[s.device];
+      const Icon = deviceIcon2[s.device];
       const title = [s.browser, s.os].filter(Boolean).join(" \xB7 ");
       return /* @__PURE__ */ jsxRuntime.jsxs("li", { className: "card flex items-center gap-3", children: [
-        /* @__PURE__ */ jsxRuntime.jsx(Icon2, { className: "size-5 shrink-0 text-muted", "aria-hidden": true }),
+        /* @__PURE__ */ jsxRuntime.jsx(Icon, { className: "size-5 shrink-0 text-muted", "aria-hidden": true }),
         /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "min-w-0 flex-1", children: [
           /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex flex-wrap items-center gap-2 text-fg", children: [
             /* @__PURE__ */ jsxRuntime.jsx("span", { children: title }),
-            s.current && /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Badge, { tone: "primary", children: l.thisDevice })
+            s.current && /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.Badge, { tone: "primary", children: l.thisDevice })
           ] }),
           /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "text-xs text-muted", children: [
             showUser && s.user && /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
@@ -4651,11 +4485,11 @@ function SessionList({ sessions, onRevoke, onRevokeOthers, showUser, labels }) {
               l.lastActive,
               ": "
             ] }),
-            /* @__PURE__ */ jsxRuntime.jsx(RelativeTime, { value: s.lastActive })
+            /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.RelativeTime, { value: s.lastActive })
           ] })
         ] }),
         !s.current && /* @__PURE__ */ jsxRuntime.jsx(
-          IconButton,
+          chunk77S32ZEH_cjs.IconButton,
           {
             label: `${l.revoke}: ${title}`,
             size: "sm",
@@ -4690,17 +4524,17 @@ function SessionList({ sessions, onRevoke, onRevokeOthers, showUser, labels }) {
 }
 function ApiKeyManager({ keys, scopes, expiryPresets = [30, 90, 365, null], onCreate, onRevoke, onRotate, labels }) {
   const l = { ...useLaf2().t.components.account.apiKeys, ...labels };
-  const [form, setForm] = React25__namespace.useState(false);
-  const [name, setName] = React25__namespace.useState("");
-  const [expiry, setExpiry] = React25__namespace.useState(expiryPresets[0] ?? null);
-  const [picked, setPicked] = React25__namespace.useState([]);
-  const [busy, setBusy] = React25__namespace.useState(false);
-  const [error, setError] = React25__namespace.useState();
-  const [secret, setSecret] = React25__namespace.useState();
-  const [ack, setAck] = React25__namespace.useState(false);
-  const [revoking, setRevoking] = React25__namespace.useState();
-  const nameId = React25__namespace.useId();
-  const expId = React25__namespace.useId();
+  const [form, setForm] = React24__namespace.useState(false);
+  const [name, setName] = React24__namespace.useState("");
+  const [expiry, setExpiry] = React24__namespace.useState(expiryPresets[0] ?? null);
+  const [picked, setPicked] = React24__namespace.useState([]);
+  const [busy, setBusy] = React24__namespace.useState(false);
+  const [error, setError] = React24__namespace.useState();
+  const [secret, setSecret] = React24__namespace.useState();
+  const [ack, setAck] = React24__namespace.useState(false);
+  const [revoking, setRevoking] = React24__namespace.useState();
+  const nameId = React24__namespace.useId();
+  const expId = React24__namespace.useId();
   const reveal = (s) => {
     setSecret(s);
     setAck(false);
@@ -4729,46 +4563,46 @@ function ApiKeyManager({ keys, scopes, expiryPresets = [30, 90, 365, null], onCr
   };
   return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "grid gap-3", children: [
     /* @__PURE__ */ jsxRuntime.jsx("div", { className: "flex justify-end", children: /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { size: "sm", leftIcon: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Plus, {}), onClick: () => setForm(true), children: l.create }) }),
-    error && !form && /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Alert, { tone: "error", children: /* @__PURE__ */ jsxRuntime.jsx("span", { role: "alert", children: error }) }),
+    error && !form && /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.Alert, { tone: "error", children: /* @__PURE__ */ jsxRuntime.jsx("span", { role: "alert", children: error }) }),
     keys.length === 0 ? /* @__PURE__ */ jsxRuntime.jsx("p", { className: "text-sm text-muted", children: l.empty }) : /* @__PURE__ */ jsxRuntime.jsx("ul", { className: "m-0 grid list-none gap-2 p-0", children: keys.map((k) => /* @__PURE__ */ jsxRuntime.jsxs("li", { className: "card grid gap-1.5", children: [
       /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex flex-wrap items-center gap-2", children: [
         /* @__PURE__ */ jsxRuntime.jsx("span", { className: "text-fg", children: k.name }),
         /* @__PURE__ */ jsxRuntime.jsx("code", { className: "font-mono text-xs text-muted", children: k.prefix }),
-        k.revoked && /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Badge, { tone: "danger", children: l.revoked }),
+        k.revoked && /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.Badge, { tone: "danger", children: l.revoked }),
         /* @__PURE__ */ jsxRuntime.jsxs("span", { className: "ms-auto flex gap-1", children: [
-          onRotate && !k.revoked && /* @__PURE__ */ jsxRuntime.jsx(IconButton, { label: `${l.rotate}: ${k.name}`, size: "sm", icon: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.RefreshCw, { className: "size-4" }), onClick: () => void rotate(k.id) }),
-          !k.revoked && /* @__PURE__ */ jsxRuntime.jsx(IconButton, { label: `${l.revoke}: ${k.name}`, size: "sm", icon: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Trash2, { className: "size-4" }), onClick: () => setRevoking(k) })
+          onRotate && !k.revoked && /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.IconButton, { label: `${l.rotate}: ${k.name}`, size: "sm", icon: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.RefreshCw, { className: "size-4" }), onClick: () => void rotate(k.id) }),
+          !k.revoked && /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.IconButton, { label: `${l.revoke}: ${k.name}`, size: "sm", icon: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Trash2, { className: "size-4" }), onClick: () => setRevoking(k) })
         ] })
       ] }),
-      k.scopes.length > 0 && /* @__PURE__ */ jsxRuntime.jsx("ul", { className: "m-0 flex list-none flex-wrap gap-1 p-0", "aria-label": l.scopes, children: k.scopes.map((s) => /* @__PURE__ */ jsxRuntime.jsx("li", { children: /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Badge, { plain: true, children: s }) }, s)) }),
+      k.scopes.length > 0 && /* @__PURE__ */ jsxRuntime.jsx("ul", { className: "m-0 flex list-none flex-wrap gap-1 p-0", "aria-label": l.scopes, children: k.scopes.map((s) => /* @__PURE__ */ jsxRuntime.jsx("li", { children: /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.Badge, { plain: true, children: s }) }, s)) }),
       /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex flex-wrap gap-x-4 text-xs text-muted", children: [
         /* @__PURE__ */ jsxRuntime.jsxs("span", { children: [
           l.created,
           " ",
-          /* @__PURE__ */ jsxRuntime.jsx(RelativeTime, { value: k.createdAt })
+          /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.RelativeTime, { value: k.createdAt })
         ] }),
         /* @__PURE__ */ jsxRuntime.jsxs("span", { children: [
           l.expires,
           ": ",
-          k.expiresAt ? /* @__PURE__ */ jsxRuntime.jsx(RelativeTime, { value: k.expiresAt }) : l.never
+          k.expiresAt ? /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.RelativeTime, { value: k.expiresAt }) : l.never
         ] }),
         /* @__PURE__ */ jsxRuntime.jsxs("span", { children: [
           l.lastUsed,
           ": ",
-          k.lastUsedAt ? /* @__PURE__ */ jsxRuntime.jsx(RelativeTime, { value: k.lastUsedAt }) : l.neverUsed
+          k.lastUsedAt ? /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.RelativeTime, { value: k.lastUsedAt }) : l.neverUsed
         ] })
       ] })
     ] }, k.id)) }),
-    /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Dialog, { open: form, onOpenChange: setForm, children: /* @__PURE__ */ jsxRuntime.jsx(
-      chunkAN24WGJJ_cjs.DialogContent,
+    /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.Dialog, { open: form, onOpenChange: setForm, children: /* @__PURE__ */ jsxRuntime.jsx(
+      chunk77S32ZEH_cjs.DialogContent,
       {
         title: l.createTitle,
         footer: /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
-          /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.DialogClose, { asChild: true, children: /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { variant: "secondary", size: "sm", children: l.cancel }) }),
+          /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.DialogClose, { asChild: true, children: /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { variant: "secondary", size: "sm", children: l.cancel }) }),
           /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { size: "sm", loading: busy, disabled: !name.trim(), onClick: submit, children: l.create })
         ] }),
         children: /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "grid gap-3", children: [
-          /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Field, { label: l.name, htmlFor: nameId, children: /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Input, { id: nameId, value: name, onChange: (e) => setName(e.target.value), autoComplete: "off" }) }),
+          /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.Field, { label: l.name, htmlFor: nameId, children: /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.Input, { id: nameId, value: name, onChange: (e) => setName(e.target.value), autoComplete: "off" }) }),
           /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "grid gap-1", children: [
             /* @__PURE__ */ jsxRuntime.jsx("label", { className: "form-label", htmlFor: expId, children: l.expiry }),
             /* @__PURE__ */ jsxRuntime.jsx("select", { id: expId, className: "form-select", value: String(expiry), onChange: (e) => setExpiry(e.target.value === "null" ? null : Number(e.target.value)), children: expiryPresets.map((p) => /* @__PURE__ */ jsxRuntime.jsx("option", { value: String(p), children: p === null ? l.never : l.days(p) }, String(p))) })
@@ -4776,7 +4610,7 @@ function ApiKeyManager({ keys, scopes, expiryPresets = [30, 90, 365, null], onCr
           /* @__PURE__ */ jsxRuntime.jsxs("fieldset", { className: "m-0 grid gap-1 border-0 p-0", children: [
             /* @__PURE__ */ jsxRuntime.jsx("legend", { className: "form-label", children: l.scopes }),
             scopes.map((s) => /* @__PURE__ */ jsxRuntime.jsx(
-              chunkAN24WGJJ_cjs.Checkbox,
+              chunk77S32ZEH_cjs.Checkbox,
               {
                 checked: picked.includes(s.value),
                 onChange: (e) => setPicked((p) => e.target.checked ? [...p, s.value] : p.filter((x) => x !== s.value)),
@@ -4789,8 +4623,8 @@ function ApiKeyManager({ keys, scopes, expiryPresets = [30, 90, 365, null], onCr
         ] })
       }
     ) }),
-    /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Dialog, { open: secret !== void 0, onOpenChange: (o) => ack && !o && setSecret(void 0), children: /* @__PURE__ */ jsxRuntime.jsx(
-      chunkAN24WGJJ_cjs.DialogContent,
+    /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.Dialog, { open: secret !== void 0, onOpenChange: (o) => ack && !o && setSecret(void 0), children: /* @__PURE__ */ jsxRuntime.jsx(
+      chunk77S32ZEH_cjs.DialogContent,
       {
         title: l.secretLabel,
         description: l.secretNotice,
@@ -4820,9 +4654,9 @@ function ApiKeyManager({ keys, scopes, expiryPresets = [30, 90, 365, null], onCr
 }
 function SecurityFactors({ password, totp, passkeys, recovery, labels }) {
   const l = { ...useLaf2().t.components.account.factors, ...labels };
-  const [removal, setRemoval] = React25__namespace.useState();
-  const [codes, setCodes] = React25__namespace.useState();
-  const [ack, setAck] = React25__namespace.useState(false);
+  const [removal, setRemoval] = React24__namespace.useState();
+  const [codes, setCodes] = React24__namespace.useState();
+  const [ack, setAck] = React24__namespace.useState(false);
   const factorCount = (totp?.enabled ? 1 : 0) + (passkeys?.items.length ?? 0);
   const last = factorCount === 1;
   return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "grid gap-4", children: [
@@ -4833,7 +4667,7 @@ function SecurityFactors({ password, totp, passkeys, recovery, labels }) {
         /* @__PURE__ */ jsxRuntime.jsx("p", { className: "m-0 text-xs text-muted", children: password.changedAt ? /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
           l.passwordChanged,
           " ",
-          /* @__PURE__ */ jsxRuntime.jsx(RelativeTime, { value: password.changedAt })
+          /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.RelativeTime, { value: password.changedAt })
         ] }) : l.passwordNever })
       ] }),
       /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { variant: "secondary", size: "sm", onClick: password.onChange, children: l.changePassword })
@@ -4858,16 +4692,16 @@ function SecurityFactors({ password, totp, passkeys, recovery, labels }) {
           /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "text-xs text-muted", children: [
             l.created,
             " ",
-            /* @__PURE__ */ jsxRuntime.jsx(RelativeTime, { value: p.createdAt }),
+            /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.RelativeTime, { value: p.createdAt }),
             " \xB7 ",
             l.lastUsed,
             ":",
             " ",
-            p.lastUsedAt ? /* @__PURE__ */ jsxRuntime.jsx(RelativeTime, { value: p.lastUsedAt }) : l.neverUsed
+            p.lastUsedAt ? /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.RelativeTime, { value: p.lastUsedAt }) : l.neverUsed
           ] })
         ] }),
         /* @__PURE__ */ jsxRuntime.jsx(
-          IconButton,
+          chunk77S32ZEH_cjs.IconButton,
           {
             label: `${l.removePasskey}: ${p.name}`,
             size: "sm",
@@ -4912,8 +4746,8 @@ function SecurityFactors({ password, totp, passkeys, recovery, labels }) {
         }
       }
     ),
-    /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Dialog, { open: !!codes, onOpenChange: (o) => ack && !o && setCodes(void 0), children: /* @__PURE__ */ jsxRuntime.jsx(
-      chunkAN24WGJJ_cjs.DialogContent,
+    /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.Dialog, { open: !!codes, onOpenChange: (o) => ack && !o && setCodes(void 0), children: /* @__PURE__ */ jsxRuntime.jsx(
+      chunk77S32ZEH_cjs.DialogContent,
       {
         title: l.recoveryTitle,
         description: l.recoveryNotice,
@@ -4922,7 +4756,7 @@ function SecurityFactors({ password, totp, passkeys, recovery, labels }) {
         footer: /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { size: "sm", disabled: !ack, onClick: () => setCodes(void 0), children: l.done }),
         children: /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "grid gap-3", children: [
           /* @__PURE__ */ jsxRuntime.jsx("ul", { className: "m-0 grid list-none grid-cols-2 gap-2 p-0 font-mono text-sm text-fg", children: codes?.map((c) => /* @__PURE__ */ jsxRuntime.jsx("li", { className: "rounded-sm border border-line bg-muted-bg px-2 py-1", children: c }, c)) }),
-          /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Checkbox, { checked: ack, onChange: (e) => setAck(e.target.checked), children: l.acknowledge })
+          /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.Checkbox, { checked: ack, onChange: (e) => setAck(e.target.checked), children: l.acknowledge })
         ] })
       }
     ) })
@@ -4930,12 +4764,12 @@ function SecurityFactors({ password, totp, passkeys, recovery, labels }) {
 }
 function ReauthDialog({ open, onOpenChange, onReauth, passkey, labels }) {
   const l = { ...useLaf2().t.components.account.reauth, ...labels };
-  const [method, setMethod] = React25__namespace.useState(passkey ? "passkey" : "password");
-  const [pw, setPw] = React25__namespace.useState("");
-  const [busy, setBusy] = React25__namespace.useState(false);
-  const [error, setError] = React25__namespace.useState();
-  const id = React25__namespace.useId();
-  React25__namespace.useEffect(() => {
+  const [method, setMethod] = React24__namespace.useState(passkey ? "passkey" : "password");
+  const [pw, setPw] = React24__namespace.useState("");
+  const [busy, setBusy] = React24__namespace.useState(false);
+  const [error, setError] = React24__namespace.useState();
+  const id = React24__namespace.useId();
+  React24__namespace.useEffect(() => {
     if (!open) {
       setPw("");
       setError(void 0);
@@ -4954,13 +4788,13 @@ function ReauthDialog({ open, onOpenChange, onReauth, passkey, labels }) {
       setBusy(false);
     }
   };
-  return /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Dialog, { open, onOpenChange, children: /* @__PURE__ */ jsxRuntime.jsx(
-    chunkAN24WGJJ_cjs.DialogContent,
+  return /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.Dialog, { open, onOpenChange, children: /* @__PURE__ */ jsxRuntime.jsx(
+    chunk77S32ZEH_cjs.DialogContent,
     {
       title: l.title,
       description: l.description,
       footer: /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
-        /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.DialogClose, { asChild: true, children: /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { variant: "secondary", size: "sm", children: l.cancel }) }),
+        /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.DialogClose, { asChild: true, children: /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { variant: "secondary", size: "sm", children: l.cancel }) }),
         /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { size: "sm", loading: busy, disabled: method === "password" && !pw, form: `${id}-f`, type: "submit", children: method === "passkey" ? l.usePasskey : l.confirm })
       ] }),
       children: /* @__PURE__ */ jsxRuntime.jsxs(
@@ -4973,7 +4807,7 @@ function ReauthDialog({ open, onOpenChange, onReauth, passkey, labels }) {
             if (!busy && (method === "passkey" || pw)) void run();
           },
           children: [
-            method === "password" ? /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Field, { label: l.password, htmlFor: `${id}-pw`, error, children: /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Input, { id: `${id}-pw`, type: "password", autoComplete: "current-password", autoFocus: true, value: pw, invalid: !!error, onChange: (e) => setPw(e.target.value) }) }) : error && /* @__PURE__ */ jsxRuntime.jsx("p", { className: "field-error", role: "alert", children: error }),
+            method === "password" ? /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.Field, { label: l.password, htmlFor: `${id}-pw`, error, children: /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.Input, { id: `${id}-pw`, type: "password", autoComplete: "current-password", autoFocus: true, value: pw, invalid: !!error, onChange: (e) => setPw(e.target.value) }) }) : error && /* @__PURE__ */ jsxRuntime.jsx("p", { className: "field-error", role: "alert", children: error }),
             passkey && /* @__PURE__ */ jsxRuntime.jsx(
               "button",
               {
@@ -4996,15 +4830,15 @@ function SessionExpiryDialog({ expiresAt, warnBeforeMs = 3e5, onStay, onSignOut,
   const { format: format2, t: laf } = useLaf2();
   const l = { ...laf.components.account.expiry, ...labels };
   const target = new Date(expiresAt).getTime();
-  const [now, setNow] = React25__namespace.useState(() => Date.now());
-  const expired = React25__namespace.useRef(false);
-  React25__namespace.useEffect(() => {
+  const [now, setNow] = React24__namespace.useState(() => Date.now());
+  const expired = React24__namespace.useRef(false);
+  React24__namespace.useEffect(() => {
     setNow(Date.now());
     const t = setInterval(() => setNow(Date.now()), 1e3);
     return () => clearInterval(t);
   }, [target]);
   const left = Math.max(0, target - now);
-  React25__namespace.useEffect(() => {
+  React24__namespace.useEffect(() => {
     if (left > 0) expired.current = false;
     else if (!expired.current && now >= target) {
       expired.current = true;
@@ -5015,8 +4849,8 @@ function SessionExpiryDialog({ expiresAt, warnBeforeMs = 3e5, onStay, onSignOut,
   const secs = Math.ceil(left / 1e3);
   const mark = secs <= 10 ? 10 : secs <= 60 ? 60 : 0;
   const announcement = open && left > 0 && mark ? l.announce(format2.duration(mark * 1e3)) : "";
-  return /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Dialog, { open, onOpenChange: () => void 0, children: /* @__PURE__ */ jsxRuntime.jsxs(
-    chunkAN24WGJJ_cjs.DialogContent,
+  return /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.Dialog, { open, onOpenChange: () => void 0, children: /* @__PURE__ */ jsxRuntime.jsxs(
+    chunk77S32ZEH_cjs.DialogContent,
     {
       title: l.title,
       onInteractOutside: (e) => e.preventDefault(),
@@ -5090,8 +4924,8 @@ var adminEn = {
     empty: "You're all caught up"
   }
 };
-var lafDefaults6 = { admin: adminEn };
-var useLaf3 = () => chunkGWTYGDXC_cjs.useLafDefaults(lafDefaults6);
+var lafDefaults5 = { admin: adminEn };
+var useLaf3 = () => chunkE6JUACLJ_cjs.useLafDefaults(lafDefaults5);
 function isIPv4(s) {
   const parts = s.split(".");
   return parts.length === 4 && parts.every((p) => /^\d{1,3}$/.test(p) && (p === "0" || !p.startsWith("0")) && Number(p) <= 255);
@@ -5128,13 +4962,13 @@ function isCidr(s) {
   return parseCidr(s) !== null;
 }
 function NetInput({ validate, message, label, hint, errorMessage, value, defaultValue = "", onChange, className, id, ...rest }) {
-  const auto = React25__namespace.useId();
+  const auto = React24__namespace.useId();
   const inputId = id ?? auto;
-  const [val, setVal] = chunkXNG22HMC_cjs.useControllableState({ value, defaultValue, onChange });
-  const [touched, setTouched] = React25__namespace.useState(false);
+  const [val, setVal] = chunkYGX6XE22_cjs.useControllableState({ value, defaultValue, onChange });
+  const [touched, setTouched] = React24__namespace.useState(false);
   const invalid = touched && val !== "" && !validate(val);
   const input = /* @__PURE__ */ jsxRuntime.jsx(
-    chunkAN24WGJJ_cjs.Input,
+    chunk77S32ZEH_cjs.Input,
     {
       ...rest,
       id: inputId,
@@ -5161,7 +4995,7 @@ function NetInput({ validate, message, label, hint, errorMessage, value, default
     }
   );
   if (!label) return input;
-  return /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Field, { label, hint, htmlFor: inputId, error: invalid ? errorMessage ?? message : void 0, children: input });
+  return /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.Field, { label, hint, htmlFor: inputId, error: invalid ? errorMessage ?? message : void 0, children: input });
 }
 function IpInput(props) {
   const L = useLaf3().t.components.admin.network;
@@ -5175,10 +5009,10 @@ function AllowListEditor({ value, defaultValue = [], onChange, label: labelProp,
   const { t: laf } = useLaf3();
   const label = labelProp ?? laf.components.admin.allowList;
   const L = { ...laf.components.admin.network, ...l };
-  const id = React25__namespace.useId();
-  const [list, setList] = chunkXNG22HMC_cjs.useControllableState({ value, defaultValue, onChange });
-  const [draft, setDraft] = React25__namespace.useState("");
-  const [error, setError] = React25__namespace.useState();
+  const id = React24__namespace.useId();
+  const [list, setList] = chunkYGX6XE22_cjs.useControllableState({ value, defaultValue, onChange });
+  const [draft, setDraft] = React24__namespace.useState("");
+  const [error, setError] = React24__namespace.useState();
   const add = () => {
     const entry = draft.trim();
     if (!entry) return;
@@ -5189,9 +5023,9 @@ function AllowListEditor({ value, defaultValue = [], onChange, label: labelProp,
     setError(void 0);
   };
   return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "grid gap-2", children: [
-    /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Field, { label, htmlFor: id, error, children: /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex gap-2", children: [
+    /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.Field, { label, htmlFor: id, error, children: /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex gap-2", children: [
       /* @__PURE__ */ jsxRuntime.jsx(
-        chunkAN24WGJJ_cjs.Input,
+        chunk77S32ZEH_cjs.Input,
         {
           id,
           value: draft,
@@ -5217,14 +5051,14 @@ function AllowListEditor({ value, defaultValue = [], onChange, label: labelProp,
     ] }) }),
     list.length === 0 ? /* @__PURE__ */ jsxRuntime.jsx("p", { className: "text-sm text-muted", children: L.empty }) : /* @__PURE__ */ jsxRuntime.jsx("ul", { "aria-label": label, className: "divide-y divide-line rounded-md border border-line text-sm", children: list.map((entry) => /* @__PURE__ */ jsxRuntime.jsxs("li", { className: "flex items-center gap-3 px-3 py-1.5", children: [
       /* @__PURE__ */ jsxRuntime.jsx("span", { className: "flex-1 font-mono", children: entry }),
-      /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Badge, { tone: "neutral", children: isCidr(entry) ? "CIDR" : isIPv6(entry) ? "IPv6" : "IPv4" }),
+      /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.Badge, { tone: "neutral", children: isCidr(entry) ? "CIDR" : isIPv6(entry) ? "IPv6" : "IPv4" }),
       /* @__PURE__ */ jsxRuntime.jsx("button", { type: "button", disabled, "aria-label": L.remove(entry), className: "text-muted hover:text-fg", onClick: () => setList(list.filter((x) => x !== entry)), children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.X, { className: "size-4", "aria-hidden": true }) })
     ] }, entry)) })
   ] });
 }
 var ROW = 32;
 function TransferColumn({ title, items, checked, setChecked, L, height }) {
-  const [q, setQ] = React25__namespace.useState("");
+  const [q, setQ] = React24__namespace.useState("");
   const needle = q.trim().toLowerCase();
   const shown = needle ? items.filter((i) => i.label.toLowerCase().includes(needle)) : items;
   const n = items.filter((i) => checked.has(i.id)).length;
@@ -5233,9 +5067,9 @@ function TransferColumn({ title, items, checked, setChecked, L, height }) {
       /* @__PURE__ */ jsxRuntime.jsx("span", { className: "font-semibold text-fg", children: title }),
       /* @__PURE__ */ jsxRuntime.jsx("span", { className: "text-xs text-muted", "aria-live": "polite", children: L.count(n, items.length) })
     ] }),
-    /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Input, { type: "search", "aria-label": L.search(title), placeholder: L.search(title), value: q, onChange: (e) => setQ(e.target.value) }),
+    /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.Input, { type: "search", "aria-label": L.search(title), placeholder: L.search(title), value: q, onChange: (e) => setQ(e.target.value) }),
     shown.length === 0 ? /* @__PURE__ */ jsxRuntime.jsx("p", { className: "px-1 py-2 text-sm text-muted", children: L.empty }) : /* @__PURE__ */ jsxRuntime.jsx(
-      chunkAN24WGJJ_cjs.VirtualList,
+      chunk77S32ZEH_cjs.VirtualList,
       {
         items: shown,
         rowHeight: ROW,
@@ -5264,9 +5098,9 @@ function TransferColumn({ title, items, checked, setChecked, L, height }) {
 }
 function TransferList({ items, value, defaultValue = [], onChange, labels, height = 224 }) {
   const L = { ...useLaf3().t.components.admin.transfer, ...labels };
-  const [sel, setSel] = chunkXNG22HMC_cjs.useControllableState({ value, defaultValue, onChange });
-  const [leftChecked, setLeftChecked] = React25__namespace.useState(/* @__PURE__ */ new Set());
-  const [rightChecked, setRightChecked] = React25__namespace.useState(/* @__PURE__ */ new Set());
+  const [sel, setSel] = chunkYGX6XE22_cjs.useControllableState({ value, defaultValue, onChange });
+  const [leftChecked, setLeftChecked] = React24__namespace.useState(/* @__PURE__ */ new Set());
+  const [rightChecked, setRightChecked] = React24__namespace.useState(/* @__PURE__ */ new Set());
   const chosen = new Set(sel);
   const left = items.filter((i) => !chosen.has(i.id));
   const right = sel.map((id) => items.find((i) => i.id === id)).filter((i) => !!i);
@@ -5315,10 +5149,10 @@ function contrastRatio(a, b) {
 }
 function ColorField({ value, defaultValue = DEFAULT_PRIMARY, onChange, cardColor = DEFAULT_CARD, onPrimaryColor = DEFAULT_ON_PRIMARY, minCardRatio = 3, minTextRatio = 4.5, labels }) {
   const L = { ...useLaf3().t.components.admin.color, ...labels };
-  const id = React25__namespace.useId();
-  const [accepted, setAccepted] = chunkXNG22HMC_cjs.useControllableState({ value, defaultValue, onChange });
-  const [draft, setDraft] = React25__namespace.useState(accepted);
-  React25__namespace.useEffect(() => setDraft(accepted), [accepted]);
+  const id = React24__namespace.useId();
+  const [accepted, setAccepted] = chunkYGX6XE22_cjs.useControllableState({ value, defaultValue, onChange });
+  const [draft, setDraft] = React24__namespace.useState(accepted);
+  React24__namespace.useEffect(() => setDraft(accepted), [accepted]);
   const hex = normalizeHex(draft);
   const onCard = hex ? contrastRatio(hex, cardColor) : 0;
   const onText = hex ? contrastRatio(hex, onPrimaryColor) : 0;
@@ -5333,14 +5167,14 @@ function ColorField({ value, defaultValue = DEFAULT_PRIMARY, onChange, cardColor
     /* @__PURE__ */ jsxRuntime.jsx("span", { children: name }),
     /* @__PURE__ */ jsxRuntime.jsxs("span", { className: "flex items-center gap-2", children: [
       /* @__PURE__ */ jsxRuntime.jsx("span", { className: "font-mono text-xs", children: hex ? `${ratio.toFixed(2)}:1` : "\u2013" }),
-      /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Badge, { tone: hex && ratio >= min ? "ok" : "danger", children: hex && ratio >= min ? L.pass : L.fail })
+      /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.Badge, { tone: hex && ratio >= min ? "ok" : "danger", children: hex && ratio >= min ? L.pass : L.fail })
     ] })
   ] });
   const shown = passes ? hex : accepted;
   return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "grid gap-3", children: [
-    /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Field, { label: L.label, htmlFor: id, error, children: /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex items-center gap-2", children: [
+    /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.Field, { label: L.label, htmlFor: id, error, children: /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex items-center gap-2", children: [
       /* @__PURE__ */ jsxRuntime.jsx("input", { type: "color", "aria-label": L.colorPicker, value: normalizeHex(accepted) ?? fromRgb(0), onChange: (e) => update(e.target.value), className: "h-8 w-10 rounded-sm border border-line bg-transparent p-0.5" }),
-      /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Input, { id, value: draft, invalid: !!error, spellCheck: false, maxLength: 7, className: "max-w-32 font-mono", onChange: (e) => update(e.target.value, false), onBlur: (e) => update(e.target.value) })
+      /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.Input, { id, value: draft, invalid: !!error, spellCheck: false, maxLength: 7, className: "max-w-32 font-mono", onChange: (e) => update(e.target.value, false), onBlur: (e) => update(e.target.value) })
     ] }) }),
     /* @__PURE__ */ jsxRuntime.jsxs("ul", { "aria-label": L.contrast, className: "grid gap-1 text-sm", children: [
       row(L.onCard, onCard, minCardRatio),
@@ -5348,19 +5182,19 @@ function ColorField({ value, defaultValue = DEFAULT_PRIMARY, onChange, cardColor
     ] }),
     /* @__PURE__ */ jsxRuntime.jsxs("div", { "aria-label": L.preview, role: "group", className: "flex items-center gap-3 rounded-md border border-line p-3", style: { "--primary": shown, "--primary-hover": shown }, children: [
       /* @__PURE__ */ jsxRuntime.jsx("span", { className: "btn btn-primary pointer-events-none", "aria-hidden": true, children: L.sampleButton }),
-      /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Badge, { tone: "primary", children: L.sampleBadge }),
+      /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.Badge, { tone: "primary", children: L.sampleBadge }),
       /* @__PURE__ */ jsxRuntime.jsx("span", { "aria-hidden": true, className: "inline-block size-6 rounded-sm bg-card outline-2 outline-offset-2 outline-primary" })
     ] })
   ] });
 }
 function BrandingEditor({ value, defaultValue = { productName: "", primary: DEFAULT_PRIMARY }, onChange, maxLogoSize = 512 * 1024, cardColor, onPrimaryColor, labels }) {
   const L = { ...useLaf3().t.components.admin.branding, ...labels };
-  const [b, setB] = chunkXNG22HMC_cjs.useControllableState({ value, defaultValue, onChange });
-  const nameId = React25__namespace.useId();
-  const [files, setFiles] = React25__namespace.useState([]);
+  const [b, setB] = chunkYGX6XE22_cjs.useControllableState({ value, defaultValue, onChange });
+  const nameId = React24__namespace.useId();
+  const [files, setFiles] = React24__namespace.useState([]);
   return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "grid gap-6 md:grid-cols-2", children: [
     /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "grid content-start gap-4", children: [
-      /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Field, { label: L.productName, htmlFor: nameId, children: /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Input, { id: nameId, value: b.productName, onChange: (e) => setB({ ...b, productName: e.target.value }) }) }),
+      /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.Field, { label: L.productName, htmlFor: nameId, children: /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.Input, { id: nameId, value: b.productName, onChange: (e) => setB({ ...b, productName: e.target.value }) }) }),
       /* @__PURE__ */ jsxRuntime.jsx(ColorField, { value: b.primary, onChange: (primary) => setB({ ...b, primary }), cardColor, onPrimaryColor, labels: labels?.color }),
       /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "grid gap-1.5", children: [
         /* @__PURE__ */ jsxRuntime.jsx("span", { className: "form-label", children: L.logo }),
@@ -5414,13 +5248,13 @@ function NotificationCenter({ items, onMarkRead, onMarkAllRead, onViewAll, onOpe
   const groups = /* @__PURE__ */ new Map();
   for (const i of items) groups.set(i.group, [...groups.get(i.group) ?? [], i]);
   const bellLabel = unread ? `${L.bell} (${unread})` : L.bell;
-  return /* @__PURE__ */ jsxRuntime.jsxs(chunkAN24WGJJ_cjs.Popover, { children: [
+  return /* @__PURE__ */ jsxRuntime.jsxs(chunk77S32ZEH_cjs.Popover, { children: [
     /* @__PURE__ */ jsxRuntime.jsxs("span", { className: "relative inline-flex", children: [
-      /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.PopoverTrigger, { asChild: true, children: /* @__PURE__ */ jsxRuntime.jsx(IconButton, { label: bellLabel, icon: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Bell, { className: "size-4" }) }) }),
+      /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.PopoverTrigger, { asChild: true, children: /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.IconButton, { label: bellLabel, icon: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Bell, { className: "size-4" }) }) }),
       unread > 0 && /* @__PURE__ */ jsxRuntime.jsx("span", { "aria-hidden": true, className: "pointer-events-none absolute -end-0.5 -top-0.5 flex min-w-4 items-center justify-center rounded-sm bg-danger px-1 text-[0.625rem] leading-4 font-bold text-on-primary", children: unread > 99 ? "99+" : unread }),
       /* @__PURE__ */ jsxRuntime.jsx("span", { className: "sr-only", "aria-live": "polite", children: L.unreadCount(unread) })
     ] }),
-    /* @__PURE__ */ jsxRuntime.jsxs(chunkAN24WGJJ_cjs.PopoverContent, { title: L.title, align: "end", className: "w-80 max-w-[calc(100vw-2rem)] p-0", footer: onViewAll && /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { variant: "ghost", size: "sm", onClick: onViewAll, children: L.viewAll }), children: [
+    /* @__PURE__ */ jsxRuntime.jsxs(chunk77S32ZEH_cjs.PopoverContent, { title: L.title, align: "end", className: "w-80 max-w-[calc(100vw-2rem)] p-0", footer: onViewAll && /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { variant: "ghost", size: "sm", onClick: onViewAll, children: L.viewAll }), children: [
       unread > 0 && onMarkAllRead && /* @__PURE__ */ jsxRuntime.jsx("div", { className: "flex justify-end px-3 pb-1", children: /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { size: "sm", variant: "ghost", onClick: onMarkAllRead, children: L.markAllRead }) }),
       items.length === 0 ? /* @__PURE__ */ jsxRuntime.jsx("p", { className: "px-3 py-6 text-center text-sm text-muted", children: L.empty }) : /* @__PURE__ */ jsxRuntime.jsx("div", { className: "max-h-80 overflow-auto", children: [...groups].map(([group, list]) => /* @__PURE__ */ jsxRuntime.jsxs("section", { "aria-label": group, children: [
         group && /* @__PURE__ */ jsxRuntime.jsx("h3", { className: "bg-muted-bg px-3 py-1 text-xs font-semibold text-muted uppercase", children: group }),
@@ -5429,7 +5263,7 @@ function NotificationCenter({ items, onMarkRead, onMarkAllRead, onViewAll, onOpe
           /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "min-w-0 flex-1", children: [
             n.href ? /* @__PURE__ */ jsxRuntime.jsx("a", { href: n.href, className: chunkFTHFEMX6_cjs.cn("block truncate hover:underline", n.unread ? "font-semibold text-fg" : "text-muted"), onClick: () => onOpen?.(n), children: n.title }) : /* @__PURE__ */ jsxRuntime.jsx("span", { className: chunkFTHFEMX6_cjs.cn("block truncate", n.unread ? "font-semibold text-fg" : "text-muted"), children: n.title }),
             n.body && /* @__PURE__ */ jsxRuntime.jsx("p", { className: "m-0 text-xs text-muted", children: n.body }),
-            /* @__PURE__ */ jsxRuntime.jsx(RelativeTime, { value: n.time, className: "text-xs text-subtle" })
+            /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.RelativeTime, { value: n.time, className: "text-xs text-subtle" })
           ] }),
           n.unread && onMarkRead && /* @__PURE__ */ jsxRuntime.jsx("button", { type: "button", "aria-label": L.markRead(n.title), className: "text-xs text-primary hover:underline", onClick: () => onMarkRead(n.id), children: "\u2713" })
         ] }, n.id)) })
@@ -5437,10 +5271,10 @@ function NotificationCenter({ items, onMarkRead, onMarkAllRead, onViewAll, onOpe
     ] })
   ] });
 }
-var HotkeysContext = React25__namespace.createContext(null);
+var HotkeysContext = React24__namespace.createContext(null);
 function HotkeysProvider({ scopes = ["global"], children }) {
-  const store = React25__namespace.useRef({ items: /* @__PURE__ */ new Set(), subs: /* @__PURE__ */ new Set() });
-  const value = React25__namespace.useMemo(
+  const store = React24__namespace.useRef({ items: /* @__PURE__ */ new Set(), subs: /* @__PURE__ */ new Set() });
+  const value = React24__namespace.useMemo(
     () => ({
       scopes,
       register(entry) {
@@ -5463,9 +5297,9 @@ function HotkeysProvider({ scopes = ["global"], children }) {
   return /* @__PURE__ */ jsxRuntime.jsx(HotkeysContext.Provider, { value, children });
 }
 function useRegisteredHotkeys() {
-  const ctx = React25__namespace.useContext(HotkeysContext);
-  const [, bump] = React25__namespace.useReducer((n) => n + 1, 0);
-  React25__namespace.useEffect(() => {
+  const ctx = React24__namespace.useContext(HotkeysContext);
+  const [, bump] = React24__namespace.useReducer((n) => n + 1, 0);
+  React24__namespace.useEffect(() => {
     bump();
     return ctx?.subscribe(bump);
   }, [ctx]);
@@ -5503,14 +5337,14 @@ var isTypingTarget = (t) => {
 var SEQUENCE_TIMEOUT = 1e3;
 function useHotkeys(map, opts = {}) {
   const { scope = "global", enabled = true, allowInInputs = false, descriptions } = opts;
-  const ctx = React25__namespace.useContext(HotkeysContext);
-  const mapRef = React25__namespace.useRef(map);
+  const ctx = React24__namespace.useContext(HotkeysContext);
+  const mapRef = React24__namespace.useRef(map);
   mapRef.current = map;
-  const descRef = React25__namespace.useRef(descriptions);
+  const descRef = React24__namespace.useRef(descriptions);
   descRef.current = descriptions;
   const active = scope === "global" || (ctx?.scopes ?? ["global"]).includes(scope);
   const keys = Object.keys(map).join("\0");
-  React25__namespace.useEffect(() => {
+  React24__namespace.useEffect(() => {
     if (!enabled || !active) return;
     const offs = keys.split("\0").filter(Boolean).map((combo) => ctx?.register({ combo, description: descRef.current?.[combo], scope }));
     const mac = isMacPlatform();
@@ -5557,8 +5391,8 @@ function formatHotkey(combo, mac = isMacPlatform()) {
   ).join(" ");
 }
 function ShortcutHelp({ open, onOpenChange }) {
-  const { t } = chunkGWTYGDXC_cjs.useLaf();
-  const container = chunkGWTYGDXC_cjs.usePortalContainer();
+  const { t } = chunkE6JUACLJ_cjs.useLaf();
+  const container = chunkE6JUACLJ_cjs.usePortalContainer();
   const items = useRegisteredHotkeys().filter((h) => h.combo !== "?");
   useHotkeys({ "?": () => onOpenChange(true) });
   const groups = /* @__PURE__ */ new Map();
@@ -5599,7 +5433,7 @@ function CapacityBar({
   labels: labelsProp,
   className
 }) {
-  const { t: laf, format: format2 } = chunkGWTYGDXC_cjs.useLaf();
+  const { t: laf, format: format2 } = chunkE6JUACLJ_cjs.useLaf();
   const l = { used: laf.vsUsed, reserved: laf.vsReserved, free: laf.vsFree, capacity: laf.vsCapacity, ...labelsProp };
   const fmt = (n) => unit === "bytes" ? format2.bytes(n, { base: 1024 }) : unit === "frequency" ? format2.frequency(n) : String(n);
   const safeTotal = total > 0 ? total : 1;
@@ -5658,34 +5492,34 @@ function ObjectPage({
   labels: labelsProp,
   className
 }) {
-  const { t: laf } = chunkGWTYGDXC_cjs.useLaf();
+  const { t: laf } = chunkE6JUACLJ_cjs.useLaf();
   const l = { summary: laf.vsSummary, monitor: laf.vsMonitor, configure: laf.vsConfigure, ...labelsProp };
-  const [tab, setTab] = chunkXNG22HMC_cjs.useControllableState({ value: tabProp, defaultValue: defaultTab, onChange: onTabChange });
+  const [tab, setTab] = chunkYGX6XE22_cjs.useControllableState({ value: tabProp, defaultValue: defaultTab, onChange: onTabChange });
   return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: chunkFTHFEMX6_cjs.cn("grid gap-4", className), children: [
     /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex flex-wrap items-center gap-3", children: [
       /* @__PURE__ */ jsxRuntime.jsx(ObjectIcon, { kind, state, size: 20 }),
       /* @__PURE__ */ jsxRuntime.jsx("h1", { className: "min-w-0 text-xl font-semibold text-fg", children: name }),
-      statusLabel && /* @__PURE__ */ jsxRuntime.jsx(StatusDot, { tone: statusTone2, label: statusLabel }),
+      statusLabel && /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.StatusDot, { tone: statusTone2, label: statusLabel }),
       actions && actions.length > 0 && /* @__PURE__ */ jsxRuntime.jsx("div", { className: "ms-auto", children: /* @__PURE__ */ jsxRuntime.jsx(ActionBar, { items: actions, label: actionsLabel ?? name }) })
     ] }),
-    /* @__PURE__ */ jsxRuntime.jsxs(chunkAN24WGJJ_cjs.Tabs, { value: tab, onValueChange: setTab, children: [
-      /* @__PURE__ */ jsxRuntime.jsxs(chunkAN24WGJJ_cjs.TabsList, { children: [
-        /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.TabsTrigger, { value: "summary", children: l.summary }),
-        monitor !== void 0 && /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.TabsTrigger, { value: "monitor", children: l.monitor }),
-        configure !== void 0 && /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.TabsTrigger, { value: "configure", children: l.configure })
+    /* @__PURE__ */ jsxRuntime.jsxs(chunk77S32ZEH_cjs.Tabs, { value: tab, onValueChange: setTab, children: [
+      /* @__PURE__ */ jsxRuntime.jsxs(chunk77S32ZEH_cjs.TabsList, { children: [
+        /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.TabsTrigger, { value: "summary", children: l.summary }),
+        monitor !== void 0 && /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.TabsTrigger, { value: "monitor", children: l.monitor }),
+        configure !== void 0 && /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.TabsTrigger, { value: "configure", children: l.configure })
       ] }),
-      /* @__PURE__ */ jsxRuntime.jsxs(chunkAN24WGJJ_cjs.TabsContent, { value: "summary", className: "grid gap-4 pt-4", children: [
+      /* @__PURE__ */ jsxRuntime.jsxs(chunk77S32ZEH_cjs.TabsContent, { value: "summary", className: "grid gap-4 pt-4", children: [
         facts && /* @__PURE__ */ jsxRuntime.jsx(DefinitionList, { items: facts }),
-        cards && /* @__PURE__ */ jsxRuntime.jsx("div", { className: "grid gap-4 md:grid-cols-2", children: cards.map((c) => /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Panel, { title: c.title, headingLevel: 2, children: c.content }, c.id)) })
+        cards && /* @__PURE__ */ jsxRuntime.jsx("div", { className: "grid gap-4 md:grid-cols-2", children: cards.map((c) => /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.Panel, { title: c.title, headingLevel: 2, children: c.content }, c.id)) })
       ] }),
-      monitor !== void 0 && /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.TabsContent, { value: "monitor", className: "pt-4", children: monitor }),
-      configure !== void 0 && /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.TabsContent, { value: "configure", className: "pt-4", children: configure })
+      monitor !== void 0 && /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.TabsContent, { value: "monitor", className: "pt-4", children: monitor }),
+      configure !== void 0 && /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.TabsContent, { value: "configure", className: "pt-4", children: configure })
     ] })
   ] });
 }
 var NARROW = "(max-width: 859px)";
 function useNarrow() {
-  return React25__namespace.useSyncExternalStore(
+  return React24__namespace.useSyncExternalStore(
     (cb) => {
       if (typeof window === "undefined" || !window.matchMedia) return () => {
       };
@@ -5710,13 +5544,13 @@ function InventoryLayout({
   defaultBottomSize = 220,
   className
 }) {
-  const { t: laf } = chunkGWTYGDXC_cjs.useLaf();
+  const { t: laf } = chunkE6JUACLJ_cjs.useLaf();
   const mqNarrow = useNarrow();
   const narrow = narrowProp ?? mqNarrow;
-  const [drawer, setDrawer] = React25__namespace.useState(false);
+  const [drawer, setDrawer] = React24__namespace.useState(false);
   const treeTitle = treeLabel ?? laf.vsInventoryTree;
   const main = bottom ? /* @__PURE__ */ jsxRuntime.jsx(
-    chunkAN24WGJJ_cjs.SplitPane,
+    chunk77S32ZEH_cjs.SplitPane,
     {
       orientation: "vertical",
       primary: "end",
@@ -5734,13 +5568,13 @@ function InventoryLayout({
   return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: chunkFTHFEMX6_cjs.cn("flex h-full min-h-0 flex-col", className), children: [
     top,
     /* @__PURE__ */ jsxRuntime.jsx("div", { className: "min-h-0 flex-1", children: narrow ? /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex h-full min-h-0 flex-col", children: [
-      /* @__PURE__ */ jsxRuntime.jsx("div", { className: "flex items-center border-b border-line px-2 py-1", children: /* @__PURE__ */ jsxRuntime.jsxs(chunkAN24WGJJ_cjs.Drawer, { open: drawer, onOpenChange: setDrawer, children: [
-        /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.DrawerTrigger, { className: "btn btn-ghost btn-sm", "aria-label": treeTitle, children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.PanelLeft, { className: "size-4", "aria-hidden": true }) }),
-        /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.DrawerContent, { title: treeTitle, width: "sm", children: /* @__PURE__ */ jsxRuntime.jsx("div", { onClickCapture: (e) => e.target.closest('[role="treeitem"]') && setDrawer(false), children: tree }) })
+      /* @__PURE__ */ jsxRuntime.jsx("div", { className: "flex items-center border-b border-line px-2 py-1", children: /* @__PURE__ */ jsxRuntime.jsxs(chunk77S32ZEH_cjs.Drawer, { open: drawer, onOpenChange: setDrawer, children: [
+        /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.DrawerTrigger, { className: "btn btn-ghost btn-sm", "aria-label": treeTitle, children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.PanelLeft, { className: "size-4", "aria-hidden": true }) }),
+        /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.DrawerContent, { title: treeTitle, width: "sm", children: /* @__PURE__ */ jsxRuntime.jsx("div", { onClickCapture: (e) => e.target.closest('[role="treeitem"]') && setDrawer(false), children: tree }) })
       ] }) }),
       /* @__PURE__ */ jsxRuntime.jsx("div", { className: "min-h-0 flex-1", children: main })
     ] }) : /* @__PURE__ */ jsxRuntime.jsx(
-      chunkAN24WGJJ_cjs.SplitPane,
+      chunk77S32ZEH_cjs.SplitPane,
       {
         collapsible: true,
         label: treeTitle,
@@ -5781,18 +5615,18 @@ var trackerEn = {
   issue: { select: (key) => `Select ${key}`, overdue: "Overdue", comments: (n) => `${n} comments`, due: "Due" },
   progress: { todo: "To do", doing: "In progress", done: "Done", summary: (pct) => `${pct}% complete` }
 };
-var lafDefaults7 = { tracker: trackerEn };
-var useLaf4 = () => chunkGWTYGDXC_cjs.useLafDefaults(lafDefaults7);
-function Tip2({ content, children }) {
+var lafDefaults6 = { tracker: trackerEn };
+var useLaf4 = () => chunkE6JUACLJ_cjs.useLafDefaults(lafDefaults6);
+function Tip({ content, children }) {
   return /* @__PURE__ */ jsxRuntime.jsx(TooltipPrimitive__namespace.Provider, { delayDuration: 300, children: /* @__PURE__ */ jsxRuntime.jsxs(TooltipPrimitive__namespace.Root, { children: [
     /* @__PURE__ */ jsxRuntime.jsx(TooltipPrimitive__namespace.Trigger, { asChild: true, children }),
     /* @__PURE__ */ jsxRuntime.jsx(TooltipPrimitive__namespace.Portal, { children: /* @__PURE__ */ jsxRuntime.jsx(TooltipPrimitive__namespace.Content, { sideOffset: 6, className: "z-60 rounded-md border border-line-strong bg-menu px-2 py-1 text-xs text-fg", children: content }) })
   ] }) });
 }
 var withLabels = (defaults, labels) => ({ ...defaults, ...labels });
-function Label3({ slot, description, onRemove, removeLabel, children }) {
-  const chip = /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Chip, { color: slot, onRemove, removeLabel, children });
-  return description ? /* @__PURE__ */ jsxRuntime.jsx(Tip2, { content: description, children: /* @__PURE__ */ jsxRuntime.jsx("span", { className: "inline-flex", children: chip }) }) : chip;
+function Label2({ slot, description, onRemove, removeLabel, children }) {
+  const chip = /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.Chip, { color: slot, onRemove, removeLabel, children });
+  return description ? /* @__PURE__ */ jsxRuntime.jsx(Tip, { content: description, children: /* @__PURE__ */ jsxRuntime.jsx("span", { className: "inline-flex", children: chip }) }) : chip;
 }
 function LabelSwatch({ slot, className }) {
   return /* @__PURE__ */ jsxRuntime.jsx("span", { "aria-hidden": true, className: chunkFTHFEMX6_cjs.cn("inline-block size-3 shrink-0 rounded-xs", className), style: { backgroundColor: `var(--label-${slot})` } });
@@ -5806,12 +5640,12 @@ function LabelPicker({
   disabled
 }) {
   const l = withLabels(useLaf4().t.components.tracker.labelPicker, text);
-  const [slot, setSlot] = React25__namespace.useState(1);
-  const byId = React25__namespace.useMemo(() => new Map(labels.map((x) => [x.id, x])), [labels]);
+  const [slot, setSlot] = React24__namespace.useState(1);
+  const byId = React24__namespace.useMemo(() => new Map(labels.map((x) => [x.id, x])), [labels]);
   const options = labels.map((x) => ({ value: x.id, label: x.name, description: x.description }));
   return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "grid gap-2", children: [
     /* @__PURE__ */ jsxRuntime.jsx(
-      chunkAN24WGJJ_cjs.Combobox,
+      chunk77S32ZEH_cjs.Combobox,
       {
         multiple: true,
         label: l.label,
@@ -5828,7 +5662,7 @@ function LabelPicker({
         ] })
       }
     ),
-    onCreate && /* @__PURE__ */ jsxRuntime.jsx("div", { role: "radiogroup", "aria-label": l.newColour, className: "flex flex-wrap gap-1", children: chunkAN24WGJJ_cjs.LABEL_SLOTS.map((s) => /* @__PURE__ */ jsxRuntime.jsx(
+    onCreate && /* @__PURE__ */ jsxRuntime.jsx("div", { role: "radiogroup", "aria-label": l.newColour, className: "flex flex-wrap gap-1", children: chunk77S32ZEH_cjs.LABEL_SLOTS.map((s) => /* @__PURE__ */ jsxRuntime.jsx(
       "button",
       {
         type: "button",
@@ -5853,9 +5687,9 @@ function Reactions({
   text
 }) {
   const l = withLabels(useLaf4().t.components.tracker.reaction, text);
-  const [open, setOpen] = React25__namespace.useState(false);
+  const [open, setOpen] = React24__namespace.useState(false);
   return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex flex-wrap items-center gap-1", children: [
-    reactions.map((r) => /* @__PURE__ */ jsxRuntime.jsx(Tip2, { content: l.reactedBy(r.emoji, r.users), children: /* @__PURE__ */ jsxRuntime.jsxs(
+    reactions.map((r) => /* @__PURE__ */ jsxRuntime.jsx(Tip, { content: l.reactedBy(r.emoji, r.users), children: /* @__PURE__ */ jsxRuntime.jsxs(
       "button",
       {
         type: "button",
@@ -5906,8 +5740,8 @@ function ActivityTimeline({
   text
 }) {
   const l = withLabels(useLaf4().t.components.tracker.timeline, text);
-  const [expanded, setExpanded] = React25__namespace.useState(/* @__PURE__ */ new Set());
-  const rows = React25__namespace.useMemo(() => {
+  const [expanded, setExpanded] = React24__namespace.useState(/* @__PURE__ */ new Set());
+  const rows = React24__namespace.useMemo(() => {
     const out = [];
     let run = [];
     const flush = () => {
@@ -5928,14 +5762,14 @@ function ActivityTimeline({
   const eventRow = (e) => /* @__PURE__ */ jsxRuntime.jsxs("li", { className: "flex items-center gap-2 ps-1 text-xs text-muted", children: [
     /* @__PURE__ */ jsxRuntime.jsx("span", { "aria-hidden": true, className: "grid size-5 shrink-0 place-items-center text-subtle", children: e.icon }),
     /* @__PURE__ */ jsxRuntime.jsx("span", { className: "min-w-0", children: e.summary }),
-    /* @__PURE__ */ jsxRuntime.jsx(RelativeTime, { value: e.at, className: "ms-auto shrink-0 text-subtle" })
+    /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.RelativeTime, { value: e.at, className: "ms-auto shrink-0 text-subtle" })
   ] }, e.id);
   return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "grid gap-3", children: [
     /* @__PURE__ */ jsxRuntime.jsx("ol", { "aria-label": l.timeline, className: "m-0 grid list-none gap-3 p-0", children: rows.map((r) => {
       if (r.type === "event") return eventRow(r);
       if (r.type === "run") {
         const open = expanded.has(r.id);
-        return /* @__PURE__ */ jsxRuntime.jsxs(React25__namespace.Fragment, { children: [
+        return /* @__PURE__ */ jsxRuntime.jsxs(React24__namespace.Fragment, { children: [
           open && r.events.map(eventRow),
           /* @__PURE__ */ jsxRuntime.jsx("li", { children: /* @__PURE__ */ jsxRuntime.jsx(
             "button",
@@ -5954,11 +5788,11 @@ function ActivityTimeline({
         ] }, r.id);
       }
       return /* @__PURE__ */ jsxRuntime.jsxs("li", { className: "flex gap-3", children: [
-        /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Avatar, { name: r.author.name, src: r.author.src }),
+        /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.Avatar, { name: r.author.name, src: r.author.src }),
         /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "min-w-0 flex-1 rounded-md border border-line bg-surface", children: [
           /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex items-center gap-2 border-b border-line px-3 py-1.5 text-xs", children: [
             /* @__PURE__ */ jsxRuntime.jsx("strong", { className: "text-fg", children: r.author.name }),
-            /* @__PURE__ */ jsxRuntime.jsx(RelativeTime, { value: r.at, className: "text-muted" }),
+            /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.RelativeTime, { value: r.at, className: "text-muted" }),
             r.edited && /* @__PURE__ */ jsxRuntime.jsxs("span", { className: "text-subtle", children: [
               "(",
               l.edited,
@@ -5982,10 +5816,10 @@ function ActivityTimeline({
 }
 function OptionPicker({ options, value, onChange, multiple, label, compact, searchable = true, shortcut, disabled, text, className }) {
   const l = withLabels(useLaf4().t.components.tracker.optionPicker, text);
-  const [open, setOpen] = React25__namespace.useState(false);
-  const trigger = React25__namespace.useRef(null);
+  const [open, setOpen] = React24__namespace.useState(false);
+  const trigger = React24__namespace.useRef(null);
   const selected = options.filter((o) => value.includes(o.value));
-  React25__namespace.useEffect(() => {
+  React24__namespace.useEffect(() => {
     if (!shortcut || disabled) return;
     const onKey = (e) => {
       if (e.key !== shortcut || e.ctrlKey || e.metaKey || e.altKey) return;
@@ -6064,7 +5898,7 @@ function DueDate({ due, now, text }) {
   ] });
 }
 function IssueLabels({ labels }) {
-  return /* @__PURE__ */ jsxRuntime.jsx(jsxRuntime.Fragment, { children: labels.map((x) => /* @__PURE__ */ jsxRuntime.jsx(Label3, { slot: x.slot, description: x.description, children: x.name }, x.name)) });
+  return /* @__PURE__ */ jsxRuntime.jsx(jsxRuntime.Fragment, { children: labels.map((x) => /* @__PURE__ */ jsxRuntime.jsx(Label2, { slot: x.slot, description: x.description, children: x.name }, x.name)) });
 }
 function IssueTitle({ issue }) {
   return issue.href ? /* @__PURE__ */ jsxRuntime.jsx("a", { href: issue.href, className: "truncate text-fg no-underline hover:underline", children: issue.title }) : /* @__PURE__ */ jsxRuntime.jsx("span", { className: "truncate", children: issue.title });
@@ -6086,13 +5920,13 @@ function IssueRow({
       /* @__PURE__ */ jsxRuntime.jsx(IssueTitle, { issue }),
       issue.labels && /* @__PURE__ */ jsxRuntime.jsx(IssueLabels, { labels: issue.labels })
     ] }),
-    issue.assignees && issue.assignees.length > 0 && /* @__PURE__ */ jsxRuntime.jsx(AvatarGroup, { users: issue.assignees, size: "sm", max: 3 }),
+    issue.assignees && issue.assignees.length > 0 && /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.AvatarGroup, { users: issue.assignees, size: "sm", max: 3 }),
     issue.due && /* @__PURE__ */ jsxRuntime.jsx(DueDate, { due: issue.due, now, text: l }),
     !!issue.comments && /* @__PURE__ */ jsxRuntime.jsxs("span", { className: "inline-flex items-center gap-1 text-xs text-muted", "aria-label": l.comments(issue.comments), children: [
       /* @__PURE__ */ jsxRuntime.jsx(lucideReact.MessageSquare, { className: "size-3.5", "aria-hidden": true }),
       issue.comments
     ] }),
-    issue.updated && /* @__PURE__ */ jsxRuntime.jsx(RelativeTime, { value: issue.updated, className: "text-xs text-subtle" })
+    issue.updated && /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.RelativeTime, { value: issue.updated, className: "text-xs text-subtle" })
   ] });
 }
 function IssueCard({ issue, density = "comfortable", now, text }) {
@@ -6106,13 +5940,13 @@ function IssueCard({ issue, density = "comfortable", now, text }) {
     /* @__PURE__ */ jsxRuntime.jsx("div", { className: "flex min-w-0", children: /* @__PURE__ */ jsxRuntime.jsx(IssueTitle, { issue }) }),
     issue.labels && issue.labels.length > 0 && /* @__PURE__ */ jsxRuntime.jsx("div", { className: "flex flex-wrap gap-1", children: /* @__PURE__ */ jsxRuntime.jsx(IssueLabels, { labels: issue.labels }) }),
     /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex items-center gap-3", children: [
-      issue.assignees && issue.assignees.length > 0 && /* @__PURE__ */ jsxRuntime.jsx(AvatarGroup, { users: issue.assignees, size: "sm", max: 3 }),
+      issue.assignees && issue.assignees.length > 0 && /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.AvatarGroup, { users: issue.assignees, size: "sm", max: 3 }),
       issue.due && /* @__PURE__ */ jsxRuntime.jsx(DueDate, { due: issue.due, now, text: l }),
       !!issue.comments && /* @__PURE__ */ jsxRuntime.jsxs("span", { className: "inline-flex items-center gap-1 text-xs text-muted", "aria-label": l.comments(issue.comments), children: [
         /* @__PURE__ */ jsxRuntime.jsx(lucideReact.MessageSquare, { className: "size-3.5", "aria-hidden": true }),
         issue.comments
       ] }),
-      issue.updated && /* @__PURE__ */ jsxRuntime.jsx(RelativeTime, { value: issue.updated, className: "ms-auto text-xs text-subtle" })
+      issue.updated && /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.RelativeTime, { value: issue.updated, className: "ms-auto text-xs text-subtle" })
     ] })
   ] });
 }
@@ -6306,8 +6140,8 @@ var vsphereObjectsEn = {
     details: "Event details"
   }
 };
-var lafDefaults8 = { vsphereObjects: vsphereObjectsEn };
-var useLaf5 = () => chunkGWTYGDXC_cjs.useLafDefaults(lafDefaults8);
+var lafDefaults7 = { vsphereObjects: vsphereObjectsEn };
+var useLaf5 = () => chunkE6JUACLJ_cjs.useLafDefaults(lafDefaults7);
 var statusTone = { connecting: "warn", connected: "ok", disconnected: "neutral", error: "danger" };
 function ConsoleFrame({
   children,
@@ -6326,10 +6160,10 @@ function ConsoleFrame({
 }) {
   const { t: laf } = useLaf5();
   const l = { ...laf.components.vsphereObjects.console, ...labels };
-  const root = React25__namespace.useRef(null);
-  const [full, setFull] = React25__namespace.useState(false);
-  const [scale, setScale] = chunkXNG22HMC_cjs.useControllableState({ value: scaleProp, defaultValue: "fit", onChange: onScaleChange });
-  React25__namespace.useEffect(() => {
+  const root = React24__namespace.useRef(null);
+  const [full, setFull] = React24__namespace.useState(false);
+  const [scale, setScale] = chunkYGX6XE22_cjs.useControllableState({ value: scaleProp, defaultValue: "fit", onChange: onScaleChange });
+  React24__namespace.useEffect(() => {
     const on = () => setFull(document.fullscreenElement === root.current);
     document.addEventListener("fullscreenchange", on);
     return () => document.removeEventListener("fullscreenchange", on);
@@ -6342,16 +6176,16 @@ function ConsoleFrame({
   return /* @__PURE__ */ jsxRuntime.jsxs("div", { ref: root, className: chunkFTHFEMX6_cjs.cn("flex flex-col overflow-hidden rounded-lg border border-line bg-surface", className), children: [
     /* @__PURE__ */ jsxRuntime.jsxs("div", { role: "toolbar", "aria-label": l.console, className: "flex flex-wrap items-center gap-2 border-b border-line px-3 py-2", children: [
       /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { size: "sm", variant: "secondary", disabled: !live, onClick: () => onSendKeys?.("ctrl-alt-del"), children: l.sendCad }),
-      keyCombos && keyCombos.length > 0 && /* @__PURE__ */ jsxRuntime.jsxs(chunkAN24WGJJ_cjs.DropdownMenu, { children: [
-        /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.DropdownMenuTrigger, { asChild: true, children: /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { size: "sm", variant: "ghost", disabled: !live, children: l.keys }) }),
-        /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.DropdownMenuContent, { align: "start", children: keyCombos.map((k) => /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.DropdownMenuItem, { onSelect: () => onSendKeys?.(k.id), children: k.label }, k.id)) })
+      keyCombos && keyCombos.length > 0 && /* @__PURE__ */ jsxRuntime.jsxs(chunk77S32ZEH_cjs.DropdownMenu, { children: [
+        /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.DropdownMenuTrigger, { asChild: true, children: /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { size: "sm", variant: "ghost", disabled: !live, children: l.keys }) }),
+        /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.DropdownMenuContent, { align: "start", children: keyCombos.map((k) => /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.DropdownMenuItem, { onSelect: () => onSendKeys?.(k.id), children: k.label }, k.id)) })
       ] }),
       /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { size: "sm", variant: "ghost", "aria-pressed": scale === "actual", onClick: () => setScale(scale === "fit" ? "actual" : "fit"), children: scale === "fit" ? l.actual : l.fit }),
       onScreenshot && /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { size: "sm", variant: "ghost", disabled: !live, onClick: onScreenshot, children: l.screenshot }),
       /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { size: "sm", variant: "ghost", "aria-pressed": full, leftIcon: full ? /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Minimize2, { "aria-hidden": true }) : /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Maximize2, { "aria-hidden": true }), onClick: toggleFull, children: full ? l.exitFullscreen : l.fullscreen }),
       /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "ms-auto flex items-center gap-3", children: [
         keyboardGrabbed && live && /* @__PURE__ */ jsxRuntime.jsx("span", { className: "text-xs text-muted", children: l.releaseHint }),
-        /* @__PURE__ */ jsxRuntime.jsx("span", { role: "status", children: /* @__PURE__ */ jsxRuntime.jsx(StatusDot, { tone: statusTone[status], pulse: status === "connecting", label: l[status] }) }),
+        /* @__PURE__ */ jsxRuntime.jsx("span", { role: "status", children: /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.StatusDot, { tone: statusTone[status], pulse: status === "connecting", label: l[status] }) }),
         live && onDisconnect && /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { size: "sm", variant: "ghost", onClick: onDisconnect, children: l.disconnect }),
         (status === "disconnected" || status === "error") && onReconnect && /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { size: "sm", variant: "secondary", onClick: onReconnect, children: l.reconnect })
       ] })
@@ -6401,11 +6235,11 @@ function describeDiff(devices, base, l) {
 function HardwareEditor({ devices: devicesProp, defaultDevices = [], onChange, baseline, capabilities: cap, onSave, renderIsoPicker, labels, className }) {
   const { t: laf } = useLaf5();
   const l = { ...laf.components.vsphereObjects.hardware, ...labels };
-  const initial = React25__namespace.useRef(devicesProp ?? defaultDevices);
+  const initial = React24__namespace.useRef(devicesProp ?? defaultDevices);
   const base = baseline ?? initial.current;
-  const [devices, setDevices] = chunkXNG22HMC_cjs.useControllableState({ value: devicesProp, defaultValue: defaultDevices, onChange });
-  const [pickFor, setPickFor] = React25__namespace.useState(null);
-  const counter = React25__namespace.useRef(0);
+  const [devices, setDevices] = chunkYGX6XE22_cjs.useControllableState({ value: devicesProp, defaultValue: defaultDevices, onChange });
+  const [pickFor, setPickFor] = React24__namespace.useState(null);
+  const counter = React24__namespace.useRef(0);
   const update = (id, patch) => setDevices(devices.map((d) => d.id === id ? { ...d, ...patch } : d));
   const locked = (kind) => !!cap.poweredOn && !cap.hotAdd?.[kind];
   const add = (kind) => {
@@ -6417,8 +6251,8 @@ function HardwareEditor({ devices: devicesProp, defaultDevices = [], onChange, b
   const errors = devices.map((d) => validateDevice(d, base.find((b) => b.id === d.id), cap, l));
   const invalid = errors.some((e) => Object.keys(e).length > 0);
   const diff = describeDiff(devices, base, l);
-  const num = (d, field, text, value, err, disabled) => /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Field, { label: text, error: err, htmlFor: `${d.id}-${field}`, children: /* @__PURE__ */ jsxRuntime.jsx(
-    chunkAN24WGJJ_cjs.Input,
+  const num = (d, field, text, value, err, disabled) => /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.Field, { label: text, error: err, htmlFor: `${d.id}-${field}`, children: /* @__PURE__ */ jsxRuntime.jsx(
+    chunk77S32ZEH_cjs.Input,
     {
       id: `${d.id}-${field}`,
       type: "number",
@@ -6445,21 +6279,21 @@ function HardwareEditor({ devices: devicesProp, defaultDevices = [], onChange, b
       case "disk":
         return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "grid gap-3 sm:grid-cols-3", children: [
           num(d, "sizeGb", l.diskSize, d.sizeGb, e.sizeGb),
-          /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Field, { label: l.provisioning, htmlFor: `${d.id}-prov`, children: /* @__PURE__ */ jsxRuntime.jsxs("select", { id: `${d.id}-prov`, className: "form-select", value: d.provisioning, onChange: (ev) => update(d.id, { provisioning: ev.target.value }), children: [
+          /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.Field, { label: l.provisioning, htmlFor: `${d.id}-prov`, children: /* @__PURE__ */ jsxRuntime.jsxs("select", { id: `${d.id}-prov`, className: "form-select", value: d.provisioning, onChange: (ev) => update(d.id, { provisioning: ev.target.value }), children: [
             /* @__PURE__ */ jsxRuntime.jsx("option", { value: "thin", children: l.thin }),
             /* @__PURE__ */ jsxRuntime.jsx("option", { value: "thick-lazy", children: l.thickLazy }),
             /* @__PURE__ */ jsxRuntime.jsx("option", { value: "thick-eager", children: l.thickEager })
           ] }) }),
-          /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Field, { label: l.controller, htmlFor: `${d.id}-ctl`, children: /* @__PURE__ */ jsxRuntime.jsx("select", { id: `${d.id}-ctl`, className: "form-select", value: d.controller, onChange: (ev) => update(d.id, { controller: ev.target.value }), children: (cap.controllers ?? [d.controller]).map((c) => /* @__PURE__ */ jsxRuntime.jsx("option", { children: c }, c)) }) })
+          /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.Field, { label: l.controller, htmlFor: `${d.id}-ctl`, children: /* @__PURE__ */ jsxRuntime.jsx("select", { id: `${d.id}-ctl`, className: "form-select", value: d.controller, onChange: (ev) => update(d.id, { controller: ev.target.value }), children: (cap.controllers ?? [d.controller]).map((c) => /* @__PURE__ */ jsxRuntime.jsx("option", { children: c }, c)) }) })
         ] });
       case "nic":
         return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "grid gap-3 sm:grid-cols-3", children: [
-          /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Field, { label: l.network, error: e.network, htmlFor: `${d.id}-net`, children: /* @__PURE__ */ jsxRuntime.jsxs("select", { id: `${d.id}-net`, className: "form-select", "aria-invalid": !!e.network || void 0, value: d.network, onChange: (ev) => update(d.id, { network: ev.target.value }), children: [
+          /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.Field, { label: l.network, error: e.network, htmlFor: `${d.id}-net`, children: /* @__PURE__ */ jsxRuntime.jsxs("select", { id: `${d.id}-net`, className: "form-select", "aria-invalid": !!e.network || void 0, value: d.network, onChange: (ev) => update(d.id, { network: ev.target.value }), children: [
             /* @__PURE__ */ jsxRuntime.jsx("option", { value: "" }),
             cap.networks.map((n) => /* @__PURE__ */ jsxRuntime.jsx("option", { children: n }, n))
           ] }) }),
-          /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Field, { label: l.adapter, htmlFor: `${d.id}-ad`, children: /* @__PURE__ */ jsxRuntime.jsx("select", { id: `${d.id}-ad`, className: "form-select", value: d.adapter, onChange: (ev) => update(d.id, { adapter: ev.target.value }), children: (cap.adapters ?? [d.adapter]).map((a) => /* @__PURE__ */ jsxRuntime.jsx("option", { children: a }, a)) }) }),
-          /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Switch, { checked: d.connected, onChange: (ev) => update(d.id, { connected: ev.target.checked }), children: l.connected })
+          /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.Field, { label: l.adapter, htmlFor: `${d.id}-ad`, children: /* @__PURE__ */ jsxRuntime.jsx("select", { id: `${d.id}-ad`, className: "form-select", value: d.adapter, onChange: (ev) => update(d.id, { adapter: ev.target.value }), children: (cap.adapters ?? [d.adapter]).map((a) => /* @__PURE__ */ jsxRuntime.jsx("option", { children: a }, a)) }) }),
+          /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.Switch, { checked: d.connected, onChange: (ev) => update(d.id, { connected: ev.target.checked }), children: l.connected })
         ] });
       case "cdrom":
         return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex flex-wrap items-center gap-3", children: [
@@ -6469,7 +6303,7 @@ function HardwareEditor({ devices: devicesProp, defaultDevices = [], onChange, b
             /* @__PURE__ */ jsxRuntime.jsx("span", { className: "text-fg", children: d.iso ?? l.noIso })
           ] }),
           renderIsoPicker && /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { size: "sm", variant: "secondary", onClick: () => setPickFor(d.id), children: l.chooseIso }),
-          /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Switch, { checked: d.connected, onChange: (ev) => update(d.id, { connected: ev.target.checked }), children: l.connected })
+          /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.Switch, { checked: d.connected, onChange: (ev) => update(d.id, { connected: ev.target.checked }), children: l.connected })
         ] });
     }
   };
@@ -6477,9 +6311,9 @@ function HardwareEditor({ devices: devicesProp, defaultDevices = [], onChange, b
   return /* @__PURE__ */ jsxRuntime.jsxs("section", { "aria-label": l.title, className: chunkFTHFEMX6_cjs.cn("grid gap-3", className), children: [
     /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex items-center justify-between", children: [
       /* @__PURE__ */ jsxRuntime.jsx("h3", { className: "text-sm font-semibold", children: l.title }),
-      /* @__PURE__ */ jsxRuntime.jsxs(chunkAN24WGJJ_cjs.DropdownMenu, { children: [
-        /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.DropdownMenuTrigger, { asChild: true, children: /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { size: "sm", variant: "secondary", leftIcon: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Plus, { "aria-hidden": true }), children: l.addDevice }) }),
-        /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.DropdownMenuContent, { children: addable.map((k) => /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.DropdownMenuItem, { disabled: locked(k), title: locked(k) ? l.hotAddDisabled : void 0, onSelect: () => add(k), children: l[k] }, k)) })
+      /* @__PURE__ */ jsxRuntime.jsxs(chunk77S32ZEH_cjs.DropdownMenu, { children: [
+        /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.DropdownMenuTrigger, { asChild: true, children: /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { size: "sm", variant: "secondary", leftIcon: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Plus, { "aria-hidden": true }), children: l.addDevice }) }),
+        /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.DropdownMenuContent, { children: addable.map((k) => /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.DropdownMenuItem, { disabled: locked(k), title: locked(k) ? l.hotAddDisabled : void 0, onSelect: () => add(k), children: l[k] }, k)) })
       ] })
     ] }),
     /* @__PURE__ */ jsxRuntime.jsx("ul", { className: "grid gap-2", children: devices.map((d, i) => /* @__PURE__ */ jsxRuntime.jsxs("li", { className: "relative rounded-md border border-line bg-surface", children: [
@@ -6487,7 +6321,7 @@ function HardwareEditor({ devices: devicesProp, defaultDevices = [], onChange, b
         /* @__PURE__ */ jsxRuntime.jsxs("summary", { className: "flex cursor-pointer items-center gap-2 px-3 py-2 text-sm font-medium", children: [
           /* @__PURE__ */ jsxRuntime.jsx(lucideReact.ChevronRight, { className: "size-4 transition-transform group-open:rotate-90 rtl:-scale-x-100", "aria-hidden": true }),
           /* @__PURE__ */ jsxRuntime.jsx("span", { children: nameOf(d, l) }),
-          Object.keys(errors[i]).length > 0 && /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Badge, { tone: "danger", children: "!" })
+          Object.keys(errors[i]).length > 0 && /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.Badge, { tone: "danger", children: "!" })
         ] }),
         /* @__PURE__ */ jsxRuntime.jsx("div", { className: "border-t border-line p-3", children: body(d, errors[i]) })
       ] }),
@@ -6512,7 +6346,7 @@ function HardwareEditor({ devices: devicesProp, defaultDevices = [], onChange, b
       /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { variant: "ghost", disabled: diff.length === 0, onClick: () => setDevices(base), children: l.discard }),
       /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { disabled: diff.length === 0 || invalid, onClick: () => onSave?.(devices), children: l.save })
     ] }),
-    renderIsoPicker && /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Dialog, { open: pickFor !== null, onOpenChange: (o) => !o && setPickFor(null), children: /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.DialogContent, { title: l.chooseIso, className: "w-[min(56rem,95vw)]", children: renderIsoPicker(
+    renderIsoPicker && /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.Dialog, { open: pickFor !== null, onOpenChange: (o) => !o && setPickFor(null), children: /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.DialogContent, { title: l.chooseIso, className: "w-[min(56rem,95vw)]", children: renderIsoPicker(
       (iso2) => {
         if (pickFor) update(pickFor, { iso: iso2 });
         setPickFor(null);
@@ -6543,18 +6377,18 @@ function DatastoreBrowser({
 }) {
   const { format: format2, t: laf } = useLaf5();
   const l = { ...laf.components.vsphereObjects.datastore, ...labels };
-  const [path, setPath] = chunkXNG22HMC_cjs.useControllableState({ value: pathProp, defaultValue: defaultPath, onChange: onPathChange });
-  const [chosen, setChosen] = React25__namespace.useState(null);
-  const [toDelete, setToDelete] = React25__namespace.useState(null);
-  const [naming, setNaming] = React25__namespace.useState(false);
-  const [folderName, setFolderName] = React25__namespace.useState("");
-  const loaded = React25__namespace.useRef(/* @__PURE__ */ new Set());
+  const [path, setPath] = chunkYGX6XE22_cjs.useControllableState({ value: pathProp, defaultValue: defaultPath, onChange: onPathChange });
+  const [chosen, setChosen] = React24__namespace.useState(null);
+  const [toDelete, setToDelete] = React24__namespace.useState(null);
+  const [naming, setNaming] = React24__namespace.useState(false);
+  const [folderName, setFolderName] = React24__namespace.useState("");
+  const loaded = React24__namespace.useRef(/* @__PURE__ */ new Set());
   const matches = (e) => e.type === "folder" || !accept || accept.some((a) => e.path.toLowerCase().endsWith(a.toLowerCase()));
-  const children = React25__namespace.useMemo(
+  const children = React24__namespace.useMemo(
     () => entries.filter((e) => parentOf(e.path) === path && e.path !== "/").sort((a, b) => a.type === b.type ? baseName(a.path).localeCompare(baseName(b.path)) : a.type === "folder" ? -1 : 1),
     [entries, path]
   );
-  const nodes = React25__namespace.useMemo(() => {
+  const nodes = React24__namespace.useMemo(() => {
     const build = (parent) => entries.filter((e) => e.type === "folder" && parentOf(e.path) === parent && e.path !== "/").map((e) => {
       const kids = build(e.path);
       return { id: e.path, label: baseName(e.path), icon: /* @__PURE__ */ jsxRuntime.jsx(ObjectIcon, { kind: "folder" }), children: kids, hasChildren: !!onLoadFolder && kids.length === 0 };
@@ -6580,7 +6414,7 @@ function DatastoreBrowser({
         /* @__PURE__ */ jsxRuntime.jsx("button", { type: "button", className: "text-primary hover:underline", onClick: () => open("/"), children: l.root }),
         crumbs.map((c, i) => {
           const p = `/${crumbs.slice(0, i + 1).join("/")}`;
-          return /* @__PURE__ */ jsxRuntime.jsxs(React25__namespace.Fragment, { children: [
+          return /* @__PURE__ */ jsxRuntime.jsxs(React24__namespace.Fragment, { children: [
             /* @__PURE__ */ jsxRuntime.jsx(lucideReact.ChevronRight, { className: "size-3 text-subtle rtl:-scale-x-100", "aria-hidden": true }),
             /* @__PURE__ */ jsxRuntime.jsx("button", { type: "button", "aria-current": p === path ? "location" : void 0, className: chunkFTHFEMX6_cjs.cn("hover:underline", p === path ? "text-fg" : "text-primary"), onClick: () => open(p), children: c })
           ] }, p);
@@ -6601,7 +6435,7 @@ function DatastoreBrowser({
           setNaming(false);
         },
         children: [
-          /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Field, { label: l.folderName, htmlFor: "ds-new-folder", children: /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Input, { id: "ds-new-folder", autoFocus: true, value: folderName, onChange: (e) => setFolderName(e.target.value) }) }),
+          /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.Field, { label: l.folderName, htmlFor: "ds-new-folder", children: /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.Input, { id: "ds-new-folder", autoFocus: true, value: folderName, onChange: (e) => setFolderName(e.target.value) }) }),
           /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { type: "submit", size: "sm", children: l.create }),
           /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { size: "sm", variant: "ghost", onClick: () => setNaming(false), children: l.cancel })
         ]
@@ -6659,7 +6493,7 @@ function DatastoreBrowser({
                     baseName(e.path)
                   ] }) }),
                   /* @__PURE__ */ jsxRuntime.jsx("td", { role: "gridcell", className: "px-3 py-1.5 text-muted tabular-nums", children: e.type === "file" && e.size !== void 0 ? format2.bytes(e.size, { base: 1024 }) : "" }),
-                  /* @__PURE__ */ jsxRuntime.jsx("td", { role: "gridcell", className: "px-3 py-1.5 text-muted", children: e.modified !== void 0 ? /* @__PURE__ */ jsxRuntime.jsx(RelativeTime, { value: e.modified }) : "" }),
+                  /* @__PURE__ */ jsxRuntime.jsx("td", { role: "gridcell", className: "px-3 py-1.5 text-muted", children: e.modified !== void 0 ? /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.RelativeTime, { value: e.modified }) : "" }),
                   /* @__PURE__ */ jsxRuntime.jsxs("td", { role: "gridcell", className: "px-3 py-1.5 text-end", children: [
                     !select && e.type === "file" && onDownload && /* @__PURE__ */ jsxRuntime.jsx("button", { type: "button", "aria-label": `${l.download}: ${baseName(e.path)}`, className: "me-2 text-muted hover:text-fg", onClick: (ev) => (ev.stopPropagation(), onDownload(e)), children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Download, { className: "size-4", "aria-hidden": true }) }),
                     !select && onDelete && /* @__PURE__ */ jsxRuntime.jsx("button", { type: "button", "aria-label": `${l.delete}: ${baseName(e.path)}`, className: "text-muted hover:text-danger", onClick: (ev) => (ev.stopPropagation(), setToDelete(e)), children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Trash2, { className: "size-4", "aria-hidden": true }) })
@@ -6707,11 +6541,11 @@ function DatastoreBrowser({
 function PermissionAssignDialog({ open, onOpenChange, principals, roles, objectPath, defaultRoleId, defaultPropagate = true, onAssign, labels }) {
   const { t: laf } = useLaf5();
   const l = { ...laf.components.vsphereObjects.permission, ...labels };
-  const [principal, setPrincipal] = React25__namespace.useState([]);
-  const [roleId, setRoleId] = React25__namespace.useState(defaultRoleId ?? roles[0]?.id ?? "");
-  const [propagate, setPropagate] = React25__namespace.useState(defaultPropagate);
-  const [pending, setPending] = React25__namespace.useState(false);
-  React25__namespace.useEffect(() => {
+  const [principal, setPrincipal] = React24__namespace.useState([]);
+  const [roleId, setRoleId] = React24__namespace.useState(defaultRoleId ?? roles[0]?.id ?? "");
+  const [propagate, setPropagate] = React24__namespace.useState(defaultPropagate);
+  const [pending, setPending] = React24__namespace.useState(false);
+  React24__namespace.useEffect(() => {
     if (open) {
       setPrincipal([]);
       setRoleId(defaultRoleId ?? roles[0]?.id ?? "");
@@ -6729,8 +6563,8 @@ function PermissionAssignDialog({ open, onOpenChange, principals, roles, objectP
       setPending(false);
     }
   };
-  return /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Dialog, { open, onOpenChange, children: /* @__PURE__ */ jsxRuntime.jsx(
-    chunkAN24WGJJ_cjs.DialogContent,
+  return /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.Dialog, { open, onOpenChange, children: /* @__PURE__ */ jsxRuntime.jsx(
+    chunk77S32ZEH_cjs.DialogContent,
     {
       title: l.title,
       footer: /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
@@ -6738,13 +6572,13 @@ function PermissionAssignDialog({ open, onOpenChange, principals, roles, objectP
         /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { loading: pending, disabled: !principal[0] || !roleId, onClick: submit, children: l.assign })
       ] }),
       children: /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "grid gap-4", children: [
-        /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Field, { label: l.object, htmlFor: "perm-object", children: /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Input, { id: "perm-object", readOnly: true, value: objectPath }) }),
+        /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.Field, { label: l.object, htmlFor: "perm-object", children: /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.Input, { id: "perm-object", readOnly: true, value: objectPath }) }),
         /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "grid gap-1", children: [
           /* @__PURE__ */ jsxRuntime.jsx("span", { className: "text-sm font-medium", children: l.principal }),
-          /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Combobox, { label: l.principal, options: principals, value: principal, onChange: setPrincipal })
+          /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.Combobox, { label: l.principal, options: principals, value: principal, onChange: setPrincipal })
         ] }),
-        /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Field, { label: l.role, htmlFor: "perm-role", hint: role?.description, children: /* @__PURE__ */ jsxRuntime.jsx("select", { id: "perm-role", className: "form-select", value: roleId, onChange: (e) => setRoleId(e.target.value), children: roles.map((r) => /* @__PURE__ */ jsxRuntime.jsx("option", { value: r.id, children: r.name }, r.id)) }) }),
-        /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Switch, { checked: propagate, onChange: (e) => setPropagate(e.target.checked), children: l.propagate })
+        /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.Field, { label: l.role, htmlFor: "perm-role", hint: role?.description, children: /* @__PURE__ */ jsxRuntime.jsx("select", { id: "perm-role", className: "form-select", value: roleId, onChange: (e) => setRoleId(e.target.value), children: roles.map((r) => /* @__PURE__ */ jsxRuntime.jsx("option", { value: r.id, children: r.name }, r.id)) }) }),
+        /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.Switch, { checked: propagate, onChange: (e) => setPropagate(e.target.checked), children: l.propagate })
       ] })
     }
   ) });
@@ -6752,9 +6586,9 @@ function PermissionAssignDialog({ open, onOpenChange, principals, roles, objectP
 function SnapshotTree({ snapshots, currentId, onTake, onRevert, onDelete, onDeleteChildren, needsConsolidation, onConsolidate, labels, className }) {
   const { format: format2, t: laf } = useLaf5();
   const l = { ...laf.components.vsphereObjects.snapshots, ...labels };
-  const [selected, setSelected] = React25__namespace.useState();
-  const [confirm, setConfirm] = React25__namespace.useState(null);
-  const index = React25__namespace.useMemo(() => {
+  const [selected, setSelected] = React24__namespace.useState();
+  const [confirm, setConfirm] = React24__namespace.useState(null);
+  const index = React24__namespace.useMemo(() => {
     const m = /* @__PURE__ */ new Map();
     const walk = (n) => (m.set(n.id, n), n.children?.forEach(walk));
     snapshots.forEach(walk);
@@ -6766,18 +6600,18 @@ function SnapshotTree({ snapshots, currentId, onTake, onRevert, onDelete, onDele
     icon: /* @__PURE__ */ jsxRuntime.jsx(ObjectIcon, { kind: "snapshot" }),
     label: /* @__PURE__ */ jsxRuntime.jsxs("span", { className: "inline-flex items-center gap-2", children: [
       /* @__PURE__ */ jsxRuntime.jsx("span", { children: s.name }),
-      /* @__PURE__ */ jsxRuntime.jsx("span", { className: "text-xs text-muted", children: /* @__PURE__ */ jsxRuntime.jsx(RelativeTime, { value: s.createdAt }) }),
+      /* @__PURE__ */ jsxRuntime.jsx("span", { className: "text-xs text-muted", children: /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.RelativeTime, { value: s.createdAt }) }),
       s.sizeBytes !== void 0 && /* @__PURE__ */ jsxRuntime.jsx("span", { className: "text-xs text-muted", children: format2.bytes(s.sizeBytes, { base: 1024 }) }),
-      s.id === currentId && /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Badge, { tone: "primary", children: l.youAreHere })
+      s.id === currentId && /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.Badge, { tone: "primary", children: l.youAreHere })
     ] }),
     children: s.children?.map(toNode)
   });
-  const nodes = React25__namespace.useMemo(() => snapshots.map(toNode), [snapshots, currentId, format2]);
-  const allIds = React25__namespace.useMemo(() => [...index.keys()], [index]);
+  const nodes = React24__namespace.useMemo(() => snapshots.map(toNode), [snapshots, currentId, format2]);
+  const allIds = React24__namespace.useMemo(() => [...index.keys()], [index]);
   const sel = selected ? index.get(selected) : void 0;
   const confirmText = confirm ? (confirm.kind === "revert" ? l.confirmRevert : confirm.kind === "delete" ? l.confirmDelete : l.confirmDeleteChildren)(confirm.node.name) : "";
   return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: chunkFTHFEMX6_cjs.cn("grid gap-3", className), children: [
-    needsConsolidation && /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Banner, { tone: "warn", action: onConsolidate && /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { size: "sm", variant: "secondary", onClick: onConsolidate, children: l.consolidate }), children: l.consolidationNeeded }),
+    needsConsolidation && /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.Banner, { tone: "warn", action: onConsolidate && /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { size: "sm", variant: "secondary", onClick: onConsolidate, children: l.consolidate }), children: l.consolidationNeeded }),
     /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex flex-wrap gap-2", children: [
       onTake && /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { size: "sm", onClick: onTake, children: l.take }),
       /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { size: "sm", variant: "secondary", disabled: !sel, onClick: () => sel && setConfirm({ kind: "revert", node: sel }), children: l.revert }),
@@ -6808,24 +6642,24 @@ var sevTone = { info: "primary", warning: "warn", error: "danger" };
 function EventConsole({ events, liveTail: liveProp, onLiveTailChange, labels, className }) {
   const { t: laf } = useLaf5();
   const l = { ...laf.components.vsphereObjects.events, ...labels };
-  const [live, setLive] = chunkXNG22HMC_cjs.useControllableState({ value: liveProp, defaultValue: false, onChange: onLiveTailChange });
-  const [query, setQuery] = React25__namespace.useState("");
-  const [sev, setSev] = React25__namespace.useState("all");
-  const [open, setOpen] = React25__namespace.useState(null);
-  const rows = React25__namespace.useMemo(() => {
+  const [live, setLive] = chunkYGX6XE22_cjs.useControllableState({ value: liveProp, defaultValue: false, onChange: onLiveTailChange });
+  const [query, setQuery] = React24__namespace.useState("");
+  const [sev, setSev] = React24__namespace.useState("all");
+  const [open, setOpen] = React24__namespace.useState(null);
+  const rows = React24__namespace.useMemo(() => {
     const q = query.toLowerCase();
     return events.filter((e) => (sev === "all" || e.severity === sev) && (!q || [e.message, e.source, e.user].some((v) => v?.toLowerCase().includes(q)))).sort((a, b) => +new Date(b.time) - +new Date(a.time));
   }, [events, query, sev]);
   return /* @__PURE__ */ jsxRuntime.jsxs("section", { "aria-label": l.title, className: chunkFTHFEMX6_cjs.cn("grid gap-3", className), children: [
     /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex flex-wrap items-center gap-2", children: [
-      /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Input, { type: "search", className: "max-w-xs", "aria-label": l.search, placeholder: `${l.search}\u2026`, value: query, onChange: (e) => setQuery(e.target.value) }),
+      /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.Input, { type: "search", className: "max-w-xs", "aria-label": l.search, placeholder: `${l.search}\u2026`, value: query, onChange: (e) => setQuery(e.target.value) }),
       /* @__PURE__ */ jsxRuntime.jsxs("select", { "aria-label": l.severity, className: "form-select w-auto", value: sev, onChange: (e) => setSev(e.target.value), children: [
         /* @__PURE__ */ jsxRuntime.jsx("option", { value: "all", children: l.all }),
         /* @__PURE__ */ jsxRuntime.jsx("option", { value: "info", children: l.info }),
         /* @__PURE__ */ jsxRuntime.jsx("option", { value: "warning", children: l.warning }),
         /* @__PURE__ */ jsxRuntime.jsx("option", { value: "error", children: l.error })
       ] }),
-      /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Switch, { className: "ms-auto", checked: live, onChange: (e) => setLive(e.target.checked), children: l.liveTail })
+      /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.Switch, { className: "ms-auto", checked: live, onChange: (e) => setLive(e.target.checked), children: l.liveTail })
     ] }),
     /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "overflow-auto rounded-md border border-line bg-surface", children: [
       /* @__PURE__ */ jsxRuntime.jsxs("table", { className: "w-full text-sm", children: [
@@ -6844,8 +6678,8 @@ function EventConsole({ events, liveTail: liveProp, onLiveTailChange, labels, cl
             onClick: () => setOpen(e),
             onKeyDown: (ev) => ev.key === "Enter" && setOpen(e),
             children: [
-              /* @__PURE__ */ jsxRuntime.jsx("td", { className: "px-3 py-1.5", children: /* @__PURE__ */ jsxRuntime.jsx(StatusDot, { tone: sevTone[e.severity], label: l[e.severity] }) }),
-              /* @__PURE__ */ jsxRuntime.jsx("td", { className: "px-3 py-1.5 whitespace-nowrap text-muted", children: /* @__PURE__ */ jsxRuntime.jsx(RelativeTime, { value: e.time }) }),
+              /* @__PURE__ */ jsxRuntime.jsx("td", { className: "px-3 py-1.5", children: /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.StatusDot, { tone: sevTone[e.severity], label: l[e.severity] }) }),
+              /* @__PURE__ */ jsxRuntime.jsx("td", { className: "px-3 py-1.5 whitespace-nowrap text-muted", children: /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.RelativeTime, { value: e.time }) }),
               /* @__PURE__ */ jsxRuntime.jsx("td", { className: "px-3 py-1.5", children: e.message }),
               /* @__PURE__ */ jsxRuntime.jsx("td", { className: "px-3 py-1.5 text-muted", children: e.source }),
               /* @__PURE__ */ jsxRuntime.jsx("td", { className: "px-3 py-1.5 text-muted", children: e.user })
@@ -6856,7 +6690,7 @@ function EventConsole({ events, liveTail: liveProp, onLiveTailChange, labels, cl
       ] }),
       rows.length === 0 && /* @__PURE__ */ jsxRuntime.jsx("p", { className: "p-4 text-center text-sm text-subtle", children: l.empty })
     ] }),
-    /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Drawer, { open: open !== null, onOpenChange: (o) => !o && setOpen(null), children: /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.DrawerContent, { title: l.details, description: open?.message, children: open && /* @__PURE__ */ jsxRuntime.jsxs("dl", { className: "grid gap-2 text-sm", children: [
+    /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.Drawer, { open: open !== null, onOpenChange: (o) => !o && setOpen(null), children: /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.DrawerContent, { title: l.details, description: open?.message, children: open && /* @__PURE__ */ jsxRuntime.jsxs("dl", { className: "grid gap-2 text-sm", children: [
       /* @__PURE__ */ jsxRuntime.jsx("dt", { className: "text-muted", children: l.severity }),
       /* @__PURE__ */ jsxRuntime.jsx("dd", { children: l[open.severity] }),
       /* @__PURE__ */ jsxRuntime.jsx("dt", { className: "text-muted", children: l.time }),
@@ -6888,7 +6722,7 @@ var contentEn = {
   clipboard: { copy: "Copy to clipboard", copied: "Copied", expand: "Show full value", collapse: "Hide full value" },
   form: { required: "required" }
 };
-var lafDefaults9 = { content: contentEn };
+var lafDefaults8 = { content: contentEn };
 var FOCUSABLE = 'a[href],button,input:not([type="hidden"]),select,textarea,[role="button"],[role="combobox"],[role="radio"],[role="switch"],[role="checkbox"],[role="tab"],[tabindex]';
 var TEXT_ENTRY = 'input:not([type="checkbox"]):not([type="radio"]):not([type="button"]):not([type="submit"]),textarea,select,[contenteditable="true"]';
 function navigable(root) {
@@ -6960,7 +6794,7 @@ function ToolbarActions({ className, ...props }) {
   return /* @__PURE__ */ jsxRuntime.jsx(ActionBar, { className: chunkFTHFEMX6_cjs.cn("min-w-0 flex-1", className), ...props });
 }
 function ToolbarFilterChips({ filters, onRemove, onClearAll, className, labels }) {
-  const { t } = chunkGWTYGDXC_cjs.useLafDefaults(lafDefaults9);
+  const { t } = chunkE6JUACLJ_cjs.useLafDefaults(lafDefaults8);
   const m = t.components.content.toolbar;
   if (filters.length === 0) return null;
   const groups = /* @__PURE__ */ new Map();
@@ -6968,13 +6802,13 @@ function ToolbarFilterChips({ filters, onRemove, onClearAll, className, labels }
   return /* @__PURE__ */ jsxRuntime.jsxs("div", { role: "group", "aria-label": labels?.activeFilters ?? m.activeFilters, className: chunkFTHFEMX6_cjs.cn("flex w-full flex-wrap items-center gap-x-4 gap-y-2", className), children: [
     [...groups].map(([category, list]) => /* @__PURE__ */ jsxRuntime.jsxs("div", { role: category ? "group" : void 0, "aria-label": category || void 0, className: "flex flex-wrap items-center gap-1.5", children: [
       category && /* @__PURE__ */ jsxRuntime.jsx("span", { "aria-hidden": true, className: "text-xs text-muted", children: category }),
-      list.map((f) => /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Chip, { onRemove: onRemove ? () => onRemove(f) : void 0, removeLabel: (labels?.removeFilter ?? m.removeFilter)(f.label), children: f.label }, f.id))
+      list.map((f) => /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.Chip, { onRemove: onRemove ? () => onRemove(f) : void 0, removeLabel: (labels?.removeFilter ?? m.removeFilter)(f.label), children: f.label }, f.id))
     ] }, category)),
     onClearAll && /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { variant: "ghost", size: "sm", onClick: onClearAll, children: labels?.clearAll ?? m.clearAll })
   ] });
 }
 function ToolbarBulk({ count, onClear, children, className, labels }) {
-  const { t } = chunkGWTYGDXC_cjs.useLafDefaults(lafDefaults9);
+  const { t } = chunkE6JUACLJ_cjs.useLafDefaults(lafDefaults8);
   const m = t.components.content.toolbar;
   return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: chunkFTHFEMX6_cjs.cn("flex w-full min-w-0 flex-wrap items-center gap-2", className), children: [
     /* @__PURE__ */ jsxRuntime.jsx("span", { role: "status", className: "me-1 text-sm font-medium text-fg", children: (labels?.selected ?? m.selected)(count) }),
@@ -6982,7 +6816,7 @@ function ToolbarBulk({ count, onClear, children, className, labels }) {
     onClear && /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { variant: "ghost", size: "sm", className: "ms-auto", onClick: onClear, children: labels?.clearSelection ?? m.clearSelection })
   ] });
 }
-var lafDefaults10 = { content: contentEn };
+var lafDefaults9 = { content: contentEn };
 var titleSize = { md: "text-base", lg: "text-lg", xl: "text-xl", "2xl": "text-2xl", "3xl": "text-3xl", "4xl": "text-4xl" };
 var defaultTitleSize = { h1: "2xl", h2: "xl", h3: "lg", h4: "md", h5: "md", h6: "md" };
 function Title4({ headingLevel: Tag = "h2", size, className, ...props }) {
@@ -7042,42 +6876,42 @@ function Stack({ gap = "md", className, ...props }) {
 function StackItem({ fill, className, ...props }) {
   return /* @__PURE__ */ jsxRuntime.jsx("div", { className: chunkFTHFEMX6_cjs.cn(fill && "flex-1", className), ...props });
 }
-var DlContext = React25__namespace.createContext({ layout: "vertical", compact: false });
+var DlContext = React24__namespace.createContext({ layout: "vertical", compact: false });
 var gridCols = { 1: "grid-cols-1", 2: "grid-cols-1 sm:grid-cols-2", 3: "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3", 4: "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4" };
 function DescriptionList({ layout = "vertical", columns = 2, compact = false, className, ...props }) {
-  const ctx = React25__namespace.useMemo(() => ({ layout, compact }), [layout, compact]);
+  const ctx = React24__namespace.useMemo(() => ({ layout, compact }), [layout, compact]);
   return /* @__PURE__ */ jsxRuntime.jsx(DlContext.Provider, { value: ctx, children: /* @__PURE__ */ jsxRuntime.jsx("dl", { className: chunkFTHFEMX6_cjs.cn("m-0 grid", compact ? "gap-x-4 gap-y-2" : "gap-x-6 gap-y-3.5", layout === "grid" ? gridCols[columns] : "grid-cols-1", className), ...props }) });
 }
 function DescriptionListGroup({ className, ...props }) {
-  const { layout } = React25__namespace.useContext(DlContext);
+  const { layout } = React24__namespace.useContext(DlContext);
   return /* @__PURE__ */ jsxRuntime.jsx("div", { className: chunkFTHFEMX6_cjs.cn("min-w-0", layout === "horizontal" && "grid grid-cols-[minmax(6rem,12rem)_1fr] gap-x-4", className), ...props });
 }
 function DescriptionListTerm({ icon, className, children, ...props }) {
-  const { layout, compact } = React25__namespace.useContext(DlContext);
+  const { layout, compact } = React24__namespace.useContext(DlContext);
   return /* @__PURE__ */ jsxRuntime.jsxs("dt", { className: chunkFTHFEMX6_cjs.cn("flex items-center gap-1.5 text-[0.6875rem] tracking-wider text-subtle uppercase", layout !== "horizontal" && (compact ? "mb-0" : "mb-0.5"), className), ...props, children: [
     icon,
     children
   ] });
 }
 function DescriptionListDescription({ mono, className, ...props }) {
-  const { compact } = React25__namespace.useContext(DlContext);
+  const { compact } = React24__namespace.useContext(DlContext);
   return /* @__PURE__ */ jsxRuntime.jsx("dd", { className: chunkFTHFEMX6_cjs.cn("m-0 min-w-0 break-words text-fg", compact ? "text-xs" : "text-sm", mono && "font-mono break-all", className), ...props });
 }
 function nodeText(node) {
   if (node == null || typeof node === "boolean") return "";
   if (typeof node === "string" || typeof node === "number") return String(node);
   if (Array.isArray(node)) return node.map(nodeText).join("");
-  if (React25__namespace.isValidElement(node)) return nodeText(node.props.children);
+  if (React24__namespace.isValidElement(node)) return nodeText(node.props.children);
   return "";
 }
 function CodeBlockCode({ children }) {
   return /* @__PURE__ */ jsxRuntime.jsx(jsxRuntime.Fragment, { children });
 }
 function CodeBlock({ code, children, language, lineNumbers, wrap, defaultWrap = false, onWrapChange, wrapToggle, maxHeight, copy = true, actions, label, className, labels }) {
-  const { t } = chunkGWTYGDXC_cjs.useLafDefaults(lafDefaults10);
+  const { t } = chunkE6JUACLJ_cjs.useLafDefaults(lafDefaults9);
   const m = t.components.content.codeBlock;
   const text = code ?? nodeText(children);
-  const [wrapped, setWrapped] = chunkXNG22HMC_cjs.useControllableState({ value: wrap, defaultValue: defaultWrap, onChange: onWrapChange });
+  const [wrapped, setWrapped] = chunkYGX6XE22_cjs.useControllableState({ value: wrap, defaultValue: defaultWrap, onChange: onWrapChange });
   const lines = text.replace(/\n$/, "").split("\n");
   const hasHeader = !!language || copy || !!actions || wrapToggle;
   return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: chunkFTHFEMX6_cjs.cn("min-w-0 overflow-hidden rounded-md border border-line bg-input", className), children: [
@@ -7127,11 +6961,11 @@ function ClipboardCopy({
   className,
   labels
 }) {
-  const { t } = chunkGWTYGDXC_cjs.useLafDefaults(lafDefaults10);
+  const { t } = chunkE6JUACLJ_cjs.useLafDefaults(lafDefaults9);
   const m = t.components.content.clipboard;
-  const [text, setText] = chunkXNG22HMC_cjs.useControllableState({ value, defaultValue: defaultValue ?? nodeText(children), onChange });
-  const [open, setOpen] = chunkXNG22HMC_cjs.useControllableState({ value: expanded, defaultValue: defaultExpanded, onChange: onExpandedChange });
-  const id = React25__namespace.useId();
+  const [text, setText] = chunkYGX6XE22_cjs.useControllableState({ value, defaultValue: defaultValue ?? nodeText(children), onChange });
+  const [open, setOpen] = chunkYGX6XE22_cjs.useControllableState({ value: expanded, defaultValue: defaultExpanded, onChange: onExpandedChange });
+  const id = React24__namespace.useId();
   const copyProps = { value: text, label: hoverTip ?? m.copy, copiedLabel: clickTip ?? m.copied };
   const report = onCopy ? { onClickCapture: () => onCopy(text) } : {};
   if (variant === "inline-compact") {
@@ -7146,17 +6980,17 @@ function ClipboardCopy({
   return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: chunkFTHFEMX6_cjs.cn("min-w-0", className), children: [
     /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex items-center gap-1", ...report, children: [
       expandable2 && /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { variant: "ghost", size: "sm", "aria-expanded": open, "aria-controls": `${id}-full`, "aria-label": toggle, onClick: () => setOpen(!open), children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.ChevronRight, { className: chunkFTHFEMX6_cjs.cn("size-4 transition-transform rtl:rotate-180", open && "rotate-90 rtl:rotate-90"), "aria-hidden": true }) }),
-      /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Input, { readOnly, "aria-label": fieldLabel, value: expandable2 && open ? text.split("\n")[0] : text, onChange: (e) => setText(e.target.value), className: "min-w-0 flex-1 font-mono text-[0.8125rem]" }),
+      /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.Input, { readOnly, "aria-label": fieldLabel, value: expandable2 && open ? text.split("\n")[0] : text, onChange: (e) => setText(e.target.value), className: "min-w-0 flex-1 font-mono text-[0.8125rem]" }),
       /* @__PURE__ */ jsxRuntime.jsx(CopyButton, { ...copyProps })
     ] }),
-    expandable2 && open && /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Textarea, { id: `${id}-full`, readOnly, "aria-label": fieldLabel, value: text, rows: Math.min(12, text.split("\n").length + 1), onChange: (e) => setText(e.target.value), className: "mt-1 w-full font-mono text-[0.8125rem]" })
+    expandable2 && open && /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.Textarea, { id: `${id}-full`, readOnly, "aria-label": fieldLabel, value: text, rows: Math.min(12, text.split("\n").length + 1), onChange: (e) => setText(e.target.value), className: "mt-1 w-full font-mono text-[0.8125rem]" })
   ] });
 }
 function Form({ className, ...props }) {
   return /* @__PURE__ */ jsxRuntime.jsx("form", { className: chunkFTHFEMX6_cjs.cn("grid gap-4", className), ...props });
 }
 function FormGroup({ label, fieldId, required, fieldset, labelInfo, className, children, labels }) {
-  const { t } = chunkGWTYGDXC_cjs.useLafDefaults(lafDefaults10);
+  const { t } = chunkE6JUACLJ_cjs.useLafDefaults(lafDefaults9);
   const mark = required && /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
     /* @__PURE__ */ jsxRuntime.jsx("span", { "aria-hidden": "true", className: "ms-0.5 text-danger", children: "*" }),
     " ",
@@ -7202,25 +7036,25 @@ function HelperText({ className, ...props }) {
 var helperTone = { default: "text-muted", success: "text-ok", warning: "text-warn", error: "text-danger" };
 var helperIcon = { default: null, success: lucideReact.CheckCircle2, warning: lucideReact.TriangleAlert, error: lucideReact.AlertCircle };
 function HelperTextItem({ variant = "default", icon, className, children, ...props }) {
-  const Icon2 = helperIcon[variant];
+  const Icon = helperIcon[variant];
   return /* @__PURE__ */ jsxRuntime.jsxs("p", { role: variant === "error" ? "alert" : void 0, className: chunkFTHFEMX6_cjs.cn("m-0 flex items-center gap-1.5 text-xs", helperTone[variant], className), ...props, children: [
-    icon ?? (Icon2 && /* @__PURE__ */ jsxRuntime.jsx(Icon2, { className: "size-3.5 shrink-0", "aria-hidden": true })),
+    icon ?? (Icon && /* @__PURE__ */ jsxRuntime.jsx(Icon, { className: "size-3.5 shrink-0", "aria-hidden": true })),
     /* @__PURE__ */ jsxRuntime.jsx("span", { children })
   ] });
 }
 function FormHelperText({ className, ...props }) {
   return /* @__PURE__ */ jsxRuntime.jsx("div", { className: chunkFTHFEMX6_cjs.cn("mt-1", className), ...props });
 }
-var MenuToggle = React25__namespace.forwardRef(function MenuToggle2({ variant = "default", hideCaret, expanded, children, ...props }, ref) {
+var MenuToggle = React24__namespace.forwardRef(function MenuToggle2({ variant = "default", hideCaret, expanded, children, ...props }, ref) {
   return /* @__PURE__ */ jsxRuntime.jsxs(chunkIP6HZMS5_cjs.Button, { ref, type: "button", variant: variant === "primary" ? "primary" : variant === "plain" ? "ghost" : "secondary", "aria-expanded": expanded, ...props, children: [
     children,
     !hideCaret && /* @__PURE__ */ jsxRuntime.jsx(lucideReact.ChevronDown, { className: "size-4", "aria-hidden": true })
   ] });
 });
 function Dropdown({ toggle, open, defaultOpen, onOpenChange, align: align2 = "start", className, children }) {
-  return /* @__PURE__ */ jsxRuntime.jsxs(chunkAN24WGJJ_cjs.DropdownMenu, { open, defaultOpen, onOpenChange, children: [
-    /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.DropdownMenuTrigger, { asChild: true, children: toggle }),
-    /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.DropdownMenuContent, { align: align2, className, children })
+  return /* @__PURE__ */ jsxRuntime.jsxs(chunk77S32ZEH_cjs.DropdownMenu, { open, defaultOpen, onOpenChange, children: [
+    /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.DropdownMenuTrigger, { asChild: true, children: toggle }),
+    /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.DropdownMenuContent, { align: align2, className, children })
   ] });
 }
 function DropdownList({ children }) {
@@ -7228,12 +7062,12 @@ function DropdownList({ children }) {
 }
 function DropdownGroup({ label, children }) {
   return /* @__PURE__ */ jsxRuntime.jsxs("div", { role: "group", "aria-label": label, children: [
-    label && /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.DropdownMenuLabel, { children: label }),
+    label && /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.DropdownMenuLabel, { children: label }),
     children
   ] });
 }
 function DropdownItem({ icon, description, children, ...props }) {
-  return /* @__PURE__ */ jsxRuntime.jsxs(chunkAN24WGJJ_cjs.DropdownMenuItem, { ...props, children: [
+  return /* @__PURE__ */ jsxRuntime.jsxs(chunk77S32ZEH_cjs.DropdownMenuItem, { ...props, children: [
     icon,
     /* @__PURE__ */ jsxRuntime.jsxs("span", { className: "min-w-0 flex-1", children: [
       children,
@@ -7241,14 +7075,14 @@ function DropdownItem({ icon, description, children, ...props }) {
     ] })
   ] });
 }
-var DropdownSeparator = chunkAN24WGJJ_cjs.DropdownMenuSeparator;
-var ModalContext = React25__namespace.createContext({ setHasDescription() {
+var DropdownSeparator = chunk77S32ZEH_cjs.DropdownMenuSeparator;
+var ModalContext = React24__namespace.createContext({ setHasDescription() {
 } });
 var modalSize = { sm: "max-w-sm", md: "max-w-md", lg: "max-w-2xl", xl: "max-w-4xl" };
 function Modal({ open, defaultOpen, onOpenChange, onClose, trigger, size = "md", "aria-label": ariaLabel, className, children }) {
-  const { portalContainer } = chunkGWTYGDXC_cjs.useLaf();
-  const [hasDescription, setHasDescription] = React25__namespace.useState(false);
-  const ctx = React25__namespace.useMemo(() => ({ setHasDescription }), []);
+  const { portalContainer } = chunkE6JUACLJ_cjs.useLaf();
+  const [hasDescription, setHasDescription] = React24__namespace.useState(false);
+  const ctx = React24__namespace.useMemo(() => ({ setHasDescription }), []);
   return /* @__PURE__ */ jsxRuntime.jsxs(
     DialogPrimitive3__namespace.Root,
     {
@@ -7279,10 +7113,10 @@ function Modal({ open, defaultOpen, onOpenChange, onClose, trigger, size = "md",
 var ModalTrigger = DialogPrimitive3__namespace.Trigger;
 var ModalClose = DialogPrimitive3__namespace.Close;
 function ModalHeader({ title, description, className, children }) {
-  const { t } = chunkGWTYGDXC_cjs.useLaf();
-  const { setHasDescription } = React25__namespace.useContext(ModalContext);
+  const { t } = chunkE6JUACLJ_cjs.useLaf();
+  const { setHasDescription } = React24__namespace.useContext(ModalContext);
   const has = !!description;
-  React25__namespace.useEffect(() => {
+  React24__namespace.useEffect(() => {
     setHasDescription(has);
     return () => setHasDescription(false);
   }, [has, setHasDescription]);
@@ -7301,14 +7135,14 @@ function ModalBody({ className, ...props }) {
 function ModalFooter({ className, ...props }) {
   return /* @__PURE__ */ jsxRuntime.jsx("div", { className: chunkFTHFEMX6_cjs.cn("popup-foot shrink-0", className), ...props });
 }
-var lafDefaults11 = { ui: chunkAN24WGJJ_cjs.uiEn };
+var lafDefaults10 = { ui: chunk77S32ZEH_cjs.uiEn };
 function useAppFrameLabels(labels) {
-  const ui = chunkGWTYGDXC_cjs.useLafDefaults(lafDefaults11).t.components.ui.appFrame;
-  return React25__namespace.useMemo(() => ({ ...ui, ...labels }), [ui, labels]);
+  const ui = chunkE6JUACLJ_cjs.useLafDefaults(lafDefaults10).t.components.ui.appFrame;
+  return React24__namespace.useMemo(() => ({ ...ui, ...labels }), [ui, labels]);
 }
 var NARROW_QUERY = "(max-width: 859px)";
 function useMediaQuery(query) {
-  return React25__namespace.useSyncExternalStore(
+  return React24__namespace.useSyncExternalStore(
     (cb) => {
       if (typeof window === "undefined" || !window.matchMedia) return () => {
       };
@@ -7337,7 +7171,7 @@ function writeStored(key, value) {
 }
 var noop = () => {
 };
-var AppFrameContext = React25__namespace.createContext({
+var AppFrameContext = React24__namespace.createContext({
   active: false,
   isMobile: false,
   sidebarOpen: true,
@@ -7349,7 +7183,7 @@ var AppFrameContext = React25__namespace.createContext({
   navigated: noop
 });
 function useAppFrame() {
-  return React25__namespace.useContext(AppFrameContext);
+  return React24__namespace.useContext(AppFrameContext);
 }
 var placementOf = (p) => p === "left" || p === "start" ? "start" : p === "bottom" ? "bottom" : "end";
 function AppFrame({
@@ -7371,29 +7205,29 @@ function AppFrame({
   children
 }) {
   const l = useAppFrameLabels(labels);
-  const uid = React25__namespace.useId();
+  const uid = React24__namespace.useId();
   const mainId = mainIdProp ?? `${uid}-main`;
   const sidebarId = `${uid}-sidebar`;
   const isMobile = useMediaQuery(NARROW_QUERY);
   const storageKey2 = persistKey ? `${persistKey}:sidebar` : void 0;
-  const [initialOpen] = React25__namespace.useState(() => {
+  const [initialOpen] = React24__namespace.useState(() => {
     const stored = readStored2(storageKey2);
     return stored === null ? defaultSidebarOpen : stored === "1";
   });
-  const [desktopOpen, setDesktopOpenRaw] = chunkXNG22HMC_cjs.useControllableState({ value: sidebarOpen, defaultValue: initialOpen, onChange: onSidebarOpenChange });
-  const setDesktopOpen = React25__namespace.useCallback(
+  const [desktopOpen, setDesktopOpenRaw] = chunkYGX6XE22_cjs.useControllableState({ value: sidebarOpen, defaultValue: initialOpen, onChange: onSidebarOpenChange });
+  const setDesktopOpen = React24__namespace.useCallback(
     (open2) => {
       setDesktopOpenRaw(open2);
       writeStored(storageKey2, open2 ? "1" : "0");
     },
     [setDesktopOpenRaw, storageKey2]
   );
-  const [mobileOpen, setMobileOpen] = React25__namespace.useState(false);
-  React25__namespace.useEffect(() => {
+  const [mobileOpen, setMobileOpen] = React24__namespace.useState(false);
+  React24__namespace.useEffect(() => {
     if (!isMobile) setMobileOpen(false);
   }, [isMobile]);
-  const sidebarRef = React25__namespace.useRef(null);
-  React25__namespace.useEffect(() => {
+  const sidebarRef = React24__namespace.useRef(null);
+  React24__namespace.useEffect(() => {
     if (!isMobile || !mobileOpen) return;
     const opener = document.activeElement;
     sidebarRef.current?.querySelector('[tabindex="0"], a[href], button:not([disabled])')?.focus();
@@ -7408,8 +7242,8 @@ function AppFrame({
   }, [isMobile, mobileOpen]);
   const open = isMobile ? mobileOpen : desktopOpen;
   const rail = !isMobile && sidebarCollapse === "rail" && !desktopOpen;
-  const setOpen = React25__namespace.useCallback((o) => isMobile ? setMobileOpen(o) : setDesktopOpen(o), [isMobile, setDesktopOpen]);
-  const ctx = React25__namespace.useMemo(
+  const setOpen = React24__namespace.useCallback((o) => isMobile ? setMobileOpen(o) : setDesktopOpen(o), [isMobile, setDesktopOpen]);
+  const ctx = React24__namespace.useMemo(
     () => ({
       active: true,
       isMobile,
@@ -7423,7 +7257,7 @@ function AppFrame({
     }),
     [isMobile, open, setOpen, rail, sidebarId, mainId]
   );
-  const placement = placementOf(drawerPlacement ?? (React25__namespace.isValidElement(drawer) ? drawer.props.placement : void 0));
+  const placement = placementOf(drawerPlacement ?? (React24__namespace.isValidElement(drawer) ? drawer.props.placement : void 0));
   const sidebarVisible = isMobile ? mobileOpen : desktopOpen || sidebarCollapse === "rail";
   return /* @__PURE__ */ jsxRuntime.jsx(AppFrameContext.Provider, { value: ctx, children: /* @__PURE__ */ jsxRuntime.jsxs("div", { className: chunkFTHFEMX6_cjs.cn("relative flex h-dvh min-h-0 flex-col overflow-hidden", className), children: [
     /* @__PURE__ */ jsxRuntime.jsx(
@@ -7523,16 +7357,16 @@ var modeIcon = { light: lucideReact.Sun, dark: lucideReact.Moon, system: lucideR
 var modes = ["light", "dark", "system"];
 function ThemeToggle({ value, defaultValue = "system", onChange, onResolvedChange, persistKey, apply = true, variant = "menu", labels, className }) {
   const l = useAppFrameLabels(labels);
-  const [initial] = React25__namespace.useState(() => {
+  const [initial] = React24__namespace.useState(() => {
     const s = readStored2(persistKey);
     return s === "light" || s === "dark" || s === "system" ? s : defaultValue;
   });
-  const [mode, setMode] = chunkXNG22HMC_cjs.useControllableState({ value, defaultValue: initial, onChange });
+  const [mode, setMode] = chunkYGX6XE22_cjs.useControllableState({ value, defaultValue: initial, onChange });
   const systemDark = useMediaQuery(DARK_QUERY);
   const resolved = mode === "system" ? systemDark ? "dark" : "light" : mode;
-  const onResolved = React25__namespace.useRef(onResolvedChange);
+  const onResolved = React24__namespace.useRef(onResolvedChange);
   onResolved.current = onResolvedChange;
-  React25__namespace.useEffect(() => {
+  React24__namespace.useEffect(() => {
     if (typeof apply === "function") apply(resolved);
     else if (apply) document.documentElement.dataset.theme = resolved;
     onResolved.current?.(resolved);
@@ -7542,7 +7376,7 @@ function ThemeToggle({ value, defaultValue = "system", onChange, onResolvedChang
     writeStored(persistKey, m);
   };
   const names = { light: l.themeLight, dark: l.themeDark, system: l.themeSystem };
-  const Icon2 = modeIcon[mode];
+  const Icon = modeIcon[mode];
   if (variant === "segmented") {
     return /* @__PURE__ */ jsxRuntime.jsx("div", { role: "group", "aria-label": l.theme, className: chunkFTHFEMX6_cjs.cn("inline-flex rounded-md border border-line", className), children: modes.map((m) => {
       const I = modeIcon[m];
@@ -7560,9 +7394,9 @@ function ThemeToggle({ value, defaultValue = "system", onChange, onResolvedChang
       );
     }) });
   }
-  return /* @__PURE__ */ jsxRuntime.jsxs(chunkAN24WGJJ_cjs.DropdownMenu, { children: [
-    /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.DropdownMenuTrigger, { asChild: true, children: /* @__PURE__ */ jsxRuntime.jsx("button", { type: "button", "aria-label": l.themeCurrent(names[mode]), className: chunkFTHFEMX6_cjs.cn("btn btn-ghost btn-sm auto", className), children: /* @__PURE__ */ jsxRuntime.jsx(Icon2, { "aria-hidden": true }) }) }),
-    /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.DropdownMenuContent, { children: /* @__PURE__ */ jsxRuntime.jsx(DropdownPrimitive2__namespace.RadioGroup, { value: mode, onValueChange: (v) => choose(v), children: modes.map((m) => {
+  return /* @__PURE__ */ jsxRuntime.jsxs(chunk77S32ZEH_cjs.DropdownMenu, { children: [
+    /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.DropdownMenuTrigger, { asChild: true, children: /* @__PURE__ */ jsxRuntime.jsx("button", { type: "button", "aria-label": l.themeCurrent(names[mode]), className: chunkFTHFEMX6_cjs.cn("btn btn-ghost btn-sm auto", className), children: /* @__PURE__ */ jsxRuntime.jsx(Icon, { "aria-hidden": true }) }) }),
+    /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.DropdownMenuContent, { children: /* @__PURE__ */ jsxRuntime.jsx(DropdownPrimitive2__namespace.RadioGroup, { value: mode, onValueChange: (v) => choose(v), children: modes.map((m) => {
       const I = modeIcon[m];
       return /* @__PURE__ */ jsxRuntime.jsxs(DropdownPrimitive2__namespace.RadioItem, { value: m, className: "dropdown-item outline-none data-[highlighted]:bg-surface-hover data-[highlighted]:text-fg data-[state=checked]:text-fg", children: [
         /* @__PURE__ */ jsxRuntime.jsx(I, { "aria-hidden": true, className: "size-4" }),
@@ -7596,7 +7430,7 @@ function FooterAnchor({ link, hint }) {
 }
 function AppFooter({ start, center, end, copyright, version, build, links, linkGroups, status, variant = "default", labels, className }) {
   const l = useAppFrameLabels(labels);
-  const uid = React25__namespace.useId();
+  const uid = React24__namespace.useId();
   const b = typeof build === "string" ? { commit: build } : build;
   const buildText = b && [b.env, b.commit, b.date].filter(Boolean).join(" \xB7 ");
   const compact = variant === "compact";
@@ -7619,7 +7453,7 @@ function AppFooter({ start, center, end, copyright, version, build, links, linkG
     center
   ] });
   const endItems = (status || end) && /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex flex-wrap items-center justify-end gap-x-4 gap-y-1", children: [
-    status && /* @__PURE__ */ jsxRuntime.jsx(StatusDot, { tone: status.tone, pulse: status.pulse, label: status.label, className: "text-[inherit]" }),
+    status && /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.StatusDot, { tone: status.tone, pulse: status.pulse, label: status.label, className: "text-[inherit]" }),
     end
   ] });
   return /* @__PURE__ */ jsxRuntime.jsxs("footer", { className: chunkFTHFEMX6_cjs.cn("shrink-0 border-t border-line bg-[rgba(12,12,16,0.72)] text-muted backdrop-blur-md", compact ? "text-[0.8125rem]" : "text-sm", className), children: [
@@ -7637,7 +7471,7 @@ function AppFooter({ start, center, end, copyright, version, build, links, linkG
 function PageHeader({ breadcrumb, icon, title, subtitle, badges, actions, help, headingLevel = 1, labels, className }) {
   const l = useAppFrameLabels(labels);
   const Heading = `h${headingLevel}`;
-  const crumbs = Array.isArray(breadcrumb) ? /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Breadcrumb, { items: breadcrumb }) : breadcrumb;
+  const crumbs = Array.isArray(breadcrumb) ? /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.Breadcrumb, { items: breadcrumb }) : breadcrumb;
   return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: chunkFTHFEMX6_cjs.cn("flex flex-col gap-3 px-6 pt-6 pb-4 max-[859px]:px-4", className), children: [
     crumbs && /* @__PURE__ */ jsxRuntime.jsx("div", { children: crumbs }),
     /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex flex-wrap items-start gap-x-4 gap-y-3", children: [
@@ -7676,13 +7510,13 @@ function PageSection({ padding = "md", filled, sticky, className, ...props }) {
 }
 var isItem = (e) => !e.type || e.type === "item";
 var textOf3 = (it) => it.textValue ?? (typeof it.label === "string" ? it.label : it.id);
-var isGroup2 = (it) => !!it.children?.some(isItem);
+var isGroup = (it) => !!it.children?.some(isItem);
 var safeId = (s) => s.replace(/\s+/g, "_");
 function visibleRows(entries, expanded, rail, parent, out = []) {
   for (const e of entries) {
     if (!isItem(e)) continue;
     if (!e.disabled) out.push({ item: e, parent });
-    if (!rail && isGroup2(e) && expanded.has(e.id)) visibleRows(e.children, expanded, rail, e, out);
+    if (!rail && isGroup(e) && expanded.has(e.id)) visibleRows(e.children, expanded, rail, e, out);
   }
   return out;
 }
@@ -7709,20 +7543,20 @@ function NavTree({ items, label, current, onSelect, expanded: expandedProp, defa
   const l = useAppFrameLabels(labels);
   const frame = useAppFrame();
   const rail = collapsed ?? frame.rail;
-  const uid = React25__namespace.useId();
+  const uid = React24__namespace.useId();
   const currentId = currentOf(items, current);
-  const [expandedIds, setExpanded] = chunkXNG22HMC_cjs.useControllableState({
+  const [expandedIds, setExpanded] = chunkYGX6XE22_cjs.useControllableState({
     value: expandedProp,
     defaultValue: defaultExpanded ?? (currentId ? ancestorsOf(items, currentId) ?? [] : []),
     onChange: onExpandedChange
   });
-  const expanded = React25__namespace.useMemo(() => new Set(expandedIds), [expandedIds]);
-  const [activeId, setActiveId] = React25__namespace.useState();
+  const expanded = React24__namespace.useMemo(() => new Set(expandedIds), [expandedIds]);
+  const [activeId, setActiveId] = React24__namespace.useState();
   const rows = visibleRows(items, expanded, rail);
   const active = rows.find((r) => r.item.id === activeId)?.item.id ?? rows.find((r) => r.item.id === currentId)?.item.id ?? rows[0]?.item.id;
-  const rootRef = React25__namespace.useRef(null);
-  const typed = React25__namespace.useRef({ text: "", timer: 0 });
-  React25__namespace.useEffect(() => () => clearTimeout(typed.current.timer), []);
+  const rootRef = React24__namespace.useRef(null);
+  const typed = React24__namespace.useRef({ text: "", timer: 0 });
+  React24__namespace.useEffect(() => () => clearTimeout(typed.current.timer), []);
   const focusRow = (id) => {
     setActiveId(id);
     [...rootRef.current?.querySelectorAll("[data-nav-id]") ?? []].find((el) => el.dataset.navId === id)?.focus();
@@ -7756,10 +7590,10 @@ function NavTree({ items, label, current, onSelect, expanded: expandedProp, defa
         const rtl = getComputedStyle(e.currentTarget).direction === "rtl";
         const forward = e.key === "ArrowRight" !== rtl;
         if (forward) {
-          if (!isGroup2(row.item) || rail) return;
+          if (!isGroup(row.item) || rail) return;
           if (!expanded.has(row.item.id)) setOpen(row.item.id, true);
           else go(i + 1);
-        } else if (isGroup2(row.item) && expanded.has(row.item.id) && !rail) setOpen(row.item.id, false);
+        } else if (isGroup(row.item) && expanded.has(row.item.id) && !rail) setOpen(row.item.id, false);
         else if (row.parent) focusRow(row.parent.id);
         else return;
         break;
@@ -7783,7 +7617,7 @@ function NavTree({ items, label, current, onSelect, expanded: expandedProp, defa
       e.preventDefault();
       return;
     }
-    if (isGroup2(it)) {
+    if (isGroup(it)) {
       if (rail) {
         frame.setSidebarOpen(true);
         setOpen(it.id, true);
@@ -7796,7 +7630,7 @@ function NavTree({ items, label, current, onSelect, expanded: expandedProp, defa
     frame.navigated();
   };
   const renderItem = (it) => {
-    const group = isGroup2(it);
+    const group = isGroup(it);
     const open = group && expanded.has(it.id);
     const isCurrent = !group && (it.current ?? it.id === current);
     const within = group && currentId !== void 0 && !open && !!ancestorsOf(items, currentId)?.includes(it.id);
@@ -7805,7 +7639,7 @@ function NavTree({ items, label, current, onSelect, expanded: expandedProp, defa
     const content = /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
       it.icon ? /* @__PURE__ */ jsxRuntime.jsx("span", { "aria-hidden": true, className: "flex shrink-0 [&>svg]:size-4", children: it.icon }) : rail && /* @__PURE__ */ jsxRuntime.jsx("span", { "aria-hidden": true, className: "flex size-4 shrink-0 items-center justify-center text-xs font-semibold uppercase", children: text.charAt(0) }),
       !rail && /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
-        /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.TruncatedText, { className: "flex-1", children: it.label }),
+        /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.TruncatedText, { className: "flex-1", children: it.label }),
         it.badge && /* @__PURE__ */ jsxRuntime.jsx("span", { className: "ms-auto shrink-0", children: it.badge }),
         group && /* @__PURE__ */ jsxRuntime.jsx(lucideReact.ChevronDown, { "aria-hidden": true, className: chunkFTHFEMX6_cjs.cn("size-4 shrink-0 transition-transform motion-reduce:transition-none", open && "rotate-180") })
       ] })
@@ -7829,7 +7663,7 @@ function NavTree({ items, label, current, onSelect, expanded: expandedProp, defa
     else el = /* @__PURE__ */ jsxRuntime.jsx("button", { type: "button", ...props });
     if (rail) {
       el = /* @__PURE__ */ jsxRuntime.jsx(
-        chunkAN24WGJJ_cjs.Tooltip,
+        chunk77S32ZEH_cjs.Tooltip,
         {
           side: "right",
           content: /* @__PURE__ */ jsxRuntime.jsxs("span", { className: "flex items-center gap-2", children: [
@@ -7860,7 +7694,7 @@ function NavTree({ items, label, current, onSelect, expanded: expandedProp, defa
       ] }, s.key);
     });
   };
-  return /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.TooltipProvider, { children: /* @__PURE__ */ jsxRuntime.jsx(
+  return /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.TooltipProvider, { children: /* @__PURE__ */ jsxRuntime.jsx(
     "nav",
     {
       ref: rootRef,
@@ -7886,7 +7720,7 @@ function Sidebar({ items, tree, mode: modeProp, defaultMode, onModeChange, heade
   const l = useAppFrameLabels(labels);
   const frame = useAppFrame();
   const rail = collapsed ?? frame.rail;
-  const [mode, setMode] = chunkXNG22HMC_cjs.useControllableState({ value: modeProp, defaultValue: defaultMode ?? (items ? "nav" : "tree"), onChange: onModeChange });
+  const [mode, setMode] = chunkYGX6XE22_cjs.useControllableState({ value: modeProp, defaultValue: defaultMode ?? (items ? "nav" : "tree"), onChange: onModeChange });
   const both = !!items && !!tree;
   const shown = items && (mode === "nav" || !tree || rail) ? "nav" : tree && !rail ? "tree" : void 0;
   const switchBtn = (m, text) => /* @__PURE__ */ jsxRuntime.jsx(
@@ -7955,15 +7789,15 @@ function DrawerPanel({
   const bottom = placement === "bottom";
   const narrow = useMediaQuery(NARROW_QUERY);
   const overlay = mode === "overlay" || narrow;
-  const [open, setOpen] = chunkXNG22HMC_cjs.useControllableState({ value: openProp, defaultValue: defaultOpen, onChange: onOpenChange });
-  const [collapsed, setCollapsed] = chunkXNG22HMC_cjs.useControllableState({ value: collapsedProp, defaultValue: defaultCollapsed, onChange: onCollapsedChange });
-  const [size, setSize] = chunkXNG22HMC_cjs.useControllableState({ value: sizeProp, defaultValue: defaultSize, onChange: onSizeChange });
+  const [open, setOpen] = chunkYGX6XE22_cjs.useControllableState({ value: openProp, defaultValue: defaultOpen, onChange: onOpenChange });
+  const [collapsed, setCollapsed] = chunkYGX6XE22_cjs.useControllableState({ value: collapsedProp, defaultValue: defaultCollapsed, onChange: onCollapsedChange });
+  const [size, setSize] = chunkYGX6XE22_cjs.useControllableState({ value: sizeProp, defaultValue: defaultSize, onChange: onSizeChange });
   const clamp = (n) => Math.min(maxSize, Math.max(minSize, n));
-  const titleId = React25__namespace.useId();
-  const ref = React25__namespace.useRef(null);
-  const wasOpen = React25__namespace.useRef(open);
-  const opener = React25__namespace.useRef(null);
-  React25__namespace.useEffect(() => {
+  const titleId = React24__namespace.useId();
+  const ref = React24__namespace.useRef(null);
+  const wasOpen = React24__namespace.useRef(open);
+  const opener = React24__namespace.useRef(null);
+  React24__namespace.useEffect(() => {
     if (!manageFocus) return;
     if (open && !wasOpen.current) {
       opener.current = document.activeElement;
@@ -7973,7 +7807,7 @@ function DrawerPanel({
     }
     wasOpen.current = open;
   }, [open, manageFocus]);
-  const drag = React25__namespace.useRef(null);
+  const drag = React24__namespace.useRef(null);
   const isRtl = () => !!ref.current && getComputedStyle(ref.current).direction === "rtl";
   const grow = (dx, dy) => {
     if (bottom) return -dy;
@@ -8058,318 +7892,1302 @@ function DrawerPanel({
   );
 }
 var InlineDrawer = DrawerPanel;
+var lafDefaults11 = { dashboard: chunk77S32ZEH_cjs.dashboardEn };
+var useLaf6 = () => chunkE6JUACLJ_cjs.useLafDefaults(lafDefaults11);
+function ErrorBlock({ message, onRetry }) {
+  const { t } = useLaf6();
+  return /* @__PURE__ */ jsxRuntime.jsxs("div", { role: "alert", className: "flex flex-wrap items-center gap-2 text-sm text-danger", children: [
+    /* @__PURE__ */ jsxRuntime.jsx("span", { className: "min-w-0", children: message }),
+    onRetry && /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { size: "sm", variant: "secondary", onClick: onRetry, children: t.components.dashboard.metric.retry })
+  ] });
+}
+function Delta({ delta, goodWhen, period }) {
+  const { t, format: format2 } = useLaf6();
+  const d = typeof delta === "number" ? { value: delta } : delta;
+  const trend = d.trend ?? (d.value > 0 ? "up" : d.value < 0 ? "down" : "neutral");
+  const text = d.text ?? `${d.value > 0 ? "+" : ""}${format2.percent(d.value / 100, { fractionDigits: 1 })}`;
+  const good = trend === "neutral" ? void 0 : trend === goodWhen;
+  const m = t.components.dashboard.metric;
+  const Icon = trend === "up" ? lucideReact.ArrowUp : trend === "down" ? lucideReact.ArrowDown : lucideReact.Minus;
+  return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex flex-wrap items-center gap-x-1.5 text-xs", children: [
+    /* @__PURE__ */ jsxRuntime.jsxs("span", { "data-trend": trend, "data-good": good === void 0 ? void 0 : String(good), className: chunkFTHFEMX6_cjs.cn("inline-flex items-center gap-0.5 font-medium", good === void 0 ? "text-muted" : good ? "text-ok" : "text-danger"), children: [
+      /* @__PURE__ */ jsxRuntime.jsx(Icon, { "aria-hidden": true, className: "size-3.5" }),
+      text,
+      /* @__PURE__ */ jsxRuntime.jsxs("span", { className: "sr-only", children: [
+        trend === "up" ? m.increase(text) : trend === "down" ? m.decrease(text) : m.unchanged,
+        good !== void 0 && `, ${good ? m.good : m.bad}`
+      ] })
+    ] }),
+    period && /* @__PURE__ */ jsxRuntime.jsx("span", { className: "text-muted", children: period })
+  ] });
+}
+function MetricCard({ label, value, unit, delta, goodWhen = "up", period, icon, sparkline, loading, error, onRetry, className, ...rest }) {
+  const { t } = useLaf6();
+  const id = React24__namespace.useId();
+  const m = t.components.dashboard.metric;
+  const interactive2 = !!rest.href || !!rest.onClick;
+  return /* @__PURE__ */ jsxRuntime.jsxs(chunk77S32ZEH_cjs.Card, { variant: "default", compact: true, ...rest, loading: false, "aria-busy": loading || void 0, ...interactive2 ? {} : { role: "group", "aria-labelledby": id }, className: chunkFTHFEMX6_cjs.cn("gap-1.5", className), children: [
+    /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex items-center gap-2 text-xs text-muted", children: [
+      icon && /* @__PURE__ */ jsxRuntime.jsx("span", { "aria-hidden": true, className: "inline-flex shrink-0 [&_svg]:size-4", children: icon }),
+      /* @__PURE__ */ jsxRuntime.jsx("span", { id, className: "min-w-0 truncate", children: label })
+    ] }),
+    loading ? /* @__PURE__ */ jsxRuntime.jsxs("div", { role: "status", "aria-label": m.loading, className: "grid gap-2", children: [
+      /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.Skeleton, { className: "h-7 w-24" }),
+      /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.Skeleton, { className: "h-3 w-32" })
+    ] }) : error ? /* @__PURE__ */ jsxRuntime.jsx(ErrorBlock, { message: typeof error === "string" ? error : m.error, onRetry }) : /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
+      /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex items-end justify-between gap-3", children: [
+        /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "min-w-0 text-2xl leading-tight font-semibold tabular-nums", children: [
+          value,
+          unit && /* @__PURE__ */ jsxRuntime.jsx("span", { className: "ms-1 text-sm font-normal text-muted", children: unit })
+        ] }),
+        sparkline && sparkline.length > 1 && /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.Sparkline, { data: sparkline, label: m.trend(label), className: "shrink-0" })
+      ] }),
+      delta !== void 0 && /* @__PURE__ */ jsxRuntime.jsx(Delta, { delta, goodWhen, period }),
+      delta === void 0 && period && /* @__PURE__ */ jsxRuntime.jsx("span", { className: "text-xs text-muted", children: period })
+    ] })
+  ] });
+}
+function MetricGrid({ min = "13rem", label, className, children }) {
+  return /* @__PURE__ */ jsxRuntime.jsx("div", { role: label ? "group" : void 0, "aria-label": label, className: chunkFTHFEMX6_cjs.cn("grid gap-3", className), style: { gridTemplateColumns: `repeat(auto-fit, minmax(min(100%, ${min}), 1fr))` }, children });
+}
+var toneStroke = { ok: "text-ok", warn: "text-warn", danger: "text-danger", primary: "text-primary" };
+function gaugeTone(value, thresholds = []) {
+  let tone = "primary";
+  for (const th of [...thresholds].sort((a, b) => a.value - b.value)) if (value >= th.value) tone = th.tone;
+  return tone;
+}
+var ARC = 0.75;
+var R = 42;
+var C = 2 * Math.PI * R;
+function RadialGauge({ value, min = 0, max = 100, unit, label, thresholds, formatValue = (v) => String(Math.round(v * 10) / 10), size = 128, className }) {
+  const { t } = useLaf6();
+  const g = t.components.dashboard.gauge;
+  const frac = max > min ? Math.min(1, Math.max(0, (value - min) / (max - min))) : 0;
+  const tone = gaugeTone(value, thresholds);
+  const stateText = thresholds?.length && tone !== "primary" ? g[tone] : void 0;
+  const text = `${formatValue(value)}${unit ?? ""}`;
+  const mark = (v) => {
+    const a = (135 + 270 * ((v - min) / (max - min))) * Math.PI / 180;
+    return { x1: 50 + (R - 6) * Math.cos(a), y1: 50 + (R - 6) * Math.sin(a), x2: 50 + (R + 6) * Math.cos(a), y2: 50 + (R + 6) * Math.sin(a) };
+  };
+  return /* @__PURE__ */ jsxRuntime.jsxs(
+    "div",
+    {
+      role: "meter",
+      "aria-label": label,
+      "aria-valuemin": min,
+      "aria-valuemax": max,
+      "aria-valuenow": value,
+      "aria-valuetext": `${g.valueText(text, `${formatValue(max)}${unit ?? ""}`)}${stateText ? `, ${stateText}` : ""}`,
+      className: chunkFTHFEMX6_cjs.cn("relative inline-grid shrink-0 place-items-center", className),
+      style: { width: size, height: size },
+      children: [
+        /* @__PURE__ */ jsxRuntime.jsxs("svg", { viewBox: "0 0 100 100", "aria-hidden": true, className: "absolute inset-0 size-full", "data-tone": tone, children: [
+          /* @__PURE__ */ jsxRuntime.jsx("circle", { cx: "50", cy: "50", r: R, fill: "none", stroke: "var(--bg-muted)", strokeWidth: "8", strokeLinecap: "butt", strokeDasharray: `${ARC * C} ${C}`, transform: "rotate(135 50 50)" }),
+          /* @__PURE__ */ jsxRuntime.jsx(
+            "circle",
+            {
+              cx: "50",
+              cy: "50",
+              r: R,
+              fill: "none",
+              stroke: "currentColor",
+              strokeWidth: "8",
+              strokeLinecap: "butt",
+              strokeDasharray: `${ARC * C * frac} ${C}`,
+              transform: "rotate(135 50 50)",
+              className: chunkFTHFEMX6_cjs.cn(toneStroke[tone], "motion-safe:transition-[stroke-dasharray] motion-safe:duration-500")
+            }
+          ),
+          thresholds?.map((th) => /* @__PURE__ */ jsxRuntime.jsx("line", { ...mark(th.value), stroke: "var(--border-strong)", strokeWidth: "1.5" }, `${th.tone}-${th.value}`))
+        ] }),
+        /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "relative grid place-items-center text-center leading-tight", children: [
+          /* @__PURE__ */ jsxRuntime.jsx("span", { className: "text-xl font-semibold tabular-nums", children: text }),
+          stateText && /* @__PURE__ */ jsxRuntime.jsx("span", { className: chunkFTHFEMX6_cjs.cn("text-xs font-medium", toneStroke[tone]), children: stateText })
+        ] })
+      ]
+    }
+  );
+}
+function GaugeCard({ title, description, loading, error, onRetry, value, min, max, unit, thresholds, formatValue, size, className, ...rest }) {
+  const { t } = useLaf6();
+  return /* @__PURE__ */ jsxRuntime.jsxs(chunk77S32ZEH_cjs.Card, { variant: "default", compact: true, ...rest, className, "aria-busy": loading || void 0, children: [
+    /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.CardHeader, { children: /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.CardTitle, { children: title }) }),
+    /* @__PURE__ */ jsxRuntime.jsxs(chunk77S32ZEH_cjs.CardBody, { className: "grid place-items-center gap-2", children: [
+      loading ? /* @__PURE__ */ jsxRuntime.jsx("div", { role: "status", "aria-label": t.components.dashboard.metric.loading, children: /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.Skeleton, { className: "size-28 rounded-full" }) }) : error ? /* @__PURE__ */ jsxRuntime.jsx(ErrorBlock, { message: typeof error === "string" ? error : t.components.dashboard.metric.error, onRetry }) : /* @__PURE__ */ jsxRuntime.jsx(RadialGauge, { value, min, max, unit, label: title, thresholds, formatValue, size }),
+      description && /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.CardDescription, { className: "text-center", children: description })
+    ] })
+  ] });
+}
+function ProgressCard({ title, description, value, max = 100, unit, meter, warnAt, dangerAt, formatValue = (v) => String(Math.round(v * 10) / 10), loading, error, onRetry, actions, className, ...rest }) {
+  const { t, format: format2 } = useLaf6();
+  return /* @__PURE__ */ jsxRuntime.jsxs(chunk77S32ZEH_cjs.Card, { variant: "default", compact: true, ...rest, className, "aria-busy": loading || void 0, children: [
+    /* @__PURE__ */ jsxRuntime.jsxs(chunk77S32ZEH_cjs.CardHeader, { children: [
+      /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.CardTitle, { children: title }),
+      actions
+    ] }),
+    /* @__PURE__ */ jsxRuntime.jsxs(chunk77S32ZEH_cjs.CardBody, { className: "grid gap-2", children: [
+      loading ? /* @__PURE__ */ jsxRuntime.jsxs("div", { role: "status", "aria-label": t.components.dashboard.metric.loading, className: "grid gap-2", children: [
+        /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.Skeleton, { className: "h-6 w-32" }),
+        /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.Skeleton, { className: "h-1.5 w-full" })
+      ] }) : error ? /* @__PURE__ */ jsxRuntime.jsx(ErrorBlock, { message: typeof error === "string" ? error : t.components.dashboard.metric.error, onRetry }) : /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
+        /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex items-baseline justify-between gap-2 tabular-nums", children: [
+          /* @__PURE__ */ jsxRuntime.jsxs("span", { className: "text-xl font-semibold", children: [
+            formatValue(value),
+            unit && /* @__PURE__ */ jsxRuntime.jsx("span", { className: "ms-1 text-sm font-normal text-muted", children: unit })
+          ] }),
+          /* @__PURE__ */ jsxRuntime.jsxs("span", { className: "text-xs text-muted", children: [
+            max > 0 ? format2.percent(value / max, { fractionDigits: 0 }) : "",
+            " \xB7 ",
+            formatValue(max),
+            unit ? ` ${unit}` : ""
+          ] })
+        ] }),
+        /* @__PURE__ */ jsxRuntime.jsx(Progress, { label: title, value, max, meter, warnAt, dangerAt })
+      ] }),
+      description && /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.CardDescription, { children: description })
+    ] })
+  ] });
+}
+var barTone = { ok: "bg-ok", warn: "bg-warn", danger: "bg-danger", neutral: "bg-muted", primary: "bg-primary" };
+function StatusSummaryCard({ title, items, loading, headingLevel = 3, className, ...rest }) {
+  const { t } = useLaf6();
+  const total = items.reduce((a, i) => a + i.count, 0);
+  const rowCls2 = "flex w-full items-center justify-between gap-3 rounded-sm px-1.5 py-1 text-sm";
+  return /* @__PURE__ */ jsxRuntime.jsxs(chunk77S32ZEH_cjs.Card, { variant: "default", compact: true, ...rest, className, "aria-busy": loading || void 0, children: [
+    /* @__PURE__ */ jsxRuntime.jsxs(chunk77S32ZEH_cjs.CardHeader, { children: [
+      /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.CardTitle, { as: `h${headingLevel}`, children: title }),
+      /* @__PURE__ */ jsxRuntime.jsxs("span", { className: "text-xs text-muted tabular-nums", children: [
+        t.components.dashboard.status.total,
+        ": ",
+        /* @__PURE__ */ jsxRuntime.jsx("b", { className: "text-fg", children: total })
+      ] })
+    ] }),
+    /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.CardBody, { className: "grid gap-2", children: loading ? /* @__PURE__ */ jsxRuntime.jsxs("div", { role: "status", "aria-label": t.components.dashboard.metric.loading, className: "grid gap-2", children: [
+      /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.Skeleton, { className: "h-2 w-full" }),
+      /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.Skeleton, { className: "w-2/3" }),
+      /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.Skeleton, { className: "w-1/2" })
+    ] }) : /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
+      /* @__PURE__ */ jsxRuntime.jsx("div", { "aria-hidden": true, className: "flex h-2 overflow-hidden rounded-sm bg-muted-bg", children: items.map((i) => i.count > 0 ? /* @__PURE__ */ jsxRuntime.jsx("span", { className: barTone[i.tone ?? "neutral"], style: { width: `${i.count / total * 100}%` } }, i.id) : null) }),
+      /* @__PURE__ */ jsxRuntime.jsx("ul", { className: "m-0 grid list-none gap-0.5 p-0", children: items.map((i) => {
+        const inner = /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
+          /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.StatusDot, { tone: i.tone, label: i.label }),
+          /* @__PURE__ */ jsxRuntime.jsx("b", { className: "tabular-nums", children: i.count })
+        ] });
+        const action = "border-0 bg-transparent text-fg no-underline hover:bg-surface-hover focus-visible:ring-2 focus-visible:ring-primary/50 outline-none";
+        return /* @__PURE__ */ jsxRuntime.jsx("li", { children: i.href ? /* @__PURE__ */ jsxRuntime.jsx("a", { href: i.href, className: chunkFTHFEMX6_cjs.cn(rowCls2, action), onClick: i.onClick, children: inner }) : i.onClick ? /* @__PURE__ */ jsxRuntime.jsx("button", { type: "button", className: chunkFTHFEMX6_cjs.cn(rowCls2, action), onClick: i.onClick, children: inner }) : /* @__PURE__ */ jsxRuntime.jsx("div", { className: rowCls2, children: inner }) }, i.id);
+      }) })
+    ] }) })
+  ] });
+}
+var portalDefaults2 = { portal: portalEn };
+var segmentsOf = (p) => p.split(/[?#]/)[0].split("/").filter(Boolean);
+function matchPattern(pattern, path, end) {
+  const pat = segmentsOf(pattern);
+  const seg = segmentsOf(path);
+  const params = {};
+  for (let i = 0; i < pat.length; i++) {
+    const p = pat[i];
+    if (p === "*") return params;
+    const s = seg[i];
+    if (s === void 0) return null;
+    if (p.startsWith(":")) {
+      try {
+        params[p.slice(1)] = decodeURIComponent(s);
+      } catch {
+        params[p.slice(1)] = s;
+      }
+    } else if (p !== s) return null;
+  }
+  return end && seg.length !== pat.length ? null : params;
+}
+function resolvePortalRoute(routes, path) {
+  const all = [];
+  const walk = (list, parents) => {
+    for (const r of list) {
+      const chain = [...parents, r];
+      all.push({ chain, pattern: r.path });
+      r.tabs?.forEach((tab) => all.push({ chain, tab, pattern: tab.path }));
+      if (r.children) walk(r.children, chain);
+    }
+  };
+  walk(routes, []);
+  const depth = (c) => segmentsOf(c.pattern).length;
+  let best;
+  for (const c of all) {
+    const exactParams = matchPattern(c.pattern, path, true);
+    const params = exactParams ?? (depth(c) > 0 ? matchPattern(c.pattern, path, false) : null);
+    if (!params) continue;
+    const exact = exactParams !== null;
+    if (!best || exact && !best.exact || exact === best.exact && depth(c) > depth(best.c)) best = { c, params, exact };
+  }
+  if (!best) return { chain: [], route: void 0, tab: void 0, params: {} };
+  return { chain: best.c.chain, route: best.c.chain[best.c.chain.length - 1], tab: best.c.tab, params: best.params };
+}
+var resolve = (v, params) => typeof v === "function" ? v(params) : v;
+var plainClick = (e) => e.button === 0 && !e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey;
+function portalBreadcrumbs(routes, path, opts) {
+  const m = resolvePortalRoute(routes, path);
+  const homePath = opts.homePath ?? "/";
+  const link = (to, label) => ({ label, ...opts.link?.(to) });
+  const crumbs = [];
+  const rootIsHome = m.chain[0]?.path === homePath;
+  if (!rootIsHome) crumbs.push(link(homePath, opts.homeLabel));
+  m.chain.forEach((r, i) => {
+    const last = i === m.chain.length - 1 && !(m.tab && m.tab.path !== r.path);
+    const label = resolve(r.title, m.params);
+    crumbs.push(last ? { label } : link(concretePath(r.path, m.params), label));
+  });
+  if (m.tab && m.route && m.tab.path !== m.route.path) crumbs.push({ label: m.tab.title });
+  return crumbs.length > 1 ? crumbs : [];
+}
+var concretePath = (pattern, params) => "/" + segmentsOf(pattern).filter((s) => s !== "*").map((s) => s.startsWith(":") ? encodeURIComponent(params[s.slice(1)] ?? s) : s).join("/");
+function portalNavEntries(routes, path, opts = {}) {
+  const m = resolvePortalRoute(routes, path);
+  const currentRoute = [...m.chain].reverse().find((r) => !r.hidden);
+  const build = (r) => {
+    const kids = r.children?.filter((c) => !c.hidden).map(build);
+    const title = resolve(r.title, {});
+    return {
+      id: r.path,
+      label: title,
+      textValue: title,
+      icon: r.icon,
+      badge: r.badge,
+      disabled: r.disabled,
+      current: r === currentRoute,
+      ...kids?.length ? { children: kids } : opts.link?.(r)
+    };
+  };
+  const out = [];
+  let section;
+  routes.filter((r) => !r.hidden).forEach((r, i) => {
+    if (r.section !== section) {
+      if (r.section) out.push({ type: "heading", id: `section-${r.section}`, label: r.section });
+      else if (i > 0) out.push({ type: "divider" });
+      section = r.section;
+    }
+    out.push(build(r));
+  });
+  return out;
+}
+function appLink(app, onOpen) {
+  const handler = (e) => {
+    app.onSelect?.(app);
+    onOpen?.(app);
+    if ((app.onSelect || onOpen) && !app.href && !e.defaultPrevented) e.preventDefault();
+  };
+  return {
+    href: app.href,
+    onClick: handler,
+    ...app.external ? { target: "_blank", rel: "noopener noreferrer" } : {}
+  };
+}
+function AppSwitcher({ apps, current, onSelect, allApps, labels }) {
+  const L = { ...chunkE6JUACLJ_cjs.useLafDefaults(portalDefaults2).t.components.portal.layout, ...labels };
+  return /* @__PURE__ */ jsxRuntime.jsxs(chunk77S32ZEH_cjs.Popover, { children: [
+    /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.PopoverTrigger, { asChild: true, children: /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.IconButton, { label: L.appSwitcher, icon: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.LayoutGrid, { className: "size-4" }) }) }),
+    /* @__PURE__ */ jsxRuntime.jsxs(chunk77S32ZEH_cjs.PopoverContent, { align: "end", title: L.appSwitcherTitle, className: "w-[min(26rem,calc(100vw-2rem))] p-3", children: [
+      apps.length === 0 ? /* @__PURE__ */ jsxRuntime.jsx("p", { className: "m-0 text-sm text-muted", children: L.noApps }) : /* @__PURE__ */ jsxRuntime.jsx("ul", { className: "m-0 grid list-none grid-cols-2 gap-1 p-0 min-[480px]:grid-cols-3", children: apps.map((app) => /* @__PURE__ */ jsxRuntime.jsx("li", { children: /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.PopoverClose, { asChild: true, children: /* @__PURE__ */ jsxRuntime.jsxs(
+        "a",
+        {
+          ...appLink(app, onSelect),
+          "aria-current": app.id === current ? "true" : void 0,
+          className: "flex h-full flex-col items-start gap-1.5 rounded-md border border-transparent p-2.5 text-start text-fg no-underline outline-none hover:bg-surface-hover focus-visible:ring-2 focus-visible:ring-primary/50 aria-[current=true]:border-line-strong aria-[current=true]:bg-primary-light",
+          children: [
+            /* @__PURE__ */ jsxRuntime.jsx("span", { "aria-hidden": true, className: "flex text-primary [&>svg]:size-6", children: app.icon }),
+            /* @__PURE__ */ jsxRuntime.jsx("span", { className: "text-sm font-semibold", children: app.name }),
+            app.description && /* @__PURE__ */ jsxRuntime.jsx("span", { className: "text-xs text-muted", children: app.description }),
+            app.id === current && /* @__PURE__ */ jsxRuntime.jsxs("span", { className: "sr-only", children: [
+              "(",
+              L.currentApp,
+              ")"
+            ] }),
+            app.external && /* @__PURE__ */ jsxRuntime.jsxs("span", { className: "sr-only", children: [
+              "(",
+              L.external,
+              ")"
+            ] })
+          ]
+        }
+      ) }) }, app.id)) }),
+      allApps && /* @__PURE__ */ jsxRuntime.jsx("div", { className: "mt-2 border-t border-line pt-2 text-sm", children: /* @__PURE__ */ jsxRuntime.jsx("a", { href: allApps.href, onClick: allApps.onClick, className: "rounded-sm text-primary no-underline hover:underline focus-visible:ring-2 focus-visible:ring-primary/50", children: L.allApps }) })
+    ] })
+  ] });
+}
+function PortalLayout({
+  brand,
+  routes,
+  path,
+  onNavigate,
+  render,
+  hrefFor = (p) => p,
+  homePath = "/",
+  apps,
+  currentApp,
+  onAppSelect,
+  allAppsPath,
+  search,
+  notifications,
+  user,
+  theme,
+  mastheadActions,
+  sidebarHeader,
+  sidebarFooter,
+  footer,
+  pageHeader,
+  pageActions,
+  labels,
+  frameLabels,
+  persistKey,
+  sidebarCollapse,
+  drawer,
+  drawerPlacement,
+  className,
+  children
+}) {
+  const { t } = chunkE6JUACLJ_cjs.useLafDefaults(portalDefaults2);
+  const L = { ...t.components.portal.layout, ...labels };
+  const [paletteOpen, setPaletteOpen] = React24__namespace.useState(false);
+  const go = React24__namespace.useCallback(
+    (to, e) => {
+      if (!onNavigate) return;
+      if (e) {
+        if (!plainClick(e)) return;
+        e.preventDefault();
+      }
+      onNavigate(to);
+    },
+    [onNavigate]
+  );
+  const linkProps = (to) => ({ href: hrefFor(to), onClick: (e) => go(to, e) });
+  const link = (to) => ({
+    ...linkProps(to),
+    ...render ? { render: (p) => render({ ...p, to, href: hrefFor(to) }) } : {}
+  });
+  const match = React24__namespace.useMemo(() => resolvePortalRoute(routes, path), [routes, path]);
+  const breadcrumbs = React24__namespace.useMemo(() => portalBreadcrumbs(routes, path, { homeLabel: L.home, homePath, link }), [routes, path, L.home, homePath, hrefFor, render, onNavigate]);
+  const navItems = React24__namespace.useMemo(
+    () => portalNavEntries(routes, path, {
+      link: (r) => ({
+        href: hrefFor(r.path),
+        onSelect: () => go(r.path),
+        ...render ? { render: (p) => render({ ...p, to: r.path, href: p.href ?? hrefFor(r.path) }) } : {}
+      })
+    }),
+    [routes, path, hrefFor, go, render]
+  );
+  const title = match.route ? resolve(match.route.title, match.params) : "";
+  const ctx = { route: match.route, tab: match.tab, params: match.params, breadcrumbs, title };
+  const commands = React24__namespace.useMemo(() => {
+    const flat = [];
+    const walk = (list) => list.forEach((r) => r.disabled || (!r.path.includes(":") && !r.path.includes("*") && flat.push(r), r.children && walk(r.children)));
+    walk(routes);
+    return [
+      ...flat.map((r) => ({ id: `page:${r.path}`, label: resolve(r.title, {}), group: L.pages, onSelect: () => onNavigate ? onNavigate(r.path) : window.location.assign(hrefFor(r.path)) })),
+      ...(apps ?? []).map((a) => ({
+        id: `app:${a.id}`,
+        label: a.name,
+        group: L.apps,
+        onSelect: () => {
+          a.onSelect?.(a);
+          onAppSelect?.(a);
+          if (!a.onSelect && !onAppSelect && a.href) window.location.assign(a.href);
+        }
+      })),
+      ...search ? search.commands ?? [] : []
+    ];
+  }, [routes, apps, search, L.pages, L.apps, onNavigate, onAppSelect, hrefFor]);
+  const mastheadBrand = /* @__PURE__ */ jsxRuntime.jsx(
+    MastheadBrand,
+    {
+      logo: brand.logo,
+      title: brand.title,
+      subtitle: brand.subtitle,
+      href: hrefFor(homePath),
+      onClick: onNavigate ? (e) => go(homePath, e) : void 0,
+      render: render ? (p) => render({ ...p, to: homePath, href: p.href ?? hrefFor(homePath) }) : void 0
+    }
+  );
+  const shortcut = formatHotkey("mod+k");
+  const placeholder = search && search.placeholder || L.searchPlaceholder;
+  const masthead = /* @__PURE__ */ jsxRuntime.jsxs(Masthead, { children: [
+    /* @__PURE__ */ jsxRuntime.jsx(MastheadToggle, { labels: frameLabels }),
+    mastheadBrand,
+    /* @__PURE__ */ jsxRuntime.jsx(MastheadContent, { children: search !== false && /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
+      /* @__PURE__ */ jsxRuntime.jsxs(
+        "button",
+        {
+          type: "button",
+          "aria-keyshortcuts": "Control+K Meta+K",
+          onClick: () => setPaletteOpen(true),
+          className: "mx-auto hidden w-full max-w-md items-center gap-2 rounded-md border border-line bg-input px-3 py-1.5 text-start text-sm text-muted outline-none hover:border-line-strong focus-visible:ring-2 focus-visible:ring-primary/50 min-[720px]:flex",
+          children: [
+            /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Search, { "aria-hidden": true, className: "size-4 shrink-0" }),
+            /* @__PURE__ */ jsxRuntime.jsx("span", { className: "min-w-0 flex-1 truncate", children: placeholder }),
+            /* @__PURE__ */ jsxRuntime.jsx(Kbd, { "aria-hidden": true, children: shortcut })
+          ]
+        }
+      ),
+      /* @__PURE__ */ jsxRuntime.jsx("span", { className: "ms-auto min-[720px]:hidden", children: /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.IconButton, { label: L.search, icon: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Search, { className: "size-4" }), onClick: () => setPaletteOpen(true) }) })
+    ] }) }),
+    /* @__PURE__ */ jsxRuntime.jsxs(MastheadActions, { className: search === false ? void 0 : "ms-0", children: [
+      mastheadActions,
+      apps && apps.length > 0 && /* @__PURE__ */ jsxRuntime.jsx(
+        AppSwitcher,
+        {
+          apps,
+          current: currentApp,
+          onSelect: onAppSelect,
+          labels,
+          allApps: allAppsPath ? { href: hrefFor(allAppsPath), onClick: (e) => go(allAppsPath, e) } : void 0
+        }
+      ),
+      theme !== false && /* @__PURE__ */ jsxRuntime.jsx(ThemeToggle, { persistKey: persistKey ? `${persistKey}:theme` : void 0, labels: frameLabels, ...theme }),
+      notifications && /* @__PURE__ */ jsxRuntime.jsx(NotificationCenter, { ...notifications }),
+      user && /* @__PURE__ */ jsxRuntime.jsx(UserMenu, { name: user.name, email: user.email, tenant: user.tenant, avatarSrc: user.avatarSrc, items: user.items, onSignOut: user.onSignOut ?? (() => {
+      }) })
+    ] })
+  ] });
+  const route = match.route;
+  const tabs = route?.tabs;
+  const header = (() => {
+    if (pageHeader === false || route?.header === false) return null;
+    if (pageHeader !== void 0) return typeof pageHeader === "function" ? pageHeader(ctx) : pageHeader;
+    if (!route) return null;
+    return /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
+      /* @__PURE__ */ jsxRuntime.jsx(
+        PageHeader,
+        {
+          breadcrumb: breadcrumbs.length ? breadcrumbs : void 0,
+          icon: route.icon,
+          title,
+          subtitle: resolve(route.description, match.params),
+          badges: resolve(route.badges, match.params),
+          actions: resolve(route.actions, match.params) ?? pageActions,
+          className: tabs?.length ? "pb-2" : void 0
+        }
+      ),
+      tabs && tabs.length > 0 && /* @__PURE__ */ jsxRuntime.jsx(PortalTabs, { tabs, current: match.tab?.path ?? route.path, linkProps, render, label: L.pageSections })
+    ] });
+  })();
+  const footerNode = footer && (React24__namespace.isValidElement(footer) ? footer : /* @__PURE__ */ jsxRuntime.jsx(AppFooter, { ...footer }));
+  return /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
+    /* @__PURE__ */ jsxRuntime.jsx(
+      AppFrame,
+      {
+        className,
+        persistKey,
+        sidebarCollapse,
+        drawer,
+        drawerPlacement,
+        labels: frameLabels,
+        masthead,
+        sidebar: /* @__PURE__ */ jsxRuntime.jsx(Sidebar, { items: navItems, label: L.navigation, header: sidebarHeader, footer: sidebarFooter, labels: frameLabels }),
+        pageHeader: header,
+        footer: footerNode || void 0,
+        children
+      }
+    ),
+    search !== false && /* @__PURE__ */ jsxRuntime.jsx(CommandPalette, { commands, open: paletteOpen, onOpenChange: setPaletteOpen, placeholder, search: search?.onSearch, recent: search?.recent })
+  ] });
+}
+function PortalTabs({ tabs, current, linkProps, render, label }) {
+  return /* @__PURE__ */ jsxRuntime.jsx("nav", { "aria-label": label, className: "px-6 max-[859px]:px-4", children: /* @__PURE__ */ jsxRuntime.jsx("ul", { className: "m-0 flex list-none gap-1 overflow-x-auto border-b border-line p-0", children: tabs.map((tab) => {
+    const p = linkProps(tab.path);
+    const props = {
+      ...p,
+      className: "-mb-px inline-flex items-center gap-2 whitespace-nowrap border-b-2 border-transparent px-3 py-2 text-sm font-medium text-muted no-underline outline-none hover:text-fg focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary/50 aria-[current=page]:border-primary aria-[current=page]:text-fg aria-disabled:pointer-events-none aria-disabled:opacity-50",
+      children: /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
+        tab.title,
+        tab.badge && /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.Badge, { children: tab.badge })
+      ] }),
+      ...tab.path === current ? { "aria-current": "page" } : {},
+      ...tab.disabled ? { "aria-disabled": true } : {}
+    };
+    return /* @__PURE__ */ jsxRuntime.jsx("li", { children: render ? render({ ...props, to: tab.path }) : /* @__PURE__ */ jsxRuntime.jsx("a", { ...props }) }, tab.path);
+  }) }) });
+}
+var toneBorder = { info: "border-s-primary", ok: "border-s-ok", warn: "border-s-warn", danger: "border-s-danger" };
+function AppCard({ app, favourite, onToggle, onOpen, L, opened }) {
+  return /* @__PURE__ */ jsxRuntime.jsxs("li", { className: "relative flex min-w-0 items-start gap-3 rounded-md border border-line bg-surface p-4 hover:bg-surface-hover", children: [
+    /* @__PURE__ */ jsxRuntime.jsx("span", { "aria-hidden": true, className: "flex shrink-0 text-primary [&>svg]:size-8", children: app.icon }),
+    /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "min-w-0 flex-1 pe-8", children: [
+      /* @__PURE__ */ jsxRuntime.jsxs(
+        "a",
+        {
+          ...appLink(app, onOpen),
+          className: "text-base font-semibold text-fg no-underline outline-none after:absolute after:inset-0 after:content-[''] focus-visible:after:ring-2 focus-visible:after:ring-primary/50 hover:underline",
+          children: [
+            app.name,
+            app.external && /* @__PURE__ */ jsxRuntime.jsxs("span", { className: "sr-only", children: [
+              " (",
+              L.openApp(app.name),
+              ")"
+            ] })
+          ]
+        }
+      ),
+      app.description && /* @__PURE__ */ jsxRuntime.jsx("p", { className: "m-0 mt-1 text-sm text-muted", children: app.description }),
+      opened && /* @__PURE__ */ jsxRuntime.jsx("p", { className: "m-0 mt-1 text-xs text-subtle", children: opened })
+    ] }),
+    app.badge && /* @__PURE__ */ jsxRuntime.jsx("span", { className: "shrink-0", children: app.badge }),
+    /* @__PURE__ */ jsxRuntime.jsx(
+      "button",
+      {
+        type: "button",
+        "aria-pressed": favourite,
+        "aria-label": favourite ? L.removeFavourite(app.name) : L.addFavourite(app.name),
+        onClick: onToggle,
+        className: "absolute end-2 top-2 z-10 inline-flex size-7 items-center justify-center rounded-sm border-0 bg-transparent text-muted outline-none hover:text-fg focus-visible:ring-2 focus-visible:ring-primary/50 aria-pressed:text-warn",
+        children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Star, { "aria-hidden": true, className: chunkFTHFEMX6_cjs.cn("size-4", favourite && "fill-current") })
+      }
+    )
+  ] });
+}
+function PortalHome({ user, title, subtitle, apps, favourites, onFavouritesChange, onAppOpen, recent, announcements, onDismissAnnouncement, quickActions, labels, className }) {
+  const { format: format2 } = chunkE6JUACLJ_cjs.useLaf();
+  const defaults = chunkE6JUACLJ_cjs.useLafDefaults(portalDefaults2).t.components.portal;
+  const L = { ...defaults.home, openApp: defaults.layout.openApp, ...labels };
+  const [favIds, setFavIds] = chunkYGX6XE22_cjs.useControllableState({ value: favourites, defaultValue: apps.filter((a) => a.favourite).map((a) => a.id), onChange: onFavouritesChange });
+  const favSet = new Set(favIds);
+  const toggle = (id) => setFavIds(favSet.has(id) ? favIds.filter((x) => x !== id) : [...favIds, id]);
+  const time = (a) => a.lastOpened !== void 0 ? L.lastOpened(format2.relative(a.lastOpened)) : void 0;
+  const recentApps = recent ?? apps.filter((a) => a.lastOpened !== void 0).sort((a, b) => new Date(b.lastOpened).getTime() - new Date(a.lastOpened).getTime()).slice(0, 4);
+  const favApps = favIds.map((id) => apps.find((a) => a.id === id)).filter((a) => !!a);
+  const grid = "m-0 grid list-none grid-cols-[repeat(auto-fill,minmax(15rem,1fr))] gap-3 p-0";
+  const heading = "m-0 mb-3 text-base font-semibold text-fg";
+  return /* @__PURE__ */ jsxRuntime.jsxs("div", { className, children: [
+    /* @__PURE__ */ jsxRuntime.jsx(PageHeader, { title: title ?? (user ? L.welcome(user.name) : L.welcomeAnonymous), subtitle: subtitle ?? L.subtitle }),
+    /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "grid gap-x-8 gap-y-6 px-6 pb-8 max-[859px]:px-4 min-[1100px]:grid-cols-[minmax(0,2fr)_minmax(0,1fr)]", children: [
+      /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "grid min-w-0 content-start gap-6", children: [
+        /* @__PURE__ */ jsxRuntime.jsxs(PageSection, { padding: "none", "aria-labelledby": "portal-fav", children: [
+          /* @__PURE__ */ jsxRuntime.jsx("h2", { id: "portal-fav", className: heading, children: L.favourites }),
+          favApps.length ? /* @__PURE__ */ jsxRuntime.jsx("ul", { className: grid, children: favApps.map((a) => /* @__PURE__ */ jsxRuntime.jsx(AppCard, { app: a, favourite: true, onToggle: () => toggle(a.id), onOpen: onAppOpen, L }, a.id)) }) : /* @__PURE__ */ jsxRuntime.jsx("p", { className: "m-0 text-sm text-muted", children: L.noFavourites })
+        ] }),
+        /* @__PURE__ */ jsxRuntime.jsxs(PageSection, { padding: "none", "aria-labelledby": "portal-recent", children: [
+          /* @__PURE__ */ jsxRuntime.jsx("h2", { id: "portal-recent", className: heading, children: L.recent }),
+          recentApps.length ? /* @__PURE__ */ jsxRuntime.jsx("ul", { className: grid, children: recentApps.map((a) => /* @__PURE__ */ jsxRuntime.jsx(AppCard, { app: a, favourite: favSet.has(a.id), onToggle: () => toggle(a.id), onOpen: onAppOpen, L, opened: time(a) }, a.id)) }) : /* @__PURE__ */ jsxRuntime.jsx("p", { className: "m-0 text-sm text-muted", children: L.noRecent })
+        ] }),
+        /* @__PURE__ */ jsxRuntime.jsxs(PageSection, { padding: "none", "aria-labelledby": "portal-all", children: [
+          /* @__PURE__ */ jsxRuntime.jsx("h2", { id: "portal-all", className: heading, children: L.allApps }),
+          /* @__PURE__ */ jsxRuntime.jsx("ul", { className: grid, children: apps.map((a) => /* @__PURE__ */ jsxRuntime.jsx(AppCard, { app: a, favourite: favSet.has(a.id), onToggle: () => toggle(a.id), onOpen: onAppOpen, L }, a.id)) })
+        ] })
+      ] }),
+      /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "grid min-w-0 content-start gap-6", children: [
+        quickActions && quickActions.length > 0 && /* @__PURE__ */ jsxRuntime.jsxs(PageSection, { padding: "none", "aria-labelledby": "portal-quick", children: [
+          /* @__PURE__ */ jsxRuntime.jsx("h2", { id: "portal-quick", className: heading, children: L.quickActions }),
+          /* @__PURE__ */ jsxRuntime.jsx("ul", { className: "m-0 grid list-none gap-2 p-0", children: quickActions.map((q) => {
+            const body = /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
+              q.icon && /* @__PURE__ */ jsxRuntime.jsx("span", { "aria-hidden": true, className: "flex shrink-0 text-primary [&>svg]:size-5", children: q.icon }),
+              /* @__PURE__ */ jsxRuntime.jsxs("span", { className: "min-w-0", children: [
+                /* @__PURE__ */ jsxRuntime.jsx("span", { className: "block text-sm font-medium text-fg", children: q.label }),
+                q.description && /* @__PURE__ */ jsxRuntime.jsx("span", { className: "block text-xs text-muted", children: q.description })
+              ] })
+            ] });
+            const cls = "flex w-full items-center gap-3 rounded-md border border-line bg-surface p-3 text-start no-underline outline-none hover:bg-surface-hover focus-visible:ring-2 focus-visible:ring-primary/50";
+            return /* @__PURE__ */ jsxRuntime.jsx("li", { children: q.href ? /* @__PURE__ */ jsxRuntime.jsx("a", { href: q.href, onClick: q.onSelect, className: cls, children: body }) : /* @__PURE__ */ jsxRuntime.jsx("button", { type: "button", onClick: q.onSelect, className: cls, children: body }) }, q.id);
+          }) })
+        ] }),
+        /* @__PURE__ */ jsxRuntime.jsxs(PageSection, { padding: "none", "aria-labelledby": "portal-news", children: [
+          /* @__PURE__ */ jsxRuntime.jsx("h2", { id: "portal-news", className: heading, children: L.announcements }),
+          announcements && announcements.length > 0 ? /* @__PURE__ */ jsxRuntime.jsx("ul", { className: "m-0 grid list-none gap-2 p-0", children: announcements.map((n) => /* @__PURE__ */ jsxRuntime.jsxs("li", { className: chunkFTHFEMX6_cjs.cn("relative rounded-md border border-s-4 border-line bg-surface p-3", toneBorder[n.tone ?? "info"]), children: [
+            /* @__PURE__ */ jsxRuntime.jsx("div", { className: chunkFTHFEMX6_cjs.cn("flex items-start gap-2", onDismissAnnouncement && "pe-8"), children: /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "min-w-0 flex-1", children: [
+              /* @__PURE__ */ jsxRuntime.jsx("div", { className: "text-sm font-semibold text-fg", children: n.href || n.onClick ? /* @__PURE__ */ jsxRuntime.jsx("a", { href: n.href, onClick: n.onClick, className: "text-fg", children: n.title }) : n.title }),
+              n.body && /* @__PURE__ */ jsxRuntime.jsx("div", { className: "mt-1 text-sm text-muted", children: n.body }),
+              n.date !== void 0 && /* @__PURE__ */ jsxRuntime.jsx("time", { dateTime: new Date(n.date).toISOString(), className: "mt-1 block text-xs text-subtle", children: format2.relative(n.date) })
+            ] }) }),
+            onDismissAnnouncement && /* @__PURE__ */ jsxRuntime.jsx(
+              "button",
+              {
+                type: "button",
+                "aria-label": L.dismiss(n.title),
+                onClick: () => onDismissAnnouncement(n.id),
+                className: "absolute end-2 top-2 inline-flex size-6 items-center justify-center rounded-sm border-0 bg-transparent text-muted outline-none hover:text-fg focus-visible:ring-2 focus-visible:ring-primary/50",
+                children: /* @__PURE__ */ jsxRuntime.jsx("span", { "aria-hidden": true, children: "\xD7" })
+              }
+            )
+          ] }, n.id)) }) : /* @__PURE__ */ jsxRuntime.jsx("p", { className: "m-0 text-sm text-muted", children: L.noAnnouncements })
+        ] })
+      ] })
+    ] })
+  ] });
+}
+var portalDefaults3 = { portal: portalEn };
+var browserSearchParams = {
+  read: () => typeof location === "undefined" ? "" : location.search,
+  write: (search, mode) => {
+    if (typeof history === "undefined") return;
+    const url = `${location.pathname}${search ? `?${search}` : ""}${location.hash}`;
+    if (mode === "push") history.pushState(history.state, "", url);
+    else history.replaceState(history.state, "", url);
+  },
+  subscribe: (onChange) => {
+    window.addEventListener("popstate", onChange);
+    return () => window.removeEventListener("popstate", onChange);
+  }
+};
+var own = (key, prefix) => key === `${prefix}q` || key === `${prefix}sort` || key === `${prefix}page` || key === `${prefix}size` || key.startsWith(`${prefix}f.`) || key.startsWith(`${prefix}fj.`);
+var positive = (v) => {
+  const n = Number(v);
+  return Number.isInteger(n) && n > 0 ? n : void 0;
+};
+function serverGridFromSearchParams(search, defaults = {}, prefix = "") {
+  const params = typeof search === "string" ? new URLSearchParams(search) : search;
+  const sort = [];
+  for (const part of (params.get(`${prefix}sort`) ?? "").split(",").filter(Boolean)) {
+    const i = part.lastIndexOf(":");
+    const dir = part.slice(i + 1);
+    if (i > 0 && (dir === "asc" || dir === "desc")) sort.push({ id: decodeURIComponent(part.slice(0, i)), dir });
+  }
+  const filters = [];
+  params.forEach((value, key) => {
+    if (key.startsWith(`${prefix}f.`)) filters.push({ id: key.slice(prefix.length + 2), value });
+    else if (key.startsWith(`${prefix}fj.`)) {
+      try {
+        filters.push({ id: key.slice(prefix.length + 3), value: JSON.parse(value) });
+      } catch {
+      }
+    }
+  });
+  return {
+    sort: params.has(`${prefix}sort`) ? sort : defaults.sort ?? [],
+    filters: filters.length ? filters : defaults.filters ?? [],
+    search: params.get(`${prefix}q`) ?? defaults.search ?? "",
+    page: positive(params.get(`${prefix}page`)) ?? defaults.page ?? 1,
+    pageSize: positive(params.get(`${prefix}size`)) ?? defaults.pageSize ?? 25
+  };
+}
+function serverGridToSearchParams(state, params = new URLSearchParams(), defaults = {}, prefix = "") {
+  for (const key of [...params.keys()]) if (own(key, prefix)) params.delete(key);
+  if (state.search) params.set(`${prefix}q`, state.search);
+  const defaultSort = (defaults.sort ?? []).map((s) => `${s.id}:${s.dir}`).join(",");
+  const sort = state.sort.map((s) => `${encodeURIComponent(s.id)}:${s.dir}`).join(",");
+  if (sort !== defaultSort) params.set(`${prefix}sort`, sort);
+  if (state.page > 1) params.set(`${prefix}page`, String(state.page));
+  if (state.pageSize !== (defaults.pageSize ?? 25)) params.set(`${prefix}size`, String(state.pageSize));
+  for (const f of state.filters) {
+    if (typeof f.value === "string") params.append(`${prefix}f.${f.id}`, f.value);
+    else params.append(`${prefix}fj.${f.id}`, JSON.stringify(f.value));
+  }
+  return params;
+}
+var isAbort = (e) => typeof e === "object" && e !== null && e.name === "AbortError";
+var sameQuery = (a, b) => JSON.stringify(a) === JSON.stringify(b);
+function useServerGrid(options) {
+  const { fetcher, initialSort, initialFilters, initialSearch, initialPage, pageSize: pageSizeOption = 25, debounceMs = 300, urlSync, enabled = true, keepPreviousData = true } = options;
+  const { t } = chunkE6JUACLJ_cjs.useLafDefaults(portalDefaults3);
+  const SG = t.components.portal.serverGrid;
+  const urlOpts = urlSync ? urlSync === true ? {} : urlSync : void 0;
+  const adapter = urlOpts?.adapter ?? browserSearchParams;
+  const prefix = urlOpts?.prefix ?? "";
+  const urlMode = urlOpts?.history ?? "replace";
+  const defaults = React24__namespace.useRef({ sort: initialSort ?? [], filters: initialFilters ?? [], search: initialSearch ?? "", page: initialPage ?? 1, pageSize: pageSizeOption });
+  const [core, setCore] = React24__namespace.useState(() => urlOpts ? serverGridFromSearchParams(adapter.read(), defaults.current, prefix) : defaults.current);
+  const [input, setInput] = React24__namespace.useState(core.search);
+  const [tick, setTick] = React24__namespace.useState(0);
+  const [data, setData] = React24__namespace.useState(null);
+  const [status, setStatus] = React24__namespace.useState({ loading: enabled, error: null });
+  const fetcherRef = React24__namespace.useRef(fetcher);
+  fetcherRef.current = fetcher;
+  const onErrorRef = React24__namespace.useRef(options.onError);
+  onErrorRef.current = options.onError;
+  const timer = React24__namespace.useRef(void 0);
+  const pending = React24__namespace.useRef(input);
+  const cursors = React24__namespace.useRef({ key: "", byPage: {} });
+  React24__namespace.useEffect(() => () => clearTimeout(timer.current), []);
+  const commitSearch = React24__namespace.useCallback((value) => {
+    clearTimeout(timer.current);
+    setCore((c) => c.search === value ? c : { ...c, search: value, page: 1 });
+  }, []);
+  const setSearch = React24__namespace.useCallback(
+    (value) => {
+      setInput(value);
+      pending.current = value;
+      clearTimeout(timer.current);
+      if (debounceMs <= 0) commitSearch(value);
+      else timer.current = setTimeout(() => commitSearch(value), debounceMs);
+    },
+    [debounceMs, commitSearch]
+  );
+  const flushSearch = React24__namespace.useCallback(() => commitSearch(pending.current), [commitSearch]);
+  const setSort = React24__namespace.useCallback((sort) => setCore((c) => ({ ...c, sort, page: 1 })), []);
+  const setFilters = React24__namespace.useCallback((filters) => setCore((c) => ({ ...c, filters, page: 1 })), []);
+  const setPageSize = React24__namespace.useCallback((pageSize) => setCore((c) => c.pageSize === pageSize ? c : { ...c, pageSize, page: 1 }), []);
+  const setPage = React24__namespace.useCallback((page) => setCore((c) => page < 1 || c.page === page ? c : { ...c, page }), []);
+  const refresh = React24__namespace.useCallback(() => setTick((n) => n + 1), []);
+  const reset = React24__namespace.useCallback(() => {
+    clearTimeout(timer.current);
+    const d = defaults.current;
+    pending.current = d.search;
+    setInput(d.search);
+    setCore({ ...d });
+  }, []);
+  const queryKey = JSON.stringify([core.sort, core.pageSize, core.filters, core.search]);
+  const requestKey = `${queryKey}|${core.page}`;
+  React24__namespace.useEffect(() => {
+    if (!enabled) return;
+    if (cursors.current.key !== queryKey) cursors.current = { key: queryKey, byPage: {} };
+    const ac = new AbortController();
+    setStatus((s) => s.loading && s.error === null ? s : { loading: true, error: null });
+    let promise;
+    try {
+      promise = Promise.resolve(fetcherRef.current({ ...core, cursor: cursors.current.byPage[core.page], signal: ac.signal }));
+    } catch (e) {
+      promise = Promise.reject(e);
+    }
+    promise.then(
+      (res) => {
+        if (ac.signal.aborted) return;
+        if (res.nextCursor) cursors.current.byPage[core.page + 1] = res.nextCursor;
+        setData({ rows: res.rows, total: res.total, nextCursor: res.nextCursor, key: requestKey });
+        setStatus({ loading: false, error: null });
+      },
+      (error) => {
+        if (ac.signal.aborted || isAbort(error)) return;
+        setStatus({ loading: false, error });
+        onErrorRef.current?.(error);
+      }
+    );
+    return () => ac.abort();
+  }, [core, tick, enabled]);
+  const total = data?.total;
+  const pageCount = total === void 0 ? void 0 : Math.max(1, Math.ceil(total / core.pageSize));
+  React24__namespace.useEffect(() => {
+    if (data?.key === requestKey && pageCount !== void 0 && core.page > pageCount) setCore((c) => ({ ...c, page: pageCount }));
+  }, [data, requestKey, pageCount, core.page]);
+  const urlRef = React24__namespace.useRef({ adapter, prefix, urlMode });
+  urlRef.current = { adapter, prefix, urlMode };
+  React24__namespace.useEffect(() => {
+    if (!urlOpts) return;
+    const params = serverGridToSearchParams(core, new URLSearchParams(adapter.read()), defaults.current, prefix);
+    const next = params.toString();
+    if (next !== new URLSearchParams(adapter.read()).toString()) adapter.write(next, urlMode);
+  }, [core]);
+  React24__namespace.useEffect(() => {
+    if (!urlOpts || !adapter.subscribe) return;
+    return adapter.subscribe(() => {
+      const { adapter: a, prefix: p } = urlRef.current;
+      const parsed = serverGridFromSearchParams(a.read(), defaults.current, p);
+      pending.current = parsed.search;
+      setInput(parsed.search);
+      setCore((c) => sameQuery(c, parsed) ? c : parsed);
+    });
+  }, [!!urlOpts, adapter]);
+  const stale = data !== null && data.key !== requestKey;
+  const rows = React24__namespace.useMemo(() => data && (keepPreviousData || !stale) ? data.rows : [], [data, keepPreviousData, stale]);
+  const hasNext = total !== void 0 ? core.page < (pageCount ?? 1) : data?.nextCursor !== void 0 ? !!data.nextCursor : rows.length >= core.pageSize;
+  const errorText = status.error === null ? void 0 : `${SG.loadFailed} ${status.error instanceof Error ? status.error.message : ""}`.trim();
+  const pagination = {
+    page: core.page,
+    pageSize: core.pageSize,
+    total,
+    hasNext,
+    onPageChange: setPage,
+    onPageSizeChange: setPageSize
+  };
+  return {
+    rows,
+    total,
+    pageCount,
+    hasNext,
+    sort: core.sort,
+    page: core.page,
+    pageSize: core.pageSize,
+    filters: core.filters,
+    search: input,
+    query: core,
+    loading: status.loading,
+    initialLoading: status.loading && data === null,
+    stale,
+    error: status.error,
+    setSort,
+    setFilters,
+    setSearch,
+    flushSearch,
+    setPage,
+    setPageSize,
+    reset,
+    refresh,
+    gridProps: {
+      rows,
+      manual: true,
+      sort: core.sort,
+      onSortChange: setSort,
+      filters: core.filters,
+      onFiltersChange: setFilters,
+      search: input,
+      onSearchChange: setSearch,
+      loading: status.loading,
+      error: errorText,
+      onRetry: refresh,
+      rowCount: total,
+      pagination
+    }
+  };
+}
+var TEXT_ID = "$text";
+var isBarFilter = (f) => f.id === TEXT_ID || typeof f.value === "object" && f.value !== null && Array.isArray(f.value.values);
+function barFilters(parsed) {
+  const out = parsed.filters.map((f) => ({ id: f.key, value: { op: f.op, values: f.values, negated: f.negated } }));
+  if (parsed.text.length) out.push({ id: TEXT_ID, value: parsed.text });
+  return out;
+}
+function barQuery(filters) {
+  const tokens = filters.filter(isBarFilter).flatMap(
+    (f) => f.id === TEXT_ID ? f.value.map((t) => ({ type: "text", ...t })) : [{ type: "field", key: f.id, ...f.value }]
+  );
+  return serializeFilter(tokens);
+}
+function ServerDataGrid({
+  fetcher,
+  initialSort,
+  initialFilters,
+  initialSearch,
+  initialPage,
+  pageSize,
+  debounceMs,
+  urlSync,
+  enabled,
+  keepPreviousData,
+  onError,
+  pageSizes,
+  searchable = true,
+  searchPlaceholder,
+  filterFields,
+  filterBar,
+  toolbarStart,
+  toolbarEnd,
+  refreshable = true,
+  controllerRef,
+  ...grid
+}) {
+  const { t } = chunkE6JUACLJ_cjs.useLafDefaults(portalDefaults3);
+  const SG = { ...t.components.portal.serverGrid, ...grid.labels };
+  const ctl = useServerGrid({ fetcher, initialSort, initialFilters, initialSearch, initialPage, pageSize, debounceMs, urlSync, enabled, keepPreviousData, onError });
+  React24__namespace.useImperativeHandle(controllerRef, () => ctl);
+  const { gridProps } = ctl;
+  const pagination = pageSizes ? { ...gridProps.pagination, pageSizes } : gridProps.pagination;
+  const hasToolbar = searchable || !!filterFields || !!toolbarStart || !!toolbarEnd || refreshable;
+  const toolbar = hasToolbar && /* @__PURE__ */ jsxRuntime.jsx(Toolbar, { "aria-label": grid.label, className: "w-full", children: /* @__PURE__ */ jsxRuntime.jsxs(ToolbarContent, { children: [
+    searchable && /* @__PURE__ */ jsxRuntime.jsx(ToolbarItem, { grow: true, children: /* @__PURE__ */ jsxRuntime.jsx(
+      chunk77S32ZEH_cjs.SearchInput,
+      {
+        icon: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Search, { "aria-hidden": true }),
+        "aria-label": SG.search,
+        placeholder: searchPlaceholder ?? SG.search,
+        value: ctl.search,
+        onChange: (e) => ctl.setSearch(e.target.value),
+        onKeyDown: (e) => e.key === "Enter" && ctl.flushSearch(),
+        className: "w-full"
+      }
+    ) }),
+    filterFields && /* @__PURE__ */ jsxRuntime.jsx(ToolbarItem, { grow: true, children: /* @__PURE__ */ jsxRuntime.jsx(
+      FilterBar,
+      {
+        savedViews: false,
+        ...filterBar,
+        fields: filterFields,
+        value: barQuery(ctl.filters),
+        onChange: (_q, parsed) => ctl.setFilters([...ctl.filters.filter((f) => !isBarFilter(f)), ...barFilters(parsed)])
+      }
+    ) }),
+    toolbarStart,
+    /* @__PURE__ */ jsxRuntime.jsxs(ToolbarGroup, { align: "end", children: [
+      toolbarEnd,
+      refreshable && /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.IconButton, { label: SG.refresh, icon: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.RefreshCw, { className: "size-4" }), onClick: ctl.refresh })
+    ] })
+  ] }) });
+  return /* @__PURE__ */ jsxRuntime.jsx(DataGrid, { ...grid, ...gridProps, pagination, toolbar: toolbar || void 0 });
+}
 
 Object.defineProperty(exports, "Accordion", {
   enumerable: true,
-  get: function () { return chunkAN24WGJJ_cjs.Accordion; }
+  get: function () { return chunk77S32ZEH_cjs.Accordion; }
 });
 Object.defineProperty(exports, "Alert", {
   enumerable: true,
-  get: function () { return chunkAN24WGJJ_cjs.Alert; }
+  get: function () { return chunk77S32ZEH_cjs.Alert; }
+});
+Object.defineProperty(exports, "AlertGroup", {
+  enumerable: true,
+  get: function () { return chunk77S32ZEH_cjs.AlertGroup; }
 });
 Object.defineProperty(exports, "Avatar", {
   enumerable: true,
-  get: function () { return chunkAN24WGJJ_cjs.Avatar; }
+  get: function () { return chunk77S32ZEH_cjs.Avatar; }
+});
+Object.defineProperty(exports, "AvatarGroup", {
+  enumerable: true,
+  get: function () { return chunk77S32ZEH_cjs.AvatarGroup; }
 });
 Object.defineProperty(exports, "Badge", {
   enumerable: true,
-  get: function () { return chunkAN24WGJJ_cjs.Badge; }
+  get: function () { return chunk77S32ZEH_cjs.Badge; }
 });
 Object.defineProperty(exports, "Banner", {
   enumerable: true,
-  get: function () { return chunkAN24WGJJ_cjs.Banner; }
+  get: function () { return chunk77S32ZEH_cjs.Banner; }
 });
 Object.defineProperty(exports, "Breadcrumb", {
   enumerable: true,
-  get: function () { return chunkAN24WGJJ_cjs.Breadcrumb; }
+  get: function () { return chunk77S32ZEH_cjs.Breadcrumb; }
+});
+Object.defineProperty(exports, "ButtonGroup", {
+  enumerable: true,
+  get: function () { return chunk77S32ZEH_cjs.ButtonGroup; }
 });
 Object.defineProperty(exports, "Card", {
   enumerable: true,
-  get: function () { return chunkAN24WGJJ_cjs.Card; }
+  get: function () { return chunk77S32ZEH_cjs.Card; }
+});
+Object.defineProperty(exports, "CardActions", {
+  enumerable: true,
+  get: function () { return chunk77S32ZEH_cjs.CardActions; }
+});
+Object.defineProperty(exports, "CardBody", {
+  enumerable: true,
+  get: function () { return chunk77S32ZEH_cjs.CardBody; }
+});
+Object.defineProperty(exports, "CardDescription", {
+  enumerable: true,
+  get: function () { return chunk77S32ZEH_cjs.CardDescription; }
+});
+Object.defineProperty(exports, "CardFooter", {
+  enumerable: true,
+  get: function () { return chunk77S32ZEH_cjs.CardFooter; }
+});
+Object.defineProperty(exports, "CardGrid", {
+  enumerable: true,
+  get: function () { return chunk77S32ZEH_cjs.CardGrid; }
+});
+Object.defineProperty(exports, "CardHeader", {
+  enumerable: true,
+  get: function () { return chunk77S32ZEH_cjs.CardHeader; }
+});
+Object.defineProperty(exports, "CardTitle", {
+  enumerable: true,
+  get: function () { return chunk77S32ZEH_cjs.CardTitle; }
 });
 Object.defineProperty(exports, "Checkbox", {
   enumerable: true,
-  get: function () { return chunkAN24WGJJ_cjs.Checkbox; }
+  get: function () { return chunk77S32ZEH_cjs.Checkbox; }
 });
 Object.defineProperty(exports, "Chip", {
   enumerable: true,
-  get: function () { return chunkAN24WGJJ_cjs.Chip; }
+  get: function () { return chunk77S32ZEH_cjs.Chip; }
 });
 Object.defineProperty(exports, "Combobox", {
   enumerable: true,
-  get: function () { return chunkAN24WGJJ_cjs.Combobox; }
+  get: function () { return chunk77S32ZEH_cjs.Combobox; }
 });
 Object.defineProperty(exports, "Dialog", {
   enumerable: true,
-  get: function () { return chunkAN24WGJJ_cjs.Dialog; }
+  get: function () { return chunk77S32ZEH_cjs.Dialog; }
 });
 Object.defineProperty(exports, "DialogClose", {
   enumerable: true,
-  get: function () { return chunkAN24WGJJ_cjs.DialogClose; }
+  get: function () { return chunk77S32ZEH_cjs.DialogClose; }
 });
 Object.defineProperty(exports, "DialogContent", {
   enumerable: true,
-  get: function () { return chunkAN24WGJJ_cjs.DialogContent; }
+  get: function () { return chunk77S32ZEH_cjs.DialogContent; }
 });
 Object.defineProperty(exports, "DialogTrigger", {
   enumerable: true,
-  get: function () { return chunkAN24WGJJ_cjs.DialogTrigger; }
+  get: function () { return chunk77S32ZEH_cjs.DialogTrigger; }
 });
 Object.defineProperty(exports, "Drawer", {
   enumerable: true,
-  get: function () { return chunkAN24WGJJ_cjs.Drawer; }
+  get: function () { return chunk77S32ZEH_cjs.Drawer; }
 });
 Object.defineProperty(exports, "DrawerClose", {
   enumerable: true,
-  get: function () { return chunkAN24WGJJ_cjs.DrawerClose; }
+  get: function () { return chunk77S32ZEH_cjs.DrawerClose; }
 });
 Object.defineProperty(exports, "DrawerContent", {
   enumerable: true,
-  get: function () { return chunkAN24WGJJ_cjs.DrawerContent; }
+  get: function () { return chunk77S32ZEH_cjs.DrawerContent; }
 });
 Object.defineProperty(exports, "DrawerTrigger", {
   enumerable: true,
-  get: function () { return chunkAN24WGJJ_cjs.DrawerTrigger; }
+  get: function () { return chunk77S32ZEH_cjs.DrawerTrigger; }
 });
 Object.defineProperty(exports, "DropdownMenu", {
   enumerable: true,
-  get: function () { return chunkAN24WGJJ_cjs.DropdownMenu; }
+  get: function () { return chunk77S32ZEH_cjs.DropdownMenu; }
 });
 Object.defineProperty(exports, "DropdownMenuContent", {
   enumerable: true,
-  get: function () { return chunkAN24WGJJ_cjs.DropdownMenuContent; }
+  get: function () { return chunk77S32ZEH_cjs.DropdownMenuContent; }
 });
 Object.defineProperty(exports, "DropdownMenuItem", {
   enumerable: true,
-  get: function () { return chunkAN24WGJJ_cjs.DropdownMenuItem; }
+  get: function () { return chunk77S32ZEH_cjs.DropdownMenuItem; }
 });
 Object.defineProperty(exports, "DropdownMenuLabel", {
   enumerable: true,
-  get: function () { return chunkAN24WGJJ_cjs.DropdownMenuLabel; }
+  get: function () { return chunk77S32ZEH_cjs.DropdownMenuLabel; }
 });
 Object.defineProperty(exports, "DropdownMenuSeparator", {
   enumerable: true,
-  get: function () { return chunkAN24WGJJ_cjs.DropdownMenuSeparator; }
+  get: function () { return chunk77S32ZEH_cjs.DropdownMenuSeparator; }
 });
 Object.defineProperty(exports, "DropdownMenuTrigger", {
   enumerable: true,
-  get: function () { return chunkAN24WGJJ_cjs.DropdownMenuTrigger; }
+  get: function () { return chunk77S32ZEH_cjs.DropdownMenuTrigger; }
 });
 Object.defineProperty(exports, "EmptyState", {
   enumerable: true,
-  get: function () { return chunkAN24WGJJ_cjs.EmptyState; }
+  get: function () { return chunk77S32ZEH_cjs.EmptyState; }
+});
+Object.defineProperty(exports, "ExpandableCard", {
+  enumerable: true,
+  get: function () { return chunk77S32ZEH_cjs.ExpandableCard; }
 });
 Object.defineProperty(exports, "Field", {
   enumerable: true,
-  get: function () { return chunkAN24WGJJ_cjs.Field; }
+  get: function () { return chunk77S32ZEH_cjs.Field; }
+});
+Object.defineProperty(exports, "IconButton", {
+  enumerable: true,
+  get: function () { return chunk77S32ZEH_cjs.IconButton; }
 });
 Object.defineProperty(exports, "InfiniteList", {
   enumerable: true,
-  get: function () { return chunkAN24WGJJ_cjs.InfiniteList; }
+  get: function () { return chunk77S32ZEH_cjs.InfiniteList; }
 });
 Object.defineProperty(exports, "Input", {
   enumerable: true,
-  get: function () { return chunkAN24WGJJ_cjs.Input; }
+  get: function () { return chunk77S32ZEH_cjs.Input; }
 });
 Object.defineProperty(exports, "KeyValueEditor", {
   enumerable: true,
-  get: function () { return chunkAN24WGJJ_cjs.KeyValueEditor; }
+  get: function () { return chunk77S32ZEH_cjs.KeyValueEditor; }
 });
 Object.defineProperty(exports, "LineChart", {
   enumerable: true,
-  get: function () { return chunkAN24WGJJ_cjs.LineChart; }
+  get: function () { return chunk77S32ZEH_cjs.LineChart; }
 });
 Object.defineProperty(exports, "LogViewer", {
   enumerable: true,
-  get: function () { return chunkAN24WGJJ_cjs.LogViewer; }
+  get: function () { return chunk77S32ZEH_cjs.LogViewer; }
 });
 Object.defineProperty(exports, "NumberInput", {
   enumerable: true,
-  get: function () { return chunkAN24WGJJ_cjs.NumberInput; }
+  get: function () { return chunk77S32ZEH_cjs.NumberInput; }
 });
 Object.defineProperty(exports, "PageHead", {
   enumerable: true,
-  get: function () { return chunkAN24WGJJ_cjs.PageHead; }
+  get: function () { return chunk77S32ZEH_cjs.PageHead; }
 });
 Object.defineProperty(exports, "Panel", {
   enumerable: true,
-  get: function () { return chunkAN24WGJJ_cjs.Panel; }
+  get: function () { return chunk77S32ZEH_cjs.Panel; }
 });
 Object.defineProperty(exports, "PermissionMatrix", {
   enumerable: true,
-  get: function () { return chunkAN24WGJJ_cjs.PermissionMatrix; }
+  get: function () { return chunk77S32ZEH_cjs.PermissionMatrix; }
 });
 Object.defineProperty(exports, "Popover", {
   enumerable: true,
-  get: function () { return chunkAN24WGJJ_cjs.Popover; }
+  get: function () { return chunk77S32ZEH_cjs.Popover; }
 });
 Object.defineProperty(exports, "PopoverClose", {
   enumerable: true,
-  get: function () { return chunkAN24WGJJ_cjs.PopoverClose; }
+  get: function () { return chunk77S32ZEH_cjs.PopoverClose; }
 });
 Object.defineProperty(exports, "PopoverContent", {
   enumerable: true,
-  get: function () { return chunkAN24WGJJ_cjs.PopoverContent; }
+  get: function () { return chunk77S32ZEH_cjs.PopoverContent; }
 });
 Object.defineProperty(exports, "PopoverTrigger", {
   enumerable: true,
-  get: function () { return chunkAN24WGJJ_cjs.PopoverTrigger; }
+  get: function () { return chunk77S32ZEH_cjs.PopoverTrigger; }
 });
 Object.defineProperty(exports, "Radio", {
   enumerable: true,
-  get: function () { return chunkAN24WGJJ_cjs.Radio; }
+  get: function () { return chunk77S32ZEH_cjs.Radio; }
 });
 Object.defineProperty(exports, "RadioGroup", {
   enumerable: true,
-  get: function () { return chunkAN24WGJJ_cjs.RadioGroup; }
+  get: function () { return chunk77S32ZEH_cjs.RadioGroup; }
+});
+Object.defineProperty(exports, "RelativeTime", {
+  enumerable: true,
+  get: function () { return chunk77S32ZEH_cjs.RelativeTime; }
 });
 Object.defineProperty(exports, "SearchInput", {
   enumerable: true,
-  get: function () { return chunkAN24WGJJ_cjs.SearchInput; }
+  get: function () { return chunk77S32ZEH_cjs.SearchInput; }
+});
+Object.defineProperty(exports, "SegmentedControl", {
+  enumerable: true,
+  get: function () { return chunk77S32ZEH_cjs.SegmentedControl; }
 });
 Object.defineProperty(exports, "Select", {
   enumerable: true,
-  get: function () { return chunkAN24WGJJ_cjs.Select; }
+  get: function () { return chunk77S32ZEH_cjs.Select; }
+});
+Object.defineProperty(exports, "SelectMenu", {
+  enumerable: true,
+  get: function () { return chunk77S32ZEH_cjs.SelectMenu; }
 });
 Object.defineProperty(exports, "Skeleton", {
   enumerable: true,
-  get: function () { return chunkAN24WGJJ_cjs.Skeleton; }
+  get: function () { return chunk77S32ZEH_cjs.Skeleton; }
 });
 Object.defineProperty(exports, "Slider", {
   enumerable: true,
-  get: function () { return chunkAN24WGJJ_cjs.Slider; }
+  get: function () { return chunk77S32ZEH_cjs.Slider; }
 });
 Object.defineProperty(exports, "Sparkline", {
   enumerable: true,
-  get: function () { return chunkAN24WGJJ_cjs.Sparkline; }
+  get: function () { return chunk77S32ZEH_cjs.Sparkline; }
 });
 Object.defineProperty(exports, "Spinner", {
   enumerable: true,
-  get: function () { return chunkAN24WGJJ_cjs.Spinner; }
+  get: function () { return chunk77S32ZEH_cjs.Spinner; }
+});
+Object.defineProperty(exports, "SplitButton", {
+  enumerable: true,
+  get: function () { return chunk77S32ZEH_cjs.SplitButton; }
 });
 Object.defineProperty(exports, "SplitPane", {
   enumerable: true,
-  get: function () { return chunkAN24WGJJ_cjs.SplitPane; }
+  get: function () { return chunk77S32ZEH_cjs.SplitPane; }
 });
 Object.defineProperty(exports, "Stat", {
   enumerable: true,
-  get: function () { return chunkAN24WGJJ_cjs.Stat; }
+  get: function () { return chunk77S32ZEH_cjs.Stat; }
 });
 Object.defineProperty(exports, "StatGrid", {
   enumerable: true,
-  get: function () { return chunkAN24WGJJ_cjs.StatGrid; }
+  get: function () { return chunk77S32ZEH_cjs.StatGrid; }
+});
+Object.defineProperty(exports, "StatusDot", {
+  enumerable: true,
+  get: function () { return chunk77S32ZEH_cjs.StatusDot; }
 });
 Object.defineProperty(exports, "Switch", {
   enumerable: true,
-  get: function () { return chunkAN24WGJJ_cjs.Switch; }
+  get: function () { return chunk77S32ZEH_cjs.Switch; }
 });
 Object.defineProperty(exports, "Tabs", {
   enumerable: true,
-  get: function () { return chunkAN24WGJJ_cjs.Tabs; }
+  get: function () { return chunk77S32ZEH_cjs.Tabs; }
 });
 Object.defineProperty(exports, "TabsContent", {
   enumerable: true,
-  get: function () { return chunkAN24WGJJ_cjs.TabsContent; }
+  get: function () { return chunk77S32ZEH_cjs.TabsContent; }
 });
 Object.defineProperty(exports, "TabsList", {
   enumerable: true,
-  get: function () { return chunkAN24WGJJ_cjs.TabsList; }
+  get: function () { return chunk77S32ZEH_cjs.TabsList; }
 });
 Object.defineProperty(exports, "TabsTrigger", {
   enumerable: true,
-  get: function () { return chunkAN24WGJJ_cjs.TabsTrigger; }
+  get: function () { return chunk77S32ZEH_cjs.TabsTrigger; }
 });
 Object.defineProperty(exports, "TagInput", {
   enumerable: true,
-  get: function () { return chunkAN24WGJJ_cjs.TagInput; }
+  get: function () { return chunk77S32ZEH_cjs.TagInput; }
 });
 Object.defineProperty(exports, "TenantSwitcher", {
   enumerable: true,
-  get: function () { return chunkAN24WGJJ_cjs.TenantSwitcher; }
+  get: function () { return chunk77S32ZEH_cjs.TenantSwitcher; }
 });
 Object.defineProperty(exports, "TextArea", {
   enumerable: true,
-  get: function () { return chunkAN24WGJJ_cjs.Textarea; }
+  get: function () { return chunk77S32ZEH_cjs.Textarea; }
 });
 Object.defineProperty(exports, "TextInput", {
   enumerable: true,
-  get: function () { return chunkAN24WGJJ_cjs.Input; }
+  get: function () { return chunk77S32ZEH_cjs.Input; }
 });
 Object.defineProperty(exports, "Textarea", {
   enumerable: true,
-  get: function () { return chunkAN24WGJJ_cjs.Textarea; }
+  get: function () { return chunk77S32ZEH_cjs.Textarea; }
 });
 Object.defineProperty(exports, "TimeRangePicker", {
   enumerable: true,
-  get: function () { return chunkAN24WGJJ_cjs.TimeRangePicker; }
+  get: function () { return chunk77S32ZEH_cjs.TimeRangePicker; }
 });
 Object.defineProperty(exports, "ToastProvider", {
   enumerable: true,
-  get: function () { return chunkAN24WGJJ_cjs.ToastProvider; }
+  get: function () { return chunk77S32ZEH_cjs.ToastProvider; }
 });
 Object.defineProperty(exports, "Tooltip", {
   enumerable: true,
-  get: function () { return chunkAN24WGJJ_cjs.Tooltip; }
+  get: function () { return chunk77S32ZEH_cjs.Tooltip; }
 });
 Object.defineProperty(exports, "TooltipProvider", {
   enumerable: true,
-  get: function () { return chunkAN24WGJJ_cjs.TooltipProvider; }
+  get: function () { return chunk77S32ZEH_cjs.TooltipProvider; }
 });
 Object.defineProperty(exports, "TruncatedText", {
   enumerable: true,
-  get: function () { return chunkAN24WGJJ_cjs.TruncatedText; }
+  get: function () { return chunk77S32ZEH_cjs.TruncatedText; }
 });
 Object.defineProperty(exports, "VirtualList", {
   enumerable: true,
-  get: function () { return chunkAN24WGJJ_cjs.VirtualList; }
+  get: function () { return chunk77S32ZEH_cjs.VirtualList; }
+});
+Object.defineProperty(exports, "formatRelative", {
+  enumerable: true,
+  get: function () { return chunk77S32ZEH_cjs.formatRelative; }
 });
 Object.defineProperty(exports, "observeRectWithFallback", {
   enumerable: true,
-  get: function () { return chunkAN24WGJJ_cjs.observeRectWithFallback; }
+  get: function () { return chunk77S32ZEH_cjs.observeRectWithFallback; }
 });
 Object.defineProperty(exports, "useToast", {
   enumerable: true,
-  get: function () { return chunkAN24WGJJ_cjs.useToast; }
+  get: function () { return chunk77S32ZEH_cjs.useToast; }
+});
+Object.defineProperty(exports, "useToasts", {
+  enumerable: true,
+  get: function () { return chunk77S32ZEH_cjs.useToasts; }
 });
 Object.defineProperty(exports, "diffLines", {
   enumerable: true,
-  get: function () { return chunkXNG22HMC_cjs.diffLines; }
+  get: function () { return chunkYGX6XE22_cjs.diffLines; }
 });
 Object.defineProperty(exports, "format", {
   enumerable: true,
-  get: function () { return chunkXNG22HMC_cjs.format; }
+  get: function () { return chunkYGX6XE22_cjs.format; }
 });
 Object.defineProperty(exports, "matchesAccept", {
   enumerable: true,
-  get: function () { return chunkXNG22HMC_cjs.matchesAccept; }
+  get: function () { return chunkYGX6XE22_cjs.matchesAccept; }
 });
 Object.defineProperty(exports, "useControllableState", {
   enumerable: true,
-  get: function () { return chunkXNG22HMC_cjs.useControllableState; }
+  get: function () { return chunkYGX6XE22_cjs.useControllableState; }
 });
 Object.defineProperty(exports, "LafProvider", {
   enumerable: true,
-  get: function () { return chunkGWTYGDXC_cjs.LafProvider; }
+  get: function () { return chunkE6JUACLJ_cjs.LafProvider; }
 });
 Object.defineProperty(exports, "createFormatters", {
   enumerable: true,
-  get: function () { return chunkGWTYGDXC_cjs.createFormatters; }
+  get: function () { return chunkE6JUACLJ_cjs.createFormatters; }
 });
 Object.defineProperty(exports, "en", {
   enumerable: true,
-  get: function () { return chunkGWTYGDXC_cjs.en; }
+  get: function () { return chunkE6JUACLJ_cjs.en; }
 });
 Object.defineProperty(exports, "useLaf", {
   enumerable: true,
-  get: function () { return chunkGWTYGDXC_cjs.useLaf; }
+  get: function () { return chunkE6JUACLJ_cjs.useLaf; }
 });
 Object.defineProperty(exports, "useLafDefaults", {
   enumerable: true,
-  get: function () { return chunkGWTYGDXC_cjs.useLafDefaults; }
+  get: function () { return chunkE6JUACLJ_cjs.useLafDefaults; }
 });
 Object.defineProperty(exports, "usePortalContainer", {
   enumerable: true,
-  get: function () { return chunkGWTYGDXC_cjs.usePortalContainer; }
+  get: function () { return chunkE6JUACLJ_cjs.usePortalContainer; }
 });
 Object.defineProperty(exports, "Button", {
   enumerable: true,
@@ -8394,13 +9212,12 @@ exports.AllowListEditor = AllowListEditor;
 exports.ApiKeyManager = ApiKeyManager;
 exports.AppFooter = AppFooter;
 exports.AppFrame = AppFrame;
+exports.AppSwitcher = AppSwitcher;
 exports.AuditLog = AuditLog;
 exports.AuthFooter = AuthFooter;
-exports.AvatarGroup = AvatarGroup;
 exports.BarChart = BarChart;
 exports.BrandHeader = BrandHeader;
 exports.BrandingEditor = BrandingEditor;
-exports.ButtonGroup = ButtonGroup;
 exports.CapacityBar = CapacityBar;
 exports.CidrInput = CidrInput;
 exports.ClientInfo = ClientInfo;
@@ -8459,6 +9276,7 @@ exports.FormHelperText = FormHelperText;
 exports.FormPage = FormPage;
 exports.FormSection = FormSection;
 exports.Gauge = Gauge;
+exports.GaugeCard = GaugeCard;
 exports.Grid = Grid;
 exports.GridColumnsMenu = GridColumnsMenu;
 exports.GridDensityToggle = GridDensityToggle;
@@ -8470,7 +9288,6 @@ exports.HelperText = HelperText;
 exports.HelperTextItem = HelperTextItem;
 exports.HotkeysProvider = HotkeysProvider;
 exports.HoverCard = HoverCard;
-exports.IconButton = IconButton;
 exports.InfoBox = InfoBox;
 exports.InlineDrawer = InlineDrawer;
 exports.InlineEdit = InlineEdit;
@@ -8479,7 +9296,7 @@ exports.IpInput = IpInput;
 exports.IssueCard = IssueCard;
 exports.IssueRow = IssueRow;
 exports.Kbd = Kbd;
-exports.Label = Label3;
+exports.Label = Label2;
 exports.LabelPicker = LabelPicker;
 exports.LabelSwatch = LabelSwatch;
 exports.LafErrorBoundary = LafErrorBoundary;
@@ -8492,6 +9309,8 @@ exports.MastheadToggle = MastheadToggle;
 exports.Menu = Menu;
 exports.MenuShortcut = MenuShortcut;
 exports.MenuToggle = MenuToggle;
+exports.MetricCard = MetricCard;
+exports.MetricGrid = MetricGrid;
 exports.MfaEnrolment = MfaEnrolment;
 exports.MobileNav = MobileNav;
 exports.Modal = Modal;
@@ -8514,18 +9333,20 @@ exports.PageSection = PageSection;
 exports.Pagination = Pagination;
 exports.PasswordField = PasswordField;
 exports.PermissionAssignDialog = PermissionAssignDialog;
+exports.PortalHome = PortalHome;
+exports.PortalLayout = PortalLayout;
 exports.Progress = Progress;
+exports.ProgressCard = ProgressCard;
 exports.ProgressSummary = ProgressSummary;
 exports.PropertiesPane = PropertiesPane;
+exports.RadialGauge = RadialGauge;
 exports.Reactions = Reactions;
 exports.ReauthDialog = ReauthDialog;
-exports.RelativeTime = RelativeTime;
 exports.SavedViews = SavedViews;
 exports.ScopeList = ScopeList;
 exports.SecretDisplay = SecretDisplay;
 exports.SecurityFactors = SecurityFactors;
-exports.SegmentedControl = SegmentedControl;
-exports.SelectMenu = SelectMenu;
+exports.ServerDataGrid = ServerDataGrid;
 exports.SessionExpiryDialog = SessionExpiryDialog;
 exports.SessionList = SessionList;
 exports.ShortcutHelp = ShortcutHelp;
@@ -8534,11 +9355,10 @@ exports.SnapshotTree = SnapshotTree;
 exports.SocialButton = SocialButton;
 exports.SocialButtons = SocialButtons;
 exports.SocialDivider = SocialDivider;
-exports.SplitButton = SplitButton;
 exports.Stack = Stack;
 exports.StackItem = StackItem;
 exports.StackedBarChart = StackedBarChart;
-exports.StatusDot = StatusDot;
+exports.StatusSummaryCard = StatusSummaryCard;
 exports.Stepper = Stepper;
 exports.SubNav = SubNav;
 exports.Table = Table;
@@ -8565,9 +9385,10 @@ exports.UserMenu = UserMenu;
 exports.UserSelector = UserSelector;
 exports.Wizard = Wizard;
 exports.WizardReview = WizardReview;
+exports.browserSearchParams = browserSearchParams;
 exports.contrastRatio = contrastRatio;
 exports.formatHotkey = formatHotkey;
-exports.formatRelative = formatRelative;
+exports.gaugeTone = gaugeTone;
 exports.highlight = highlight;
 exports.isCidr = isCidr;
 exports.isIPv4 = isIPv4;
@@ -8578,13 +9399,19 @@ exports.normalizeHex = normalizeHex;
 exports.parseCidr = parseCidr;
 exports.parseFilter = parseFilter;
 exports.parseHotkey = parseHotkey;
+exports.portalBreadcrumbs = portalBreadcrumbs;
+exports.portalNavEntries = portalNavEntries;
 exports.registerObjectKind = registerObjectKind;
+exports.resolvePortalRoute = resolvePortalRoute;
 exports.serializeFilter = serializeFilter;
 exports.serializeToken = serializeToken;
+exports.serverGridFromSearchParams = serverGridFromSearchParams;
+exports.serverGridToSearchParams = serverGridToSearchParams;
 exports.useAppFrame = useAppFrame;
 exports.useHotkeys = useHotkeys;
 exports.useRegisteredHotkeys = useRegisteredHotkeys;
 exports.useSavedViews = useSavedViews;
+exports.useServerGrid = useServerGrid;
 exports.useUnsavedChangesGuard = useUnsavedChangesGuard;
 //# sourceMappingURL=index.cjs.map
 //# sourceMappingURL=index.cjs.map

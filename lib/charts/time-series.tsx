@@ -48,6 +48,8 @@ export interface TimeSeriesChartProps {
   hiddenSeries?: string[];
   onHiddenSeriesChange?: (ids: string[]) => void;
   loading?: boolean;
+  /** Show the (toggleable) legend; default true. */
+  legend?: boolean;
   label: string;
   height?: number;
   /** Fixed width in px; measured from the container when omitted. */
@@ -118,6 +120,7 @@ export function TimeSeriesChart({
   hiddenSeries: hiddenProp,
   onHiddenSeriesChange,
   loading,
+  legend = true,
   label,
   height = 240,
   width: widthProp,
@@ -470,7 +473,7 @@ export function TimeSeriesChart({
         )}
       </div>
       <figcaption className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-muted">
-        <div role="group" aria-label={l.legend} className="flex flex-wrap gap-x-3 gap-y-1">
+        {legend && <div role="group" aria-label={l.legend} className="flex flex-wrap gap-x-3 gap-y-1">
           {series.map((s, si) => {
             const on = !hidden.includes(s.id);
             return (
@@ -489,7 +492,7 @@ export function TimeSeriesChart({
               </React.Fragment>
             );
           })}
-        </div>
+        </div>}
         <span className="ms-auto inline-flex items-center gap-3">
           {zoomed && (
             <button type="button" className="cursor-pointer border-0 bg-transparent p-0 text-xs text-primary hover:underline" onClick={resetZoom}>

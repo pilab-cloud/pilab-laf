@@ -4,6 +4,8 @@ import type { accountEn } from "./messages/account.en";
 import type { adminEn } from "./messages/admin.en";
 import type { chartsEn } from "./messages/charts.en";
 import type { contentEn } from "./messages/content.en";
+import type { dashboardEn } from "./messages/dashboard.en";
+import type { portalEn } from "./messages/portal.en";
 import type { trackerEn } from "./messages/tracker.en";
 import type { uiEn } from "./messages/ui.en";
 import type { vsphereObjectsEn } from "./messages/vsphere-objects.en";
@@ -20,6 +22,8 @@ export interface ComponentMessages {
   charts: typeof chartsEn;
   ui: typeof uiEn;
   content: typeof contentEn;
+  dashboard: typeof dashboardEn;
+  portal: typeof portalEn;
 }
 type Overrides<G> = { [S in keyof G]?: G[S] extends string ? string : Partial<G[S]> };
 export type ComponentMessageOverrides = { [K in keyof ComponentMessages]?: Overrides<ComponentMessages[K]> };

@@ -1,8 +1,8 @@
 'use strict';
 
-var chunkAN24WGJJ_cjs = require('./chunk-AN24WGJJ.cjs');
-var chunkXNG22HMC_cjs = require('./chunk-XNG22HMC.cjs');
-var chunkGWTYGDXC_cjs = require('./chunk-GWTYGDXC.cjs');
+var chunk77S32ZEH_cjs = require('./chunk-77S32ZEH.cjs');
+var chunkYGX6XE22_cjs = require('./chunk-YGX6XE22.cjs');
+var chunkE6JUACLJ_cjs = require('./chunk-E6JUACLJ.cjs');
 var chunkIP6HZMS5_cjs = require('./chunk-IP6HZMS5.cjs');
 var chunkFTHFEMX6_cjs = require('./chunk-FTHFEMX6.cjs');
 var axis = require('@visx/axis');
@@ -11,6 +11,7 @@ var scale = require('@visx/scale');
 var shape = require('@visx/shape');
 var React = require('react');
 var jsxRuntime = require('react/jsx-runtime');
+var lucideReact = require('lucide-react');
 
 function _interopNamespace(e) {
   if (e && e.__esModule) return e;
@@ -117,7 +118,7 @@ var chartsEn = {
   }
 };
 var lafDefaults = { charts: chartsEn };
-var useLaf = () => chunkGWTYGDXC_cjs.useLafDefaults(lafDefaults);
+var useLaf = () => chunkE6JUACLJ_cjs.useLafDefaults(lafDefaults);
 var SERIES_TONES = ["text-primary", "text-ok", "text-warn", "text-danger"];
 var SERIES_DASH = [void 0, "4 2", "1 3", "6 2 1 2"];
 var MARGIN = { top: 8, bottom: 24, left: 56, right: 12, right2: 56 };
@@ -172,6 +173,7 @@ function TimeSeriesChart({
   hiddenSeries: hiddenProp,
   onHiddenSeriesChange,
   loading,
+  legend = true,
   label,
   height = 240,
   width: widthProp,
@@ -183,8 +185,8 @@ function TimeSeriesChart({
   const l = { ...laf.components.charts.timeSeries, ...labelsProp };
   const uid = React__namespace.useId();
   const [wrap, width] = useWidth(widthProp);
-  const [hidden, setHidden] = chunkXNG22HMC_cjs.useControllableState({ value: hiddenProp, defaultValue: [], onChange: onHiddenSeriesChange });
-  const [zoom, setZoom] = chunkXNG22HMC_cjs.useControllableState({ value: rangeProp, defaultValue: null, onChange: (r) => r && onRangeChange?.(r) });
+  const [hidden, setHidden] = chunkYGX6XE22_cjs.useControllableState({ value: hiddenProp, defaultValue: [], onChange: onHiddenSeriesChange });
+  const [zoom, setZoom] = chunkYGX6XE22_cjs.useControllableState({ value: rangeProp, defaultValue: null, onChange: (r) => r && onRangeChange?.(r) });
   const [cursor, setCursor] = React__namespace.useState(null);
   const [sel, setSel] = React__namespace.useState(null);
   const [kbd, setKbd] = React__namespace.useState(false);
@@ -486,7 +488,7 @@ function TimeSeriesChart({
       /* @__PURE__ */ jsxRuntime.jsx("span", { className: "sr-only", "aria-live": "polite", children: kbd ? tipText : "" })
     ] }) }),
     /* @__PURE__ */ jsxRuntime.jsxs("figcaption", { className: "flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-muted", children: [
-      /* @__PURE__ */ jsxRuntime.jsx("div", { role: "group", "aria-label": l.legend, className: "flex flex-wrap gap-x-3 gap-y-1", children: series.map((s, si) => {
+      legend && /* @__PURE__ */ jsxRuntime.jsx("div", { role: "group", "aria-label": l.legend, className: "flex flex-wrap gap-x-3 gap-y-1", children: series.map((s, si) => {
         const on = !hidden.includes(s.id);
         return /* @__PURE__ */ jsxRuntime.jsx(React__namespace.Fragment, { children: /* @__PURE__ */ jsxRuntime.jsxs(
           "button",
@@ -639,7 +641,7 @@ function Heatmap({
   );
 }
 var lafDefaults2 = { charts: chartsEn };
-var useLaf2 = () => chunkGWTYGDXC_cjs.useLafDefaults(lafDefaults2);
+var useLaf2 = () => chunkE6JUACLJ_cjs.useLafDefaults(lafDefaults2);
 var UNIT_MS = { m: 6e4, h: 36e5, d: 864e5 };
 function presetToMs(preset) {
   const m = /^(\d+)([mhd])$/.exec(preset);
@@ -672,12 +674,12 @@ function PerfPanel({
 }) {
   const { format, t: laf } = useLaf2();
   const l = { ...laf.components.charts.perfPanel, ...labelsProp };
-  const [selected, setSelected] = chunkXNG22HMC_cjs.useControllableState({
+  const [selected, setSelected] = chunkYGX6XE22_cjs.useControllableState({
     value: selectedProp,
     defaultValue: metrics.length ? [metrics[0].id] : [],
     onChange: onSelectedChange
   });
-  const [preset, setPreset] = chunkXNG22HMC_cjs.useControllableState({ value: rangeProp, defaultValue: presets.includes("1h") ? "1h" : presets[0], onChange: onTimeRangeChange });
+  const [preset, setPreset] = chunkYGX6XE22_cjs.useControllableState({ value: rangeProp, defaultValue: presets.includes("1h") ? "1h" : presets[0], onChange: onTimeRangeChange });
   const [custom, setCustom] = React__namespace.useState();
   const newest = React__namespace.useMemo(() => nowProp ?? metrics.reduce((m, s) => s.points.reduce((a, p) => Math.max(a, p[0]), m), -Infinity), [metrics, nowProp]);
   const win = React__namespace.useMemo(() => {
@@ -716,7 +718,7 @@ function PerfPanel({
   return /* @__PURE__ */ jsxRuntime.jsxs("section", { "aria-label": label, className: chunkFTHFEMX6_cjs.cn("grid gap-3", className), children: [
     /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex flex-wrap items-center gap-3", children: [
       /* @__PURE__ */ jsxRuntime.jsx(
-        chunkAN24WGJJ_cjs.Combobox,
+        chunk77S32ZEH_cjs.Combobox,
         {
           multiple: true,
           label: l.metrics,
@@ -727,7 +729,7 @@ function PerfPanel({
           className: "min-w-56"
         }
       ),
-      /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.TimeRangePicker, { value: preset, onChange: setPreset, presets, range: win, onRangeChange: zoomTo, showTimeZone: true }),
+      /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.TimeRangePicker, { value: preset, onChange: setPreset, presets, range: win, onRangeChange: zoomTo, showTimeZone: true }),
       /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { variant: "ghost", size: "sm", className: "ms-auto", onClick: doExport, disabled: !active.length, children: l.exportCsv })
     ] }),
     active.length || loading ? /* @__PURE__ */ jsxRuntime.jsx(TimeSeriesChart, { label, series: active, type, thresholds, height, loading, range: win, onRangeChange: zoomTo }) : /* @__PURE__ */ jsxRuntime.jsx("p", { className: "m-0 text-sm text-muted", children: l.noMetrics }),
@@ -743,15 +745,454 @@ function PerfPanel({
     ] })
   ] });
 }
+function AreaChart({ stacked, ...props }) {
+  return /* @__PURE__ */ jsxRuntime.jsx(TimeSeriesChart, { ...props, type: stacked ? "stacked-area" : "area" });
+}
+function LineChart(props) {
+  return /* @__PURE__ */ jsxRuntime.jsx(TimeSeriesChart, { ...props, type: "line" });
+}
+var lafDefaults3 = { dashboard: chunk77S32ZEH_cjs.dashboardEn };
+var useChartLaf = () => chunkE6JUACLJ_cjs.useLafDefaults(lafDefaults3);
+var CHART_TONES = ["text-label-9", "text-label-5", "text-label-3", "text-label-1", "text-label-7", "text-label-11", "text-label-2", "text-label-6"];
+var chartTone = (i) => CHART_TONES[i % CHART_TONES.length];
+function useChartWidth(fixed, initial = 480) {
+  const ref = React__namespace.useRef(null);
+  const [w, setW] = React__namespace.useState(initial);
+  React__namespace.useEffect(() => {
+    const el = ref.current;
+    if (fixed !== void 0 || !el || typeof ResizeObserver === "undefined") return;
+    const apply = () => el.clientWidth > 0 && setW(el.clientWidth);
+    apply();
+    const ro = new ResizeObserver(apply);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, [fixed]);
+  return [ref, fixed ?? w];
+}
+function useActiveIndex(count) {
+  const [active, setActive] = React__namespace.useState(null);
+  const [keyboard, setKeyboard] = React__namespace.useState(false);
+  const onKeyDown = (e) => {
+    if (!count) return;
+    const cur = active ?? -1;
+    const go = (i) => {
+      e.preventDefault();
+      setKeyboard(true);
+      setActive(Math.min(count - 1, Math.max(0, i)));
+    };
+    const next = e.key === "ArrowDown" || e.key === "ArrowRight";
+    const prev = e.key === "ArrowUp" || e.key === "ArrowLeft";
+    if (next) go(cur + 1);
+    else if (prev) go(cur < 0 ? count - 1 : cur - 1);
+    else if (e.key === "Home") go(0);
+    else if (e.key === "End") go(count - 1);
+    else if (e.key === "Escape") setActive(null);
+  };
+  return { active, setActive, keyboard, setKeyboard, onKeyDown, onBlur: () => (setActive(null), setKeyboard(false)) };
+}
+function ChartLegend({ items, hidden = [], onToggle, label, className }) {
+  const { t } = useChartLaf();
+  const c = t.components.dashboard.chart;
+  return /* @__PURE__ */ jsxRuntime.jsx("ul", { "aria-label": label ?? c.legend, className: chunkFTHFEMX6_cjs.cn("m-0 flex list-none flex-wrap items-center gap-x-4 gap-y-1 p-0 text-xs text-muted", className), children: items.map((it) => {
+    const off = hidden.includes(it.id);
+    const swatch = /* @__PURE__ */ jsxRuntime.jsx("svg", { width: "14", height: "8", "aria-hidden": true, className: chunkFTHFEMX6_cjs.cn(it.tone, off && "opacity-40"), children: it.dash ? /* @__PURE__ */ jsxRuntime.jsx("line", { x1: "0", x2: "14", y1: "4", y2: "4", stroke: "currentColor", strokeWidth: "2.5", strokeDasharray: it.dash }) : /* @__PURE__ */ jsxRuntime.jsx("rect", { width: "14", height: "8", rx: "2", fill: "currentColor" }) });
+    return /* @__PURE__ */ jsxRuntime.jsx("li", { children: onToggle ? /* @__PURE__ */ jsxRuntime.jsxs("button", { type: "button", "aria-pressed": !off, "aria-label": c.toggleSeries(it.name), onClick: () => onToggle(it.id), className: chunkFTHFEMX6_cjs.cn("inline-flex items-center gap-1.5 rounded-sm border-0 bg-transparent p-0.5 text-muted outline-none hover:text-fg focus-visible:ring-2 focus-visible:ring-primary/50", off && "line-through opacity-70"), children: [
+      swatch,
+      /* @__PURE__ */ jsxRuntime.jsx("span", { children: it.name }),
+      it.value !== void 0 && /* @__PURE__ */ jsxRuntime.jsx("b", { className: "font-mono text-fg", children: it.value })
+    ] }) : /* @__PURE__ */ jsxRuntime.jsxs("span", { className: "inline-flex items-center gap-1.5", children: [
+      swatch,
+      /* @__PURE__ */ jsxRuntime.jsx("span", { children: it.name }),
+      it.value !== void 0 && /* @__PURE__ */ jsxRuntime.jsx("b", { className: "font-mono text-fg", children: it.value })
+    ] }) }, it.id);
+  }) });
+}
+function ChartTooltip({ x, y, title, rows, className }) {
+  return /* @__PURE__ */ jsxRuntime.jsxs("div", { "aria-hidden": true, className: chunkFTHFEMX6_cjs.cn("pointer-events-none absolute z-10 min-w-28 -translate-x-1/2 rounded-sm border border-line-strong bg-menu px-2 py-1.5 text-xs text-fg shadow-(--shadow-card)", className), style: { left: x, top: y }, children: [
+    title && /* @__PURE__ */ jsxRuntime.jsx("div", { className: "mb-1 font-medium", children: title }),
+    rows.map((r) => /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex items-center justify-between gap-3", children: [
+      /* @__PURE__ */ jsxRuntime.jsxs("span", { className: "inline-flex items-center gap-1.5 text-muted", children: [
+        r.tone && /* @__PURE__ */ jsxRuntime.jsx("span", { className: chunkFTHFEMX6_cjs.cn("size-2 rounded-xs bg-current", r.tone) }),
+        r.name
+      ] }),
+      /* @__PURE__ */ jsxRuntime.jsx("b", { className: "font-mono", children: r.value })
+    ] }, r.name))
+  ] });
+}
+function ChartFrame({
+  label,
+  plot,
+  legend,
+  table,
+  announce,
+  loading,
+  empty,
+  error,
+  onRetry,
+  height,
+  plotRef,
+  className
+}) {
+  const { t } = useChartLaf();
+  const c = t.components.dashboard.chart;
+  const [showTable, setShowTable] = React__namespace.useState(false);
+  const id = React__namespace.useId();
+  const status = loading ? /* @__PURE__ */ jsxRuntime.jsx("div", { role: "status", "aria-label": c.loading, className: "size-full animate-pulse rounded-sm bg-muted-bg motion-reduce:animate-none" }) : error ? /* @__PURE__ */ jsxRuntime.jsxs("div", { role: "alert", className: "grid size-full place-content-center justify-items-center gap-2 text-sm text-danger", children: [
+    /* @__PURE__ */ jsxRuntime.jsx("span", { children: typeof error === "string" ? error : c.error }),
+    onRetry && /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { size: "sm", variant: "secondary", onClick: onRetry, children: c.retry })
+  ] }) : empty ? /* @__PURE__ */ jsxRuntime.jsx("div", { className: "grid size-full place-items-center text-sm text-muted", children: c.empty }) : null;
+  return /* @__PURE__ */ jsxRuntime.jsxs("figure", { "aria-label": label, "aria-busy": loading || void 0, className: chunkFTHFEMX6_cjs.cn("m-0 grid min-w-0 grid-cols-1 gap-2", className), children: [
+    /* @__PURE__ */ jsxRuntime.jsx("div", { ref: plotRef, dir: "ltr", className: "relative min-w-0", style: { height }, children: status ?? plot }),
+    !status && legend,
+    !status && table && /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
+      /* @__PURE__ */ jsxRuntime.jsxs("button", { type: "button", "aria-expanded": showTable, "aria-controls": `${id}-table`, onClick: () => setShowTable((v) => !v), className: "inline-flex items-center gap-1.5 justify-self-start border-0 bg-transparent p-0.5 text-xs text-muted outline-none hover:text-fg focus-visible:ring-2 focus-visible:ring-primary/50", children: [
+        showTable ? /* @__PURE__ */ jsxRuntime.jsx(lucideReact.BarChart3, { "aria-hidden": true, className: "size-3.5" }) : /* @__PURE__ */ jsxRuntime.jsx(lucideReact.TableProperties, { "aria-hidden": true, className: "size-3.5" }),
+        showTable ? c.hideData : c.showData
+      ] }),
+      /* @__PURE__ */ jsxRuntime.jsx("div", { id: `${id}-table`, hidden: !showTable, className: "max-h-60 overflow-auto", children: showTable && /* @__PURE__ */ jsxRuntime.jsxs("table", { className: "w-full border-collapse text-xs tabular-nums", children: [
+        /* @__PURE__ */ jsxRuntime.jsx("caption", { className: "sr-only", children: label }),
+        /* @__PURE__ */ jsxRuntime.jsx("thead", { children: /* @__PURE__ */ jsxRuntime.jsx("tr", { children: table.head.map((h) => /* @__PURE__ */ jsxRuntime.jsx("th", { scope: "col", className: "border-b border-line px-2 py-1 text-start font-medium text-muted", children: h }, h)) }) }),
+        /* @__PURE__ */ jsxRuntime.jsx("tbody", { children: table.rows.map((r, i) => /* @__PURE__ */ jsxRuntime.jsx("tr", { children: r.map(
+          (cell, j) => j === 0 ? /* @__PURE__ */ jsxRuntime.jsx("th", { scope: "row", className: "border-b border-line px-2 py-1 text-start font-normal", children: cell }, j) : /* @__PURE__ */ jsxRuntime.jsx("td", { className: "border-b border-line px-2 py-1 text-start", children: cell }, j)
+        ) }, i)) })
+      ] }) })
+    ] }),
+    /* @__PURE__ */ jsxRuntime.jsx("div", { className: "sr-only", role: "status", "aria-live": "polite", children: announce })
+  ] });
+}
+var M = { top: 8, right: 12, bottom: 24, left: 44 };
+var tick = { fill: "currentColor", fontSize: 10 };
+function BarChart({ categories, series, stacked, orientation = "vertical", formatValue = (v) => String(Math.round(v * 10) / 10), label, height = 240, width: widthProp, legend = true, loading, error, onRetry, className }) {
+  const { t } = useChartLaf();
+  const c = t.components.dashboard.chart;
+  const [wrap, width] = useChartWidth(widthProp);
+  const [hidden, setHidden] = React__namespace.useState([]);
+  const svgRef = React__namespace.useRef(null);
+  const hintId = React__namespace.useId();
+  const nav = useActiveIndex(categories.length);
+  const horizontal = orientation === "horizontal";
+  const margin = { ...M, left: horizontal ? 72 : M.left };
+  const shown = series.filter((s) => !hidden.includes(s.id));
+  const innerW = Math.max(width - margin.left - margin.right, 10);
+  const innerH = Math.max(height - margin.top - margin.bottom, 10);
+  const along = horizontal ? innerH : innerW;
+  const across = horizontal ? innerW : innerH;
+  const totals = categories.map((_, i) => shown.reduce((a, s) => a + (s.data[i] ?? 0), 0));
+  const maxV = Math.max(1, ...stacked ? totals : shown.flatMap((s) => s.data));
+  const band = scale.scaleBand({ domain: categories, range: [0, along], padding: 0.25 });
+  const inner = scale.scaleBand({ domain: shown.map((s) => s.id), range: [0, band.bandwidth()], padding: 0.1 });
+  const val = scale.scaleLinear({ domain: [0, maxV], range: horizontal ? [0, across] : [across, 0], nice: true });
+  const tones = (s) => chartTone(series.indexOf(s));
+  const rects = categories.flatMap((cat2, ci) => {
+    let acc = 0;
+    return shown.map((s, si) => {
+      const v = s.data[ci] ?? 0;
+      const lo = stacked ? acc : 0;
+      if (stacked) acc += v;
+      const hi = lo + v;
+      const pos = band(cat2) + (stacked ? 0 : inner(s.id) ?? 0);
+      const thick = stacked ? band.bandwidth() : inner.bandwidth();
+      const a = val(lo);
+      const b = val(hi);
+      return {
+        key: `${cat2}-${s.id}`,
+        s,
+        si,
+        ci,
+        v,
+        x: horizontal ? Math.min(a, b) : pos,
+        y: horizontal ? pos : Math.min(a, b),
+        w: horizontal ? Math.abs(b - a) : thick,
+        h: horizontal ? thick : Math.abs(b - a)
+      };
+    });
+  });
+  const rows = (i) => shown.map((s) => ({ name: s.name, value: formatValue(s.data[i] ?? 0), tone: tones(s) }));
+  const cat = nav.active === null ? null : categories[nav.active];
+  const announce = cat === null || cat === void 0 ? "" : `${cat}: ${rows(nav.active).map((r) => c.point(r.name, r.value)).join(", ")}`;
+  const bandCenter = nav.active === null ? 0 : (band(categories[nav.active]) ?? 0) + band.bandwidth() / 2;
+  const tipX = horizontal ? margin.left + innerW / 2 : margin.left + bandCenter;
+  const tipY = horizontal ? margin.top + bandCenter + 8 : margin.top;
+  const onPointerMove = (e) => {
+    const r = svgRef.current?.getBoundingClientRect();
+    if (!r) return;
+    const p = horizontal ? e.clientY - r.top - margin.top : e.clientX - r.left - margin.left;
+    const i = Math.floor(p / (along / categories.length));
+    nav.setKeyboard(false);
+    nav.setActive(i >= 0 && i < categories.length ? i : null);
+  };
+  const legendItems = series.map((s, i) => ({ id: s.id, name: s.name, tone: chartTone(i) }));
+  return /* @__PURE__ */ jsxRuntime.jsx(
+    ChartFrame,
+    {
+      label,
+      className,
+      height,
+      plotRef: wrap,
+      loading,
+      error,
+      onRetry,
+      empty: !categories.length || !series.length,
+      announce: nav.keyboard ? announce : "",
+      legend: legend && /* @__PURE__ */ jsxRuntime.jsx(ChartLegend, { items: legendItems, hidden, onToggle: (id) => setHidden((h) => h.includes(id) ? h.filter((x) => x !== id) : [...h, id]) }),
+      table: { head: [c.category, ...series.map((s) => s.name)], rows: categories.map((name, i) => [name, ...series.map((s) => formatValue(s.data[i] ?? 0))]) },
+      plot: /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
+        /* @__PURE__ */ jsxRuntime.jsx(
+          "svg",
+          {
+            ref: svgRef,
+            width,
+            height,
+            role: "img",
+            "aria-label": label,
+            "aria-describedby": hintId,
+            tabIndex: 0,
+            className: "text-muted outline-none select-none focus-visible:outline-2 focus-visible:outline-primary",
+            onKeyDown: nav.onKeyDown,
+            onBlur: nav.onBlur,
+            onPointerMove,
+            onPointerLeave: () => !nav.keyboard && nav.setActive(null),
+            children: /* @__PURE__ */ jsxRuntime.jsxs(group.Group, { left: margin.left, top: margin.top, children: [
+              val.ticks(4).map((tv) => /* @__PURE__ */ jsxRuntime.jsx("line", { x1: horizontal ? val(tv) : 0, x2: horizontal ? val(tv) : innerW, y1: horizontal ? 0 : val(tv), y2: horizontal ? innerH : val(tv), stroke: "var(--border)" }, tv)),
+              nav.active !== null && /* @__PURE__ */ jsxRuntime.jsx("rect", { "data-active": categories[nav.active], x: horizontal ? 0 : band(categories[nav.active]) - 2, y: horizontal ? band(categories[nav.active]) - 2 : 0, width: horizontal ? innerW : band.bandwidth() + 4, height: horizontal ? band.bandwidth() + 4 : innerH, fill: "var(--bg-muted)", opacity: 0.6 }),
+              rects.map((r) => /* @__PURE__ */ jsxRuntime.jsx("rect", { x: r.x, y: r.y, width: Math.max(r.w, 0), height: Math.max(r.h, 0), rx: 1, fill: "currentColor", className: chunkFTHFEMX6_cjs.cn(tones(r.s), "motion-safe:transition-[height,width,y,x] motion-safe:duration-300") }, r.key)),
+              horizontal ? /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
+                /* @__PURE__ */ jsxRuntime.jsx(axis.AxisLeft, { scale: band, stroke: "var(--border-strong)", tickStroke: "var(--border-strong)", tickLabelProps: { ...tick, textAnchor: "end", dy: "0.33em" } }),
+                /* @__PURE__ */ jsxRuntime.jsx(axis.AxisBottom, { top: innerH, scale: val, numTicks: 4, tickFormat: (v) => formatValue(v), stroke: "var(--border-strong)", tickStroke: "var(--border-strong)", tickLabelProps: { ...tick, textAnchor: "middle" } })
+              ] }) : /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
+                /* @__PURE__ */ jsxRuntime.jsx(axis.AxisBottom, { top: innerH, scale: band, stroke: "var(--border-strong)", tickStroke: "var(--border-strong)", tickLabelProps: { ...tick, textAnchor: "middle" } }),
+                /* @__PURE__ */ jsxRuntime.jsx(axis.AxisLeft, { scale: val, numTicks: 4, tickFormat: (v) => formatValue(v), stroke: "var(--border-strong)", tickStroke: "var(--border-strong)", tickLabelProps: { ...tick, textAnchor: "end", dy: "0.33em" } })
+              ] })
+            ] })
+          }
+        ),
+        nav.active !== null && /* @__PURE__ */ jsxRuntime.jsx(ChartTooltip, { x: tipX, y: tipY, title: categories[nav.active], rows: rows(nav.active) }),
+        /* @__PURE__ */ jsxRuntime.jsx("span", { id: hintId, className: "sr-only", children: c.keyboardHint })
+      ] })
+    }
+  );
+}
+function DonutChart({ data, centerLabel, centerValue, formatValue = (v) => String(Math.round(v * 10) / 10), label, size = 200, thickness = 28, legend = true, loading, error, onRetry, className }) {
+  const { t, format } = useChartLaf();
+  const c = t.components.dashboard.chart;
+  const [hidden, setHidden] = React__namespace.useState([]);
+  const shown = data.filter((d) => !hidden.includes(d.id) && d.value > 0);
+  const total = shown.reduce((a, d) => a + d.value, 0);
+  const nav = useActiveIndex(shown.length);
+  const hintId = React__namespace.useId();
+  const r = size / 2;
+  const line = (d) => `${d.name}: ${formatValue(d.value)} (${format.percent(total ? d.value / total : 0, { fractionDigits: 1 })})`;
+  const active = nav.active === null ? null : shown[nav.active];
+  const toneOf = (d) => chartTone(data.indexOf(d));
+  const legendItems = data.map((d, i) => ({ id: d.id, name: d.name, tone: chartTone(i), value: formatValue(d.value) }));
+  return /* @__PURE__ */ jsxRuntime.jsx(
+    ChartFrame,
+    {
+      label,
+      className,
+      height: size,
+      loading,
+      error,
+      onRetry,
+      empty: !data.length || data.every((d) => d.value <= 0),
+      announce: nav.keyboard && active ? line(active) : "",
+      legend: legend && /* @__PURE__ */ jsxRuntime.jsx(ChartLegend, { items: legendItems, hidden, onToggle: (id) => setHidden((h) => h.includes(id) ? h.filter((x) => x !== id) : [...h, id]) }),
+      table: { head: [c.category, c.value, c.share], rows: data.map((d) => [d.name, formatValue(d.value), format.percent(total ? d.value / total : 0, { fractionDigits: 1 })]) },
+      plot: /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "relative mx-auto", style: { width: size, height: size }, children: [
+        /* @__PURE__ */ jsxRuntime.jsx(
+          "svg",
+          {
+            width: size,
+            height: size,
+            role: "img",
+            "aria-label": label,
+            "aria-describedby": hintId,
+            tabIndex: 0,
+            className: "text-muted outline-none focus-visible:outline-2 focus-visible:outline-primary",
+            onKeyDown: nav.onKeyDown,
+            onBlur: nav.onBlur,
+            onPointerLeave: () => !nav.keyboard && nav.setActive(null),
+            children: /* @__PURE__ */ jsxRuntime.jsx("g", { transform: `translate(${r} ${r})`, children: /* @__PURE__ */ jsxRuntime.jsx(shape.Pie, { data: shown, pieValue: (d) => d.value, outerRadius: r - 2, innerRadius: r - thickness, padAngle: shown.length > 1 ? 0.02 : 0, pieSort: null, children: (pie) => pie.arcs.map((arc, i) => /* @__PURE__ */ jsxRuntime.jsx(
+              "path",
+              {
+                d: pie.path(arc) ?? void 0,
+                fill: "currentColor",
+                className: chunkFTHFEMX6_cjs.cn(toneOf(arc.data), "motion-safe:transition-opacity motion-safe:duration-200", nav.active !== null && nav.active !== i && "opacity-50"),
+                onPointerEnter: () => (nav.setKeyboard(false), nav.setActive(i))
+              },
+              arc.data.id
+            )) }) })
+          }
+        ),
+        /* @__PURE__ */ jsxRuntime.jsxs("div", { "aria-hidden": true, className: "pointer-events-none absolute inset-0 grid place-content-center text-center leading-tight", children: [
+          /* @__PURE__ */ jsxRuntime.jsx("span", { className: "text-xl font-semibold tabular-nums", children: active ? formatValue(active.value) : centerValue ?? formatValue(total) }),
+          /* @__PURE__ */ jsxRuntime.jsx("span", { className: "max-w-24 truncate text-xs text-muted", children: active ? active.name : centerLabel ?? c.total })
+        ] }),
+        active && /* @__PURE__ */ jsxRuntime.jsx(ChartTooltip, { x: r, y: -4, title: active.name, rows: [{ name: c.value, value: formatValue(active.value), tone: toneOf(active) }, { name: c.share, value: format.percent(total ? active.value / total : 0, { fractionDigits: 1 }) }], className: "-translate-y-full" }),
+        /* @__PURE__ */ jsxRuntime.jsx("span", { id: hintId, className: "sr-only", children: c.keyboardHint })
+      ] })
+    }
+  );
+}
+function ChartCard({
+  title,
+  description,
+  headingLevel = 3,
+  ranges,
+  range: rangeProp,
+  defaultRange,
+  onRangeChange,
+  legendToggle,
+  legend: legendProp,
+  onLegendChange,
+  onExport,
+  onRefresh,
+  refreshing,
+  loading,
+  error,
+  onRetry,
+  empty,
+  actions,
+  footer,
+  children,
+  className,
+  ...rest
+}) {
+  const { t } = useChartLaf();
+  const c = t.components.dashboard.chart;
+  const [range, setRange] = chunkYGX6XE22_cjs.useControllableState({ value: rangeProp, defaultValue: defaultRange ?? ranges?.[0]?.value, onChange: (v) => v !== void 0 && onRangeChange?.(v) });
+  const [legend, setLegend] = chunkYGX6XE22_cjs.useControllableState({ value: legendProp, defaultValue: true, onChange: onLegendChange });
+  const state = loading ? /* @__PURE__ */ jsxRuntime.jsx("div", { role: "status", "aria-label": c.loading, className: "h-48 animate-pulse rounded-sm bg-muted-bg motion-reduce:animate-none" }) : error ? /* @__PURE__ */ jsxRuntime.jsxs("div", { role: "alert", className: "grid h-48 place-content-center justify-items-center gap-2 text-sm text-danger", children: [
+    /* @__PURE__ */ jsxRuntime.jsx("span", { children: typeof error === "string" ? error : c.error }),
+    onRetry && /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { size: "sm", variant: "secondary", onClick: onRetry, children: c.retry })
+  ] }) : empty ? /* @__PURE__ */ jsxRuntime.jsx("div", { className: "grid h-48 place-items-center text-sm text-muted", children: c.empty }) : null;
+  return /* @__PURE__ */ jsxRuntime.jsxs(chunk77S32ZEH_cjs.Card, { variant: "default", ...rest, className: chunkFTHFEMX6_cjs.cn("gap-3", className), "aria-busy": loading || void 0, children: [
+    /* @__PURE__ */ jsxRuntime.jsxs(chunk77S32ZEH_cjs.CardHeader, { className: "flex-wrap", children: [
+      /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "min-w-0", children: [
+        /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.CardTitle, { as: `h${headingLevel}`, children: title }),
+        description && /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.CardDescription, { className: "mt-0.5", children: description })
+      ] }),
+      /* @__PURE__ */ jsxRuntime.jsxs(chunk77S32ZEH_cjs.CardActions, { className: "flex-wrap", children: [
+        actions,
+        ranges && ranges.length > 0 && /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.SegmentedControl, { "aria-label": c.range, items: ranges.map((r) => ({ value: r.value, label: r.label })), value: range, onValueChange: setRange, className: "h-7" }),
+        legendToggle && /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { size: "sm", variant: "ghost", "aria-pressed": legend, "aria-label": legend ? c.hideLegend : c.showLegend, onClick: () => setLegend(!legend), className: "px-0 w-7", children: legend ? /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Eye, { "aria-hidden": true }) : /* @__PURE__ */ jsxRuntime.jsx(lucideReact.EyeOff, { "aria-hidden": true }) }),
+        onRefresh && /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { size: "sm", variant: "ghost", "aria-label": c.refresh, disabled: refreshing, onClick: onRefresh, className: "px-0 w-7", children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.RefreshCw, { "aria-hidden": true, className: chunkFTHFEMX6_cjs.cn(refreshing && "animate-spin motion-reduce:animate-none") }) }),
+        onExport && /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { size: "sm", variant: "ghost", "aria-label": c.export, onClick: onExport, className: "px-0 w-7", children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Download, { "aria-hidden": true }) })
+      ] })
+    ] }),
+    /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.CardBody, { children: state ?? (typeof children === "function" ? children({ range, legend }) : children) }),
+    footer && /* @__PURE__ */ jsxRuntime.jsx("div", { className: "text-xs text-muted", children: footer })
+  ] });
+}
+function SegmentedBar({ segments, label, formatValue = (v) => String(v), legend = true, height = 16, className }) {
+  const { t } = useChartLaf();
+  const u = t.components.dashboard.utilization;
+  const total = segments.reduce((a, s) => a + Math.max(0, s.value), 0);
+  const toneOf = (s, i) => s.tone ?? chartTone(i);
+  const summary = u.barSummary(label, formatValue(total), segments.map((s) => u.percentLine(s.name, formatValue(s.value))).join(", "));
+  const items = segments.map((s, i) => ({ id: s.id, name: s.name, tone: toneOf(s, i) }));
+  return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: chunkFTHFEMX6_cjs.cn("grid min-w-0 gap-2", className), children: [
+    /* @__PURE__ */ jsxRuntime.jsx("div", { role: "img", "aria-label": summary, className: "flex w-full overflow-hidden rounded-sm bg-muted-bg", style: { height }, children: segments.map(
+      (s, i) => s.value > 0 ? /* @__PURE__ */ jsxRuntime.jsx("div", { "aria-hidden": true, title: void 0, "data-segment": s.id, className: chunkFTHFEMX6_cjs.cn("h-full bg-current motion-safe:transition-[flex-grow] motion-safe:duration-300", toneOf(s, i)), style: { flexGrow: s.value, flexBasis: 0 } }, s.id) : null
+    ) }),
+    legend && /* @__PURE__ */ jsxRuntime.jsx(ChartLegend, { items, label: u.segments })
+  ] });
+}
+function thresholdTone(pct, warnAt, dangerAt) {
+  return pct >= dangerAt ? "danger" : pct >= warnAt ? "warn" : "ok";
+}
+var toneClass = { ok: "text-primary", warn: "text-warn", danger: "text-danger" };
+function ThresholdDonut({ value, max = 100, warnAt = 60, dangerAt = 90, subtext, label, size = 160, legend = true, className }) {
+  const { t, format } = useChartLaf();
+  const u = t.components.dashboard.utilization;
+  const pct = max > 0 ? Math.min(100, Math.max(0, value / max * 100)) : 0;
+  const tone = thresholdTone(pct, warnAt, dangerAt);
+  const pctText = format.percent(pct / 100, { fractionDigits: 0 });
+  const summary = `${u.donutSummary(label, pctText, typeof subtext === "string" ? subtext : "", format.percent(warnAt / 100, { fractionDigits: 0 }), format.percent(dangerAt / 100, { fractionDigits: 0 }))} ${u.status[tone]}.`.replace(/\s+\./g, ".");
+  const c = size / 2;
+  const outerW = Math.max(4, size / 20);
+  const innerW = Math.max(8, size / 10);
+  const rOuter = c - outerW / 2;
+  const rInner = rOuter - outerW / 2 - 4 - innerW / 2;
+  const arc = (r, w, from, to, cls, extra) => /* @__PURE__ */ jsxRuntime.jsx("circle", { cx: c, cy: c, r, fill: "none", stroke: "currentColor", strokeWidth: w, pathLength: 100, strokeDasharray: `${Math.max(0, to - from)} ${100 - Math.max(0, to - from)}`, strokeDashoffset: -from, transform: `rotate(-90 ${c} ${c})`, className: chunkFTHFEMX6_cjs.cn(cls, extra) });
+  const pctOf = (n) => format.percent(n / 100, { fractionDigits: 0 });
+  const items = [
+    { id: "warn", name: u.warning, tone: "text-warn opacity-50", value: pctOf(warnAt) },
+    { id: "danger", name: u.danger, tone: "text-danger opacity-50", value: pctOf(dangerAt) },
+    { id: "usage", name: u.capacity, tone: toneClass[tone], value: pctText }
+  ];
+  return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: chunkFTHFEMX6_cjs.cn("flex flex-wrap items-center gap-4", className), children: [
+    /* @__PURE__ */ jsxRuntime.jsxs("div", { dir: "ltr", className: "relative shrink-0", style: { width: size, height: size }, children: [
+      /* @__PURE__ */ jsxRuntime.jsxs("svg", { width: size, height: size, role: "img", "aria-label": summary, className: "block", children: [
+        arc(rOuter, outerW, 0, 100, "text-line"),
+        arc(rOuter, outerW, warnAt, dangerAt, "text-warn opacity-50"),
+        arc(rOuter, outerW, dangerAt, 100, "text-danger opacity-50"),
+        arc(rInner, innerW, 0, 100, "text-muted-bg"),
+        arc(rInner, innerW, 0, pct, toneClass[tone], "motion-safe:transition-[stroke-dasharray] motion-safe:duration-500")
+      ] }),
+      /* @__PURE__ */ jsxRuntime.jsxs("div", { "aria-hidden": true, className: "absolute inset-0 grid place-content-center text-center", children: [
+        /* @__PURE__ */ jsxRuntime.jsx("span", { className: "text-2xl leading-tight text-fg tabular-nums", children: pctText }),
+        subtext && /* @__PURE__ */ jsxRuntime.jsx("span", { className: "text-xs text-muted", children: subtext })
+      ] })
+    ] }),
+    legend && /* @__PURE__ */ jsxRuntime.jsx(
+      ChartLegend,
+      {
+        items: items.map((i) => ({ ...i, name: `${i.name}:`, value: i.value })),
+        label: u.segments,
+        className: "flex-col items-start"
+      }
+    )
+  ] });
+}
+var linkClass = "text-sm text-primary underline-offset-2 hover:underline focus-visible:outline-2 focus-visible:outline-primary";
+function DetailsLink({ href, onClick, children }) {
+  if (!href && !onClick) return null;
+  return href ? /* @__PURE__ */ jsxRuntime.jsx("a", { href, onClick, className: linkClass, children }) : /* @__PURE__ */ jsxRuntime.jsx("button", { type: "button", onClick, className: `${linkClass} cursor-pointer border-0 bg-transparent p-0`, children });
+}
+function UtilizationCard(props) {
+  const { t } = useChartLaf();
+  const u = t.components.dashboard.utilization;
+  const { title, filter, detailsHref, onDetails, headingLevel = 3, className } = props;
+  const label = props.chartLabel ?? (typeof title === "string" ? title : u.segments);
+  return /* @__PURE__ */ jsxRuntime.jsxs(chunk77S32ZEH_cjs.Card, { className, children: [
+    /* @__PURE__ */ jsxRuntime.jsxs(chunk77S32ZEH_cjs.CardHeader, { children: [
+      /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.CardTitle, { as: `h${headingLevel}`, className: "flex-1", children: title }),
+      filter && /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.CardActions, { children: filter })
+    ] }),
+    /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.CardBody, { className: "grid gap-2", children: props.variant === "donut" ? /* @__PURE__ */ jsxRuntime.jsx(ThresholdDonut, { value: props.value, max: props.max, warnAt: props.warnAt, dangerAt: props.dangerAt, subtext: props.subtext, label }) : /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
+      props.subtitle && /* @__PURE__ */ jsxRuntime.jsx("div", { className: "text-fg", children: props.subtitle }),
+      props.alertText && /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex items-center gap-2 text-sm", children: [
+        /* @__PURE__ */ jsxRuntime.jsx(lucideReact.AlertCircle, { "aria-hidden": true, className: "size-4 shrink-0 text-danger" }),
+        props.alertHref || props.onAlertClick ? /* @__PURE__ */ jsxRuntime.jsx(DetailsLink, { href: props.alertHref, onClick: props.onAlertClick, children: props.alertText }) : /* @__PURE__ */ jsxRuntime.jsx("span", { children: props.alertText })
+      ] }),
+      /* @__PURE__ */ jsxRuntime.jsx(SegmentedBar, { segments: props.segments, label, formatValue: props.formatValue })
+    ] }) }),
+    (detailsHref || onDetails) && /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.CardFooter, { children: /* @__PURE__ */ jsxRuntime.jsx(DetailsLink, { href: detailsHref, onClick: onDetails, children: u.seeDetails }) })
+  ] });
+}
 
+exports.AreaChart = AreaChart;
+exports.BarChart = BarChart;
+exports.CHART_TONES = CHART_TONES;
+exports.ChartCard = ChartCard;
+exports.ChartLegend = ChartLegend;
+exports.ChartTooltip = ChartTooltip;
+exports.DonutChart = DonutChart;
 exports.Heatmap = Heatmap;
+exports.LineChart = LineChart;
 exports.PerfPanel = PerfPanel;
+exports.SegmentedBar = SegmentedBar;
 exports.StackedBarChart = StackedBarChart;
+exports.ThresholdDonut = ThresholdDonut;
 exports.TimeSeriesChart = TimeSeriesChart;
+exports.UtilizationCard = UtilizationCard;
+exports.chartTone = chartTone;
 exports.downsample = downsample;
 exports.formatUnit = formatUnit;
 exports.lttb = lttb;
 exports.presetToMs = presetToMs;
 exports.seriesToCsv = seriesToCsv;
+exports.thresholdTone = thresholdTone;
 //# sourceMappingURL=charts.cjs.map
 //# sourceMappingURL=charts.cjs.map

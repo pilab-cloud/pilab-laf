@@ -28,6 +28,7 @@ describe("playground demos", () => {
 
   it("routes by ?demo= and ?bench=", () => {
     expect(demoFromLocation("?demo=vcenter")).toBe("vcenter");
+    expect(demoFromLocation("?demo=dashboard")).toBe("dashboard");
     expect(demoFromLocation("?bench=grid")).toBe("datagrid");
     expect(demoFromLocation("?bench=tree")).toBe("tree");
     expect(demoFromLocation("?demo=nope")).toBe("catalogue");
@@ -96,4 +97,17 @@ describe("playground demos", () => {
     await waitFor(() => expect(screen.queryByRole("dialog")).toBeNull());
     expect((await axe(container)).violations).toEqual([]);
   });
+
+  it("dashboard: range selector, toast on deploy, no a11y violations", async () => {
+    const Dashboard = (await import("../playground/pages/Dashboard")).default;
+    const { container } = render(
+      <Wrap>
+        <Dashboard />
+      </Wrap>,
+    );
+    fireEvent.click(screen.getByRole("button", { name: "Trigger deploy" }));
+    expect(await screen.findByText("Deploy #483 started")).toBeInTheDocument();
+    expect(screen.getAllByRole("img", { name: "Paál Gyula" }).length).toBeGreaterThan(0);
+    expect((await axe(container)).violations).toEqual([]);
+  }, 20000);
 });

@@ -436,6 +436,9 @@ Collapse excess items into a "…" DropdownMenu based on measured width; the cur
 ### 4.38 Chart kit — P1
 Line/area, stacked bar, donut, **sparkline** (inline in table/Stat), **gauge**, heatmap. Colours from a fixed 8-step categorical palette derived from tokens (primary first; ok/warn/danger reserved for status meaning); never rely on colour alone (dash patterns/labels). Gridlines `border-line`, axis text 11px `text-subtle` tabular, tooltip = Popover look with all series at the x-position, legend toggles series, crosshair, brush-zoom, no-data and loading states, `prefers-reduced-motion` disables animation. Accessible: `role="img"` + `aria-label` summary and data-table fallback. Base: `recharts` or `visx` (decide once; wrap behind LAF props so it is swappable).
 
+### 4.38b Dashboard kit — shipped
+Card v2 (`Card` variants default/outlined/elevated/flat, `compact`, `status`, `selectable`/`onClick`/`href`, `loading`; `CardHeader/Title/Description/Actions/Body/Footer`, `CardGrid`, `ExpandableCard`) · metrics (`MetricCard`, `MetricGrid`, `RadialGauge`, `GaugeCard`, `ProgressCard`, `StatusSummaryCard`) · charts entry (`AreaChart`, `LineChart`, `BarChart`, `DonutChart`, `ChartCard`, `ChartLegend`, `ChartTooltip`, `SegmentedBar`, `ThresholdDonut`, `UtilizationCard` (bar/donut variants); existing `Heatmap`) · alerts (`Alert` title/description/actions/onClose/compact/inline/detail, `AlertGroup`, sticky `Banner`) · toasts (`ToastProvider max/position`, `useToasts`). Labels in `messages.components.ui.dashboard`. See `docs/charts.md`, `?demo=dashboard`.
+
 ### 4.39 Time-range picker — P1
 Presets (15m, 1h, 24h, 7d, custom) + absolute from/to + auto-refresh interval (off/5s/30s/1m). Output is ISO range or relative token; timezone shown, UTC on hover (as §4.21). Feeds charts, audit and tasks. Composes 4.45.
 
@@ -605,6 +608,12 @@ packages/ui/
 ### App shell
 
 `AppFrame` (masthead · sidebar · breadcrumb · `PageHeader` · content · `AppFooter` · optional `DrawerPanel`) with `Masthead`/`MastheadToggle`/`MastheadBrand`/`MastheadContent`/`MastheadActions`, `ThemeToggle`, `Sidebar`/`NavTree` (arbitrary depth, `aria-current`/`aria-expanded`, roving tabindex, icon rail, `tree` slot using TreeView) and `PageSection`. The sidebar overlays below 860 px; `persistKey` remembers collapse state. Labels live in `messages.components.ui.appFrame`. See `?demo=app-frame`.
+
+### Portal & server-side tables
+
+`PortalLayout` (on `AppFrame`): masthead with brand, global search (`CommandPalette`), `AppSwitcher` grid menu, notifications, `ThemeToggle`, `UserMenu`; sidebar sections, `PageHeader` and breadcrumb derived from a `routes` model (`resolvePortalRoute`, `portalBreadcrumbs`, `portalNavEntries`; router-agnostic through `path` + `onNavigate`/`render`/`hrefFor`); `route.tabs` render in the header; `AppFooter` via `footer`. `PortalHome` is the launchpad (favourite/recent app cards, announcements, quick actions).
+
+`useServerGrid({ fetcher, initialSort, pageSize, debounceMs, urlSync })` owns sort, page/cursor, page size, filters and debounced search; the previous request is aborted (`signal`), old rows stay while loading (`stale`), errors expose `refresh()`. `fetcher({ sort, page, pageSize, filters, search, signal })` returns `{ rows, total }`. `ServerDataGrid` wires it into `DataGrid` (manual mode: `aria-sort`, skeleton/overlay loading, in-grid error row with retry, footer with total and page size, `aria-rowcount`) plus `Toolbar`/`SearchInput`/`FilterBar`. `DataGrid` also accepts `pagination` and `onRetry` directly. Strings live in `messages.components.portal`. See `?demo=portal`.
 
 ## 8. Anti-patterns (reject in review)
 

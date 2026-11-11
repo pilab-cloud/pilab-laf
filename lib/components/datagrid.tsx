@@ -1,12 +1,16 @@
 import { type LegacyColumnDef as ColumnDef, getCoreRowModel, getFilteredRowModel, getSortedRowModel, useLegacyTable as useReactTable } from "@tanstack/react-table/legacy";
 import { useVirtualizer } from "@tanstack/react-virtual";
-import { ArrowDown, ArrowUp, ChevronDown, ChevronRight, Columns3, MoreHorizontal, Rows3, Search, X } from "lucide-react";
+import { ArrowDown, ArrowUp, ChevronDown, ChevronLeft, ChevronRight, Columns3, Loader2, MoreHorizontal, RefreshCw, Rows3, Search, X } from "lucide-react";
 import * as React from "react";
 import { cn } from "../cn";
-import { useLaf } from "../i18n";
+import { useLafDefaults } from "../i18n";
+import { portalEn } from "../messages/portal.en";
 import { useControllableState } from "../utils";
+import { Button } from "./button";
+import { Pagination } from "./data";
 import { EmptyState } from "./display";
 import { Skeleton } from "./feedback";
+import { Select } from "./form";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger, Popover, PopoverContent, PopoverTrigger } from "./overlay";
 
 /* ── Types ── */
@@ -29,6 +33,8 @@ export interface GridColumn<T> {
   accessor?: (row: T) => unknown;
   sortable?: boolean;
   filter?: "text" | "select" | "range" | GridFilterRenderer;
+  /** Options of a `select` filter; needed in `manual` mode, where the loaded page is not the whole data set. */
+  filterOptions?: string[];
   numeric?: boolean;
   width?: number;
   minWidth?: number;
@@ -65,9 +71,17 @@ export interface GridLabels {
   selectedCount?: (n: number) => string;
   empty?: string;
   filter?: string;
+  retry?: string;
+  rowsPerPage?: string;
+  loadingData?: string;
+  refreshing?: string;
+  loadFailed?: string;
+  results?: (from: number, to: number, total: number) => string;
+  resultsUnknown?: (from: number, to: number) => string;
+  page?: (page: number) => string;
 }
 
-const defaultLabels: Required<Omit<GridLabels, "selectAll" | "selectRow">> = {
+const defaultLabels: Required<Pick<GridLabels, "actions" | "expand" | "collapse" | "resize" | "columns" | "density" | "compact" | "comfortable" | "search" | "clearSelection" | "selectedCount" | "empty" | "filter">> = {
   actions: "Row actions",
   expand: "Expand row",
   collapse: "Collapse row",
@@ -82,6 +96,20 @@ const defaultLabels: Required<Omit<GridLabels, "selectAll" | "selectRow">> = {
   empty: "Nothing here",
   filter: "Filter",
 };
+
+/** Page state of a server-driven grid; renders the footer (summary, page size, previous/next). */
+export interface GridPagination {
+  /** 1-based. */
+  page: number;
+  pageSize: number;
+  /** Total rows on the server; leave out for cursor/unknown-total APIs. */
+  total?: number;
+  pageSizes?: number[];
+  /** With an unknown `total`: whether a next page exists. */
+  hasNext?: boolean;
+  onPageChange: (page: number) => void;
+  onPageSizeChange?: (pageSize: number) => void;
+}
 
 export interface DataGridProps<T> {
   columns: GridColumn<T>[];
@@ -104,9 +132,16 @@ export interface DataGridProps<T> {
   onFiltersChange?: (f: GridFilter[]) => void;
   search?: string;
   onSearchChange?: (q: string) => void;
-  /** Server-side: the grid only emits sort/filter/search state and renders `rows` as given. */
+  /**
+   * Server-side: the grid only emits sort/filter/search state and renders `rows` as given. Rows stay visible
+   * (dimmed, `aria-busy`) while `loading` and after an `error`, so a refetch never blanks the table.
+   */
   manual?: boolean;
+  /** Total rows on the server (`aria-rowcount`); defaults to `pagination.total`, else unknown (-1). */
   rowCount?: number;
+  pagination?: GridPagination;
+  /** Shows a retry button in the error row. */
+  onRetry?: () => void;
   /** Default: on above 200 rows. */
   virtual?: boolean | { rowHeight: number; overscan?: number };
   density?: GridDensity;
@@ -152,6 +187,8 @@ function readView(viewKey?: string): PersistedView {
     return {};
   }
 }
+
+const portalDefaults = { portal: portalEn };
 
 const SELECT_W = 40;
 const ACTION_W = 40;
@@ -255,7 +292,7 @@ function FilterCell({ column, value, onChange, rows, label }: { column: GridColu
   if (typeof f === "function") return <>{f({ value, onChange, label: name })}</>;
   if (f === "select") {
     const get = column.accessor ?? ((r: any) => r[column.id]);
-    const opts = Array.from(new Set(rows.slice(0, 5000).map((r) => String(get(r) ?? "")))).slice(0, 100).sort();
+    const opts = column.filterOptions ?? Array.from(new Set(rows.slice(0, 5000).map((r) => String(get(r) ?? "")))).slice(0, 100).sort();
     return (
       <select aria-label={name} className={base} value={(value as string) ?? ""} onChange={(e) => onChange(e.target.value || undefined)}>
         <option value="" />
@@ -307,14 +344,17 @@ export function DataGrid<T>(props: DataGridProps<T>) {
     loading,
     error,
     empty,
+    pagination: pg,
+    onRetry,
     viewKey,
     className,
     gridRole = "grid",
     getRowProps,
     onRowKeyDown,
   } = props;
-  const { t: laf } = useLaf();
+  const { t: laf } = useLafDefaults(portalDefaults);
   const L = { ...defaultLabels, ...props.labels };
+  const SG = { ...laf.components.portal.serverGrid, ...props.labels };
   const selectAllLabel = props.labels?.selectAll ?? laf.selectAllRows;
   const selectRowLabel = props.labels?.selectRow ?? laf.selectRow;
   const uid = React.useId();
@@ -386,6 +426,11 @@ export function DataGrid<T>(props: DataGridProps<T>) {
 
   const modelRows = table.getRowModel().rows;
   const n = modelRows.length;
+  const totalRows = rowCount ?? pg?.total;
+  const rowOffset = pg ? (pg.page - 1) * pg.pageSize : 0;
+  const skeleton = !!loading && (!manual || n === 0);
+  const refreshing = !!loading && !!manual && n > 0;
+  const showRows = manual ? !skeleton : !loading && !error;
   const leaf = table.getVisibleLeafColumns();
   const allLeafIds = table.getAllLeafColumns().map((c) => c.id);
 
@@ -518,7 +563,7 @@ export function DataGrid<T>(props: DataGridProps<T>) {
       case "A":
         if ((e.ctrlKey || e.metaKey) && selectable) {
           e.preventDefault();
-          setSelected(ids);
+          setSelected(manual ? Array.from(new Set([...selected, ...ids])) : ids);
         }
         return;
       case "Escape":
@@ -598,7 +643,7 @@ export function DataGrid<T>(props: DataGridProps<T>) {
           id={`${uid}-r${index}`}
           role="row"
           data-row-index={index}
-          aria-rowindex={index + 2}
+          aria-rowindex={rowOffset + index + 2}
           aria-selected={selectable ? isSel : undefined}
           style={{ display: "grid", gridTemplateColumns: template, height: rowH, minWidth: totalWidth }}
           className={cn(
@@ -688,24 +733,33 @@ export function DataGrid<T>(props: DataGridProps<T>) {
   const menuRow = menu ? modelRows.find((r) => r.id === menu.id)?.original : undefined;
   const menuItems = menuRow !== undefined && rowActions ? rowActions(menuRow) : [];
   const showEmpty = !loading && !error && n === 0;
+  const skeletonRows = pg ? Math.min(pg.pageSize, 10) : 4;
+  const summary = loading
+    ? SG.loadingData
+    : error
+      ? SG.loadFailed
+      : totalRows !== undefined
+        ? SG.results(n === 0 ? 0 : rowOffset + 1, rowOffset + n, totalRows)
+        : SG.resultsUnknown(n === 0 ? 0 : rowOffset + 1, rowOffset + n);
   const scrollStyle: React.CSSProperties = { height: virtualOn || stickyHeader ? viewportH : undefined, maxHeight: virtualOn || stickyHeader ? undefined : viewportH };
 
   return (
     <GridContext.Provider value={ctx}>
       <div className={cn("flex flex-col", className)}>
         {toolbar && <div className="mb-2 flex flex-wrap items-center gap-2">{toolbar}</div>}
+        <div className="relative">
         <div
           ref={scrollRef}
           role={gridRole}
           aria-label={label}
-          aria-rowcount={(manual && rowCount !== undefined ? rowCount : n) + 1}
+          aria-rowcount={manual && pg && totalRows === undefined ? -1 : (manual && totalRows !== undefined ? totalRows : n) + 1}
           aria-colcount={colCount}
           aria-multiselectable={selectable || undefined}
           aria-busy={loading || undefined}
-          aria-activedescendant={activeIdx >= 0 && !loading && n > 0 ? `${uid}-r${activeIdx}` : undefined}
+          aria-activedescendant={activeIdx >= 0 && showRows && n > 0 ? `${uid}-r${activeIdx}` : undefined}
           tabIndex={0}
           style={scrollStyle}
-          className="relative overflow-auto border border-line bg-surface text-fg outline-none focus-visible:ring-2 focus-visible:ring-primary"
+          className={cn("relative overflow-auto border border-line bg-surface text-fg outline-none focus-visible:ring-2 focus-visible:ring-primary", refreshing && "opacity-60")}
           onKeyDown={onKeyDown}
           onFocus={(e) => {
             if (e.target === e.currentTarget && activeIdx < 0 && n > 0) setActive(0);
@@ -722,7 +776,12 @@ export function DataGrid<T>(props: DataGridProps<T>) {
                     ref={(el) => {
                       if (el) el.indeterminate = selected.length > 0 && !ids.every((i) => selectedSet.has(i));
                     }}
-                    onChange={() => setSelected(ids.every((i) => selectedSet.has(i)) ? [] : ids)}
+                    onChange={() => {
+                      const all = ids.every((i) => selectedSet.has(i));
+                      // Server pages: selections made on other pages survive a select-all toggle.
+                      if (manual) setSelected(all ? selected.filter((x) => !ids.includes(x)) : Array.from(new Set([...selected, ...ids])));
+                      else setSelected(all ? [] : ids);
+                    }}
                   />
                 </div>
               )}
@@ -826,11 +885,25 @@ export function DataGrid<T>(props: DataGridProps<T>) {
                 {rowActions && <div role="gridcell" />}
               </div>
             )}
+          {error && (
+            <div role="row" style={{ minWidth: totalWidth }} className="border-b border-danger-line bg-danger-bg">
+              <div role="gridcell" aria-colspan={colCount} className="sticky z-[1] flex w-[min(100%,40rem)] items-center gap-3 p-3 text-sm text-danger" style={{ insetInlineStart: 0 }}>
+                <div role="alert" className="min-w-0 flex-1">
+                  {error}
+                </div>
+                {onRetry && (
+                  <Button variant="secondary" size="sm" leftIcon={<RefreshCw aria-hidden />} onClick={onRetry}>
+                    {SG.retry}
+                  </Button>
+                )}
+              </div>
+            </div>
+          )}
           </div>
 
           <div role="rowgroup" style={virtualOn ? { height: virtualizer.getTotalSize() - rowH, position: "relative", minWidth: totalWidth } : { minWidth: totalWidth }}>
-            {loading &&
-              Array.from({ length: 4 }, (_, i) => (
+            {skeleton &&
+              Array.from({ length: skeletonRows }, (_, i) => (
                 <div key={i} role="row" style={{ display: "grid", gridTemplateColumns: template, height: rowH }} className="border-b border-line">
                   {Array.from({ length: colCount }, (_, j) => (
                     <div key={j} role="gridcell" className="flex items-center px-3">
@@ -839,14 +912,56 @@ export function DataGrid<T>(props: DataGridProps<T>) {
                   ))}
                 </div>
               ))}
-            {!loading && !error && (virtualOn
+            {showRows && (virtualOn
               ? virtualizer.getVirtualItems().map((v) => renderRow(v.index, { transform: `translateY(${v.start - rowH}px)` }, virtualizer.measureElement))
               : modelRows.map((_, i) => renderRow(i)))}
           </div>
         </div>
-        {error && (
-          <div role="alert" className="border border-danger-line bg-danger-bg p-3 text-sm text-danger">
-            {error}
+        {refreshing && (
+          <div aria-hidden className="pointer-events-none absolute inset-0 z-20 flex items-center justify-center">
+            <span className="flex items-center gap-2 rounded-md border border-line bg-menu px-3 py-1.5 text-sm text-muted">
+              <Loader2 className="size-4 animate-spin motion-reduce:animate-none" />
+              {SG.refreshing}
+            </span>
+          </div>
+        )}
+        </div>
+        {pg && (
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-2 border border-t-0 border-line bg-surface px-3 py-2 text-sm text-muted">
+            <div role="status" aria-live="polite" className="sr-only">
+              {summary}
+            </div>
+            {pg.onPageSizeChange && (
+              <label className="flex items-center gap-2">
+                <span>{SG.rowsPerPage}</span>
+                <Select className="h-8 w-20" value={pg.pageSize} onChange={(e) => pg.onPageSizeChange?.(Number(e.target.value))}>
+                  {Array.from(new Set([...(pg.pageSizes ?? [10, 25, 50, 100]), pg.pageSize]))
+                    .sort((x, y) => x - y)
+                    .map((size) => (
+                      <option key={size} value={size}>
+                        {size}
+                      </option>
+                    ))}
+                </Select>
+              </label>
+            )}
+            <div className="ms-auto [&_.pagination]:p-0">
+              {totalRows !== undefined ? (
+                <Pagination page={pg.page} pageCount={Math.max(1, Math.ceil(totalRows / pg.pageSize))} total={totalRows} pageSize={pg.pageSize} onPageChange={pg.onPageChange} />
+              ) : (
+                <nav className="pagination p-0" aria-label={laf.pagination}>
+                  <span>{SG.page(pg.page)}</span>
+                  <div className="pages">
+                    <button type="button" className="page-btn" aria-label={laf.previousPage} disabled={pg.page <= 1} onClick={() => pg.onPageChange(pg.page - 1)}>
+                      <ChevronLeft className="size-4" aria-hidden />
+                    </button>
+                    <button type="button" className="page-btn" aria-label={laf.nextPage} disabled={!pg.hasNext} onClick={() => pg.onPageChange(pg.page + 1)}>
+                      <ChevronRight className="size-4" aria-hidden />
+                    </button>
+                  </div>
+                </nav>
+              )}
+            </div>
           </div>
         )}
         {showEmpty && (empty ?? <EmptyState title={L.empty} />)}

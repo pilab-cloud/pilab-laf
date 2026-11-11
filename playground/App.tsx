@@ -28,6 +28,8 @@ export const DEMOS = [
   { id: "tracker-parts", label: "Tracker parts", Component: page(() => import("./pages/TrackerParts")) },
   { id: "content", label: "Content & toolbar", Component: page(() => import("./pages/Content")) },
   { id: "app-frame", label: "AppFrame", Component: page(() => import("./pages/AppFrame")) },
+  { id: "dashboard", label: "Dashboard", Component: page(() => import("./pages/Dashboard")) },
+  { id: "portal", label: "Portal", Component: page(() => import("./pages/Portal")) },
 ];
 
 /** `?demo=<id>` wins; otherwise `?bench=grid|tree` picks the benchmark demo. */
