@@ -32,16 +32,19 @@ function buildInventory(): TreeNode[] {
     children: Array.from({ length: HOSTS }, (_, h) => ({
       id: `c${c}-h${h}`,
       label: `esx-${c}-${h}.lab`,
-      icon: <ObjectIcon kind="host" />,
+      icon: <ObjectIcon kind="host" state={h % 5 === 4 ? "maintenance" : undefined} />,
       children: Array.from({ length: VMS_PER_HOST }, (_, v) => ({
         id: `c${c}-h${h}-vm${v}`,
         label: `vm-${c}-${h}-${String(v).padStart(2, "0")}`,
-        icon: <ObjectIcon kind="vm" />,
+        icon: <ObjectIcon kind="vm" state={vmState(v)} overlay={v % 17 === 0 ? "warning" : undefined} />,
         status: (v % 17 === 0 ? "warning" : undefined) as TreeNode["status"],
       })),
     })),
   }));
 }
+
+const VM_STATES = ["running", "running", "running", "stopped", "paused", "hibernated", "crashed", "running", "stopped", "error"] as const;
+const vmState = (v: number) => VM_STATES[v % VM_STATES.length];
 
 const NOW = Date.UTC(2026, 5, 1, 12, 0, 0);
 const STEP = 30_000;

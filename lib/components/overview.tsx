@@ -1,4 +1,4 @@
-import { ChevronRight, CircleX, Pause, Pencil, Power, Unplug, Wrench, TriangleAlert, type LucideIcon } from "lucide-react";
+import { ChevronRight, Pencil } from "lucide-react";
 import * as React from "react";
 import { cn } from "../cn";
 import { ThresholdDonut } from "../charts/threshold-donut";
@@ -12,7 +12,7 @@ import { Breadcrumb, Badge, type BreadcrumbItemProps } from "./display";
 import { Sparkline } from "./extras";
 import { RadialGauge, type GaugeThreshold } from "./metrics";
 import { DropdownMenuItem } from "./overlay";
-import type { ObjectState } from "./object-icon";
+import { objectStateMeta, type ObjectState } from "./object-icon";
 import { IconButton, SplitButton } from "./primitives";
 
 const lafDefaults = { overview: overviewEn };
@@ -51,16 +51,6 @@ export function ResourceOverviewLayout({ identity, details, utilization, aside, 
 }
 
 /* ── PowerState ── */
-const stateView: Record<ObjectState, { Icon: LucideIcon; tone: string; text: "stateOn" | "stateOff" | "stateSuspended" | "stateMaintenance" | "stateDisconnected" | "stateWarning" | "stateError" }> = {
-  on: { Icon: Power, tone: "text-ok", text: "stateOn" },
-  off: { Icon: Power, tone: "text-muted", text: "stateOff" },
-  suspended: { Icon: Pause, tone: "text-warn", text: "stateSuspended" },
-  maintenance: { Icon: Wrench, tone: "text-warn", text: "stateMaintenance" },
-  disconnected: { Icon: Unplug, tone: "text-muted", text: "stateDisconnected" },
-  warning: { Icon: TriangleAlert, tone: "text-warn", text: "stateWarning" },
-  error: { Icon: CircleX, tone: "text-danger", text: "stateError" },
-};
-
 export interface PowerStateProps {
   state: ObjectState;
   /** Replaces the catalogue text for the state (e.g. "Running"). */
@@ -71,7 +61,7 @@ export interface PowerStateProps {
 /** Icon + text state indicator; the state is always spelled out, never colour alone. */
 export function PowerState({ state, label, className }: PowerStateProps) {
   const { t } = useLaf();
-  const v = stateView[state];
+  const v = objectStateMeta[state];
   return (
     <span data-state={state} className={cn("inline-flex items-center gap-1.5 text-sm text-fg", className)}>
       <v.Icon aria-hidden className={cn("size-4 shrink-0", v.tone)} />

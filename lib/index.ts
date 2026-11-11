@@ -50,3 +50,4 @@ export * from "./components/portal";
 export * from "./components/server-grid";
 export * from "./components/mail";
 export * from "./components/overview";
+export { ClusterGlyph, DatacenterGlyph, ServerGlyph, TemplateGlyph, VmGlyph, type ObjectGlyph } from "./components/object-glyphs";

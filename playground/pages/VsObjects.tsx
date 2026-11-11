@@ -6,6 +6,9 @@ import {
   EventConsole,
   HardwareEditor,
   LogViewer,
+  ObjectIcon,
+  objectStates,
+  objectKinds,
   PermissionAssignDialog,
   SnapshotTree,
   type ConsoleStatus,
@@ -59,6 +62,31 @@ export default function VsObjects() {
   }, []);
   return (
     <div className="grid gap-8 p-6">
+      <section className="grid gap-2">
+        <h2 className="text-lg font-semibold">ObjectIcon kinds</h2>
+        <ul className="m-0 flex list-none flex-wrap gap-x-6 gap-y-3 p-0">
+          {objectKinds.map((k) => (
+            <li key={k} className="flex items-center gap-2 text-sm">
+              <ObjectIcon kind={k} size={20} />
+              {k}
+            </li>
+          ))}
+        </ul>
+        <h2 className="text-lg font-semibold">ObjectIcon states</h2>
+        <ul className="m-0 flex list-none flex-wrap gap-6 p-0">
+          {objectStates.map((st) => (
+            <li key={st} className="flex items-center gap-2 text-sm">
+              <ObjectIcon kind="cluster" size={20} state={st} /><ObjectIcon kind="vm" size={20} state={st} />
+              <ObjectIcon kind="host" size={20} state={st} />
+              {st}
+            </li>
+          ))}
+          <li className="flex items-center gap-2 text-sm">
+            <ObjectIcon kind="vm" size={20} state="running" overlay="warning" />
+            running + warning
+          </li>
+        </ul>
+      </section>
       <section className="grid gap-2">
         <h2 className="text-lg font-semibold">LogViewer</h2>
         <LogViewer label="hostd log" lines={logs} />

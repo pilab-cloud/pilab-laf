@@ -88,8 +88,18 @@ describe("ObjectIcon (F5)", () => {
     );
     expect(screen.getByRole("img", { name: "Kikapcsolva" })).toBeTruthy();
   });
+  it("announces each composite VM state and an overlay", () => {
+    const names = { running: "Running", paused: "Paused", stopped: "Stopped", crashed: "Crashed", hibernated: "Hibernated", maintenance: "In maintenance", error: "Error" } as const;
+    for (const [state, text] of Object.entries(names)) {
+      const { unmount } = render(<ObjectIcon kind="vm" state={state as keyof typeof names} label="vm-1" />);
+      expect(screen.getByRole("img", { name: `vm-1, ${text}` })).toBeTruthy();
+      unmount();
+    }
+    render(<ObjectIcon kind="vm" state="running" overlay="warning" label="vm-2" />);
+    expect(screen.getByRole("img", { name: "vm-2, Running, Warning" })).toBeTruthy();
+  });
   it("renders every built-in kind and supports registered kinds", () => {
-    const kinds = ["datacenter", "cluster", "host", "vm", "template", "vapp", "folder", "resource-pool", "datastore", "datastore-cluster", "network", "dvswitch", "portgroup", "snapshot", "user", "group", "client", "issue", "project"] as const;
+    const kinds = ["datacenter", "cluster", "host", "vm", "template", "vapp", "folder", "resource-pool", "datastore", "datastore-cluster", "network", "dvswitch", "portgroup", "snapshot", "user", "group", "client", "issue", "project", "mailbox", "shared-mailbox", "domain", "mail-queue", "repository", "token", "policy"] as const;
     for (const kind of kinds) {
       const { container, unmount } = render(<ObjectIcon kind={kind} size={20} />);
       expect(container.querySelector("svg"), kind).toBeTruthy();

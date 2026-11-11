@@ -135,6 +135,11 @@ export interface LafMessages {
   stateDisconnected: string;
   stateWarning: string;
   stateError: string;
+  stateRunning: string;
+  statePaused: string;
+  stateStopped: string;
+  stateCrashed: string;
+  stateHibernated: string;
   mfaMethod: string;
   mfaScan: string;
   mfaVerify: string;
@@ -284,6 +289,11 @@ export const en: LafMessages = {
   stateDisconnected: "Disconnected",
   stateWarning: "Warning",
   stateError: "Error",
+  stateRunning: "Running",
+  statePaused: "Paused",
+  stateStopped: "Stopped",
+  stateCrashed: "Crashed",
+  stateHibernated: "Hibernated",
   mfaMethod: "Choose method",
   mfaScan: "Scan code",
   mfaVerify: "Verify",
