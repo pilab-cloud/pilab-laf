@@ -1,7 +1,38 @@
 {
   "name": "@pilab/laf",
   "version": "1.0.0",
-  "description": "Pilab Look & Feel \u2014 React component kit",
+  "description": "Pilab Look & Feel — React component kit",
+  "license": "MIT",
+  "author": "Progressive Innovation LAB <gyula@pilab.hu> (https://pilab.hu)",
+  "contributors": [
+    "Paal Gyula <gyula@pilab.hu>"
+  ],
+  "maintainers": [
+    "Paal Gyula <gyula@pilab.hu>"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pilab-cloud/pilab-laf.git"
+  },
+  "homepage": "https://github.com/pilab-cloud/pilab-laf#readme",
+  "bugs": {
+    "url": "https://github.com/pilab-cloud/pilab-laf/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "react",
+    "design-system",
+    "component-library",
+    "tailwind",
+    "radix-ui",
+    "admin-ui",
+    "dashboard",
+    "typescript",
+    "pilab",
+    "look-and-feel"
+  ],
   "type": "module",
   "sideEffects": [
     "**/*.css"
@@ -59,7 +90,11 @@
   },
   "files": [
     "dist",
-    "fonts"
+    "fonts",
+    "README.md",
+    "CHANGELOG.md",
+    "COMPONENTS.md",
+    "LICENSE"
   ],
   "scripts": {
     "dev": "bun run css && concurrently -k -n css,vite \"bun run css:watch\" \"vite --config playground/vite.config.ts\"",
@@ -70,7 +105,9 @@
     "test": "vitest run",
     "sync": "bun run css && cp dist/app.css ../3so/shadow-sso/api/webauth/static/app.css && cp fonts/* ../3so/shadow-sso/api/webauth/static/fonts/",
     "e2e": "playwright test",
-    "e2e:update": "playwright test --project=visual-1x --project=visual-2x --update-snapshots"
+    "e2e:update": "playwright test --project=visual-1x --project=visual-2x --update-snapshots",
+    "prepublishOnly": "bun run typecheck && bun run test && bun run build",
+    "pack": "bun run build && npm pack"
   },
   "peerDependencies": {
     "react": ">=18",

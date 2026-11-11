@@ -7,6 +7,7 @@ Follows [semver](https://semver.org). Pre-1.0, minor versions may contain breaki
 See [`docs/MIGRATION.md`](docs/MIGRATION.md).
 
 ### Added
+- Release pipeline: `publish.yml` (npm provenance on GitHub release, tag/version check), `RELEASE.md`, `LICENSE` (MIT), npm package metadata and a badge header in the README, mirroring `@pilab/shadow-sso`.
 - `GridColumn.wrap` (chips/badges wrap and the row grows) and `maxWidth`; double-clicking a resize handle now auto-fits the column to its widest cell/header instead of resetting.
 
 ### Fixed

@@ -1,7 +1,17 @@
-name: ci
-on: [push, pull_request]
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   check:
+    name: Typecheck, test, build and e2e
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
