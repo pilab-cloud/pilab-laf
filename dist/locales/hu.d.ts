@@ -1,6 +1,6 @@
-import { a as LafMessages } from '../i18n-DVEH1ffs.js';
+import { a3 as LafMessages } from '../i18n--ftx4xBg.js';
 import 'react';
-import '../foundation-format-DlHPXhrg.js';
+import '../perf-panel-CcKCFsOd.js';
 
 declare const hu: LafMessages;
 

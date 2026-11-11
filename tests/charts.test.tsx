@@ -146,19 +146,19 @@ describe("DatePicker modes & TimeRangePicker custom", () => {
       return <DatePicker mode="range" value={v} onChange={setV} />;
     };
     render(<Harness />);
-    await user.click(screen.getByRole("button", { name: "Choose date" }));
+    await user.click(screen.getByRole("button", { name: /^Choose date/ }));
     const today = new Date();
     const ym = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, "0")}`;
     await user.click(screen.getByRole("gridcell", { name: `${ym}-20` }));
     await user.click(screen.getByRole("gridcell", { name: `${ym}-05` }));
-    expect(screen.getByRole("button", { name: "Choose date" })).toHaveTextContent(`${ym}-05 – ${ym}-20`);
+    expect(screen.getByRole("button", { name: /^Choose date/ })).toHaveTextContent(`${ym}-05 – ${ym}-20`);
   });
 
   it("datetime mode keeps the time and disabledDates are honoured", async () => {
     const onChange = vi.fn();
     const user = userEvent.setup();
     render(<DatePicker mode="datetime" value="2026-03-10T14:30" onChange={onChange} disabledDates={(d) => d === "2026-03-11"} />);
-    await user.click(screen.getByRole("button", { name: "Choose date" }));
+    await user.click(screen.getByRole("button", { name: /^Choose date/ }));
     expect(screen.getByRole("gridcell", { name: "2026-03-11" })).toBeDisabled();
     await user.click(screen.getByRole("gridcell", { name: "2026-03-12" }));
     expect(onChange).toHaveBeenCalledWith("2026-03-12T14:30");

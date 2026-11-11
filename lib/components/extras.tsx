@@ -764,7 +764,7 @@ export function TimeRangePicker({
   const draftTo = new Date(draft.to).getTime();
   const draftValid = Number.isFinite(draftFrom) && Number.isFinite(draftTo) && draftFrom < draftTo;
   return (
-    <div role="group" aria-label={label} className="inline-flex items-center gap-2">
+    <div role="group" aria-label={label} className="inline-flex max-w-full flex-wrap items-center gap-2">
       <div className="inline-flex overflow-hidden rounded-md border border-line">
         {presets.map((p) => (
           <button

@@ -29,7 +29,7 @@ export default function ChartsDemo() {
   return (
     <section className="space-y-6">
       <h2 className="text-lg font-semibold">Charts (@pilab/laf/charts)</h2>
-      <div className="flex items-center gap-3 text-sm">
+      <div className="flex flex-wrap items-center gap-3 text-sm">
         <select aria-label="Chart type" className="form-input w-40" value={type} onChange={(e) => setType(e.target.value as typeof type)}>
           <option value="line">line</option>
           <option value="area">area</option>

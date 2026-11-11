@@ -1,0 +1,4 @@
+/* Demo-harness only: grid items default to min-width:auto, so a wide child makes an implicit (auto) track overflow a narrow viewport. */
+.grid > * {
+  min-width: 0;
+}

@@ -30,7 +30,7 @@ export function DialogContent({
     <DialogPrimitive.Portal container={portalContainer}>
       <DialogPrimitive.Overlay className="fixed inset-0 z-50 bg-[rgba(5,5,10,0.7)] backdrop-blur-xs" />
       <DialogPrimitive.Content
-        className={cn("popup fixed top-1/2 left-1/2 z-50 -translate-x-1/2 -translate-y-1/2", className)}
+        className={cn("popup fixed top-1/2 start-1/2 z-50 -translate-x-1/2 -translate-y-1/2 rtl:translate-x-1/2", className)}
         {...(description ? {} : { "aria-describedby": undefined })}
         {...props}
       >
@@ -74,7 +74,7 @@ export function PopoverContent({
       <PopoverPrimitive.Content
         align={align}
         sideOffset={8}
-        className={cn("popover-panel relative! top-auto! left-auto! z-30", className)}
+        className={cn("popover-panel relative! top-auto! start-auto! z-30", className)}
         {...props}
       >
         {title && <div className="popover-title">{title}</div>}
@@ -101,7 +101,7 @@ export function DropdownMenuContent({
       <DropdownPrimitive.Content
         align={align}
         sideOffset={4}
-        className={cn("dropdown-menu relative! top-auto! left-auto! z-30 min-w-48", className)}
+        className={cn("dropdown-menu relative! top-auto! start-auto! z-30 min-w-48", className)}
         {...props}
       />
     </DropdownPrimitive.Portal>

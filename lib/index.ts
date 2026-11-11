@@ -31,9 +31,7 @@ export * from "./components/filterbar";
 export * from "./components/tree";
 export * from "./components/action-bar";
 export * from "./components/datagrid";
-// advanced.tsx still exports the older TreeTable; the DataGrid-engine one ships as TreeTableV2 until it is removed.
-export { TreeTable as TreeTableV2 } from "./components/treetable";
-export type { TreeTableNode, TreeTableProps } from "./components/treetable";
+export * from "./components/treetable";
 export * from "./components/account";
 export * from "./components/admin";
 export * from "./components/hotkeys";

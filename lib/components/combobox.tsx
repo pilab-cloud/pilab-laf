@@ -4,7 +4,10 @@ import * as PopoverPrimitive from "@radix-ui/react-popover";
 import * as React from "react";
 import { useControllableState } from "../utils";
 import { cn } from "../cn";
-import { useLaf } from "../i18n";
+import { useLafDefaults } from "../i18n";
+import { uiEn } from "../messages/ui.en";
+
+const lafDefaults = { ui: uiEn };
 
 /* ── Combobox v2 (cmdk inside a portaled Radix Popover; single or multi, async) ── */
 export interface ComboboxOption {
@@ -51,15 +54,17 @@ export function Combobox({
   loadingText: loadingTextProp,
   disabled,
   onCreate,
-  createLabel = (q) => `Create “${q}”`,
+  createLabel: createLabelProp,
   clearable,
-  clearLabel = "Clear",
+  clearLabel: clearLabelProp,
   renderOption,
   open: openProp,
   onOpenChange,
   className,
 }: ComboboxProps) {
-  const { t } = useLaf();
+  const { t } = useLafDefaults(lafDefaults);
+  const createLabel = createLabelProp ?? t.components.ui.combobox.create;
+  const clearLabel = clearLabelProp ?? t.components.ui.combobox.clear;
   const emptyText = emptyTextProp ?? t.noResults;
   const loadingText = loadingTextProp ?? `${t.loading}…`;
   const [query, setQuery] = React.useState("");
@@ -67,6 +72,14 @@ export function Combobox({
   const [asyncList, setAsyncList] = React.useState<ComboboxOption[]>([]);
   const [loading, setLoading] = React.useState(false);
   const root = React.useRef<HTMLDivElement>(null);
+  const inputRef = React.useRef<HTMLInputElement>(null);
+  // cmdk hardcodes aria-expanded="true" and aria-controls on its input; the listbox is unmounted while closed.
+  React.useEffect(() => {
+    const el = inputRef.current;
+    if (!el) return;
+    el.setAttribute("aria-expanded", String(open));
+    if (!open) el.removeAttribute("aria-controls");
+  });
   const isFn = typeof options === "function";
   const optionsRef = React.useRef(options);
   optionsRef.current = options;
@@ -158,8 +171,8 @@ export function Combobox({
                 </span>
               ))}
               <Command.Input
+                ref={inputRef}
                 aria-label={label}
-                aria-expanded={open}
                 className="min-w-24 flex-1 border-0 bg-transparent p-0 text-fg outline-none"
                 placeholder={value.length && multiple ? undefined : placeholder}
                 disabled={disabled}

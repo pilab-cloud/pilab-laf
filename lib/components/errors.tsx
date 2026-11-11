@@ -1,18 +1,23 @@
 import { FileQuestion, LockKeyhole, ServerCrash, TimerOff, WifiOff } from "lucide-react";
 import * as React from "react";
 import { cn } from "../cn";
+import { useLafDefaults } from "../i18n";
+import { uiEn } from "../messages/ui.en";
 import { Button } from "./button";
 import { CopyButton } from "./helpers";
 
 export type ErrorVariant = "403" | "404" | "500" | "offline" | "session-expired";
 
-const defaults: Record<ErrorVariant, { icon: React.ReactNode; title: string; description: string }> = {
-  "403": { icon: <LockKeyhole />, title: "Access denied", description: "You don't have permission to view this page." },
-  "404": { icon: <FileQuestion />, title: "Page not found", description: "The page you are looking for doesn't exist or was moved." },
-  "500": { icon: <ServerCrash />, title: "Something went wrong", description: "An unexpected error occurred. Try again in a moment." },
-  offline: { icon: <WifiOff />, title: "You are offline", description: "Check your connection and try again." },
-  "session-expired": { icon: <TimerOff />, title: "Session expired", description: "Sign in again to continue." },
+const lafDefaults = { ui: uiEn };
+
+const icons: Record<ErrorVariant, React.ReactNode> = {
+  "403": <LockKeyhole />,
+  "404": <FileQuestion />,
+  "500": <ServerCrash />,
+  offline: <WifiOff />,
+  "session-expired": <TimerOff />,
 };
+const textKey = { "403": "error403", "404": "error404", "500": "error500", offline: "errorOffline", "session-expired": "errorSessionExpired" } as const;
 
 export function ErrorPage({
   variant,
@@ -20,7 +25,7 @@ export function ErrorPage({
   description,
   action,
   requestId,
-  requestIdLabel = "Request ID",
+  requestIdLabel: requestIdLabelProp,
   className,
 }: {
   variant: ErrorVariant;
@@ -33,7 +38,10 @@ export function ErrorPage({
   requestIdLabel?: string;
   className?: string;
 }) {
-  const d = defaults[variant];
+  const { t } = useLafDefaults(lafDefaults);
+  const ui = t.components.ui;
+  const d = { icon: icons[variant], ...ui[textKey[variant]] };
+  const requestIdLabel = requestIdLabelProp ?? ui.errors.requestId;
   const critical = variant === "500" || variant === "offline";
   return (
     <div
@@ -51,7 +59,7 @@ export function ErrorPage({
         <div className="flex items-center gap-1 text-xs text-subtle">
           <span>{requestIdLabel}:</span>
           <code className="font-mono">{requestId}</code>
-          <CopyButton value={requestId} label={`Copy ${requestIdLabel}`} />
+          <CopyButton value={requestId} label={ui.errors.copyRequestId(requestIdLabel)} />
         </div>
       )}
     </div>
@@ -96,12 +104,11 @@ export class LafErrorBoundary extends React.Component<BoundaryProps, { error: Er
     const { error } = this.state;
     if (!error) return this.props.children;
     if (this.props.fallback) return this.props.fallback(error, this.reset);
-    return (
-      <ErrorPage
-        variant="500"
-        requestId={this.props.requestId?.(error)}
-        action={<Button onClick={this.reset}>{this.props.retryLabel ?? "Try again"}</Button>}
-      />
-    );
+    return <BoundaryFallback requestId={this.props.requestId?.(error)} retryLabel={this.props.retryLabel} reset={this.reset} />;
   }
+}
+
+function BoundaryFallback({ requestId, retryLabel, reset }: { requestId?: string; retryLabel?: string; reset: () => void }) {
+  const { t } = useLafDefaults(lafDefaults);
+  return <ErrorPage variant="500" requestId={requestId} action={<Button onClick={reset}>{retryLabel ?? t.components.ui.errors.tryAgain}</Button>} />;
 }

@@ -4,7 +4,8 @@ import * as TooltipPrimitive from "@radix-ui/react-tooltip";
 import { Check, ChevronDown } from "lucide-react";
 import * as React from "react";
 import { cn } from "../cn";
-import { useLaf } from "../i18n";
+import { useLaf, useLafDefaults } from "../i18n";
+import { uiEn } from "../messages/ui.en";
 import { Button, type ButtonProps } from "./button";
 import { Avatar } from "./display";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from "./overlay";
@@ -109,7 +110,7 @@ export function SelectMenu({
         <SelectPrimitive.Content
           position="popper"
           sideOffset={4}
-          className="dropdown-menu relative! top-auto! left-auto! z-60 max-h-72 min-w-(--radix-select-trigger-width) overflow-auto"
+          className="dropdown-menu relative! top-auto! start-auto! z-60 max-h-72 min-w-(--radix-select-trigger-width) overflow-auto"
         >
           <SelectPrimitive.Viewport>
             {options.map((o, i) =>
@@ -319,13 +320,15 @@ export function ButtonGroup({ className, ...props }: React.ComponentProps<"div">
   );
 }
 
+const lafDefaults = { ui: uiEn };
+
 export function SplitButton({
   children,
   onClick,
   variant = "primary",
   size,
   disabled,
-  menuLabel = "More actions",
+  menuLabel: menuLabelProp,
   menu,
   className,
 }: {
@@ -340,6 +343,8 @@ export function SplitButton({
   menu: React.ReactNode;
   className?: string;
 }) {
+  const { t } = useLafDefaults(lafDefaults);
+  const menuLabel = menuLabelProp ?? t.components.ui.splitButton.more;
   return (
     <ButtonGroup className={className}>
       <Button variant={variant} size={size} disabled={disabled} onClick={onClick}>

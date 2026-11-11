@@ -1,5 +1,7 @@
 import * as React from "react";
 import { cn } from "../cn";
+import { useLafDefaults } from "../i18n";
+import { uiEn } from "../messages/ui.en";
 import { useControllableState } from "../utils";
 import { Button } from "./button";
 import { DefinitionList, Stepper } from "./helpers";
@@ -26,15 +28,7 @@ export interface WizardLabels {
   steps: string;
 }
 
-const defaultLabels: WizardLabels = {
-  back: "Back",
-  next: "Next",
-  finish: "Finish",
-  skip: "Skip",
-  cancel: "Cancel",
-  optional: "optional",
-  steps: "Steps",
-};
+const lafDefaults = { ui: uiEn };
 
 export interface WizardProps {
   steps: WizardStep[];
@@ -59,7 +53,7 @@ export function Wizard({
   onFinish,
   onCancel,
   dirty,
-  title = "Wizard",
+  title: titleProp,
   mode = "page",
   open,
   onOpenChange,
@@ -69,7 +63,9 @@ export function Wizard({
   labels: labelsProp,
   className,
 }: WizardProps) {
+  const { title: defaultTitle, ...defaultLabels } = useLafDefaults(lafDefaults).t.components.ui.wizard;
   const labels = { ...defaultLabels, ...labelsProp };
+  const title = titleProp ?? defaultTitle;
   const [current, setCurrent] = useControllableState({ value: currentProp, defaultValue: defaultCurrent, onChange: onCurrentChange });
   const [errors, setErrors] = React.useState<string[]>([]);
   const [failed, setFailed] = React.useState<Record<string, boolean>>({});

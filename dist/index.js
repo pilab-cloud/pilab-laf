@@ -1,10 +1,14 @@
-import { Avatar, Combobox, Badge, Button, Input, Dialog, DialogContent, DialogClose, Skeleton, EmptyState, DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuItem, RadioGroup, Popover, PopoverTrigger, PopoverContent, TabsList, TabsTrigger, Breadcrumb, Drawer, DrawerTrigger, DrawerContent, observeRectWithFallback, Alert, Field, Checkbox, Tabs, TabsContent, Panel, SplitPane, LABEL_SLOTS, Switch, Banner, Chip, VirtualList } from './chunk-V5W67KUG.js';
-export { Accordion, Alert, Avatar, Badge, Banner, Breadcrumb, Button, Card, Checkbox, Chip, Combobox, Dialog, DialogClose, DialogContent, DialogTrigger, Drawer, DrawerClose, DrawerContent, DrawerTrigger, DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger, EmptyState, Field, InfiniteList, Input, KeyValueEditor, LineChart, LogViewer, NumberInput, PageHead, Panel, PermissionMatrix, Popover, PopoverClose, PopoverContent, PopoverTrigger, Radio, RadioGroup, SearchInput, Select, Skeleton, Slider, Sparkline, Spinner, SplitPane, Stat, StatGrid, Switch, Tabs, TabsContent, TabsList, TabsTrigger, TagInput, TenantSwitcher, Textarea, TimeRangePicker, ToastProvider, Tooltip, TooltipProvider, VirtualList, buttonVariants, observeRectWithFallback, useToast } from './chunk-V5W67KUG.js';
-import { format, diffLines, useControllableState, matchesAccept } from './chunk-X23H4L5S.js';
-export { diffLines, format, matchesAccept, useControllableState } from './chunk-X23H4L5S.js';
-import { cn, useLaf, usePortalContainer } from './chunk-E7KA56OY.js';
-export { LafProvider, cn, createFormatters, en, useLaf, usePortalContainer } from './chunk-E7KA56OY.js';
-import { ChevronLeft, ChevronRight, KeyRound, Tablet, Laptop, Smartphone, Check, Copy, EyeOff, Eye, ArrowUp, ArrowDown, LogOut, ChevronDown, Pencil, UploadCloud, X, Search, Fingerprint, MoreHorizontal, ChevronUp, Menu as Menu$1, FolderKanban, CircleDot, AppWindow, Users, User, Camera, Waypoints, Router, Network, HardDrive, Database, Layers, Folder, Package, Monitor, Server, Boxes, Building2, Cable, CircleX, TriangleAlert, Unplug, Wrench, Pause, Square, Play, Bookmark, Star, Trash2, Rows3, Columns3, Plus, RefreshCw, ShieldCheck, Bell, PanelLeft, SmilePlus, MessageSquare, Minimize2, Maximize2, FolderPlus, Download, RotateCw, Circle, TimerOff, WifiOff, ServerCrash, FileQuestion, LockKeyhole } from 'lucide-react';
+import { Avatar, Combobox, Badge, Input, Dialog, DialogContent, DialogClose, DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuItem, uiEn, RadioGroup, Popover, PopoverTrigger, PopoverContent, TabsList, TabsTrigger, Breadcrumb, Drawer, DrawerTrigger, DrawerContent, observeRectWithFallback, Skeleton, EmptyState, Alert, Field, Checkbox, Tabs, TabsContent, Panel, SplitPane, LABEL_SLOTS, Switch, Banner, Chip, VirtualList } from './chunk-RHOPALM3.js';
+export { Accordion, Alert, Avatar, Badge, Banner, Breadcrumb, Card, Checkbox, Chip, Combobox, Dialog, DialogClose, DialogContent, DialogTrigger, Drawer, DrawerClose, DrawerContent, DrawerTrigger, DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger, EmptyState, Field, InfiniteList, Input, KeyValueEditor, LineChart, LogViewer, NumberInput, PageHead, Panel, PermissionMatrix, Popover, PopoverClose, PopoverContent, PopoverTrigger, Radio, RadioGroup, SearchInput, Select, Skeleton, Slider, Sparkline, Spinner, SplitPane, Stat, StatGrid, Switch, Tabs, TabsContent, TabsList, TabsTrigger, TagInput, TenantSwitcher, Textarea, TimeRangePicker, ToastProvider, Tooltip, TooltipProvider, VirtualList, observeRectWithFallback, useToast } from './chunk-RHOPALM3.js';
+import { format, diffLines, useControllableState, matchesAccept } from './chunk-S35X7I3V.js';
+export { diffLines, format, matchesAccept, useControllableState } from './chunk-S35X7I3V.js';
+import { useLaf, useLafDefaults, usePortalContainer } from './chunk-NSGYLS4R.js';
+export { LafProvider, createFormatters, en, useLaf, useLafDefaults, usePortalContainer } from './chunk-NSGYLS4R.js';
+import { Button } from './chunk-2O5Y6D5F.js';
+export { Button, buttonVariants } from './chunk-2O5Y6D5F.js';
+import { cn } from './chunk-3TRXGDSZ.js';
+export { cn } from './chunk-3TRXGDSZ.js';
+import { ChevronLeft, ChevronRight, KeyRound, Tablet, Laptop, Smartphone, Check, Copy, EyeOff, Eye, LogOut, ChevronDown, Pencil, UploadCloud, X, Search, Fingerprint, MoreHorizontal, ChevronUp, Menu as Menu$1, FolderKanban, CircleDot, AppWindow, Users, User, Camera, Waypoints, Router, Network, HardDrive, Database, Layers, Folder, Package, Monitor, Server, Boxes, Building2, Cable, CircleX, TriangleAlert, Unplug, Wrench, Pause, Square, Play, Bookmark, Star, Trash2, Rows3, Columns3, ArrowUp, ArrowDown, Plus, RefreshCw, ShieldCheck, Bell, PanelLeft, SmilePlus, MessageSquare, Minimize2, Maximize2, FolderPlus, Download, RotateCw, Circle, TimerOff, WifiOff, ServerCrash, FileQuestion, LockKeyhole } from 'lucide-react';
 import { jsx, jsxs, Fragment } from 'react/jsx-runtime';
 import * as React25 from 'react';
 import * as SelectPrimitive from '@radix-ui/react-select';
@@ -662,77 +666,6 @@ function SecretDisplay({
     ] })
   ] });
 }
-function DataGridLegacy({
-  columns,
-  rows,
-  rowId,
-  sort,
-  onSortChange,
-  selected,
-  onSelectedChange,
-  loading,
-  emptyTitle: emptyTitleProp,
-  emptyDescription
-}) {
-  const { t: laf } = useLaf();
-  const emptyTitle = emptyTitleProp ?? laf.nothingHere;
-  const selectable = !!onSelectedChange;
-  const ids = rows.map(rowId);
-  const sel = new Set(selected);
-  const allOn = ids.length > 0 && ids.every((i) => sel.has(i));
-  const someOn = ids.some((i) => sel.has(i));
-  const cycle = (id) => {
-    if (sort?.id !== id) onSortChange?.({ id, dir: "asc" });
-    else if (sort.dir === "asc") onSortChange?.({ id, dir: "desc" });
-    else onSortChange?.(void 0);
-  };
-  return /* @__PURE__ */ jsxs(Fragment, { children: [
-    /* @__PURE__ */ jsxs(Table, { children: [
-      /* @__PURE__ */ jsx("thead", { children: /* @__PURE__ */ jsxs("tr", { children: [
-        selectable && /* @__PURE__ */ jsx("th", { className: "w-10", children: /* @__PURE__ */ jsx(
-          "input",
-          {
-            type: "checkbox",
-            "aria-label": laf.selectAllRows,
-            checked: allOn,
-            ref: (el) => {
-              if (el) el.indeterminate = !allOn && someOn;
-            },
-            onChange: () => onSelectedChange(allOn ? [] : ids)
-          }
-        ) }),
-        columns.map((c) => /* @__PURE__ */ jsx(
-          "th",
-          {
-            className: cn(c.numeric && "text-end"),
-            "aria-sort": sort?.id === c.id ? sort.dir === "asc" ? "ascending" : "descending" : c.sortable ? "none" : void 0,
-            children: c.sortable ? /* @__PURE__ */ jsxs("button", { type: "button", className: "inline-flex items-center gap-1 font-[inherit] uppercase hover:text-fg", onClick: () => cycle(c.id), children: [
-              c.header,
-              sort?.id === c.id && (sort.dir === "asc" ? /* @__PURE__ */ jsx(ArrowUp, { className: "size-3", "aria-hidden": true }) : /* @__PURE__ */ jsx(ArrowDown, { className: "size-3", "aria-hidden": true }))
-            ] }) : c.header
-          },
-          c.id
-        ))
-      ] }) }),
-      /* @__PURE__ */ jsx("tbody", { "aria-busy": loading || void 0, children: loading ? Array.from({ length: 4 }, (_, i) => /* @__PURE__ */ jsx("tr", { children: Array.from({ length: columns.length + (selectable ? 1 : 0) }, (_2, j) => /* @__PURE__ */ jsx("td", { children: /* @__PURE__ */ jsx(Skeleton, {}) }, j)) }, i)) : rows.map((row) => {
-        const id = rowId(row);
-        return /* @__PURE__ */ jsxs("tr", { "aria-selected": selectable ? sel.has(id) : void 0, children: [
-          selectable && /* @__PURE__ */ jsx("td", { children: /* @__PURE__ */ jsx(
-            "input",
-            {
-              type: "checkbox",
-              "aria-label": laf.selectRow,
-              checked: sel.has(id),
-              onChange: () => onSelectedChange(sel.has(id) ? selected.filter((s) => s !== id) : [...selected ?? [], id])
-            }
-          ) }),
-          columns.map((c) => /* @__PURE__ */ jsx("td", { className: cn(c.numeric && "text-end font-mono"), children: c.cell(row) }, c.id))
-        ] }, id);
-      }) })
-    ] }),
-    !loading && rows.length === 0 && /* @__PURE__ */ jsx(EmptyState, { title: emptyTitle, description: emptyDescription })
-  ] });
-}
 var taskTone = { queued: "neutral", running: "primary", ok: "ok", failed: "danger", cancelled: "warn" };
 var taskStatuses = ["queued", "running", "ok", "failed", "cancelled"];
 function TaskPanel({
@@ -845,7 +778,7 @@ function UserMenu({
   const remainingMs = expiresAt === void 0 ? void 0 : new Date(expiresAt).getTime() - Date.now();
   const showExpiry = remainingMs !== void 0 && remainingMs <= expiryWarnMs;
   return /* @__PURE__ */ jsxs(DropdownMenu, { children: [
-    /* @__PURE__ */ jsx(DropdownMenuTrigger, { asChild: true, children: /* @__PURE__ */ jsx("button", { "aria-label": name, className: "border-0 bg-transparent p-0", children: /* @__PURE__ */ jsx(Avatar, { name }) }) }),
+    /* @__PURE__ */ jsx(DropdownMenuTrigger, { asChild: true, children: /* @__PURE__ */ jsx("button", { className: "border-0 bg-transparent p-0", children: /* @__PURE__ */ jsx(Avatar, { name }) }) }),
     /* @__PURE__ */ jsxs(DropdownMenuContent, { children: [
       /* @__PURE__ */ jsxs(DropdownMenuLabel, { children: [
         /* @__PURE__ */ jsx("div", { className: "text-fg", children: name }),
@@ -933,7 +866,7 @@ function SelectMenu({
       {
         position: "popper",
         sideOffset: 4,
-        className: "dropdown-menu relative! top-auto! left-auto! z-60 max-h-72 min-w-(--radix-select-trigger-width) overflow-auto",
+        className: "dropdown-menu relative! top-auto! start-auto! z-60 max-h-72 min-w-(--radix-select-trigger-width) overflow-auto",
         children: /* @__PURE__ */ jsx(SelectPrimitive.Viewport, { children: options.map(
           (o, i) => isGroup(o) ? /* @__PURE__ */ jsxs(SelectPrimitive.Group, { children: [
             /* @__PURE__ */ jsx(SelectPrimitive.Label, { className: "dropdown-label", children: o.label }),
@@ -1075,16 +1008,19 @@ function ButtonGroup({ className, ...props }) {
     }
   );
 }
+var lafDefaults = { ui: uiEn };
 function SplitButton({
   children,
   onClick,
   variant = "primary",
   size,
   disabled,
-  menuLabel = "More actions",
+  menuLabel: menuLabelProp,
   menu,
   className
 }) {
+  const { t } = useLafDefaults(lafDefaults);
+  const menuLabel = menuLabelProp ?? t.components.ui.splitButton.more;
   return /* @__PURE__ */ jsxs(ButtonGroup, { className, children: [
     /* @__PURE__ */ jsx(Button, { variant, size, disabled, onClick, children }),
     /* @__PURE__ */ jsxs(DropdownMenu, { children: [
@@ -1437,7 +1373,7 @@ var ContextMenu = ContextPrimitive.Root;
 var ContextMenuTrigger = ContextPrimitive.Trigger;
 function ContextMenuContent({ className, ...props }) {
   const container = usePortalContainer();
-  return /* @__PURE__ */ jsx(ContextPrimitive.Portal, { container, children: /* @__PURE__ */ jsx(ContextPrimitive.Content, { className: cn("dropdown-menu relative! top-auto! left-auto! z-30 min-w-48", className), ...props }) });
+  return /* @__PURE__ */ jsx(ContextPrimitive.Portal, { container, children: /* @__PURE__ */ jsx(ContextPrimitive.Content, { className: cn("dropdown-menu relative! top-auto! start-auto! z-30 min-w-48", className), ...props }) });
 }
 function ContextMenuItem({ danger, className, ...props }) {
   return /* @__PURE__ */ jsx(
@@ -1542,7 +1478,7 @@ function CommandPalette({
       DialogPrimitive2.Content,
       {
         "aria-describedby": void 0,
-        className: "popup fixed top-[20%] left-1/2 z-50 w-[min(36rem,calc(100vw-2rem))] -translate-x-1/2 overflow-hidden p-0",
+        className: "popup fixed top-[20%] start-1/2 z-50 w-[min(36rem,calc(100vw-2rem))] -translate-x-1/2 rtl:translate-x-1/2 overflow-hidden p-0",
         children: [
           /* @__PURE__ */ jsx(DialogPrimitive2.Title, { className: "sr-only", children: t.commandPalette }),
           /* @__PURE__ */ jsxs("div", { className: "flex items-center gap-2 border-b border-line px-3", children: [
@@ -1602,34 +1538,6 @@ function CommandPalette({
         ]
       }
     )
-  ] }) });
-}
-function TreeTable({
-  rows,
-  columns,
-  label
-}) {
-  const [open, setOpen] = React25.useState([]);
-  const flat = [];
-  const walk = (list, level) => list.forEach((row) => {
-    flat.push({ row, level });
-    if (row.children?.length && open.includes(row.id)) walk(row.children, level + 1);
-  });
-  walk(rows, 1);
-  const toggle = (id) => setOpen((o) => o.includes(id) ? o.filter((x) => x !== id) : [...o, id]);
-  return /* @__PURE__ */ jsx("div", { className: "table-wrap", children: /* @__PURE__ */ jsxs("table", { className: "table", role: "treegrid", "aria-label": label, children: [
-    /* @__PURE__ */ jsx("thead", { children: /* @__PURE__ */ jsx("tr", { children: columns.map((c) => /* @__PURE__ */ jsx("th", { children: c.header }, c.id)) }) }),
-    /* @__PURE__ */ jsx("tbody", { children: flat.map(({ row, level }) => {
-      const kids = !!row.children?.length;
-      const isOpen = open.includes(row.id);
-      return /* @__PURE__ */ jsx("tr", { "aria-level": level, "aria-expanded": kids ? isOpen : void 0, children: columns.map((c, ci) => /* @__PURE__ */ jsx("td", { children: ci === 0 ? (
-        // dynamic depth indent
-        /* @__PURE__ */ jsxs("span", { className: "inline-flex items-center gap-1", style: { paddingInlineStart: `${(level - 1) * 16}px` }, children: [
-          kids ? /* @__PURE__ */ jsx("button", { type: "button", "aria-label": isOpen ? "Collapse" : "Expand", onClick: () => toggle(row.id), className: "flex size-4 items-center justify-center text-muted hover:text-fg", children: isOpen ? /* @__PURE__ */ jsx(ChevronDown, { className: "size-4", "aria-hidden": true }) : /* @__PURE__ */ jsx(ChevronRight, { className: "size-4", "aria-hidden": true }) }) : /* @__PURE__ */ jsx("span", { className: "size-4" }),
-          c.cell(row.data)
-        ] })
-      ) : c.cell(row.data) }, c.id)) }, row.id);
-    }) })
   ] }) });
 }
 function DiffView({ before, after, label, mode = "split" }) {
@@ -1837,7 +1745,7 @@ function DatePicker(props) {
   const text = mode === "range" ? range.from && `${range.from} \u2013 ${range.to ?? "\u2026"}` : mode === "datetime" ? single && single.replace("T", " ") : single;
   const inRange = (v) => mode === "range" && !!range.from && !!range.to && v >= range.from && v <= range.to;
   return /* @__PURE__ */ jsxs(Popover, { open, onOpenChange: setOpen, children: [
-    /* @__PURE__ */ jsx(PopoverTrigger, { asChild: true, children: /* @__PURE__ */ jsx("button", { type: "button", "aria-label": label, className: cn("input inline-flex items-center text-start font-mono", mode === "date" ? "w-44" : "w-56"), children: text || /* @__PURE__ */ jsx("span", { className: "text-muted", children: placeholder }) }) }),
+    /* @__PURE__ */ jsx(PopoverTrigger, { asChild: true, children: /* @__PURE__ */ jsx("button", { type: "button", "aria-label": `${label}: ${text || placeholder}`, className: cn("input inline-flex items-center text-start font-mono", mode === "date" ? "w-44" : "w-56"), children: text || /* @__PURE__ */ jsx("span", { className: "text-muted", children: placeholder }) }) }),
     /* @__PURE__ */ jsxs(PopoverContent, { className: "w-64", children: [
       mode !== "range" && /* @__PURE__ */ jsx(
         "input",
@@ -1939,9 +1847,11 @@ function Heatmap({
 }) {
   const top = max ?? Math.max(...values.flat(), 1);
   return /* @__PURE__ */ jsxs("div", { role: "table", "aria-label": label, className: "inline-grid gap-0.5 text-xs text-muted", style: { gridTemplateColumns: `6rem repeat(${columns.length}, 2rem)` }, children: [
-    /* @__PURE__ */ jsx("span", {}),
-    columns.map((c) => /* @__PURE__ */ jsx("span", { role: "columnheader", className: "text-center", children: c }, c)),
-    rows.map((r, ri) => /* @__PURE__ */ jsxs(React25.Fragment, { children: [
+    /* @__PURE__ */ jsxs("div", { role: "row", className: "contents", children: [
+      /* @__PURE__ */ jsx("span", { "aria-hidden": true }),
+      columns.map((c) => /* @__PURE__ */ jsx("span", { role: "columnheader", className: "text-center", children: c }, c))
+    ] }),
+    rows.map((r, ri) => /* @__PURE__ */ jsxs("div", { role: "row", className: "contents", children: [
       /* @__PURE__ */ jsx("span", { role: "rowheader", className: "truncate", children: r }),
       columns.map((c, ci) => {
         const v = values[ri]?.[ci] ?? 0;
@@ -1970,7 +1880,7 @@ function OverflowTabs({
   const moreLabel = moreLabelProp ?? laf.moreTabs;
   const visible = tabs.slice(0, maxVisible);
   const rest = tabs.slice(maxVisible);
-  return /* @__PURE__ */ jsxs("div", { className: "flex items-center", children: [
+  return /* @__PURE__ */ jsxs("div", { className: "flex min-w-0 flex-wrap items-center", children: [
     /* @__PURE__ */ jsx(TabsList, { children: visible.map((t) => /* @__PURE__ */ jsx(TabsTrigger, { value: t.value, children: t.label }, t.value)) }),
     rest.length > 0 && /* @__PURE__ */ jsxs(DropdownMenu, { children: [
       /* @__PURE__ */ jsx(DropdownMenuTrigger, { asChild: true, children: /* @__PURE__ */ jsx("button", { type: "button", "aria-label": moreLabel, className: "ms-1 border-0 bg-transparent px-2 text-muted hover:text-fg", children: /* @__PURE__ */ jsx(MoreHorizontal, { size: 16 }) }) }),
@@ -2131,7 +2041,7 @@ function CodeEditorLite({
   ] });
 }
 var CodeEditor = CodeEditorLite;
-var contentCls = "dropdown-menu relative! top-auto! left-auto! z-50 min-w-48";
+var contentCls = "dropdown-menu relative! top-auto! start-auto! z-50 min-w-48";
 var itemCls = "dropdown-item cursor-default outline-none data-[highlighted]:bg-surface-hover data-[highlighted]:text-fg data-[disabled]:pointer-events-none data-[disabled]:opacity-50";
 function MenuShortcut({ className, ...props }) {
   return /* @__PURE__ */ jsx(Kbd, { className: cn("ms-auto", className), ...props });
@@ -2226,11 +2136,16 @@ function useUnsavedChangesGuard(dirty) {
 }
 function UnsavedChangesDialog({
   guard,
-  title = "Discard unsaved changes?",
-  description = "You have changes that have not been saved. If you leave now they will be lost.",
-  confirmLabel = "Discard changes",
-  cancelLabel = "Keep editing"
+  title: titleProp,
+  description: descriptionProp,
+  confirmLabel: confirmLabelProp,
+  cancelLabel: cancelLabelProp
 }) {
+  const u = useLafDefaults(lafDefaults2).t.components.ui.unsavedChanges;
+  const title = titleProp ?? u.title;
+  const description = descriptionProp ?? u.description;
+  const confirmLabel = confirmLabelProp ?? u.confirm;
+  const cancelLabel = cancelLabelProp ?? u.cancel;
   return /* @__PURE__ */ jsx(
     ConfirmDialog,
     {
@@ -2244,6 +2159,7 @@ function UnsavedChangesDialog({
     }
   );
 }
+var lafDefaults2 = { ui: uiEn };
 function FormSection({
   title,
   description,
@@ -2263,8 +2179,8 @@ function FormSection({
 function FormFooter({
   onCancel,
   onSave,
-  saveLabel = "Save",
-  cancelLabel = "Cancel",
+  saveLabel: saveLabelProp,
+  cancelLabel: cancelLabelProp,
   pending,
   dirty,
   guard,
@@ -2273,6 +2189,9 @@ function FormFooter({
   children,
   className
 }) {
+  const f = useLafDefaults(lafDefaults2).t.components.ui.formFooter;
+  const saveLabel = saveLabelProp ?? f.save;
+  const cancelLabel = cancelLabelProp ?? f.cancel;
   return /* @__PURE__ */ jsxs(
     "div",
     {
@@ -2383,9 +2302,11 @@ function SubNav({
   groups,
   value,
   onSelect,
-  label = "Section navigation",
+  label: labelProp,
   className
 }) {
+  const { t } = useLafDefaults(lafDefaults2);
+  const label = labelProp ?? t.components.ui.subNav.label;
   return /* @__PURE__ */ jsx("nav", { "aria-label": label, className: cn("grid w-56 gap-4 text-sm", className), children: groups.map((g) => /* @__PURE__ */ jsxs("div", { role: "group", "aria-label": g.label, children: [
     g.label && /* @__PURE__ */ jsx("div", { className: "mb-1 px-2 text-[0.6875rem] tracking-wider text-subtle uppercase", "aria-hidden": true, children: g.label }),
     /* @__PURE__ */ jsx("ul", { className: "grid gap-0.5", children: g.items.map((it) => {
@@ -2420,32 +2341,27 @@ function SubNav({
 }
 function MobileNav({
   children,
-  title = "Navigation",
-  triggerLabel = "Open navigation",
+  title: titleProp,
+  triggerLabel: triggerLabelProp,
   open,
   onOpenChange,
   className
 }) {
+  const m = useLafDefaults(lafDefaults2).t.components.ui.mobileNav;
+  const title = titleProp ?? m.title;
+  const triggerLabel = triggerLabelProp ?? m.trigger;
   return /* @__PURE__ */ jsxs(Drawer, { open, onOpenChange, children: [
     /* @__PURE__ */ jsx(DrawerTrigger, { asChild: true, children: /* @__PURE__ */ jsx("button", { type: "button", "aria-label": triggerLabel, className: cn("btn btn-ghost btn-sm min-[860px]:hidden", className), children: /* @__PURE__ */ jsx(Menu$1, { "aria-hidden": true }) }) }),
     /* @__PURE__ */ jsx(DrawerContent, { title, width: "sm", children })
   ] });
 }
-var defaultLabels = {
-  back: "Back",
-  next: "Next",
-  finish: "Finish",
-  skip: "Skip",
-  cancel: "Cancel",
-  optional: "optional",
-  steps: "Steps"
-};
+var lafDefaults3 = { ui: uiEn };
 function Wizard({
   steps,
   onFinish,
   onCancel,
   dirty,
-  title = "Wizard",
+  title: titleProp,
   mode = "page",
   open,
   onOpenChange,
@@ -2455,7 +2371,9 @@ function Wizard({
   labels: labelsProp,
   className
 }) {
-  const labels = { ...defaultLabels, ...labelsProp };
+  const { title: defaultTitle, ...defaultLabels3 } = useLafDefaults(lafDefaults3).t.components.ui.wizard;
+  const labels = { ...defaultLabels3, ...labelsProp };
+  const title = titleProp ?? defaultTitle;
   const [current, setCurrent] = useControllableState({ value: currentProp, defaultValue: defaultCurrent, onChange: onCurrentChange });
   const [errors, setErrors] = React25.useState([]);
   const [failed, setFailed] = React25.useState({});
@@ -2564,23 +2482,28 @@ function WizardReview({
 }) {
   return /* @__PURE__ */ jsx(DefinitionList, { items, className });
 }
-var defaults = {
-  "403": { icon: /* @__PURE__ */ jsx(LockKeyhole, {}), title: "Access denied", description: "You don't have permission to view this page." },
-  "404": { icon: /* @__PURE__ */ jsx(FileQuestion, {}), title: "Page not found", description: "The page you are looking for doesn't exist or was moved." },
-  "500": { icon: /* @__PURE__ */ jsx(ServerCrash, {}), title: "Something went wrong", description: "An unexpected error occurred. Try again in a moment." },
-  offline: { icon: /* @__PURE__ */ jsx(WifiOff, {}), title: "You are offline", description: "Check your connection and try again." },
-  "session-expired": { icon: /* @__PURE__ */ jsx(TimerOff, {}), title: "Session expired", description: "Sign in again to continue." }
+var lafDefaults4 = { ui: uiEn };
+var icons = {
+  "403": /* @__PURE__ */ jsx(LockKeyhole, {}),
+  "404": /* @__PURE__ */ jsx(FileQuestion, {}),
+  "500": /* @__PURE__ */ jsx(ServerCrash, {}),
+  offline: /* @__PURE__ */ jsx(WifiOff, {}),
+  "session-expired": /* @__PURE__ */ jsx(TimerOff, {})
 };
+var textKey = { "403": "error403", "404": "error404", "500": "error500", offline: "errorOffline", "session-expired": "errorSessionExpired" };
 function ErrorPage({
   variant,
   title,
   description,
   action,
   requestId,
-  requestIdLabel = "Request ID",
+  requestIdLabel: requestIdLabelProp,
   className
 }) {
-  const d = defaults[variant];
+  const { t } = useLafDefaults(lafDefaults4);
+  const ui = t.components.ui;
+  const d = { icon: icons[variant], ...ui[textKey[variant]] };
+  const requestIdLabel = requestIdLabelProp ?? ui.errors.requestId;
   const critical = variant === "500" || variant === "offline";
   return /* @__PURE__ */ jsxs(
     "div",
@@ -2599,7 +2522,7 @@ function ErrorPage({
             ":"
           ] }),
           /* @__PURE__ */ jsx("code", { className: "font-mono", children: requestId }),
-          /* @__PURE__ */ jsx(CopyButton, { value: requestId, label: `Copy ${requestIdLabel}` })
+          /* @__PURE__ */ jsx(CopyButton, { value: requestId, label: ui.errors.copyRequestId(requestIdLabel) })
         ] })
       ]
     }
@@ -2626,16 +2549,13 @@ var LafErrorBoundary = class extends React25.Component {
     const { error } = this.state;
     if (!error) return this.props.children;
     if (this.props.fallback) return this.props.fallback(error, this.reset);
-    return /* @__PURE__ */ jsx(
-      ErrorPage,
-      {
-        variant: "500",
-        requestId: this.props.requestId?.(error),
-        action: /* @__PURE__ */ jsx(Button, { onClick: this.reset, children: this.props.retryLabel ?? "Try again" })
-      }
-    );
+    return /* @__PURE__ */ jsx(BoundaryFallback, { requestId: this.props.requestId?.(error), retryLabel: this.props.retryLabel, reset: this.reset });
   }
 };
+function BoundaryFallback({ requestId, retryLabel, reset }) {
+  const { t } = useLafDefaults(lafDefaults4);
+  return /* @__PURE__ */ jsx(ErrorPage, { variant: "500", requestId, action: /* @__PURE__ */ jsx(Button, { onClick: reset, children: retryLabel ?? t.components.ui.errors.tryAgain }) });
+}
 var baseKinds = {
   datacenter: Building2,
   cluster: Boxes,
@@ -2998,7 +2918,7 @@ function SavedViews({ query, onApply, labels: labelsProp, className, ...opts }) 
     ] }) })
   ] });
 }
-var defaultLabels2 = {
+var defaultLabels = {
   label: "Filter",
   placeholder: "Filter\u2026 (e.g. status:open -label:wontfix)",
   clear: "Clear filter",
@@ -3023,7 +2943,7 @@ function FilterBar({
   className
 }) {
   const { views: viewLabels, ...barLabels } = labelsProp ?? {};
-  const l = { ...defaultLabels2, ...barLabels };
+  const l = { ...defaultLabels, ...barLabels };
   const id = React25.useId();
   const [query, setQuery] = useControllableState({
     value,
@@ -3331,7 +3251,7 @@ function MenuSpecItems({ items }) {
             it.icon,
             it.label
           ] }),
-          /* @__PURE__ */ jsx(DropdownPrimitive2.Portal, { children: /* @__PURE__ */ jsx(DropdownPrimitive2.SubContent, { className: "dropdown-menu relative! top-auto! left-auto! z-40 min-w-40", children: /* @__PURE__ */ jsx(MenuSpecItems, { items: it.items }) }) })
+          /* @__PURE__ */ jsx(DropdownPrimitive2.Portal, { children: /* @__PURE__ */ jsx(DropdownPrimitive2.SubContent, { className: "dropdown-menu relative! top-auto! start-auto! z-40 min-w-40", children: /* @__PURE__ */ jsx(MenuSpecItems, { items: it.items }) }) })
         ] }, it.id);
       default:
         return /* @__PURE__ */ jsxs(
@@ -3368,7 +3288,7 @@ function PointMenu({
         align: "start",
         sideOffset: 0,
         onCloseAutoFocus: (e) => e.preventDefault(),
-        className: "dropdown-menu relative! top-auto! left-auto! z-30 min-w-48",
+        className: "dropdown-menu relative! top-auto! start-auto! z-30 min-w-48",
         children: /* @__PURE__ */ jsx(MenuSpecItems, { items })
       }
     ) })
@@ -3745,7 +3665,7 @@ var btn = "btn btn-ghost btn-sm shrink-0";
 function Menu3({ trigger, items, aria }) {
   return /* @__PURE__ */ jsxs(DropdownPrimitive2.Root, { children: [
     /* @__PURE__ */ jsx(DropdownPrimitive2.Trigger, { className: btn, "aria-label": aria, children: trigger }),
-    /* @__PURE__ */ jsx(DropdownPrimitive2.Portal, { children: /* @__PURE__ */ jsx(DropdownPrimitive2.Content, { align: "end", sideOffset: 4, className: "dropdown-menu relative! top-auto! left-auto! z-30 min-w-48", children: /* @__PURE__ */ jsx(MenuSpecItems, { items }) }) })
+    /* @__PURE__ */ jsx(DropdownPrimitive2.Portal, { children: /* @__PURE__ */ jsx(DropdownPrimitive2.Content, { align: "end", sideOffset: 4, className: "dropdown-menu relative! top-auto! start-auto! z-30 min-w-48", children: /* @__PURE__ */ jsx(MenuSpecItems, { items }) }) })
   ] });
 }
 function BarItem({ it }) {
@@ -3830,7 +3750,7 @@ function ActionBar({ items, label, className, labels }) {
     ] }), items: hidden }) })
   ] });
 }
-var defaultLabels3 = {
+var defaultLabels2 = {
   actions: "Row actions",
   expand: "Expand row",
   collapse: "Collapse row",
@@ -3845,13 +3765,6 @@ var defaultLabels3 = {
   empty: "Nothing here",
   filter: "Filter"
 };
-var warned = /* @__PURE__ */ new Set();
-function warnOnce(key, message) {
-  if (typeof process !== "undefined" && process.env?.NODE_ENV === "production") return;
-  if (warned.has(key)) return;
-  warned.add(key);
-  console.warn(`[pilab-laf] ${message}`);
-}
 var storageKey = (k) => `laf:datagrid:${k}`;
 function readView(viewKey) {
   if (!viewKey || typeof window === "undefined") return {};
@@ -3980,21 +3893,13 @@ function DataGrid(props) {
     onRowKeyDown
   } = props;
   const { t: laf } = useLaf();
-  const L = { ...defaultLabels3, ...props.labels };
+  const L = { ...defaultLabels2, ...props.labels };
   const selectAllLabel = props.labels?.selectAll ?? laf.selectAllRows;
   const selectRowLabel = props.labels?.selectRow ?? laf.selectRow;
   const uid = React25.useId();
   const persisted = React25.useMemo(() => readView(viewKey), [viewKey]);
-  const legacySort = props.sort !== void 0 && !Array.isArray(props.sort);
-  const legacySelected = typeof props.selected === "string";
-  React25.useEffect(() => {
-    if (legacySort) warnOnce("sort", "DataGrid: a single `sort` object is deprecated; pass an array of { id, dir } (Shift+click multi-sorts).");
-    if (legacySelected) warnOnce("selected", "DataGrid: a string `selected` is deprecated; pass an array of row ids.");
-  }, [legacySort, legacySelected]);
-  const sortValue = props.sort === void 0 ? void 0 : Array.isArray(props.sort) ? props.sort : [props.sort];
-  const selValue = props.selected === void 0 ? void 0 : Array.isArray(props.selected) ? props.selected : props.selected ? [props.selected] : [];
-  const [sort, setSort] = useControllableState({ value: sortValue, defaultValue: [], onChange: props.onSortChange });
-  const [selected, setSelected] = useControllableState({ value: selValue, defaultValue: [], onChange: props.onSelectedChange });
+  const [sort, setSort] = useControllableState({ value: props.sort, defaultValue: [], onChange: props.onSortChange });
+  const [selected, setSelected] = useControllableState({ value: props.selected, defaultValue: [], onChange: props.onSelectedChange });
   const [visibility, setVisibility] = useControllableState({
     value: props.columnVisibility,
     defaultValue: persisted.columnVisibility ?? {},
@@ -4364,7 +4269,7 @@ function DataGrid(props) {
                   onChange: () => setSelected(ids.every((i) => selectedSet.has(i)) ? [] : ids)
                 }
               ) }),
-              renderExpanded && /* @__PURE__ */ jsx("div", { role: "columnheader", "aria-label": L.expand, className: cn(stickyCell), style: { insetInlineStart: selectable ? SELECT_W : 0 } }),
+              renderExpanded && /* @__PURE__ */ jsx("div", { role: "columnheader", className: cn(stickyCell), style: { insetInlineStart: selectable ? SELECT_W : 0 }, children: /* @__PURE__ */ jsx("span", { className: "sr-only", children: L.expand }) }),
               leaf.map((c) => {
                 const spec = colById.get(c.id);
                 const sIdx = sort.findIndex((s2) => s2.id === c.id);
@@ -4498,7 +4403,7 @@ function compare(a, b) {
   if (typeof a === "number" && typeof b === "number") return a - b;
   return String(a).localeCompare(String(b), void 0, { numeric: true });
 }
-function TreeTable2({
+function TreeTable({
   nodes,
   columns,
   expanded,
@@ -4599,20 +4504,99 @@ function TreeTable2({
     }
   );
 }
-var deviceIcon2 = { phone: Smartphone, laptop: Laptop, tablet: Tablet, key: KeyRound };
-var sessionLabels = {
-  thisDevice: "This device",
-  revoke: "Revoke session",
-  revokeOthers: "Sign out other sessions",
-  revokeOthersTitle: "Sign out other sessions?",
-  revokeOthersBody: "Every session except this device will be signed out.",
-  lastActive: "Last active",
-  user: "User",
-  empty: "No active sessions",
-  cancel: "Cancel"
+
+// lib/messages/account.en.ts
+var accountEn = {
+  sessions: {
+    thisDevice: "This device",
+    revoke: "Revoke session",
+    revokeOthers: "Sign out other sessions",
+    revokeOthersTitle: "Sign out other sessions?",
+    revokeOthersBody: "Every session except this device will be signed out.",
+    lastActive: "Last active",
+    user: "User",
+    empty: "No active sessions",
+    cancel: "Cancel"
+  },
+  apiKeys: {
+    create: "Create key",
+    createTitle: "Create API key",
+    name: "Name",
+    expiry: "Expiry",
+    scopes: "Scopes",
+    never: "Never",
+    days: (n) => `${n} days`,
+    created: "Created",
+    expires: "Expires",
+    lastUsed: "Last used",
+    neverUsed: "Never used",
+    revoke: "Revoke",
+    revoked: "Revoked",
+    rotate: "Rotate",
+    secretLabel: "Your new secret",
+    secretNotice: "Copy this secret now. It will not be shown again.",
+    acknowledge: "I have stored this secret",
+    done: "Done",
+    cancel: "Cancel",
+    empty: "No keys yet",
+    revokeTitle: "Revoke key?",
+    revokeBody: "Applications using this key will stop working immediately.",
+    error: "Something went wrong. Try again."
+  },
+  factors: {
+    password: "Password",
+    passwordChanged: "Last changed",
+    passwordNever: "Never changed",
+    changePassword: "Change password",
+    totp: "Authenticator app (TOTP)",
+    totpOn: "Enabled",
+    totpOff: "Not set up",
+    enable: "Enable",
+    disable: "Disable",
+    passkeys: "Passkeys",
+    addPasskey: "Add passkey",
+    renamePasskey: "Passkey name",
+    removePasskey: "Remove passkey",
+    created: "Created",
+    lastUsed: "Last used",
+    neverUsed: "Never used",
+    noPasskeys: "No passkeys registered",
+    recovery: "Recovery codes",
+    recoveryRemaining: (n) => `${n} remaining`,
+    regenerate: "Regenerate",
+    recoveryTitle: "New recovery codes",
+    recoveryNotice: "Store these codes safely. They will not be shown again.",
+    acknowledge: "I have stored these codes",
+    done: "Done",
+    cancel: "Cancel",
+    removeTitle: "Remove second factor?",
+    removeBody: "This second factor will no longer protect the account.",
+    removeLastWarning: "This is your last second factor. Your account will be protected by the password only.",
+    remove: "Remove"
+  },
+  reauth: {
+    title: "Confirm it's you",
+    description: "This action requires you to verify your identity.",
+    password: "Password",
+    confirm: "Confirm",
+    usePasskey: "Use a passkey",
+    usePassword: "Use password instead",
+    cancel: "Cancel",
+    failed: "Verification failed. Try again."
+  },
+  expiry: {
+    title: "Your session is about to expire",
+    remaining: (t) => `You will be signed out in ${t}.`,
+    stay: "Stay signed in",
+    signOut: "Sign out",
+    announce: (t) => `Session expires in ${t}`
+  }
 };
+var lafDefaults5 = { account: accountEn };
+var useLaf2 = () => useLafDefaults(lafDefaults5);
+var deviceIcon2 = { phone: Smartphone, laptop: Laptop, tablet: Tablet, key: KeyRound };
 function SessionList({ sessions, onRevoke, onRevokeOthers, showUser, labels }) {
-  const l = { ...sessionLabels, ...labels };
+  const l = { ...useLaf2().t.components.account.sessions, ...labels };
   const [confirm, setConfirm] = React25.useState(false);
   const [pending, setPending] = React25.useState(false);
   const others = sessions.filter((s) => !s.current).length;
@@ -4681,33 +4665,8 @@ function SessionList({ sessions, onRevoke, onRevokeOthers, showUser, labels }) {
     )
   ] });
 }
-var apiKeyLabels = {
-  create: "Create key",
-  createTitle: "Create API key",
-  name: "Name",
-  expiry: "Expiry",
-  scopes: "Scopes",
-  never: "Never",
-  days: (n) => `${n} days`,
-  created: "Created",
-  expires: "Expires",
-  lastUsed: "Last used",
-  neverUsed: "Never used",
-  revoke: "Revoke",
-  revoked: "Revoked",
-  rotate: "Rotate",
-  secretLabel: "Your new secret",
-  secretNotice: "Copy this secret now. It will not be shown again.",
-  acknowledge: "I have stored this secret",
-  done: "Done",
-  cancel: "Cancel",
-  empty: "No keys yet",
-  revokeTitle: "Revoke key?",
-  revokeBody: "Applications using this key will stop working immediately.",
-  error: "Something went wrong. Try again."
-};
 function ApiKeyManager({ keys, scopes, expiryPresets = [30, 90, 365, null], onCreate, onRevoke, onRotate, labels }) {
-  const l = { ...apiKeyLabels, ...labels };
+  const l = { ...useLaf2().t.components.account.apiKeys, ...labels };
   const [form, setForm] = React25.useState(false);
   const [name, setName] = React25.useState("");
   const [expiry, setExpiry] = React25.useState(expiryPresets[0] ?? null);
@@ -4836,39 +4795,8 @@ function ApiKeyManager({ keys, scopes, expiryPresets = [30, 90, 365, null], onCr
     )
   ] });
 }
-var factorLabels = {
-  password: "Password",
-  passwordChanged: "Last changed",
-  passwordNever: "Never changed",
-  changePassword: "Change password",
-  totp: "Authenticator app (TOTP)",
-  totpOn: "Enabled",
-  totpOff: "Not set up",
-  enable: "Enable",
-  disable: "Disable",
-  passkeys: "Passkeys",
-  addPasskey: "Add passkey",
-  renamePasskey: "Passkey name",
-  removePasskey: "Remove passkey",
-  created: "Created",
-  lastUsed: "Last used",
-  neverUsed: "Never used",
-  noPasskeys: "No passkeys registered",
-  recovery: "Recovery codes",
-  recoveryRemaining: (n) => `${n} remaining`,
-  regenerate: "Regenerate",
-  recoveryTitle: "New recovery codes",
-  recoveryNotice: "Store these codes safely. They will not be shown again.",
-  acknowledge: "I have stored these codes",
-  done: "Done",
-  cancel: "Cancel",
-  removeTitle: "Remove second factor?",
-  removeBody: "This second factor will no longer protect the account.",
-  removeLastWarning: "This is your last second factor. Your account will be protected by the password only.",
-  remove: "Remove"
-};
 function SecurityFactors({ password, totp, passkeys, recovery, labels }) {
-  const l = { ...factorLabels, ...labels };
+  const l = { ...useLaf2().t.components.account.factors, ...labels };
   const [removal, setRemoval] = React25.useState();
   const [codes, setCodes] = React25.useState();
   const [ack, setAck] = React25.useState(false);
@@ -4977,18 +4905,8 @@ function SecurityFactors({ password, totp, passkeys, recovery, labels }) {
     ) })
   ] });
 }
-var reauthLabels = {
-  title: "Confirm it's you",
-  description: "This action requires you to verify your identity.",
-  password: "Password",
-  confirm: "Confirm",
-  usePasskey: "Use a passkey",
-  usePassword: "Use password instead",
-  cancel: "Cancel",
-  failed: "Verification failed. Try again."
-};
 function ReauthDialog({ open, onOpenChange, onReauth, passkey, labels }) {
-  const l = { ...reauthLabels, ...labels };
+  const l = { ...useLaf2().t.components.account.reauth, ...labels };
   const [method, setMethod] = React25.useState(passkey ? "passkey" : "password");
   const [pw, setPw] = React25.useState("");
   const [busy, setBusy] = React25.useState(false);
@@ -5051,16 +4969,9 @@ function ReauthDialog({ open, onOpenChange, onReauth, passkey, labels }) {
     }
   ) });
 }
-var expiryLabels = {
-  title: "Your session is about to expire",
-  remaining: (t) => `You will be signed out in ${t}.`,
-  stay: "Stay signed in",
-  signOut: "Sign out",
-  announce: (t) => `Session expires in ${t}`
-};
 function SessionExpiryDialog({ expiresAt, warnBeforeMs = 3e5, onStay, onSignOut, onExpire, labels }) {
-  const l = { ...expiryLabels, ...labels };
-  const { format: format2 } = useLaf();
+  const { format: format2, t: laf } = useLaf2();
+  const l = { ...laf.components.account.expiry, ...labels };
   const target = new Date(expiresAt).getTime();
   const [now, setNow] = React25.useState(() => Date.now());
   const expired = React25.useRef(false);
@@ -5098,6 +5009,66 @@ function SessionExpiryDialog({ expiresAt, warnBeforeMs = 3e5, onStay, onSignOut,
     }
   ) });
 }
+
+// lib/messages/admin.en.ts
+var adminEn = {
+  network: {
+    invalidIp: "Enter a valid IPv4 or IPv6 address",
+    invalidCidr: "Enter a valid CIDR block, e.g. 10.0.0.0/8",
+    invalidEntry: "Enter a valid IP address or CIDR block",
+    duplicate: "Already in the list",
+    add: "Add",
+    remove: (e) => `Remove ${e}`,
+    empty: "No entries"
+  },
+  allowList: "Allowed addresses",
+  transfer: {
+    available: "Available",
+    selected: "Selected",
+    search: (l) => `Search ${l.toLowerCase()}`,
+    count: (c, t) => c ? `${c} of ${t} selected` : `${t} items`,
+    moveRight: "Add selected",
+    moveLeft: "Remove selected",
+    moveAllRight: "Add all",
+    moveAllLeft: "Remove all",
+    empty: "No items"
+  },
+  color: {
+    label: "Brand colour",
+    colorPicker: "Pick colour",
+    invalidHex: "Enter a hex colour (3 or 6 digits)",
+    onCard: "Against card background",
+    onPrimary: "Button text on colour",
+    pass: "AA pass",
+    fail: "AA fail",
+    rejected: "Colour does not meet the contrast requirements",
+    contrast: "Contrast",
+    preview: "Preview",
+    sampleButton: "Button",
+    sampleBadge: "Badge"
+  },
+  branding: {
+    productName: "Product name",
+    logo: "Logo",
+    dropLogo: "Drop a logo here or click to browse",
+    preview: "Login page preview",
+    signIn: "Sign in",
+    username: "Username",
+    password: "Password",
+    removeLogo: "Remove logo"
+  },
+  notifications: {
+    bell: "Notifications",
+    title: "Notifications",
+    unreadCount: (n) => n === 0 ? "No unread notifications" : `${n} unread notification${n === 1 ? "" : "s"}`,
+    markRead: (t) => `Mark "${t}" as read`,
+    markAllRead: "Mark all as read",
+    viewAll: "View all",
+    empty: "You're all caught up"
+  }
+};
+var lafDefaults6 = { admin: adminEn };
+var useLaf3 = () => useLafDefaults(lafDefaults6);
 function isIPv4(s) {
   const parts = s.split(".");
   return parts.length === 4 && parts.every((p) => /^\d{1,3}$/.test(p) && (p === "0" || !p.startsWith("0")) && Number(p) <= 255);
@@ -5133,15 +5104,6 @@ function parseCidr(s) {
 function isCidr(s) {
   return parseCidr(s) !== null;
 }
-var netLabels = {
-  invalidIp: "Enter a valid IPv4 or IPv6 address",
-  invalidCidr: "Enter a valid CIDR block, e.g. 10.0.0.0/8",
-  invalidEntry: "Enter a valid IP address or CIDR block",
-  duplicate: "Already in the list",
-  add: "Add",
-  remove: (e) => `Remove ${e}`,
-  empty: "No entries"
-};
 function NetInput({ validate, message, label, hint, errorMessage, value, defaultValue = "", onChange, className, id, ...rest }) {
   const auto = React25.useId();
   const inputId = id ?? auto;
@@ -5179,13 +5141,17 @@ function NetInput({ validate, message, label, hint, errorMessage, value, default
   return /* @__PURE__ */ jsx(Field, { label, hint, htmlFor: inputId, error: invalid ? errorMessage ?? message : void 0, children: input });
 }
 function IpInput(props) {
-  return /* @__PURE__ */ jsx(NetInput, { placeholder: "192.0.2.1", validate: isIp, message: netLabels.invalidIp, ...props });
+  const L = useLaf3().t.components.admin.network;
+  return /* @__PURE__ */ jsx(NetInput, { placeholder: "192.0.2.1", validate: isIp, message: L.invalidIp, ...props });
 }
 function CidrInput(props) {
-  return /* @__PURE__ */ jsx(NetInput, { placeholder: "10.0.0.0/8", validate: isCidr, message: netLabels.invalidCidr, ...props });
+  const L = useLaf3().t.components.admin.network;
+  return /* @__PURE__ */ jsx(NetInput, { placeholder: "10.0.0.0/8", validate: isCidr, message: L.invalidCidr, ...props });
 }
-function AllowListEditor({ value, defaultValue = [], onChange, label = "Allowed addresses", labels: l, disabled }) {
-  const L = { ...netLabels, ...l };
+function AllowListEditor({ value, defaultValue = [], onChange, label: labelProp, labels: l, disabled }) {
+  const { t: laf } = useLaf3();
+  const label = labelProp ?? laf.components.admin.allowList;
+  const L = { ...laf.components.admin.network, ...l };
   const id = React25.useId();
   const [list, setList] = useControllableState({ value, defaultValue, onChange });
   const [draft, setDraft] = React25.useState("");
@@ -5233,17 +5199,6 @@ function AllowListEditor({ value, defaultValue = [], onChange, label = "Allowed 
     ] }, entry)) })
   ] });
 }
-var transferLabels = {
-  available: "Available",
-  selected: "Selected",
-  search: (l) => `Search ${l.toLowerCase()}`,
-  count: (c, t) => c ? `${c} of ${t} selected` : `${t} items`,
-  moveRight: "Add selected",
-  moveLeft: "Remove selected",
-  moveAllRight: "Add all",
-  moveAllLeft: "Remove all",
-  empty: "No items"
-};
 var ROW = 32;
 function TransferColumn({ title, items, checked, setChecked, L, height }) {
   const [q, setQ] = React25.useState("");
@@ -5285,7 +5240,7 @@ function TransferColumn({ title, items, checked, setChecked, L, height }) {
   ] });
 }
 function TransferList({ items, value, defaultValue = [], onChange, labels, height = 224 }) {
-  const L = { ...transferLabels, ...labels };
+  const L = { ...useLaf3().t.components.admin.transfer, ...labels };
   const [sel, setSel] = useControllableState({ value, defaultValue, onChange });
   const [leftChecked, setLeftChecked] = React25.useState(/* @__PURE__ */ new Set());
   const [rightChecked, setRightChecked] = React25.useState(/* @__PURE__ */ new Set());
@@ -5335,22 +5290,8 @@ function contrastRatio(a, b) {
   const [hi, lo] = [luminance(a), luminance(b)].sort((x, y) => y - x);
   return (hi + 0.05) / (lo + 0.05);
 }
-var colorLabels = {
-  label: "Brand colour",
-  colorPicker: "Pick colour",
-  invalidHex: "Enter a hex colour (3 or 6 digits)",
-  onCard: "Against card background",
-  onPrimary: "Button text on colour",
-  pass: "AA pass",
-  fail: "AA fail",
-  rejected: "Colour does not meet the contrast requirements",
-  contrast: "Contrast",
-  preview: "Preview",
-  sampleButton: "Button",
-  sampleBadge: "Badge"
-};
 function ColorField({ value, defaultValue = DEFAULT_PRIMARY, onChange, cardColor = DEFAULT_CARD, onPrimaryColor = DEFAULT_ON_PRIMARY, minCardRatio = 3, minTextRatio = 4.5, labels }) {
-  const L = { ...colorLabels, ...labels };
+  const L = { ...useLaf3().t.components.admin.color, ...labels };
   const id = React25.useId();
   const [accepted, setAccepted] = useControllableState({ value, defaultValue, onChange });
   const [draft, setDraft] = React25.useState(accepted);
@@ -5389,18 +5330,8 @@ function ColorField({ value, defaultValue = DEFAULT_PRIMARY, onChange, cardColor
     ] })
   ] });
 }
-var brandingLabels = {
-  productName: "Product name",
-  logo: "Logo",
-  dropLogo: "Drop a logo here or click to browse",
-  preview: "Login page preview",
-  signIn: "Sign in",
-  username: "Username",
-  password: "Password",
-  removeLogo: "Remove logo"
-};
 function BrandingEditor({ value, defaultValue = { productName: "", primary: DEFAULT_PRIMARY }, onChange, maxLogoSize = 512 * 1024, cardColor, onPrimaryColor, labels }) {
-  const L = { ...brandingLabels, ...labels };
+  const L = { ...useLaf3().t.components.admin.branding, ...labels };
   const [b, setB] = useControllableState({ value, defaultValue, onChange });
   const nameId = React25.useId();
   const [files, setFiles] = React25.useState([]);
@@ -5454,17 +5385,8 @@ function BrandingEditor({ value, defaultValue = { productName: "", primary: DEFA
     ] })
   ] });
 }
-var notifLabels = {
-  bell: "Notifications",
-  title: "Notifications",
-  unreadCount: (n) => n === 0 ? "No unread notifications" : `${n} unread notification${n === 1 ? "" : "s"}`,
-  markRead: (t) => `Mark "${t}" as read`,
-  markAllRead: "Mark all as read",
-  viewAll: "View all",
-  empty: "You're all caught up"
-};
 function NotificationCenter({ items, onMarkRead, onMarkAllRead, onViewAll, onOpen, labels }) {
-  const L = { ...notifLabels, ...labels };
+  const L = { ...useLaf3().t.components.admin.notifications, ...labels };
   const unread = items.filter((i) => i.unread).length;
   const groups = /* @__PURE__ */ new Map();
   for (const i of items) groups.set(i.group, [...groups.get(i.group) ?? [], i]);
@@ -5475,7 +5397,7 @@ function NotificationCenter({ items, onMarkRead, onMarkAllRead, onViewAll, onOpe
       unread > 0 && /* @__PURE__ */ jsx("span", { "aria-hidden": true, className: "pointer-events-none absolute -end-0.5 -top-0.5 flex min-w-4 items-center justify-center rounded-sm bg-danger px-1 text-[0.625rem] leading-4 font-bold text-on-primary", children: unread > 99 ? "99+" : unread }),
       /* @__PURE__ */ jsx("span", { className: "sr-only", "aria-live": "polite", children: L.unreadCount(unread) })
     ] }),
-    /* @__PURE__ */ jsxs(PopoverContent, { title: L.title, align: "end", className: "w-80 p-0", footer: onViewAll && /* @__PURE__ */ jsx(Button, { variant: "ghost", size: "sm", onClick: onViewAll, children: L.viewAll }), children: [
+    /* @__PURE__ */ jsxs(PopoverContent, { title: L.title, align: "end", className: "w-80 max-w-[calc(100vw-2rem)] p-0", footer: onViewAll && /* @__PURE__ */ jsx(Button, { variant: "ghost", size: "sm", onClick: onViewAll, children: L.viewAll }), children: [
       unread > 0 && onMarkAllRead && /* @__PURE__ */ jsx("div", { className: "flex justify-end px-3 pb-1", children: /* @__PURE__ */ jsx(Button, { size: "sm", variant: "ghost", onClick: onMarkAllRead, children: L.markAllRead }) }),
       items.length === 0 ? /* @__PURE__ */ jsx("p", { className: "px-3 py-6 text-center text-sm text-muted", children: L.empty }) : /* @__PURE__ */ jsx("div", { className: "max-h-80 overflow-auto", children: [...groups].map(([group, list]) => /* @__PURE__ */ jsxs("section", { "aria-label": group, children: [
         group && /* @__PURE__ */ jsx("h3", { className: "bg-muted-bg px-3 py-1 text-xs font-semibold text-muted uppercase", children: group }),
@@ -5624,7 +5546,7 @@ function ShortcutHelp({ open, onOpenChange }) {
       DialogPrimitive2.Content,
       {
         "aria-describedby": void 0,
-        className: "popup fixed top-[15%] left-1/2 z-50 max-h-[70vh] w-[min(32rem,calc(100vw-2rem))] -translate-x-1/2 overflow-auto p-4",
+        className: "popup fixed top-[15%] start-1/2 z-50 max-h-[70vh] w-[min(32rem,calc(100vw-2rem))] -translate-x-1/2 rtl:translate-x-1/2 overflow-auto p-4",
         children: [
           /* @__PURE__ */ jsxs("div", { className: "mb-3 flex items-center justify-between", children: [
             /* @__PURE__ */ jsx(DialogPrimitive2.Title, { className: "m-0 text-base font-semibold text-fg", children: t.shortcuts }),
@@ -5731,7 +5653,7 @@ function ObjectPage({
       ] }),
       /* @__PURE__ */ jsxs(TabsContent, { value: "summary", className: "grid gap-4 pt-4", children: [
         facts && /* @__PURE__ */ jsx(DefinitionList, { items: facts }),
-        cards && /* @__PURE__ */ jsx("div", { className: "grid gap-4 md:grid-cols-2", children: cards.map((c) => /* @__PURE__ */ jsx(Panel, { title: c.title, children: c.content }, c.id)) })
+        cards && /* @__PURE__ */ jsx("div", { className: "grid gap-4 md:grid-cols-2", children: cards.map((c) => /* @__PURE__ */ jsx(Panel, { title: c.title, headingLevel: 2, children: c.content }, c.id)) })
       ] }),
       monitor !== void 0 && /* @__PURE__ */ jsx(TabsContent, { value: "monitor", className: "pt-4", children: monitor }),
       configure !== void 0 && /* @__PURE__ */ jsx(TabsContent, { value: "configure", className: "pt-4", children: configure })
@@ -5810,13 +5732,41 @@ function InventoryLayout({
     ) })
   ] });
 }
+
+// lib/messages/tracker.en.ts
+var trackerEn = {
+  labelPicker: {
+    label: "Labels",
+    placeholder: "Filter labels\u2026",
+    newColour: "New label colour",
+    colour: (n) => `Colour ${n}`,
+    create: (q) => `Create label \u201C${q}\u201D`
+  },
+  reaction: {
+    add: "Add reaction",
+    reactedBy: (emoji, users) => `${emoji} ${users.join(", ")}`,
+    toggle: (emoji, n) => `${emoji} ${n}`
+  },
+  timeline: {
+    edited: "edited",
+    actions: "Comment actions",
+    more: (n) => `${n} more updates`,
+    fewer: "Show fewer updates",
+    timeline: "Activity"
+  },
+  optionPicker: { search: "Search\u2026", empty: "No results", none: "None" },
+  issue: { select: (key) => `Select ${key}`, overdue: "Overdue", comments: (n) => `${n} comments`, due: "Due" },
+  progress: { todo: "To do", doing: "In progress", done: "Done", summary: (pct) => `${pct}% complete` }
+};
+var lafDefaults7 = { tracker: trackerEn };
+var useLaf4 = () => useLafDefaults(lafDefaults7);
 function Tip2({ content, children }) {
   return /* @__PURE__ */ jsx(TooltipPrimitive.Provider, { delayDuration: 300, children: /* @__PURE__ */ jsxs(TooltipPrimitive.Root, { children: [
     /* @__PURE__ */ jsx(TooltipPrimitive.Trigger, { asChild: true, children }),
     /* @__PURE__ */ jsx(TooltipPrimitive.Portal, { children: /* @__PURE__ */ jsx(TooltipPrimitive.Content, { sideOffset: 6, className: "z-60 rounded-md border border-line-strong bg-menu px-2 py-1 text-xs text-fg", children: content }) })
   ] }) });
 }
-var withLabels = (defaults2, labels) => ({ ...defaults2, ...labels });
+var withLabels = (defaults, labels) => ({ ...defaults, ...labels });
 function Label3({ slot, description, onRemove, removeLabel, children }) {
   const chip = /* @__PURE__ */ jsx(Chip, { color: slot, onRemove, removeLabel, children });
   return description ? /* @__PURE__ */ jsx(Tip2, { content: description, children: /* @__PURE__ */ jsx("span", { className: "inline-flex", children: chip }) }) : chip;
@@ -5824,7 +5774,6 @@ function Label3({ slot, description, onRemove, removeLabel, children }) {
 function LabelSwatch({ slot, className }) {
   return /* @__PURE__ */ jsx("span", { "aria-hidden": true, className: cn("inline-block size-3 shrink-0 rounded-xs", className), style: { backgroundColor: `var(--label-${slot})` } });
 }
-var labelPickerLabels = { label: "Labels", placeholder: "Filter labels\u2026", newColour: "New label colour", colour: (n) => `Colour ${n}`, create: (q) => `Create label \u201C${q}\u201D` };
 function LabelPicker({
   labels,
   value,
@@ -5833,7 +5782,7 @@ function LabelPicker({
   text,
   disabled
 }) {
-  const l = withLabels(labelPickerLabels, text);
+  const l = withLabels(useLaf4().t.components.tracker.labelPicker, text);
   const [slot, setSlot] = React25.useState(1);
   const byId = React25.useMemo(() => new Map(labels.map((x) => [x.id, x])), [labels]);
   const options = labels.map((x) => ({ value: x.id, label: x.name, description: x.description }));
@@ -5872,11 +5821,6 @@ function LabelPicker({
     )) })
   ] });
 }
-var reactionLabels = {
-  add: "Add reaction",
-  reactedBy: (emoji, users) => `${emoji} ${users.join(", ")}`,
-  toggle: (emoji, n) => `${emoji} ${n}`
-};
 var DEFAULT_EMOJI = ["\u{1F44D}", "\u{1F44E}", "\u{1F604}", "\u{1F389}", "\u2764\uFE0F", "\u{1F440}"];
 function Reactions({
   reactions,
@@ -5885,7 +5829,7 @@ function Reactions({
   readOnly,
   text
 }) {
-  const l = withLabels(reactionLabels, text);
+  const l = withLabels(useLaf4().t.components.tracker.reaction, text);
   const [open, setOpen] = React25.useState(false);
   return /* @__PURE__ */ jsxs("div", { className: "flex flex-wrap items-center gap-1", children: [
     reactions.map((r) => /* @__PURE__ */ jsx(Tip2, { content: l.reactedBy(r.emoji, r.users), children: /* @__PURE__ */ jsxs(
@@ -5932,14 +5876,13 @@ function Reactions({
     ] })
   ] });
 }
-var timelineLabels = { edited: "edited", actions: "Comment actions", more: (n) => `${n} more updates`, fewer: "Show fewer updates", timeline: "Activity" };
 function ActivityTimeline({
   items,
   composer,
   collapseAfter = 3,
   text
 }) {
-  const l = withLabels(timelineLabels, text);
+  const l = withLabels(useLaf4().t.components.tracker.timeline, text);
   const [expanded, setExpanded] = React25.useState(/* @__PURE__ */ new Set());
   const rows = React25.useMemo(() => {
     const out = [];
@@ -6014,9 +5957,8 @@ function ActivityTimeline({
     composer && /* @__PURE__ */ jsx("div", { children: composer })
   ] });
 }
-var optionPickerLabels = { search: "Search\u2026", empty: "No results", none: "None" };
 function OptionPicker({ options, value, onChange, multiple, label, compact, searchable = true, shortcut, disabled, text, className }) {
-  const l = withLabels(optionPickerLabels, text);
+  const l = withLabels(useLaf4().t.components.tracker.optionPicker, text);
   const [open, setOpen] = React25.useState(false);
   const trigger = React25.useRef(null);
   const selected = options.filter((o) => value.includes(o.value));
@@ -6087,7 +6029,6 @@ function OptionPicker({ options, value, onChange, multiple, label, compact, sear
     ] }) }) })
   ] });
 }
-var issueLabels = { select: (key) => `Select ${key}`, overdue: "Overdue", comments: (n) => `${n} comments`, due: "Due" };
 function DueDate({ due, now, text }) {
   const d = new Date(due);
   const overdue = d.getTime() < (now ? new Date(now).getTime() : Date.now());
@@ -6113,7 +6054,7 @@ function IssueRow({
   now,
   text
 }) {
-  const l = withLabels(issueLabels, text);
+  const l = withLabels(useLaf4().t.components.tracker.issue, text);
   return /* @__PURE__ */ jsxs("div", { className: cn("flex items-center gap-3 border-b border-line px-3 text-sm", density === "compact" ? "py-1" : "py-2.5", selected && "bg-surface-hover"), children: [
     onSelectedChange && /* @__PURE__ */ jsx("input", { type: "checkbox", "aria-label": l.select(issue.key), checked: !!selected, onChange: (e) => onSelectedChange(e.target.checked) }),
     issue.priority && /* @__PURE__ */ jsx("span", { className: "grid size-4 shrink-0 place-items-center", children: issue.priority }),
@@ -6132,7 +6073,7 @@ function IssueRow({
   ] });
 }
 function IssueCard({ issue, density = "comfortable", now, text }) {
-  const l = withLabels(issueLabels, text);
+  const l = withLabels(useLaf4().t.components.tracker.issue, text);
   return /* @__PURE__ */ jsxs("article", { className: cn("grid rounded-md border border-line bg-surface text-sm", density === "compact" ? "gap-1 p-2" : "gap-2 p-3"), children: [
     /* @__PURE__ */ jsxs("div", { className: "flex items-center gap-2", children: [
       issue.priority && /* @__PURE__ */ jsx("span", { className: "grid size-4 place-items-center", children: issue.priority }),
@@ -6177,7 +6118,6 @@ function HoverCard({
     /* @__PURE__ */ jsx(HoverCardPrimitive.Portal, { children: /* @__PURE__ */ jsx(HoverCardPrimitive.Content, { side, sideOffset: 6, collisionPadding: 8, className: cn("z-50 w-72 rounded-md border border-line-strong bg-menu p-3 text-sm text-fg", className), children }) })
   ] });
 }
-var progressLabels = { todo: "To do", doing: "In progress", done: "Done", summary: (pct) => `${pct}% complete` };
 function ProgressSummary({
   todo,
   doing,
@@ -6186,7 +6126,7 @@ function ProgressSummary({
   title,
   text
 }) {
-  const l = withLabels(progressLabels, text);
+  const l = withLabels(useLaf4().t.components.tracker.progress, text);
   const total = todo + doing + done;
   const pct = total ? Math.round(done / total * 100) : 0;
   const seg = (n, cls) => n > 0 ? /* @__PURE__ */ jsx("span", { className: cls, style: { width: `${n / total * 100}%` } }) : null;
@@ -6219,23 +6159,132 @@ function ProgressSummary({
     burndown
   ] });
 }
-var consoleLabels = {
-  console: "Console",
-  sendCad: "Send Ctrl+Alt+Del",
-  keys: "Send keys",
-  fullscreen: "Fullscreen",
-  exitFullscreen: "Exit fullscreen",
-  fit: "Fit to window",
-  actual: "Actual size (1:1)",
-  screenshot: "Screenshot",
-  disconnect: "Disconnect",
-  reconnect: "Reconnect",
-  connecting: "Connecting\u2026",
-  connected: "Connected",
-  disconnected: "Disconnected",
-  error: "Connection error",
-  releaseHint: "Press Ctrl+Alt to release"
+
+// lib/messages/vsphere-objects.en.ts
+var vsphereObjectsEn = {
+  console: {
+    console: "Console",
+    sendCad: "Send Ctrl+Alt+Del",
+    keys: "Send keys",
+    fullscreen: "Fullscreen",
+    exitFullscreen: "Exit fullscreen",
+    fit: "Fit to window",
+    actual: "Actual size (1:1)",
+    screenshot: "Screenshot",
+    disconnect: "Disconnect",
+    reconnect: "Reconnect",
+    connecting: "Connecting\u2026",
+    connected: "Connected",
+    disconnected: "Disconnected",
+    error: "Connection error",
+    releaseHint: "Press Ctrl+Alt to release"
+  },
+  hardware: {
+    title: "Virtual hardware",
+    cpu: "CPU",
+    memory: "Memory",
+    disk: "Hard disk",
+    nic: "Network adapter",
+    cdrom: "CD/DVD drive",
+    cpuCount: "CPU count",
+    coresPerSocket: "Cores per socket",
+    reservationMhz: "Reservation (MHz)",
+    memorySize: "Memory size (MB)",
+    reservationMb: "Reservation (MB)",
+    diskSize: "Size (GB)",
+    provisioning: "Provisioning",
+    thin: "Thin",
+    thickLazy: "Thick, lazily zeroed",
+    thickEager: "Thick, eagerly zeroed",
+    controller: "Controller",
+    network: "Network",
+    adapter: "Adapter type",
+    connected: "Connected",
+    iso: "ISO image",
+    noIso: "Client device",
+    chooseIso: "Choose ISO\u2026",
+    addDevice: "Add device",
+    remove: (n) => `Remove ${n}`,
+    hotAddDisabled: "Cannot be changed while the VM is powered on",
+    pendingChanges: "Pending changes",
+    noChanges: "No pending changes",
+    save: "Save",
+    discard: "Discard",
+    errCpu: "Between 1 and the host maximum",
+    errCores: "Must divide the CPU count",
+    errMemory: "Multiple of 4 MB, at least 4",
+    errDisk: "At least 1 GB",
+    errShrink: "A disk cannot be shrunk",
+    errNetwork: "Select a network",
+    added: "Added",
+    removed: "Removed",
+    changed: (f, a, b) => `${f}: ${a} \u2192 ${b}`
+  },
+  datastore: {
+    tree: "Folders",
+    files: "Files",
+    path: "Path",
+    name: "Name",
+    size: "Size",
+    modified: "Modified",
+    type: "Type",
+    folder: "Folder",
+    file: "File",
+    root: "Datastore",
+    empty: "This folder is empty",
+    upload: "Upload",
+    download: "Download",
+    newFolder: "New folder",
+    folderName: "Folder name",
+    create: "Create",
+    delete: "Delete",
+    deleteTitle: "Delete item",
+    deleteDescription: (n) => `Permanently delete ${n}?`,
+    select: "Select",
+    cancel: "Cancel"
+  },
+  permission: {
+    title: "Add permission",
+    principal: "User or group",
+    role: "Role",
+    propagate: "Propagate to children",
+    object: "Object",
+    assign: "Assign",
+    cancel: "Cancel"
+  },
+  snapshots: {
+    tree: "Snapshots",
+    take: "Take snapshot",
+    revert: "Revert to",
+    delete: "Delete",
+    deleteChildren: "Delete children",
+    youAreHere: "You are here",
+    consolidationNeeded: "Disk consolidation is needed",
+    consolidate: "Consolidate",
+    confirmRevert: (n) => `Revert the VM to snapshot \u201C${n}\u201D? Changes since then are lost.`,
+    confirmDelete: (n) => `Delete snapshot \u201C${n}\u201D?`,
+    confirmDeleteChildren: (n) => `Delete all snapshots below \u201C${n}\u201D?`,
+    cancel: "Cancel"
+  },
+  events: {
+    title: "Events",
+    search: "Filter events",
+    severity: "Severity",
+    all: "All severities",
+    info: "Info",
+    warning: "Warning",
+    error: "Error",
+    liveTail: "Live tail",
+    time: "Time",
+    message: "Message",
+    source: "Source",
+    user: "User",
+    empty: "No events",
+    details: "Event details"
+  }
 };
+var lafDefaults8 = { vsphereObjects: vsphereObjectsEn };
+var useLaf5 = () => useLafDefaults(lafDefaults8);
 var statusTone = { connecting: "warn", connected: "ok", disconnected: "neutral", error: "danger" };
 function ConsoleFrame({
   children,
@@ -6252,7 +6301,8 @@ function ConsoleFrame({
   labels,
   className
 }) {
-  const l = { ...consoleLabels, ...labels };
+  const { t: laf } = useLaf5();
+  const l = { ...laf.components.vsphereObjects.console, ...labels };
   const root = React25.useRef(null);
   const [full, setFull] = React25.useState(false);
   const [scale, setScale] = useControllableState({ value: scaleProp, defaultValue: "fit", onChange: onScaleChange });
@@ -6292,47 +6342,6 @@ function ConsoleFrame({
     ] })
   ] });
 }
-var hwLabels = {
-  title: "Virtual hardware",
-  cpu: "CPU",
-  memory: "Memory",
-  disk: "Hard disk",
-  nic: "Network adapter",
-  cdrom: "CD/DVD drive",
-  cpuCount: "CPU count",
-  coresPerSocket: "Cores per socket",
-  reservationMhz: "Reservation (MHz)",
-  memorySize: "Memory size (MB)",
-  reservationMb: "Reservation (MB)",
-  diskSize: "Size (GB)",
-  provisioning: "Provisioning",
-  thin: "Thin",
-  thickLazy: "Thick, lazily zeroed",
-  thickEager: "Thick, eagerly zeroed",
-  controller: "Controller",
-  network: "Network",
-  adapter: "Adapter type",
-  connected: "Connected",
-  iso: "ISO image",
-  noIso: "Client device",
-  chooseIso: "Choose ISO\u2026",
-  addDevice: "Add device",
-  remove: (n) => `Remove ${n}`,
-  hotAddDisabled: "Cannot be changed while the VM is powered on",
-  pendingChanges: "Pending changes",
-  noChanges: "No pending changes",
-  save: "Save",
-  discard: "Discard",
-  errCpu: "Between 1 and the host maximum",
-  errCores: "Must divide the CPU count",
-  errMemory: "Multiple of 4 MB, at least 4",
-  errDisk: "At least 1 GB",
-  errShrink: "A disk cannot be shrunk",
-  errNetwork: "Select a network",
-  added: "Added",
-  removed: "Removed",
-  changed: (f, a, b) => `${f}: ${a} \u2192 ${b}`
-};
 var nameOf = (d, l) => d.kind === "cpu" || d.kind === "memory" ? l[d.kind] : d.name;
 function validateDevice(d, base, cap, l) {
   const e = {};
@@ -6367,7 +6376,8 @@ function describeDiff(devices, base, l) {
   return out;
 }
 function HardwareEditor({ devices: devicesProp, defaultDevices = [], onChange, baseline, capabilities: cap, onSave, renderIsoPicker, labels, className }) {
-  const l = { ...hwLabels, ...labels };
+  const { t: laf } = useLaf5();
+  const l = { ...laf.components.vsphereObjects.hardware, ...labels };
   const initial = React25.useRef(devicesProp ?? defaultDevices);
   const base = baseline ?? initial.current;
   const [devices, setDevices] = useControllableState({ value: devicesProp, defaultValue: defaultDevices, onChange });
@@ -6488,29 +6498,6 @@ function HardwareEditor({ devices: devicesProp, defaultDevices = [], onChange, b
     ) }) })
   ] });
 }
-var dsLabels = {
-  tree: "Folders",
-  files: "Files",
-  path: "Path",
-  name: "Name",
-  size: "Size",
-  modified: "Modified",
-  type: "Type",
-  folder: "Folder",
-  file: "File",
-  root: "Datastore",
-  empty: "This folder is empty",
-  upload: "Upload",
-  download: "Download",
-  newFolder: "New folder",
-  folderName: "Folder name",
-  create: "Create",
-  delete: "Delete",
-  deleteTitle: "Delete item",
-  deleteDescription: (n) => `Permanently delete ${n}?`,
-  select: "Select",
-  cancel: "Cancel"
-};
 var parentOf = (p) => p.lastIndexOf("/") <= 0 ? "/" : p.slice(0, p.lastIndexOf("/"));
 var baseName = (p) => p.slice(p.lastIndexOf("/") + 1);
 function DatastoreBrowser({
@@ -6531,8 +6518,8 @@ function DatastoreBrowser({
   labels,
   className
 }) {
-  const l = { ...dsLabels, ...labels };
-  const { format: format2 } = useLaf();
+  const { format: format2, t: laf } = useLaf5();
+  const l = { ...laf.components.vsphereObjects.datastore, ...labels };
   const [path, setPath] = useControllableState({ value: pathProp, defaultValue: defaultPath, onChange: onPathChange });
   const [chosen, setChosen] = React25.useState(null);
   const [toDelete, setToDelete] = React25.useState(null);
@@ -6616,7 +6603,11 @@ function DatastoreBrowser({
             /* @__PURE__ */ jsx("th", { scope: "col", className: "px-3 py-2 text-start font-medium", children: l.name }),
             /* @__PURE__ */ jsx("th", { scope: "col", className: "px-3 py-2 text-start font-medium", children: l.size }),
             /* @__PURE__ */ jsx("th", { scope: "col", className: "px-3 py-2 text-start font-medium", children: l.modified }),
-            /* @__PURE__ */ jsx("th", { scope: "col", className: "w-20" })
+            /* @__PURE__ */ jsx("th", { scope: "col", className: "w-20", children: /* @__PURE__ */ jsxs("span", { className: "sr-only", children: [
+              l.download,
+              " / ",
+              l.delete
+            ] }) })
           ] }) }),
           /* @__PURE__ */ jsx("tbody", { children: children.map((e) => {
             const ok = matches(e);
@@ -6690,17 +6681,9 @@ function DatastoreBrowser({
     )
   ] });
 }
-var permLabels = {
-  title: "Add permission",
-  principal: "User or group",
-  role: "Role",
-  propagate: "Propagate to children",
-  object: "Object",
-  assign: "Assign",
-  cancel: "Cancel"
-};
 function PermissionAssignDialog({ open, onOpenChange, principals, roles, objectPath, defaultRoleId, defaultPropagate = true, onAssign, labels }) {
-  const l = { ...permLabels, ...labels };
+  const { t: laf } = useLaf5();
+  const l = { ...laf.components.vsphereObjects.permission, ...labels };
   const [principal, setPrincipal] = React25.useState([]);
   const [roleId, setRoleId] = React25.useState(defaultRoleId ?? roles[0]?.id ?? "");
   const [propagate, setPropagate] = React25.useState(defaultPropagate);
@@ -6743,23 +6726,9 @@ function PermissionAssignDialog({ open, onOpenChange, principals, roles, objectP
     }
   ) });
 }
-var snapLabels = {
-  tree: "Snapshots",
-  take: "Take snapshot",
-  revert: "Revert to",
-  delete: "Delete",
-  deleteChildren: "Delete children",
-  youAreHere: "You are here",
-  consolidationNeeded: "Disk consolidation is needed",
-  consolidate: "Consolidate",
-  confirmRevert: (n) => `Revert the VM to snapshot \u201C${n}\u201D? Changes since then are lost.`,
-  confirmDelete: (n) => `Delete snapshot \u201C${n}\u201D?`,
-  confirmDeleteChildren: (n) => `Delete all snapshots below \u201C${n}\u201D?`,
-  cancel: "Cancel"
-};
 function SnapshotTree({ snapshots, currentId, onTake, onRevert, onDelete, onDeleteChildren, needsConsolidation, onConsolidate, labels, className }) {
-  const l = { ...snapLabels, ...labels };
-  const { format: format2 } = useLaf();
+  const { format: format2, t: laf } = useLaf5();
+  const l = { ...laf.components.vsphereObjects.snapshots, ...labels };
   const [selected, setSelected] = React25.useState();
   const [confirm, setConfirm] = React25.useState(null);
   const index = React25.useMemo(() => {
@@ -6812,25 +6781,10 @@ function SnapshotTree({ snapshots, currentId, onTake, onRevert, onDelete, onDele
     )
   ] });
 }
-var evLabels = {
-  title: "Events",
-  search: "Filter events",
-  severity: "Severity",
-  all: "All severities",
-  info: "Info",
-  warning: "Warning",
-  error: "Error",
-  liveTail: "Live tail",
-  time: "Time",
-  message: "Message",
-  source: "Source",
-  user: "User",
-  empty: "No events",
-  details: "Event details"
-};
 var sevTone = { info: "primary", warning: "warn", error: "danger" };
 function EventConsole({ events, liveTail: liveProp, onLiveTailChange, labels, className }) {
-  const l = { ...evLabels, ...labels };
+  const { t: laf } = useLaf5();
+  const l = { ...laf.components.vsphereObjects.events, ...labels };
   const [live, setLive] = useControllableState({ value: liveProp, defaultValue: false, onChange: onLiveTailChange });
   const [query, setQuery] = React25.useState("");
   const [sev, setSev] = React25.useState("all");
@@ -6897,6 +6851,6 @@ function EventConsole({ events, liveTail: liveProp, onLiveTailChange, labels, cl
   ] });
 }
 
-export { AccountItem, AccountList, ActionBar, ActivityTimeline, AdminShell, AlarmList, AllowListEditor, ApiKeyManager, AuditLog, AuthFooter, AvatarGroup, BarChart, BrandHeader, BrandingEditor, ButtonGroup, CapacityBar, CidrInput, ClientInfo, CodeDisplay, CodeEditor, CodeEditorLite, CodeInput, ColorField, CommandPalette, ConfirmDialog, ConsoleFrame, ContextMenu, ContextMenuContent, ContextMenuFor, ContextMenuItem, ContextMenuSeparator, ContextMenuTrigger, CopyButton, DataGrid, DataGridLegacy, DatastoreBrowser, DatePicker, DateTimeInput, DefinitionList, DetailPage, DeviceSelector, DeviceSteps, DiffView, DockedTaskPanel, Donut, ErrorPage, ErrorSummary, EventConsole, FileDropzone, FilterBar, FormField, FormFooter, FormPage, FormSection, Gauge, GridColumnsMenu, GridDensityToggle, GridSearch, HardwareEditor, Heatmap, HotkeysProvider, HoverCard, IconButton, InfoBox, InlineEdit, InventoryLayout, IpInput, IssueCard, IssueRow, Kbd, Label3 as Label, LabelPicker, LabelSwatch, LafErrorBoundary, LanguageSwitcher, Menu, MenuShortcut, MfaEnrolment, MobileNav, NavGroup, NavLink, NotificationCenter, ObjectIcon, ObjectPage, OptionPicker, OtpInput, OverflowTabs, Pagination, PasswordField, PermissionAssignDialog, Progress, ProgressSummary, PropertiesPane, Reactions, ReauthDialog, RelativeTime, SavedViews, ScopeList, SecretDisplay, SecurityFactors, SegmentedControl, SelectMenu, SessionExpiryDialog, SessionList, ShortcutHelp, SnapshotTree, SocialButton, SocialButtons, SocialDivider, SplitButton, StackedBarChart, StatusDot, Stepper, SubNav, Table, TaskPanel, Toolbar, TopBar, TopologyGraph, TransferList, TreeTable, TreeTable2 as TreeTableV2, TreeView, UnsavedChangesDialog, UserCell, UserMenu, UserSelector, Wizard, WizardReview, contrastRatio, formatHotkey, formatRelative, highlight, isCidr, isIPv4, isIPv6, isIp, isMacPlatform, normalizeHex, parseCidr, parseFilter, parseHotkey, registerObjectKind, serializeFilter, serializeToken, useHotkeys, useRegisteredHotkeys, useSavedViews, useUnsavedChangesGuard };
+export { AccountItem, AccountList, ActionBar, ActivityTimeline, AdminShell, AlarmList, AllowListEditor, ApiKeyManager, AuditLog, AuthFooter, AvatarGroup, BarChart, BrandHeader, BrandingEditor, ButtonGroup, CapacityBar, CidrInput, ClientInfo, CodeDisplay, CodeEditor, CodeEditorLite, CodeInput, ColorField, CommandPalette, ConfirmDialog, ConsoleFrame, ContextMenu, ContextMenuContent, ContextMenuFor, ContextMenuItem, ContextMenuSeparator, ContextMenuTrigger, CopyButton, DataGrid, DatastoreBrowser, DatePicker, DateTimeInput, DefinitionList, DetailPage, DeviceSelector, DeviceSteps, DiffView, DockedTaskPanel, Donut, ErrorPage, ErrorSummary, EventConsole, FileDropzone, FilterBar, FormField, FormFooter, FormPage, FormSection, Gauge, GridColumnsMenu, GridDensityToggle, GridSearch, HardwareEditor, Heatmap, HotkeysProvider, HoverCard, IconButton, InfoBox, InlineEdit, InventoryLayout, IpInput, IssueCard, IssueRow, Kbd, Label3 as Label, LabelPicker, LabelSwatch, LafErrorBoundary, LanguageSwitcher, Menu, MenuShortcut, MfaEnrolment, MobileNav, NavGroup, NavLink, NotificationCenter, ObjectIcon, ObjectPage, OptionPicker, OtpInput, OverflowTabs, Pagination, PasswordField, PermissionAssignDialog, Progress, ProgressSummary, PropertiesPane, Reactions, ReauthDialog, RelativeTime, SavedViews, ScopeList, SecretDisplay, SecurityFactors, SegmentedControl, SelectMenu, SessionExpiryDialog, SessionList, ShortcutHelp, SnapshotTree, SocialButton, SocialButtons, SocialDivider, SplitButton, StackedBarChart, StatusDot, Stepper, SubNav, Table, TaskPanel, Toolbar, TopBar, TopologyGraph, TransferList, TreeTable, TreeView, UnsavedChangesDialog, UserCell, UserMenu, UserSelector, Wizard, WizardReview, contrastRatio, formatHotkey, formatRelative, highlight, isCidr, isIPv4, isIPv6, isIp, isMacPlatform, normalizeHex, parseCidr, parseFilter, parseHotkey, registerObjectKind, serializeFilter, serializeToken, useHotkeys, useRegisteredHotkeys, useSavedViews, useUnsavedChangesGuard };
 //# sourceMappingURL=index.js.map
 //# sourceMappingURL=index.js.map

@@ -154,7 +154,7 @@ export function ObjectPage({
           {cards && (
             <div className="grid gap-4 md:grid-cols-2">
               {cards.map((c) => (
-                <Panel key={c.id} title={c.title}>
+                <Panel key={c.id} title={c.title} headingLevel={2}>
                   {c.content}
                 </Panel>
               ))}

@@ -2,10 +2,14 @@ import * as React from "react";
 import { Button } from "../components/button";
 import { Combobox, type ComboboxOption } from "../components/combobox";
 import { TimeRangePicker } from "../components/extras";
-import { useLaf } from "../i18n";
+import { useLafDefaults } from "../i18n";
+import { chartsEn } from "../messages/charts.en";
 import { cn } from "../cn";
 import { useControllableState } from "../utils";
 import { formatUnit, TimeSeriesChart, type ChartRange, type TimeSeries, type TimeSeriesChartProps } from "./time-series";
+
+const lafDefaults = { charts: chartsEn };
+const useLaf = () => useLafDefaults(lafDefaults);
 
 export interface PerfMetric extends TimeSeries {
   /** Picker group, e.g. "CPU", "Memory", "Disk", "Network". */
@@ -24,19 +28,6 @@ export interface PerfPanelLabels {
   summary: string;
   noMetrics: string;
 }
-
-const defaultLabels: PerfPanelLabels = {
-  metrics: "Metrics",
-  pickMetrics: "Choose metrics…",
-  exportCsv: "Export CSV",
-  metric: "Metric",
-  latest: "Latest",
-  min: "Min",
-  avg: "Avg",
-  max: "Max",
-  summary: "Summary statistics",
-  noMetrics: "Select at least one metric",
-};
 
 const UNIT_MS: Record<string, number> = { m: 60_000, h: 3_600_000, d: 86_400_000 };
 export function presetToMs(preset: string): number | undefined {
@@ -94,8 +85,8 @@ export function PerfPanel({
   labels: labelsProp,
   className,
 }: PerfPanelProps) {
-  const { format } = useLaf();
-  const l = { ...defaultLabels, ...labelsProp };
+  const { format, t: laf } = useLaf();
+  const l = { ...laf.components.charts.perfPanel, ...labelsProp };
   const [selected, setSelected] = useControllableState<string[]>({
     value: selectedProp,
     defaultValue: metrics.length ? [metrics[0]!.id] : [],

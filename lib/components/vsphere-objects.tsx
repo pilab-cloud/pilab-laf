@@ -1,7 +1,8 @@
 import { ChevronRight, Download, FolderPlus, Maximize2, Minimize2, Plus, Trash2 } from "lucide-react";
 import * as React from "react";
 import { cn } from "../cn";
-import { useLaf } from "../i18n";
+import { useLafDefaults } from "../i18n";
+import { vsphereObjectsEn } from "../messages/vsphere-objects.en";
 import { useControllableState } from "../utils";
 import { Button } from "./button";
 import { Combobox, type ComboboxOption } from "./combobox";
@@ -14,6 +15,9 @@ import { FileDropzone, type UploadFile } from "./more";
 import { Dialog, DialogContent, DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "./overlay";
 import { ObjectIcon } from "./object-icon";
 import { TreeView, type TreeNode } from "./tree";
+
+const lafDefaults = { vsphereObjects: vsphereObjectsEn };
+const useLaf = () => useLafDefaults(lafDefaults);
 
 /* ───────────────────────── ConsoleFrame (4.105) ───────────────────────── */
 export type ConsoleStatus = "connecting" | "connected" | "disconnected" | "error";
@@ -35,24 +39,6 @@ export interface ConsoleFrameLabels {
   error: string;
   releaseHint: string;
 }
-
-const consoleLabels: ConsoleFrameLabels = {
-  console: "Console",
-  sendCad: "Send Ctrl+Alt+Del",
-  keys: "Send keys",
-  fullscreen: "Fullscreen",
-  exitFullscreen: "Exit fullscreen",
-  fit: "Fit to window",
-  actual: "Actual size (1:1)",
-  screenshot: "Screenshot",
-  disconnect: "Disconnect",
-  reconnect: "Reconnect",
-  connecting: "Connecting…",
-  connected: "Connected",
-  disconnected: "Disconnected",
-  error: "Connection error",
-  releaseHint: "Press Ctrl+Alt to release",
-};
 
 export interface ConsoleFrameProps {
   /** The canvas / video element supplied by the app (noVNC, WebMKS, …). */
@@ -91,7 +77,8 @@ export function ConsoleFrame({
   labels,
   className,
 }: ConsoleFrameProps) {
-  const l = { ...consoleLabels, ...labels };
+  const { t: laf } = useLaf();
+  const l = { ...laf.components.vsphereObjects.console, ...labels };
   const root = React.useRef<HTMLDivElement>(null);
   const [full, setFull] = React.useState(false);
   const [scale, setScale] = useControllableState<"fit" | "actual">({ value: scaleProp, defaultValue: "fit", onChange: onScaleChange });
@@ -233,48 +220,6 @@ export interface HardwareEditorLabels {
   changed: (field: string, from: string, to: string) => string;
 }
 
-const hwLabels: HardwareEditorLabels = {
-  title: "Virtual hardware",
-  cpu: "CPU",
-  memory: "Memory",
-  disk: "Hard disk",
-  nic: "Network adapter",
-  cdrom: "CD/DVD drive",
-  cpuCount: "CPU count",
-  coresPerSocket: "Cores per socket",
-  reservationMhz: "Reservation (MHz)",
-  memorySize: "Memory size (MB)",
-  reservationMb: "Reservation (MB)",
-  diskSize: "Size (GB)",
-  provisioning: "Provisioning",
-  thin: "Thin",
-  thickLazy: "Thick, lazily zeroed",
-  thickEager: "Thick, eagerly zeroed",
-  controller: "Controller",
-  network: "Network",
-  adapter: "Adapter type",
-  connected: "Connected",
-  iso: "ISO image",
-  noIso: "Client device",
-  chooseIso: "Choose ISO…",
-  addDevice: "Add device",
-  remove: (n) => `Remove ${n}`,
-  hotAddDisabled: "Cannot be changed while the VM is powered on",
-  pendingChanges: "Pending changes",
-  noChanges: "No pending changes",
-  save: "Save",
-  discard: "Discard",
-  errCpu: "Between 1 and the host maximum",
-  errCores: "Must divide the CPU count",
-  errMemory: "Multiple of 4 MB, at least 4",
-  errDisk: "At least 1 GB",
-  errShrink: "A disk cannot be shrunk",
-  errNetwork: "Select a network",
-  added: "Added",
-  removed: "Removed",
-  changed: (f, a, b) => `${f}: ${a} → ${b}`,
-};
-
 const nameOf = (d: HwDevice, l: HardwareEditorLabels) => (d.kind === "cpu" || d.kind === "memory" ? l[d.kind] : d.name);
 
 function validateDevice(d: HwDevice, base: HwDevice | undefined, cap: HardwareCapabilities, l: HardwareEditorLabels): Record<string, string> {
@@ -326,7 +271,8 @@ export interface HardwareEditorProps {
 }
 
 export function HardwareEditor({ devices: devicesProp, defaultDevices = [], onChange, baseline, capabilities: cap, onSave, renderIsoPicker, labels, className }: HardwareEditorProps) {
-  const l = { ...hwLabels, ...labels };
+  const { t: laf } = useLaf();
+  const l = { ...laf.components.vsphereObjects.hardware, ...labels };
   const initial = React.useRef(devicesProp ?? defaultDevices);
   const base = baseline ?? initial.current;
   const [devices, setDevices] = useControllableState<HwDevice[]>({ value: devicesProp, defaultValue: defaultDevices, onChange });
@@ -560,30 +506,6 @@ export interface DatastoreBrowserLabels {
   cancel: string;
 }
 
-const dsLabels: DatastoreBrowserLabels = {
-  tree: "Folders",
-  files: "Files",
-  path: "Path",
-  name: "Name",
-  size: "Size",
-  modified: "Modified",
-  type: "Type",
-  folder: "Folder",
-  file: "File",
-  root: "Datastore",
-  empty: "This folder is empty",
-  upload: "Upload",
-  download: "Download",
-  newFolder: "New folder",
-  folderName: "Folder name",
-  create: "Create",
-  delete: "Delete",
-  deleteTitle: "Delete item",
-  deleteDescription: (n) => `Permanently delete ${n}?`,
-  select: "Select",
-  cancel: "Cancel",
-};
-
 const parentOf = (p: string) => (p.lastIndexOf("/") <= 0 ? "/" : p.slice(0, p.lastIndexOf("/")));
 const baseName = (p: string) => p.slice(p.lastIndexOf("/") + 1);
 
@@ -627,8 +549,8 @@ export function DatastoreBrowser({
   labels,
   className,
 }: DatastoreBrowserProps) {
-  const l = { ...dsLabels, ...labels };
-  const { format } = useLaf();
+  const { format, t: laf } = useLaf();
+  const l = { ...laf.components.vsphereObjects.datastore, ...labels };
   const [path, setPath] = useControllableState<string>({ value: pathProp, defaultValue: defaultPath, onChange: onPathChange });
   const [chosen, setChosen] = React.useState<string | null>(null);
   const [toDelete, setToDelete] = React.useState<DatastoreEntry | null>(null);
@@ -740,7 +662,9 @@ export function DatastoreBrowser({
                 <th scope="col" className="px-3 py-2 text-start font-medium">
                   {l.modified}
                 </th>
-                <th scope="col" className="w-20" />
+                <th scope="col" className="w-20">
+                  <span className="sr-only">{l.download} / {l.delete}</span>
+                </th>
               </tr>
             </thead>
             <tbody>
@@ -855,16 +779,6 @@ export interface PermissionAssignLabels {
   cancel: string;
 }
 
-const permLabels: PermissionAssignLabels = {
-  title: "Add permission",
-  principal: "User or group",
-  role: "Role",
-  propagate: "Propagate to children",
-  object: "Object",
-  assign: "Assign",
-  cancel: "Cancel",
-};
-
 export interface PermissionAssignDialogProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
@@ -879,7 +793,8 @@ export interface PermissionAssignDialogProps {
 }
 
 export function PermissionAssignDialog({ open, onOpenChange, principals, roles, objectPath, defaultRoleId, defaultPropagate = true, onAssign, labels }: PermissionAssignDialogProps) {
-  const l = { ...permLabels, ...labels };
+  const { t: laf } = useLaf();
+  const l = { ...laf.components.vsphereObjects.permission, ...labels };
   const [principal, setPrincipal] = React.useState<ComboboxOption[]>([]);
   const [roleId, setRoleId] = React.useState(defaultRoleId ?? roles[0]?.id ?? "");
   const [propagate, setPropagate] = React.useState(defaultPropagate);
@@ -968,21 +883,6 @@ export interface SnapshotTreeLabels {
   cancel: string;
 }
 
-const snapLabels: SnapshotTreeLabels = {
-  tree: "Snapshots",
-  take: "Take snapshot",
-  revert: "Revert to",
-  delete: "Delete",
-  deleteChildren: "Delete children",
-  youAreHere: "You are here",
-  consolidationNeeded: "Disk consolidation is needed",
-  consolidate: "Consolidate",
-  confirmRevert: (n) => `Revert the VM to snapshot “${n}”? Changes since then are lost.`,
-  confirmDelete: (n) => `Delete snapshot “${n}”?`,
-  confirmDeleteChildren: (n) => `Delete all snapshots below “${n}”?`,
-  cancel: "Cancel",
-};
-
 export interface SnapshotTreeProps {
   snapshots: SnapshotNode[];
   /** Id of the snapshot the running state descends from; rendered as the "You are here" node. */
@@ -998,8 +898,8 @@ export interface SnapshotTreeProps {
 }
 
 export function SnapshotTree({ snapshots, currentId, onTake, onRevert, onDelete, onDeleteChildren, needsConsolidation, onConsolidate, labels, className }: SnapshotTreeProps) {
-  const l = { ...snapLabels, ...labels };
-  const { format } = useLaf();
+  const { format, t: laf } = useLaf();
+  const l = { ...laf.components.vsphereObjects.snapshots, ...labels };
   const [selected, setSelected] = React.useState<string>();
   const [confirm, setConfirm] = React.useState<{ kind: "revert" | "delete" | "children"; node: SnapshotNode } | null>(null);
   const index = React.useMemo(() => {
@@ -1102,23 +1002,6 @@ export interface EventConsoleLabels {
   details: string;
 }
 
-const evLabels: EventConsoleLabels = {
-  title: "Events",
-  search: "Filter events",
-  severity: "Severity",
-  all: "All severities",
-  info: "Info",
-  warning: "Warning",
-  error: "Error",
-  liveTail: "Live tail",
-  time: "Time",
-  message: "Message",
-  source: "Source",
-  user: "User",
-  empty: "No events",
-  details: "Event details",
-};
-
 const sevTone = { info: "primary", warning: "warn", error: "danger" } as const;
 
 export interface EventConsoleProps {
@@ -1130,7 +1013,8 @@ export interface EventConsoleProps {
 }
 
 export function EventConsole({ events, liveTail: liveProp, onLiveTailChange, labels, className }: EventConsoleProps) {
-  const l = { ...evLabels, ...labels };
+  const { t: laf } = useLaf();
+  const l = { ...laf.components.vsphereObjects.events, ...labels };
   const [live, setLive] = useControllableState<boolean>({ value: liveProp, defaultValue: false, onChange: onLiveTailChange });
   const [query, setQuery] = React.useState("");
   const [sev, setSev] = React.useState<"all" | EventSeverity>("all");

@@ -5,7 +5,7 @@ import { Button } from "./button";
 
 /*
  * xyflow-based topology graph. Kept out of lib/index.ts so the core bundle stays free of @xyflow;
- * import it from its own file (lib/components/topology.tsx); a "./topology" tsup entry is a pending lead decision.
+ * import it from `@pilab/laf/topology` (lib/topology/index.ts).
  */
 export interface FlowTopologyNode {
   id: string;

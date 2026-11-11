@@ -9,7 +9,6 @@ import {
   Breadcrumb,
   DatePicker,
   Combobox,
-  DataGridLegacy as DataGrid,
   DeviceSteps,
   OtpInput,
   PasswordField,
@@ -83,27 +82,6 @@ describe("TreeView", () => {
     a.focus();
     await userEvent.keyboard("{ArrowRight}");
     expect(screen.getByRole("treeitem", { name: "B" })).toHaveAttribute("aria-level", "2");
-  });
-});
-
-describe("DataGrid", () => {
-  it("cycles sort and selects all rows", async () => {
-    const onSort = vi.fn();
-    const onSel = vi.fn();
-    render(
-      <DataGrid
-        rows={[{ id: "1", n: "x" }, { id: "2", n: "y" }]}
-        rowId={(r) => r.id}
-        onSortChange={onSort}
-        onSelectedChange={onSel}
-        selected={[]}
-        columns={[{ id: "n", header: "Name", sortable: true, cell: (r) => r.n }]}
-      />,
-    );
-    await userEvent.click(screen.getByRole("button", { name: "Name" }));
-    expect(onSort).toHaveBeenCalledWith({ id: "n", dir: "asc" });
-    await userEvent.click(screen.getByLabelText("Select all rows"));
-    expect(onSel).toHaveBeenCalledWith(["1", "2"]);
   });
 });
 
@@ -195,7 +173,7 @@ describe("calendar & charts", () => {
     const onChange = vi.fn();
     const user = userEvent.setup();
     render(<DatePicker value="2026-03-10" onChange={onChange} />);
-    await user.click(screen.getByRole("button", { name: "Choose date" }));
+    await user.click(screen.getByRole("button", { name: /^Choose date/ }));
     await user.click(screen.getByRole("gridcell", { name: "2026-03-15" }));
     expect(onChange).toHaveBeenCalledWith("2026-03-15");
   });

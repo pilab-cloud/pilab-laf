@@ -24,7 +24,7 @@ export type MenuItemSpec =
   | { type: "separator"; id?: string }
   | { type: "label"; id?: string; label: string };
 
-const contentCls = "dropdown-menu relative! top-auto! left-auto! z-50 min-w-48";
+const contentCls = "dropdown-menu relative! top-auto! start-auto! z-50 min-w-48";
 const itemCls =
   "dropdown-item cursor-default outline-none data-[highlighted]:bg-surface-hover data-[highlighted]:text-fg data-[disabled]:pointer-events-none data-[disabled]:opacity-50";
 

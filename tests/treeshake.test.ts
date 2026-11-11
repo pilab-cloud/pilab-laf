@@ -69,6 +69,13 @@ describe("tree-shaking (design §2.2)", () => {
     for (const marker of ["@codemirror", "react-markdown", "rehype-sanitize"]) expect(core.text, marker).not.toContain(marker);
   });
 
+  it("@pilab/laf/topology own code stays within budget and the core never pulls in xyflow", async () => {
+    const topo = await bundle('import * as T from "./lib/topology/index.ts"; console.log(T);', ["@xyflow/react", "@xyflow/react/*"]);
+    expect(topo.gzip).toBeLessThanOrEqual(20 * 1024);
+    const core = await bundle('import * as L from "./lib/index.ts"; console.log(L);');
+    expect(core.text).not.toContain("xyflow");
+  });
+
   it("charts entry (third-party deps external) stays within its size budget and the core stays visx-free", async () => {
     const charts = await bundle('import * as C from "./lib/charts/index.ts"; console.log(Object.keys(C).length, C);', ["@visx/*", "@radix-ui/*", "cmdk", "lucide-react", "@tanstack/*"]);
     expect(charts.gzip).toBeLessThanOrEqual(BUDGET_KB * 1024);

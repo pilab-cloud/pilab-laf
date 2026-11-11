@@ -149,14 +149,14 @@ graph LR
 ## M6 — 1.0 · Hardening
 **Goal:** a stable, documented 1.0.
 
-| Item | Size |
-|---|---|
-| Playwright visual snapshots of every playground section (1×, 2×) in CI | M |
-| a11y audit (screen reader pass: VoiceOver + NVDA) on the three demos | M |
-| RTL smoke test; 320 px sweep; `hu` long-string sweep | S |
-| Remove deprecated APIs (design.md §7.7); migration notes | S |
-| Move shipped sections from design.md into COMPONENTS.md §4.62+; refresh README | S |
-| Tree-shake and bundle budgets verified; performance benchmarks recorded in CHANGELOG | S |
+| Item | Size | Status |
+|---|---|---|
+| Playwright visual snapshots of every playground section (1×, 2×) in CI; axe pass; 320 px sweep | M | ✅ Done (`tests-e2e/`, `.github/workflows/ci.yml`) |
+| a11y audit (screen reader pass: VoiceOver + NVDA) on the three demos | M | Automated axe ✅ Done; manual screen-reader pass **not performed** (checklist in `docs/a11y-audit.md`) |
+| RTL smoke test; 320 px sweep; `hu` long-string sweep | S | ✅ Done (`tests/rules.test.ts`, `tests/i18n-sweep.test.tsx`) |
+| Remove deprecated APIs (design.md §7.7); migration notes | S | ✅ Done (`docs/MIGRATION.md`) |
+| Move shipped sections from design.md into COMPONENTS.md §4.62+; refresh README | S | ✅ Done |
+| Tree-shake and bundle budgets verified; performance benchmarks recorded in CHANGELOG | S | ✅ Done (1.0.0 entry) |
 
 **Exit criteria:** every component meets `COMPONENTS.md` §7 DoD; no open P0/P1 items; 1.0 tagged.
 

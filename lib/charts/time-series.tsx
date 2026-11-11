@@ -5,9 +5,13 @@ import { Area, LinePath } from "@visx/shape";
 import * as React from "react";
 import { cn } from "../cn";
 import type { Formatters } from "../foundation-format";
-import { useLaf } from "../i18n";
+import { useLafDefaults } from "../i18n";
+import { chartsEn } from "../messages/charts.en";
 import { useControllableState } from "../utils";
 import { downsample, type Point } from "./lttb";
+
+const lafDefaults = { charts: chartsEn };
+const useLaf = () => useLafDefaults(lafDefaults);
 
 export type ChartUnit = "%" | "bytes" | "bitrate" | "hz" | "ms" | "count";
 
@@ -33,17 +37,6 @@ export interface TimeSeriesChartLabels {
   keyboardHint: string;
   legend: string;
 }
-
-const defaultLabels: TimeSeriesChartLabels = {
-  showData: "Show data",
-  hideData: "Hide data",
-  resetZoom: "Reset zoom",
-  noData: "No data",
-  time: "Time",
-  loading: "Loading",
-  keyboardHint: "Arrow keys move the crosshair, Shift with arrows selects a range, Enter zooms to the selection, Escape clears it.",
-  legend: "Series",
-};
 
 export interface TimeSeriesChartProps {
   series: TimeSeries[];
@@ -132,8 +125,8 @@ export function TimeSeriesChart({
   labels: labelsProp,
   className,
 }: TimeSeriesChartProps) {
-  const { format, locale, timeZone } = useLaf();
-  const l = { ...defaultLabels, ...labelsProp };
+  const { format, locale, timeZone, t: laf } = useLaf();
+  const l = { ...laf.components.charts.timeSeries, ...labelsProp };
   const uid = React.useId();
   const [wrap, width] = useWidth(widthProp);
   const [hidden, setHidden] = useControllableState<string[]>({ value: hiddenProp, defaultValue: [], onChange: onHiddenSeriesChange });
@@ -346,8 +339,8 @@ export function TimeSeriesChart({
   const tipLeft = tip ? MARGIN.left + x(tip.t) : 0;
 
   return (
-    <figure aria-label={label} aria-busy={loading || undefined} className={cn("m-0 grid gap-2", className)}>
-      <div ref={wrap} className="relative" style={{ height }}>
+    <figure aria-label={label} aria-busy={loading || undefined} className={cn("m-0 grid grid-cols-1 gap-2", className)}>
+      <div ref={wrap} className="relative min-w-0" style={{ height }}>
         {loading ? (
           <div role="status" aria-label={l.loading} className="size-full animate-pulse rounded-sm bg-muted-bg" />
         ) : empty ? (

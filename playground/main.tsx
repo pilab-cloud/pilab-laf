@@ -2,6 +2,7 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "../fonts/lato.css";
 import "../dist/app.css";
+import "./harness.css";
 import { App } from "./App";
 
 createRoot(document.getElementById("root")!).render(

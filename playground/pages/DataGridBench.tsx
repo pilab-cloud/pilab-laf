@@ -1,5 +1,5 @@
 import * as React from "react";
-import { DataGrid, GridColumnsMenu, GridDensityToggle, GridSearch, TreeTableV2 as TreeTable, type GridColumn, type GridFilter, type GridSort } from "../../lib";
+import { DataGrid, GridColumnsMenu, GridDensityToggle, GridSearch, TreeTable, type GridColumn, type GridFilter, type GridSort } from "../../lib";
 
 interface Row {
   id: string;

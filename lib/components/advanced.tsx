@@ -1,6 +1,6 @@
 import * as ContextPrimitive from "@radix-ui/react-context-menu";
 import * as DialogPrimitive from "@radix-ui/react-dialog";
-import { ChevronDown, ChevronRight, Search } from "lucide-react";
+import { Search } from "lucide-react";
 import * as React from "react";
 import { cn } from "../cn";
 import { diffLines } from "../utils";
@@ -15,7 +15,7 @@ export function ContextMenuContent({ className, ...props }: React.ComponentProps
   const container = usePortalContainer();
   return (
     <ContextPrimitive.Portal container={container}>
-      <ContextPrimitive.Content className={cn("dropdown-menu relative! top-auto! left-auto! z-30 min-w-48", className)} {...props} />
+      <ContextPrimitive.Content className={cn("dropdown-menu relative! top-auto! start-auto! z-30 min-w-48", className)} {...props} />
     </ContextPrimitive.Portal>
   );
 }
@@ -151,7 +151,7 @@ export function CommandPalette({
         <DialogPrimitive.Overlay className="fixed inset-0 z-50 bg-[rgba(5,5,10,0.7)] backdrop-blur-xs" />
         <DialogPrimitive.Content
           aria-describedby={undefined}
-          className="popup fixed top-[20%] left-1/2 z-50 w-[min(36rem,calc(100vw-2rem))] -translate-x-1/2 overflow-hidden p-0"
+          className="popup fixed top-[20%] start-1/2 z-50 w-[min(36rem,calc(100vw-2rem))] -translate-x-1/2 rtl:translate-x-1/2 overflow-hidden p-0"
         >
           <DialogPrimitive.Title className="sr-only">{t.commandPalette}</DialogPrimitive.Title>
           <div className="flex items-center gap-2 border-b border-line px-3">
@@ -212,76 +212,6 @@ export function CommandPalette({
         </DialogPrimitive.Content>
       </DialogPrimitive.Portal>
     </DialogPrimitive.Root>
-  );
-}
-
-/* ── Tree table ── */
-export interface TreeTableRow<T> {
-  id: string;
-  data: T;
-  children?: TreeTableRow<T>[];
-}
-
-export function TreeTable<T>({
-  rows,
-  columns,
-  label,
-}: {
-  rows: TreeTableRow<T>[];
-  columns: { id: string; header: React.ReactNode; cell: (row: T) => React.ReactNode }[];
-  label: string;
-}) {
-  const [open, setOpen] = React.useState<string[]>([]);
-  const flat: { row: TreeTableRow<T>; level: number }[] = [];
-  const walk = (list: TreeTableRow<T>[], level: number) =>
-    list.forEach((row) => {
-      flat.push({ row, level });
-      if (row.children?.length && open.includes(row.id)) walk(row.children, level + 1);
-    });
-  walk(rows, 1);
-  const toggle = (id: string) => setOpen((o) => (o.includes(id) ? o.filter((x) => x !== id) : [...o, id]));
-
-  return (
-    <div className="table-wrap">
-      <table className="table" role="treegrid" aria-label={label}>
-        <thead>
-          <tr>
-            {columns.map((c) => (
-              <th key={c.id}>{c.header}</th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {flat.map(({ row, level }) => {
-            const kids = !!row.children?.length;
-            const isOpen = open.includes(row.id);
-            return (
-              <tr key={row.id} aria-level={level} aria-expanded={kids ? isOpen : undefined}>
-                {columns.map((c, ci) => (
-                  <td key={c.id}>
-                    {ci === 0 ? (
-                      // dynamic depth indent
-                      <span className="inline-flex items-center gap-1" style={{ paddingInlineStart: `${(level - 1) * 16}px` }}>
-                        {kids ? (
-                          <button type="button" aria-label={isOpen ? "Collapse" : "Expand"} onClick={() => toggle(row.id)} className="flex size-4 items-center justify-center text-muted hover:text-fg">
-                            {isOpen ? <ChevronDown className="size-4" aria-hidden /> : <ChevronRight className="size-4" aria-hidden />}
-                          </button>
-                        ) : (
-                          <span className="size-4" />
-                        )}
-                        {c.cell(row.data)}
-                      </span>
-                    ) : (
-                      c.cell(row.data)
-                    )}
-                  </td>
-                ))}
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
-    </div>
   );
 }
 

@@ -1,6 +1,8 @@
-import { Combobox, TimeRangePicker, Button } from './chunk-V5W67KUG.js';
-import { useControllableState } from './chunk-X23H4L5S.js';
-import { useLaf, cn } from './chunk-E7KA56OY.js';
+import { Combobox, TimeRangePicker } from './chunk-RHOPALM3.js';
+import { useControllableState } from './chunk-S35X7I3V.js';
+import { useLafDefaults } from './chunk-NSGYLS4R.js';
+import { Button } from './chunk-2O5Y6D5F.js';
+import { cn } from './chunk-3TRXGDSZ.js';
 import { AxisBottom, AxisLeft, AxisRight } from '@visx/axis';
 import { Group } from '@visx/group';
 import { scaleLinear } from '@visx/scale';
@@ -66,16 +68,34 @@ function downsample(points, maxPoints) {
   });
   return out;
 }
-var defaultLabels = {
-  showData: "Show data",
-  hideData: "Hide data",
-  resetZoom: "Reset zoom",
-  noData: "No data",
-  time: "Time",
-  loading: "Loading",
-  keyboardHint: "Arrow keys move the crosshair, Shift with arrows selects a range, Enter zooms to the selection, Escape clears it.",
-  legend: "Series"
+
+// lib/messages/charts.en.ts
+var chartsEn = {
+  perfPanel: {
+    metrics: "Metrics",
+    pickMetrics: "Choose metrics\u2026",
+    exportCsv: "Export CSV",
+    metric: "Metric",
+    latest: "Latest",
+    min: "Min",
+    avg: "Avg",
+    max: "Max",
+    summary: "Summary statistics",
+    noMetrics: "Select at least one metric"
+  },
+  timeSeries: {
+    showData: "Show data",
+    hideData: "Hide data",
+    resetZoom: "Reset zoom",
+    noData: "No data",
+    time: "Time",
+    loading: "Loading",
+    keyboardHint: "Arrow keys move the crosshair, Shift with arrows selects a range, Enter zooms to the selection, Escape clears it.",
+    legend: "Series"
+  }
 };
+var lafDefaults = { charts: chartsEn };
+var useLaf = () => useLafDefaults(lafDefaults);
 var SERIES_TONES = ["text-primary", "text-ok", "text-warn", "text-danger"];
 var SERIES_DASH = [void 0, "4 2", "1 3", "6 2 1 2"];
 var MARGIN = { top: 8, bottom: 24, left: 56, right: 12, right2: 56 };
@@ -137,8 +157,8 @@ function TimeSeriesChart({
   labels: labelsProp,
   className
 }) {
-  const { format, locale, timeZone } = useLaf();
-  const l = { ...defaultLabels, ...labelsProp };
+  const { format, locale, timeZone, t: laf } = useLaf();
+  const l = { ...laf.components.charts.timeSeries, ...labelsProp };
   const uid = React.useId();
   const [wrap, width] = useWidth(widthProp);
   const [hidden, setHidden] = useControllableState({ value: hiddenProp, defaultValue: [], onChange: onHiddenSeriesChange });
@@ -324,8 +344,8 @@ function TimeSeriesChart({
   const hintId = `${uid}-hint`;
   const empty = !loading && (!domain || series.every((s) => s.points.length === 0));
   const tipLeft = tip ? MARGIN.left + x(tip.t) : 0;
-  return /* @__PURE__ */ jsxs("figure", { "aria-label": label, "aria-busy": loading || void 0, className: cn("m-0 grid gap-2", className), children: [
-    /* @__PURE__ */ jsx("div", { ref: wrap, className: "relative", style: { height }, children: loading ? /* @__PURE__ */ jsx("div", { role: "status", "aria-label": l.loading, className: "size-full animate-pulse rounded-sm bg-muted-bg" }) : empty ? /* @__PURE__ */ jsx("div", { className: "grid size-full place-items-center text-sm text-muted", children: l.noData }) : /* @__PURE__ */ jsxs(Fragment, { children: [
+  return /* @__PURE__ */ jsxs("figure", { "aria-label": label, "aria-busy": loading || void 0, className: cn("m-0 grid grid-cols-1 gap-2", className), children: [
+    /* @__PURE__ */ jsx("div", { ref: wrap, className: "relative min-w-0", style: { height }, children: loading ? /* @__PURE__ */ jsx("div", { role: "status", "aria-label": l.loading, className: "size-full animate-pulse rounded-sm bg-muted-bg" }) : empty ? /* @__PURE__ */ jsx("div", { className: "grid size-full place-items-center text-sm text-muted", children: l.noData }) : /* @__PURE__ */ jsxs(Fragment, { children: [
       /* @__PURE__ */ jsx(
         "svg",
         {
@@ -596,18 +616,8 @@ function Heatmap({
     }
   );
 }
-var defaultLabels2 = {
-  metrics: "Metrics",
-  pickMetrics: "Choose metrics\u2026",
-  exportCsv: "Export CSV",
-  metric: "Metric",
-  latest: "Latest",
-  min: "Min",
-  avg: "Avg",
-  max: "Max",
-  summary: "Summary statistics",
-  noMetrics: "Select at least one metric"
-};
+var lafDefaults2 = { charts: chartsEn };
+var useLaf2 = () => useLafDefaults(lafDefaults2);
 var UNIT_MS = { m: 6e4, h: 36e5, d: 864e5 };
 function presetToMs(preset) {
   const m = /^(\d+)([mhd])$/.exec(preset);
@@ -638,8 +648,8 @@ function PerfPanel({
   labels: labelsProp,
   className
 }) {
-  const { format } = useLaf();
-  const l = { ...defaultLabels2, ...labelsProp };
+  const { format, t: laf } = useLaf2();
+  const l = { ...laf.components.charts.perfPanel, ...labelsProp };
   const [selected, setSelected] = useControllableState({
     value: selectedProp,
     defaultValue: metrics.length ? [metrics[0].id] : [],

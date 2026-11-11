@@ -2,7 +2,35 @@
 
 Follows [semver](https://semver.org). Pre-1.0, minor versions may contain breaking changes; deprecations are announced one minor ahead.
 
-## 0.1.x (unreleased)
+## 1.0.0
+
+See [`docs/MIGRATION.md`](docs/MIGRATION.md).
+
+### Added
+- `@pilab/laf/topology` entry (`TopologyGraphFlow`, optional peer `@xyflow/react`).
+- Per-component label sets (account, admin, tracker, vSphere objects, charts) in `messages.components` with Hungarian translations; `useLafDefaults`.
+- Rules tests: logical (RTL-safe) CSS classes, no unguarded fixed widths ≥ 320 px, `hu` long-string sweep, `dir="rtl"` smoke test. `src/app.css` and components use logical properties (`ms-`/`me-`/`ps-`/`pe-`/`start-`/`end-`).
+
+### Removed (breaking)
+- `DataGridLegacy`, `GridColumnLegacy`, `GridSortLegacy`; the old `TreeTable` (`TreeTableV2` is now `TreeTable`); `DataGrid` single-object `sort` and string `selected` (arrays only).
+
+### Performance (jsdom, keyboard-step median)
+- DataGrid, 50 000 rows: about 8–13 ms idle (best run under the 16 ms goal; up to about 19 ms under full parallel test load).
+- TreeView, 10 000 nodes: about 4–7 ms.
+
+### Bundle sizes (gzip, React external, minified)
+| Entry | Size | Budget |
+|---|---|---|
+| core (everything) | about 187 kB | ≤ 220 kB |
+| `/charts` | 21.7 kB | ≤ 30 kB |
+| `/editor` | 18.8 kB | ≤ 24 kB |
+| `/dnd` | 16.8 kB | ≤ 30 kB |
+| `/topology` | 13.2 kB | ≤ 20 kB |
+| `Button` only | 12.0 kB | ≤ 13 kB |
+
+The design's 80 kB core target is not met: Radix, TanStack and lucide are bundled into the core entry.
+
+## 0.1.x
 
 ### Added
 - `LafProvider` / `useLaf` with a typed `LafMessages` catalogue (English built in, Hungarian at `@pilab/laf/locales/hu`). Hardcoded strings in Pagination, DatePicker, Combobox, DataGrid, CommandPalette, Drawer/Dialog close, TagInput, KeyValueEditor, LogViewer, TimeRangePicker, FileDropzone, AlarmList, PasswordField, CopyButton, Spinner and UserSelector now come from it.

@@ -92,8 +92,12 @@ export function DatePicker(props: DatePickerProps) {
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
-        <button type="button" aria-label={label} className={cn("input inline-flex items-center text-start font-mono", mode === "date" ? "w-44" : "w-56")}>
-          {text || <span className="text-muted">{placeholder}</span>}
+        <button type="button" aria-label={`${label}: ${text || placeholder}`} className={cn("input inline-flex items-center text-start font-mono", mode === "date" ? "w-44" : "w-56")}>
+          {text || (
+            <span className="text-muted">
+              {placeholder}
+            </span>
+          )}
         </button>
       </PopoverTrigger>
       <PopoverContent className="w-64">
@@ -226,12 +230,14 @@ export function Heatmap({
   const top = max ?? Math.max(...values.flat(), 1);
   return (
     <div role="table" aria-label={label} className="inline-grid gap-0.5 text-xs text-muted" style={{ gridTemplateColumns: `6rem repeat(${columns.length}, 2rem)` }}>
-      <span />
-      {columns.map((c) => (
-        <span key={c} role="columnheader" className="text-center">{c}</span>
-      ))}
+      <div role="row" className="contents">
+        <span aria-hidden />
+        {columns.map((c) => (
+          <span key={c} role="columnheader" className="text-center">{c}</span>
+        ))}
+      </div>
       {rows.map((r, ri) => (
-        <React.Fragment key={r}>
+        <div key={r} role="row" className="contents">
           <span role="rowheader" className="truncate">{r}</span>
           {columns.map((c, ci) => {
             const v = values[ri]?.[ci] ?? 0;
@@ -246,7 +252,7 @@ export function Heatmap({
               />
             );
           })}
-        </React.Fragment>
+        </div>
       ))}
     </div>
   );

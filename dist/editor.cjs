@@ -1,7 +1,8 @@
 'use strict';
 
-var chunkZ4VIW3HV_cjs = require('./chunk-Z4VIW3HV.cjs');
-var chunkK6PYG27V_cjs = require('./chunk-K6PYG27V.cjs');
+var chunk5WBFJQAZ_cjs = require('./chunk-5WBFJQAZ.cjs');
+var chunkQ6OCMENQ_cjs = require('./chunk-Q6OCMENQ.cjs');
+var chunkFTHFEMX6_cjs = require('./chunk-FTHFEMX6.cjs');
 var React3 = require('react');
 var commands = require('@codemirror/commands');
 var langJson = require('@codemirror/lang-json');
@@ -184,7 +185,7 @@ function tabKeymap() {
 }
 var languages = { json: () => langJson.json(), yaml: () => langYaml.yaml(), text: () => [] };
 function CodeEditor({ value, onChange, language: language$1 = "json", label, rows = 10, readOnly, diagnostics, className }) {
-  const { t } = chunkK6PYG27V_cjs.useLaf();
+  const { t } = chunkQ6OCMENQ_cjs.useLaf();
   const view$1 = React3__namespace.useRef(null);
   const diagRef = React3__namespace.useRef(diagnostics);
   diagRef.current = diagnostics;
@@ -213,7 +214,7 @@ function CodeEditor({ value, onChange, language: language$1 = "json", label, row
   React3__namespace.useEffect(() => {
     view$1.current?.dispatch({ effects: setDiagnostics.of(diagnostics ?? []) });
   }, [diagnostics, extensions]);
-  return /* @__PURE__ */ jsxRuntime.jsx("div", { className: chunkK6PYG27V_cjs.cn("overflow-hidden rounded-md border border-line bg-input focus-within:border-primary", className), "data-language": language$1, children: /* @__PURE__ */ jsxRuntime.jsx(CmHost, { value, onChange, extensions, readOnly, label: label || t.editorCodeEditor, minHeight: `${rows * 1.25 + 1}rem`, onReady }) });
+  return /* @__PURE__ */ jsxRuntime.jsx("div", { className: chunkFTHFEMX6_cjs.cn("overflow-hidden rounded-md border border-line bg-input focus-within:border-primary", className), "data-language": language$1, children: /* @__PURE__ */ jsxRuntime.jsx(CmHost, { value, onChange, extensions, readOnly, label: label || t.editorCodeEditor, minHeight: `${rows * 1.25 + 1}rem`, onReady }) });
 }
 var SAFE_HREF_PROTOCOLS = ["http", "https", "mailto", "mention", "issue"];
 var SAFE_SRC_PROTOCOLS = ["http", "https"];
@@ -389,7 +390,7 @@ function highlightCode(code) {
   return out;
 }
 function CodeBlock({ language, code }) {
-  const { t } = chunkK6PYG27V_cjs.useLaf();
+  const { t } = chunkQ6OCMENQ_cjs.useLaf();
   const [copied, setCopied] = React3__namespace.useState(false);
   const timer = React3__namespace.useRef(void 0);
   React3__namespace.useEffect(() => () => clearTimeout(timer.current), []);
@@ -412,14 +413,14 @@ var TaskContext = React3__namespace.createContext(void 0);
 function heading(Tag, cls, anchors, label) {
   return function Heading({ children, node: _node, ...rest }) {
     const id = slug(textOf(children));
-    return /* @__PURE__ */ jsxRuntime.jsxs(Tag, { ...rest, id: id || void 0, className: chunkK6PYG27V_cjs.cn("group mb-2 mt-5 font-semibold text-fg", cls), children: [
+    return /* @__PURE__ */ jsxRuntime.jsxs(Tag, { ...rest, id: id || void 0, className: chunkFTHFEMX6_cjs.cn("group mb-2 mt-5 font-semibold text-fg", cls), children: [
       children,
       anchors && id && /* @__PURE__ */ jsxRuntime.jsx("a", { href: `#${id}`, "aria-label": label, className: "ms-1.5 text-subtle no-underline opacity-0 focus-visible:opacity-100 group-hover:opacity-100", children: "#" })
     ] });
   };
 }
 function Markdown({ children, className, resolveLink, renderReference, onTaskToggle, headingAnchors = true }) {
-  const { t } = chunkK6PYG27V_cjs.useLaf();
+  const { t } = chunkQ6OCMENQ_cjs.useLaf();
   const resolveRef = React3__namespace.useRef(resolveLink);
   resolveRef.current = resolveLink;
   const toggleRef = React3__namespace.useRef(onTaskToggle);
@@ -436,12 +437,12 @@ function Markdown({ children, className, resolveLink, renderReference, onTaskTog
       h5: h("h5", "text-sm"),
       h6: h("h6", "text-sm text-muted"),
       p: ({ node: _n, ...p }) => /* @__PURE__ */ jsxRuntime.jsx("p", { ...p, className: "my-2 leading-6" }),
-      ul: ({ node: _n, className: c, ...p }) => /* @__PURE__ */ jsxRuntime.jsx("ul", { ...p, className: chunkK6PYG27V_cjs.cn("my-2 ps-6", c?.includes("contains-task-list") ? "list-none ps-1" : "list-disc") }),
+      ul: ({ node: _n, className: c, ...p }) => /* @__PURE__ */ jsxRuntime.jsx("ul", { ...p, className: chunkFTHFEMX6_cjs.cn("my-2 ps-6", c?.includes("contains-task-list") ? "list-none ps-1" : "list-disc") }),
       ol: ({ node: _n, ...p }) => /* @__PURE__ */ jsxRuntime.jsx("ol", { ...p, className: "my-2 list-decimal ps-6" }),
       li: ({ node: _n, ...p }) => {
         const idx = p["data-laf-task"];
         const { ["data-laf-task"]: _t, ...rest } = p;
-        return /* @__PURE__ */ jsxRuntime.jsx(TaskContext.Provider, { value: idx === void 0 ? void 0 : { index: Number(idx), label: textOf(p.children).trim() }, children: /* @__PURE__ */ jsxRuntime.jsx("li", { ...rest, className: chunkK6PYG27V_cjs.cn("my-0.5", idx !== void 0 && "flex items-start gap-2") }) });
+        return /* @__PURE__ */ jsxRuntime.jsx(TaskContext.Provider, { value: idx === void 0 ? void 0 : { index: Number(idx), label: textOf(p.children).trim() }, children: /* @__PURE__ */ jsxRuntime.jsx("li", { ...rest, className: chunkFTHFEMX6_cjs.cn("my-0.5", idx !== void 0 && "flex items-start gap-2") }) });
       },
       input: function TaskInput({ node: _n, checked }) {
         const task = React3__namespace.useContext(TaskContext);
@@ -472,7 +473,7 @@ function Markdown({ children, className, resolveLink, renderReference, onTaskTog
         const language = /language-([\w+#.-]+)/.exec(props.className ?? "")?.[1];
         return /* @__PURE__ */ jsxRuntime.jsx(CodeBlock, { language, code: textOf(props.children).replace(/\n$/, "") });
       },
-      code: ({ node: _n, className: c, children: kids }) => /* @__PURE__ */ jsxRuntime.jsx("code", { className: chunkK6PYG27V_cjs.cn(c, "rounded-sm bg-muted-bg px-1 py-0.5 font-mono text-[0.9em]"), children: kids }),
+      code: ({ node: _n, className: c, children: kids }) => /* @__PURE__ */ jsxRuntime.jsx("code", { className: chunkFTHFEMX6_cjs.cn(c, "rounded-sm bg-muted-bg px-1 py-0.5 font-mono text-[0.9em]"), children: kids }),
       a: ({ node: _n, href, children: kids, ...p }) => {
         const props = p;
         const kind = props["data-laf-kind"];
@@ -481,7 +482,7 @@ function Markdown({ children, className, resolveLink, renderReference, onTaskTog
           const ref = { kind: internal ? internal[1] : kind, id: href ? href.slice(href.indexOf(":") + 1) : String(props["data-laf-ref"] ?? "") };
           const target = resolveRef.current?.(ref);
           const chip = "rounded-sm bg-primary-light px-1 font-medium text-primary";
-          const el = target ? /* @__PURE__ */ jsxRuntime.jsx("a", { href: safeUrl(target, ["http", "https", "mailto"]), className: chunkK6PYG27V_cjs.cn(chip, "no-underline hover:underline"), "data-kind": ref.kind, children: kids }) : /* @__PURE__ */ jsxRuntime.jsx("span", { className: chip, "data-kind": ref.kind, children: kids });
+          const el = target ? /* @__PURE__ */ jsxRuntime.jsx("a", { href: safeUrl(target, ["http", "https", "mailto"]), className: chunkFTHFEMX6_cjs.cn(chip, "no-underline hover:underline"), "data-kind": ref.kind, children: kids }) : /* @__PURE__ */ jsxRuntime.jsx("span", { className: chip, "data-kind": ref.kind, children: kids });
           return /* @__PURE__ */ jsxRuntime.jsx(jsxRuntime.Fragment, { children: wrapRef.current ? wrapRef.current(ref, el) : el });
         }
         const external = !!href && /^(https?:)?\/\//i.test(href);
@@ -499,7 +500,7 @@ function Markdown({ children, className, resolveLink, renderReference, onTaskTog
       }
     };
   }, [headingAnchors, t.editorLink]);
-  return /* @__PURE__ */ jsxRuntime.jsx("div", { className: chunkK6PYG27V_cjs.cn("text-sm text-fg [overflow-wrap:anywhere]", className), children: /* @__PURE__ */ jsxRuntime.jsx(
+  return /* @__PURE__ */ jsxRuntime.jsx("div", { className: chunkFTHFEMX6_cjs.cn("text-sm text-fg [overflow-wrap:anywhere]", className), children: /* @__PURE__ */ jsxRuntime.jsx(
     ReactMarkdown__default.default,
     {
       remarkPlugins: [remarkGfm__default.default, remarkReferences, remarkTaskIndex],
@@ -588,7 +589,7 @@ function MarkdownEditor({
   labels,
   className
 }) {
-  const { t } = chunkK6PYG27V_cjs.useLaf();
+  const { t } = chunkQ6OCMENQ_cjs.useLaf();
   const L = {
     write: t.editorWrite,
     preview: t.editorPreview,
@@ -606,7 +607,7 @@ function MarkdownEditor({
     editor: t.editorMarkdownEditor,
     ...labels
   };
-  const [text, setText] = chunkZ4VIW3HV_cjs.useControllableState({ value, defaultValue, onChange });
+  const [text, setText] = chunk5WBFJQAZ_cjs.useControllableState({ value, defaultValue, onChange });
   const [tab, setTab] = React3__namespace.useState("write");
   const view$1 = React3__namespace.useRef(null);
   const textRef = React3__namespace.useRef(text);
@@ -690,9 +691,9 @@ function MarkdownEditor({
       document.getElementById(tabId(next))?.focus();
     }
   };
-  return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: chunkK6PYG27V_cjs.cn("rounded-md border border-line bg-surface focus-within:border-primary", className), children: [
+  return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: chunkFTHFEMX6_cjs.cn("rounded-md border border-line bg-surface focus-within:border-primary", className), children: [
     /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex flex-wrap items-center justify-between gap-2 border-b border-line px-2 py-1", children: [
-      /* @__PURE__ */ jsxRuntime.jsx("div", { role: "tablist", "aria-label": L.editor, className: chunkK6PYG27V_cjs.cn("flex gap-1", split && "lg:invisible"), onKeyDown: onTabKey, children: ["write", "preview"].map((n) => /* @__PURE__ */ jsxRuntime.jsx(
+      /* @__PURE__ */ jsxRuntime.jsx("div", { role: "tablist", "aria-label": L.editor, className: chunkFTHFEMX6_cjs.cn("flex gap-1", split && "lg:invisible"), onKeyDown: onTabKey, children: ["write", "preview"].map((n) => /* @__PURE__ */ jsxRuntime.jsx(
         "button",
         {
           id: tabId(n),
@@ -702,12 +703,12 @@ function MarkdownEditor({
           "aria-controls": tabId(`${n}-panel`),
           tabIndex: tab === n ? 0 : -1,
           onClick: () => setTab(n),
-          className: chunkK6PYG27V_cjs.cn("rounded-sm px-2 py-1 text-sm focus-visible:outline-2 focus-visible:outline-primary", tab === n ? "bg-primary-light font-medium text-primary" : "text-muted hover:bg-surface-hover"),
+          className: chunkFTHFEMX6_cjs.cn("rounded-sm px-2 py-1 text-sm focus-visible:outline-2 focus-visible:outline-primary", tab === n ? "bg-primary-light font-medium text-primary" : "text-muted hover:bg-surface-hover"),
           children: L[n]
         },
         n
       )) }),
-      !readOnly && /* @__PURE__ */ jsxRuntime.jsx("div", { role: "toolbar", "aria-label": L.toolbar, className: chunkK6PYG27V_cjs.cn("flex gap-0.5", tab === "preview" && "invisible lg:visible"), children: TOOLS.map((tool) => /* @__PURE__ */ jsxRuntime.jsx(
+      !readOnly && /* @__PURE__ */ jsxRuntime.jsx("div", { role: "toolbar", "aria-label": L.toolbar, className: chunkFTHFEMX6_cjs.cn("flex gap-0.5", tab === "preview" && "invisible lg:visible"), children: TOOLS.map((tool) => /* @__PURE__ */ jsxRuntime.jsx(
         "button",
         {
           type: "button",
@@ -722,9 +723,9 @@ function MarkdownEditor({
         tool.action
       )) })
     ] }),
-    /* @__PURE__ */ jsxRuntime.jsxs("div", { className: chunkK6PYG27V_cjs.cn(split && "lg:grid lg:grid-cols-2 lg:divide-x lg:divide-line rtl:lg:divide-x-reverse"), children: [
-      /* @__PURE__ */ jsxRuntime.jsx("div", { id: tabId("write-panel"), role: "tabpanel", "aria-labelledby": tabId("write"), className: chunkK6PYG27V_cjs.cn(tab === "write" ? "block" : split ? "hidden lg:block" : "hidden", "min-w-0"), children: /* @__PURE__ */ jsxRuntime.jsx(CmHost, { value: text, onChange: setText, extensions, readOnly, label: L.editor, minHeight: `${rows * 1.25 + 1}rem`, onReady }) }),
-      /* @__PURE__ */ jsxRuntime.jsx("div", { id: tabId("preview-panel"), role: "tabpanel", "aria-labelledby": tabId("preview"), className: chunkK6PYG27V_cjs.cn("min-w-0 p-3", tab === "preview" ? "block" : split ? "hidden lg:block" : "hidden"), children: text.trim() ? /* @__PURE__ */ jsxRuntime.jsx(Markdown, { resolveLink, renderReference, children: text }) : /* @__PURE__ */ jsxRuntime.jsx("p", { className: "m-0 text-sm text-subtle", children: L.nothingToPreview }) })
+    /* @__PURE__ */ jsxRuntime.jsxs("div", { className: chunkFTHFEMX6_cjs.cn(split && "lg:grid lg:grid-cols-2 lg:divide-x lg:divide-line rtl:lg:divide-x-reverse"), children: [
+      /* @__PURE__ */ jsxRuntime.jsx("div", { id: tabId("write-panel"), role: "tabpanel", "aria-labelledby": tabId("write"), className: chunkFTHFEMX6_cjs.cn(tab === "write" ? "block" : split ? "hidden lg:block" : "hidden", "min-w-0"), children: /* @__PURE__ */ jsxRuntime.jsx(CmHost, { value: text, onChange: setText, extensions, readOnly, label: L.editor, minHeight: `${rows * 1.25 + 1}rem`, onReady }) }),
+      /* @__PURE__ */ jsxRuntime.jsx("div", { id: tabId("preview-panel"), role: "tabpanel", "aria-labelledby": tabId("preview"), className: chunkFTHFEMX6_cjs.cn("min-w-0 p-3", tab === "preview" ? "block" : split ? "hidden lg:block" : "hidden"), children: text.trim() ? /* @__PURE__ */ jsxRuntime.jsx(Markdown, { resolveLink, renderReference, children: text }) : /* @__PURE__ */ jsxRuntime.jsx("p", { className: "m-0 text-sm text-subtle", children: L.nothingToPreview }) })
     ] })
   ] });
 }

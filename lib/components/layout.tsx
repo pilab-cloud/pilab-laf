@@ -1,6 +1,8 @@
 import { Menu } from "lucide-react";
 import * as React from "react";
 import { cn } from "../cn";
+import { useLafDefaults } from "../i18n";
+import { uiEn } from "../messages/ui.en";
 import { Button } from "./button";
 import { Breadcrumb } from "./display";
 import { Drawer, DrawerContent, DrawerTrigger } from "./extras";
@@ -57,10 +59,10 @@ export function useUnsavedChangesGuard(dirty: boolean): UnsavedChangesGuard {
 
 export function UnsavedChangesDialog({
   guard,
-  title = "Discard unsaved changes?",
-  description = "You have changes that have not been saved. If you leave now they will be lost.",
-  confirmLabel = "Discard changes",
-  cancelLabel = "Keep editing",
+  title: titleProp,
+  description: descriptionProp,
+  confirmLabel: confirmLabelProp,
+  cancelLabel: cancelLabelProp,
 }: {
   guard: UnsavedChangesGuard;
   title?: string;
@@ -68,6 +70,11 @@ export function UnsavedChangesDialog({
   confirmLabel?: string;
   cancelLabel?: string;
 }) {
+  const u = useLafDefaults(lafDefaults).t.components.ui.unsavedChanges;
+  const title = titleProp ?? u.title;
+  const description = descriptionProp ?? u.description;
+  const confirmLabel = confirmLabelProp ?? u.confirm;
+  const cancelLabel = cancelLabelProp ?? u.cancel;
   return (
     <ConfirmDialog
       open={guard.pending}
@@ -80,6 +87,8 @@ export function UnsavedChangesDialog({
     />
   );
 }
+
+const lafDefaults = { ui: uiEn };
 
 /* ── FormSection / FormFooter ── */
 export function FormSection({
@@ -112,8 +121,8 @@ export function FormSection({
 export function FormFooter({
   onCancel,
   onSave,
-  saveLabel = "Save",
-  cancelLabel = "Cancel",
+  saveLabel: saveLabelProp,
+  cancelLabel: cancelLabelProp,
   pending,
   dirty,
   guard,
@@ -137,6 +146,9 @@ export function FormFooter({
   children?: React.ReactNode;
   className?: string;
 }) {
+  const f = useLafDefaults(lafDefaults).t.components.ui.formFooter;
+  const saveLabel = saveLabelProp ?? f.save;
+  const cancelLabel = cancelLabelProp ?? f.cancel;
   return (
     <div
       className={cn(
@@ -314,7 +326,7 @@ export function SubNav({
   groups,
   value,
   onSelect,
-  label = "Section navigation",
+  label: labelProp,
   className,
 }: {
   groups: SubNavGroup[];
@@ -323,6 +335,8 @@ export function SubNav({
   label?: string;
   className?: string;
 }) {
+  const { t } = useLafDefaults(lafDefaults);
+  const label = labelProp ?? t.components.ui.subNav.label;
   return (
     <nav aria-label={label} className={cn("grid w-56 gap-4 text-sm", className)}>
       {groups.map((g) => (
@@ -371,8 +385,8 @@ export function SubNav({
 /** Hamburger that opens the sidebar in a Drawer; hidden from 860px up. */
 export function MobileNav({
   children,
-  title = "Navigation",
-  triggerLabel = "Open navigation",
+  title: titleProp,
+  triggerLabel: triggerLabelProp,
   open,
   onOpenChange,
   className,
@@ -384,6 +398,9 @@ export function MobileNav({
   onOpenChange?: (open: boolean) => void;
   className?: string;
 }) {
+  const m = useLafDefaults(lafDefaults).t.components.ui.mobileNav;
+  const title = titleProp ?? m.title;
+  const triggerLabel = triggerLabelProp ?? m.trigger;
   return (
     <Drawer open={open} onOpenChange={onOpenChange}>
       <DrawerTrigger asChild>

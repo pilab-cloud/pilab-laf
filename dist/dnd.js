@@ -1,4 +1,5 @@
-import { cn, useLaf } from './chunk-E7KA56OY.js';
+import { useLaf } from './chunk-NSGYLS4R.js';
+import { cn } from './chunk-3TRXGDSZ.js';
 import { useDraggable, useDroppable, useSensors, useSensor, PointerSensor, KeyboardSensor, DndContext, closestCenter, closestCorners } from '@dnd-kit/core';
 import { sortableKeyboardCoordinates, SortableContext, verticalListSortingStrategy, arrayMove, useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
@@ -26,7 +27,7 @@ function Row({
       className: cn("flex items-center gap-2 rounded-sm border border-line bg-surface px-2 py-1.5", s.isDragging && "relative z-10 opacity-80 shadow-md"),
       ...handle ? {} : drag,
       children: [
-        handle && /* @__PURE__ */ jsx("button", { type: "button", ...gripProps, "aria-label": t.dragHandle(name), className: "btn btn-ghost btn-sm cursor-grab touch-none px-1", children: /* @__PURE__ */ jsx(GripVertical, { className: "size-4", "aria-hidden": true }) }),
+        handle && /* @__PURE__ */ jsx("button", { type: "button", ...gripProps, "aria-label": t.dragHandle(name), className: "btn btn-ghost btn-sm w-auto shrink-0 cursor-grab touch-none px-1", children: /* @__PURE__ */ jsx(GripVertical, { className: "size-4", "aria-hidden": true }) }),
         /* @__PURE__ */ jsx("div", { className: "min-w-0 flex-1", children: renderItem(item, { index, dragging: s.isDragging, handleProps: gripProps }) })
       ]
     }

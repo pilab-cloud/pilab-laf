@@ -136,7 +136,7 @@
 
   /* ── Table ── */
   .table-wrap {
-    @apply overflow-x-auto rounded-lg border border-line;
+    @apply relative overflow-x-auto rounded-lg border border-line;
     background: var(--bg-card);
   }
   .table {
@@ -195,10 +195,10 @@
 
   /* ── Pagination ── */
   .pagination {
-    @apply flex items-center justify-between gap-3 px-1 pt-4 text-[0.8125rem] text-muted;
+    @apply flex flex-wrap items-center justify-between gap-3 px-1 pt-4 text-[0.8125rem] text-muted;
   }
   .pagination .pages {
-    @apply flex gap-1;
+    @apply flex flex-wrap gap-1;
   }
   .page-btn {
     @apply inline-flex h-8 min-w-8 items-center justify-center rounded-md border border-line bg-input px-2 text-[0.8125rem] font-medium text-muted no-underline transition hover:border-line-strong hover:text-fg;
@@ -354,7 +354,7 @@
 
   /* ── Device selector ── */
   .device-list {
-    @apply grid gap-2.5;
+    @apply grid min-w-0 grid-cols-1 gap-2.5;
   }
   .device-option {
     @apply relative flex cursor-pointer items-center gap-3.5 rounded-md border border-line bg-muted-bg p-3.5 transition;

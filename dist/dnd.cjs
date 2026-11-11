@@ -1,6 +1,7 @@
 'use strict';
 
-var chunkK6PYG27V_cjs = require('./chunk-K6PYG27V.cjs');
+var chunkQ6OCMENQ_cjs = require('./chunk-Q6OCMENQ.cjs');
+var chunkFTHFEMX6_cjs = require('./chunk-FTHFEMX6.cjs');
 var core = require('@dnd-kit/core');
 var sortable = require('@dnd-kit/sortable');
 var utilities = require('@dnd-kit/utilities');
@@ -36,7 +37,7 @@ function Row({
   handle,
   renderItem
 }) {
-  const { t } = chunkK6PYG27V_cjs.useLaf();
+  const { t } = chunkQ6OCMENQ_cjs.useLaf();
   const s = sortable.useSortable({ id });
   const drag = { ...s.attributes, ...s.listeners };
   const gripProps = { ...drag, ref: s.setActivatorNodeRef };
@@ -45,17 +46,17 @@ function Row({
     {
       ref: s.setNodeRef,
       style: { transform: utilities.CSS.Transform.toString(s.transform), transition: s.transition },
-      className: chunkK6PYG27V_cjs.cn("flex items-center gap-2 rounded-sm border border-line bg-surface px-2 py-1.5", s.isDragging && "relative z-10 opacity-80 shadow-md"),
+      className: chunkFTHFEMX6_cjs.cn("flex items-center gap-2 rounded-sm border border-line bg-surface px-2 py-1.5", s.isDragging && "relative z-10 opacity-80 shadow-md"),
       ...handle ? {} : drag,
       children: [
-        handle && /* @__PURE__ */ jsxRuntime.jsx("button", { type: "button", ...gripProps, "aria-label": t.dragHandle(name), className: "btn btn-ghost btn-sm cursor-grab touch-none px-1", children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.GripVertical, { className: "size-4", "aria-hidden": true }) }),
+        handle && /* @__PURE__ */ jsxRuntime.jsx("button", { type: "button", ...gripProps, "aria-label": t.dragHandle(name), className: "btn btn-ghost btn-sm w-auto shrink-0 cursor-grab touch-none px-1", children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.GripVertical, { className: "size-4", "aria-hidden": true }) }),
         /* @__PURE__ */ jsxRuntime.jsx("div", { className: "min-w-0 flex-1", children: renderItem(item, { index, dragging: s.isDragging, handleProps: gripProps }) })
       ]
     }
   );
 }
 function SortableList({ items, getId, getLabel, onReorder, renderItem, label, handle = true, className }) {
-  const { t } = chunkK6PYG27V_cjs.useLaf();
+  const { t } = chunkQ6OCMENQ_cjs.useLaf();
   const sensors = core.useSensors(
     core.useSensor(core.PointerSensor, { activationConstraint: { distance: 4 } }),
     core.useSensor(core.KeyboardSensor, { coordinateGetter: sortable.sortableKeyboardCoordinates })
@@ -86,7 +87,7 @@ function SortableList({ items, getId, getLabel, onReorder, renderItem, label, ha
       collisionDetection: core.closestCenter,
       onDragEnd,
       accessibility: { announcements, screenReaderInstructions: { draggable: t.dndInstructions } },
-      children: /* @__PURE__ */ jsxRuntime.jsx(sortable.SortableContext, { items: ids, strategy: sortable.verticalListSortingStrategy, children: /* @__PURE__ */ jsxRuntime.jsx("ul", { "aria-label": label, className: chunkK6PYG27V_cjs.cn("m-0 flex list-none flex-col gap-1 p-0", className), children: items.map((item, i) => /* @__PURE__ */ jsxRuntime.jsx(Row, { item, id: ids[i], index: i, name: nameOf(ids[i]), handle, renderItem }, ids[i])) }) })
+      children: /* @__PURE__ */ jsxRuntime.jsx(sortable.SortableContext, { items: ids, strategy: sortable.verticalListSortingStrategy, children: /* @__PURE__ */ jsxRuntime.jsx("ul", { "aria-label": label, className: chunkFTHFEMX6_cjs.cn("m-0 flex list-none flex-col gap-1 p-0", className), children: items.map((item, i) => /* @__PURE__ */ jsxRuntime.jsx(Row, { item, id: ids[i], index: i, name: nameOf(ids[i]), handle, renderItem }, ids[i])) }) })
     }
   );
 }
@@ -131,7 +132,7 @@ function CardView({
       onKeyDown,
       ...s.listeners,
       style: { transform: utilities.CSS.Transform.toString(s.transform), transition: s.transition },
-      className: chunkK6PYG27V_cjs.cn(
+      className: chunkFTHFEMX6_cjs.cn(
         "cursor-grab touch-none rounded-sm border border-line bg-surface p-2 text-sm text-fg outline-none focus-visible:ring-2 focus-visible:ring-primary",
         (s.isDragging || lifted) && "border-primary shadow-md",
         s.isDragging && "opacity-60"
@@ -141,7 +142,7 @@ function CardView({
   );
 }
 function ColumnView({ column, ids, children }) {
-  const { t } = chunkK6PYG27V_cjs.useLaf();
+  const { t } = chunkQ6OCMENQ_cjs.useLaf();
   const { setNodeRef, isOver } = core.useDroppable({ id: column.id });
   const over = column.wipLimit !== void 0 && ids.length > column.wipLimit;
   const headId = React__namespace.useId();
@@ -150,11 +151,11 @@ function ColumnView({ column, ids, children }) {
     {
       role: "group",
       "aria-labelledby": headId,
-      className: chunkK6PYG27V_cjs.cn("flex w-72 shrink-0 flex-col gap-2 rounded-sm border border-line bg-muted-bg p-2", isOver && "border-primary"),
+      className: chunkFTHFEMX6_cjs.cn("flex w-72 shrink-0 flex-col gap-2 rounded-sm border border-line bg-muted-bg p-2", isOver && "border-primary"),
       children: [
         /* @__PURE__ */ jsxRuntime.jsxs("header", { className: "flex items-center justify-between gap-2 px-1", children: [
           /* @__PURE__ */ jsxRuntime.jsx("h3", { id: headId, className: "m-0 text-sm font-semibold text-fg", children: column.title }),
-          /* @__PURE__ */ jsxRuntime.jsxs("span", { className: chunkK6PYG27V_cjs.cn("inline-flex items-center gap-1 text-xs", over ? "text-warning" : "text-muted"), children: [
+          /* @__PURE__ */ jsxRuntime.jsxs("span", { className: chunkFTHFEMX6_cjs.cn("inline-flex items-center gap-1 text-xs", over ? "text-warning" : "text-muted"), children: [
             over && /* @__PURE__ */ jsxRuntime.jsx(lucideReact.AlertTriangle, { className: "size-3", "aria-hidden": true }),
             column.wipLimit !== void 0 ? t.wipLimit(ids.length, column.wipLimit) : ids.length
           ] })
@@ -168,7 +169,7 @@ function ColumnView({ column, ids, children }) {
   );
 }
 function KanbanBoard({ columns, cards, onMove, renderCard, label, className }) {
-  const { t } = chunkK6PYG27V_cjs.useLaf();
+  const { t } = chunkQ6OCMENQ_cjs.useLaf();
   const sensors = core.useSensors(core.useSensor(core.PointerSensor, { activationConstraint: { distance: 5 } }));
   const source = React__namespace.useMemo(() => layoutOf(columns, cards), [columns, cards]);
   const [layout, setLayout] = React__namespace.useState(source);
@@ -267,7 +268,7 @@ function KanbanBoard({ columns, cards, onMove, renderCard, label, className }) {
     setLayout(next);
     if (to) commit(id, to, origin, next);
   };
-  return /* @__PURE__ */ jsxRuntime.jsxs("div", { ref: root, role: "region", "aria-label": label, className: chunkK6PYG27V_cjs.cn("flex items-start gap-3 overflow-x-auto", className), children: [
+  return /* @__PURE__ */ jsxRuntime.jsxs("div", { ref: root, role: "region", "aria-label": label, className: chunkFTHFEMX6_cjs.cn("flex items-start gap-3 overflow-x-auto", className), children: [
     /* @__PURE__ */ jsxRuntime.jsx("p", { className: "sr-only", children: t.dndInstructions }),
     /* @__PURE__ */ jsxRuntime.jsx(
       core.DndContext,
@@ -347,7 +348,7 @@ var Row2 = React__namespace.forwardRef(function DndTreeRow({ className, ...props
       ...props,
       ...drag.listeners,
       ref: merged,
-      className: chunkK6PYG27V_cjs.cn(
+      className: chunkFTHFEMX6_cjs.cn(
         className,
         drag.isDragging && "opacity-50",
         over && state.position === "inside" && "bg-primary-light",

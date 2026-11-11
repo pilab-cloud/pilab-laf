@@ -1,6 +1,8 @@
 import { Bell, Plus, X } from "lucide-react";
 import * as React from "react";
 import { cn } from "../cn";
+import { useLafDefaults } from "../i18n";
+import { adminEn } from "../messages/admin.en";
 import { useControllableState } from "../utils";
 import { Button } from "./button";
 import { Badge } from "./display";
@@ -9,6 +11,9 @@ import { FileDropzone, type UploadFile } from "./more";
 import { Popover, PopoverContent, PopoverTrigger } from "./overlay";
 import { IconButton, RelativeTime } from "./primitives";
 import { VirtualList } from "./virtual";
+
+const lafDefaults = { admin: adminEn };
+const useLaf = () => useLafDefaults(lafDefaults);
 
 /* ── Network validation helpers ── */
 export function isIPv4(s: string): boolean {
@@ -61,15 +66,6 @@ export interface NetworkLabels {
   remove: (entry: string) => string;
   empty: string;
 }
-const netLabels: NetworkLabels = {
-  invalidIp: "Enter a valid IPv4 or IPv6 address",
-  invalidCidr: "Enter a valid CIDR block, e.g. 10.0.0.0/8",
-  invalidEntry: "Enter a valid IP address or CIDR block",
-  duplicate: "Already in the list",
-  add: "Add",
-  remove: (e) => `Remove ${e}`,
-  empty: "No entries",
-};
 
 /* ── IpInput / CidrInput ── */
 type NetInputProps = Omit<React.ComponentProps<"input">, "value" | "defaultValue" | "onChange"> & {
@@ -123,11 +119,13 @@ function NetInput({ validate, message, label, hint, errorMessage, value, default
 }
 
 export function IpInput(props: NetInputProps) {
-  return <NetInput placeholder="192.0.2.1" validate={isIp} message={netLabels.invalidIp} {...props} />;
+  const L = useLaf().t.components.admin.network;
+  return <NetInput placeholder="192.0.2.1" validate={isIp} message={L.invalidIp} {...props} />;
 }
 
 export function CidrInput(props: NetInputProps) {
-  return <NetInput placeholder="10.0.0.0/8" validate={isCidr} message={netLabels.invalidCidr} {...props} />;
+  const L = useLaf().t.components.admin.network;
+  return <NetInput placeholder="10.0.0.0/8" validate={isCidr} message={L.invalidCidr} {...props} />;
 }
 
 /* ── AllowListEditor ── */
@@ -140,8 +138,10 @@ export interface AllowListEditorProps {
   disabled?: boolean;
 }
 
-export function AllowListEditor({ value, defaultValue = [], onChange, label = "Allowed addresses", labels: l, disabled }: AllowListEditorProps) {
-  const L = { ...netLabels, ...l };
+export function AllowListEditor({ value, defaultValue = [], onChange, label: labelProp, labels: l, disabled }: AllowListEditorProps) {
+  const { t: laf } = useLaf();
+  const label = labelProp ?? laf.components.admin.allowList;
+  const L = { ...laf.components.admin.network, ...l };
   const id = React.useId();
   const [list, setList] = useControllableState({ value, defaultValue, onChange });
   const [draft, setDraft] = React.useState("");
@@ -221,17 +221,6 @@ export interface TransferListLabels {
   moveAllLeft: string;
   empty: string;
 }
-const transferLabels: TransferListLabels = {
-  available: "Available",
-  selected: "Selected",
-  search: (l) => `Search ${l.toLowerCase()}`,
-  count: (c, t) => (c ? `${c} of ${t} selected` : `${t} items`),
-  moveRight: "Add selected",
-  moveLeft: "Remove selected",
-  moveAllRight: "Add all",
-  moveAllLeft: "Remove all",
-  empty: "No items",
-};
 
 export interface TransferListProps {
   items: TransferItem[];
@@ -291,7 +280,7 @@ function TransferColumn({ title, items, checked, setChecked, L, height }: { titl
 }
 
 export function TransferList({ items, value, defaultValue = [], onChange, labels, height = 224 }: TransferListProps) {
-  const L = { ...transferLabels, ...labels };
+  const L = { ...useLaf().t.components.admin.transfer, ...labels };
   const [sel, setSel] = useControllableState({ value, defaultValue, onChange });
   const [leftChecked, setLeftChecked] = React.useState<Set<string>>(new Set());
   const [rightChecked, setRightChecked] = React.useState<Set<string>>(new Set());
@@ -375,20 +364,6 @@ export interface ColorFieldLabels {
   sampleButton: string;
   sampleBadge: string;
 }
-const colorLabels: ColorFieldLabels = {
-  label: "Brand colour",
-  colorPicker: "Pick colour",
-  invalidHex: "Enter a hex colour (3 or 6 digits)",
-  onCard: "Against card background",
-  onPrimary: "Button text on colour",
-  pass: "AA pass",
-  fail: "AA fail",
-  rejected: "Colour does not meet the contrast requirements",
-  contrast: "Contrast",
-  preview: "Preview",
-  sampleButton: "Button",
-  sampleBadge: "Badge",
-};
 
 export interface ColorFieldProps {
   value?: string;
@@ -407,7 +382,7 @@ export interface ColorFieldProps {
 }
 
 export function ColorField({ value, defaultValue = DEFAULT_PRIMARY, onChange, cardColor = DEFAULT_CARD, onPrimaryColor = DEFAULT_ON_PRIMARY, minCardRatio = 3, minTextRatio = 4.5, labels }: ColorFieldProps) {
-  const L = { ...colorLabels, ...labels };
+  const L = { ...useLaf().t.components.admin.color, ...labels };
   const id = React.useId();
   const [accepted, setAccepted] = useControllableState({ value, defaultValue, onChange });
   const [draft, setDraft] = React.useState(accepted);
@@ -473,16 +448,6 @@ export interface BrandingEditorLabels {
   password: string;
   removeLogo: string;
 }
-const brandingLabels: BrandingEditorLabels = {
-  productName: "Product name",
-  logo: "Logo",
-  dropLogo: "Drop a logo here or click to browse",
-  preview: "Login page preview",
-  signIn: "Sign in",
-  username: "Username",
-  password: "Password",
-  removeLogo: "Remove logo",
-};
 
 export interface BrandingEditorProps {
   value?: Branding;
@@ -496,7 +461,7 @@ export interface BrandingEditorProps {
 }
 
 export function BrandingEditor({ value, defaultValue = { productName: "", primary: DEFAULT_PRIMARY }, onChange, maxLogoSize = 512 * 1024, cardColor, onPrimaryColor, labels }: BrandingEditorProps) {
-  const L = { ...brandingLabels, ...labels };
+  const L = { ...useLaf().t.components.admin.branding, ...labels };
   const [b, setB] = useControllableState({ value, defaultValue, onChange });
   const nameId = React.useId();
   const [files, setFiles] = React.useState<UploadFile[]>([]);
@@ -571,15 +536,6 @@ export interface NotificationCenterLabels {
   viewAll: string;
   empty: string;
 }
-const notifLabels: NotificationCenterLabels = {
-  bell: "Notifications",
-  title: "Notifications",
-  unreadCount: (n) => (n === 0 ? "No unread notifications" : `${n} unread notification${n === 1 ? "" : "s"}`),
-  markRead: (t) => `Mark "${t}" as read`,
-  markAllRead: "Mark all as read",
-  viewAll: "View all",
-  empty: "You're all caught up",
-};
 
 export interface NotificationCenterProps {
   items: NotificationItem[];
@@ -591,7 +547,7 @@ export interface NotificationCenterProps {
 }
 
 export function NotificationCenter({ items, onMarkRead, onMarkAllRead, onViewAll, onOpen, labels }: NotificationCenterProps) {
-  const L = { ...notifLabels, ...labels };
+  const L = { ...useLaf().t.components.admin.notifications, ...labels };
   const unread = items.filter((i) => i.unread).length;
   const groups = new Map<string | undefined, NotificationItem[]>();
   for (const i of items) groups.set(i.group, [...(groups.get(i.group) ?? []), i]);
@@ -611,7 +567,7 @@ export function NotificationCenter({ items, onMarkRead, onMarkAllRead, onViewAll
           {L.unreadCount(unread)}
         </span>
       </span>
-      <PopoverContent title={L.title} align="end" className="w-80 p-0" footer={onViewAll && <Button variant="ghost" size="sm" onClick={onViewAll}>{L.viewAll}</Button>}>
+      <PopoverContent title={L.title} align="end" className="w-80 max-w-[calc(100vw-2rem)] p-0" footer={onViewAll && <Button variant="ghost" size="sm" onClick={onViewAll}>{L.viewAll}</Button>}>
         {unread > 0 && onMarkAllRead && (
           <div className="flex justify-end px-3 pb-1">
             <Button size="sm" variant="ghost" onClick={onMarkAllRead}>

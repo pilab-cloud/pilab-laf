@@ -64,7 +64,7 @@ function Row<T>({
       {...(handle ? {} : drag)}
     >
       {handle && (
-        <button type="button" {...gripProps} aria-label={t.dragHandle(name)} className="btn btn-ghost btn-sm cursor-grab touch-none px-1">
+        <button type="button" {...gripProps} aria-label={t.dragHandle(name)} className="btn btn-ghost btn-sm w-auto shrink-0 cursor-grab touch-none px-1">
           <GripVertical className="size-4" aria-hidden />
         </button>
       )}

@@ -511,6 +511,23 @@ Matrix: rows = resources/privileges (tree-grouped), columns = roles or actions; 
 ### 4.61 OIDC client & consent management — out of scope
 OIDC is not a LAF concern ([`docs/design.md`](docs/design.md) §1.3): client registration, consent, IdP federation and keys are built in `shadow-sso-accounts` from generic components (Data grid, Properties pane 4.52, Key-value 4.49, Tag input 4.46, Token display 4.56). `OidcClientList`/`OidcClientForm` are deprecated and will be removed in 0.2.
 
+### 4.62 Shipped in 1.0 — foundations, data and domain packs
+Concise entries for what `docs/design.md` specified and 1.0 ships. Per-prop detail lives in the TSDoc of `lib/`; every entry follows §7 DoD (tests, axe, tokens only, logical CSS properties for RTL, catalogue strings).
+
+**Foundations.** `LafProvider` / `useLaf` — typed `LafMessages` catalogue (`en` built in, `hu` at `@pilab/laf/locales/hu`, per-component sets under `messages.components`), `timeZone`, `portalContainer`. `useControllableState`, `format.*` / `createFormatters()` (bytes, bitrate, frequency, duration, percent, relative, dateTime), `ObjectIcon` / `registerObjectKind`, label palette `--label-1…12`, `useHotkeys`.
+
+**DataGrid** — virtualised (50 000 rows), sortable (`sort: GridSort[]`, multi-sort), selectable (`selected: string[]`), resizable/reorderable/pinnable columns, density, column menu, search, saved views, row expand. a11y: `role="grid"`, `aria-rowcount/colcount/sort/selected`, roving tabindex. Keyboard: arrows, Home/End, PageUp/Down, Space select, Shift+arrows range, Ctrl+A.
+
+**TreeView / TreeTable** — virtualised tree (10 000 nodes), `expanded`, `selected` (`string | string[]`), lazy children, drag hooks; `TreeTable` is the tree-grid variant. a11y: `role="tree"`/`treegrid`, `aria-level/posinset/setsize/expanded`. Keyboard: arrows, →/← expand/collapse, Home/End, type-ahead, `*` expand siblings.
+
+**Combobox / menus** — single/multi, async, create option, clear; DropdownMenu/ContextMenu with a declarative menu spec, sub-menus, checkable items, shortcuts. Keyboard per ARIA APG combobox/menu.
+
+**FilterBar** — typed query grammar (design §9), chips, saved filters, hu/en strings. **Wizard** — step flow with validation, review step, dialog/page mode, unsaved-changes guard. **Layout** — `PageHead`, `FormPage`, `DetailPage`, `SubNav`, `MobileNav`, `FormFooter`, `UnsavedChangesDialog`, `SplitPane`.
+
+**Charts (`@pilab/laf/charts`)** — Sparkline, Line/Bar/Donut/Gauge, TimeSeries, PerfPanel; text alternative and data-table fallback; tokens for colours. **Editor (`/editor`)** — CodeMirror editor, Markdown editor/renderer, diff view. **DnD (`/dnd`)** — sortable lists/boards with keyboard sensor and live-region announcements. **Topology (`/topology`)** — `TopologyGraphFlow` (xyflow), keyboard-navigable nodes, `aria-label`ed.
+
+**SSO pack** — account (sessions, devices, MFA, tokens, audit), admin (shell, notifications, allow-list editor, audit log). **Tracker pack** — issue card, board, comments, labels, priorities. **vSphere pack** — inventory tree, object pages, `ObjectIcon`, console/performance panels.
+
 #### G. Packages beyond LAF (not styled components)
 - **App sign-in:** out of scope; apps use `@pilab/shadow-sso` (`../3so/shadow-sso-client`: FedCM, silent login, One Tap, PKCE). No `@pilab/auth` package.
 - **Heavy engines:** charts, editor and drag & drop ship as tree-shakeable subpath entries (`@pilab/laf/charts`, `/editor`, `/dnd`) with optional peer dependencies ([`docs/design.md`](docs/design.md) ADR-1).

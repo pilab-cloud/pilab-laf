@@ -1,6 +1,13 @@
 import type { LafMessages } from "../i18n";
+import { accountHu } from "./account.hu";
+import { adminHu } from "./admin.hu";
+import { chartsHu } from "./charts.hu";
+import { trackerHu } from "./tracker.hu";
+import { uiHu } from "./ui.hu";
+import { vsphereObjectsHu } from "./vsphere-objects.hu";
 
 export const hu: LafMessages = {
+  components: { account: accountHu, admin: adminHu, tracker: trackerHu, vsphereObjects: vsphereObjectsHu, charts: chartsHu, ui: uiHu },
   close: "Bezárás",
   noResults: "Nincs találat",
   loading: "Betöltés",

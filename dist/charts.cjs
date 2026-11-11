@@ -1,8 +1,10 @@
 'use strict';
 
-var chunkUUKIRW42_cjs = require('./chunk-UUKIRW42.cjs');
-var chunkZ4VIW3HV_cjs = require('./chunk-Z4VIW3HV.cjs');
-var chunkK6PYG27V_cjs = require('./chunk-K6PYG27V.cjs');
+var chunkOKADVGBW_cjs = require('./chunk-OKADVGBW.cjs');
+var chunk5WBFJQAZ_cjs = require('./chunk-5WBFJQAZ.cjs');
+var chunkQ6OCMENQ_cjs = require('./chunk-Q6OCMENQ.cjs');
+var chunkIP6HZMS5_cjs = require('./chunk-IP6HZMS5.cjs');
+var chunkFTHFEMX6_cjs = require('./chunk-FTHFEMX6.cjs');
 var axis = require('@visx/axis');
 var group = require('@visx/group');
 var scale = require('@visx/scale');
@@ -88,16 +90,34 @@ function downsample(points, maxPoints) {
   });
   return out;
 }
-var defaultLabels = {
-  showData: "Show data",
-  hideData: "Hide data",
-  resetZoom: "Reset zoom",
-  noData: "No data",
-  time: "Time",
-  loading: "Loading",
-  keyboardHint: "Arrow keys move the crosshair, Shift with arrows selects a range, Enter zooms to the selection, Escape clears it.",
-  legend: "Series"
+
+// lib/messages/charts.en.ts
+var chartsEn = {
+  perfPanel: {
+    metrics: "Metrics",
+    pickMetrics: "Choose metrics\u2026",
+    exportCsv: "Export CSV",
+    metric: "Metric",
+    latest: "Latest",
+    min: "Min",
+    avg: "Avg",
+    max: "Max",
+    summary: "Summary statistics",
+    noMetrics: "Select at least one metric"
+  },
+  timeSeries: {
+    showData: "Show data",
+    hideData: "Hide data",
+    resetZoom: "Reset zoom",
+    noData: "No data",
+    time: "Time",
+    loading: "Loading",
+    keyboardHint: "Arrow keys move the crosshair, Shift with arrows selects a range, Enter zooms to the selection, Escape clears it.",
+    legend: "Series"
+  }
 };
+var lafDefaults = { charts: chartsEn };
+var useLaf = () => chunkQ6OCMENQ_cjs.useLafDefaults(lafDefaults);
 var SERIES_TONES = ["text-primary", "text-ok", "text-warn", "text-danger"];
 var SERIES_DASH = [void 0, "4 2", "1 3", "6 2 1 2"];
 var MARGIN = { top: 8, bottom: 24, left: 56, right: 12, right2: 56 };
@@ -159,12 +179,12 @@ function TimeSeriesChart({
   labels: labelsProp,
   className
 }) {
-  const { format, locale, timeZone } = chunkK6PYG27V_cjs.useLaf();
-  const l = { ...defaultLabels, ...labelsProp };
+  const { format, locale, timeZone, t: laf } = useLaf();
+  const l = { ...laf.components.charts.timeSeries, ...labelsProp };
   const uid = React__namespace.useId();
   const [wrap, width] = useWidth(widthProp);
-  const [hidden, setHidden] = chunkZ4VIW3HV_cjs.useControllableState({ value: hiddenProp, defaultValue: [], onChange: onHiddenSeriesChange });
-  const [zoom, setZoom] = chunkZ4VIW3HV_cjs.useControllableState({ value: rangeProp, defaultValue: null, onChange: (r) => r && onRangeChange?.(r) });
+  const [hidden, setHidden] = chunk5WBFJQAZ_cjs.useControllableState({ value: hiddenProp, defaultValue: [], onChange: onHiddenSeriesChange });
+  const [zoom, setZoom] = chunk5WBFJQAZ_cjs.useControllableState({ value: rangeProp, defaultValue: null, onChange: (r) => r && onRangeChange?.(r) });
   const [cursor, setCursor] = React__namespace.useState(null);
   const [sel, setSel] = React__namespace.useState(null);
   const [kbd, setKbd] = React__namespace.useState(false);
@@ -346,8 +366,8 @@ function TimeSeriesChart({
   const hintId = `${uid}-hint`;
   const empty = !loading && (!domain || series.every((s) => s.points.length === 0));
   const tipLeft = tip ? MARGIN.left + x(tip.t) : 0;
-  return /* @__PURE__ */ jsxRuntime.jsxs("figure", { "aria-label": label, "aria-busy": loading || void 0, className: chunkK6PYG27V_cjs.cn("m-0 grid gap-2", className), children: [
-    /* @__PURE__ */ jsxRuntime.jsx("div", { ref: wrap, className: "relative", style: { height }, children: loading ? /* @__PURE__ */ jsxRuntime.jsx("div", { role: "status", "aria-label": l.loading, className: "size-full animate-pulse rounded-sm bg-muted-bg" }) : empty ? /* @__PURE__ */ jsxRuntime.jsx("div", { className: "grid size-full place-items-center text-sm text-muted", children: l.noData }) : /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
+  return /* @__PURE__ */ jsxRuntime.jsxs("figure", { "aria-label": label, "aria-busy": loading || void 0, className: chunkFTHFEMX6_cjs.cn("m-0 grid grid-cols-1 gap-2", className), children: [
+    /* @__PURE__ */ jsxRuntime.jsx("div", { ref: wrap, className: "relative min-w-0", style: { height }, children: loading ? /* @__PURE__ */ jsxRuntime.jsx("div", { role: "status", "aria-label": l.loading, className: "size-full animate-pulse rounded-sm bg-muted-bg" }) : empty ? /* @__PURE__ */ jsxRuntime.jsx("div", { className: "grid size-full place-items-center text-sm text-muted", children: l.noData }) : /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
       /* @__PURE__ */ jsxRuntime.jsx(
         "svg",
         {
@@ -455,7 +475,7 @@ function TimeSeriesChart({
             /* @__PURE__ */ jsxRuntime.jsx("div", { className: "mb-1 font-mono text-subtle", children: fullT(tip.t) }),
             tip.rows.map((r) => /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex items-center justify-between gap-3", children: [
               /* @__PURE__ */ jsxRuntime.jsxs("span", { className: "inline-flex items-center gap-1.5", children: [
-                /* @__PURE__ */ jsxRuntime.jsx("span", { "aria-hidden": true, className: chunkK6PYG27V_cjs.cn("inline-block size-2 rounded-sm bg-current", SERIES_TONES[series.indexOf(r.s) % 4]) }),
+                /* @__PURE__ */ jsxRuntime.jsx("span", { "aria-hidden": true, className: chunkFTHFEMX6_cjs.cn("inline-block size-2 rounded-sm bg-current", SERIES_TONES[series.indexOf(r.s) % 4]) }),
                 r.s.name
               ] }),
               /* @__PURE__ */ jsxRuntime.jsx("b", { className: "font-mono", children: r.v === null ? "\u2013" : formatUnit(format, r.s.unit, r.v) })
@@ -474,7 +494,7 @@ function TimeSeriesChart({
             type: "button",
             "aria-pressed": on,
             onClick: () => toggle(s.id),
-            className: chunkK6PYG27V_cjs.cn("inline-flex cursor-pointer items-center gap-1.5 rounded-sm border-0 bg-transparent p-0 text-xs text-muted hover:text-fg", !on && "opacity-50 line-through"),
+            className: chunkFTHFEMX6_cjs.cn("inline-flex cursor-pointer items-center gap-1.5 rounded-sm border-0 bg-transparent p-0 text-xs text-muted hover:text-fg", !on && "opacity-50 line-through"),
             children: [
               /* @__PURE__ */ jsxRuntime.jsx("svg", { width: "16", height: "4", "aria-hidden": true, className: SERIES_TONES[si % 4], children: /* @__PURE__ */ jsxRuntime.jsx("line", { x1: "0", x2: "16", y1: "2", y2: "2", stroke: "currentColor", strokeWidth: "2", strokeDasharray: SERIES_DASH[si % 4] }) }),
               s.name
@@ -519,7 +539,7 @@ function StackedBarChart({
   const totals = data.map((d) => d.values.reduce((a, b) => a + b, 0));
   const max = Math.max(...totals, 1);
   const x = scale.scaleLinear({ domain: [0, max], range: [0, Math.max(width - nameW - 56, 10)], nice: true });
-  return /* @__PURE__ */ jsxRuntime.jsxs("figure", { "aria-label": label, className: chunkK6PYG27V_cjs.cn("m-0 grid gap-2", className), children: [
+  return /* @__PURE__ */ jsxRuntime.jsxs("figure", { "aria-label": label, className: chunkFTHFEMX6_cjs.cn("m-0 grid gap-2", className), children: [
     /* @__PURE__ */ jsxRuntime.jsx("svg", { role: "img", "aria-label": label, width: "100%", viewBox: `0 0 ${width} ${Math.max(data.length * rowH, 1)}`, className: "text-muted", children: data.map((d, ri) => {
       let acc = 0;
       return /* @__PURE__ */ jsxRuntime.jsxs(group.Group, { top: ri * rowH, children: [
@@ -534,7 +554,7 @@ function StackedBarChart({
       ] }, d.name);
     }) }),
     /* @__PURE__ */ jsxRuntime.jsx("figcaption", { className: "flex flex-wrap gap-3 text-xs text-muted", children: series.map((s, i) => /* @__PURE__ */ jsxRuntime.jsxs("span", { className: "inline-flex items-center gap-1", children: [
-      /* @__PURE__ */ jsxRuntime.jsx("span", { className: chunkK6PYG27V_cjs.cn("size-2 rounded-sm bg-current", TONES[i % TONES.length]), "aria-hidden": true }),
+      /* @__PURE__ */ jsxRuntime.jsx("span", { className: chunkFTHFEMX6_cjs.cn("size-2 rounded-sm bg-current", TONES[i % TONES.length]), "aria-hidden": true }),
       " ",
       s
     ] }, s)) })
@@ -584,7 +604,7 @@ function Heatmap({
       "aria-colcount": columns.length,
       width: headW + columns.length * cell,
       height: headH + rows.length * cell,
-      className: chunkK6PYG27V_cjs.cn("text-muted", className),
+      className: chunkFTHFEMX6_cjs.cn("text-muted", className),
       children: [
         /* @__PURE__ */ jsxRuntime.jsx("g", { role: "row", "aria-rowindex": 1, children: columns.map((c, ci) => /* @__PURE__ */ jsxRuntime.jsx("text", { role: "columnheader", x: headW + ci * cell + cell / 2, y: headH - 6, textAnchor: "middle", fontSize: 10, fill: "currentColor", children: c }, c)) }),
         rows.map((r, ri) => /* @__PURE__ */ jsxRuntime.jsxs("g", { role: "row", "aria-rowindex": ri + 2, transform: `translate(0 ${headH + ri * cell})`, children: [
@@ -618,18 +638,8 @@ function Heatmap({
     }
   );
 }
-var defaultLabels2 = {
-  metrics: "Metrics",
-  pickMetrics: "Choose metrics\u2026",
-  exportCsv: "Export CSV",
-  metric: "Metric",
-  latest: "Latest",
-  min: "Min",
-  avg: "Avg",
-  max: "Max",
-  summary: "Summary statistics",
-  noMetrics: "Select at least one metric"
-};
+var lafDefaults2 = { charts: chartsEn };
+var useLaf2 = () => chunkQ6OCMENQ_cjs.useLafDefaults(lafDefaults2);
 var UNIT_MS = { m: 6e4, h: 36e5, d: 864e5 };
 function presetToMs(preset) {
   const m = /^(\d+)([mhd])$/.exec(preset);
@@ -660,14 +670,14 @@ function PerfPanel({
   labels: labelsProp,
   className
 }) {
-  const { format } = chunkK6PYG27V_cjs.useLaf();
-  const l = { ...defaultLabels2, ...labelsProp };
-  const [selected, setSelected] = chunkZ4VIW3HV_cjs.useControllableState({
+  const { format, t: laf } = useLaf2();
+  const l = { ...laf.components.charts.perfPanel, ...labelsProp };
+  const [selected, setSelected] = chunk5WBFJQAZ_cjs.useControllableState({
     value: selectedProp,
     defaultValue: metrics.length ? [metrics[0].id] : [],
     onChange: onSelectedChange
   });
-  const [preset, setPreset] = chunkZ4VIW3HV_cjs.useControllableState({ value: rangeProp, defaultValue: presets.includes("1h") ? "1h" : presets[0], onChange: onTimeRangeChange });
+  const [preset, setPreset] = chunk5WBFJQAZ_cjs.useControllableState({ value: rangeProp, defaultValue: presets.includes("1h") ? "1h" : presets[0], onChange: onTimeRangeChange });
   const [custom, setCustom] = React__namespace.useState();
   const newest = React__namespace.useMemo(() => nowProp ?? metrics.reduce((m, s) => s.points.reduce((a, p) => Math.max(a, p[0]), m), -Infinity), [metrics, nowProp]);
   const win = React__namespace.useMemo(() => {
@@ -703,10 +713,10 @@ function PerfPanel({
     setCustom(r);
     setPreset("custom");
   };
-  return /* @__PURE__ */ jsxRuntime.jsxs("section", { "aria-label": label, className: chunkK6PYG27V_cjs.cn("grid gap-3", className), children: [
+  return /* @__PURE__ */ jsxRuntime.jsxs("section", { "aria-label": label, className: chunkFTHFEMX6_cjs.cn("grid gap-3", className), children: [
     /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex flex-wrap items-center gap-3", children: [
       /* @__PURE__ */ jsxRuntime.jsx(
-        chunkUUKIRW42_cjs.Combobox,
+        chunkOKADVGBW_cjs.Combobox,
         {
           multiple: true,
           label: l.metrics,
@@ -717,8 +727,8 @@ function PerfPanel({
           className: "min-w-56"
         }
       ),
-      /* @__PURE__ */ jsxRuntime.jsx(chunkUUKIRW42_cjs.TimeRangePicker, { value: preset, onChange: setPreset, presets, range: win, onRangeChange: zoomTo, showTimeZone: true }),
-      /* @__PURE__ */ jsxRuntime.jsx(chunkUUKIRW42_cjs.Button, { variant: "ghost", size: "sm", className: "ms-auto", onClick: doExport, disabled: !active.length, children: l.exportCsv })
+      /* @__PURE__ */ jsxRuntime.jsx(chunkOKADVGBW_cjs.TimeRangePicker, { value: preset, onChange: setPreset, presets, range: win, onRangeChange: zoomTo, showTimeZone: true }),
+      /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { variant: "ghost", size: "sm", className: "ms-auto", onClick: doExport, disabled: !active.length, children: l.exportCsv })
     ] }),
     active.length || loading ? /* @__PURE__ */ jsxRuntime.jsx(TimeSeriesChart, { label, series: active, type, thresholds, height, loading, range: win, onRangeChange: zoomTo }) : /* @__PURE__ */ jsxRuntime.jsx("p", { className: "m-0 text-sm text-muted", children: l.noMetrics }),
     stats.length > 0 && /* @__PURE__ */ jsxRuntime.jsxs("table", { "aria-label": l.summary, className: "w-full border-collapse text-xs", children: [

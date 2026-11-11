@@ -88,11 +88,9 @@ export interface DataGridProps<T> {
   rows: T[];
   rowId: (row: T) => string;
   label: string;
-  /** Array. A single object is accepted for backwards compatibility (deprecated, warns once in dev). */
-  sort?: GridSort[] | GridSort;
+  sort?: GridSort[];
   onSortChange?: (sort: GridSort[]) => void;
-  /** Array. A string is accepted for backwards compatibility (deprecated, warns once in dev). */
-  selected?: string[] | string;
+  selected?: string[];
   onSelectedChange?: (ids: string[]) => void;
   /** Show the checkbox column. Implied by `selected`, `onSelectedChange` and `bulkActions`. */
   selectable?: boolean;
@@ -138,13 +136,6 @@ export interface DataGridProps<T> {
 }
 
 /* ── Helpers ── */
-const warned = new Set<string>();
-function warnOnce(key: string, message: string) {
-  if (typeof process !== "undefined" && process.env?.NODE_ENV === "production") return;
-  if (warned.has(key)) return;
-  warned.add(key);
-  console.warn(`[pilab-laf] ${message}`);
-}
 
 interface PersistedView {
   columnVisibility?: Record<string, boolean>;
@@ -329,17 +320,8 @@ export function DataGrid<T>(props: DataGridProps<T>) {
   const uid = React.useId();
   const persisted = React.useMemo(() => readView(viewKey), [viewKey]);
 
-  const legacySort = props.sort !== undefined && !Array.isArray(props.sort);
-  const legacySelected = typeof props.selected === "string";
-  React.useEffect(() => {
-    if (legacySort) warnOnce("sort", "DataGrid: a single `sort` object is deprecated; pass an array of { id, dir } (Shift+click multi-sorts).");
-    if (legacySelected) warnOnce("selected", "DataGrid: a string `selected` is deprecated; pass an array of row ids.");
-  }, [legacySort, legacySelected]);
-
-  const sortValue = props.sort === undefined ? undefined : Array.isArray(props.sort) ? props.sort : [props.sort];
-  const selValue = props.selected === undefined ? undefined : Array.isArray(props.selected) ? props.selected : props.selected ? [props.selected] : [];
-  const [sort, setSort] = useControllableState<GridSort[]>({ value: sortValue, defaultValue: [], onChange: props.onSortChange });
-  const [selected, setSelected] = useControllableState<string[]>({ value: selValue, defaultValue: [], onChange: props.onSelectedChange });
+  const [sort, setSort] = useControllableState<GridSort[]>({ value: props.sort, defaultValue: [], onChange: props.onSortChange });
+  const [selected, setSelected] = useControllableState<string[]>({ value: props.selected, defaultValue: [], onChange: props.onSelectedChange });
   const [visibility, setVisibility] = useControllableState<Record<string, boolean>>({
     value: props.columnVisibility,
     defaultValue: persisted.columnVisibility ?? {},
@@ -744,7 +726,9 @@ export function DataGrid<T>(props: DataGridProps<T>) {
                   />
                 </div>
               )}
-              {renderExpanded && <div role="columnheader" aria-label={L.expand} className={cn(stickyCell)} style={{ insetInlineStart: selectable ? SELECT_W : 0 }} />}
+              {renderExpanded && <div role="columnheader" className={cn(stickyCell)} style={{ insetInlineStart: selectable ? SELECT_W : 0 }}>
+                  <span className="sr-only">{L.expand}</span>
+                </div>}
               {leaf.map((c) => {
                 const spec = colById.get(c.id)!;
                 const sIdx = sort.findIndex((s) => s.id === c.id);

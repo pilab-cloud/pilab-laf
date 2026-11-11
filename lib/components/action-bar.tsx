@@ -20,7 +20,7 @@ function Menu({ trigger, items, aria }: { trigger: React.ReactNode; items: MenuI
         {trigger}
       </DropdownPrimitive.Trigger>
       <DropdownPrimitive.Portal>
-        <DropdownPrimitive.Content align="end" sideOffset={4} className="dropdown-menu relative! top-auto! left-auto! z-30 min-w-48">
+        <DropdownPrimitive.Content align="end" sideOffset={4} className="dropdown-menu relative! top-auto! start-auto! z-30 min-w-48">
           <MenuSpecItems items={items} />
         </DropdownPrimitive.Content>
       </DropdownPrimitive.Portal>

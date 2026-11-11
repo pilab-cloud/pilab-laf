@@ -13,5 +13,5 @@
     "noEmit": true,
     "paths": { "@pilab/laf": ["./lib/index.ts"] }
   },
-  "include": ["lib", "tests", "playground/*.tsx", "playground/*.ts"]
+  "include": ["lib", "tests", "playground"]
 }

@@ -1,6 +1,6 @@
 import { ClassValue } from 'clsx';
-import { F as Formatters } from './foundation-format-DlHPXhrg.cjs';
-export { B as BytesOptions, D as DateTimeOptions, a as DurationOptions, R as RelativeOptions, c as createFormatters } from './foundation-format-DlHPXhrg.cjs';
+import { F as Formatters } from './perf-panel-CcKCFsOd.cjs';
+export { B as BytesOptions, D as DateTimeOptions, k as DurationOptions, R as RelativeOptions, m as createFormatters } from './perf-panel-CcKCFsOd.cjs';
 import * as class_variance_authority_types from 'class-variance-authority/types';
 import { VariantProps } from 'class-variance-authority';
 import * as React from 'react';
@@ -9,11 +9,12 @@ import * as DropdownPrimitive from '@radix-ui/react-dropdown-menu';
 import * as PopoverPrimitive from '@radix-ui/react-popover';
 import * as TabsPrimitive from '@radix-ui/react-tabs';
 import * as TooltipPrimitive from '@radix-ui/react-tooltip';
+import { C as ComboboxOption, K as Kbd, t as trackerEn } from './i18n-irBAIN8C.cjs';
+export { A as AccountSession, a as AlarmItem, b as AlarmList, c as AllowListEditor, d as AllowListEditorProps, e as ApiKeyCreateInput, f as ApiKeyItem, g as ApiKeyManager, h as ApiKeyManagerLabels, i as ApiKeyManagerProps, B as BarChart, j as Branding, k as BrandingEditor, l as BrandingEditorLabels, m as BrandingEditorProps, n as CidrInput, o as ColorField, p as ColorFieldLabels, q as ColorFieldProps, r as Combobox, s as ComboboxProps, u as ComponentMessageOverrides, v as ComponentMessages, w as ConsoleEvent, x as ConsoleFrame, y as ConsoleFrameLabels, z as ConsoleFrameProps, D as ConsoleStatus, E as DatastoreBrowser, F as DatastoreBrowserLabels, G as DatastoreBrowserProps, H as DatastoreEntry, I as DateTimeInput, J as Device, L as DeviceKind, M as DeviceSelector, N as Donut, O as ErrorSummary, P as EventConsole, Q as EventConsoleLabels, R as EventConsoleProps, S as EventSeverity, T as FileDropzone, U as FormField, V as Gauge, W as HardwareCapabilities, X as HardwareEditor, Y as HardwareEditorLabels, Z as HardwareEditorProps, _ as HwDevice, $ as HwKind, a0 as InlineEdit, a1 as IpInput, a2 as LafContextValue, a3 as LafMessages, a4 as LafProvider, a5 as NetworkLabels, a6 as NotificationCenter, a7 as NotificationCenterLabels, a8 as NotificationCenterProps, a9 as NotificationItem, aa as PasskeyItem, ab as PermissionAssignDialog, ac as PermissionAssignDialogProps, ad as PermissionAssignLabels, ae as PermissionAssignment, af as PermissionRole, ag as ReauthDialog, ah as ReauthDialogLabels, ai as ReauthDialogProps, aj as ReauthMethod, ak as SecurityFactors, al as SecurityFactorsLabels, am as SecurityFactorsProps, an as SessionExpiryDialog, ao as SessionExpiryDialogLabels, ap as SessionExpiryDialogProps, aq as SessionList, ar as SessionListLabels, as as SessionListProps, at as SnapshotNode, au as SnapshotTree, av as SnapshotTreeLabels, aw as SnapshotTreeProps, ax as TransferItem, ay as TransferList, az as TransferListLabels, aA as TransferListProps, aB as UploadFile, aC as User, aD as UserSelector, aE as UserSelectorProps, aF as contrastRatio, aG as en, aH as isCidr, aI as isIPv4, aJ as isIPv6, aK as isIp, aL as normalizeHex, aM as parseCidr, aN as useLaf, aO as useLafDefaults, aP as usePortalContainer } from './i18n-irBAIN8C.cjs';
 import * as lucide_react from 'lucide-react';
 import { LucideIcon } from 'lucide-react';
 import * as ContextPrimitive from '@radix-ui/react-context-menu';
 import { Virtualizer } from '@tanstack/react-virtual';
-export { L as LafContextValue, a as LafMessages, b as LafProvider, e as en, u as useLaf, c as usePortalContainer } from './i18n-BTjqHTna.cjs';
 import { M as MenuItemSpec$1 } from './tree-DtuKM6CY.cjs';
 export { T as TreeDragAdapter, a as TreeDropPosition, b as TreeNode, c as TreeStatus, d as TreeView, e as TreeViewProps } from './tree-DtuKM6CY.cjs';
 
@@ -129,7 +130,9 @@ declare function Avatar({ name, src, size, className, }: {
     className?: string;
 }): React.JSX.Element;
 declare function Card({ className, ...props }: React.ComponentProps<"div">): React.JSX.Element;
-declare function Panel({ title, actions, children, className, bodyClassName, }: {
+declare function Panel({ title, actions, children, className, bodyClassName, headingLevel, }: {
+    /** Heading level of the title; pick the one that follows the page's outline. */
+    headingLevel?: 2 | 3 | 4;
     title?: React.ReactNode;
     actions?: React.ReactNode;
     children: React.ReactNode;
@@ -226,39 +229,6 @@ declare function NavLink({ icon, current, badge, className, children, ...props }
     icon?: React.ReactNode;
     current?: boolean;
     badge?: React.ReactNode;
-}): React.JSX.Element;
-
-interface User {
-    id: string;
-    name: string;
-    email?: string;
-}
-interface UserSelectorProps {
-    value: User[];
-    onChange: (value: User[]) => void;
-    /** Resolve candidates for a query; may be async. */
-    onSearch: (query: string) => User[] | Promise<User[]>;
-    multiple?: boolean;
-    max?: number;
-    placeholder?: string;
-    disabled?: boolean;
-    label?: string;
-}
-declare function UserSelector({ value, onChange, onSearch, multiple, max, placeholder: placeholderProp, disabled, label: labelProp, }: UserSelectorProps): React.JSX.Element;
-type DeviceKind = "phone" | "laptop" | "tablet" | "key";
-interface Device {
-    id: string;
-    name: string;
-    detail?: string;
-    kind: DeviceKind;
-    badge?: React.ReactNode;
-}
-declare function DeviceSelector({ devices, value, onValueChange, name, legend, }: {
-    devices: Device[];
-    value?: string;
-    onValueChange: (id: string) => void;
-    name: string;
-    legend: string;
 }): React.JSX.Element;
 
 type Severity = "ok" | "warn" | "danger" | "neutral";
@@ -461,30 +431,6 @@ declare function SecretDisplay({ value, label, acknowledgeLabel, onAcknowledge, 
     masked?: boolean;
 }): React.JSX.Element;
 
-interface GridColumnLegacy<T> {
-    id: string;
-    header: React.ReactNode;
-    cell: (row: T) => React.ReactNode;
-    sortable?: boolean;
-    numeric?: boolean;
-}
-interface GridSortLegacy {
-    id: string;
-    dir: "asc" | "desc";
-}
-interface DataGridLegacyProps<T> {
-    columns: GridColumnLegacy<T>[];
-    rows: T[];
-    rowId: (row: T) => string;
-    sort?: GridSortLegacy;
-    onSortChange?: (sort: GridSortLegacy | undefined) => void;
-    selected?: string[];
-    onSelectedChange?: (ids: string[]) => void;
-    loading?: boolean;
-    emptyTitle?: string;
-    emptyDescription?: string;
-}
-declare function DataGridLegacy<T>({ columns, rows, rowId, sort, onSortChange, selected, onSelectedChange, loading, emptyTitle: emptyTitleProp, emptyDescription, }: DataGridLegacyProps<T>): React.JSX.Element;
 type TaskStatus = "queued" | "running" | "ok" | "failed" | "cancelled";
 interface TaskItem {
     id: string;
@@ -552,38 +498,6 @@ declare function UserMenu({ name, email, tenant, items, signOutLabel: signOutLab
 
 /** Palette slot 1–12 (design F4); colours come from the --label-N tokens, never free hex. */
 type LabelSlot = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
-
-interface ComboboxOption {
-    value: string;
-    label: string;
-    description?: string;
-    group?: string;
-    disabled?: boolean;
-}
-interface ComboboxProps {
-    options: ComboboxOption[] | ((query: string) => ComboboxOption[] | Promise<ComboboxOption[]>);
-    value: ComboboxOption[];
-    onChange: (value: ComboboxOption[]) => void;
-    multiple?: boolean;
-    label: string;
-    placeholder?: string;
-    emptyText?: string;
-    loadingText?: string;
-    disabled?: boolean;
-    /** Offer a "Create “query”" row; receives the typed text. */
-    onCreate?: (query: string) => void;
-    createLabel?: (query: string) => string;
-    clearable?: boolean;
-    clearLabel?: string;
-    renderOption?: (option: ComboboxOption, state: {
-        selected: boolean;
-    }) => React.ReactNode;
-    /** Controlled open state; omit for uncontrolled. */
-    open?: boolean;
-    onOpenChange?: (open: boolean) => void;
-    className?: string;
-}
-declare function Combobox({ options, value, onChange, multiple, label, placeholder, emptyText: emptyTextProp, loadingText: loadingTextProp, disabled, onCreate, createLabel, clearable, clearLabel, renderOption, open: openProp, onOpenChange, className, }: ComboboxProps): React.JSX.Element;
 
 declare const bannerTone: {
     info: {
@@ -846,103 +760,6 @@ declare function PermissionMatrix({ roles, groups, value, onChange, readOnly, in
     labels?: Partial<PermissionMatrixLabels>;
 }): React.JSX.Element;
 
-declare function Kbd({ className, ...props }: React.ComponentProps<"kbd">): React.JSX.Element;
-declare function InlineEdit({ value, onSave, label, validate, as, options, min, max, }: {
-    value: string;
-    onSave: (value: string) => void | Promise<void>;
-    label: string;
-    validate?: (value: string) => string | undefined;
-    /** Editor kind; `select` needs `options`, `number` honours `min`/`max`. */
-    as?: "text" | "select" | "number";
-    options?: {
-        value: string;
-        label: string;
-    }[];
-    min?: number;
-    max?: number;
-}): React.JSX.Element;
-interface UploadFile {
-    id: string;
-    name: string;
-    size: number;
-    progress?: number;
-    error?: string;
-}
-declare function FileDropzone({ files, onFiles, onRemove, accept, maxSize, multiple, label: labelProp, }: {
-    files: UploadFile[];
-    onFiles: (files: File[]) => void;
-    onRemove?: (id: string) => void;
-    accept?: string;
-    /** bytes */
-    maxSize?: number;
-    multiple?: boolean;
-    label?: string;
-}): React.JSX.Element;
-interface AlarmItem {
-    id: string;
-    severity: "critical" | "warning" | "info";
-    name: string;
-    entity: string;
-    /** Pre-formatted text; ignored when `triggeredAt` is set. */
-    triggered: string;
-    triggeredAt?: Date | string | number;
-    entityId?: string;
-    acknowledged?: boolean;
-}
-declare function AlarmList({ alarms, onAcknowledge, onReset, onOpenEntity, selectable, empty: emptyProp, }: {
-    alarms: AlarmItem[];
-    onAcknowledge?: (id: string) => void;
-    /** Reset to green. */
-    onReset?: (id: string) => void;
-    onOpenEntity?: (alarm: AlarmItem) => void;
-    /** Checkboxes plus bulk acknowledge/reset (ids are passed one call per alarm). */
-    selectable?: boolean;
-    empty?: string;
-}): React.JSX.Element;
-declare function Gauge({ value, max, label, warnAt, dangerAt }: {
-    value: number;
-    max?: number;
-    label: string;
-    warnAt?: number;
-    dangerAt?: number;
-}): React.JSX.Element;
-declare function Donut({ slices, label }: {
-    slices: {
-        name: string;
-        value: number;
-    }[];
-    label: string;
-}): React.JSX.Element;
-declare function BarChart({ data, label }: {
-    data: {
-        name: string;
-        value: number;
-    }[];
-    label: string;
-}): React.JSX.Element;
-declare function DateTimeInput({ mode, className, ...props }: Omit<React.ComponentProps<"input">, "type"> & {
-    mode?: "date" | "datetime-local" | "time";
-}): React.JSX.Element;
-declare function FormField({ id: idProp, label, description, error, children, }: {
-    /** Fixed control id, e.g. so an ErrorSummary can link to it. */
-    id?: string;
-    label: string;
-    description?: string;
-    error?: string;
-    children: (aria: {
-        id: string;
-        "aria-invalid"?: boolean;
-        "aria-describedby"?: string;
-    }) => React.ReactNode;
-}): React.JSX.Element;
-declare function ErrorSummary({ errors, title: titleProp }: {
-    errors: {
-        id: string;
-        message: string;
-    }[];
-    title?: string;
-}): React.JSX.Element | null;
-
 declare const ContextMenu: React.FC<ContextPrimitive.ContextMenuProps>;
 declare const ContextMenuTrigger: React.ForwardRefExoticComponent<ContextPrimitive.ContextMenuTriggerProps & React.RefAttributes<HTMLSpanElement>>;
 declare function ContextMenuContent({ className, ...props }: React.ComponentProps<typeof ContextPrimitive.Content>): React.JSX.Element;
@@ -969,20 +786,6 @@ declare function CommandPalette({ commands, open, onOpenChange, placeholder: pla
     recent?: Command[];
     /** Called after a command ran, e.g. to maintain `recent`. */
     onCommandRun?: (command: Command) => void;
-}): React.JSX.Element;
-interface TreeTableRow<T> {
-    id: string;
-    data: T;
-    children?: TreeTableRow<T>[];
-}
-declare function TreeTable$1<T>({ rows, columns, label, }: {
-    rows: TreeTableRow<T>[];
-    columns: {
-        id: string;
-        header: React.ReactNode;
-        cell: (row: T) => React.ReactNode;
-    }[];
-    label: string;
 }): React.JSX.Element;
 declare function DiffView({ before, after, label, mode }: {
     before: string;
@@ -1239,7 +1042,7 @@ declare function RelativeTime({ value, className }: {
     className?: string;
 }): React.JSX.Element;
 declare function ButtonGroup({ className, ...props }: React.ComponentProps<"div">): React.JSX.Element;
-declare function SplitButton({ children, onClick, variant, size, disabled, menuLabel, menu, className, }: {
+declare function SplitButton({ children, onClick, variant, size, disabled, menuLabel: menuLabelProp, menu, className, }: {
     children: React.ReactNode;
     onClick?: React.MouseEventHandler<HTMLButtonElement>;
     variant?: ButtonProps["variant"];
@@ -1331,7 +1134,7 @@ interface UnsavedChangesGuard {
  * navigation (router callbacks, Cancel buttons). Pair it with `UnsavedChangesDialog`.
  */
 declare function useUnsavedChangesGuard(dirty: boolean): UnsavedChangesGuard;
-declare function UnsavedChangesDialog({ guard, title, description, confirmLabel, cancelLabel, }: {
+declare function UnsavedChangesDialog({ guard, title: titleProp, description: descriptionProp, confirmLabel: confirmLabelProp, cancelLabel: cancelLabelProp, }: {
     guard: UnsavedChangesGuard;
     title?: string;
     description?: string;
@@ -1345,7 +1148,7 @@ declare function FormSection({ title, description, columns, children, className,
     children: React.ReactNode;
     className?: string;
 }): React.JSX.Element;
-declare function FormFooter({ onCancel, onSave, saveLabel, cancelLabel, pending, dirty, guard, saveType, sticky, children, className, }: {
+declare function FormFooter({ onCancel, onSave, saveLabel: saveLabelProp, cancelLabel: cancelLabelProp, pending, dirty, guard, saveType, sticky, children, className, }: {
     onCancel?: () => void;
     onSave?: () => void;
     saveLabel?: string;
@@ -1424,7 +1227,7 @@ interface SubNavGroup {
     items: SubNavItem[];
 }
 /** Vertical secondary navigation (Configure / Settings). */
-declare function SubNav({ groups, value, onSelect, label, className, }: {
+declare function SubNav({ groups, value, onSelect, label: labelProp, className, }: {
     groups: SubNavGroup[];
     value?: string;
     onSelect?: (id: string) => void;
@@ -1432,7 +1235,7 @@ declare function SubNav({ groups, value, onSelect, label, className, }: {
     className?: string;
 }): React.JSX.Element;
 /** Hamburger that opens the sidebar in a Drawer; hidden from 860px up. */
-declare function MobileNav({ children, title, triggerLabel, open, onOpenChange, className, }: {
+declare function MobileNav({ children, title: titleProp, triggerLabel: triggerLabelProp, open, onOpenChange, className, }: {
     children: React.ReactNode;
     title?: string;
     triggerLabel?: string;
@@ -1476,7 +1279,7 @@ interface WizardProps {
     labels?: Partial<WizardLabels>;
     className?: string;
 }
-declare function Wizard({ steps, onFinish, onCancel, dirty, title, mode, open, onOpenChange, current: currentProp, defaultCurrent, onCurrentChange, labels: labelsProp, className, }: WizardProps): React.JSX.Element;
+declare function Wizard({ steps, onFinish, onCancel, dirty, title: titleProp, mode, open, onOpenChange, current: currentProp, defaultCurrent, onCurrentChange, labels: labelsProp, className, }: WizardProps): React.JSX.Element;
 /** Review step helper: lists the collected values. */
 declare function WizardReview({ items, className, }: {
     items: {
@@ -1488,7 +1291,7 @@ declare function WizardReview({ items, className, }: {
 }): React.JSX.Element;
 
 type ErrorVariant = "403" | "404" | "500" | "offline" | "session-expired";
-declare function ErrorPage({ variant, title, description, action, requestId, requestIdLabel, className, }: {
+declare function ErrorPage({ variant, title, description, action, requestId, requestIdLabel: requestIdLabelProp, className, }: {
     variant: ErrorVariant;
     title?: string;
     description?: React.ReactNode;
@@ -1734,11 +1537,9 @@ interface DataGridProps<T> {
     rows: T[];
     rowId: (row: T) => string;
     label: string;
-    /** Array. A single object is accepted for backwards compatibility (deprecated, warns once in dev). */
-    sort?: GridSort[] | GridSort;
+    sort?: GridSort[];
     onSortChange?: (sort: GridSort[]) => void;
-    /** Array. A string is accepted for backwards compatibility (deprecated, warns once in dev). */
-    selected?: string[] | string;
+    selected?: string[];
     onSelectedChange?: (ids: string[]) => void;
     /** Show the checkbox column. Implied by `selected`, `onSelectedChange` and `bulkActions`. */
     selectable?: boolean;
@@ -1816,362 +1617,6 @@ interface TreeTableProps<T> extends Omit<DataGridProps<T>, "rows" | "rowId" | "m
 }
 /** Data grid with expandable hierarchy (§4.30): `role="treegrid"`, sorting applies per sibling group. */
 declare function TreeTable<T>({ nodes, columns, expanded, defaultExpanded, onExpandedChange, treeColumn, indent, sort: sortProp, onSortChange, onRowActivate, rowActions, bulkActions, ...rest }: TreeTableProps<T>): React.JSX.Element;
-
-type Time = Date | string | number;
-interface AccountSession {
-    id: string;
-    device: DeviceKind;
-    browser: string;
-    os?: string;
-    ip?: string;
-    location?: string;
-    lastActive: Time;
-    current?: boolean;
-    /** Shown in the admin variant (`showUser`). */
-    user?: string;
-}
-interface SessionListLabels {
-    thisDevice: string;
-    revoke: string;
-    revokeOthers: string;
-    revokeOthersTitle: string;
-    revokeOthersBody: string;
-    lastActive: string;
-    user: string;
-    empty: string;
-    cancel: string;
-}
-interface SessionListProps {
-    sessions: AccountSession[];
-    onRevoke: (id: string) => void | Promise<void>;
-    onRevokeOthers?: () => void | Promise<void>;
-    /** Admin variant: adds a user column. */
-    showUser?: boolean;
-    labels?: Partial<SessionListLabels>;
-}
-declare function SessionList({ sessions, onRevoke, onRevokeOthers, showUser, labels }: SessionListProps): React.JSX.Element;
-interface ApiKeyItem {
-    id: string;
-    name: string;
-    /** Visible prefix, e.g. `pk_…abcd`. */
-    prefix: string;
-    scopes: string[];
-    createdAt: Time;
-    expiresAt?: Time | null;
-    lastUsedAt?: Time | null;
-    revoked?: boolean;
-}
-interface ApiKeyCreateInput {
-    name: string;
-    /** Days until expiry; `null` = never. */
-    expiresInDays: number | null;
-    scopes: string[];
-}
-interface ApiKeyManagerLabels {
-    create: string;
-    createTitle: string;
-    name: string;
-    expiry: string;
-    scopes: string;
-    never: string;
-    days: (n: number) => string;
-    created: string;
-    expires: string;
-    lastUsed: string;
-    neverUsed: string;
-    revoke: string;
-    revoked: string;
-    rotate: string;
-    secretLabel: string;
-    secretNotice: string;
-    acknowledge: string;
-    done: string;
-    cancel: string;
-    empty: string;
-    revokeTitle: string;
-    revokeBody: string;
-    error: string;
-}
-interface ApiKeyManagerProps {
-    keys: ApiKeyItem[];
-    /** Available scopes. */
-    scopes: {
-        value: string;
-        label?: string;
-    }[];
-    expiryPresets?: (number | null)[];
-    /** Resolve with the clear-text secret; it is shown once. */
-    onCreate: (input: ApiKeyCreateInput) => Promise<{
-        secret: string;
-    }>;
-    onRevoke: (id: string) => void | Promise<void>;
-    /** Regenerate a key; resolves with the new secret (shown once). */
-    onRotate?: (id: string) => Promise<{
-        secret: string;
-    }>;
-    labels?: Partial<ApiKeyManagerLabels>;
-}
-declare function ApiKeyManager({ keys, scopes, expiryPresets, onCreate, onRevoke, onRotate, labels }: ApiKeyManagerProps): React.JSX.Element;
-interface PasskeyItem {
-    id: string;
-    name: string;
-    createdAt: Time;
-    lastUsedAt?: Time | null;
-}
-interface SecurityFactorsLabels {
-    password: string;
-    passwordChanged: string;
-    passwordNever: string;
-    changePassword: string;
-    totp: string;
-    totpOn: string;
-    totpOff: string;
-    enable: string;
-    disable: string;
-    passkeys: string;
-    addPasskey: string;
-    renamePasskey: string;
-    removePasskey: string;
-    created: string;
-    lastUsed: string;
-    neverUsed: string;
-    noPasskeys: string;
-    recovery: string;
-    recoveryRemaining: (n: number) => string;
-    regenerate: string;
-    recoveryTitle: string;
-    recoveryNotice: string;
-    acknowledge: string;
-    done: string;
-    cancel: string;
-    removeTitle: string;
-    removeBody: string;
-    removeLastWarning: string;
-    remove: string;
-}
-interface SecurityFactorsProps {
-    password?: {
-        changedAt?: Time | null;
-        onChange: () => void;
-    };
-    totp?: {
-        enabled: boolean;
-        onEnable: () => void;
-        onDisable: () => void | Promise<void>;
-    };
-    passkeys?: {
-        items: PasskeyItem[];
-        onAdd: () => void;
-        onRename: (id: string, name: string) => void | Promise<void>;
-        onRemove: (id: string) => void | Promise<void>;
-    };
-    recovery?: {
-        remaining: number;
-        onRegenerate: () => Promise<string[]>;
-    };
-    labels?: Partial<SecurityFactorsLabels>;
-}
-declare function SecurityFactors({ password, totp, passkeys, recovery, labels }: SecurityFactorsProps): React.JSX.Element;
-type ReauthMethod = "password" | "passkey";
-interface ReauthDialogLabels {
-    title: string;
-    description: string;
-    password: string;
-    confirm: string;
-    usePasskey: string;
-    usePassword: string;
-    cancel: string;
-    failed: string;
-}
-interface ReauthDialogProps {
-    open: boolean;
-    onOpenChange: (open: boolean) => void;
-    /** Reject (or resolve false) to show the error state. */
-    onReauth: (credential: {
-        method: "password";
-        password: string;
-    } | {
-        method: "passkey";
-    }) => Promise<boolean | void>;
-    /** Show the passkey option. */
-    passkey?: boolean;
-    labels?: Partial<ReauthDialogLabels>;
-}
-declare function ReauthDialog({ open, onOpenChange, onReauth, passkey, labels }: ReauthDialogProps): React.JSX.Element;
-interface SessionExpiryDialogLabels {
-    title: string;
-    remaining: (time: string) => string;
-    stay: string;
-    signOut: string;
-    announce: (time: string) => string;
-}
-interface SessionExpiryDialogProps {
-    /** Dialog is shown while the remaining time is within `warnBeforeMs` (default 5 min). */
-    expiresAt: Time;
-    warnBeforeMs?: number;
-    onStay: () => void | Promise<void>;
-    onSignOut: () => void;
-    /** Called once when the countdown reaches zero. */
-    onExpire?: () => void;
-    labels?: Partial<SessionExpiryDialogLabels>;
-}
-declare function SessionExpiryDialog({ expiresAt, warnBeforeMs, onStay, onSignOut, onExpire, labels }: SessionExpiryDialogProps): React.JSX.Element;
-
-declare function isIPv4(s: string): boolean;
-declare function isIPv6(s: string): boolean;
-declare function isIp(s: string): boolean;
-/** Returns the parsed parts of `address/prefix`, or `null` when invalid. */
-declare function parseCidr(s: string): {
-    address: string;
-    prefix: number;
-    version: 4 | 6;
-} | null;
-declare function isCidr(s: string): boolean;
-interface NetworkLabels {
-    invalidIp: string;
-    invalidCidr: string;
-    invalidEntry: string;
-    duplicate: string;
-    add: string;
-    remove: (entry: string) => string;
-    empty: string;
-}
-type NetInputProps = Omit<React.ComponentProps<"input">, "value" | "defaultValue" | "onChange"> & {
-    value?: string;
-    defaultValue?: string;
-    onChange?: (value: string) => void;
-    label?: string;
-    hint?: string;
-    /** Message shown when the (non-empty) value is invalid. */
-    errorMessage?: string;
-};
-declare function IpInput(props: NetInputProps): React.JSX.Element;
-declare function CidrInput(props: NetInputProps): React.JSX.Element;
-interface AllowListEditorProps {
-    value?: string[];
-    defaultValue?: string[];
-    onChange?: (value: string[]) => void;
-    label?: string;
-    labels?: Partial<NetworkLabels>;
-    disabled?: boolean;
-}
-declare function AllowListEditor({ value, defaultValue, onChange, label, labels: l, disabled }: AllowListEditorProps): React.JSX.Element;
-interface TransferItem {
-    id: string;
-    label: string;
-    disabled?: boolean;
-}
-interface TransferListLabels {
-    available: string;
-    selected: string;
-    search: (list: string) => string;
-    count: (checked: number, total: number) => string;
-    moveRight: string;
-    moveLeft: string;
-    moveAllRight: string;
-    moveAllLeft: string;
-    empty: string;
-}
-interface TransferListProps {
-    items: TransferItem[];
-    /** Ids on the right-hand list. */
-    value?: string[];
-    defaultValue?: string[];
-    onChange?: (value: string[]) => void;
-    labels?: Partial<TransferListLabels>;
-    /** Viewport height of each list in px. */
-    height?: number;
-}
-declare function TransferList({ items, value, defaultValue, onChange, labels, height }: TransferListProps): React.JSX.Element;
-/** Normalises `#abc`/`abc`/long form to six-digit hex, or `null` when not a hex colour. */
-declare function normalizeHex(input: string): string | null;
-/** WCAG 2.x contrast ratio (1–21) between two hex colours. */
-declare function contrastRatio(a: string, b: string): number;
-interface ColorFieldLabels {
-    label: string;
-    colorPicker: string;
-    invalidHex: string;
-    onCard: string;
-    onPrimary: string;
-    pass: string;
-    fail: string;
-    rejected: string;
-    contrast: string;
-    preview: string;
-    sampleButton: string;
-    sampleBadge: string;
-}
-interface ColorFieldProps {
-    value?: string;
-    defaultValue?: string;
-    /** Called only with a valid hex that passes both contrast checks. */
-    onChange?: (hex: string) => void;
-    /** Resolved `--bg-card` colour (opaque hex). */
-    cardColor?: string;
-    /** Resolved `--on-primary` colour (opaque hex). */
-    onPrimaryColor?: string;
-    /** Minimum ratio against the card (non-text UI: 3). */
-    minCardRatio?: number;
-    /** Minimum ratio for text on the colour (AA: 4.5). */
-    minTextRatio?: number;
-    labels?: Partial<ColorFieldLabels>;
-}
-declare function ColorField({ value, defaultValue, onChange, cardColor, onPrimaryColor, minCardRatio, minTextRatio, labels }: ColorFieldProps): React.JSX.Element;
-interface Branding {
-    productName: string;
-    primary: string;
-    logoUrl?: string;
-}
-interface BrandingEditorLabels {
-    productName: string;
-    logo: string;
-    dropLogo: string;
-    preview: string;
-    signIn: string;
-    username: string;
-    password: string;
-    removeLogo: string;
-}
-interface BrandingEditorProps {
-    value?: Branding;
-    defaultValue?: Branding;
-    onChange?: (value: Branding) => void;
-    /** Max logo size in bytes. */
-    maxLogoSize?: number;
-    cardColor?: string;
-    onPrimaryColor?: string;
-    labels?: Partial<BrandingEditorLabels> & {
-        color?: Partial<ColorFieldLabels>;
-    };
-}
-declare function BrandingEditor({ value, defaultValue, onChange, maxLogoSize, cardColor, onPrimaryColor, labels }: BrandingEditorProps): React.JSX.Element;
-interface NotificationItem {
-    id: string;
-    title: string;
-    body?: string;
-    time: Date | string | number;
-    unread?: boolean;
-    href?: string;
-    group?: string;
-}
-interface NotificationCenterLabels {
-    bell: string;
-    title: string;
-    unreadCount: (n: number) => string;
-    markRead: (title: string) => string;
-    markAllRead: string;
-    viewAll: string;
-    empty: string;
-}
-interface NotificationCenterProps {
-    items: NotificationItem[];
-    onMarkRead?: (id: string) => void;
-    onMarkAllRead?: () => void;
-    onViewAll?: () => void;
-    onOpen?: (item: NotificationItem) => void;
-    labels?: Partial<NotificationCenterLabels>;
-}
-declare function NotificationCenter({ items, onMarkRead, onMarkAllRead, onViewAll, onOpen, labels }: NotificationCenterProps): React.JSX.Element;
 
 interface HotkeyOptions {
     /** Scope this map belongs to; it only fires while the scope is active. Default "global". */
@@ -2290,6 +1735,7 @@ interface InventoryLayoutProps {
 }
 declare function InventoryLayout({ top, tree, treeLabel, children, bottom, bottomLabel, persistKey, narrow: narrowProp, defaultTreeSize, defaultBottomSize, className, }: InventoryLayoutProps): React.JSX.Element;
 
+type TrackerEn = typeof trackerEn;
 interface LabelDef {
     id: string;
     name: string;
@@ -2307,13 +1753,6 @@ declare function LabelSwatch({ slot, className }: {
     slot: LabelSlot;
     className?: string;
 }): React.JSX.Element;
-declare const labelPickerLabels: {
-    label: string;
-    placeholder: string;
-    newColour: string;
-    colour: (n: number) => string;
-    create: (q: string) => string;
-};
 declare function LabelPicker({ labels, value, onChange, onCreate, text, disabled, }: {
     labels: LabelDef[];
     value: string[];
@@ -2323,7 +1762,7 @@ declare function LabelPicker({ labels, value, onChange, onCreate, text, disabled
         name: string;
         slot: LabelSlot;
     }) => void;
-    text?: Partial<typeof labelPickerLabels>;
+    text?: Partial<TrackerEn["labelPicker"]>;
     disabled?: boolean;
 }): React.JSX.Element;
 interface Reaction {
@@ -2332,17 +1771,12 @@ interface Reaction {
     /** Whether the current user reacted. */
     reacted?: boolean;
 }
-declare const reactionLabels: {
-    add: string;
-    reactedBy: (emoji: string, users: string[]) => string;
-    toggle: (emoji: string, n: number) => string;
-};
 declare function Reactions({ reactions, onToggle, palette, readOnly, text, }: {
     reactions: Reaction[];
     onToggle: (emoji: string) => void;
     palette?: string[];
     readOnly?: boolean;
-    text?: Partial<typeof reactionLabels>;
+    text?: Partial<TrackerEn["reaction"]>;
 }): React.JSX.Element;
 interface ActivityComment {
     type: "comment";
@@ -2367,20 +1801,13 @@ interface ActivityEvent {
     summary: React.ReactNode;
 }
 type ActivityItem = ActivityComment | ActivityEvent;
-declare const timelineLabels: {
-    edited: string;
-    actions: string;
-    more: (n: number) => string;
-    fewer: string;
-    timeline: string;
-};
 declare function ActivityTimeline({ items, composer, collapseAfter, text, }: {
     items: ActivityItem[];
     /** Rendered below the list (e.g. a Textarea + submit button). */
     composer?: React.ReactNode;
     /** Runs of more than this many consecutive events are collapsed behind a toggle. */
     collapseAfter?: number;
-    text?: Partial<typeof timelineLabels>;
+    text?: Partial<TrackerEn["timeline"]>;
 }): React.JSX.Element;
 interface PickerOption {
     value: string;
@@ -2388,11 +1815,6 @@ interface PickerOption {
     icon?: React.ReactNode;
     description?: string;
 }
-declare const optionPickerLabels: {
-    search: string;
-    empty: string;
-    none: string;
-};
 interface OptionPickerProps {
     options: PickerOption[];
     value: string[];
@@ -2406,7 +1828,7 @@ interface OptionPickerProps {
     /** Single key (e.g. "s") that opens the picker while focus is not in a text field. */
     shortcut?: string;
     disabled?: boolean;
-    text?: Partial<typeof optionPickerLabels>;
+    text?: Partial<TrackerEn["optionPicker"]>;
     className?: string;
 }
 declare function OptionPicker({ options, value, onChange, multiple, label, compact, searchable, shortcut, disabled, text, className }: OptionPickerProps): React.JSX.Element;
@@ -2436,14 +1858,8 @@ interface IssueViewProps {
     density?: "compact" | "comfortable";
     /** Overrides "now" for the overdue check (tests, server-rendering). */
     now?: Date | number;
-    text?: Partial<typeof issueLabels>;
+    text?: Partial<TrackerEn["issue"]>;
 }
-declare const issueLabels: {
-    select: (key: string) => string;
-    overdue: string;
-    comments: (n: number) => string;
-    due: string;
-};
 declare function IssueRow({ issue, density, selected, onSelectedChange, now, text, }: IssueViewProps & {
     selected?: boolean;
     onSelectedChange?: (selected: boolean) => void;
@@ -2479,12 +1895,6 @@ declare function HoverCard({ trigger, children, openDelay, closeDelay, side, cla
     side?: "top" | "right" | "bottom" | "left";
     className?: string;
 }): React.JSX.Element;
-declare const progressLabels: {
-    todo: string;
-    doing: string;
-    done: string;
-    summary: (pct: number) => string;
-};
 declare function ProgressSummary({ todo, doing, done, burndown, title, text, }: {
     todo: number;
     doing: number;
@@ -2492,301 +1902,7 @@ declare function ProgressSummary({ todo, doing, done, burndown, title, text, }: 
     title?: string;
     /** Optional chart (e.g. TimeSeriesChart) rendered under the bar. */
     burndown?: React.ReactNode;
-    text?: Partial<typeof progressLabels>;
+    text?: Partial<TrackerEn["progress"]>;
 }): React.JSX.Element;
 
-type ConsoleStatus = "connecting" | "connected" | "disconnected" | "error";
-interface ConsoleFrameLabels {
-    console: string;
-    sendCad: string;
-    keys: string;
-    fullscreen: string;
-    exitFullscreen: string;
-    fit: string;
-    actual: string;
-    screenshot: string;
-    disconnect: string;
-    reconnect: string;
-    connecting: string;
-    connected: string;
-    disconnected: string;
-    error: string;
-    releaseHint: string;
-}
-interface ConsoleFrameProps {
-    /** The canvas / video element supplied by the app (noVNC, WebMKS, …). */
-    children?: React.ReactNode;
-    status: ConsoleStatus;
-    errorMessage?: string;
-    /** Called with a key-combo id; "ctrl-alt-del" for the primary button. */
-    onSendKeys?: (combo: string) => void;
-    /** Extra combos for the "Send keys" menu. */
-    keyCombos?: {
-        id: string;
-        label: string;
-    }[];
-    scale?: "fit" | "actual";
-    onScaleChange?: (scale: "fit" | "actual") => void;
-    onScreenshot?: () => void;
-    onDisconnect?: () => void;
-    onReconnect?: () => void;
-    /** Show the keyboard-grab indicator with the release hint. */
-    keyboardGrabbed?: boolean;
-    labels?: Partial<ConsoleFrameLabels>;
-    className?: string;
-}
-declare function ConsoleFrame({ children, status, errorMessage, onSendKeys, keyCombos, scale: scaleProp, onScaleChange, onScreenshot, onDisconnect, onReconnect, keyboardGrabbed, labels, className, }: ConsoleFrameProps): React.JSX.Element;
-type HwDevice = {
-    id: string;
-    kind: "cpu";
-    count: number;
-    coresPerSocket: number;
-    reservationMhz: number;
-} | {
-    id: string;
-    kind: "memory";
-    sizeMb: number;
-    reservationMb: number;
-} | {
-    id: string;
-    kind: "disk";
-    name: string;
-    sizeGb: number;
-    provisioning: "thin" | "thick-lazy" | "thick-eager";
-    controller: string;
-} | {
-    id: string;
-    kind: "nic";
-    name: string;
-    network: string;
-    adapter: string;
-    connected: boolean;
-} | {
-    id: string;
-    kind: "cdrom";
-    name: string;
-    iso?: string;
-    connected: boolean;
-};
-type HwKind = HwDevice["kind"];
-interface HardwareCapabilities {
-    /** Whether the VM is running; hot-add rules only apply then. */
-    poweredOn?: boolean;
-    hotAdd?: Partial<Record<HwKind, boolean>>;
-    networks: string[];
-    controllers?: string[];
-    adapters?: string[];
-    maxCpu?: number;
-    maxMemoryMb?: number;
-}
-interface HardwareEditorLabels {
-    title: string;
-    cpu: string;
-    memory: string;
-    disk: string;
-    nic: string;
-    cdrom: string;
-    cpuCount: string;
-    coresPerSocket: string;
-    reservationMhz: string;
-    memorySize: string;
-    reservationMb: string;
-    diskSize: string;
-    provisioning: string;
-    thin: string;
-    thickLazy: string;
-    thickEager: string;
-    controller: string;
-    network: string;
-    adapter: string;
-    connected: string;
-    iso: string;
-    noIso: string;
-    chooseIso: string;
-    addDevice: string;
-    remove: (name: string) => string;
-    hotAddDisabled: string;
-    pendingChanges: string;
-    noChanges: string;
-    save: string;
-    discard: string;
-    errCpu: string;
-    errCores: string;
-    errMemory: string;
-    errDisk: string;
-    errShrink: string;
-    errNetwork: string;
-    added: string;
-    removed: string;
-    changed: (field: string, from: string, to: string) => string;
-}
-interface HardwareEditorProps {
-    devices?: HwDevice[];
-    defaultDevices?: HwDevice[];
-    onChange?: (devices: HwDevice[]) => void;
-    /** The saved configuration the pending diff is computed against; defaults to the initial devices. */
-    baseline?: HwDevice[];
-    capabilities: HardwareCapabilities;
-    onSave?: (devices: HwDevice[]) => void;
-    /** Render a picker (e.g. DatastoreBrowser in a dialog) for CD/DVD media. */
-    renderIsoPicker?: (apply: (iso: string) => void, close: () => void) => React.ReactNode;
-    labels?: Partial<HardwareEditorLabels>;
-    className?: string;
-}
-declare function HardwareEditor({ devices: devicesProp, defaultDevices, onChange, baseline, capabilities: cap, onSave, renderIsoPicker, labels, className }: HardwareEditorProps): React.JSX.Element;
-interface DatastoreEntry {
-    /** Absolute path, e.g. "/iso/win.iso"; the root is "/". */
-    path: string;
-    type: "folder" | "file";
-    size?: number;
-    modified?: Date | string | number;
-}
-interface DatastoreBrowserLabels {
-    tree: string;
-    files: string;
-    path: string;
-    name: string;
-    size: string;
-    modified: string;
-    type: string;
-    folder: string;
-    file: string;
-    root: string;
-    empty: string;
-    upload: string;
-    download: string;
-    newFolder: string;
-    folderName: string;
-    create: string;
-    delete: string;
-    deleteTitle: string;
-    deleteDescription: (name: string) => string;
-    select: string;
-    cancel: string;
-}
-interface DatastoreBrowserProps {
-    entries: DatastoreEntry[];
-    path?: string;
-    defaultPath?: string;
-    onPathChange?: (path: string) => void;
-    /** Lazy folders: called when an unloaded folder is expanded/opened; the parent then adds entries. */
-    onLoadFolder?: (path: string) => Promise<void>;
-    uploads?: UploadFile[];
-    onUpload?: (files: File[], folder: string) => void;
-    onDownload?: (entry: DatastoreEntry) => void;
-    onCreateFolder?: (name: string, parent: string) => void;
-    onDelete?: (entry: DatastoreEntry) => void;
-    /** Picker mode: choose a file or a folder. */
-    select?: "file" | "folder";
-    /** Extensions accepted in picker mode, e.g. [".iso"]. */
-    accept?: string[];
-    onSelect?: (entry: DatastoreEntry) => void;
-    onCancel?: () => void;
-    labels?: Partial<DatastoreBrowserLabels>;
-    className?: string;
-}
-declare function DatastoreBrowser({ entries, path: pathProp, defaultPath, onPathChange, onLoadFolder, uploads, onUpload, onDownload, onCreateFolder, onDelete, select, accept, onSelect, onCancel, labels, className, }: DatastoreBrowserProps): React.JSX.Element;
-interface PermissionRole {
-    id: string;
-    name: string;
-    description?: string;
-}
-interface PermissionAssignment {
-    principal: ComboboxOption;
-    roleId: string;
-    propagate: boolean;
-}
-interface PermissionAssignLabels {
-    title: string;
-    principal: string;
-    role: string;
-    propagate: string;
-    object: string;
-    assign: string;
-    cancel: string;
-}
-interface PermissionAssignDialogProps {
-    open: boolean;
-    onOpenChange: (open: boolean) => void;
-    /** Users and groups; set `group` to "Users" / "Groups" to separate them. */
-    principals: ComboboxOption[] | ((query: string) => ComboboxOption[] | Promise<ComboboxOption[]>);
-    roles: PermissionRole[];
-    objectPath: string;
-    defaultRoleId?: string;
-    defaultPropagate?: boolean;
-    onAssign: (assignment: PermissionAssignment) => void | Promise<void>;
-    labels?: Partial<PermissionAssignLabels>;
-}
-declare function PermissionAssignDialog({ open, onOpenChange, principals, roles, objectPath, defaultRoleId, defaultPropagate, onAssign, labels }: PermissionAssignDialogProps): React.JSX.Element;
-interface SnapshotNode {
-    id: string;
-    name: string;
-    createdAt: Date | string | number;
-    sizeBytes?: number;
-    description?: string;
-    children?: SnapshotNode[];
-}
-interface SnapshotTreeLabels {
-    tree: string;
-    take: string;
-    revert: string;
-    delete: string;
-    deleteChildren: string;
-    youAreHere: string;
-    consolidationNeeded: string;
-    consolidate: string;
-    confirmRevert: (name: string) => string;
-    confirmDelete: (name: string) => string;
-    confirmDeleteChildren: (name: string) => string;
-    cancel: string;
-}
-interface SnapshotTreeProps {
-    snapshots: SnapshotNode[];
-    /** Id of the snapshot the running state descends from; rendered as the "You are here" node. */
-    currentId?: string;
-    onTake?: () => void;
-    onRevert?: (id: string) => void;
-    onDelete?: (id: string) => void;
-    onDeleteChildren?: (id: string) => void;
-    needsConsolidation?: boolean;
-    onConsolidate?: () => void;
-    labels?: Partial<SnapshotTreeLabels>;
-    className?: string;
-}
-declare function SnapshotTree({ snapshots, currentId, onTake, onRevert, onDelete, onDeleteChildren, needsConsolidation, onConsolidate, labels, className }: SnapshotTreeProps): React.JSX.Element;
-type EventSeverity = "info" | "warning" | "error";
-interface ConsoleEvent {
-    id: string;
-    time: Date | string | number;
-    severity: EventSeverity;
-    message: string;
-    source?: string;
-    user?: string;
-    details?: string;
-}
-interface EventConsoleLabels {
-    title: string;
-    search: string;
-    severity: string;
-    all: string;
-    info: string;
-    warning: string;
-    error: string;
-    liveTail: string;
-    time: string;
-    message: string;
-    source: string;
-    user: string;
-    empty: string;
-    details: string;
-}
-interface EventConsoleProps {
-    events: ConsoleEvent[];
-    liveTail?: boolean;
-    onLiveTailChange?: (live: boolean) => void;
-    labels?: Partial<EventConsoleLabels>;
-    className?: string;
-}
-declare function EventConsole({ events, liveTail: liveProp, onLiveTailChange, labels, className }: EventConsoleProps): React.JSX.Element;
-
-export { Accordion, type AccordionItem, AccountItem, AccountList, type AccountSession, ActionBar, type ActionBarProps, type ActivityComment, type ActivityEvent, type ActivityItem, ActivityTimeline, AdminShell, type AlarmItem, AlarmList, Alert, AllowListEditor, type AllowListEditorProps, type ApiKeyCreateInput, type ApiKeyItem, ApiKeyManager, type ApiKeyManagerLabels, type ApiKeyManagerProps, type AuditEvent, AuditLog, AuthFooter, Avatar, AvatarGroup, Badge, Banner, BarChart, BrandHeader, type Branding, BrandingEditor, type BrandingEditorLabels, type BrandingEditorProps, Breadcrumb, Button, ButtonGroup, type ButtonProps, CapacityBar, type CapacityBarProps, Card, type ChartSeries, Checkbox, Chip, CidrInput, ClientInfo, CodeDisplay, CodeEditor, CodeEditorLite, CodeInput, ColorField, type ColorFieldLabels, type ColorFieldProps, Combobox, type ComboboxOption, type ComboboxProps, type Command, CommandPalette, ConfirmDialog, type ConsoleEvent, ConsoleFrame, type ConsoleFrameLabels, type ConsoleFrameProps, type ConsoleStatus, ContextMenu, ContextMenuContent, ContextMenuFor, ContextMenuItem, ContextMenuSeparator, ContextMenuTrigger, CopyButton, DataGrid, DataGridLegacy, type DataGridLegacyProps, type DataGridProps, DatastoreBrowser, type DatastoreBrowserLabels, type DatastoreBrowserProps, type DatastoreEntry, DatePicker, type DatePickerProps, type DateRangeValue, DateTimeInput, DefinitionList, DetailPage, type Device, type DeviceKind, DeviceSelector, DeviceSteps, type DeviceStepsProps, Dialog, DialogClose, DialogContent, DialogTrigger, type DiffOp, DiffView, DockedTaskPanel, Donut, Drawer, DrawerClose, DrawerContent, DrawerTrigger, DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger, EmptyState, ErrorPage, ErrorSummary, type ErrorVariant, EventConsole, type EventConsoleLabels, type EventConsoleProps, type EventSeverity, Field, type FieldProps, FileDropzone, type Filter, FilterBar, type FilterBarLabels, type FilterBarProps, type FilterField, type FilterOp, type FilterOption, type FilterToken, FormField, FormFooter, FormPage, FormSection, Formatters, Gauge, type GridColumn, type GridColumnLegacy, GridColumnsMenu, type GridDensity, GridDensityToggle, type GridFilter, type GridFilterRenderer, type GridLabels, type GridMenuItem, GridSearch, type GridSort, type GridSortLegacy, type HardwareCapabilities, HardwareEditor, type HardwareEditorLabels, type HardwareEditorProps, Heatmap, type HotkeyOptions, HotkeysProvider, HoverCard, type HwDevice, type HwKind, IconButton, type IconButtonProps, InfiniteList, type InfiniteListProps, InfoBox, InlineEdit, Input, type InputProps, InventoryLayout, type InventoryLayoutProps, IpInput, IssueCard, type IssueData, IssueRow, Kbd, type KeyValue, KeyValueEditor, Label, type LabelDef, LabelPicker, type LabelSlot, LabelSwatch, LafErrorBoundary, LanguageSwitcher, LineChart, type LogLine, LogViewer, type LogViewerLabels, Menu, type MenuItemSpec, MenuShortcut, MfaEnrolment, type MfaEnrolmentProps, type MfaMethod, MobileNav, NavGroup, NavLink, type NetworkLabels, NotificationCenter, type NotificationCenterLabels, type NotificationCenterProps, type NotificationItem, NumberInput, ObjectIcon, type ObjectIconProps, type ObjectKind, ObjectPage, type ObjectPageCard, type ObjectPageProps, type ObjectState, OptionPicker, type OptionPickerProps, OtpInput, OverflowTabs, PageHead, Pagination, type PaginationProps, Panel, type ParsedFilter, type PasskeyItem, PasswordField, type PasswordFieldProps, PermissionAssignDialog, type PermissionAssignDialogProps, type PermissionAssignLabels, type PermissionAssignment, type PermissionGroup, PermissionMatrix, type PermissionMatrixLabels, type PermissionRole, type PickerOption, Popover, PopoverClose, PopoverContent, PopoverTrigger, Progress, ProgressSummary, PropertiesPane, type PropertyField, type PropertyGroup, Radio, RadioGroup, type RadioGroupProps, type RadioProps, type Reaction, Reactions, ReauthDialog, type ReauthDialogLabels, type ReauthDialogProps, type ReauthMethod, type RegisteredHotkey, RelativeTime, type SavedView, SavedViews, type SavedViewsLabels, type SavedViewsProps, type SavedViewsStorage, ScopeList, SearchInput, SecretDisplay, SecurityFactors, type SecurityFactorsLabels, type SecurityFactorsProps, SegmentedControl, type SegmentedControlProps, type SegmentedItem, Select, type SelectGroup, SelectMenu, type SelectOption, type SelectProps, SessionExpiryDialog, type SessionExpiryDialogLabels, type SessionExpiryDialogProps, SessionList, type SessionListLabels, type SessionListProps, type Severity, ShortcutHelp, Skeleton, Slider, type SliderProps, type SnapshotNode, SnapshotTree, type SnapshotTreeLabels, type SnapshotTreeProps, SocialButton, SocialButtons, SocialDivider, Sparkline, Spinner, SplitButton, SplitPane, StackedBarChart, Stat, StatGrid, StatusDot, type Step, Stepper, SubNav, type SubNavGroup, type SubNavItem, Switch, Table, Tabs, TabsContent, TabsList, TabsTrigger, TagInput, type TaskItem, TaskPanel, type TaskStatus, TenantSwitcher, type TextTerm, Textarea, TimeRangePicker, type ToastOptions, ToastProvider, type ToastTone, Toolbar, Tooltip, TooltipProvider, TopBar, type TopBarCounter, type TopologyEdge, TopologyGraph, type TopologyNode, type TransferItem, TransferList, type TransferListLabels, type TransferListProps, TreeTable$1 as TreeTable, type TreeTableNode, type TreeTableProps, type TreeTableRow, TreeTable as TreeTableV2, type UnitOption, UnsavedChangesDialog, type UnsavedChangesGuard, type UploadFile, type UseSavedViewsOptions, type User, UserCell, UserMenu, UserSelector, type UserSelectorProps, VirtualList, Wizard, type WizardLabels, type WizardProps, WizardReview, type WizardStep, buttonVariants, cn, contrastRatio, diffLines, format, formatHotkey, formatRelative, highlight, isCidr, isIPv4, isIPv6, isIp, isMacPlatform, matchesAccept, normalizeHex, observeRectWithFallback, parseCidr, parseFilter, parseHotkey, registerObjectKind, serializeFilter, serializeToken, useControllableState, useHotkeys, useRegisteredHotkeys, useSavedViews, useToast, useUnsavedChangesGuard };
+export { Accordion, type AccordionItem, AccountItem, AccountList, ActionBar, type ActionBarProps, type ActivityComment, type ActivityEvent, type ActivityItem, ActivityTimeline, AdminShell, Alert, type AuditEvent, AuditLog, AuthFooter, Avatar, AvatarGroup, Badge, Banner, BrandHeader, Breadcrumb, Button, ButtonGroup, type ButtonProps, CapacityBar, type CapacityBarProps, Card, type ChartSeries, Checkbox, Chip, ClientInfo, CodeDisplay, CodeEditor, CodeEditorLite, CodeInput, ComboboxOption, type Command, CommandPalette, ConfirmDialog, ContextMenu, ContextMenuContent, ContextMenuFor, ContextMenuItem, ContextMenuSeparator, ContextMenuTrigger, CopyButton, DataGrid, type DataGridProps, DatePicker, type DatePickerProps, type DateRangeValue, DefinitionList, DetailPage, DeviceSteps, type DeviceStepsProps, Dialog, DialogClose, DialogContent, DialogTrigger, type DiffOp, DiffView, DockedTaskPanel, Drawer, DrawerClose, DrawerContent, DrawerTrigger, DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger, EmptyState, ErrorPage, type ErrorVariant, Field, type FieldProps, type Filter, FilterBar, type FilterBarLabels, type FilterBarProps, type FilterField, type FilterOp, type FilterOption, type FilterToken, FormFooter, FormPage, FormSection, Formatters, type GridColumn, GridColumnsMenu, type GridDensity, GridDensityToggle, type GridFilter, type GridFilterRenderer, type GridLabels, type GridMenuItem, GridSearch, type GridSort, Heatmap, type HotkeyOptions, HotkeysProvider, HoverCard, IconButton, type IconButtonProps, InfiniteList, type InfiniteListProps, InfoBox, Input, type InputProps, InventoryLayout, type InventoryLayoutProps, IssueCard, type IssueData, IssueRow, Kbd, type KeyValue, KeyValueEditor, Label, type LabelDef, LabelPicker, type LabelSlot, LabelSwatch, LafErrorBoundary, LanguageSwitcher, LineChart, type LogLine, LogViewer, type LogViewerLabels, Menu, type MenuItemSpec, MenuShortcut, MfaEnrolment, type MfaEnrolmentProps, type MfaMethod, MobileNav, NavGroup, NavLink, NumberInput, ObjectIcon, type ObjectIconProps, type ObjectKind, ObjectPage, type ObjectPageCard, type ObjectPageProps, type ObjectState, OptionPicker, type OptionPickerProps, OtpInput, OverflowTabs, PageHead, Pagination, type PaginationProps, Panel, type ParsedFilter, PasswordField, type PasswordFieldProps, type PermissionGroup, PermissionMatrix, type PermissionMatrixLabels, type PickerOption, Popover, PopoverClose, PopoverContent, PopoverTrigger, Progress, ProgressSummary, PropertiesPane, type PropertyField, type PropertyGroup, Radio, RadioGroup, type RadioGroupProps, type RadioProps, type Reaction, Reactions, type RegisteredHotkey, RelativeTime, type SavedView, SavedViews, type SavedViewsLabels, type SavedViewsProps, type SavedViewsStorage, ScopeList, SearchInput, SecretDisplay, SegmentedControl, type SegmentedControlProps, type SegmentedItem, Select, type SelectGroup, SelectMenu, type SelectOption, type SelectProps, type Severity, ShortcutHelp, Skeleton, Slider, type SliderProps, SocialButton, SocialButtons, SocialDivider, Sparkline, Spinner, SplitButton, SplitPane, StackedBarChart, Stat, StatGrid, StatusDot, type Step, Stepper, SubNav, type SubNavGroup, type SubNavItem, Switch, Table, Tabs, TabsContent, TabsList, TabsTrigger, TagInput, type TaskItem, TaskPanel, type TaskStatus, TenantSwitcher, type TextTerm, Textarea, TimeRangePicker, type ToastOptions, ToastProvider, type ToastTone, Toolbar, Tooltip, TooltipProvider, TopBar, type TopBarCounter, type TopologyEdge, TopologyGraph, type TopologyNode, TreeTable, type TreeTableNode, type TreeTableProps, type UnitOption, UnsavedChangesDialog, type UnsavedChangesGuard, type UseSavedViewsOptions, UserCell, UserMenu, VirtualList, Wizard, type WizardLabels, type WizardProps, WizardReview, type WizardStep, buttonVariants, cn, diffLines, format, formatHotkey, formatRelative, highlight, isMacPlatform, matchesAccept, observeRectWithFallback, parseFilter, parseHotkey, registerObjectKind, serializeFilter, serializeToken, useControllableState, useHotkeys, useRegisteredHotkeys, useSavedViews, useToast, useUnsavedChangesGuard };

@@ -5,12 +5,17 @@ import * as TooltipPrimitive from "@radix-ui/react-tooltip";
 import { Check, ChevronDown, MessageSquare, MoreHorizontal, SmilePlus } from "lucide-react";
 import * as React from "react";
 import { cn } from "../cn";
+import { useLafDefaults } from "../i18n";
+import { trackerEn } from "../messages/tracker.en";
 import { Avatar } from "./display";
 import { Chip } from "./extras";
 import { Combobox, type ComboboxOption } from "./combobox";
 import { Menu, type MenuItemSpec } from "./menu";
 import { AvatarGroup, RelativeTime } from "./primitives";
 import { LABEL_SLOTS, type LabelSlot } from "./label-slot";
+
+const lafDefaults = { tracker: trackerEn };
+const useLaf = () => useLafDefaults(lafDefaults);
 
 export type { LabelSlot };
 
@@ -31,6 +36,7 @@ function Tip({ content, children }: { content: React.ReactNode; children: React.
 }
 
 const withLabels = <T extends object>(defaults: T, labels?: Partial<T>): T => ({ ...defaults, ...labels });
+type TrackerEn = typeof trackerEn;
 
 /* ── 4.95 Label / LabelPicker ── */
 export interface LabelDef {
@@ -59,8 +65,6 @@ export function LabelSwatch({ slot, className }: { slot: LabelSlot; className?: 
   return <span aria-hidden className={cn("inline-block size-3 shrink-0 rounded-xs", className)} style={{ backgroundColor: `var(--label-${slot})` }} />;
 }
 
-const labelPickerLabels = { label: "Labels", placeholder: "Filter labels…", newColour: "New label colour", colour: (n: number) => `Colour ${n}`, create: (q: string) => `Create label “${q}”` };
-
 export function LabelPicker({
   labels,
   value,
@@ -74,10 +78,10 @@ export function LabelPicker({
   onChange: (ids: string[]) => void;
   /** Enables creation; receives the typed name and the chosen palette slot. */
   onCreate?: (label: { name: string; slot: LabelSlot }) => void;
-  text?: Partial<typeof labelPickerLabels>;
+  text?: Partial<TrackerEn["labelPicker"]>;
   disabled?: boolean;
 }) {
-  const l = withLabels(labelPickerLabels, text);
+  const l = withLabels(useLaf().t.components.tracker.labelPicker, text);
   const [slot, setSlot] = React.useState<LabelSlot>(1);
   const byId = React.useMemo(() => new Map(labels.map((x) => [x.id, x])), [labels]);
   const options: ComboboxOption[] = labels.map((x) => ({ value: x.id, label: x.name, description: x.description }));
@@ -130,11 +134,6 @@ export interface Reaction {
   reacted?: boolean;
 }
 
-const reactionLabels = {
-  add: "Add reaction",
-  reactedBy: (emoji: string, users: string[]) => `${emoji} ${users.join(", ")}`,
-  toggle: (emoji: string, n: number) => `${emoji} ${n}`,
-};
 const DEFAULT_EMOJI = ["👍", "👎", "😄", "🎉", "❤️", "👀"];
 
 export function Reactions({
@@ -148,9 +147,9 @@ export function Reactions({
   onToggle: (emoji: string) => void;
   palette?: string[];
   readOnly?: boolean;
-  text?: Partial<typeof reactionLabels>;
+  text?: Partial<TrackerEn["reaction"]>;
 }) {
-  const l = withLabels(reactionLabels, text);
+  const l = withLabels(useLaf().t.components.tracker.reaction, text);
   const [open, setOpen] = React.useState(false);
   return (
     <div className="flex flex-wrap items-center gap-1">
@@ -226,8 +225,6 @@ export interface ActivityEvent {
 }
 export type ActivityItem = ActivityComment | ActivityEvent;
 
-const timelineLabels = { edited: "edited", actions: "Comment actions", more: (n: number) => `${n} more updates`, fewer: "Show fewer updates", timeline: "Activity" };
-
 export function ActivityTimeline({
   items,
   composer,
@@ -239,9 +236,9 @@ export function ActivityTimeline({
   composer?: React.ReactNode;
   /** Runs of more than this many consecutive events are collapsed behind a toggle. */
   collapseAfter?: number;
-  text?: Partial<typeof timelineLabels>;
+  text?: Partial<TrackerEn["timeline"]>;
 }) {
-  const l = withLabels(timelineLabels, text);
+  const l = withLabels(useLaf().t.components.tracker.timeline, text);
   const [expanded, setExpanded] = React.useState<Set<string>>(new Set());
   const rows = React.useMemo(() => {
     const out: (ActivityItem | { type: "run"; id: string; events: ActivityEvent[] })[] = [];
@@ -346,8 +343,6 @@ export interface PickerOption {
   description?: string;
 }
 
-const optionPickerLabels = { search: "Search…", empty: "No results", none: "None" };
-
 export interface OptionPickerProps {
   options: PickerOption[];
   value: string[];
@@ -361,12 +356,12 @@ export interface OptionPickerProps {
   /** Single key (e.g. "s") that opens the picker while focus is not in a text field. */
   shortcut?: string;
   disabled?: boolean;
-  text?: Partial<typeof optionPickerLabels>;
+  text?: Partial<TrackerEn["optionPicker"]>;
   className?: string;
 }
 
 export function OptionPicker({ options, value, onChange, multiple, label, compact, searchable = true, shortcut, disabled, text, className }: OptionPickerProps) {
-  const l = withLabels(optionPickerLabels, text);
+  const l = withLabels(useLaf().t.components.tracker.optionPicker, text);
   const [open, setOpen] = React.useState(false);
   const trigger = React.useRef<HTMLButtonElement>(null);
   const selected = options.filter((o) => value.includes(o.value));
@@ -468,11 +463,10 @@ interface IssueViewProps {
   density?: "compact" | "comfortable";
   /** Overrides "now" for the overdue check (tests, server-rendering). */
   now?: Date | number;
-  text?: Partial<typeof issueLabels>;
+  text?: Partial<TrackerEn["issue"]>;
 }
-const issueLabels = { select: (key: string) => `Select ${key}`, overdue: "Overdue", comments: (n: number) => `${n} comments`, due: "Due" };
 
-function DueDate({ due, now, text }: { due: NonNullable<IssueData["due"]>; now?: Date | number; text: typeof issueLabels }) {
+function DueDate({ due, now, text }: { due: NonNullable<IssueData["due"]>; now?: Date | number; text: TrackerEn["issue"] }) {
   const d = new Date(due);
   const overdue = d.getTime() < (now ? new Date(now).getTime() : Date.now());
   return (
@@ -513,7 +507,7 @@ export function IssueRow({
   now,
   text,
 }: IssueViewProps & { selected?: boolean; onSelectedChange?: (selected: boolean) => void }) {
-  const l = withLabels(issueLabels, text);
+  const l = withLabels(useLaf().t.components.tracker.issue, text);
   return (
     <div className={cn("flex items-center gap-3 border-b border-line px-3 text-sm", density === "compact" ? "py-1" : "py-2.5", selected && "bg-surface-hover")}>
       {onSelectedChange && (
@@ -539,7 +533,7 @@ export function IssueRow({
 }
 
 export function IssueCard({ issue, density = "comfortable", now, text }: IssueViewProps) {
-  const l = withLabels(issueLabels, text);
+  const l = withLabels(useLaf().t.components.tracker.issue, text);
   return (
     <article className={cn("grid rounded-md border border-line bg-surface text-sm", density === "compact" ? "gap-1 p-2" : "gap-2 p-3")}>
       <div className="flex items-center gap-2">
@@ -644,7 +638,6 @@ export function HoverCard({
 }
 
 /* ── 4.101 ProgressSummary ── */
-const progressLabels = { todo: "To do", doing: "In progress", done: "Done", summary: (pct: number) => `${pct}% complete` };
 
 export function ProgressSummary({
   todo,
@@ -660,9 +653,9 @@ export function ProgressSummary({
   title?: string;
   /** Optional chart (e.g. TimeSeriesChart) rendered under the bar. */
   burndown?: React.ReactNode;
-  text?: Partial<typeof progressLabels>;
+  text?: Partial<TrackerEn["progress"]>;
 }) {
-  const l = withLabels(progressLabels, text);
+  const l = withLabels(useLaf().t.components.tracker.progress, text);
   const total = todo + doing + done;
   const pct = total ? Math.round((done / total) * 100) : 0;
   const seg = (n: number, cls: string) => (n > 0 ? <span className={cls} style={{ width: `${(n / total) * 100}%` }} /> : null);

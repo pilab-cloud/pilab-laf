@@ -1,5 +1,359 @@
+// lib/locales/account.hu.ts
+var accountHu = {
+  sessions: {
+    thisDevice: "Ez az eszk\xF6z",
+    revoke: "Munkamenet visszavon\xE1sa",
+    revokeOthers: "Kijelentkez\xE9s a t\xF6bbi munkamenetb\u0151l",
+    revokeOthersTitle: "Kijelentkezik a t\xF6bbi munkamenetb\u0151l?",
+    revokeOthersBody: "Az ezen az eszk\xF6z\xF6n k\xEDv\xFCl minden munkamenet kijelentkeztet\xE9sre ker\xFCl.",
+    lastActive: "Utols\xF3 aktivit\xE1s",
+    user: "Felhaszn\xE1l\xF3",
+    empty: "Nincs akt\xEDv munkamenet",
+    cancel: "M\xE9gse"
+  },
+  apiKeys: {
+    create: "Kulcs l\xE9trehoz\xE1sa",
+    createTitle: "API-kulcs l\xE9trehoz\xE1sa",
+    name: "N\xE9v",
+    expiry: "Lej\xE1rat",
+    scopes: "Hat\xF3k\xF6r\xF6k",
+    never: "Soha",
+    days: (n) => `${n} nap`,
+    created: "L\xE9trehozva",
+    expires: "Lej\xE1r",
+    lastUsed: "Utolj\xE1ra haszn\xE1lva",
+    neverUsed: "M\xE9g nem haszn\xE1lt",
+    revoke: "Visszavon\xE1s",
+    revoked: "Visszavonva",
+    rotate: "Csere",
+    secretLabel: "Az \xFAj titkos kulcs",
+    secretNotice: "M\xE1solja ki most a titkos kulcsot. K\xE9s\u0151bb nem jelenik meg \xFAjra.",
+    acknowledge: "Elt\xE1roltam a titkos kulcsot",
+    done: "K\xE9sz",
+    cancel: "M\xE9gse",
+    empty: "M\xE9g nincs kulcs",
+    revokeTitle: "Visszavonja a kulcsot?",
+    revokeBody: "A kulcsot haszn\xE1l\xF3 alkalmaz\xE1sok azonnal le\xE1llnak.",
+    error: "Hiba t\xF6rt\xE9nt. Pr\xF3b\xE1lja \xFAjra."
+  },
+  factors: {
+    password: "Jelsz\xF3",
+    passwordChanged: "Utolj\xE1ra m\xF3dos\xEDtva",
+    passwordNever: "Soha nem m\xF3dos\xEDtva",
+    changePassword: "Jelsz\xF3 m\xF3dos\xEDt\xE1sa",
+    totp: "Hiteles\xEDt\u0151 alkalmaz\xE1s (TOTP)",
+    totpOn: "Enged\xE9lyezve",
+    totpOff: "Nincs be\xE1ll\xEDtva",
+    enable: "Enged\xE9lyez\xE9s",
+    disable: "Letilt\xE1s",
+    passkeys: "Hozz\xE1f\xE9r\xE9si kulcsok",
+    addPasskey: "Hozz\xE1f\xE9r\xE9si kulcs hozz\xE1ad\xE1sa",
+    renamePasskey: "Hozz\xE1f\xE9r\xE9si kulcs neve",
+    removePasskey: "Hozz\xE1f\xE9r\xE9si kulcs elt\xE1vol\xEDt\xE1sa",
+    created: "L\xE9trehozva",
+    lastUsed: "Utolj\xE1ra haszn\xE1lva",
+    neverUsed: "M\xE9g nem haszn\xE1lt",
+    noPasskeys: "Nincs regisztr\xE1lt hozz\xE1f\xE9r\xE9si kulcs",
+    recovery: "Helyre\xE1ll\xEDt\xE1si k\xF3dok",
+    recoveryRemaining: (n) => `${n} maradt`,
+    regenerate: "\xDAjragener\xE1l\xE1s",
+    recoveryTitle: "\xDAj helyre\xE1ll\xEDt\xE1si k\xF3dok",
+    recoveryNotice: "T\xE1rolja biztons\xE1gosan ezeket a k\xF3dokat. K\xE9s\u0151bb nem jelennek meg \xFAjra.",
+    acknowledge: "Elt\xE1roltam a k\xF3dokat",
+    done: "K\xE9sz",
+    cancel: "M\xE9gse",
+    removeTitle: "Elt\xE1vol\xEDtja a m\xE1sodik faktort?",
+    removeBody: "Ez a m\xE1sodik faktor t\xF6bb\xE9 nem v\xE9di a fi\xF3kot.",
+    removeLastWarning: "Ez az utols\xF3 m\xE1sodik faktor. A fi\xF3kj\xE1t ezut\xE1n csak a jelsz\xF3 v\xE9di.",
+    remove: "Elt\xE1vol\xEDt\xE1s"
+  },
+  reauth: {
+    title: "Er\u0151s\xEDtse meg szem\xE9lyazonoss\xE1g\xE1t",
+    description: "Ehhez a m\u0171velethez ellen\u0151riznie kell a szem\xE9lyazonoss\xE1g\xE1t.",
+    password: "Jelsz\xF3",
+    confirm: "Meger\u0151s\xEDt\xE9s",
+    usePasskey: "Hozz\xE1f\xE9r\xE9si kulcs haszn\xE1lata",
+    usePassword: "Ink\xE1bb jelsz\xF3t haszn\xE1lok",
+    cancel: "M\xE9gse",
+    failed: "Az ellen\u0151rz\xE9s sikertelen. Pr\xF3b\xE1lja \xFAjra."
+  },
+  expiry: {
+    title: "A munkamenet hamarosan lej\xE1r",
+    remaining: (t) => `${t} m\xFAlva kijelentkeztetj\xFCk.`,
+    stay: "Maradok bejelentkezve",
+    signOut: "Kijelentkez\xE9s",
+    announce: (t) => `A munkamenet ${t} m\xFAlva lej\xE1r`
+  }
+};
+
+// lib/locales/admin.hu.ts
+var adminHu = {
+  network: {
+    invalidIp: "Adjon meg \xE9rv\xE9nyes IPv4- vagy IPv6-c\xEDmet",
+    invalidCidr: "Adjon meg \xE9rv\xE9nyes CIDR-blokkot, pl. 10.0.0.0/8",
+    invalidEntry: "Adjon meg \xE9rv\xE9nyes IP-c\xEDmet vagy CIDR-blokkot",
+    duplicate: "M\xE1r szerepel a list\xE1ban",
+    add: "Hozz\xE1ad\xE1s",
+    remove: (e) => `${e} elt\xE1vol\xEDt\xE1sa`,
+    empty: "Nincs bejegyz\xE9s"
+  },
+  allowList: "Enged\xE9lyezett c\xEDmek",
+  transfer: {
+    available: "El\xE9rhet\u0151",
+    selected: "Kiv\xE1lasztott",
+    search: (l) => `Keres\xE9s: ${l.toLowerCase()}`,
+    count: (c, t) => c ? `${c} / ${t} kijel\xF6lve` : `${t} elem`,
+    moveRight: "Kijel\xF6ltek hozz\xE1ad\xE1sa",
+    moveLeft: "Kijel\xF6ltek elt\xE1vol\xEDt\xE1sa",
+    moveAllRight: "\xD6sszes hozz\xE1ad\xE1sa",
+    moveAllLeft: "\xD6sszes elt\xE1vol\xEDt\xE1sa",
+    empty: "Nincs elem"
+  },
+  color: {
+    label: "Arculati sz\xEDn",
+    colorPicker: "Sz\xEDn kiv\xE1laszt\xE1sa",
+    invalidHex: "Adjon meg hexadecim\xE1lis sz\xEDnt (3 vagy 6 sz\xE1mjegy)",
+    onCard: "A k\xE1rtya h\xE1tter\xE9hez k\xE9pest",
+    onPrimary: "Gombsz\xF6veg a sz\xEDnen",
+    pass: "AA megfelel",
+    fail: "AA nem felel meg",
+    rejected: "A sz\xEDn nem felel meg a kontrasztk\xF6vetelm\xE9nyeknek",
+    contrast: "Kontraszt",
+    preview: "El\u0151n\xE9zet",
+    sampleButton: "Gomb",
+    sampleBadge: "C\xEDmke"
+  },
+  branding: {
+    productName: "Term\xE9kn\xE9v",
+    logo: "Log\xF3",
+    dropLogo: "H\xFAzza ide a log\xF3t, vagy kattintson a tall\xF3z\xE1shoz",
+    preview: "Bejelentkez\xE9si oldal el\u0151n\xE9zete",
+    signIn: "Bejelentkez\xE9s",
+    username: "Felhaszn\xE1l\xF3n\xE9v",
+    password: "Jelsz\xF3",
+    removeLogo: "Log\xF3 elt\xE1vol\xEDt\xE1sa"
+  },
+  notifications: {
+    bell: "\xC9rtes\xEDt\xE9sek",
+    title: "\xC9rtes\xEDt\xE9sek",
+    unreadCount: (n) => n === 0 ? "Nincs olvasatlan \xE9rtes\xEDt\xE9s" : `${n} olvasatlan \xE9rtes\xEDt\xE9s`,
+    markRead: (t) => `\u201E${t}\u201D megjel\xF6l\xE9se olvasottk\xE9nt`,
+    markAllRead: "\xD6sszes megjel\xF6l\xE9se olvasottk\xE9nt",
+    viewAll: "\xD6sszes megtekint\xE9se",
+    empty: "Minden elint\xE9zve"
+  }
+};
+
+// lib/locales/charts.hu.ts
+var chartsHu = {
+  perfPanel: {
+    metrics: "Metrik\xE1k",
+    pickMetrics: "Metrik\xE1k kiv\xE1laszt\xE1sa\u2026",
+    exportCsv: "CSV export\xE1l\xE1sa",
+    metric: "Metrika",
+    latest: "Legut\xF3bbi",
+    min: "Min.",
+    avg: "\xC1tl.",
+    max: "Max.",
+    summary: "\xD6sszes\xEDt\u0151 statisztika",
+    noMetrics: "V\xE1lasszon ki legal\xE1bb egy metrik\xE1t"
+  },
+  timeSeries: {
+    showData: "Adatok megjelen\xEDt\xE9se",
+    hideData: "Adatok elrejt\xE9se",
+    resetZoom: "Nagy\xEDt\xE1s vissza\xE1ll\xEDt\xE1sa",
+    noData: "Nincs adat",
+    time: "Id\u0151",
+    loading: "Bet\xF6lt\xE9s",
+    keyboardHint: "A ny\xEDlbillenty\u0171kkel mozgathat\xF3 a c\xE9lkereszt, a Shift \xE9s a nyilak tartom\xE1nyt jel\xF6lnek ki, az Enter a kijel\xF6l\xE9sre nagy\xEDt, az Escape t\xF6rli azt.",
+    legend: "Adatsorok"
+  }
+};
+
+// lib/locales/tracker.hu.ts
+var trackerHu = {
+  labelPicker: {
+    label: "C\xEDmk\xE9k",
+    placeholder: "C\xEDmk\xE9k sz\u0171r\xE9se\u2026",
+    newColour: "\xDAj c\xEDmke sz\xEDne",
+    colour: (n) => `${n}. sz\xEDn`,
+    create: (q) => `\u201E${q}\u201D c\xEDmke l\xE9trehoz\xE1sa`
+  },
+  reaction: {
+    add: "Reakci\xF3 hozz\xE1ad\xE1sa",
+    reactedBy: (emoji, users) => `${emoji} ${users.join(", ")}`,
+    toggle: (emoji, n) => `${emoji} ${n}`
+  },
+  timeline: {
+    edited: "szerkesztve",
+    actions: "Megjegyz\xE9s m\u0171veletei",
+    more: (n) => `${n} tov\xE1bbi friss\xEDt\xE9s`,
+    fewer: "Kevesebb friss\xEDt\xE9s mutat\xE1sa",
+    timeline: "Tev\xE9kenys\xE9g"
+  },
+  optionPicker: { search: "Keres\xE9s\u2026", empty: "Nincs tal\xE1lat", none: "Nincs" },
+  issue: { select: (key) => `${key} kijel\xF6l\xE9se`, overdue: "Lej\xE1rt", comments: (n) => `${n} megjegyz\xE9s`, due: "Hat\xE1rid\u0151" },
+  progress: { todo: "Teend\u0151", doing: "Folyamatban", done: "K\xE9sz", summary: (pct) => `${pct}% k\xE9sz` }
+};
+
+// lib/locales/ui.hu.ts
+var uiHu = {
+  combobox: { clear: "T\xF6rl\xE9s", create: (q) => `\u201E${q}\u201D l\xE9trehoz\xE1sa` },
+  errors: { requestId: "K\xE9r\xE9sazonos\xEDt\xF3", copyRequestId: (label) => `${label} m\xE1sol\xE1sa`, tryAgain: "\xDAjrapr\xF3b\xE1l\xE1s" },
+  error403: { title: "Hozz\xE1f\xE9r\xE9s megtagadva", description: "Nincs jogosults\xE1ga az oldal megtekint\xE9s\xE9hez." },
+  error404: { title: "Az oldal nem tal\xE1lhat\xF3", description: "A keresett oldal nem l\xE9tezik, vagy \xE1thelyezt\xE9k." },
+  error500: { title: "Valami elromlott", description: "V\xE1ratlan hiba t\xF6rt\xE9nt. Pr\xF3b\xE1lja \xFAjra egy pillanat m\xFAlva." },
+  errorOffline: { title: "Nincs internetkapcsolat", description: "Ellen\u0151rizze a kapcsolatot, majd pr\xF3b\xE1lja \xFAjra." },
+  errorSessionExpired: { title: "A munkamenet lej\xE1rt", description: "A folytat\xE1shoz jelentkezzen be \xFAjra." },
+  unsavedChanges: {
+    title: "Elveti a nem mentett m\xF3dos\xEDt\xE1sokat?",
+    description: "Nem mentett m\xF3dos\xEDt\xE1sai vannak. Ha most elhagyja az oldalt, elvesznek.",
+    confirm: "M\xF3dos\xEDt\xE1sok elvet\xE9se",
+    cancel: "Szerkeszt\xE9s folytat\xE1sa"
+  },
+  formFooter: { save: "Ment\xE9s", cancel: "M\xE9gse" },
+  subNav: { label: "Szakaszok navig\xE1ci\xF3ja" },
+  mobileNav: { title: "Navig\xE1ci\xF3", trigger: "Navig\xE1ci\xF3 megnyit\xE1sa" },
+  splitButton: { more: "Tov\xE1bbi m\u0171veletek" },
+  wizard: {
+    title: "Var\xE1zsl\xF3",
+    back: "Vissza",
+    next: "Tov\xE1bb",
+    finish: "Befejez\xE9s",
+    skip: "Kihagy\xE1s",
+    cancel: "M\xE9gse",
+    optional: "nem k\xF6telez\u0151",
+    steps: "L\xE9p\xE9sek"
+  }
+};
+
+// lib/locales/vsphere-objects.hu.ts
+var vsphereObjectsHu = {
+  console: {
+    console: "Konzol",
+    sendCad: "Ctrl+Alt+Del k\xFCld\xE9se",
+    keys: "Billenty\u0171k k\xFCld\xE9se",
+    fullscreen: "Teljes k\xE9perny\u0151",
+    exitFullscreen: "Kil\xE9p\xE9s a teljes k\xE9perny\u0151b\u0151l",
+    fit: "Ablakhoz igaz\xEDt\xE1s",
+    actual: "Val\xF3s m\xE9ret (1:1)",
+    screenshot: "K\xE9perny\u0151k\xE9p",
+    disconnect: "Kapcsolat bont\xE1sa",
+    reconnect: "\xDAjracsatlakoz\xE1s",
+    connecting: "Csatlakoz\xE1s\u2026",
+    connected: "Csatlakozva",
+    disconnected: "Sz\xE9tkapcsolva",
+    error: "Kapcsol\xF3d\xE1si hiba",
+    releaseHint: "Az elenged\xE9shez nyomja meg a Ctrl+Alt billenty\u0171ket"
+  },
+  hardware: {
+    title: "Virtu\xE1lis hardver",
+    cpu: "CPU",
+    memory: "Mem\xF3ria",
+    disk: "Merevlemez",
+    nic: "H\xE1l\xF3zati adapter",
+    cdrom: "CD/DVD-meghajt\xF3",
+    cpuCount: "CPU-k sz\xE1ma",
+    coresPerSocket: "Magok foglalatonk\xE9nt",
+    reservationMhz: "Foglal\xE1s (MHz)",
+    memorySize: "Mem\xF3ria m\xE9rete (MB)",
+    reservationMb: "Foglal\xE1s (MB)",
+    diskSize: "M\xE9ret (GB)",
+    provisioning: "Kioszt\xE1s",
+    thin: "V\xE9kony",
+    thickLazy: "Vastag, k\xE9sleltetett null\xE1z\xE1s\xFA",
+    thickEager: "Vastag, azonnali null\xE1z\xE1s\xFA",
+    controller: "Vez\xE9rl\u0151",
+    network: "H\xE1l\xF3zat",
+    adapter: "Adapter t\xEDpusa",
+    connected: "Csatlakoztatva",
+    iso: "ISO-lemezk\xE9p",
+    noIso: "Kliens eszk\xF6z",
+    chooseIso: "ISO kiv\xE1laszt\xE1sa\u2026",
+    addDevice: "Eszk\xF6z hozz\xE1ad\xE1sa",
+    remove: (n) => `${n} elt\xE1vol\xEDt\xE1sa`,
+    hotAddDisabled: "Bekapcsolt virtu\xE1lis g\xE9pen nem m\xF3dos\xEDthat\xF3",
+    pendingChanges: "F\xFCgg\u0151 m\xF3dos\xEDt\xE1sok",
+    noChanges: "Nincs f\xFCgg\u0151 m\xF3dos\xEDt\xE1s",
+    save: "Ment\xE9s",
+    discard: "Elvet\xE9s",
+    errCpu: "1 \xE9s a gazdag\xE9p maximuma k\xF6z\xF6tt",
+    errCores: "Oszt\xF3ja kell legyen a CPU-k sz\xE1m\xE1nak",
+    errMemory: "A 4 MB t\xF6bbsz\xF6r\xF6se, legal\xE1bb 4",
+    errDisk: "Legal\xE1bb 1 GB",
+    errShrink: "A lemez nem zsugor\xEDthat\xF3",
+    errNetwork: "V\xE1lasszon h\xE1l\xF3zatot",
+    added: "Hozz\xE1adva",
+    removed: "Elt\xE1vol\xEDtva",
+    changed: (f, a, b) => `${f}: ${a} \u2192 ${b}`
+  },
+  datastore: {
+    tree: "Mapp\xE1k",
+    files: "F\xE1jlok",
+    path: "\xDAtvonal",
+    name: "N\xE9v",
+    size: "M\xE9ret",
+    modified: "M\xF3dos\xEDtva",
+    type: "T\xEDpus",
+    folder: "Mappa",
+    file: "F\xE1jl",
+    root: "Adatt\xE1r",
+    empty: "A mappa \xFCres",
+    upload: "Felt\xF6lt\xE9s",
+    download: "Let\xF6lt\xE9s",
+    newFolder: "\xDAj mappa",
+    folderName: "Mappa neve",
+    create: "L\xE9trehoz\xE1s",
+    delete: "T\xF6rl\xE9s",
+    deleteTitle: "Elem t\xF6rl\xE9se",
+    deleteDescription: (n) => `V\xE9glegesen t\xF6rli a k\xF6vetkez\u0151t: ${n}?`,
+    select: "Kiv\xE1laszt\xE1s",
+    cancel: "M\xE9gse"
+  },
+  permission: {
+    title: "Jogosults\xE1g hozz\xE1ad\xE1sa",
+    principal: "Felhaszn\xE1l\xF3 vagy csoport",
+    role: "Szerepk\xF6r",
+    propagate: "\xC1t\xF6r\xF6k\xEDt\xE9s a gyermekelemekre",
+    object: "Objektum",
+    assign: "Hozz\xE1rendel\xE9s",
+    cancel: "M\xE9gse"
+  },
+  snapshots: {
+    tree: "Pillanatk\xE9pek",
+    take: "Pillanatk\xE9p k\xE9sz\xEDt\xE9se",
+    revert: "Vissza\xE1ll\xEDt\xE1s erre:",
+    delete: "T\xF6rl\xE9s",
+    deleteChildren: "Gyermekek t\xF6rl\xE9se",
+    youAreHere: "Itt tart",
+    consolidationNeeded: "Lemezkonszolid\xE1ci\xF3 sz\xFCks\xE9ges",
+    consolidate: "Konszolid\xE1l\xE1s",
+    confirmRevert: (n) => `Vissza\xE1ll\xEDtja a virtu\xE1lis g\xE9pet a(z) \u201E${n}\u201D pillanatk\xE9pre? Az az\xF3ta t\xF6rt\xE9nt m\xF3dos\xEDt\xE1sok elvesznek.`,
+    confirmDelete: (n) => `T\xF6rli a(z) \u201E${n}\u201D pillanatk\xE9pet?`,
+    confirmDeleteChildren: (n) => `T\xF6rli a(z) \u201E${n}\u201D alatti \xF6sszes pillanatk\xE9pet?`,
+    cancel: "M\xE9gse"
+  },
+  events: {
+    title: "Esem\xE9nyek",
+    search: "Esem\xE9nyek sz\u0171r\xE9se",
+    severity: "S\xFAlyoss\xE1g",
+    all: "Minden s\xFAlyoss\xE1g",
+    info: "Inform\xE1ci\xF3",
+    warning: "Figyelmeztet\xE9s",
+    error: "Hiba",
+    liveTail: "\xC9l\u0151 k\xF6vet\xE9s",
+    time: "Id\u0151",
+    message: "\xDCzenet",
+    source: "Forr\xE1s",
+    user: "Felhaszn\xE1l\xF3",
+    empty: "Nincs esem\xE9ny",
+    details: "Esem\xE9ny r\xE9szletei"
+  }
+};
+
 // lib/locales/hu.ts
 var hu = {
+  components: { account: accountHu, admin: adminHu, tracker: trackerHu, vsphereObjects: vsphereObjectsHu, charts: chartsHu, ui: uiHu },
   close: "Bez\xE1r\xE1s",
   noResults: "Nincs tal\xE1lat",
   loading: "Bet\xF6lt\xE9s",

@@ -33,7 +33,7 @@ export default function Primitives() {
         ]}
       />
       <SegmentedControl aria-label="View" defaultValue="list" items={[{ value: "list", label: "List" }, { value: "grid", label: "Grid" }]} />
-      <div className="flex items-center gap-3">
+      <div className="flex flex-wrap items-center gap-3">
         <IconButton label="Delete" icon={<Trash2 />} />
         <StatusDot tone="ok" label="Running" pulse />
         <StatusDot tone="danger" label="Failed" />

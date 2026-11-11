@@ -1,6 +1,7 @@
 import { Fingerprint, KeyRound, Laptop, LogOut, ShieldCheck, Smartphone, Tablet, Trash2, RefreshCw, Plus } from "lucide-react";
 import * as React from "react";
-import { useLaf } from "../i18n";
+import { useLafDefaults } from "../i18n";
+import { accountEn } from "../messages/account.en";
 import { Button } from "./button";
 import { Badge, Alert } from "./display";
 import { Checkbox, Field, Input } from "./form";
@@ -9,6 +10,9 @@ import { InlineEdit } from "./more";
 import { Dialog, DialogContent, DialogClose } from "./overlay";
 import type { DeviceKind } from "./pickers";
 import { IconButton, RelativeTime } from "./primitives";
+
+const lafDefaults = { account: accountEn };
+const useLaf = () => useLafDefaults(lafDefaults);
 
 const deviceIcon: Record<DeviceKind, typeof Laptop> = { phone: Smartphone, laptop: Laptop, tablet: Tablet, key: KeyRound };
 type Time = Date | string | number;
@@ -39,18 +43,6 @@ export interface SessionListLabels {
   cancel: string;
 }
 
-const sessionLabels: SessionListLabels = {
-  thisDevice: "This device",
-  revoke: "Revoke session",
-  revokeOthers: "Sign out other sessions",
-  revokeOthersTitle: "Sign out other sessions?",
-  revokeOthersBody: "Every session except this device will be signed out.",
-  lastActive: "Last active",
-  user: "User",
-  empty: "No active sessions",
-  cancel: "Cancel",
-};
-
 export interface SessionListProps {
   sessions: AccountSession[];
   onRevoke: (id: string) => void | Promise<void>;
@@ -61,7 +53,7 @@ export interface SessionListProps {
 }
 
 export function SessionList({ sessions, onRevoke, onRevokeOthers, showUser, labels }: SessionListProps) {
-  const l = { ...sessionLabels, ...labels };
+  const l = { ...useLaf().t.components.account.sessions, ...labels };
   const [confirm, setConfirm] = React.useState(false);
   const [pending, setPending] = React.useState(false);
   const others = sessions.filter((s) => !s.current).length;
@@ -183,32 +175,6 @@ export interface ApiKeyManagerLabels {
   error: string;
 }
 
-const apiKeyLabels: ApiKeyManagerLabels = {
-  create: "Create key",
-  createTitle: "Create API key",
-  name: "Name",
-  expiry: "Expiry",
-  scopes: "Scopes",
-  never: "Never",
-  days: (n) => `${n} days`,
-  created: "Created",
-  expires: "Expires",
-  lastUsed: "Last used",
-  neverUsed: "Never used",
-  revoke: "Revoke",
-  revoked: "Revoked",
-  rotate: "Rotate",
-  secretLabel: "Your new secret",
-  secretNotice: "Copy this secret now. It will not be shown again.",
-  acknowledge: "I have stored this secret",
-  done: "Done",
-  cancel: "Cancel",
-  empty: "No keys yet",
-  revokeTitle: "Revoke key?",
-  revokeBody: "Applications using this key will stop working immediately.",
-  error: "Something went wrong. Try again.",
-};
-
 export interface ApiKeyManagerProps {
   keys: ApiKeyItem[];
   /** Available scopes. */
@@ -223,7 +189,7 @@ export interface ApiKeyManagerProps {
 }
 
 export function ApiKeyManager({ keys, scopes, expiryPresets = [30, 90, 365, null], onCreate, onRevoke, onRotate, labels }: ApiKeyManagerProps) {
-  const l = { ...apiKeyLabels, ...labels };
+  const l = { ...useLaf().t.components.account.apiKeys, ...labels };
   const [form, setForm] = React.useState(false);
   const [name, setName] = React.useState("");
   const [expiry, setExpiry] = React.useState<number | null>(expiryPresets[0] ?? null);
@@ -447,38 +413,6 @@ export interface SecurityFactorsLabels {
   remove: string;
 }
 
-const factorLabels: SecurityFactorsLabels = {
-  password: "Password",
-  passwordChanged: "Last changed",
-  passwordNever: "Never changed",
-  changePassword: "Change password",
-  totp: "Authenticator app (TOTP)",
-  totpOn: "Enabled",
-  totpOff: "Not set up",
-  enable: "Enable",
-  disable: "Disable",
-  passkeys: "Passkeys",
-  addPasskey: "Add passkey",
-  renamePasskey: "Passkey name",
-  removePasskey: "Remove passkey",
-  created: "Created",
-  lastUsed: "Last used",
-  neverUsed: "Never used",
-  noPasskeys: "No passkeys registered",
-  recovery: "Recovery codes",
-  recoveryRemaining: (n) => `${n} remaining`,
-  regenerate: "Regenerate",
-  recoveryTitle: "New recovery codes",
-  recoveryNotice: "Store these codes safely. They will not be shown again.",
-  acknowledge: "I have stored these codes",
-  done: "Done",
-  cancel: "Cancel",
-  removeTitle: "Remove second factor?",
-  removeBody: "This second factor will no longer protect the account.",
-  removeLastWarning: "This is your last second factor. Your account will be protected by the password only.",
-  remove: "Remove",
-};
-
 export interface SecurityFactorsProps {
   password?: { changedAt?: Time | null; onChange: () => void };
   totp?: { enabled: boolean; onEnable: () => void; onDisable: () => void | Promise<void> };
@@ -493,7 +427,7 @@ export interface SecurityFactorsProps {
 }
 
 export function SecurityFactors({ password, totp, passkeys, recovery, labels }: SecurityFactorsProps) {
-  const l = { ...factorLabels, ...labels };
+  const l = { ...useLaf().t.components.account.factors, ...labels };
   const [removal, setRemoval] = React.useState<{ title: string; run: () => void | Promise<void> }>();
   const [codes, setCodes] = React.useState<string[]>();
   const [ack, setAck] = React.useState(false);
@@ -651,17 +585,6 @@ export interface ReauthDialogLabels {
   failed: string;
 }
 
-const reauthLabels: ReauthDialogLabels = {
-  title: "Confirm it's you",
-  description: "This action requires you to verify your identity.",
-  password: "Password",
-  confirm: "Confirm",
-  usePasskey: "Use a passkey",
-  usePassword: "Use password instead",
-  cancel: "Cancel",
-  failed: "Verification failed. Try again.",
-};
-
 export interface ReauthDialogProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
@@ -673,7 +596,7 @@ export interface ReauthDialogProps {
 }
 
 export function ReauthDialog({ open, onOpenChange, onReauth, passkey, labels }: ReauthDialogProps) {
-  const l = { ...reauthLabels, ...labels };
+  const l = { ...useLaf().t.components.account.reauth, ...labels };
   const [method, setMethod] = React.useState<ReauthMethod>(passkey ? "passkey" : "password");
   const [pw, setPw] = React.useState("");
   const [busy, setBusy] = React.useState(false);
@@ -764,14 +687,6 @@ export interface SessionExpiryDialogLabels {
   announce: (time: string) => string;
 }
 
-const expiryLabels: SessionExpiryDialogLabels = {
-  title: "Your session is about to expire",
-  remaining: (t) => `You will be signed out in ${t}.`,
-  stay: "Stay signed in",
-  signOut: "Sign out",
-  announce: (t) => `Session expires in ${t}`,
-};
-
 export interface SessionExpiryDialogProps {
   /** Dialog is shown while the remaining time is within `warnBeforeMs` (default 5 min). */
   expiresAt: Time;
@@ -784,8 +699,8 @@ export interface SessionExpiryDialogProps {
 }
 
 export function SessionExpiryDialog({ expiresAt, warnBeforeMs = 300_000, onStay, onSignOut, onExpire, labels }: SessionExpiryDialogProps) {
-  const l = { ...expiryLabels, ...labels };
-  const { format } = useLaf();
+  const { format, t: laf } = useLaf();
+  const l = { ...laf.components.account.expiry, ...labels };
   const target = new Date(expiresAt).getTime();
   const [now, setNow] = React.useState(() => Date.now());
   const expired = React.useRef(false);

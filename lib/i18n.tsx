@@ -1,7 +1,29 @@
 import * as React from "react";
 import { createFormatters, type Formatters } from "./foundation-format";
+import type { accountEn } from "./messages/account.en";
+import type { adminEn } from "./messages/admin.en";
+import type { chartsEn } from "./messages/charts.en";
+import type { trackerEn } from "./messages/tracker.en";
+import type { uiEn } from "./messages/ui.en";
+import type { vsphereObjectsEn } from "./messages/vsphere-objects.en";
+
+/**
+ * Per-domain label groups for the heavier components. English defaults live in `lib/messages/*.en.ts` and are
+ * imported by the components themselves (so they tree-shake with them); `hu` and other locales fill this in.
+ */
+export interface ComponentMessages {
+  account: typeof accountEn;
+  admin: typeof adminEn;
+  tracker: typeof trackerEn;
+  vsphereObjects: typeof vsphereObjectsEn;
+  charts: typeof chartsEn;
+  ui: typeof uiEn;
+}
+type Overrides<G> = { [S in keyof G]?: G[S] extends string ? string : Partial<G[S]> };
+export type ComponentMessageOverrides = { [K in keyof ComponentMessages]?: Overrides<ComponentMessages[K]> };
 
 export interface LafMessages {
+  components: ComponentMessageOverrides;
   close: string;
   noResults: string;
   loading: string;
@@ -152,6 +174,7 @@ export interface LafMessages {
 }
 
 export const en: LafMessages = {
+  components: {},
   close: "Close",
   noResults: "No results",
   loading: "Loading",
@@ -345,6 +368,23 @@ export function LafProvider({
 
 export function useLaf(): LafContextValue {
   return React.useContext(LafContext);
+}
+
+/**
+ * `useLaf()` whose `t.components` is complete for the given groups: the component's bundled English defaults
+ * overlaid with whatever the active locale provides (merged one level deep, e.g. per label set).
+ */
+export function useLafDefaults<K extends keyof ComponentMessages>(defaults: Pick<ComponentMessages, K>): Omit<LafContextValue, "t"> & { t: Omit<LafMessages, "components"> & { components: Pick<ComponentMessages, K> } } {
+  const ctx = useLaf();
+  const over = ctx.t.components;
+  return React.useMemo(() => {
+    const components: Record<string, Record<string, unknown>> = {};
+    for (const [group, sets] of Object.entries(defaults) as [string, Record<string, unknown>][]) {
+      const o = (over as Record<string, Record<string, unknown> | undefined>)[group];
+      components[group] = Object.fromEntries(Object.entries(sets).map(([k, v]) => [k, v !== null && typeof v === "object" ? { ...v, ...(o?.[k] as object) } : (o?.[k] ?? v)]));
+    }
+    return { ...ctx, t: { ...ctx.t, components } } as never;
+  }, [ctx, over, defaults]);
 }
 
 /** Container for Radix `Portal`s; `undefined` means document.body. */

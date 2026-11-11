@@ -6,6 +6,7 @@ export default defineConfig({
     charts: "lib/charts/index.ts",
     editor: "lib/editor/index.ts",
     dnd: "lib/dnd/index.ts",
+    topology: "lib/topology/index.ts",
     "locales/hu": "lib/locales/hu.ts",
   },
   format: ["esm", "cjs"],

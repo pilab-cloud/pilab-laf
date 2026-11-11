@@ -77,8 +77,8 @@ export function Avatar({
     .join("");
   const sizing = size === "sm" ? "size-5 text-[0.625rem]" : size === "lg" ? "size-10 text-base" : "";
   return (
-    <span className={cn("avatar", sizing, className)} title={name}>
-      {src ? <img src={src} alt={name} className="size-full rounded-[inherit] object-cover" /> : initials}
+    <span className={cn("avatar", sizing, className)} title={name} role="img" aria-label={name}>
+      {src ? <img src={src} alt="" className="size-full rounded-[inherit] object-cover" /> : initials}
     </span>
   );
 }
@@ -93,18 +93,22 @@ export function Panel({
   children,
   className,
   bodyClassName,
+  headingLevel = 3,
 }: {
+  /** Heading level of the title; pick the one that follows the page's outline. */
+  headingLevel?: 2 | 3 | 4;
   title?: React.ReactNode;
   actions?: React.ReactNode;
   children: React.ReactNode;
   className?: string;
   bodyClassName?: string;
 }) {
+  const Heading = `h${headingLevel}` as const;
   return (
     <section className={cn("panel", className)}>
       {(title || actions) && (
         <header className="panel-head">
-          <h3 className="panel-title">{title}</h3>
+          <Heading className="panel-title">{title}</Heading>
           {actions}
         </header>
       )}

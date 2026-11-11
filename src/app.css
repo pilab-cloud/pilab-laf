@@ -290,11 +290,14 @@
 
   /* Native select, restyled */
   .form-select {
-    @apply appearance-none pr-9;
+    @apply appearance-none pe-9;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2399a1af' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: right 12px center;
     background-size: 16px;
+  }
+  [dir="rtl"] .form-select {
+    background-position: left 12px center;
   }
   .form-select option {
     background: var(--bg-menu);
@@ -327,14 +330,14 @@
     @apply rotate-180;
   }
   .dropdown-menu {
-    @apply absolute top-[calc(100%+4px)] left-0 z-20 min-w-full overflow-hidden rounded-md border border-line-strong bg-menu py-1;
+    @apply absolute top-[calc(100%+4px)] start-0 z-20 min-w-full overflow-hidden rounded-md border border-line-strong bg-menu py-1;
     box-shadow: 0 16px 32px rgba(0, 0, 0, 0.5);
   }
   .dropdown-menu.align-right {
-    @apply right-0 left-auto min-w-48;
+    @apply end-0 start-auto min-w-48;
   }
   .dropdown-item {
-    @apply flex w-full items-center gap-2.5 px-3.5 py-2 text-left text-sm text-muted no-underline transition;
+    @apply flex w-full items-center gap-2.5 px-3.5 py-2 text-start text-sm text-muted no-underline transition;
     background: transparent;
     border: 0;
     font-family: var(--font);
@@ -347,7 +350,7 @@
   }
   .dropdown-item[aria-selected="true"]::after {
     content: "✓";
-    @apply ml-auto text-primary;
+    @apply ms-auto text-primary;
   }
   .dropdown-item.danger {
     @apply text-danger;
@@ -419,13 +422,16 @@
   }
   .switch span::after {
     content: "";
-    @apply absolute top-0.5 left-0.5 size-3.5 rounded-xs bg-muted transition;
+    @apply absolute top-0.5 start-0.5 size-3.5 rounded-xs bg-muted transition;
   }
   .switch input:checked + span {
     @apply border-primary bg-primary;
   }
   .switch input:checked + span::after {
     @apply translate-x-4 bg-on-primary;
+  }
+  [dir="rtl"] .switch input:checked + span::after {
+    @apply -translate-x-4;
   }
   .switch input:focus-visible + span {
     box-shadow: 0 0 0 3px var(--primary-light);
@@ -578,7 +584,7 @@
     @apply m-0;
   }
   .account-item {
-    @apply flex w-full items-center gap-3.5 rounded-md border-0 bg-transparent px-2 py-2.5 text-left text-inherit transition;
+    @apply flex w-full items-center gap-3.5 rounded-md border-0 bg-transparent px-2 py-2.5 text-start text-inherit transition;
     font-family: var(--font);
   }
   .account-item:hover {
@@ -659,7 +665,7 @@
     @apply mb-2 text-[0.8125rem] font-semibold tracking-wider text-muted uppercase;
   }
   .info-box ul {
-    @apply m-0 list-disc pl-4.5 text-[0.8125rem] text-muted;
+    @apply m-0 list-disc ps-4.5 text-[0.8125rem] text-muted;
   }
   .info-box li {
     @apply mb-1 last:mb-0;
@@ -668,7 +674,7 @@
     @apply text-[0.9375rem] text-fg;
   }
   .info-value a {
-    @apply ml-1 text-sm font-medium text-primary no-underline hover:underline;
+    @apply ms-1 text-sm font-medium text-primary no-underline hover:underline;
   }
 
   /* ── Footer & language switcher ── */

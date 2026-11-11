@@ -23,7 +23,7 @@ export function OverflowTabs({
   const visible = tabs.slice(0, maxVisible);
   const rest = tabs.slice(maxVisible);
   return (
-    <div className="flex items-center">
+    <div className="flex min-w-0 flex-wrap items-center">
       <TabsList>
         {visible.map((t) => (
           <TabsTrigger key={t.value} value={t.value}>

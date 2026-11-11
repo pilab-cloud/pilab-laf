@@ -204,7 +204,7 @@ export function ShortcutHelp({ open, onOpenChange }: { open: boolean; onOpenChan
         <DialogPrimitive.Overlay className="fixed inset-0 z-50 bg-[rgba(5,5,10,0.7)] backdrop-blur-xs" />
         <DialogPrimitive.Content
           aria-describedby={undefined}
-          className="popup fixed top-[15%] left-1/2 z-50 max-h-[70vh] w-[min(32rem,calc(100vw-2rem))] -translate-x-1/2 overflow-auto p-4"
+          className="popup fixed top-[15%] start-1/2 z-50 max-h-[70vh] w-[min(32rem,calc(100vw-2rem))] -translate-x-1/2 rtl:translate-x-1/2 overflow-auto p-4"
         >
           <div className="mb-3 flex items-center justify-between">
             <DialogPrimitive.Title className="m-0 text-base font-semibold text-fg">{t.shortcuts}</DialogPrimitive.Title>

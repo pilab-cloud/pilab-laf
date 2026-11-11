@@ -75,7 +75,7 @@ export function MenuSpecItems({ items }: { items: MenuItemSpec[] }) {
                   {it.label}
                 </DropdownPrimitive.SubTrigger>
                 <DropdownPrimitive.Portal>
-                  <DropdownPrimitive.SubContent className="dropdown-menu relative! top-auto! left-auto! z-40 min-w-40">
+                  <DropdownPrimitive.SubContent className="dropdown-menu relative! top-auto! start-auto! z-40 min-w-40">
                     <MenuSpecItems items={it.items} />
                   </DropdownPrimitive.SubContent>
                 </DropdownPrimitive.Portal>
@@ -127,7 +127,7 @@ export function PointMenu({
           align="start"
           sideOffset={0}
           onCloseAutoFocus={(e) => e.preventDefault()}
-          className="dropdown-menu relative! top-auto! left-auto! z-30 min-w-48"
+          className="dropdown-menu relative! top-auto! start-auto! z-30 min-w-48"
         >
           <MenuSpecItems items={items} />
         </DropdownPrimitive.Content>
