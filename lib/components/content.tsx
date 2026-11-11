@@ -8,7 +8,7 @@ import { useControllableState } from "../utils";
 import { Button, type ButtonProps } from "./button";
 import { Input, Textarea } from "./form";
 import { CopyButton } from "./helpers";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "./overlay";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger, dialogBase, dialogSizes, type DialogSize } from "./overlay";
 
 const lafDefaults = { content: contentEn };
 
@@ -483,7 +483,6 @@ export const DropdownSeparator = DropdownMenuSeparator;
 
 /* ── Modal: Dialog with header/body/footer parts so PatternFly modals port mechanically ── */
 const ModalContext = React.createContext<{ setHasDescription(v: boolean): void }>({ setHasDescription() {} });
-const modalSize = { sm: "max-w-sm", md: "max-w-md", lg: "max-w-2xl", xl: "max-w-4xl" };
 
 export interface ModalProps {
   open?: boolean;
@@ -491,7 +490,7 @@ export interface ModalProps {
   onOpenChange?: (open: boolean) => void;
   /** Called when the modal is dismissed (Escape, overlay, close button). */
   onClose?: () => void;
-  size?: keyof typeof modalSize;
+  size?: DialogSize;
   /** Accessible name when there is no `ModalHeader`. */
   "aria-label"?: string;
   /** Rendered outside the portal; usually a `ModalTrigger asChild` button. */
@@ -519,7 +518,7 @@ export function Modal({ open, defaultOpen, onOpenChange, onClose, trigger, size 
         <DialogPrimitive.Content
           aria-label={ariaLabel}
           {...(hasDescription ? {} : { "aria-describedby": undefined })}
-          className={cn("popup fixed top-1/2 start-1/2 z-50 flex max-h-[90dvh] -translate-x-1/2 -translate-y-1/2 flex-col rtl:translate-x-1/2", modalSize[size], className)}
+          className={cn(dialogBase, dialogSizes[size], className)}
         >
           <ModalContext.Provider value={ctx}>{children}</ModalContext.Provider>
         </DialogPrimitive.Content>

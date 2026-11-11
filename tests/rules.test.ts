@@ -19,6 +19,15 @@ describe("design rules (COMPONENTS.md §0)", () => {
   });
 });
 
+// Brand colours come from the simple-icons data at runtime: no hex literal may live in lib/os-icons either,
+// and the kit core (lib/components) stays hex-free. Nothing else is exempt.
+describe("os-icons colour rule", () => {
+  it("lib/os-icons source hardcodes no hex colours", () => {
+    const osDir = join(__dirname, "../lib/os-icons");
+    for (const f of readdirSync(osDir)) expect(readFileSync(join(osDir, f), "utf8"), f).not.toMatch(/#[0-9a-fA-F]{6}\b/);
+  });
+});
+
 // i18n: user-visible strings go through the catalogue (or a `labels` prop), never literal attributes.
 describe("i18n rules (design F1)", () => {
   // Allow-list: template-literal aria-labels still to be moved into the catalogue.

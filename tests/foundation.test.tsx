@@ -99,7 +99,7 @@ describe("ObjectIcon (F5)", () => {
     expect(screen.getByRole("img", { name: "vm-2, Running, Warning" })).toBeTruthy();
   });
   it("renders every built-in kind and supports registered kinds", () => {
-    const kinds = ["datacenter", "cluster", "host", "vm", "template", "vapp", "folder", "resource-pool", "datastore", "datastore-cluster", "network", "dvswitch", "portgroup", "snapshot", "user", "group", "client", "issue", "project", "mailbox", "shared-mailbox", "domain", "mail-queue", "repository", "token", "policy"] as const;
+    const kinds = ["datacenter", "cluster", "host", "vm", "template", "vapp", "folder", "resource-pool", "datastore", "datastore-cluster", "network", "dvswitch", "portgroup", "snapshot", "user", "group", "client", "issue", "project", "mailbox", "shared-mailbox", "domain", "mail-queue", "repository", "token", "policy", "ssd", "hdd", "nvme", "iscsi", "san", "nas", "vdisk", "raid", "disk-array", "lun", "volume", "vswitch", "vnic", "vlan", "firewall", "load-balancer", "router", "uplink"] as const;
     for (const kind of kinds) {
       const { container, unmount } = render(<ObjectIcon kind={kind} size={20} />);
       expect(container.querySelector("svg"), kind).toBeTruthy();

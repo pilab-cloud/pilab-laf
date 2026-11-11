@@ -50,4 +50,27 @@ export * from "./components/portal";
 export * from "./components/server-grid";
 export * from "./components/mail";
 export * from "./components/overview";
+export {
+  DiskArrayGlyph,
+  FirewallGlyph,
+  HddGlyph,
+  IscsiGlyph,
+  LoadBalancerGlyph,
+  LunGlyph,
+  NasGlyph,
+  NfsGlyph,
+  NvmeGlyph,
+  RaidGlyph,
+  RouterGlyph,
+  SanGlyph,
+  SsdGlyph,
+  UplinkGlyph,
+  VdiskGlyph,
+  VlanGlyph,
+  VnicGlyph,
+  VolumeGlyph,
+  VpnGlyph,
+  VSwitchGlyph,
+  type RaidGlyphProps,
+} from "./components/storage-glyphs";
 export { ClusterGlyph, DatacenterGlyph, ServerGlyph, TemplateGlyph, VmGlyph, type ObjectGlyph } from "./components/object-glyphs";

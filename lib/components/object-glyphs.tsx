@@ -3,7 +3,8 @@ import * as React from "react";
 /** Stroke-based 24×24 glyphs matching the lucide set (currentColor, round caps), drawn for infrastructure objects. */
 export type ObjectGlyph = React.ComponentType<React.SVGProps<SVGSVGElement>>;
 
-function glyph(name: string, children: React.ReactNode): ObjectGlyph {
+/** Builds a glyph component from static SVG children. */
+export function glyph(name: string, children: React.ReactNode): ObjectGlyph {
   const G: ObjectGlyph = ({ strokeWidth = 2, ...props }) => (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round" {...props}>
       {children}

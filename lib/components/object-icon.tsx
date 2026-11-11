@@ -41,6 +41,26 @@ import * as React from "react";
 import { cn } from "../cn";
 import { useLaf, type LafMessages } from "../i18n";
 import { ClusterGlyph, DatacenterGlyph, ServerGlyph, TemplateGlyph, VmGlyph, type ObjectGlyph } from "./object-glyphs";
+import {
+  DiskArrayGlyph,
+  FirewallGlyph,
+  HddGlyph,
+  IscsiGlyph,
+  LoadBalancerGlyph,
+  LunGlyph,
+  NasGlyph,
+  NvmeGlyph,
+  RaidGlyph,
+  RouterGlyph,
+  SanGlyph,
+  SsdGlyph,
+  UplinkGlyph,
+  VdiskGlyph,
+  VlanGlyph,
+  VnicGlyph,
+  VolumeGlyph,
+  VSwitchGlyph,
+} from "./storage-glyphs";
 
 export type ObjectKind =
   | "datacenter"
@@ -68,7 +88,25 @@ export type ObjectKind =
   | "mail-queue"
   | "repository"
   | "token"
-  | "policy";
+  | "policy"
+  | "ssd"
+  | "hdd"
+  | "nvme"
+  | "iscsi"
+  | "san"
+  | "nas"
+  | "vdisk"
+  | "raid"
+  | "disk-array"
+  | "lun"
+  | "volume"
+  | "vswitch"
+  | "vnic"
+  | "vlan"
+  | "firewall"
+  | "load-balancer"
+  | "router"
+  | "uplink";
 
 export type ObjectState =
   | "on"
@@ -114,6 +152,24 @@ const baseKinds: Record<ObjectKind, ObjectGlyph | LucideIcon> = {
   repository: GitBranch,
   token: KeyRound,
   policy: ShieldCheck,
+  ssd: SsdGlyph,
+  hdd: HddGlyph,
+  nvme: NvmeGlyph,
+  iscsi: IscsiGlyph,
+  san: SanGlyph,
+  nas: NasGlyph,
+  vdisk: VdiskGlyph,
+  raid: RaidGlyph,
+  "disk-array": DiskArrayGlyph,
+  lun: LunGlyph,
+  volume: VolumeGlyph,
+  vswitch: VSwitchGlyph,
+  vnic: VnicGlyph,
+  vlan: VlanGlyph,
+  firewall: FirewallGlyph,
+  "load-balancer": LoadBalancerGlyph,
+  router: RouterGlyph,
+  uplink: UplinkGlyph,
 };
 
 /** Kinds added by the app; the built-in set above is never mutated. */
@@ -172,8 +228,8 @@ export interface ObjectIconProps {
   className?: string;
 }
 
-/** Bare state glyph on the corner of the base icon: no chip, no outline. */
-function StateBadge({ state, px, className }: { state: ObjectState; px: number; className: string }) {
+/** Bare state glyph on the corner (also used by `VmOsIcon` in `@pilab/laf/os-icons`) of the base icon: no chip, no outline. */
+export function StateBadge({ state, px, className }: { state: ObjectState; px: number; className: string }) {
   const m = objectStateMeta[state];
   const size = Math.round(px * 0.8);
   const filled = state === "running" || state === "on" || state === "crashed";

@@ -67,6 +67,7 @@ export default function VsObjects() {
         <ul className="m-0 flex list-none flex-wrap gap-x-6 gap-y-3 p-0">
           {objectKinds.map((k) => (
             <li key={k} className="flex items-center gap-2 text-sm">
+              <ObjectIcon kind={k} size={16} />
               <ObjectIcon kind={k} size={20} />
               {k}
             </li>

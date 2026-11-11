@@ -25,6 +25,7 @@ export const DEMOS = [
   { id: "dnd", label: "Dnd & hotkeys", Component: page(() => import("./pages/DndHotkeys")) },
   { id: "vs-layout", label: "VS layout", Component: page(() => import("./pages/VsLayout")) },
   { id: "vs-objects", label: "VS objects", Component: page(() => import("./pages/VsObjects")) },
+  { id: "os-icons", label: "OS icons", Component: page(() => import("./pages/OsIcons")) },
   { id: "tracker-parts", label: "Tracker parts", Component: page(() => import("./pages/TrackerParts")) },
   { id: "content", label: "Content & toolbar", Component: page(() => import("./pages/Content")) },
   { id: "app-frame", label: "AppFrame", Component: page(() => import("./pages/AppFrame")) },

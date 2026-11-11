@@ -324,7 +324,7 @@ export function Stepper({
               disabled={!done || !onStepClick}
               onClick={() => onStepClick?.(i)}
               className={cn(
-                "flex w-full items-center gap-2.5 text-start text-sm",
+                "flex items-center gap-2.5 text-start text-sm",
                 active ? "text-fg" : done ? "text-muted hover:text-fg" : "text-subtle",
               )}
             >

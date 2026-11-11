@@ -1,9 +1,10 @@
 'use strict';
 
-var chunk6PDYGUXX_cjs = require('./chunk-6PDYGUXX.cjs');
+var chunkBAOO6ECK_cjs = require('./chunk-BAOO6ECK.cjs');
 var chunkRNP4RJYX_cjs = require('./chunk-RNP4RJYX.cjs');
-var chunkRDHTRBBP_cjs = require('./chunk-RDHTRBBP.cjs');
 var chunkIP6HZMS5_cjs = require('./chunk-IP6HZMS5.cjs');
+var chunkWERLSPEU_cjs = require('./chunk-WERLSPEU.cjs');
+var chunkRDHTRBBP_cjs = require('./chunk-RDHTRBBP.cjs');
 var chunkFTHFEMX6_cjs = require('./chunk-FTHFEMX6.cjs');
 var lucideReact = require('lucide-react');
 var jsxRuntime = require('react/jsx-runtime');
@@ -49,7 +50,7 @@ function Table({ className, children, ...props }) {
 }
 function UserCell({ name, email }) {
   return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "cell-user", children: [
-    /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.Avatar, { name }),
+    /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.Avatar, { name }),
     /* @__PURE__ */ jsxRuntime.jsxs("div", { children: [
       /* @__PURE__ */ jsxRuntime.jsx("div", { children: name }),
       email && /* @__PURE__ */ jsxRuntime.jsx("div", { className: "cell-sub", children: email })
@@ -146,7 +147,7 @@ function UserSelector({
   );
   const opts = value.map(toOption);
   return /* @__PURE__ */ jsxRuntime.jsx(
-    chunk6PDYGUXX_cjs.Combobox,
+    chunkBAOO6ECK_cjs.Combobox,
     {
       label,
       placeholder,
@@ -156,7 +157,7 @@ function UserSelector({
       value: opts,
       emptyText: limitReached ? `Limit of ${max} reached` : void 0,
       renderOption: (o) => /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
-        /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.Avatar, { name: o.label }),
+        /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.Avatar, { name: o.label }),
         /* @__PURE__ */ jsxRuntime.jsxs("span", { className: "flex flex-col", children: [
           /* @__PURE__ */ jsxRuntime.jsx("span", { children: o.label }),
           o.description && /* @__PURE__ */ jsxRuntime.jsx("span", { className: "text-xs text-subtle", children: o.description })
@@ -210,7 +211,7 @@ function AuditLog({ events }) {
           e.action,
           e.target && /* @__PURE__ */ jsxRuntime.jsx("small", { children: e.target })
         ] }),
-        e.result ? /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.Badge, { tone: badgeTone[e.severity], children: e.result }) : /* @__PURE__ */ jsxRuntime.jsx("span", {})
+        e.result ? /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.Badge, { tone: badgeTone[e.severity], children: e.result }) : /* @__PURE__ */ jsxRuntime.jsx("span", {})
       ] }),
       e.details && /* @__PURE__ */ jsxRuntime.jsx("dl", { className: "audit-detail", children: Object.entries(e.details).map(([k, v]) => /* @__PURE__ */ jsxRuntime.jsxs("div", { children: [
         /* @__PURE__ */ jsxRuntime.jsx("dt", { children: k }),
@@ -494,7 +495,7 @@ function PasswordField({
   return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "grid gap-1", children: [
     /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "relative", children: [
       /* @__PURE__ */ jsxRuntime.jsx(
-        chunk6PDYGUXX_cjs.Input,
+        chunkBAOO6ECK_cjs.Input,
         {
           ...props,
           type: visible ? "text" : "password",
@@ -568,13 +569,13 @@ function ConfirmDialog({
     if (!open) setTyped("");
   }, [open]);
   const blocked = confirmText !== void 0 && typed !== confirmText;
-  return /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.Dialog, { open, onOpenChange, children: /* @__PURE__ */ jsxRuntime.jsxs(
-    chunk6PDYGUXX_cjs.DialogContent,
+  return /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.Dialog, { open, onOpenChange, children: /* @__PURE__ */ jsxRuntime.jsxs(
+    chunkBAOO6ECK_cjs.DialogContent,
     {
       role: "alertdialog",
       title,
       footer: /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
-        /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.DialogClose, { asChild: true, children: /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { variant: "secondary", size: "sm", autoFocus: true, children: cancelLabel }) }),
+        /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.DialogClose, { asChild: true, children: /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { variant: "secondary", size: "sm", autoFocus: true, children: cancelLabel }) }),
         /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { variant: "danger", size: "sm", loading: pending, disabled: blocked, onClick: onConfirm, children: confirmLabel })
       ] }),
       children: [
@@ -586,7 +587,7 @@ function ConfirmDialog({
             ": ",
             /* @__PURE__ */ jsxRuntime.jsx("b", { className: "font-mono text-fg", children: confirmText })
           ] }),
-          /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.Input, { value: typed, onChange: (e) => setTyped(e.target.value), autoComplete: "off" })
+          /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.Input, { value: typed, onChange: (e) => setTyped(e.target.value), autoComplete: "off" })
         ] })
       ]
     }
@@ -642,7 +643,7 @@ function Stepper({
         disabled: !done || !onStepClick,
         onClick: () => onStepClick?.(i),
         className: chunkFTHFEMX6_cjs.cn(
-          "flex w-full items-center gap-2.5 text-start text-sm",
+          "flex items-center gap-2.5 text-start text-sm",
           active ? "text-fg" : done ? "text-muted hover:text-fg" : "text-subtle"
         ),
         children: [
@@ -767,7 +768,7 @@ function TaskPanel({
             t.name,
             t.target && (onOpenTarget ? /* @__PURE__ */ jsxRuntime.jsx("button", { type: "button", className: chunkFTHFEMX6_cjs.cn(linkBtn, "ms-2 font-normal"), onClick: () => onOpenTarget(t), children: t.target }) : /* @__PURE__ */ jsxRuntime.jsx("span", { className: "ms-2 font-normal text-muted", children: t.target }))
           ] }),
-          /* @__PURE__ */ jsxRuntime.jsx("span", { "aria-live": "polite", children: /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.Badge, { tone: taskTone[t.status], children: t.status }) }),
+          /* @__PURE__ */ jsxRuntime.jsx("span", { "aria-live": "polite", children: /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.Badge, { tone: taskTone[t.status], children: t.status }) }),
           t.status === "running" && onCancel && /* @__PURE__ */ jsxRuntime.jsx("button", { type: "button", className: linkBtn, onClick: () => onCancel(t.id), children: labels.cancel }),
           t.status === "failed" && onRetry && /* @__PURE__ */ jsxRuntime.jsx("button", { type: "button", className: linkBtn, onClick: () => onRetry(t.id), children: labels.retry })
         ] }),
@@ -796,24 +797,24 @@ function UserMenu({
   const signOutLabel = signOutLabelProp ?? laf.signOut;
   const remainingMs = expiresAt === void 0 ? void 0 : new Date(expiresAt).getTime() - Date.now();
   const showExpiry = remainingMs !== void 0 && remainingMs <= expiryWarnMs;
-  return /* @__PURE__ */ jsxRuntime.jsxs(chunk6PDYGUXX_cjs.DropdownMenu, { children: [
-    /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.DropdownMenuTrigger, { asChild: true, children: /* @__PURE__ */ jsxRuntime.jsx("button", { className: "border-0 bg-transparent p-0", children: /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.Avatar, { name, src: avatarSrc }) }) }),
-    /* @__PURE__ */ jsxRuntime.jsxs(chunk6PDYGUXX_cjs.DropdownMenuContent, { children: [
-      /* @__PURE__ */ jsxRuntime.jsxs(chunk6PDYGUXX_cjs.DropdownMenuLabel, { children: [
+  return /* @__PURE__ */ jsxRuntime.jsxs(chunkBAOO6ECK_cjs.DropdownMenu, { children: [
+    /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.DropdownMenuTrigger, { asChild: true, children: /* @__PURE__ */ jsxRuntime.jsx("button", { className: "border-0 bg-transparent p-0", children: /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.Avatar, { name, src: avatarSrc }) }) }),
+    /* @__PURE__ */ jsxRuntime.jsxs(chunkBAOO6ECK_cjs.DropdownMenuContent, { children: [
+      /* @__PURE__ */ jsxRuntime.jsxs(chunkBAOO6ECK_cjs.DropdownMenuLabel, { children: [
         /* @__PURE__ */ jsxRuntime.jsx("div", { className: "text-fg", children: name }),
         email && /* @__PURE__ */ jsxRuntime.jsx("div", { className: "text-xs font-normal text-muted", children: email }),
         tenant && /* @__PURE__ */ jsxRuntime.jsx("div", { className: "text-xs font-normal text-subtle", children: tenant })
       ] }),
-      (impersonating || showExpiry) && /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.DropdownMenuSeparator, {}),
-      impersonating && /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.DropdownMenuItem, { onSelect: impersonating.onStop, children: `${impersonating.stopLabel ?? "Stop impersonating"}: ${impersonating.as}` }),
+      (impersonating || showExpiry) && /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.DropdownMenuSeparator, {}),
+      impersonating && /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.DropdownMenuItem, { onSelect: impersonating.onStop, children: `${impersonating.stopLabel ?? "Stop impersonating"}: ${impersonating.as}` }),
       showExpiry && /* @__PURE__ */ jsxRuntime.jsx("div", { role: "status", className: "px-2 py-1.5 text-xs text-warn", children: expiryLabel(format2.duration(Math.max(0, remainingMs))) }),
-      /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.DropdownMenuSeparator, {}),
-      items?.map((it) => /* @__PURE__ */ jsxRuntime.jsxs(chunk6PDYGUXX_cjs.DropdownMenuItem, { onSelect: it.onSelect, children: [
+      /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.DropdownMenuSeparator, {}),
+      items?.map((it) => /* @__PURE__ */ jsxRuntime.jsxs(chunkBAOO6ECK_cjs.DropdownMenuItem, { onSelect: it.onSelect, children: [
         it.icon,
         it.label
       ] }, it.id)),
-      items && items.length > 0 && /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.DropdownMenuSeparator, {}),
-      /* @__PURE__ */ jsxRuntime.jsxs(chunk6PDYGUXX_cjs.DropdownMenuItem, { danger: true, onSelect: onSignOut, children: [
+      items && items.length > 0 && /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.DropdownMenuSeparator, {}),
+      /* @__PURE__ */ jsxRuntime.jsxs(chunkBAOO6ECK_cjs.DropdownMenuItem, { danger: true, onSelect: onSignOut, children: [
         /* @__PURE__ */ jsxRuntime.jsx(lucideReact.LogOut, { "aria-hidden": true }),
         signOutLabel
       ] })
@@ -909,7 +910,7 @@ function InlineEdit({
         children: options?.map((o) => /* @__PURE__ */ jsxRuntime.jsx("option", { value: o.value, children: o.label }, o.value))
       }
     ) : /* @__PURE__ */ jsxRuntime.jsx(
-      chunk6PDYGUXX_cjs.Input,
+      chunkBAOO6ECK_cjs.Input,
       {
         autoFocus: true,
         "aria-label": label,
@@ -1048,28 +1049,28 @@ function AlarmList({
     ] }),
     /* @__PURE__ */ jsxRuntime.jsx("ul", { className: "divide-y divide-line overflow-hidden rounded-lg border border-line bg-surface", children: alarms.map((a) => /* @__PURE__ */ jsxRuntime.jsxs("li", { className: "flex items-center gap-3 px-4 py-3 text-sm", children: [
       selectable && /* @__PURE__ */ jsxRuntime.jsx("input", { type: "checkbox", "aria-label": `${laf.vsSelectAlarm}: ${a.name}`, checked: selected.has(a.id), onChange: () => toggle(a.id) }),
-      /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.Badge, { tone: alarmTone[a.severity], children: a.severity }),
+      /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.Badge, { tone: alarmTone[a.severity], children: a.severity }),
       /* @__PURE__ */ jsxRuntime.jsxs("span", { className: "min-w-0 flex-1", children: [
         /* @__PURE__ */ jsxRuntime.jsx("b", { className: "font-semibold text-fg", children: a.name }),
         onOpenEntity ? /* @__PURE__ */ jsxRuntime.jsx("button", { type: "button", className: chunkFTHFEMX6_cjs.cn(linkBtn, "ms-2"), onClick: () => onOpenEntity(a), children: a.entity }) : /* @__PURE__ */ jsxRuntime.jsx("span", { className: "ms-2 text-muted", children: a.entity })
       ] }),
-      /* @__PURE__ */ jsxRuntime.jsx("span", { className: "font-mono text-xs text-subtle", children: a.triggeredAt !== void 0 ? /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.RelativeTime, { value: a.triggeredAt }) : a.triggered }),
+      /* @__PURE__ */ jsxRuntime.jsx("span", { className: "font-mono text-xs text-subtle", children: a.triggeredAt !== void 0 ? /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.RelativeTime, { value: a.triggeredAt }) : a.triggered }),
       onAcknowledge && !a.acknowledged && /* @__PURE__ */ jsxRuntime.jsx("button", { type: "button", className: linkBtn, onClick: () => onAcknowledge(a.id), children: laf.acknowledge }),
       onReset && /* @__PURE__ */ jsxRuntime.jsx("button", { type: "button", className: linkBtn, onClick: () => onReset(a.id), children: laf.vsResetAlarm })
     ] }, a.id)) })
   ] });
 }
 function Gauge({ value, max = 100, label, warnAt = 70, dangerAt = 90, animate }) {
-  const motion = chunk6PDYGUXX_cjs.useChartMotion(animate);
-  const sweep = chunk6PDYGUXX_cjs.entryAnim(motion, "sweep");
+  const motion = chunkBAOO6ECK_cjs.useChartMotion(animate);
+  const sweep = chunkBAOO6ECK_cjs.entryAnim(motion, "sweep");
   const pct = Math.min(100, Math.max(0, value / max * 100));
   const tone = pct >= dangerAt ? "text-danger" : pct >= warnAt ? "text-warn" : "text-ok";
   const r = 40;
   const c = Math.PI * r;
   return /* @__PURE__ */ jsxRuntime.jsxs("figure", { className: "m-0 inline-block text-center", children: [
-    /* @__PURE__ */ jsxRuntime.jsxs("svg", { viewBox: "0 0 100 56", style: chunk6PDYGUXX_cjs.motionVars(motion), "data-animate": motion.enabled ? "on" : "off", role: "meter", "aria-label": label, "aria-valuenow": value, "aria-valuemin": 0, "aria-valuemax": max, className: "w-32", children: [
+    /* @__PURE__ */ jsxRuntime.jsxs("svg", { viewBox: "0 0 100 56", style: chunkBAOO6ECK_cjs.motionVars(motion), "data-animate": motion.enabled ? "on" : "off", role: "meter", "aria-label": label, "aria-valuenow": value, "aria-valuemin": 0, "aria-valuemax": max, className: "w-32", children: [
       /* @__PURE__ */ jsxRuntime.jsx("path", { d: "M10 50 A40 40 0 0 1 90 50", fill: "none", stroke: "var(--bg-muted)", strokeWidth: "8" }),
-      /* @__PURE__ */ jsxRuntime.jsx("path", { d: "M10 50 A40 40 0 0 1 90 50", fill: "none", stroke: "currentColor", strokeWidth: "8", strokeDasharray: `${pct / 100 * c} ${c}`, className: chunkFTHFEMX6_cjs.cn(tone, chunk6PDYGUXX_cjs.tweenClass(motion), sweep.className), style: sweep.style })
+      /* @__PURE__ */ jsxRuntime.jsx("path", { d: "M10 50 A40 40 0 0 1 90 50", fill: "none", stroke: "currentColor", strokeWidth: "8", strokeDasharray: `${pct / 100 * c} ${c}`, className: chunkFTHFEMX6_cjs.cn(tone, chunkBAOO6ECK_cjs.tweenClass(motion), sweep.className), style: sweep.style })
     ] }),
     /* @__PURE__ */ jsxRuntime.jsxs("figcaption", { className: "-mt-3 font-mono text-lg text-fg", children: [
       Math.round(pct),
@@ -1107,7 +1108,7 @@ function BarChart({ data, label }) {
   ] }, d.name)) });
 }
 function DateTimeInput({ mode = "date", className, ...props }) {
-  return /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.Input, { type: mode, className: chunkFTHFEMX6_cjs.cn("font-mono [color-scheme:dark]", className), ...props });
+  return /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.Input, { type: mode, className: chunkFTHFEMX6_cjs.cn("font-mono [color-scheme:dark]", className), ...props });
 }
 function FormField({
   id: idProp,
@@ -1416,7 +1417,7 @@ function MfaEnrolment({ qr, secret, recoveryCodes, onVerify, onRegisterPasskey, 
     /* @__PURE__ */ jsxRuntime.jsx(Stepper, { steps, current: step, onStepClick: (i) => setStep(i) }),
     /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "card", children: [
       id === "m" && /* @__PURE__ */ jsxRuntime.jsx(
-        chunk6PDYGUXX_cjs.RadioGroup,
+        chunkBAOO6ECK_cjs.RadioGroup,
         {
           name: "mfa-method",
           value: method,
@@ -1512,9 +1513,9 @@ function DatePicker(props) {
   };
   const text = mode === "range" ? range.from && `${range.from} \u2013 ${range.to ?? "\u2026"}` : mode === "datetime" ? single && single.replace("T", " ") : single;
   const inRange = (v) => mode === "range" && !!range.from && !!range.to && v >= range.from && v <= range.to;
-  return /* @__PURE__ */ jsxRuntime.jsxs(chunk6PDYGUXX_cjs.Popover, { open, onOpenChange: setOpen, children: [
-    /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.PopoverTrigger, { asChild: true, children: /* @__PURE__ */ jsxRuntime.jsx("button", { type: "button", "aria-label": `${label}: ${text || placeholder}`, className: chunkFTHFEMX6_cjs.cn("input inline-flex items-center text-start font-mono", mode === "date" ? "w-44" : "w-56"), children: text || /* @__PURE__ */ jsxRuntime.jsx("span", { className: "text-muted", children: placeholder }) }) }),
-    /* @__PURE__ */ jsxRuntime.jsxs(chunk6PDYGUXX_cjs.PopoverContent, { className: "w-64", children: [
+  return /* @__PURE__ */ jsxRuntime.jsxs(chunkBAOO6ECK_cjs.Popover, { open, onOpenChange: setOpen, children: [
+    /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.PopoverTrigger, { asChild: true, children: /* @__PURE__ */ jsxRuntime.jsx("button", { type: "button", "aria-label": `${label}: ${text || placeholder}`, className: chunkFTHFEMX6_cjs.cn("input inline-flex items-center text-start font-mono", mode === "date" ? "w-44" : "w-56"), children: text || /* @__PURE__ */ jsxRuntime.jsx("span", { className: "text-muted", children: placeholder }) }) }),
+    /* @__PURE__ */ jsxRuntime.jsxs(chunkBAOO6ECK_cjs.PopoverContent, { className: "w-64", children: [
       mode !== "range" && /* @__PURE__ */ jsxRuntime.jsx(
         "input",
         {
@@ -1649,10 +1650,10 @@ function OverflowTabs({
   const visible = tabs.slice(0, maxVisible);
   const rest = tabs.slice(maxVisible);
   return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex min-w-0 flex-wrap items-center", children: [
-    /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.TabsList, { children: visible.map((t) => /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.TabsTrigger, { value: t.value, children: t.label }, t.value)) }),
-    rest.length > 0 && /* @__PURE__ */ jsxRuntime.jsxs(chunk6PDYGUXX_cjs.DropdownMenu, { children: [
-      /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.DropdownMenuTrigger, { asChild: true, children: /* @__PURE__ */ jsxRuntime.jsx("button", { type: "button", "aria-label": moreLabel, className: "ms-1 border-0 bg-transparent px-2 text-muted hover:text-fg", children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.MoreHorizontal, { size: 16 }) }) }),
-      /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.DropdownMenuContent, { children: rest.map((t) => /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.DropdownMenuItem, { onSelect: () => onSelect(t.value), children: t.label }, t.value)) })
+    /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.TabsList, { children: visible.map((t) => /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.TabsTrigger, { value: t.value, children: t.label }, t.value)) }),
+    rest.length > 0 && /* @__PURE__ */ jsxRuntime.jsxs(chunkBAOO6ECK_cjs.DropdownMenu, { children: [
+      /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.DropdownMenuTrigger, { asChild: true, children: /* @__PURE__ */ jsxRuntime.jsx("button", { type: "button", "aria-label": moreLabel, className: "ms-1 border-0 bg-transparent px-2 text-muted hover:text-fg", children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.MoreHorizontal, { size: 16 }) }) }),
+      /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.DropdownMenuContent, { children: rest.map((t) => /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.DropdownMenuItem, { onSelect: () => onSelect(t.value), children: t.label }, t.value)) })
     ] })
   ] });
 }
@@ -1666,7 +1667,7 @@ function DockedTaskPanel({
   const { t: laf } = chunkRDHTRBBP_cjs.useLaf();
   const title = titleProp ?? laf.recentTasks;
   const [open, setOpen] = React24__namespace.useState(defaultOpen);
-  const running2 = tasks.filter((t) => t.status === "running").length;
+  const running = tasks.filter((t) => t.status === "running").length;
   return /* @__PURE__ */ jsxRuntime.jsxs("section", { "aria-label": title, className: "absolute inset-x-0 bottom-0 border-t border-line bg-surface", children: [
     /* @__PURE__ */ jsxRuntime.jsxs(
       "button",
@@ -1679,7 +1680,7 @@ function DockedTaskPanel({
           open ? /* @__PURE__ */ jsxRuntime.jsx(lucideReact.ChevronDown, { size: 14 }) : /* @__PURE__ */ jsxRuntime.jsx(lucideReact.ChevronUp, { size: 14 }),
           title,
           /* @__PURE__ */ jsxRuntime.jsxs("span", { className: "ms-auto text-xs font-normal text-muted", "aria-live": "polite", children: [
-            running2,
+            running,
             " running"
           ] })
         ]
@@ -1927,7 +1928,7 @@ function UnsavedChangesDialog({
     }
   );
 }
-var lafDefaults = { ui: chunk6PDYGUXX_cjs.uiEn };
+var lafDefaults = { ui: chunkBAOO6ECK_cjs.uiEn };
 function FormSection({
   title,
   description,
@@ -2022,7 +2023,7 @@ function DetailPage({
   className
 }) {
   return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: chunkFTHFEMX6_cjs.cn("grid gap-4", className), children: [
-    breadcrumb && /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.Breadcrumb, { items: breadcrumb }),
+    breadcrumb && /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.Breadcrumb, { items: breadcrumb }),
     /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex flex-wrap items-center gap-3", children: [
       icon,
       /* @__PURE__ */ jsxRuntime.jsx("h1", { className: "min-w-0 text-xl font-semibold text-fg", children: title }),
@@ -2046,7 +2047,7 @@ function FormPage({
   className
 }) {
   return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: chunkFTHFEMX6_cjs.cn("mx-auto grid w-full max-w-3xl gap-4", className), children: [
-    breadcrumb && /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.Breadcrumb, { items: breadcrumb }),
+    breadcrumb && /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.Breadcrumb, { items: breadcrumb }),
     /* @__PURE__ */ jsxRuntime.jsxs("header", { children: [
       /* @__PURE__ */ jsxRuntime.jsx("h1", { className: "text-xl font-semibold text-fg", children: title }),
       description && /* @__PURE__ */ jsxRuntime.jsx("p", { className: "mt-1 text-sm text-muted", children: description })
@@ -2119,12 +2120,12 @@ function MobileNav({
   const m = chunkRDHTRBBP_cjs.useLafDefaults(lafDefaults).t.components.ui.mobileNav;
   const title = titleProp ?? m.title;
   const triggerLabel = triggerLabelProp ?? m.trigger;
-  return /* @__PURE__ */ jsxRuntime.jsxs(chunk6PDYGUXX_cjs.Drawer, { open, onOpenChange, children: [
-    /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.DrawerTrigger, { asChild: true, children: /* @__PURE__ */ jsxRuntime.jsx("button", { type: "button", "aria-label": triggerLabel, className: chunkFTHFEMX6_cjs.cn("btn btn-ghost btn-sm min-[860px]:hidden", className), children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Menu, { "aria-hidden": true }) }) }),
-    /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.DrawerContent, { title, width: "sm", children })
+  return /* @__PURE__ */ jsxRuntime.jsxs(chunkBAOO6ECK_cjs.Drawer, { open, onOpenChange, children: [
+    /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.DrawerTrigger, { asChild: true, children: /* @__PURE__ */ jsxRuntime.jsx("button", { type: "button", "aria-label": triggerLabel, className: chunkFTHFEMX6_cjs.cn("btn btn-ghost btn-sm min-[860px]:hidden", className), children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Menu, { "aria-hidden": true }) }) }),
+    /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.DrawerContent, { title, width: "sm", children })
   ] });
 }
-var lafDefaults2 = { ui: chunk6PDYGUXX_cjs.uiEn };
+var lafDefaults2 = { ui: chunkBAOO6ECK_cjs.uiEn };
 function Wizard({
   steps,
   onFinish,
@@ -2132,6 +2133,7 @@ function Wizard({
   dirty,
   title: titleProp,
   mode = "page",
+  size = "xl",
   open,
   onOpenChange,
   current: currentProp,
@@ -2143,7 +2145,11 @@ function Wizard({
   const { title: defaultTitle, ...defaultLabels3 } = chunkRDHTRBBP_cjs.useLafDefaults(lafDefaults2).t.components.ui.wizard;
   const labels = { ...defaultLabels3, ...labelsProp };
   const title = titleProp ?? defaultTitle;
-  const [current, setCurrent] = chunkRNP4RJYX_cjs.useControllableState({ value: currentProp, defaultValue: defaultCurrent, onChange: onCurrentChange });
+  const [current, setCurrent] = chunkRNP4RJYX_cjs.useControllableState({
+    value: currentProp,
+    defaultValue: defaultCurrent,
+    onChange: onCurrentChange
+  });
   const [errors, setErrors] = React24__namespace.useState([]);
   const [failed, setFailed] = React24__namespace.useState({});
   const [busy, setBusy] = React24__namespace.useState(false);
@@ -2195,7 +2201,7 @@ function Wizard({
   const body = /* @__PURE__ */ jsxRuntime.jsxs(
     "div",
     {
-      className: chunkFTHFEMX6_cjs.cn("grid gap-5 md:grid-cols-[14rem_minmax(0,1fr)]", className),
+      className: chunkFTHFEMX6_cjs.cn("@container grid min-w-0 gap-4", className),
       onKeyDown: (e) => {
         if (e.key === "Enter" && (e.ctrlKey || e.metaKey)) {
           e.preventDefault();
@@ -2203,37 +2209,64 @@ function Wizard({
         }
       },
       children: [
-        /* @__PURE__ */ jsxRuntime.jsx("nav", { "aria-label": labels.steps, children: /* @__PURE__ */ jsxRuntime.jsx(
-          Stepper,
-          {
-            current,
-            onStepClick: goTo,
-            steps: steps.map((s) => ({
-              id: s.id,
-              label: s.optional ? /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
-                s.label,
-                " ",
-                /* @__PURE__ */ jsxRuntime.jsxs("span", { className: "text-xs text-subtle", children: [
-                  "(",
-                  labels.optional,
-                  ")"
-                ] })
-              ] }) : s.label,
-              error: failed[s.id]
-            }))
-          }
-        ) }),
-        /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "grid min-w-0 content-start gap-4", children: [
-          /* @__PURE__ */ jsxRuntime.jsx("h2", { ref: headingRef, tabIndex: -1, className: "text-base font-semibold text-fg outline-none", children: step.label }),
-          /* @__PURE__ */ jsxRuntime.jsx("div", { role: "alert", id: errId, children: errors.length > 0 && /* @__PURE__ */ jsxRuntime.jsx("ul", { className: "list-disc ps-5 text-sm text-danger", children: errors.map((m) => /* @__PURE__ */ jsxRuntime.jsx("li", { children: m }, m)) }) }),
-          /* @__PURE__ */ jsxRuntime.jsx("div", { children: step.render() }),
-          /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex items-center gap-2 border-t border-line pt-4", children: [
-            /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { variant: "ghost", onClick: cancel, children: labels.cancel }),
-            /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "ms-auto flex gap-2", children: [
-              /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { variant: "secondary", disabled: current === 0 || busy, onClick: () => goTo(current - 1), children: labels.back }),
-              step.optional && !last && /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { variant: "secondary", disabled: busy, onClick: () => void advance(true), children: labels.skip }),
-              /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { loading: busy, onClick: () => void advance(), children: last ? labels.finish : labels.next })
-            ] })
+        /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "grid min-w-0 gap-5 @2xl:grid-cols-[12rem_minmax(0,1fr)]", children: [
+          /* @__PURE__ */ jsxRuntime.jsx("nav", { "aria-label": labels.steps, children: /* @__PURE__ */ jsxRuntime.jsx(
+            Stepper,
+            {
+              className: "flex-row flex-wrap gap-x-4 gap-y-1.5 @2xl:flex-col @2xl:gap-2",
+              current,
+              onStepClick: goTo,
+              steps: steps.map((s) => ({
+                id: s.id,
+                label: s.optional ? /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
+                  s.label,
+                  " ",
+                  /* @__PURE__ */ jsxRuntime.jsxs("span", { className: "text-xs text-subtle", children: [
+                    "(",
+                    labels.optional,
+                    ")"
+                  ] })
+                ] }) : s.label,
+                error: failed[s.id]
+              }))
+            }
+          ) }),
+          /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "grid min-w-0 content-start gap-4", children: [
+            /* @__PURE__ */ jsxRuntime.jsx(
+              "h2",
+              {
+                ref: headingRef,
+                tabIndex: -1,
+                className: "text-base font-semibold text-fg outline-none",
+                children: step.label
+              }
+            ),
+            /* @__PURE__ */ jsxRuntime.jsx("div", { role: "alert", id: errId, children: errors.length > 0 && /* @__PURE__ */ jsxRuntime.jsx("ul", { className: "list-disc ps-5 text-sm text-danger", children: errors.map((m) => /* @__PURE__ */ jsxRuntime.jsx("li", { children: m }, m)) }) }),
+            /* @__PURE__ */ jsxRuntime.jsx("div", { children: step.render() })
+          ] })
+        ] }),
+        /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex flex-wrap items-center gap-2 border-t border-line pt-4", children: [
+          /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { variant: "ghost", onClick: cancel, children: labels.cancel }),
+          /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "ms-auto flex flex-wrap justify-end gap-2", children: [
+            /* @__PURE__ */ jsxRuntime.jsx(
+              chunkIP6HZMS5_cjs.Button,
+              {
+                variant: "secondary",
+                disabled: current === 0 || busy,
+                onClick: () => goTo(current - 1),
+                children: labels.back
+              }
+            ),
+            step.optional && !last && /* @__PURE__ */ jsxRuntime.jsx(
+              chunkIP6HZMS5_cjs.Button,
+              {
+                variant: "secondary",
+                disabled: busy,
+                onClick: () => void advance(true),
+                children: labels.skip
+              }
+            ),
+            /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { loading: busy, onClick: () => void advance(), children: last ? labels.finish : labels.next })
           ] })
         ] }),
         /* @__PURE__ */ jsxRuntime.jsx(UnsavedChangesDialog, { guard })
@@ -2241,7 +2274,14 @@ function Wizard({
     }
   );
   if (mode === "dialog") {
-    return /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.Dialog, { open, onOpenChange: (o) => o ? onOpenChange?.(true) : cancel(), children: /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.DialogContent, { title, className: "w-[min(56rem,95vw)]", children: body }) });
+    return /* @__PURE__ */ jsxRuntime.jsx(
+      chunkBAOO6ECK_cjs.Dialog,
+      {
+        open,
+        onOpenChange: (o) => o ? onOpenChange?.(true) : cancel(),
+        children: /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.DialogContent, { title, size, children: body })
+      }
+    );
   }
   return /* @__PURE__ */ jsxRuntime.jsx("section", { "aria-label": title, children: body });
 }
@@ -2251,7 +2291,7 @@ function WizardReview({
 }) {
   return /* @__PURE__ */ jsxRuntime.jsx(DefinitionList, { items, className });
 }
-var lafDefaults3 = { ui: chunk6PDYGUXX_cjs.uiEn };
+var lafDefaults3 = { ui: chunkBAOO6ECK_cjs.uiEn };
 var icons = {
   "403": /* @__PURE__ */ jsxRuntime.jsx(lucideReact.LockKeyhole, {}),
   "404": /* @__PURE__ */ jsxRuntime.jsx(lucideReact.FileQuestion, {}),
@@ -2325,154 +2365,6 @@ function BoundaryFallback({ requestId, retryLabel, reset }) {
   const { t } = chunkRDHTRBBP_cjs.useLafDefaults(lafDefaults3);
   return /* @__PURE__ */ jsxRuntime.jsx(ErrorPage, { variant: "500", requestId, action: /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { onClick: reset, children: retryLabel ?? t.components.ui.errors.tryAgain }) });
 }
-function glyph(name, children) {
-  const G = ({ strokeWidth = 2, ...props }) => /* @__PURE__ */ jsxRuntime.jsx("svg", { xmlns: "http://www.w3.org/2000/svg", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth, strokeLinecap: "round", strokeLinejoin: "round", ...props, children });
-  G.displayName = name;
-  return G;
-}
-var VM_CUBE = /* @__PURE__ */ jsxRuntime.jsx("path", { d: "M12 6.6 15 8.3v3.4L12 13.4 9 11.7V8.3zM12 10 15 8.3M12 10 9 8.3M12 10v3.4", strokeWidth: "1.5" });
-var VmGlyph = glyph(
-  "VmGlyph",
-  /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
-    /* @__PURE__ */ jsxRuntime.jsx("rect", { x: "2.5", y: "3.5", width: "19", height: "13", rx: "1.5" }),
-    /* @__PURE__ */ jsxRuntime.jsx("path", { d: "M8.5 20.5h7M12 16.5v4" }),
-    VM_CUBE
-  ] })
-);
-var TemplateGlyph = glyph(
-  "TemplateGlyph",
-  /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
-    /* @__PURE__ */ jsxRuntime.jsx("rect", { x: "2.5", y: "3.5", width: "19", height: "13", rx: "1.5", strokeDasharray: "3 2.2" }),
-    /* @__PURE__ */ jsxRuntime.jsx("path", { d: "M8.5 20.5h7M12 16.5v4" }),
-    VM_CUBE
-  ] })
-);
-var ServerGlyph = glyph(
-  "ServerGlyph",
-  /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
-    /* @__PURE__ */ jsxRuntime.jsx("rect", { x: "5", y: "2.5", width: "14", height: "19", rx: "1.5" }),
-    /* @__PURE__ */ jsxRuntime.jsx("path", { d: "M8.5 7h7M8.5 11h7", strokeWidth: "1.5" }),
-    /* @__PURE__ */ jsxRuntime.jsx("path", { d: "M8.5 17h.01M12 17h3.5" })
-  ] })
-);
-var ClusterGlyph = glyph(
-  "ClusterGlyph",
-  /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
-    /* @__PURE__ */ jsxRuntime.jsx("rect", { x: "2", y: "6", width: "6", height: "15.5", rx: "1" }),
-    /* @__PURE__ */ jsxRuntime.jsx("rect", { x: "9", y: "2.5", width: "6", height: "19", rx: "1" }),
-    /* @__PURE__ */ jsxRuntime.jsx("rect", { x: "16", y: "6", width: "6", height: "15.5", rx: "1" }),
-    /* @__PURE__ */ jsxRuntime.jsx("path", { d: "M5 9.5h.01M12 6h.01M19 9.5h.01M5 17.5h.01M12 17.5h.01M19 17.5h.01" })
-  ] })
-);
-var DatacenterGlyph = glyph(
-  "DatacenterGlyph",
-  /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
-    /* @__PURE__ */ jsxRuntime.jsx("path", { d: "M3.5 21.5v-15L12 2.5l8.5 4v15M2 21.5h20" }),
-    /* @__PURE__ */ jsxRuntime.jsx("rect", { x: "7.5", y: "9", width: "9", height: "4", rx: ".75", strokeWidth: "1.5" }),
-    /* @__PURE__ */ jsxRuntime.jsx("rect", { x: "7.5", y: "15", width: "9", height: "4", rx: ".75", strokeWidth: "1.5" }),
-    /* @__PURE__ */ jsxRuntime.jsx("path", { d: "M10 11h.01M10 17h.01" })
-  ] })
-);
-var objectStates = ["running", "paused", "stopped", "crashed", "hibernated", "maintenance", "error", "warning", "disconnected"];
-var baseKinds = {
-  datacenter: DatacenterGlyph,
-  cluster: ClusterGlyph,
-  host: ServerGlyph,
-  vm: VmGlyph,
-  template: TemplateGlyph,
-  vapp: lucideReact.Package,
-  folder: lucideReact.Folder,
-  "resource-pool": lucideReact.Layers,
-  datastore: lucideReact.Database,
-  "datastore-cluster": lucideReact.HardDrive,
-  network: lucideReact.Network,
-  dvswitch: lucideReact.Router,
-  portgroup: lucideReact.Waypoints,
-  snapshot: lucideReact.Camera,
-  user: lucideReact.User,
-  group: lucideReact.Users,
-  client: lucideReact.AppWindow,
-  issue: lucideReact.CircleDot,
-  project: lucideReact.FolderKanban,
-  mailbox: lucideReact.Mail,
-  "shared-mailbox": lucideReact.Inbox,
-  domain: lucideReact.Globe,
-  "mail-queue": lucideReact.ListOrdered,
-  repository: lucideReact.GitBranch,
-  token: lucideReact.KeyRound,
-  policy: lucideReact.ShieldCheck
-};
-var custom = /* @__PURE__ */ new Map();
-function registerObjectKind(kind, icon) {
-  custom.set(kind, icon);
-}
-var running = { Icon: lucideReact.Play, tone: "text-ok", fill: "bg-ok", text: "stateRunning", base: "normal" };
-var paused = { Icon: lucideReact.Pause, tone: "text-warn", fill: "bg-warn", text: "statePaused", base: "normal" };
-var stopped = { Icon: lucideReact.Square, tone: "text-subtle", fill: "bg-muted", text: "stateStopped", base: "dim" };
-var objectStateMeta = {
-  running,
-  on: { ...running, text: "stateOn" },
-  paused,
-  suspended: { ...paused, text: "stateSuspended" },
-  stopped,
-  off: { ...stopped, text: "stateOff" },
-  crashed: { Icon: lucideReact.Zap, tone: "text-danger", fill: "bg-danger", text: "stateCrashed", base: "danger" },
-  hibernated: { Icon: lucideReact.Moon, tone: "text-primary", fill: "bg-primary", text: "stateHibernated", base: "faded" },
-  maintenance: { Icon: lucideReact.Wrench, tone: "text-primary", fill: "bg-primary", text: "stateMaintenance", base: "normal" },
-  disconnected: { Icon: lucideReact.Unplug, tone: "text-muted", fill: "bg-muted", text: "stateDisconnected", base: "faded" },
-  warning: { Icon: lucideReact.TriangleAlert, tone: "text-warn", fill: "bg-warn", text: "stateWarning", base: "normal" },
-  error: { Icon: lucideReact.CircleX, tone: "text-danger", fill: "bg-danger", text: "stateError", base: "normal" }
-};
-var baseTone = {
-  normal: "text-muted",
-  dim: "text-subtle",
-  faded: "text-subtle",
-  danger: "text-danger"
-};
-function StateBadge({ state, px, className }) {
-  const m = objectStateMeta[state];
-  const size = Math.round(px * 0.8);
-  const filled = state === "running" || state === "on" || state === "crashed";
-  return /* @__PURE__ */ jsxRuntime.jsx(
-    m.Icon,
-    {
-      "aria-hidden": true,
-      "data-badge": state,
-      width: size,
-      height: size,
-      strokeWidth: 2.75,
-      fill: filled ? "currentColor" : "none",
-      className: chunkFTHFEMX6_cjs.cn("absolute", m.tone, className)
-    }
-  );
-}
-function ObjectIcon({ kind, state, overlay, size = 16, label, className }) {
-  const { t } = chunkRDHTRBBP_cjs.useLaf();
-  const Icon = custom.get(kind) ?? baseKinds[kind] ?? lucideReact.Cable;
-  const meta = state ? objectStateMeta[state] : void 0;
-  const stateText = [state, overlay].filter((x) => !!x).map((x) => t[objectStateMeta[x].text]).join(", ");
-  const name = [label, stateText].filter(Boolean).join(", ");
-  const px = size === 20 ? 20 : 16;
-  return /* @__PURE__ */ jsxRuntime.jsxs(
-    "span",
-    {
-      "data-kind": kind,
-      "data-state": state,
-      "data-overlay": overlay,
-      role: name ? "img" : void 0,
-      "aria-label": name || void 0,
-      "aria-hidden": name ? void 0 : true,
-      className: chunkFTHFEMX6_cjs.cn("relative inline-flex shrink-0 items-center justify-center", meta ? baseTone[meta.base] : "text-muted", className),
-      style: { width: px, height: px },
-      children: [
-        /* @__PURE__ */ jsxRuntime.jsx(Icon, { width: px, height: px, "aria-hidden": true, className: meta?.base === "dim" ? "opacity-70" : meta?.base === "faded" ? "opacity-50" : void 0 }),
-        state && /* @__PURE__ */ jsxRuntime.jsx(StateBadge, { state, px, className: "-end-1 -bottom-1" }),
-        overlay && /* @__PURE__ */ jsxRuntime.jsx(StateBadge, { state: overlay, px, className: "-end-1 -top-1" })
-      ]
-    }
-  );
-}
-var objectKinds = Object.keys(baseKinds);
 var KEY_RE = /^[A-Za-z_][\w.-]*:/;
 var OP_RE = /^(>=|<=|>|<)/;
 var isWs = (c) => c !== void 0 && /\s/.test(c);
@@ -3235,7 +3127,7 @@ function TreeView({
     estimateSize: () => rowHeight,
     overscan: 8,
     initialRect: { width: 0, height },
-    observeElementRect: chunk6PDYGUXX_cjs.observeRectWithFallback,
+    observeElementRect: chunkBAOO6ECK_cjs.observeRectWithFallback,
     // keep the roving-tabindex row mounted so the tree stays reachable by Tab
     rangeExtractor: (range) => {
       const base = reactVirtual.defaultRangeExtractor(range);
@@ -3399,7 +3291,7 @@ function TreeView({
           className: "flex h-7 items-center gap-2 pe-2 text-sm text-muted outline-none",
           style: { ...style, paddingInlineStart: `${indent + 20}px` },
           children: r.kind === "loading" ? /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
-            /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.Skeleton, { className: "h-3 w-24" }),
+            /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.Skeleton, { className: "h-3 w-24" }),
             /* @__PURE__ */ jsxRuntime.jsx("span", { className: "sr-only", children: l.loading })
           ] }) : /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
             /* @__PURE__ */ jsxRuntime.jsx("span", { className: "text-danger", children: l.error }),
@@ -3732,12 +3624,12 @@ function GridDensityToggle() {
 }
 function GridColumnsMenu() {
   const g = useGrid();
-  return /* @__PURE__ */ jsxRuntime.jsxs(chunk6PDYGUXX_cjs.Popover, { children: [
-    /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.PopoverTrigger, { asChild: true, children: /* @__PURE__ */ jsxRuntime.jsxs("button", { type: "button", className: "inline-flex h-8 items-center gap-1 border border-line px-2 text-xs text-muted hover:bg-surface-hover", children: [
+  return /* @__PURE__ */ jsxRuntime.jsxs(chunkBAOO6ECK_cjs.Popover, { children: [
+    /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.PopoverTrigger, { asChild: true, children: /* @__PURE__ */ jsxRuntime.jsxs("button", { type: "button", className: "inline-flex h-8 items-center gap-1 border border-line px-2 text-xs text-muted hover:bg-surface-hover", children: [
       /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Columns3, { className: "size-3.5", "aria-hidden": true }),
       g.labels.columns
     ] }) }),
-    /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.PopoverContent, { align: "end", className: "w-60 p-2", children: /* @__PURE__ */ jsxRuntime.jsx("ul", { className: "flex flex-col gap-0.5", children: g.columns.map((c, i) => /* @__PURE__ */ jsxRuntime.jsxs("li", { className: "flex items-center gap-2 px-1 py-0.5 text-sm", children: [
+    /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.PopoverContent, { align: "end", className: "w-60 p-2", children: /* @__PURE__ */ jsxRuntime.jsx("ul", { className: "flex flex-col gap-0.5", children: g.columns.map((c, i) => /* @__PURE__ */ jsxRuntime.jsxs("li", { className: "flex items-center gap-2 px-1 py-0.5 text-sm", children: [
       /* @__PURE__ */ jsxRuntime.jsxs("label", { className: "flex flex-1 items-center gap-2", children: [
         /* @__PURE__ */ jsxRuntime.jsx("input", { type: "checkbox", checked: c.visible, disabled: !c.hideable, onChange: (e) => g.setVisible(c.id, e.target.checked) }),
         /* @__PURE__ */ jsxRuntime.jsx("span", { className: "truncate", children: c.label })
@@ -4292,7 +4184,7 @@ function DataGrid(props) {
               ] }) })
             ] }),
             /* @__PURE__ */ jsxRuntime.jsxs("div", { role: "rowgroup", style: virtualOn ? { height: virtualizer.getTotalSize() - rowH, position: "relative", minWidth: totalWidth } : { minWidth: totalWidth }, children: [
-              skeleton && Array.from({ length: skeletonRows }, (_, i) => /* @__PURE__ */ jsxRuntime.jsx("div", { role: "row", style: { display: "grid", gridTemplateColumns: template, height: rowH }, className: "border-b border-line", children: Array.from({ length: colCount }, (_2, j) => /* @__PURE__ */ jsxRuntime.jsx("div", { role: "gridcell", className: "flex items-center px-3", children: /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.Skeleton, {}) }, j)) }, i)),
+              skeleton && Array.from({ length: skeletonRows }, (_, i) => /* @__PURE__ */ jsxRuntime.jsx("div", { role: "row", style: { display: "grid", gridTemplateColumns: template, height: rowH }, className: "border-b border-line", children: Array.from({ length: colCount }, (_2, j) => /* @__PURE__ */ jsxRuntime.jsx("div", { role: "gridcell", className: "flex items-center px-3", children: /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.Skeleton, {}) }, j)) }, i)),
               showRows && (virtualOn ? virtualizer.getVirtualItems().map((v) => renderRow(v.index, { transform: `translateY(${v.start - rowH}px)` }, virtualizer.measureElement)) : modelRows.map((_, i) => renderRow(i)))
             ] })
           ]
@@ -4307,7 +4199,7 @@ function DataGrid(props) {
       /* @__PURE__ */ jsxRuntime.jsx("div", { role: "status", "aria-live": "polite", className: "sr-only", children: summary }),
       pg.onPageSizeChange && /* @__PURE__ */ jsxRuntime.jsxs("label", { className: "flex items-center gap-2", children: [
         /* @__PURE__ */ jsxRuntime.jsx("span", { children: SG.rowsPerPage }),
-        /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.Select, { className: "h-8 w-20", value: pg.pageSize, onChange: (e) => pg.onPageSizeChange?.(Number(e.target.value)), children: Array.from(/* @__PURE__ */ new Set([...pg.pageSizes ?? [10, 25, 50, 100], pg.pageSize])).sort((x, y) => x - y).map((size) => /* @__PURE__ */ jsxRuntime.jsx("option", { value: size, children: size }, size)) })
+        /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.Select, { className: "h-8 w-20", value: pg.pageSize, onChange: (e) => pg.onPageSizeChange?.(Number(e.target.value)), children: Array.from(/* @__PURE__ */ new Set([...pg.pageSizes ?? [10, 25, 50, 100], pg.pageSize])).sort((x, y) => x - y).map((size) => /* @__PURE__ */ jsxRuntime.jsx("option", { value: size, children: size }, size)) })
       ] }),
       /* @__PURE__ */ jsxRuntime.jsx("div", { className: "ms-auto [&_.pagination]:p-0", children: totalRows !== void 0 ? /* @__PURE__ */ jsxRuntime.jsx(Pagination, { page: pg.page, pageCount: Math.max(1, Math.ceil(totalRows / pg.pageSize)), total: totalRows, pageSize: pg.pageSize, onPageChange: pg.onPageChange }) : /* @__PURE__ */ jsxRuntime.jsxs("nav", { className: "pagination p-0", "aria-label": laf.pagination, children: [
         /* @__PURE__ */ jsxRuntime.jsx("span", { children: SG.page(pg.page) }),
@@ -4317,16 +4209,16 @@ function DataGrid(props) {
         ] })
       ] }) })
     ] }),
-    showEmpty && (empty ?? /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.EmptyState, { title: L.empty })),
+    showEmpty && (empty ?? /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.EmptyState, { title: L.empty })),
     bulkActions && selected.length > 0 && /* @__PURE__ */ jsxRuntime.jsxs("div", { role: "toolbar", "aria-label": L.selectedCount(selected.length), className: "sticky bottom-0 z-10 flex items-center gap-3 border border-line bg-surface px-3 py-2 text-sm", children: [
       /* @__PURE__ */ jsxRuntime.jsx("span", { className: "font-medium", children: L.selectedCount(selected.length) }),
       bulkActions(selected),
       /* @__PURE__ */ jsxRuntime.jsx("button", { type: "button", "aria-label": L.clearSelection, className: "ms-auto text-muted hover:text-fg", onClick: () => setSelected([]), children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.X, { className: "size-4", "aria-hidden": true }) })
     ] }),
-    rowActions && /* @__PURE__ */ jsxRuntime.jsxs(chunk6PDYGUXX_cjs.DropdownMenu, { open: !!menu && menuItems.length > 0, onOpenChange: (o) => !o && setMenu(null), children: [
-      /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.DropdownMenuTrigger, { asChild: true, children: /* @__PURE__ */ jsxRuntime.jsx("span", { "aria-hidden": true, className: "pointer-events-none fixed size-0", style: menu ? { left: menu.x, top: menu.y } : void 0 }) }),
+    rowActions && /* @__PURE__ */ jsxRuntime.jsxs(chunkBAOO6ECK_cjs.DropdownMenu, { open: !!menu && menuItems.length > 0, onOpenChange: (o) => !o && setMenu(null), children: [
+      /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.DropdownMenuTrigger, { asChild: true, children: /* @__PURE__ */ jsxRuntime.jsx("span", { "aria-hidden": true, className: "pointer-events-none fixed size-0", style: menu ? { left: menu.x, top: menu.y } : void 0 }) }),
       /* @__PURE__ */ jsxRuntime.jsx(
-        chunk6PDYGUXX_cjs.DropdownMenuContent,
+        chunkBAOO6ECK_cjs.DropdownMenuContent,
         {
           align: "start",
           onCloseAutoFocus: (e) => {
@@ -4334,8 +4226,8 @@ function DataGrid(props) {
             scrollRef.current?.focus();
           },
           children: menuItems.map((m) => /* @__PURE__ */ jsxRuntime.jsxs(React24__namespace.Fragment, { children: [
-            m.separatorBefore && /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.DropdownMenuSeparator, {}),
-            /* @__PURE__ */ jsxRuntime.jsxs(chunk6PDYGUXX_cjs.DropdownMenuItem, { danger: m.danger, disabled: m.disabled, onSelect: () => m.onSelect(), children: [
+            m.separatorBefore && /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.DropdownMenuSeparator, {}),
+            /* @__PURE__ */ jsxRuntime.jsxs(chunkBAOO6ECK_cjs.DropdownMenuItem, { danger: m.danger, disabled: m.disabled, onSelect: () => m.onSelect(), children: [
               m.icon,
               m.label
             ] })
@@ -4558,7 +4450,7 @@ function SessionList({ sessions, onRevoke, onRevokeOthers, showUser, labels }) {
         /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "min-w-0 flex-1", children: [
           /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex flex-wrap items-center gap-2 text-fg", children: [
             /* @__PURE__ */ jsxRuntime.jsx("span", { children: title }),
-            s.current && /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.Badge, { tone: "primary", children: l.thisDevice })
+            s.current && /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.Badge, { tone: "primary", children: l.thisDevice })
           ] }),
           /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "text-xs text-muted", children: [
             showUser && s.user && /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
@@ -4576,11 +4468,11 @@ function SessionList({ sessions, onRevoke, onRevokeOthers, showUser, labels }) {
               l.lastActive,
               ": "
             ] }),
-            /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.RelativeTime, { value: s.lastActive })
+            /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.RelativeTime, { value: s.lastActive })
           ] })
         ] }),
         !s.current && /* @__PURE__ */ jsxRuntime.jsx(
-          chunk6PDYGUXX_cjs.IconButton,
+          chunkBAOO6ECK_cjs.IconButton,
           {
             label: `${l.revoke}: ${title}`,
             size: "sm",
@@ -4654,46 +4546,46 @@ function ApiKeyManager({ keys, scopes, expiryPresets = [30, 90, 365, null], onCr
   };
   return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "grid gap-3", children: [
     /* @__PURE__ */ jsxRuntime.jsx("div", { className: "flex justify-end", children: /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { size: "sm", leftIcon: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Plus, {}), onClick: () => setForm(true), children: l.create }) }),
-    error && !form && /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.Alert, { tone: "error", children: /* @__PURE__ */ jsxRuntime.jsx("span", { role: "alert", children: error }) }),
+    error && !form && /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.Alert, { tone: "error", children: /* @__PURE__ */ jsxRuntime.jsx("span", { role: "alert", children: error }) }),
     keys.length === 0 ? /* @__PURE__ */ jsxRuntime.jsx("p", { className: "text-sm text-muted", children: l.empty }) : /* @__PURE__ */ jsxRuntime.jsx("ul", { className: "m-0 grid list-none gap-2 p-0", children: keys.map((k) => /* @__PURE__ */ jsxRuntime.jsxs("li", { className: "card grid gap-1.5", children: [
       /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex flex-wrap items-center gap-2", children: [
         /* @__PURE__ */ jsxRuntime.jsx("span", { className: "text-fg", children: k.name }),
         /* @__PURE__ */ jsxRuntime.jsx("code", { className: "font-mono text-xs text-muted", children: k.prefix }),
-        k.revoked && /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.Badge, { tone: "danger", children: l.revoked }),
+        k.revoked && /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.Badge, { tone: "danger", children: l.revoked }),
         /* @__PURE__ */ jsxRuntime.jsxs("span", { className: "ms-auto flex gap-1", children: [
-          onRotate && !k.revoked && /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.IconButton, { label: `${l.rotate}: ${k.name}`, size: "sm", icon: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.RefreshCw, { className: "size-4" }), onClick: () => void rotate(k.id) }),
-          !k.revoked && /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.IconButton, { label: `${l.revoke}: ${k.name}`, size: "sm", icon: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Trash2, { className: "size-4" }), onClick: () => setRevoking(k) })
+          onRotate && !k.revoked && /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.IconButton, { label: `${l.rotate}: ${k.name}`, size: "sm", icon: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.RefreshCw, { className: "size-4" }), onClick: () => void rotate(k.id) }),
+          !k.revoked && /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.IconButton, { label: `${l.revoke}: ${k.name}`, size: "sm", icon: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Trash2, { className: "size-4" }), onClick: () => setRevoking(k) })
         ] })
       ] }),
-      k.scopes.length > 0 && /* @__PURE__ */ jsxRuntime.jsx("ul", { className: "m-0 flex list-none flex-wrap gap-1 p-0", "aria-label": l.scopes, children: k.scopes.map((s) => /* @__PURE__ */ jsxRuntime.jsx("li", { children: /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.Badge, { plain: true, children: s }) }, s)) }),
+      k.scopes.length > 0 && /* @__PURE__ */ jsxRuntime.jsx("ul", { className: "m-0 flex list-none flex-wrap gap-1 p-0", "aria-label": l.scopes, children: k.scopes.map((s) => /* @__PURE__ */ jsxRuntime.jsx("li", { children: /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.Badge, { plain: true, children: s }) }, s)) }),
       /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex flex-wrap gap-x-4 text-xs text-muted", children: [
         /* @__PURE__ */ jsxRuntime.jsxs("span", { children: [
           l.created,
           " ",
-          /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.RelativeTime, { value: k.createdAt })
+          /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.RelativeTime, { value: k.createdAt })
         ] }),
         /* @__PURE__ */ jsxRuntime.jsxs("span", { children: [
           l.expires,
           ": ",
-          k.expiresAt ? /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.RelativeTime, { value: k.expiresAt }) : l.never
+          k.expiresAt ? /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.RelativeTime, { value: k.expiresAt }) : l.never
         ] }),
         /* @__PURE__ */ jsxRuntime.jsxs("span", { children: [
           l.lastUsed,
           ": ",
-          k.lastUsedAt ? /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.RelativeTime, { value: k.lastUsedAt }) : l.neverUsed
+          k.lastUsedAt ? /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.RelativeTime, { value: k.lastUsedAt }) : l.neverUsed
         ] })
       ] })
     ] }, k.id)) }),
-    /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.Dialog, { open: form, onOpenChange: setForm, children: /* @__PURE__ */ jsxRuntime.jsx(
-      chunk6PDYGUXX_cjs.DialogContent,
+    /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.Dialog, { open: form, onOpenChange: setForm, children: /* @__PURE__ */ jsxRuntime.jsx(
+      chunkBAOO6ECK_cjs.DialogContent,
       {
         title: l.createTitle,
         footer: /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
-          /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.DialogClose, { asChild: true, children: /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { variant: "secondary", size: "sm", children: l.cancel }) }),
+          /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.DialogClose, { asChild: true, children: /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { variant: "secondary", size: "sm", children: l.cancel }) }),
           /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { size: "sm", loading: busy, disabled: !name.trim(), onClick: submit, children: l.create })
         ] }),
         children: /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "grid gap-3", children: [
-          /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.Field, { label: l.name, htmlFor: nameId, children: /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.Input, { id: nameId, value: name, onChange: (e) => setName(e.target.value), autoComplete: "off" }) }),
+          /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.Field, { label: l.name, htmlFor: nameId, children: /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.Input, { id: nameId, value: name, onChange: (e) => setName(e.target.value), autoComplete: "off" }) }),
           /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "grid gap-1", children: [
             /* @__PURE__ */ jsxRuntime.jsx("label", { className: "form-label", htmlFor: expId, children: l.expiry }),
             /* @__PURE__ */ jsxRuntime.jsx("select", { id: expId, className: "form-select", value: String(expiry), onChange: (e) => setExpiry(e.target.value === "null" ? null : Number(e.target.value)), children: expiryPresets.map((p) => /* @__PURE__ */ jsxRuntime.jsx("option", { value: String(p), children: p === null ? l.never : l.days(p) }, String(p))) })
@@ -4701,7 +4593,7 @@ function ApiKeyManager({ keys, scopes, expiryPresets = [30, 90, 365, null], onCr
           /* @__PURE__ */ jsxRuntime.jsxs("fieldset", { className: "m-0 grid gap-1 border-0 p-0", children: [
             /* @__PURE__ */ jsxRuntime.jsx("legend", { className: "form-label", children: l.scopes }),
             scopes.map((s) => /* @__PURE__ */ jsxRuntime.jsx(
-              chunk6PDYGUXX_cjs.Checkbox,
+              chunkBAOO6ECK_cjs.Checkbox,
               {
                 checked: picked.includes(s.value),
                 onChange: (e) => setPicked((p) => e.target.checked ? [...p, s.value] : p.filter((x) => x !== s.value)),
@@ -4714,8 +4606,8 @@ function ApiKeyManager({ keys, scopes, expiryPresets = [30, 90, 365, null], onCr
         ] })
       }
     ) }),
-    /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.Dialog, { open: secret !== void 0, onOpenChange: (o) => ack && !o && setSecret(void 0), children: /* @__PURE__ */ jsxRuntime.jsx(
-      chunk6PDYGUXX_cjs.DialogContent,
+    /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.Dialog, { open: secret !== void 0, onOpenChange: (o) => ack && !o && setSecret(void 0), children: /* @__PURE__ */ jsxRuntime.jsx(
+      chunkBAOO6ECK_cjs.DialogContent,
       {
         title: l.secretLabel,
         description: l.secretNotice,
@@ -4758,7 +4650,7 @@ function SecurityFactors({ password, totp, passkeys, recovery, labels }) {
         /* @__PURE__ */ jsxRuntime.jsx("p", { className: "m-0 text-xs text-muted", children: password.changedAt ? /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
           l.passwordChanged,
           " ",
-          /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.RelativeTime, { value: password.changedAt })
+          /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.RelativeTime, { value: password.changedAt })
         ] }) : l.passwordNever })
       ] }),
       /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { variant: "secondary", size: "sm", onClick: password.onChange, children: l.changePassword })
@@ -4783,16 +4675,16 @@ function SecurityFactors({ password, totp, passkeys, recovery, labels }) {
           /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "text-xs text-muted", children: [
             l.created,
             " ",
-            /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.RelativeTime, { value: p.createdAt }),
+            /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.RelativeTime, { value: p.createdAt }),
             " \xB7 ",
             l.lastUsed,
             ":",
             " ",
-            p.lastUsedAt ? /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.RelativeTime, { value: p.lastUsedAt }) : l.neverUsed
+            p.lastUsedAt ? /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.RelativeTime, { value: p.lastUsedAt }) : l.neverUsed
           ] })
         ] }),
         /* @__PURE__ */ jsxRuntime.jsx(
-          chunk6PDYGUXX_cjs.IconButton,
+          chunkBAOO6ECK_cjs.IconButton,
           {
             label: `${l.removePasskey}: ${p.name}`,
             size: "sm",
@@ -4837,8 +4729,8 @@ function SecurityFactors({ password, totp, passkeys, recovery, labels }) {
         }
       }
     ),
-    /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.Dialog, { open: !!codes, onOpenChange: (o) => ack && !o && setCodes(void 0), children: /* @__PURE__ */ jsxRuntime.jsx(
-      chunk6PDYGUXX_cjs.DialogContent,
+    /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.Dialog, { open: !!codes, onOpenChange: (o) => ack && !o && setCodes(void 0), children: /* @__PURE__ */ jsxRuntime.jsx(
+      chunkBAOO6ECK_cjs.DialogContent,
       {
         title: l.recoveryTitle,
         description: l.recoveryNotice,
@@ -4847,7 +4739,7 @@ function SecurityFactors({ password, totp, passkeys, recovery, labels }) {
         footer: /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { size: "sm", disabled: !ack, onClick: () => setCodes(void 0), children: l.done }),
         children: /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "grid gap-3", children: [
           /* @__PURE__ */ jsxRuntime.jsx("ul", { className: "m-0 grid list-none grid-cols-2 gap-2 p-0 font-mono text-sm text-fg", children: codes?.map((c) => /* @__PURE__ */ jsxRuntime.jsx("li", { className: "rounded-sm border border-line bg-muted-bg px-2 py-1", children: c }, c)) }),
-          /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.Checkbox, { checked: ack, onChange: (e) => setAck(e.target.checked), children: l.acknowledge })
+          /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.Checkbox, { checked: ack, onChange: (e) => setAck(e.target.checked), children: l.acknowledge })
         ] })
       }
     ) })
@@ -4879,13 +4771,13 @@ function ReauthDialog({ open, onOpenChange, onReauth, passkey, labels }) {
       setBusy(false);
     }
   };
-  return /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.Dialog, { open, onOpenChange, children: /* @__PURE__ */ jsxRuntime.jsx(
-    chunk6PDYGUXX_cjs.DialogContent,
+  return /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.Dialog, { open, onOpenChange, children: /* @__PURE__ */ jsxRuntime.jsx(
+    chunkBAOO6ECK_cjs.DialogContent,
     {
       title: l.title,
       description: l.description,
       footer: /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
-        /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.DialogClose, { asChild: true, children: /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { variant: "secondary", size: "sm", children: l.cancel }) }),
+        /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.DialogClose, { asChild: true, children: /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { variant: "secondary", size: "sm", children: l.cancel }) }),
         /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { size: "sm", loading: busy, disabled: method === "password" && !pw, form: `${id}-f`, type: "submit", children: method === "passkey" ? l.usePasskey : l.confirm })
       ] }),
       children: /* @__PURE__ */ jsxRuntime.jsxs(
@@ -4898,7 +4790,7 @@ function ReauthDialog({ open, onOpenChange, onReauth, passkey, labels }) {
             if (!busy && (method === "passkey" || pw)) void run();
           },
           children: [
-            method === "password" ? /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.Field, { label: l.password, htmlFor: `${id}-pw`, error, children: /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.Input, { id: `${id}-pw`, type: "password", autoComplete: "current-password", autoFocus: true, value: pw, invalid: !!error, onChange: (e) => setPw(e.target.value) }) }) : error && /* @__PURE__ */ jsxRuntime.jsx("p", { className: "field-error", role: "alert", children: error }),
+            method === "password" ? /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.Field, { label: l.password, htmlFor: `${id}-pw`, error, children: /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.Input, { id: `${id}-pw`, type: "password", autoComplete: "current-password", autoFocus: true, value: pw, invalid: !!error, onChange: (e) => setPw(e.target.value) }) }) : error && /* @__PURE__ */ jsxRuntime.jsx("p", { className: "field-error", role: "alert", children: error }),
             passkey && /* @__PURE__ */ jsxRuntime.jsx(
               "button",
               {
@@ -4940,8 +4832,8 @@ function SessionExpiryDialog({ expiresAt, warnBeforeMs = 3e5, onStay, onSignOut,
   const secs = Math.ceil(left / 1e3);
   const mark = secs <= 10 ? 10 : secs <= 60 ? 60 : 0;
   const announcement = open && left > 0 && mark ? l.announce(format2.duration(mark * 1e3)) : "";
-  return /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.Dialog, { open, onOpenChange: () => void 0, children: /* @__PURE__ */ jsxRuntime.jsxs(
-    chunk6PDYGUXX_cjs.DialogContent,
+  return /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.Dialog, { open, onOpenChange: () => void 0, children: /* @__PURE__ */ jsxRuntime.jsxs(
+    chunkBAOO6ECK_cjs.DialogContent,
     {
       title: l.title,
       onInteractOutside: (e) => e.preventDefault(),
@@ -5059,7 +4951,7 @@ function NetInput({ validate, message, label, hint, errorMessage, value, default
   const [touched, setTouched] = React24__namespace.useState(false);
   const invalid = touched && val !== "" && !validate(val);
   const input = /* @__PURE__ */ jsxRuntime.jsx(
-    chunk6PDYGUXX_cjs.Input,
+    chunkBAOO6ECK_cjs.Input,
     {
       ...rest,
       id: inputId,
@@ -5086,7 +4978,7 @@ function NetInput({ validate, message, label, hint, errorMessage, value, default
     }
   );
   if (!label) return input;
-  return /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.Field, { label, hint, htmlFor: inputId, error: invalid ? errorMessage ?? message : void 0, children: input });
+  return /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.Field, { label, hint, htmlFor: inputId, error: invalid ? errorMessage ?? message : void 0, children: input });
 }
 function IpInput(props) {
   const L = useLaf3().t.components.admin.network;
@@ -5114,9 +5006,9 @@ function AllowListEditor({ value, defaultValue = [], onChange, label: labelProp,
     setError(void 0);
   };
   return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "grid gap-2", children: [
-    /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.Field, { label, htmlFor: id, error, children: /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex gap-2", children: [
+    /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.Field, { label, htmlFor: id, error, children: /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex gap-2", children: [
       /* @__PURE__ */ jsxRuntime.jsx(
-        chunk6PDYGUXX_cjs.Input,
+        chunkBAOO6ECK_cjs.Input,
         {
           id,
           value: draft,
@@ -5142,7 +5034,7 @@ function AllowListEditor({ value, defaultValue = [], onChange, label: labelProp,
     ] }) }),
     list.length === 0 ? /* @__PURE__ */ jsxRuntime.jsx("p", { className: "text-sm text-muted", children: L.empty }) : /* @__PURE__ */ jsxRuntime.jsx("ul", { "aria-label": label, className: "divide-y divide-line rounded-md border border-line text-sm", children: list.map((entry) => /* @__PURE__ */ jsxRuntime.jsxs("li", { className: "flex items-center gap-3 px-3 py-1.5", children: [
       /* @__PURE__ */ jsxRuntime.jsx("span", { className: "flex-1 font-mono", children: entry }),
-      /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.Badge, { tone: "neutral", children: isCidr(entry) ? "CIDR" : isIPv6(entry) ? "IPv6" : "IPv4" }),
+      /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.Badge, { tone: "neutral", children: isCidr(entry) ? "CIDR" : isIPv6(entry) ? "IPv6" : "IPv4" }),
       /* @__PURE__ */ jsxRuntime.jsx("button", { type: "button", disabled, "aria-label": L.remove(entry), className: "text-muted hover:text-fg", onClick: () => setList(list.filter((x) => x !== entry)), children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.X, { className: "size-4", "aria-hidden": true }) })
     ] }, entry)) })
   ] });
@@ -5158,9 +5050,9 @@ function TransferColumn({ title, items, checked, setChecked, L, height }) {
       /* @__PURE__ */ jsxRuntime.jsx("span", { className: "font-semibold text-fg", children: title }),
       /* @__PURE__ */ jsxRuntime.jsx("span", { className: "text-xs text-muted", "aria-live": "polite", children: L.count(n, items.length) })
     ] }),
-    /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.Input, { type: "search", "aria-label": L.search(title), placeholder: L.search(title), value: q, onChange: (e) => setQ(e.target.value) }),
+    /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.Input, { type: "search", "aria-label": L.search(title), placeholder: L.search(title), value: q, onChange: (e) => setQ(e.target.value) }),
     shown.length === 0 ? /* @__PURE__ */ jsxRuntime.jsx("p", { className: "px-1 py-2 text-sm text-muted", children: L.empty }) : /* @__PURE__ */ jsxRuntime.jsx(
-      chunk6PDYGUXX_cjs.VirtualList,
+      chunkBAOO6ECK_cjs.VirtualList,
       {
         items: shown,
         rowHeight: ROW,
@@ -5258,14 +5150,14 @@ function ColorField({ value, defaultValue = DEFAULT_PRIMARY, onChange, cardColor
     /* @__PURE__ */ jsxRuntime.jsx("span", { children: name }),
     /* @__PURE__ */ jsxRuntime.jsxs("span", { className: "flex items-center gap-2", children: [
       /* @__PURE__ */ jsxRuntime.jsx("span", { className: "font-mono text-xs", children: hex ? `${ratio.toFixed(2)}:1` : "\u2013" }),
-      /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.Badge, { tone: hex && ratio >= min ? "ok" : "danger", children: hex && ratio >= min ? L.pass : L.fail })
+      /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.Badge, { tone: hex && ratio >= min ? "ok" : "danger", children: hex && ratio >= min ? L.pass : L.fail })
     ] })
   ] });
   const shown = passes ? hex : accepted;
   return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "grid gap-3", children: [
-    /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.Field, { label: L.label, htmlFor: id, error, children: /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex items-center gap-2", children: [
+    /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.Field, { label: L.label, htmlFor: id, error, children: /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex items-center gap-2", children: [
       /* @__PURE__ */ jsxRuntime.jsx("input", { type: "color", "aria-label": L.colorPicker, value: normalizeHex(accepted) ?? fromRgb(0), onChange: (e) => update(e.target.value), className: "h-8 w-10 rounded-sm border border-line bg-transparent p-0.5" }),
-      /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.Input, { id, value: draft, invalid: !!error, spellCheck: false, maxLength: 7, className: "max-w-32 font-mono", onChange: (e) => update(e.target.value, false), onBlur: (e) => update(e.target.value) })
+      /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.Input, { id, value: draft, invalid: !!error, spellCheck: false, maxLength: 7, className: "max-w-32 font-mono", onChange: (e) => update(e.target.value, false), onBlur: (e) => update(e.target.value) })
     ] }) }),
     /* @__PURE__ */ jsxRuntime.jsxs("ul", { "aria-label": L.contrast, className: "grid gap-1 text-sm", children: [
       row(L.onCard, onCard, minCardRatio),
@@ -5273,7 +5165,7 @@ function ColorField({ value, defaultValue = DEFAULT_PRIMARY, onChange, cardColor
     ] }),
     /* @__PURE__ */ jsxRuntime.jsxs("div", { "aria-label": L.preview, role: "group", className: "flex items-center gap-3 rounded-md border border-line p-3", style: { "--primary": shown, "--primary-hover": shown }, children: [
       /* @__PURE__ */ jsxRuntime.jsx("span", { className: "btn btn-primary pointer-events-none", "aria-hidden": true, children: L.sampleButton }),
-      /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.Badge, { tone: "primary", children: L.sampleBadge }),
+      /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.Badge, { tone: "primary", children: L.sampleBadge }),
       /* @__PURE__ */ jsxRuntime.jsx("span", { "aria-hidden": true, className: "inline-block size-6 rounded-sm bg-card outline-2 outline-offset-2 outline-primary" })
     ] })
   ] });
@@ -5285,7 +5177,7 @@ function BrandingEditor({ value, defaultValue = { productName: "", primary: DEFA
   const [files, setFiles] = React24__namespace.useState([]);
   return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "grid gap-6 md:grid-cols-2", children: [
     /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "grid content-start gap-4", children: [
-      /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.Field, { label: L.productName, htmlFor: nameId, children: /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.Input, { id: nameId, value: b.productName, onChange: (e) => setB({ ...b, productName: e.target.value }) }) }),
+      /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.Field, { label: L.productName, htmlFor: nameId, children: /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.Input, { id: nameId, value: b.productName, onChange: (e) => setB({ ...b, productName: e.target.value }) }) }),
       /* @__PURE__ */ jsxRuntime.jsx(ColorField, { value: b.primary, onChange: (primary) => setB({ ...b, primary }), cardColor, onPrimaryColor, labels: labels?.color }),
       /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "grid gap-1.5", children: [
         /* @__PURE__ */ jsxRuntime.jsx("span", { className: "form-label", children: L.logo }),
@@ -5339,13 +5231,13 @@ function NotificationCenter({ items, onMarkRead, onMarkAllRead, onViewAll, onOpe
   const groups = /* @__PURE__ */ new Map();
   for (const i of items) groups.set(i.group, [...groups.get(i.group) ?? [], i]);
   const bellLabel = unread ? `${L.bell} (${unread})` : L.bell;
-  return /* @__PURE__ */ jsxRuntime.jsxs(chunk6PDYGUXX_cjs.Popover, { children: [
+  return /* @__PURE__ */ jsxRuntime.jsxs(chunkBAOO6ECK_cjs.Popover, { children: [
     /* @__PURE__ */ jsxRuntime.jsxs("span", { className: "relative inline-flex", children: [
-      /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.PopoverTrigger, { asChild: true, children: /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.IconButton, { label: bellLabel, icon: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Bell, { className: "size-4" }) }) }),
+      /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.PopoverTrigger, { asChild: true, children: /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.IconButton, { label: bellLabel, icon: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Bell, { className: "size-4" }) }) }),
       unread > 0 && /* @__PURE__ */ jsxRuntime.jsx("span", { "aria-hidden": true, className: "pointer-events-none absolute -end-0.5 -top-0.5 flex min-w-4 items-center justify-center rounded-sm bg-danger px-1 text-[0.625rem] leading-4 font-bold text-on-primary", children: unread > 99 ? "99+" : unread }),
       /* @__PURE__ */ jsxRuntime.jsx("span", { className: "sr-only", "aria-live": "polite", children: L.unreadCount(unread) })
     ] }),
-    /* @__PURE__ */ jsxRuntime.jsxs(chunk6PDYGUXX_cjs.PopoverContent, { title: L.title, align: "end", className: "w-80 max-w-[calc(100vw-2rem)] p-0", footer: onViewAll && /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { variant: "ghost", size: "sm", onClick: onViewAll, children: L.viewAll }), children: [
+    /* @__PURE__ */ jsxRuntime.jsxs(chunkBAOO6ECK_cjs.PopoverContent, { title: L.title, align: "end", className: "w-80 max-w-[calc(100vw-2rem)] p-0", footer: onViewAll && /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { variant: "ghost", size: "sm", onClick: onViewAll, children: L.viewAll }), children: [
       unread > 0 && onMarkAllRead && /* @__PURE__ */ jsxRuntime.jsx("div", { className: "flex justify-end px-3 pb-1", children: /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { size: "sm", variant: "ghost", onClick: onMarkAllRead, children: L.markAllRead }) }),
       items.length === 0 ? /* @__PURE__ */ jsxRuntime.jsx("p", { className: "px-3 py-6 text-center text-sm text-muted", children: L.empty }) : /* @__PURE__ */ jsxRuntime.jsx("div", { className: "max-h-80 overflow-auto", children: [...groups].map(([group, list]) => /* @__PURE__ */ jsxRuntime.jsxs("section", { "aria-label": group, children: [
         group && /* @__PURE__ */ jsxRuntime.jsx("h3", { className: "bg-muted-bg px-3 py-1 text-xs font-semibold text-muted uppercase", children: group }),
@@ -5354,7 +5246,7 @@ function NotificationCenter({ items, onMarkRead, onMarkAllRead, onViewAll, onOpe
           /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "min-w-0 flex-1", children: [
             n.href ? /* @__PURE__ */ jsxRuntime.jsx("a", { href: n.href, className: chunkFTHFEMX6_cjs.cn("block truncate hover:underline", n.unread ? "font-semibold text-fg" : "text-muted"), onClick: () => onOpen?.(n), children: n.title }) : /* @__PURE__ */ jsxRuntime.jsx("span", { className: chunkFTHFEMX6_cjs.cn("block truncate", n.unread ? "font-semibold text-fg" : "text-muted"), children: n.title }),
             n.body && /* @__PURE__ */ jsxRuntime.jsx("p", { className: "m-0 text-xs text-muted", children: n.body }),
-            /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.RelativeTime, { value: n.time, className: "text-xs text-subtle" })
+            /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.RelativeTime, { value: n.time, className: "text-xs text-subtle" })
           ] }),
           n.unread && onMarkRead && /* @__PURE__ */ jsxRuntime.jsx("button", { type: "button", "aria-label": L.markRead(n.title), className: "text-xs text-primary hover:underline", onClick: () => onMarkRead(n.id), children: "\u2713" })
         ] }, n.id)) })
@@ -5588,23 +5480,23 @@ function ObjectPage({
   const [tab, setTab] = chunkRNP4RJYX_cjs.useControllableState({ value: tabProp, defaultValue: defaultTab, onChange: onTabChange });
   return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: chunkFTHFEMX6_cjs.cn("grid gap-4", className), children: [
     /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex flex-wrap items-center gap-3", children: [
-      /* @__PURE__ */ jsxRuntime.jsx(ObjectIcon, { kind, state, size: 20 }),
+      /* @__PURE__ */ jsxRuntime.jsx(chunkWERLSPEU_cjs.ObjectIcon, { kind, state, size: 20 }),
       /* @__PURE__ */ jsxRuntime.jsx("h1", { className: "min-w-0 text-xl font-semibold text-fg", children: name }),
-      statusLabel && /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.StatusDot, { tone: statusTone2, label: statusLabel }),
+      statusLabel && /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.StatusDot, { tone: statusTone2, label: statusLabel }),
       actions && actions.length > 0 && /* @__PURE__ */ jsxRuntime.jsx("div", { className: "ms-auto", children: /* @__PURE__ */ jsxRuntime.jsx(ActionBar, { items: actions, label: actionsLabel ?? name }) })
     ] }),
-    /* @__PURE__ */ jsxRuntime.jsxs(chunk6PDYGUXX_cjs.Tabs, { value: tab, onValueChange: setTab, children: [
-      /* @__PURE__ */ jsxRuntime.jsxs(chunk6PDYGUXX_cjs.TabsList, { children: [
-        /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.TabsTrigger, { value: "summary", children: l.summary }),
-        monitor !== void 0 && /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.TabsTrigger, { value: "monitor", children: l.monitor }),
-        configure !== void 0 && /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.TabsTrigger, { value: "configure", children: l.configure })
+    /* @__PURE__ */ jsxRuntime.jsxs(chunkBAOO6ECK_cjs.Tabs, { value: tab, onValueChange: setTab, children: [
+      /* @__PURE__ */ jsxRuntime.jsxs(chunkBAOO6ECK_cjs.TabsList, { children: [
+        /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.TabsTrigger, { value: "summary", children: l.summary }),
+        monitor !== void 0 && /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.TabsTrigger, { value: "monitor", children: l.monitor }),
+        configure !== void 0 && /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.TabsTrigger, { value: "configure", children: l.configure })
       ] }),
-      /* @__PURE__ */ jsxRuntime.jsxs(chunk6PDYGUXX_cjs.TabsContent, { value: "summary", className: "grid gap-4 pt-4", children: [
+      /* @__PURE__ */ jsxRuntime.jsxs(chunkBAOO6ECK_cjs.TabsContent, { value: "summary", className: "grid gap-4 pt-4", children: [
         facts && /* @__PURE__ */ jsxRuntime.jsx(DefinitionList, { items: facts }),
-        cards && /* @__PURE__ */ jsxRuntime.jsx("div", { className: "grid gap-4 md:grid-cols-2", children: cards.map((c) => /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.Panel, { title: c.title, headingLevel: 2, children: c.content }, c.id)) })
+        cards && /* @__PURE__ */ jsxRuntime.jsx("div", { className: "grid gap-4 md:grid-cols-2", children: cards.map((c) => /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.Panel, { title: c.title, headingLevel: 2, children: c.content }, c.id)) })
       ] }),
-      monitor !== void 0 && /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.TabsContent, { value: "monitor", className: "pt-4", children: monitor }),
-      configure !== void 0 && /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.TabsContent, { value: "configure", className: "pt-4", children: configure })
+      monitor !== void 0 && /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.TabsContent, { value: "monitor", className: "pt-4", children: monitor }),
+      configure !== void 0 && /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.TabsContent, { value: "configure", className: "pt-4", children: configure })
     ] })
   ] });
 }
@@ -5641,7 +5533,7 @@ function InventoryLayout({
   const [drawer, setDrawer] = React24__namespace.useState(false);
   const treeTitle = treeLabel ?? laf.vsInventoryTree;
   const main = bottom ? /* @__PURE__ */ jsxRuntime.jsx(
-    chunk6PDYGUXX_cjs.SplitPane,
+    chunkBAOO6ECK_cjs.SplitPane,
     {
       orientation: "vertical",
       primary: "end",
@@ -5659,13 +5551,13 @@ function InventoryLayout({
   return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: chunkFTHFEMX6_cjs.cn("flex h-full min-h-0 flex-col", className), children: [
     top,
     /* @__PURE__ */ jsxRuntime.jsx("div", { className: "min-h-0 flex-1", children: narrow ? /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex h-full min-h-0 flex-col", children: [
-      /* @__PURE__ */ jsxRuntime.jsx("div", { className: "flex items-center border-b border-line px-2 py-1", children: /* @__PURE__ */ jsxRuntime.jsxs(chunk6PDYGUXX_cjs.Drawer, { open: drawer, onOpenChange: setDrawer, children: [
-        /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.DrawerTrigger, { className: "btn btn-ghost btn-sm", "aria-label": treeTitle, children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.PanelLeft, { className: "size-4", "aria-hidden": true }) }),
-        /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.DrawerContent, { title: treeTitle, width: "sm", children: /* @__PURE__ */ jsxRuntime.jsx("div", { onClickCapture: (e) => e.target.closest('[role="treeitem"]') && setDrawer(false), children: tree }) })
+      /* @__PURE__ */ jsxRuntime.jsx("div", { className: "flex items-center border-b border-line px-2 py-1", children: /* @__PURE__ */ jsxRuntime.jsxs(chunkBAOO6ECK_cjs.Drawer, { open: drawer, onOpenChange: setDrawer, children: [
+        /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.DrawerTrigger, { className: "btn btn-ghost btn-sm", "aria-label": treeTitle, children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.PanelLeft, { className: "size-4", "aria-hidden": true }) }),
+        /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.DrawerContent, { title: treeTitle, width: "sm", children: /* @__PURE__ */ jsxRuntime.jsx("div", { onClickCapture: (e) => e.target.closest('[role="treeitem"]') && setDrawer(false), children: tree }) })
       ] }) }),
       /* @__PURE__ */ jsxRuntime.jsx("div", { className: "min-h-0 flex-1", children: main })
     ] }) : /* @__PURE__ */ jsxRuntime.jsx(
-      chunk6PDYGUXX_cjs.SplitPane,
+      chunkBAOO6ECK_cjs.SplitPane,
       {
         collapsible: true,
         label: treeTitle,
@@ -5716,7 +5608,7 @@ function Tip({ content, children }) {
 }
 var withLabels = (defaults, labels) => ({ ...defaults, ...labels });
 function Label2({ slot, description, onRemove, removeLabel, children }) {
-  const chip = /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.Chip, { color: slot, onRemove, removeLabel, children });
+  const chip = /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.Chip, { color: slot, onRemove, removeLabel, children });
   return description ? /* @__PURE__ */ jsxRuntime.jsx(Tip, { content: description, children: /* @__PURE__ */ jsxRuntime.jsx("span", { className: "inline-flex", children: chip }) }) : chip;
 }
 function LabelSwatch({ slot, className }) {
@@ -5736,7 +5628,7 @@ function LabelPicker({
   const options = labels.map((x) => ({ value: x.id, label: x.name, description: x.description }));
   return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "grid gap-2", children: [
     /* @__PURE__ */ jsxRuntime.jsx(
-      chunk6PDYGUXX_cjs.Combobox,
+      chunkBAOO6ECK_cjs.Combobox,
       {
         multiple: true,
         label: l.label,
@@ -5753,7 +5645,7 @@ function LabelPicker({
         ] })
       }
     ),
-    onCreate && /* @__PURE__ */ jsxRuntime.jsx("div", { role: "radiogroup", "aria-label": l.newColour, className: "flex flex-wrap gap-1", children: chunk6PDYGUXX_cjs.LABEL_SLOTS.map((s) => /* @__PURE__ */ jsxRuntime.jsx(
+    onCreate && /* @__PURE__ */ jsxRuntime.jsx("div", { role: "radiogroup", "aria-label": l.newColour, className: "flex flex-wrap gap-1", children: chunkBAOO6ECK_cjs.LABEL_SLOTS.map((s) => /* @__PURE__ */ jsxRuntime.jsx(
       "button",
       {
         type: "button",
@@ -5853,7 +5745,7 @@ function ActivityTimeline({
   const eventRow = (e) => /* @__PURE__ */ jsxRuntime.jsxs("li", { className: "flex items-center gap-2 ps-1 text-xs text-muted", children: [
     /* @__PURE__ */ jsxRuntime.jsx("span", { "aria-hidden": true, className: "grid size-5 shrink-0 place-items-center text-subtle", children: e.icon }),
     /* @__PURE__ */ jsxRuntime.jsx("span", { className: "min-w-0", children: e.summary }),
-    /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.RelativeTime, { value: e.at, className: "ms-auto shrink-0 text-subtle" })
+    /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.RelativeTime, { value: e.at, className: "ms-auto shrink-0 text-subtle" })
   ] }, e.id);
   return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "grid gap-3", children: [
     /* @__PURE__ */ jsxRuntime.jsx("ol", { "aria-label": l.timeline, className: "m-0 grid list-none gap-3 p-0", children: rows.map((r) => {
@@ -5879,11 +5771,11 @@ function ActivityTimeline({
         ] }, r.id);
       }
       return /* @__PURE__ */ jsxRuntime.jsxs("li", { className: "flex gap-3", children: [
-        /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.Avatar, { name: r.author.name, src: r.author.src }),
+        /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.Avatar, { name: r.author.name, src: r.author.src }),
         /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "min-w-0 flex-1 rounded-md border border-line bg-surface", children: [
           /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex items-center gap-2 border-b border-line px-3 py-1.5 text-xs", children: [
             /* @__PURE__ */ jsxRuntime.jsx("strong", { className: "text-fg", children: r.author.name }),
-            /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.RelativeTime, { value: r.at, className: "text-muted" }),
+            /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.RelativeTime, { value: r.at, className: "text-muted" }),
             r.edited && /* @__PURE__ */ jsxRuntime.jsxs("span", { className: "text-subtle", children: [
               "(",
               l.edited,
@@ -6011,13 +5903,13 @@ function IssueRow({
       /* @__PURE__ */ jsxRuntime.jsx(IssueTitle, { issue }),
       issue.labels && /* @__PURE__ */ jsxRuntime.jsx(IssueLabels, { labels: issue.labels })
     ] }),
-    issue.assignees && issue.assignees.length > 0 && /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.AvatarGroup, { users: issue.assignees, size: "sm", max: 3 }),
+    issue.assignees && issue.assignees.length > 0 && /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.AvatarGroup, { users: issue.assignees, size: "sm", max: 3 }),
     issue.due && /* @__PURE__ */ jsxRuntime.jsx(DueDate, { due: issue.due, now, text: l }),
     !!issue.comments && /* @__PURE__ */ jsxRuntime.jsxs("span", { className: "inline-flex items-center gap-1 text-xs text-muted", "aria-label": l.comments(issue.comments), children: [
       /* @__PURE__ */ jsxRuntime.jsx(lucideReact.MessageSquare, { className: "size-3.5", "aria-hidden": true }),
       issue.comments
     ] }),
-    issue.updated && /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.RelativeTime, { value: issue.updated, className: "text-xs text-subtle" })
+    issue.updated && /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.RelativeTime, { value: issue.updated, className: "text-xs text-subtle" })
   ] });
 }
 function IssueCard({ issue, density = "comfortable", now, text }) {
@@ -6031,13 +5923,13 @@ function IssueCard({ issue, density = "comfortable", now, text }) {
     /* @__PURE__ */ jsxRuntime.jsx("div", { className: "flex min-w-0", children: /* @__PURE__ */ jsxRuntime.jsx(IssueTitle, { issue }) }),
     issue.labels && issue.labels.length > 0 && /* @__PURE__ */ jsxRuntime.jsx("div", { className: "flex flex-wrap gap-1", children: /* @__PURE__ */ jsxRuntime.jsx(IssueLabels, { labels: issue.labels }) }),
     /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex items-center gap-3", children: [
-      issue.assignees && issue.assignees.length > 0 && /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.AvatarGroup, { users: issue.assignees, size: "sm", max: 3 }),
+      issue.assignees && issue.assignees.length > 0 && /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.AvatarGroup, { users: issue.assignees, size: "sm", max: 3 }),
       issue.due && /* @__PURE__ */ jsxRuntime.jsx(DueDate, { due: issue.due, now, text: l }),
       !!issue.comments && /* @__PURE__ */ jsxRuntime.jsxs("span", { className: "inline-flex items-center gap-1 text-xs text-muted", "aria-label": l.comments(issue.comments), children: [
         /* @__PURE__ */ jsxRuntime.jsx(lucideReact.MessageSquare, { className: "size-3.5", "aria-hidden": true }),
         issue.comments
       ] }),
-      issue.updated && /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.RelativeTime, { value: issue.updated, className: "ms-auto text-xs text-subtle" })
+      issue.updated && /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.RelativeTime, { value: issue.updated, className: "ms-auto text-xs text-subtle" })
     ] })
   ] });
 }
@@ -6267,16 +6159,16 @@ function ConsoleFrame({
   return /* @__PURE__ */ jsxRuntime.jsxs("div", { ref: root, className: chunkFTHFEMX6_cjs.cn("flex flex-col overflow-hidden rounded-lg border border-line bg-surface", className), children: [
     /* @__PURE__ */ jsxRuntime.jsxs("div", { role: "toolbar", "aria-label": l.console, className: "flex flex-wrap items-center gap-2 border-b border-line px-3 py-2", children: [
       /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { size: "sm", variant: "secondary", disabled: !live, onClick: () => onSendKeys?.("ctrl-alt-del"), children: l.sendCad }),
-      keyCombos && keyCombos.length > 0 && /* @__PURE__ */ jsxRuntime.jsxs(chunk6PDYGUXX_cjs.DropdownMenu, { children: [
-        /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.DropdownMenuTrigger, { asChild: true, children: /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { size: "sm", variant: "ghost", disabled: !live, children: l.keys }) }),
-        /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.DropdownMenuContent, { align: "start", children: keyCombos.map((k) => /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.DropdownMenuItem, { onSelect: () => onSendKeys?.(k.id), children: k.label }, k.id)) })
+      keyCombos && keyCombos.length > 0 && /* @__PURE__ */ jsxRuntime.jsxs(chunkBAOO6ECK_cjs.DropdownMenu, { children: [
+        /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.DropdownMenuTrigger, { asChild: true, children: /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { size: "sm", variant: "ghost", disabled: !live, children: l.keys }) }),
+        /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.DropdownMenuContent, { align: "start", children: keyCombos.map((k) => /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.DropdownMenuItem, { onSelect: () => onSendKeys?.(k.id), children: k.label }, k.id)) })
       ] }),
       /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { size: "sm", variant: "ghost", "aria-pressed": scale === "actual", onClick: () => setScale(scale === "fit" ? "actual" : "fit"), children: scale === "fit" ? l.actual : l.fit }),
       onScreenshot && /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { size: "sm", variant: "ghost", disabled: !live, onClick: onScreenshot, children: l.screenshot }),
       /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { size: "sm", variant: "ghost", "aria-pressed": full, leftIcon: full ? /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Minimize2, { "aria-hidden": true }) : /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Maximize2, { "aria-hidden": true }), onClick: toggleFull, children: full ? l.exitFullscreen : l.fullscreen }),
       /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "ms-auto flex items-center gap-3", children: [
         keyboardGrabbed && live && /* @__PURE__ */ jsxRuntime.jsx("span", { className: "text-xs text-muted", children: l.releaseHint }),
-        /* @__PURE__ */ jsxRuntime.jsx("span", { role: "status", children: /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.StatusDot, { tone: statusTone[status], pulse: status === "connecting", label: l[status] }) }),
+        /* @__PURE__ */ jsxRuntime.jsx("span", { role: "status", children: /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.StatusDot, { tone: statusTone[status], pulse: status === "connecting", label: l[status] }) }),
         live && onDisconnect && /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { size: "sm", variant: "ghost", onClick: onDisconnect, children: l.disconnect }),
         (status === "disconnected" || status === "error") && onReconnect && /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { size: "sm", variant: "secondary", onClick: onReconnect, children: l.reconnect })
       ] })
@@ -6342,8 +6234,8 @@ function HardwareEditor({ devices: devicesProp, defaultDevices = [], onChange, b
   const errors = devices.map((d) => validateDevice(d, base.find((b) => b.id === d.id), cap, l));
   const invalid = errors.some((e) => Object.keys(e).length > 0);
   const diff = describeDiff(devices, base, l);
-  const num = (d, field, text, value, err, disabled) => /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.Field, { label: text, error: err, htmlFor: `${d.id}-${field}`, children: /* @__PURE__ */ jsxRuntime.jsx(
-    chunk6PDYGUXX_cjs.Input,
+  const num = (d, field, text, value, err, disabled) => /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.Field, { label: text, error: err, htmlFor: `${d.id}-${field}`, children: /* @__PURE__ */ jsxRuntime.jsx(
+    chunkBAOO6ECK_cjs.Input,
     {
       id: `${d.id}-${field}`,
       type: "number",
@@ -6370,21 +6262,21 @@ function HardwareEditor({ devices: devicesProp, defaultDevices = [], onChange, b
       case "disk":
         return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "grid gap-3 sm:grid-cols-3", children: [
           num(d, "sizeGb", l.diskSize, d.sizeGb, e.sizeGb),
-          /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.Field, { label: l.provisioning, htmlFor: `${d.id}-prov`, children: /* @__PURE__ */ jsxRuntime.jsxs("select", { id: `${d.id}-prov`, className: "form-select", value: d.provisioning, onChange: (ev) => update(d.id, { provisioning: ev.target.value }), children: [
+          /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.Field, { label: l.provisioning, htmlFor: `${d.id}-prov`, children: /* @__PURE__ */ jsxRuntime.jsxs("select", { id: `${d.id}-prov`, className: "form-select", value: d.provisioning, onChange: (ev) => update(d.id, { provisioning: ev.target.value }), children: [
             /* @__PURE__ */ jsxRuntime.jsx("option", { value: "thin", children: l.thin }),
             /* @__PURE__ */ jsxRuntime.jsx("option", { value: "thick-lazy", children: l.thickLazy }),
             /* @__PURE__ */ jsxRuntime.jsx("option", { value: "thick-eager", children: l.thickEager })
           ] }) }),
-          /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.Field, { label: l.controller, htmlFor: `${d.id}-ctl`, children: /* @__PURE__ */ jsxRuntime.jsx("select", { id: `${d.id}-ctl`, className: "form-select", value: d.controller, onChange: (ev) => update(d.id, { controller: ev.target.value }), children: (cap.controllers ?? [d.controller]).map((c) => /* @__PURE__ */ jsxRuntime.jsx("option", { children: c }, c)) }) })
+          /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.Field, { label: l.controller, htmlFor: `${d.id}-ctl`, children: /* @__PURE__ */ jsxRuntime.jsx("select", { id: `${d.id}-ctl`, className: "form-select", value: d.controller, onChange: (ev) => update(d.id, { controller: ev.target.value }), children: (cap.controllers ?? [d.controller]).map((c) => /* @__PURE__ */ jsxRuntime.jsx("option", { children: c }, c)) }) })
         ] });
       case "nic":
         return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "grid gap-3 sm:grid-cols-3", children: [
-          /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.Field, { label: l.network, error: e.network, htmlFor: `${d.id}-net`, children: /* @__PURE__ */ jsxRuntime.jsxs("select", { id: `${d.id}-net`, className: "form-select", "aria-invalid": !!e.network || void 0, value: d.network, onChange: (ev) => update(d.id, { network: ev.target.value }), children: [
+          /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.Field, { label: l.network, error: e.network, htmlFor: `${d.id}-net`, children: /* @__PURE__ */ jsxRuntime.jsxs("select", { id: `${d.id}-net`, className: "form-select", "aria-invalid": !!e.network || void 0, value: d.network, onChange: (ev) => update(d.id, { network: ev.target.value }), children: [
             /* @__PURE__ */ jsxRuntime.jsx("option", { value: "" }),
             cap.networks.map((n) => /* @__PURE__ */ jsxRuntime.jsx("option", { children: n }, n))
           ] }) }),
-          /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.Field, { label: l.adapter, htmlFor: `${d.id}-ad`, children: /* @__PURE__ */ jsxRuntime.jsx("select", { id: `${d.id}-ad`, className: "form-select", value: d.adapter, onChange: (ev) => update(d.id, { adapter: ev.target.value }), children: (cap.adapters ?? [d.adapter]).map((a) => /* @__PURE__ */ jsxRuntime.jsx("option", { children: a }, a)) }) }),
-          /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.Switch, { checked: d.connected, onChange: (ev) => update(d.id, { connected: ev.target.checked }), children: l.connected })
+          /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.Field, { label: l.adapter, htmlFor: `${d.id}-ad`, children: /* @__PURE__ */ jsxRuntime.jsx("select", { id: `${d.id}-ad`, className: "form-select", value: d.adapter, onChange: (ev) => update(d.id, { adapter: ev.target.value }), children: (cap.adapters ?? [d.adapter]).map((a) => /* @__PURE__ */ jsxRuntime.jsx("option", { children: a }, a)) }) }),
+          /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.Switch, { checked: d.connected, onChange: (ev) => update(d.id, { connected: ev.target.checked }), children: l.connected })
         ] });
       case "cdrom":
         return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex flex-wrap items-center gap-3", children: [
@@ -6394,7 +6286,7 @@ function HardwareEditor({ devices: devicesProp, defaultDevices = [], onChange, b
             /* @__PURE__ */ jsxRuntime.jsx("span", { className: "text-fg", children: d.iso ?? l.noIso })
           ] }),
           renderIsoPicker && /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { size: "sm", variant: "secondary", onClick: () => setPickFor(d.id), children: l.chooseIso }),
-          /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.Switch, { checked: d.connected, onChange: (ev) => update(d.id, { connected: ev.target.checked }), children: l.connected })
+          /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.Switch, { checked: d.connected, onChange: (ev) => update(d.id, { connected: ev.target.checked }), children: l.connected })
         ] });
     }
   };
@@ -6402,9 +6294,9 @@ function HardwareEditor({ devices: devicesProp, defaultDevices = [], onChange, b
   return /* @__PURE__ */ jsxRuntime.jsxs("section", { "aria-label": l.title, className: chunkFTHFEMX6_cjs.cn("grid gap-3", className), children: [
     /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex items-center justify-between", children: [
       /* @__PURE__ */ jsxRuntime.jsx("h3", { className: "text-sm font-semibold", children: l.title }),
-      /* @__PURE__ */ jsxRuntime.jsxs(chunk6PDYGUXX_cjs.DropdownMenu, { children: [
-        /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.DropdownMenuTrigger, { asChild: true, children: /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { size: "sm", variant: "secondary", leftIcon: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Plus, { "aria-hidden": true }), children: l.addDevice }) }),
-        /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.DropdownMenuContent, { children: addable.map((k) => /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.DropdownMenuItem, { disabled: locked(k), title: locked(k) ? l.hotAddDisabled : void 0, onSelect: () => add(k), children: l[k] }, k)) })
+      /* @__PURE__ */ jsxRuntime.jsxs(chunkBAOO6ECK_cjs.DropdownMenu, { children: [
+        /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.DropdownMenuTrigger, { asChild: true, children: /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { size: "sm", variant: "secondary", leftIcon: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Plus, { "aria-hidden": true }), children: l.addDevice }) }),
+        /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.DropdownMenuContent, { children: addable.map((k) => /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.DropdownMenuItem, { disabled: locked(k), title: locked(k) ? l.hotAddDisabled : void 0, onSelect: () => add(k), children: l[k] }, k)) })
       ] })
     ] }),
     /* @__PURE__ */ jsxRuntime.jsx("ul", { className: "grid gap-2", children: devices.map((d, i) => /* @__PURE__ */ jsxRuntime.jsxs("li", { className: "relative rounded-md border border-line bg-surface", children: [
@@ -6412,7 +6304,7 @@ function HardwareEditor({ devices: devicesProp, defaultDevices = [], onChange, b
         /* @__PURE__ */ jsxRuntime.jsxs("summary", { className: "flex cursor-pointer items-center gap-2 px-3 py-2 text-sm font-medium", children: [
           /* @__PURE__ */ jsxRuntime.jsx(lucideReact.ChevronRight, { className: "size-4 transition-transform group-open:rotate-90 rtl:-scale-x-100", "aria-hidden": true }),
           /* @__PURE__ */ jsxRuntime.jsx("span", { children: nameOf(d, l) }),
-          Object.keys(errors[i]).length > 0 && /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.Badge, { tone: "danger", children: "!" })
+          Object.keys(errors[i]).length > 0 && /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.Badge, { tone: "danger", children: "!" })
         ] }),
         /* @__PURE__ */ jsxRuntime.jsx("div", { className: "border-t border-line p-3", children: body(d, errors[i]) })
       ] }),
@@ -6437,7 +6329,7 @@ function HardwareEditor({ devices: devicesProp, defaultDevices = [], onChange, b
       /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { variant: "ghost", disabled: diff.length === 0, onClick: () => setDevices(base), children: l.discard }),
       /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { disabled: diff.length === 0 || invalid, onClick: () => onSave?.(devices), children: l.save })
     ] }),
-    renderIsoPicker && /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.Dialog, { open: pickFor !== null, onOpenChange: (o) => !o && setPickFor(null), children: /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.DialogContent, { title: l.chooseIso, className: "w-[min(56rem,95vw)]", children: renderIsoPicker(
+    renderIsoPicker && /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.Dialog, { open: pickFor !== null, onOpenChange: (o) => !o && setPickFor(null), children: /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.DialogContent, { title: l.chooseIso, className: "w-[min(56rem,95vw)]", children: renderIsoPicker(
       (iso2) => {
         if (pickFor) update(pickFor, { iso: iso2 });
         setPickFor(null);
@@ -6482,9 +6374,9 @@ function DatastoreBrowser({
   const nodes = React24__namespace.useMemo(() => {
     const build = (parent) => entries.filter((e) => e.type === "folder" && parentOf(e.path) === parent && e.path !== "/").map((e) => {
       const kids = build(e.path);
-      return { id: e.path, label: baseName(e.path), icon: /* @__PURE__ */ jsxRuntime.jsx(ObjectIcon, { kind: "folder" }), children: kids, hasChildren: !!onLoadFolder && kids.length === 0 };
+      return { id: e.path, label: baseName(e.path), icon: /* @__PURE__ */ jsxRuntime.jsx(chunkWERLSPEU_cjs.ObjectIcon, { kind: "folder" }), children: kids, hasChildren: !!onLoadFolder && kids.length === 0 };
     });
-    return [{ id: "/", label: l.root, icon: /* @__PURE__ */ jsxRuntime.jsx(ObjectIcon, { kind: "datastore" }), children: build("/") }];
+    return [{ id: "/", label: l.root, icon: /* @__PURE__ */ jsxRuntime.jsx(chunkWERLSPEU_cjs.ObjectIcon, { kind: "datastore" }), children: build("/") }];
   }, [entries, onLoadFolder, l.root]);
   const load = async (p) => {
     if (!onLoadFolder || loaded.current.has(p)) return;
@@ -6526,7 +6418,7 @@ function DatastoreBrowser({
           setNaming(false);
         },
         children: [
-          /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.Field, { label: l.folderName, htmlFor: "ds-new-folder", children: /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.Input, { id: "ds-new-folder", autoFocus: true, value: folderName, onChange: (e) => setFolderName(e.target.value) }) }),
+          /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.Field, { label: l.folderName, htmlFor: "ds-new-folder", children: /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.Input, { id: "ds-new-folder", autoFocus: true, value: folderName, onChange: (e) => setFolderName(e.target.value) }) }),
           /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { type: "submit", size: "sm", children: l.create }),
           /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { size: "sm", variant: "ghost", onClick: () => setNaming(false), children: l.cancel })
         ]
@@ -6580,11 +6472,11 @@ function DatastoreBrowser({
                 },
                 children: [
                   /* @__PURE__ */ jsxRuntime.jsx("td", { role: "gridcell", className: "px-3 py-1.5", children: /* @__PURE__ */ jsxRuntime.jsxs("span", { className: "inline-flex items-center gap-2", children: [
-                    /* @__PURE__ */ jsxRuntime.jsx(ObjectIcon, { kind: e.type === "folder" ? "folder" : "template", label: e.type === "folder" ? l.folder : l.file }),
+                    /* @__PURE__ */ jsxRuntime.jsx(chunkWERLSPEU_cjs.ObjectIcon, { kind: e.type === "folder" ? "folder" : "template", label: e.type === "folder" ? l.folder : l.file }),
                     baseName(e.path)
                   ] }) }),
                   /* @__PURE__ */ jsxRuntime.jsx("td", { role: "gridcell", className: "px-3 py-1.5 text-muted tabular-nums", children: e.type === "file" && e.size !== void 0 ? format2.bytes(e.size, { base: 1024 }) : "" }),
-                  /* @__PURE__ */ jsxRuntime.jsx("td", { role: "gridcell", className: "px-3 py-1.5 text-muted", children: e.modified !== void 0 ? /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.RelativeTime, { value: e.modified }) : "" }),
+                  /* @__PURE__ */ jsxRuntime.jsx("td", { role: "gridcell", className: "px-3 py-1.5 text-muted", children: e.modified !== void 0 ? /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.RelativeTime, { value: e.modified }) : "" }),
                   /* @__PURE__ */ jsxRuntime.jsxs("td", { role: "gridcell", className: "px-3 py-1.5 text-end", children: [
                     !select && e.type === "file" && onDownload && /* @__PURE__ */ jsxRuntime.jsx("button", { type: "button", "aria-label": `${l.download}: ${baseName(e.path)}`, className: "me-2 text-muted hover:text-fg", onClick: (ev) => (ev.stopPropagation(), onDownload(e)), children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Download, { className: "size-4", "aria-hidden": true }) }),
                     !select && onDelete && /* @__PURE__ */ jsxRuntime.jsx("button", { type: "button", "aria-label": `${l.delete}: ${baseName(e.path)}`, className: "text-muted hover:text-danger", onClick: (ev) => (ev.stopPropagation(), setToDelete(e)), children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Trash2, { className: "size-4", "aria-hidden": true }) })
@@ -6654,8 +6546,8 @@ function PermissionAssignDialog({ open, onOpenChange, principals, roles, objectP
       setPending(false);
     }
   };
-  return /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.Dialog, { open, onOpenChange, children: /* @__PURE__ */ jsxRuntime.jsx(
-    chunk6PDYGUXX_cjs.DialogContent,
+  return /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.Dialog, { open, onOpenChange, children: /* @__PURE__ */ jsxRuntime.jsx(
+    chunkBAOO6ECK_cjs.DialogContent,
     {
       title: l.title,
       footer: /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
@@ -6663,13 +6555,13 @@ function PermissionAssignDialog({ open, onOpenChange, principals, roles, objectP
         /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { loading: pending, disabled: !principal[0] || !roleId, onClick: submit, children: l.assign })
       ] }),
       children: /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "grid gap-4", children: [
-        /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.Field, { label: l.object, htmlFor: "perm-object", children: /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.Input, { id: "perm-object", readOnly: true, value: objectPath }) }),
+        /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.Field, { label: l.object, htmlFor: "perm-object", children: /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.Input, { id: "perm-object", readOnly: true, value: objectPath }) }),
         /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "grid gap-1", children: [
           /* @__PURE__ */ jsxRuntime.jsx("span", { className: "text-sm font-medium", children: l.principal }),
-          /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.Combobox, { label: l.principal, options: principals, value: principal, onChange: setPrincipal })
+          /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.Combobox, { label: l.principal, options: principals, value: principal, onChange: setPrincipal })
         ] }),
-        /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.Field, { label: l.role, htmlFor: "perm-role", hint: role?.description, children: /* @__PURE__ */ jsxRuntime.jsx("select", { id: "perm-role", className: "form-select", value: roleId, onChange: (e) => setRoleId(e.target.value), children: roles.map((r) => /* @__PURE__ */ jsxRuntime.jsx("option", { value: r.id, children: r.name }, r.id)) }) }),
-        /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.Switch, { checked: propagate, onChange: (e) => setPropagate(e.target.checked), children: l.propagate })
+        /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.Field, { label: l.role, htmlFor: "perm-role", hint: role?.description, children: /* @__PURE__ */ jsxRuntime.jsx("select", { id: "perm-role", className: "form-select", value: roleId, onChange: (e) => setRoleId(e.target.value), children: roles.map((r) => /* @__PURE__ */ jsxRuntime.jsx("option", { value: r.id, children: r.name }, r.id)) }) }),
+        /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.Switch, { checked: propagate, onChange: (e) => setPropagate(e.target.checked), children: l.propagate })
       ] })
     }
   ) });
@@ -6688,12 +6580,12 @@ function SnapshotTree({ snapshots, currentId, onTake, onRevert, onDelete, onDele
   const toNode = (s) => ({
     id: s.id,
     textValue: s.name,
-    icon: /* @__PURE__ */ jsxRuntime.jsx(ObjectIcon, { kind: "snapshot" }),
+    icon: /* @__PURE__ */ jsxRuntime.jsx(chunkWERLSPEU_cjs.ObjectIcon, { kind: "snapshot" }),
     label: /* @__PURE__ */ jsxRuntime.jsxs("span", { className: "inline-flex items-center gap-2", children: [
       /* @__PURE__ */ jsxRuntime.jsx("span", { children: s.name }),
-      /* @__PURE__ */ jsxRuntime.jsx("span", { className: "text-xs text-muted", children: /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.RelativeTime, { value: s.createdAt }) }),
+      /* @__PURE__ */ jsxRuntime.jsx("span", { className: "text-xs text-muted", children: /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.RelativeTime, { value: s.createdAt }) }),
       s.sizeBytes !== void 0 && /* @__PURE__ */ jsxRuntime.jsx("span", { className: "text-xs text-muted", children: format2.bytes(s.sizeBytes, { base: 1024 }) }),
-      s.id === currentId && /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.Badge, { tone: "primary", children: l.youAreHere })
+      s.id === currentId && /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.Badge, { tone: "primary", children: l.youAreHere })
     ] }),
     children: s.children?.map(toNode)
   });
@@ -6702,7 +6594,7 @@ function SnapshotTree({ snapshots, currentId, onTake, onRevert, onDelete, onDele
   const sel = selected ? index.get(selected) : void 0;
   const confirmText = confirm ? (confirm.kind === "revert" ? l.confirmRevert : confirm.kind === "delete" ? l.confirmDelete : l.confirmDeleteChildren)(confirm.node.name) : "";
   return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: chunkFTHFEMX6_cjs.cn("grid gap-3", className), children: [
-    needsConsolidation && /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.Banner, { tone: "warn", action: onConsolidate && /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { size: "sm", variant: "secondary", onClick: onConsolidate, children: l.consolidate }), children: l.consolidationNeeded }),
+    needsConsolidation && /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.Banner, { tone: "warn", action: onConsolidate && /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { size: "sm", variant: "secondary", onClick: onConsolidate, children: l.consolidate }), children: l.consolidationNeeded }),
     /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex flex-wrap gap-2", children: [
       onTake && /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { size: "sm", onClick: onTake, children: l.take }),
       /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { size: "sm", variant: "secondary", disabled: !sel, onClick: () => sel && setConfirm({ kind: "revert", node: sel }), children: l.revert }),
@@ -6743,14 +6635,14 @@ function EventConsole({ events, liveTail: liveProp, onLiveTailChange, labels, cl
   }, [events, query, sev]);
   return /* @__PURE__ */ jsxRuntime.jsxs("section", { "aria-label": l.title, className: chunkFTHFEMX6_cjs.cn("grid gap-3", className), children: [
     /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex flex-wrap items-center gap-2", children: [
-      /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.Input, { type: "search", className: "max-w-xs", "aria-label": l.search, placeholder: `${l.search}\u2026`, value: query, onChange: (e) => setQuery(e.target.value) }),
+      /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.Input, { type: "search", className: "max-w-xs", "aria-label": l.search, placeholder: `${l.search}\u2026`, value: query, onChange: (e) => setQuery(e.target.value) }),
       /* @__PURE__ */ jsxRuntime.jsxs("select", { "aria-label": l.severity, className: "form-select w-auto", value: sev, onChange: (e) => setSev(e.target.value), children: [
         /* @__PURE__ */ jsxRuntime.jsx("option", { value: "all", children: l.all }),
         /* @__PURE__ */ jsxRuntime.jsx("option", { value: "info", children: l.info }),
         /* @__PURE__ */ jsxRuntime.jsx("option", { value: "warning", children: l.warning }),
         /* @__PURE__ */ jsxRuntime.jsx("option", { value: "error", children: l.error })
       ] }),
-      /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.Switch, { className: "ms-auto", checked: live, onChange: (e) => setLive(e.target.checked), children: l.liveTail })
+      /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.Switch, { className: "ms-auto", checked: live, onChange: (e) => setLive(e.target.checked), children: l.liveTail })
     ] }),
     /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "overflow-auto rounded-md border border-line bg-surface", children: [
       /* @__PURE__ */ jsxRuntime.jsxs("table", { className: "w-full text-sm", children: [
@@ -6769,8 +6661,8 @@ function EventConsole({ events, liveTail: liveProp, onLiveTailChange, labels, cl
             onClick: () => setOpen(e),
             onKeyDown: (ev) => ev.key === "Enter" && setOpen(e),
             children: [
-              /* @__PURE__ */ jsxRuntime.jsx("td", { className: "px-3 py-1.5", children: /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.StatusDot, { tone: sevTone[e.severity], label: l[e.severity] }) }),
-              /* @__PURE__ */ jsxRuntime.jsx("td", { className: "px-3 py-1.5 whitespace-nowrap text-muted", children: /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.RelativeTime, { value: e.time }) }),
+              /* @__PURE__ */ jsxRuntime.jsx("td", { className: "px-3 py-1.5", children: /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.StatusDot, { tone: sevTone[e.severity], label: l[e.severity] }) }),
+              /* @__PURE__ */ jsxRuntime.jsx("td", { className: "px-3 py-1.5 whitespace-nowrap text-muted", children: /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.RelativeTime, { value: e.time }) }),
               /* @__PURE__ */ jsxRuntime.jsx("td", { className: "px-3 py-1.5", children: e.message }),
               /* @__PURE__ */ jsxRuntime.jsx("td", { className: "px-3 py-1.5 text-muted", children: e.source }),
               /* @__PURE__ */ jsxRuntime.jsx("td", { className: "px-3 py-1.5 text-muted", children: e.user })
@@ -6781,7 +6673,7 @@ function EventConsole({ events, liveTail: liveProp, onLiveTailChange, labels, cl
       ] }),
       rows.length === 0 && /* @__PURE__ */ jsxRuntime.jsx("p", { className: "p-4 text-center text-sm text-subtle", children: l.empty })
     ] }),
-    /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.Drawer, { open: open !== null, onOpenChange: (o) => !o && setOpen(null), children: /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.DrawerContent, { title: l.details, description: open?.message, children: open && /* @__PURE__ */ jsxRuntime.jsxs("dl", { className: "grid gap-2 text-sm", children: [
+    /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.Drawer, { open: open !== null, onOpenChange: (o) => !o && setOpen(null), children: /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.DrawerContent, { title: l.details, description: open?.message, children: open && /* @__PURE__ */ jsxRuntime.jsxs("dl", { className: "grid gap-2 text-sm", children: [
       /* @__PURE__ */ jsxRuntime.jsx("dt", { className: "text-muted", children: l.severity }),
       /* @__PURE__ */ jsxRuntime.jsx("dd", { children: l[open.severity] }),
       /* @__PURE__ */ jsxRuntime.jsx("dt", { className: "text-muted", children: l.time }),
@@ -6893,7 +6785,7 @@ function ToolbarFilterChips({ filters, onRemove, onClearAll, className, labels }
   return /* @__PURE__ */ jsxRuntime.jsxs("div", { role: "group", "aria-label": labels?.activeFilters ?? m.activeFilters, className: chunkFTHFEMX6_cjs.cn("flex w-full flex-wrap items-center gap-x-4 gap-y-2", className), children: [
     [...groups].map(([category, list]) => /* @__PURE__ */ jsxRuntime.jsxs("div", { role: category ? "group" : void 0, "aria-label": category || void 0, className: "flex flex-wrap items-center gap-1.5", children: [
       category && /* @__PURE__ */ jsxRuntime.jsx("span", { "aria-hidden": true, className: "text-xs text-muted", children: category }),
-      list.map((f) => /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.Chip, { onRemove: onRemove ? () => onRemove(f) : void 0, removeLabel: (labels?.removeFilter ?? m.removeFilter)(f.label), children: f.label }, f.id))
+      list.map((f) => /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.Chip, { onRemove: onRemove ? () => onRemove(f) : void 0, removeLabel: (labels?.removeFilter ?? m.removeFilter)(f.label), children: f.label }, f.id))
     ] }, category)),
     onClearAll && /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { variant: "ghost", size: "sm", onClick: onClearAll, children: labels?.clearAll ?? m.clearAll })
   ] });
@@ -7071,10 +6963,10 @@ function ClipboardCopy({
   return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: chunkFTHFEMX6_cjs.cn("min-w-0", className), children: [
     /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex items-center gap-1", ...report, children: [
       expandable2 && /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { variant: "ghost", size: "sm", "aria-expanded": open, "aria-controls": `${id}-full`, "aria-label": toggle, onClick: () => setOpen(!open), children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.ChevronRight, { className: chunkFTHFEMX6_cjs.cn("size-4 transition-transform rtl:rotate-180", open && "rotate-90 rtl:rotate-90"), "aria-hidden": true }) }),
-      /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.Input, { readOnly, "aria-label": fieldLabel, value: expandable2 && open ? text.split("\n")[0] : text, onChange: (e) => setText(e.target.value), className: "min-w-0 flex-1 font-mono text-[0.8125rem]" }),
+      /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.Input, { readOnly, "aria-label": fieldLabel, value: expandable2 && open ? text.split("\n")[0] : text, onChange: (e) => setText(e.target.value), className: "min-w-0 flex-1 font-mono text-[0.8125rem]" }),
       /* @__PURE__ */ jsxRuntime.jsx(CopyButton, { ...copyProps })
     ] }),
-    expandable2 && open && /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.Textarea, { id: `${id}-full`, readOnly, "aria-label": fieldLabel, value: text, rows: Math.min(12, text.split("\n").length + 1), onChange: (e) => setText(e.target.value), className: "mt-1 w-full font-mono text-[0.8125rem]" })
+    expandable2 && open && /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.Textarea, { id: `${id}-full`, readOnly, "aria-label": fieldLabel, value: text, rows: Math.min(12, text.split("\n").length + 1), onChange: (e) => setText(e.target.value), className: "mt-1 w-full font-mono text-[0.8125rem]" })
   ] });
 }
 function Form({ className, ...props }) {
@@ -7143,9 +7035,9 @@ var MenuToggle = React24__namespace.forwardRef(function MenuToggle2({ variant = 
   ] });
 });
 function Dropdown({ toggle, open, defaultOpen, onOpenChange, align: align2 = "start", className, children }) {
-  return /* @__PURE__ */ jsxRuntime.jsxs(chunk6PDYGUXX_cjs.DropdownMenu, { open, defaultOpen, onOpenChange, children: [
-    /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.DropdownMenuTrigger, { asChild: true, children: toggle }),
-    /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.DropdownMenuContent, { align: align2, className, children })
+  return /* @__PURE__ */ jsxRuntime.jsxs(chunkBAOO6ECK_cjs.DropdownMenu, { open, defaultOpen, onOpenChange, children: [
+    /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.DropdownMenuTrigger, { asChild: true, children: toggle }),
+    /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.DropdownMenuContent, { align: align2, className, children })
   ] });
 }
 function DropdownList({ children }) {
@@ -7153,12 +7045,12 @@ function DropdownList({ children }) {
 }
 function DropdownGroup({ label, children }) {
   return /* @__PURE__ */ jsxRuntime.jsxs("div", { role: "group", "aria-label": label, children: [
-    label && /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.DropdownMenuLabel, { children: label }),
+    label && /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.DropdownMenuLabel, { children: label }),
     children
   ] });
 }
 function DropdownItem({ icon, description, children, ...props }) {
-  return /* @__PURE__ */ jsxRuntime.jsxs(chunk6PDYGUXX_cjs.DropdownMenuItem, { ...props, children: [
+  return /* @__PURE__ */ jsxRuntime.jsxs(chunkBAOO6ECK_cjs.DropdownMenuItem, { ...props, children: [
     icon,
     /* @__PURE__ */ jsxRuntime.jsxs("span", { className: "min-w-0 flex-1", children: [
       children,
@@ -7166,10 +7058,9 @@ function DropdownItem({ icon, description, children, ...props }) {
     ] })
   ] });
 }
-var DropdownSeparator = chunk6PDYGUXX_cjs.DropdownMenuSeparator;
+var DropdownSeparator = chunkBAOO6ECK_cjs.DropdownMenuSeparator;
 var ModalContext = React24__namespace.createContext({ setHasDescription() {
 } });
-var modalSize = { sm: "max-w-sm", md: "max-w-md", lg: "max-w-2xl", xl: "max-w-4xl" };
 function Modal({ open, defaultOpen, onOpenChange, onClose, trigger, size = "md", "aria-label": ariaLabel, className, children }) {
   const { portalContainer } = chunkRDHTRBBP_cjs.useLaf();
   const [hasDescription, setHasDescription] = React24__namespace.useState(false);
@@ -7192,7 +7083,7 @@ function Modal({ open, defaultOpen, onOpenChange, onClose, trigger, size = "md",
             {
               "aria-label": ariaLabel,
               ...hasDescription ? {} : { "aria-describedby": void 0 },
-              className: chunkFTHFEMX6_cjs.cn("popup fixed top-1/2 start-1/2 z-50 flex max-h-[90dvh] -translate-x-1/2 -translate-y-1/2 flex-col rtl:translate-x-1/2", modalSize[size], className),
+              className: chunkFTHFEMX6_cjs.cn(chunkBAOO6ECK_cjs.dialogBase, chunkBAOO6ECK_cjs.dialogSizes[size], className),
               children: /* @__PURE__ */ jsxRuntime.jsx(ModalContext.Provider, { value: ctx, children })
             }
           )
@@ -7226,7 +7117,7 @@ function ModalBody({ className, ...props }) {
 function ModalFooter({ className, ...props }) {
   return /* @__PURE__ */ jsxRuntime.jsx("div", { className: chunkFTHFEMX6_cjs.cn("popup-foot shrink-0", className), ...props });
 }
-var lafDefaults10 = { ui: chunk6PDYGUXX_cjs.uiEn };
+var lafDefaults10 = { ui: chunkBAOO6ECK_cjs.uiEn };
 function useAppFrameLabels(labels) {
   const ui = chunkRDHTRBBP_cjs.useLafDefaults(lafDefaults10).t.components.ui.appFrame;
   return React24__namespace.useMemo(() => ({ ...ui, ...labels }), [ui, labels]);
@@ -7485,9 +7376,9 @@ function ThemeToggle({ value, defaultValue = "system", onChange, onResolvedChang
       );
     }) });
   }
-  return /* @__PURE__ */ jsxRuntime.jsxs(chunk6PDYGUXX_cjs.DropdownMenu, { children: [
-    /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.DropdownMenuTrigger, { asChild: true, children: /* @__PURE__ */ jsxRuntime.jsx("button", { type: "button", "aria-label": l.themeCurrent(names[mode]), className: chunkFTHFEMX6_cjs.cn("btn btn-ghost btn-sm auto", className), children: /* @__PURE__ */ jsxRuntime.jsx(Icon, { "aria-hidden": true }) }) }),
-    /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.DropdownMenuContent, { children: /* @__PURE__ */ jsxRuntime.jsx(DropdownPrimitive2__namespace.RadioGroup, { value: mode, onValueChange: (v) => choose(v), children: modes.map((m) => {
+  return /* @__PURE__ */ jsxRuntime.jsxs(chunkBAOO6ECK_cjs.DropdownMenu, { children: [
+    /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.DropdownMenuTrigger, { asChild: true, children: /* @__PURE__ */ jsxRuntime.jsx("button", { type: "button", "aria-label": l.themeCurrent(names[mode]), className: chunkFTHFEMX6_cjs.cn("btn btn-ghost btn-sm auto", className), children: /* @__PURE__ */ jsxRuntime.jsx(Icon, { "aria-hidden": true }) }) }),
+    /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.DropdownMenuContent, { children: /* @__PURE__ */ jsxRuntime.jsx(DropdownPrimitive2__namespace.RadioGroup, { value: mode, onValueChange: (v) => choose(v), children: modes.map((m) => {
       const I = modeIcon[m];
       return /* @__PURE__ */ jsxRuntime.jsxs(DropdownPrimitive2__namespace.RadioItem, { value: m, className: "dropdown-item outline-none data-[highlighted]:bg-surface-hover data-[highlighted]:text-fg data-[state=checked]:text-fg", children: [
         /* @__PURE__ */ jsxRuntime.jsx(I, { "aria-hidden": true, className: "size-4" }),
@@ -7544,7 +7435,7 @@ function AppFooter({ start, center, end, copyright, version, build, links, linkG
     center
   ] });
   const endItems = (status || end) && /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex flex-wrap items-center justify-end gap-x-4 gap-y-1", children: [
-    status && /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.StatusDot, { tone: status.tone, pulse: status.pulse, label: status.label, className: "text-[inherit]" }),
+    status && /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.StatusDot, { tone: status.tone, pulse: status.pulse, label: status.label, className: "text-[inherit]" }),
     end
   ] });
   return /* @__PURE__ */ jsxRuntime.jsxs("footer", { className: chunkFTHFEMX6_cjs.cn("shrink-0 border-t border-line bg-[rgba(12,12,16,0.72)] text-muted backdrop-blur-md", compact ? "text-[0.8125rem]" : "text-sm", className), children: [
@@ -7562,7 +7453,7 @@ function AppFooter({ start, center, end, copyright, version, build, links, linkG
 function PageHeader({ breadcrumb, icon, title, subtitle, badges, actions, help, headingLevel = 1, labels, className }) {
   const l = useAppFrameLabels(labels);
   const Heading = `h${headingLevel}`;
-  const crumbs = Array.isArray(breadcrumb) ? /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.Breadcrumb, { items: breadcrumb }) : breadcrumb;
+  const crumbs = Array.isArray(breadcrumb) ? /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.Breadcrumb, { items: breadcrumb }) : breadcrumb;
   return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: chunkFTHFEMX6_cjs.cn("flex flex-col gap-3 px-6 pt-6 pb-4 max-[859px]:px-4", className), children: [
     crumbs && /* @__PURE__ */ jsxRuntime.jsx("div", { children: crumbs }),
     /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex flex-wrap items-start gap-x-4 gap-y-3", children: [
@@ -7730,7 +7621,7 @@ function NavTree({ items, label, current, onSelect, expanded: expandedProp, defa
     const content = /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
       it.icon ? /* @__PURE__ */ jsxRuntime.jsx("span", { "aria-hidden": true, className: "flex shrink-0 [&>svg]:size-4", children: it.icon }) : rail && /* @__PURE__ */ jsxRuntime.jsx("span", { "aria-hidden": true, className: "flex size-4 shrink-0 items-center justify-center text-xs font-semibold uppercase", children: text.charAt(0) }),
       !rail && /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
-        /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.TruncatedText, { className: "flex-1", children: it.label }),
+        /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.TruncatedText, { className: "flex-1", children: it.label }),
         it.badge && /* @__PURE__ */ jsxRuntime.jsx("span", { className: "ms-auto shrink-0", children: it.badge }),
         group && /* @__PURE__ */ jsxRuntime.jsx(lucideReact.ChevronDown, { "aria-hidden": true, className: chunkFTHFEMX6_cjs.cn("size-4 shrink-0 transition-transform motion-reduce:transition-none", open && "rotate-180") })
       ] })
@@ -7754,7 +7645,7 @@ function NavTree({ items, label, current, onSelect, expanded: expandedProp, defa
     else el = /* @__PURE__ */ jsxRuntime.jsx("button", { type: "button", ...props });
     if (rail) {
       el = /* @__PURE__ */ jsxRuntime.jsx(
-        chunk6PDYGUXX_cjs.Tooltip,
+        chunkBAOO6ECK_cjs.Tooltip,
         {
           side: "right",
           content: /* @__PURE__ */ jsxRuntime.jsxs("span", { className: "flex items-center gap-2", children: [
@@ -7785,7 +7676,7 @@ function NavTree({ items, label, current, onSelect, expanded: expandedProp, defa
       ] }, s.key);
     });
   };
-  return /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.TooltipProvider, { children: /* @__PURE__ */ jsxRuntime.jsx(
+  return /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.TooltipProvider, { children: /* @__PURE__ */ jsxRuntime.jsx(
     "nav",
     {
       ref: rootRef,
@@ -7983,7 +7874,7 @@ function DrawerPanel({
   );
 }
 var InlineDrawer = DrawerPanel;
-var lafDefaults11 = { dashboard: chunk6PDYGUXX_cjs.dashboardEn };
+var lafDefaults11 = { dashboard: chunkBAOO6ECK_cjs.dashboardEn };
 var useLaf6 = () => chunkRDHTRBBP_cjs.useLafDefaults(lafDefaults11);
 function ErrorBlock({ message, onRetry }) {
   const { t } = useLaf6();
@@ -8017,21 +7908,21 @@ function MetricCard({ label, value, unit, delta, goodWhen = "up", period, icon, 
   const id = React24__namespace.useId();
   const m = t.components.dashboard.metric;
   const interactive2 = !!rest.href || !!rest.onClick;
-  return /* @__PURE__ */ jsxRuntime.jsxs(chunk6PDYGUXX_cjs.Card, { variant: "default", compact: true, ...rest, loading: false, "aria-busy": loading || void 0, ...interactive2 ? {} : { role: "group", "aria-labelledby": id }, className: chunkFTHFEMX6_cjs.cn("gap-1.5", className), children: [
+  return /* @__PURE__ */ jsxRuntime.jsxs(chunkBAOO6ECK_cjs.Card, { variant: "default", compact: true, ...rest, loading: false, "aria-busy": loading || void 0, ...interactive2 ? {} : { role: "group", "aria-labelledby": id }, className: chunkFTHFEMX6_cjs.cn("gap-1.5", className), children: [
     /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex items-center gap-2 text-xs text-muted", children: [
       icon && /* @__PURE__ */ jsxRuntime.jsx("span", { "aria-hidden": true, className: "inline-flex shrink-0 [&_svg]:size-4", children: icon }),
       /* @__PURE__ */ jsxRuntime.jsx("span", { id, className: "min-w-0 truncate", children: label })
     ] }),
     loading ? /* @__PURE__ */ jsxRuntime.jsxs("div", { role: "status", "aria-label": m.loading, className: "grid gap-2", children: [
-      /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.Skeleton, { className: "h-7 w-24" }),
-      /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.Skeleton, { className: "h-3 w-32" })
+      /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.Skeleton, { className: "h-7 w-24" }),
+      /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.Skeleton, { className: "h-3 w-32" })
     ] }) : error ? /* @__PURE__ */ jsxRuntime.jsx(ErrorBlock, { message: typeof error === "string" ? error : m.error, onRetry }) : /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
       /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex items-end justify-between gap-3", children: [
         /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "min-w-0 text-2xl leading-tight font-semibold tabular-nums", children: [
           value,
           unit && /* @__PURE__ */ jsxRuntime.jsx("span", { className: "ms-1 text-sm font-normal text-muted", children: unit })
         ] }),
-        sparkline && sparkline.length > 1 && /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.Sparkline, { data: sparkline, label: m.trend(label), className: "shrink-0" })
+        sparkline && sparkline.length > 1 && /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.Sparkline, { data: sparkline, label: m.trend(label), className: "shrink-0" })
       ] }),
       delta !== void 0 && /* @__PURE__ */ jsxRuntime.jsx(Delta, { delta, goodWhen, period }),
       delta === void 0 && period && /* @__PURE__ */ jsxRuntime.jsx("span", { className: "text-xs text-muted", children: period })
@@ -8051,8 +7942,8 @@ var ARC = 0.75;
 var R = 42;
 var C = 2 * Math.PI * R;
 function RadialGauge({ value, min = 0, max = 100, unit, label, thresholds, formatValue = (v) => String(Math.round(v * 10) / 10), size = 128, animate, className }) {
-  const motion = chunk6PDYGUXX_cjs.useChartMotion(animate);
-  const sweep = chunk6PDYGUXX_cjs.entryAnim(motion, "sweep");
+  const motion = chunkBAOO6ECK_cjs.useChartMotion(animate);
+  const sweep = chunkBAOO6ECK_cjs.entryAnim(motion, "sweep");
   const { t } = useLaf6();
   const g = t.components.dashboard.gauge;
   const frac = max > min ? Math.min(1, Math.max(0, (value - min) / (max - min))) : 0;
@@ -8074,7 +7965,7 @@ function RadialGauge({ value, min = 0, max = 100, unit, label, thresholds, forma
       "aria-valuetext": `${g.valueText(text, `${formatValue(max)}${unit ?? ""}`)}${stateText ? `, ${stateText}` : ""}`,
       "data-animate": motion.enabled ? "on" : "off",
       className: chunkFTHFEMX6_cjs.cn("relative inline-grid shrink-0 place-items-center", className),
-      style: { width: size, height: size, ...chunk6PDYGUXX_cjs.motionVars(motion) },
+      style: { width: size, height: size, ...chunkBAOO6ECK_cjs.motionVars(motion) },
       children: [
         /* @__PURE__ */ jsxRuntime.jsxs("svg", { viewBox: "0 0 100 100", "aria-hidden": true, className: "absolute inset-0 size-full", "data-tone": tone, children: [
           /* @__PURE__ */ jsxRuntime.jsx("circle", { cx: "50", cy: "50", r: R, fill: "none", stroke: "var(--bg-muted)", strokeWidth: "8", strokeLinecap: "butt", strokeDasharray: `${ARC * C} ${C}`, transform: "rotate(135 50 50)" }),
@@ -8090,7 +7981,7 @@ function RadialGauge({ value, min = 0, max = 100, unit, label, thresholds, forma
               strokeLinecap: "butt",
               strokeDasharray: `${ARC * C * frac} ${C}`,
               transform: "rotate(135 50 50)",
-              className: chunkFTHFEMX6_cjs.cn(toneStroke[tone], chunk6PDYGUXX_cjs.tweenClass(motion), sweep.className),
+              className: chunkFTHFEMX6_cjs.cn(toneStroke[tone], chunkBAOO6ECK_cjs.tweenClass(motion), sweep.className),
               style: sweep.style
             }
           ),
@@ -8106,25 +7997,25 @@ function RadialGauge({ value, min = 0, max = 100, unit, label, thresholds, forma
 }
 function GaugeCard({ title, description, loading, error, onRetry, value, min, max, unit, thresholds, formatValue, size, animate, className, ...rest }) {
   const { t } = useLaf6();
-  return /* @__PURE__ */ jsxRuntime.jsxs(chunk6PDYGUXX_cjs.Card, { variant: "default", compact: true, ...rest, className, "aria-busy": loading || void 0, children: [
-    /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.CardHeader, { children: /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.CardTitle, { children: title }) }),
-    /* @__PURE__ */ jsxRuntime.jsxs(chunk6PDYGUXX_cjs.CardBody, { className: "grid place-items-center gap-2", children: [
-      loading ? /* @__PURE__ */ jsxRuntime.jsx("div", { role: "status", "aria-label": t.components.dashboard.metric.loading, children: /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.Skeleton, { className: "size-28 rounded-full" }) }) : error ? /* @__PURE__ */ jsxRuntime.jsx(ErrorBlock, { message: typeof error === "string" ? error : t.components.dashboard.metric.error, onRetry }) : /* @__PURE__ */ jsxRuntime.jsx(RadialGauge, { value, min, max, unit, label: title, thresholds, formatValue, size, animate }),
-      description && /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.CardDescription, { className: "text-center", children: description })
+  return /* @__PURE__ */ jsxRuntime.jsxs(chunkBAOO6ECK_cjs.Card, { variant: "default", compact: true, ...rest, className, "aria-busy": loading || void 0, children: [
+    /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.CardHeader, { children: /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.CardTitle, { children: title }) }),
+    /* @__PURE__ */ jsxRuntime.jsxs(chunkBAOO6ECK_cjs.CardBody, { className: "grid place-items-center gap-2", children: [
+      loading ? /* @__PURE__ */ jsxRuntime.jsx("div", { role: "status", "aria-label": t.components.dashboard.metric.loading, children: /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.Skeleton, { className: "size-28 rounded-full" }) }) : error ? /* @__PURE__ */ jsxRuntime.jsx(ErrorBlock, { message: typeof error === "string" ? error : t.components.dashboard.metric.error, onRetry }) : /* @__PURE__ */ jsxRuntime.jsx(RadialGauge, { value, min, max, unit, label: title, thresholds, formatValue, size, animate }),
+      description && /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.CardDescription, { className: "text-center", children: description })
     ] })
   ] });
 }
 function ProgressCard({ title, description, value, max = 100, unit, meter, warnAt, dangerAt, formatValue = (v) => String(Math.round(v * 10) / 10), loading, error, onRetry, actions, className, ...rest }) {
   const { t, format: format2 } = useLaf6();
-  return /* @__PURE__ */ jsxRuntime.jsxs(chunk6PDYGUXX_cjs.Card, { variant: "default", compact: true, ...rest, className, "aria-busy": loading || void 0, children: [
-    /* @__PURE__ */ jsxRuntime.jsxs(chunk6PDYGUXX_cjs.CardHeader, { children: [
-      /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.CardTitle, { children: title }),
+  return /* @__PURE__ */ jsxRuntime.jsxs(chunkBAOO6ECK_cjs.Card, { variant: "default", compact: true, ...rest, className, "aria-busy": loading || void 0, children: [
+    /* @__PURE__ */ jsxRuntime.jsxs(chunkBAOO6ECK_cjs.CardHeader, { children: [
+      /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.CardTitle, { children: title }),
       actions
     ] }),
-    /* @__PURE__ */ jsxRuntime.jsxs(chunk6PDYGUXX_cjs.CardBody, { className: "grid gap-2", children: [
+    /* @__PURE__ */ jsxRuntime.jsxs(chunkBAOO6ECK_cjs.CardBody, { className: "grid gap-2", children: [
       loading ? /* @__PURE__ */ jsxRuntime.jsxs("div", { role: "status", "aria-label": t.components.dashboard.metric.loading, className: "grid gap-2", children: [
-        /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.Skeleton, { className: "h-6 w-32" }),
-        /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.Skeleton, { className: "h-1.5 w-full" })
+        /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.Skeleton, { className: "h-6 w-32" }),
+        /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.Skeleton, { className: "h-1.5 w-full" })
       ] }) : error ? /* @__PURE__ */ jsxRuntime.jsx(ErrorBlock, { message: typeof error === "string" ? error : t.components.dashboard.metric.error, onRetry }) : /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
         /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex items-baseline justify-between gap-2 tabular-nums", children: [
           /* @__PURE__ */ jsxRuntime.jsxs("span", { className: "text-xl font-semibold", children: [
@@ -8140,7 +8031,7 @@ function ProgressCard({ title, description, value, max = 100, unit, meter, warnA
         ] }),
         /* @__PURE__ */ jsxRuntime.jsx(Progress, { label: title, value, max, meter, warnAt, dangerAt })
       ] }),
-      description && /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.CardDescription, { children: description })
+      description && /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.CardDescription, { children: description })
     ] })
   ] });
 }
@@ -8149,24 +8040,24 @@ function StatusSummaryCard({ title, items, loading, headingLevel = 3, className,
   const { t } = useLaf6();
   const total = items.reduce((a, i) => a + i.count, 0);
   const rowCls2 = "flex w-full items-center justify-between gap-3 rounded-sm px-1.5 py-1 text-sm";
-  return /* @__PURE__ */ jsxRuntime.jsxs(chunk6PDYGUXX_cjs.Card, { variant: "default", compact: true, ...rest, className, "aria-busy": loading || void 0, children: [
-    /* @__PURE__ */ jsxRuntime.jsxs(chunk6PDYGUXX_cjs.CardHeader, { children: [
-      /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.CardTitle, { as: `h${headingLevel}`, children: title }),
+  return /* @__PURE__ */ jsxRuntime.jsxs(chunkBAOO6ECK_cjs.Card, { variant: "default", compact: true, ...rest, className, "aria-busy": loading || void 0, children: [
+    /* @__PURE__ */ jsxRuntime.jsxs(chunkBAOO6ECK_cjs.CardHeader, { children: [
+      /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.CardTitle, { as: `h${headingLevel}`, children: title }),
       /* @__PURE__ */ jsxRuntime.jsxs("span", { className: "text-xs text-muted tabular-nums", children: [
         t.components.dashboard.status.total,
         ": ",
         /* @__PURE__ */ jsxRuntime.jsx("b", { className: "text-fg", children: total })
       ] })
     ] }),
-    /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.CardBody, { className: "grid gap-2", children: loading ? /* @__PURE__ */ jsxRuntime.jsxs("div", { role: "status", "aria-label": t.components.dashboard.metric.loading, className: "grid gap-2", children: [
-      /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.Skeleton, { className: "h-2 w-full" }),
-      /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.Skeleton, { className: "w-2/3" }),
-      /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.Skeleton, { className: "w-1/2" })
+    /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.CardBody, { className: "grid gap-2", children: loading ? /* @__PURE__ */ jsxRuntime.jsxs("div", { role: "status", "aria-label": t.components.dashboard.metric.loading, className: "grid gap-2", children: [
+      /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.Skeleton, { className: "h-2 w-full" }),
+      /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.Skeleton, { className: "w-2/3" }),
+      /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.Skeleton, { className: "w-1/2" })
     ] }) : /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
       /* @__PURE__ */ jsxRuntime.jsx("div", { "aria-hidden": true, className: "flex h-2 overflow-hidden rounded-sm bg-muted-bg", children: items.map((i) => i.count > 0 ? /* @__PURE__ */ jsxRuntime.jsx("span", { className: barTone[i.tone ?? "neutral"], style: { width: `${i.count / total * 100}%` } }, i.id) : null) }),
       /* @__PURE__ */ jsxRuntime.jsx("ul", { className: "m-0 grid list-none gap-0.5 p-0", children: items.map((i) => {
         const inner = /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
-          /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.StatusDot, { tone: i.tone, label: i.label }),
+          /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.StatusDot, { tone: i.tone, label: i.label }),
           /* @__PURE__ */ jsxRuntime.jsx("b", { className: "tabular-nums", children: i.count })
         ] });
         const action = "border-0 bg-transparent text-fg no-underline hover:bg-surface-hover focus-visible:ring-2 focus-visible:ring-primary/50 outline-none";
@@ -8280,10 +8171,10 @@ function appLink(app, onOpen) {
 }
 function AppSwitcher({ apps, current, onSelect, allApps, labels }) {
   const L = { ...chunkRDHTRBBP_cjs.useLafDefaults(portalDefaults2).t.components.portal.layout, ...labels };
-  return /* @__PURE__ */ jsxRuntime.jsxs(chunk6PDYGUXX_cjs.Popover, { children: [
-    /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.PopoverTrigger, { asChild: true, children: /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.IconButton, { label: L.appSwitcher, icon: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.LayoutGrid, { className: "size-4" }) }) }),
-    /* @__PURE__ */ jsxRuntime.jsxs(chunk6PDYGUXX_cjs.PopoverContent, { align: "end", title: L.appSwitcherTitle, className: "w-[min(26rem,calc(100vw-2rem))] p-3", children: [
-      apps.length === 0 ? /* @__PURE__ */ jsxRuntime.jsx("p", { className: "m-0 text-sm text-muted", children: L.noApps }) : /* @__PURE__ */ jsxRuntime.jsx("ul", { className: "m-0 grid list-none grid-cols-2 gap-1 p-0 min-[480px]:grid-cols-3", children: apps.map((app) => /* @__PURE__ */ jsxRuntime.jsx("li", { children: /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.PopoverClose, { asChild: true, children: /* @__PURE__ */ jsxRuntime.jsxs(
+  return /* @__PURE__ */ jsxRuntime.jsxs(chunkBAOO6ECK_cjs.Popover, { children: [
+    /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.PopoverTrigger, { asChild: true, children: /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.IconButton, { label: L.appSwitcher, icon: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.LayoutGrid, { className: "size-4" }) }) }),
+    /* @__PURE__ */ jsxRuntime.jsxs(chunkBAOO6ECK_cjs.PopoverContent, { align: "end", title: L.appSwitcherTitle, className: "w-[min(26rem,calc(100vw-2rem))] p-3", children: [
+      apps.length === 0 ? /* @__PURE__ */ jsxRuntime.jsx("p", { className: "m-0 text-sm text-muted", children: L.noApps }) : /* @__PURE__ */ jsxRuntime.jsx("ul", { className: "m-0 grid list-none grid-cols-2 gap-1 p-0 min-[480px]:grid-cols-3", children: apps.map((app) => /* @__PURE__ */ jsxRuntime.jsx("li", { children: /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.PopoverClose, { asChild: true, children: /* @__PURE__ */ jsxRuntime.jsxs(
         "a",
         {
           ...appLink(app, onSelect),
@@ -8424,7 +8315,7 @@ function PortalLayout({
           ]
         }
       ),
-      /* @__PURE__ */ jsxRuntime.jsx("span", { className: "ms-auto min-[720px]:hidden", children: /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.IconButton, { label: L.search, icon: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Search, { className: "size-4" }), onClick: () => setPaletteOpen(true) }) })
+      /* @__PURE__ */ jsxRuntime.jsx("span", { className: "ms-auto min-[720px]:hidden", children: /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.IconButton, { label: L.search, icon: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Search, { className: "size-4" }), onClick: () => setPaletteOpen(true) }) })
     ] }) }),
     /* @__PURE__ */ jsxRuntime.jsxs(MastheadActions, { className: search === false ? void 0 : "ms-0", children: [
       mastheadActions,
@@ -8495,7 +8386,7 @@ function PortalTabs({ tabs, current, linkProps, render, label }) {
       className: "-mb-px inline-flex items-center gap-2 whitespace-nowrap border-b-2 border-transparent px-3 py-2 text-sm font-medium text-muted no-underline outline-none hover:text-fg focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary/50 aria-[current=page]:border-primary aria-[current=page]:text-fg aria-disabled:pointer-events-none aria-disabled:opacity-50",
       children: /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
         tab.title,
-        tab.badge && /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.Badge, { children: tab.badge })
+        tab.badge && /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.Badge, { children: tab.badge })
       ] }),
       ...tab.path === current ? { "aria-current": "page" } : {},
       ...tab.disabled ? { "aria-disabled": true } : {}
@@ -8866,7 +8757,7 @@ function ServerDataGrid({
   const hasToolbar = searchable || !!filterFields || !!toolbarStart || !!toolbarEnd || refreshable;
   const toolbar = hasToolbar && /* @__PURE__ */ jsxRuntime.jsx(Toolbar, { "aria-label": grid.label, className: "w-full", children: /* @__PURE__ */ jsxRuntime.jsxs(ToolbarContent, { children: [
     searchable && /* @__PURE__ */ jsxRuntime.jsx(ToolbarItem, { grow: true, children: /* @__PURE__ */ jsxRuntime.jsx(
-      chunk6PDYGUXX_cjs.SearchInput,
+      chunkBAOO6ECK_cjs.SearchInput,
       {
         icon: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Search, { "aria-hidden": true }),
         "aria-label": SG.search,
@@ -8890,7 +8781,7 @@ function ServerDataGrid({
     toolbarStart,
     /* @__PURE__ */ jsxRuntime.jsxs(ToolbarGroup, { align: "end", children: [
       toolbarEnd,
-      refreshable && /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.IconButton, { label: SG.refresh, icon: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.RefreshCw, { className: "size-4" }), onClick: ctl.refresh })
+      refreshable && /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.IconButton, { label: SG.refresh, icon: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.RefreshCw, { className: "size-4" }), onClick: ctl.refresh })
     ] })
   ] }) });
   return /* @__PURE__ */ jsxRuntime.jsx(DataGrid, { ...grid, ...gridProps, pagination, toolbar: toolbar || void 0 });
@@ -8928,7 +8819,7 @@ var queueTone = { PENDING: "primary", DELIVERED: "ok", TRANSIENT_FAILURE: "warn"
 function QueueStatusBadge({ status, className }) {
   const { t } = useLaf7();
   const key = status in queueTone ? status : "UNKNOWN";
-  return /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.Badge, { tone: queueTone[key], className, children: t.components.mail.queueStatus[key] });
+  return /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.Badge, { tone: queueTone[key], className, children: t.components.mail.queueStatus[key] });
 }
 function QuotaBar({ usedBytes, quotaBytes = 0, label, warnAt = 80, dangerAt = 95, className }) {
   const { t, format: format2 } = useLaf7();
@@ -8945,7 +8836,7 @@ function ServiceTile({ name, status, detail, onSelect, className }) {
   const { t } = useLaf7();
   const body = /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
     /* @__PURE__ */ jsxRuntime.jsx("span", { className: "min-w-0 truncate font-semibold text-fg", children: name }),
-    /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.StatusDot, { tone: healthTone[status], label: t.components.mail.health.status[status], pulse: status === "down", className: "text-xs text-muted" }),
+    /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.StatusDot, { tone: healthTone[status], label: t.components.mail.health.status[status], pulse: status === "down", className: "text-xs text-muted" }),
     detail !== void 0 && /* @__PURE__ */ jsxRuntime.jsx("span", { className: "min-w-0 truncate text-xs text-subtle", children: detail })
   ] });
   const cls = chunkFTHFEMX6_cjs.cn("grid min-w-0 gap-0.5 rounded-md border border-line bg-card px-3 py-2 text-start", onSelect && "cursor-pointer hover:bg-card-hover", className);
@@ -8978,7 +8869,7 @@ function DnsRecordTable({ records, label, className }) {
           /* @__PURE__ */ jsxRuntime.jsx("code", { className: "min-w-0 max-w-xs break-all text-xs", children: r.value }),
           /* @__PURE__ */ jsxRuntime.jsx(CopyButton, { value: r.value, label: m.copy(r.host), copiedLabel: m.copied })
         ] }) }),
-        /* @__PURE__ */ jsxRuntime.jsx("td", { children: /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.Badge, { tone: dnsTone[state], children: m.state[state] }) })
+        /* @__PURE__ */ jsxRuntime.jsx("td", { children: /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.Badge, { tone: dnsTone[state], children: m.state[state] }) })
       ] }, r.id);
     }) })
   ] }) });
@@ -9032,7 +8923,7 @@ function ResourceOverviewLayout({ identity, details, utilization, aside, classNa
 }
 function PowerState({ state, label, className }) {
   const { t } = useLaf8();
-  const v = objectStateMeta[state];
+  const v = chunkWERLSPEU_cjs.objectStateMeta[state];
   return /* @__PURE__ */ jsxRuntime.jsxs("span", { "data-state": state, className: chunkFTHFEMX6_cjs.cn("inline-flex items-center gap-1.5 text-sm text-fg", className), children: [
     /* @__PURE__ */ jsxRuntime.jsx(v.Icon, { "aria-hidden": true, className: chunkFTHFEMX6_cjs.cn("size-4 shrink-0", v.tone) }),
     label ?? t[v.text]
@@ -9040,16 +8931,16 @@ function PowerState({ state, label, className }) {
 }
 function EditButton({ title, label, onClick }) {
   const { t } = useLaf8();
-  return /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.IconButton, { size: "sm", label: label ?? t.components.overview.edit(title), icon: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Pencil, { className: "size-4" }), onClick });
+  return /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.IconButton, { size: "sm", label: label ?? t.components.overview.edit(title), icon: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Pencil, { className: "size-4" }), onClick });
 }
 function IdentityCard({ icon, name, status, description, ribbon, onEdit, editLabel, headingLevel = 2, className, children }) {
-  return /* @__PURE__ */ jsxRuntime.jsxs(chunk6PDYGUXX_cjs.Card, { variant: "default", className: chunkFTHFEMX6_cjs.cn("relative gap-0 overflow-hidden p-0", className), children: [
+  return /* @__PURE__ */ jsxRuntime.jsxs(chunkBAOO6ECK_cjs.Card, { variant: "default", className: chunkFTHFEMX6_cjs.cn("relative gap-0 overflow-hidden p-0", className), children: [
     ribbon && /* @__PURE__ */ jsxRuntime.jsx("span", { className: "absolute end-0 top-0 bg-muted-bg px-3 py-1 text-xs font-semibold tracking-wide text-muted uppercase", children: ribbon }),
     /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex min-w-0 flex-wrap items-start gap-5 p-5 pt-9", children: [
       icon && /* @__PURE__ */ jsxRuntime.jsx("div", { "aria-hidden": true, className: "grid size-24 shrink-0 place-items-center text-primary [&>svg]:size-full", children: icon }),
       /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "grid min-w-0 flex-1 basis-48 gap-2", children: [
         /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex items-start gap-2", children: [
-          /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.CardTitle, { as: `h${headingLevel}`, className: "min-w-0 flex-1 text-2xl font-normal break-words", children: name }),
+          /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.CardTitle, { as: `h${headingLevel}`, className: "min-w-0 flex-1 text-2xl font-normal break-words", children: name }),
           onEdit && /* @__PURE__ */ jsxRuntime.jsx(EditButton, { title: name, label: editLabel, onClick: onEdit })
         ] }),
         status,
@@ -9060,12 +8951,12 @@ function IdentityCard({ icon, name, status, description, ribbon, onEdit, editLab
   ] });
 }
 function CardFrame({ title, icon, count, onEdit, editLabel, headingLevel = 3, className, bodyClassName, children }) {
-  return /* @__PURE__ */ jsxRuntime.jsxs(chunk6PDYGUXX_cjs.Card, { variant: "default", className: chunkFTHFEMX6_cjs.cn("gap-0 p-0", className), children: [
+  return /* @__PURE__ */ jsxRuntime.jsxs(chunkBAOO6ECK_cjs.Card, { variant: "default", className: chunkFTHFEMX6_cjs.cn("gap-0 p-0", className), children: [
     /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex min-w-0 items-center gap-2 border-b border-line px-4 py-2.5", children: [
-      /* @__PURE__ */ jsxRuntime.jsxs(chunk6PDYGUXX_cjs.CardTitle, { as: `h${headingLevel}`, className: "flex min-w-0 flex-1 flex-wrap items-center gap-x-2 text-base font-normal", children: [
+      /* @__PURE__ */ jsxRuntime.jsxs(chunkBAOO6ECK_cjs.CardTitle, { as: `h${headingLevel}`, className: "flex min-w-0 flex-1 flex-wrap items-center gap-x-2 text-base font-normal", children: [
         icon && /* @__PURE__ */ jsxRuntime.jsx("span", { "aria-hidden": true, className: "inline-flex shrink-0 text-muted [&>svg]:size-5", children: icon }),
         /* @__PURE__ */ jsxRuntime.jsx("span", { children: title }),
-        count !== void 0 && /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.Badge, { className: "shrink-0", children: count })
+        count !== void 0 && /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.Badge, { className: "shrink-0", children: count })
       ] }),
       onEdit && /* @__PURE__ */ jsxRuntime.jsx(EditButton, { title, label: editLabel, onClick: onEdit })
     ] }),
@@ -9094,8 +8985,8 @@ function CountCard({ items, count, ...rest }) {
 }
 function UtilizationPanel({ title, headingLevel = 3, min = "8rem", className, children }) {
   const { t } = useLaf8();
-  return /* @__PURE__ */ jsxRuntime.jsxs(chunk6PDYGUXX_cjs.Card, { variant: "default", className: chunkFTHFEMX6_cjs.cn("gap-0 p-0", className), children: [
-    /* @__PURE__ */ jsxRuntime.jsx("div", { className: "border-b border-line px-5 py-3", children: /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.CardTitle, { as: `h${headingLevel}`, className: "text-base font-normal", children: title ?? t.components.overview.utilization.title }) }),
+  return /* @__PURE__ */ jsxRuntime.jsxs(chunkBAOO6ECK_cjs.Card, { variant: "default", className: chunkFTHFEMX6_cjs.cn("gap-0 p-0", className), children: [
+    /* @__PURE__ */ jsxRuntime.jsx("div", { className: "border-b border-line px-5 py-3", children: /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.CardTitle, { as: `h${headingLevel}`, className: "text-base font-normal", children: title ?? t.components.overview.utilization.title }) }),
     /* @__PURE__ */ jsxRuntime.jsx("div", { className: "grid gap-x-6 gap-y-6 p-5", style: { gridTemplateColumns: `repeat(auto-fit, minmax(min(100%, ${min}), 1fr))` }, children })
   ] });
 }
@@ -9141,7 +9032,7 @@ function UtilizationColumn({
       ] })
     ] }),
     /* @__PURE__ */ jsxRuntime.jsx("div", { className: "grid place-items-center py-1", children: gauge === "radial" ? /* @__PURE__ */ jsxRuntime.jsx(RadialGauge, { label: title, value: used, max, size, thresholds, formatValue: (v) => String(Math.round(v)), unit: max === 100 ? "%" : void 0, animate }) : /* @__PURE__ */ jsxRuntime.jsx(
-      chunk6PDYGUXX_cjs.ThresholdDonut,
+      chunkBAOO6ECK_cjs.ThresholdDonut,
       {
         label: title,
         value: used,
@@ -9158,7 +9049,7 @@ function UtilizationColumn({
       }
     ) }),
     history2 && history2.length > 1 && /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "grid gap-1", children: [
-      /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.Sparkline, { data: history2, label: m.trend(title), area: true, animate, tooltip, formatValue, xLabels, className: "h-12 w-full" }),
+      /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.Sparkline, { data: history2, label: m.trend(title), area: true, animate, tooltip, formatValue, xLabels, className: "h-12 w-full" }),
       /* @__PURE__ */ jsxRuntime.jsx("span", { className: "text-xs text-muted", children: rangeLabel ?? m.range })
     ] })
   ] });
@@ -9169,11 +9060,11 @@ function ObjectHeader({ breadcrumb = [], title, onSwitch, switchIcon, switchLabe
   return /* @__PURE__ */ jsxRuntime.jsxs("header", { className: chunkFTHFEMX6_cjs.cn("border-b border-line bg-surface", className), children: [
     /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex min-w-0 flex-wrap items-center gap-x-2 gap-y-1 px-5 py-3", children: [
       breadcrumb.length > 0 && /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
-        /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.Breadcrumb, { items: breadcrumb.map((b) => ({ ...b, current: false })), label: breadcrumbLabel }),
+        /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.Breadcrumb, { items: breadcrumb.map((b) => ({ ...b, current: false })), label: breadcrumbLabel }),
         /* @__PURE__ */ jsxRuntime.jsx(lucideReact.ChevronRight, { "aria-hidden": true, className: "size-4 shrink-0 text-subtle rtl:rotate-180" })
       ] }),
       /* @__PURE__ */ jsxRuntime.jsx(H, { className: "m-0 min-w-0 text-2xl leading-tight font-normal break-words text-fg", children: title }),
-      onSwitch && /* @__PURE__ */ jsxRuntime.jsx(chunk6PDYGUXX_cjs.IconButton, { variant: "secondary", size: "sm", label: switchLabel ?? t.components.overview.switchObject, icon: switchIcon ?? /* @__PURE__ */ jsxRuntime.jsx(SwitchGlyph, {}), onClick: onSwitch })
+      onSwitch && /* @__PURE__ */ jsxRuntime.jsx(chunkBAOO6ECK_cjs.IconButton, { variant: "secondary", size: "sm", label: switchLabel ?? t.components.overview.switchObject, icon: switchIcon ?? /* @__PURE__ */ jsxRuntime.jsx(SwitchGlyph, {}), onClick: onSwitch })
     ] }),
     actions && /* @__PURE__ */ jsxRuntime.jsx("div", { className: "flex min-w-0 justify-end border-t border-line px-5 py-3", children: actions })
   ] });
@@ -9190,14 +9081,14 @@ function ActionToolbar({ actions, label, size, className }) {
       a.label
     ] });
     return a.menu ? /* @__PURE__ */ jsxRuntime.jsx(
-      chunk6PDYGUXX_cjs.SplitButton,
+      chunkBAOO6ECK_cjs.SplitButton,
       {
         variant,
         size,
         disabled: a.disabled,
         onClick: () => a.onClick?.(),
         menuLabel: a.menuLabel ?? t.components.overview.actionOptions(a.label),
-        menu: a.menu.map((m) => /* @__PURE__ */ jsxRuntime.jsxs(chunk6PDYGUXX_cjs.DropdownMenuItem, { danger: m.danger, disabled: m.disabled, onSelect: () => m.onSelect?.(), children: [
+        menu: a.menu.map((m) => /* @__PURE__ */ jsxRuntime.jsxs(chunkBAOO6ECK_cjs.DropdownMenuItem, { danger: m.danger, disabled: m.disabled, onSelect: () => m.onSelect?.(), children: [
           m.icon,
           m.label
         ] }, m.id)),
@@ -9210,351 +9101,359 @@ function ActionToolbar({ actions, label, size, className }) {
 
 Object.defineProperty(exports, "Accordion", {
   enumerable: true,
-  get: function () { return chunk6PDYGUXX_cjs.Accordion; }
+  get: function () { return chunkBAOO6ECK_cjs.Accordion; }
 });
 Object.defineProperty(exports, "Alert", {
   enumerable: true,
-  get: function () { return chunk6PDYGUXX_cjs.Alert; }
+  get: function () { return chunkBAOO6ECK_cjs.Alert; }
 });
 Object.defineProperty(exports, "AlertGroup", {
   enumerable: true,
-  get: function () { return chunk6PDYGUXX_cjs.AlertGroup; }
+  get: function () { return chunkBAOO6ECK_cjs.AlertGroup; }
 });
 Object.defineProperty(exports, "Avatar", {
   enumerable: true,
-  get: function () { return chunk6PDYGUXX_cjs.Avatar; }
+  get: function () { return chunkBAOO6ECK_cjs.Avatar; }
 });
 Object.defineProperty(exports, "AvatarGroup", {
   enumerable: true,
-  get: function () { return chunk6PDYGUXX_cjs.AvatarGroup; }
+  get: function () { return chunkBAOO6ECK_cjs.AvatarGroup; }
 });
 Object.defineProperty(exports, "Badge", {
   enumerable: true,
-  get: function () { return chunk6PDYGUXX_cjs.Badge; }
+  get: function () { return chunkBAOO6ECK_cjs.Badge; }
 });
 Object.defineProperty(exports, "Banner", {
   enumerable: true,
-  get: function () { return chunk6PDYGUXX_cjs.Banner; }
+  get: function () { return chunkBAOO6ECK_cjs.Banner; }
 });
 Object.defineProperty(exports, "Breadcrumb", {
   enumerable: true,
-  get: function () { return chunk6PDYGUXX_cjs.Breadcrumb; }
+  get: function () { return chunkBAOO6ECK_cjs.Breadcrumb; }
 });
 Object.defineProperty(exports, "ButtonGroup", {
   enumerable: true,
-  get: function () { return chunk6PDYGUXX_cjs.ButtonGroup; }
+  get: function () { return chunkBAOO6ECK_cjs.ButtonGroup; }
 });
 Object.defineProperty(exports, "Card", {
   enumerable: true,
-  get: function () { return chunk6PDYGUXX_cjs.Card; }
+  get: function () { return chunkBAOO6ECK_cjs.Card; }
 });
 Object.defineProperty(exports, "CardActions", {
   enumerable: true,
-  get: function () { return chunk6PDYGUXX_cjs.CardActions; }
+  get: function () { return chunkBAOO6ECK_cjs.CardActions; }
 });
 Object.defineProperty(exports, "CardBody", {
   enumerable: true,
-  get: function () { return chunk6PDYGUXX_cjs.CardBody; }
+  get: function () { return chunkBAOO6ECK_cjs.CardBody; }
 });
 Object.defineProperty(exports, "CardDescription", {
   enumerable: true,
-  get: function () { return chunk6PDYGUXX_cjs.CardDescription; }
+  get: function () { return chunkBAOO6ECK_cjs.CardDescription; }
 });
 Object.defineProperty(exports, "CardFooter", {
   enumerable: true,
-  get: function () { return chunk6PDYGUXX_cjs.CardFooter; }
+  get: function () { return chunkBAOO6ECK_cjs.CardFooter; }
 });
 Object.defineProperty(exports, "CardGrid", {
   enumerable: true,
-  get: function () { return chunk6PDYGUXX_cjs.CardGrid; }
+  get: function () { return chunkBAOO6ECK_cjs.CardGrid; }
 });
 Object.defineProperty(exports, "CardHeader", {
   enumerable: true,
-  get: function () { return chunk6PDYGUXX_cjs.CardHeader; }
+  get: function () { return chunkBAOO6ECK_cjs.CardHeader; }
 });
 Object.defineProperty(exports, "CardTitle", {
   enumerable: true,
-  get: function () { return chunk6PDYGUXX_cjs.CardTitle; }
+  get: function () { return chunkBAOO6ECK_cjs.CardTitle; }
 });
 Object.defineProperty(exports, "Checkbox", {
   enumerable: true,
-  get: function () { return chunk6PDYGUXX_cjs.Checkbox; }
+  get: function () { return chunkBAOO6ECK_cjs.Checkbox; }
 });
 Object.defineProperty(exports, "Chip", {
   enumerable: true,
-  get: function () { return chunk6PDYGUXX_cjs.Chip; }
+  get: function () { return chunkBAOO6ECK_cjs.Chip; }
 });
 Object.defineProperty(exports, "Combobox", {
   enumerable: true,
-  get: function () { return chunk6PDYGUXX_cjs.Combobox; }
+  get: function () { return chunkBAOO6ECK_cjs.Combobox; }
 });
 Object.defineProperty(exports, "Dialog", {
   enumerable: true,
-  get: function () { return chunk6PDYGUXX_cjs.Dialog; }
+  get: function () { return chunkBAOO6ECK_cjs.Dialog; }
 });
 Object.defineProperty(exports, "DialogClose", {
   enumerable: true,
-  get: function () { return chunk6PDYGUXX_cjs.DialogClose; }
+  get: function () { return chunkBAOO6ECK_cjs.DialogClose; }
 });
 Object.defineProperty(exports, "DialogContent", {
   enumerable: true,
-  get: function () { return chunk6PDYGUXX_cjs.DialogContent; }
+  get: function () { return chunkBAOO6ECK_cjs.DialogContent; }
 });
 Object.defineProperty(exports, "DialogTrigger", {
   enumerable: true,
-  get: function () { return chunk6PDYGUXX_cjs.DialogTrigger; }
+  get: function () { return chunkBAOO6ECK_cjs.DialogTrigger; }
 });
 Object.defineProperty(exports, "Drawer", {
   enumerable: true,
-  get: function () { return chunk6PDYGUXX_cjs.Drawer; }
+  get: function () { return chunkBAOO6ECK_cjs.Drawer; }
 });
 Object.defineProperty(exports, "DrawerClose", {
   enumerable: true,
-  get: function () { return chunk6PDYGUXX_cjs.DrawerClose; }
+  get: function () { return chunkBAOO6ECK_cjs.DrawerClose; }
 });
 Object.defineProperty(exports, "DrawerContent", {
   enumerable: true,
-  get: function () { return chunk6PDYGUXX_cjs.DrawerContent; }
+  get: function () { return chunkBAOO6ECK_cjs.DrawerContent; }
 });
 Object.defineProperty(exports, "DrawerTrigger", {
   enumerable: true,
-  get: function () { return chunk6PDYGUXX_cjs.DrawerTrigger; }
+  get: function () { return chunkBAOO6ECK_cjs.DrawerTrigger; }
 });
 Object.defineProperty(exports, "DropdownMenu", {
   enumerable: true,
-  get: function () { return chunk6PDYGUXX_cjs.DropdownMenu; }
+  get: function () { return chunkBAOO6ECK_cjs.DropdownMenu; }
 });
 Object.defineProperty(exports, "DropdownMenuContent", {
   enumerable: true,
-  get: function () { return chunk6PDYGUXX_cjs.DropdownMenuContent; }
+  get: function () { return chunkBAOO6ECK_cjs.DropdownMenuContent; }
 });
 Object.defineProperty(exports, "DropdownMenuItem", {
   enumerable: true,
-  get: function () { return chunk6PDYGUXX_cjs.DropdownMenuItem; }
+  get: function () { return chunkBAOO6ECK_cjs.DropdownMenuItem; }
 });
 Object.defineProperty(exports, "DropdownMenuLabel", {
   enumerable: true,
-  get: function () { return chunk6PDYGUXX_cjs.DropdownMenuLabel; }
+  get: function () { return chunkBAOO6ECK_cjs.DropdownMenuLabel; }
 });
 Object.defineProperty(exports, "DropdownMenuSeparator", {
   enumerable: true,
-  get: function () { return chunk6PDYGUXX_cjs.DropdownMenuSeparator; }
+  get: function () { return chunkBAOO6ECK_cjs.DropdownMenuSeparator; }
 });
 Object.defineProperty(exports, "DropdownMenuTrigger", {
   enumerable: true,
-  get: function () { return chunk6PDYGUXX_cjs.DropdownMenuTrigger; }
+  get: function () { return chunkBAOO6ECK_cjs.DropdownMenuTrigger; }
 });
 Object.defineProperty(exports, "EmptyState", {
   enumerable: true,
-  get: function () { return chunk6PDYGUXX_cjs.EmptyState; }
+  get: function () { return chunkBAOO6ECK_cjs.EmptyState; }
 });
 Object.defineProperty(exports, "ExpandableCard", {
   enumerable: true,
-  get: function () { return chunk6PDYGUXX_cjs.ExpandableCard; }
+  get: function () { return chunkBAOO6ECK_cjs.ExpandableCard; }
 });
 Object.defineProperty(exports, "Field", {
   enumerable: true,
-  get: function () { return chunk6PDYGUXX_cjs.Field; }
+  get: function () { return chunkBAOO6ECK_cjs.Field; }
 });
 Object.defineProperty(exports, "IconButton", {
   enumerable: true,
-  get: function () { return chunk6PDYGUXX_cjs.IconButton; }
+  get: function () { return chunkBAOO6ECK_cjs.IconButton; }
 });
 Object.defineProperty(exports, "InfiniteList", {
   enumerable: true,
-  get: function () { return chunk6PDYGUXX_cjs.InfiniteList; }
+  get: function () { return chunkBAOO6ECK_cjs.InfiniteList; }
 });
 Object.defineProperty(exports, "Input", {
   enumerable: true,
-  get: function () { return chunk6PDYGUXX_cjs.Input; }
+  get: function () { return chunkBAOO6ECK_cjs.Input; }
 });
 Object.defineProperty(exports, "KeyValueEditor", {
   enumerable: true,
-  get: function () { return chunk6PDYGUXX_cjs.KeyValueEditor; }
+  get: function () { return chunkBAOO6ECK_cjs.KeyValueEditor; }
 });
 Object.defineProperty(exports, "LineChart", {
   enumerable: true,
-  get: function () { return chunk6PDYGUXX_cjs.LineChart; }
+  get: function () { return chunkBAOO6ECK_cjs.LineChart; }
 });
 Object.defineProperty(exports, "LogViewer", {
   enumerable: true,
-  get: function () { return chunk6PDYGUXX_cjs.LogViewer; }
+  get: function () { return chunkBAOO6ECK_cjs.LogViewer; }
 });
 Object.defineProperty(exports, "NumberInput", {
   enumerable: true,
-  get: function () { return chunk6PDYGUXX_cjs.NumberInput; }
+  get: function () { return chunkBAOO6ECK_cjs.NumberInput; }
 });
 Object.defineProperty(exports, "PageHead", {
   enumerable: true,
-  get: function () { return chunk6PDYGUXX_cjs.PageHead; }
+  get: function () { return chunkBAOO6ECK_cjs.PageHead; }
 });
 Object.defineProperty(exports, "Panel", {
   enumerable: true,
-  get: function () { return chunk6PDYGUXX_cjs.Panel; }
+  get: function () { return chunkBAOO6ECK_cjs.Panel; }
 });
 Object.defineProperty(exports, "PermissionMatrix", {
   enumerable: true,
-  get: function () { return chunk6PDYGUXX_cjs.PermissionMatrix; }
+  get: function () { return chunkBAOO6ECK_cjs.PermissionMatrix; }
 });
 Object.defineProperty(exports, "Popover", {
   enumerable: true,
-  get: function () { return chunk6PDYGUXX_cjs.Popover; }
+  get: function () { return chunkBAOO6ECK_cjs.Popover; }
 });
 Object.defineProperty(exports, "PopoverClose", {
   enumerable: true,
-  get: function () { return chunk6PDYGUXX_cjs.PopoverClose; }
+  get: function () { return chunkBAOO6ECK_cjs.PopoverClose; }
 });
 Object.defineProperty(exports, "PopoverContent", {
   enumerable: true,
-  get: function () { return chunk6PDYGUXX_cjs.PopoverContent; }
+  get: function () { return chunkBAOO6ECK_cjs.PopoverContent; }
 });
 Object.defineProperty(exports, "PopoverTrigger", {
   enumerable: true,
-  get: function () { return chunk6PDYGUXX_cjs.PopoverTrigger; }
+  get: function () { return chunkBAOO6ECK_cjs.PopoverTrigger; }
 });
 Object.defineProperty(exports, "Radio", {
   enumerable: true,
-  get: function () { return chunk6PDYGUXX_cjs.Radio; }
+  get: function () { return chunkBAOO6ECK_cjs.Radio; }
 });
 Object.defineProperty(exports, "RadioGroup", {
   enumerable: true,
-  get: function () { return chunk6PDYGUXX_cjs.RadioGroup; }
+  get: function () { return chunkBAOO6ECK_cjs.RadioGroup; }
 });
 Object.defineProperty(exports, "RelativeTime", {
   enumerable: true,
-  get: function () { return chunk6PDYGUXX_cjs.RelativeTime; }
+  get: function () { return chunkBAOO6ECK_cjs.RelativeTime; }
 });
 Object.defineProperty(exports, "SearchInput", {
   enumerable: true,
-  get: function () { return chunk6PDYGUXX_cjs.SearchInput; }
+  get: function () { return chunkBAOO6ECK_cjs.SearchInput; }
 });
 Object.defineProperty(exports, "SegmentedControl", {
   enumerable: true,
-  get: function () { return chunk6PDYGUXX_cjs.SegmentedControl; }
+  get: function () { return chunkBAOO6ECK_cjs.SegmentedControl; }
 });
 Object.defineProperty(exports, "Select", {
   enumerable: true,
-  get: function () { return chunk6PDYGUXX_cjs.Select; }
+  get: function () { return chunkBAOO6ECK_cjs.Select; }
 });
 Object.defineProperty(exports, "SelectMenu", {
   enumerable: true,
-  get: function () { return chunk6PDYGUXX_cjs.SelectMenu; }
+  get: function () { return chunkBAOO6ECK_cjs.SelectMenu; }
 });
 Object.defineProperty(exports, "Skeleton", {
   enumerable: true,
-  get: function () { return chunk6PDYGUXX_cjs.Skeleton; }
+  get: function () { return chunkBAOO6ECK_cjs.Skeleton; }
 });
 Object.defineProperty(exports, "Slider", {
   enumerable: true,
-  get: function () { return chunk6PDYGUXX_cjs.Slider; }
+  get: function () { return chunkBAOO6ECK_cjs.Slider; }
 });
 Object.defineProperty(exports, "Sparkline", {
   enumerable: true,
-  get: function () { return chunk6PDYGUXX_cjs.Sparkline; }
+  get: function () { return chunkBAOO6ECK_cjs.Sparkline; }
 });
 Object.defineProperty(exports, "Spinner", {
   enumerable: true,
-  get: function () { return chunk6PDYGUXX_cjs.Spinner; }
+  get: function () { return chunkBAOO6ECK_cjs.Spinner; }
 });
 Object.defineProperty(exports, "SplitButton", {
   enumerable: true,
-  get: function () { return chunk6PDYGUXX_cjs.SplitButton; }
+  get: function () { return chunkBAOO6ECK_cjs.SplitButton; }
 });
 Object.defineProperty(exports, "SplitPane", {
   enumerable: true,
-  get: function () { return chunk6PDYGUXX_cjs.SplitPane; }
+  get: function () { return chunkBAOO6ECK_cjs.SplitPane; }
 });
 Object.defineProperty(exports, "Stat", {
   enumerable: true,
-  get: function () { return chunk6PDYGUXX_cjs.Stat; }
+  get: function () { return chunkBAOO6ECK_cjs.Stat; }
 });
 Object.defineProperty(exports, "StatGrid", {
   enumerable: true,
-  get: function () { return chunk6PDYGUXX_cjs.StatGrid; }
+  get: function () { return chunkBAOO6ECK_cjs.StatGrid; }
 });
 Object.defineProperty(exports, "StatusDot", {
   enumerable: true,
-  get: function () { return chunk6PDYGUXX_cjs.StatusDot; }
+  get: function () { return chunkBAOO6ECK_cjs.StatusDot; }
 });
 Object.defineProperty(exports, "Switch", {
   enumerable: true,
-  get: function () { return chunk6PDYGUXX_cjs.Switch; }
+  get: function () { return chunkBAOO6ECK_cjs.Switch; }
 });
 Object.defineProperty(exports, "Tabs", {
   enumerable: true,
-  get: function () { return chunk6PDYGUXX_cjs.Tabs; }
+  get: function () { return chunkBAOO6ECK_cjs.Tabs; }
 });
 Object.defineProperty(exports, "TabsContent", {
   enumerable: true,
-  get: function () { return chunk6PDYGUXX_cjs.TabsContent; }
+  get: function () { return chunkBAOO6ECK_cjs.TabsContent; }
 });
 Object.defineProperty(exports, "TabsList", {
   enumerable: true,
-  get: function () { return chunk6PDYGUXX_cjs.TabsList; }
+  get: function () { return chunkBAOO6ECK_cjs.TabsList; }
 });
 Object.defineProperty(exports, "TabsTrigger", {
   enumerable: true,
-  get: function () { return chunk6PDYGUXX_cjs.TabsTrigger; }
+  get: function () { return chunkBAOO6ECK_cjs.TabsTrigger; }
 });
 Object.defineProperty(exports, "TagInput", {
   enumerable: true,
-  get: function () { return chunk6PDYGUXX_cjs.TagInput; }
+  get: function () { return chunkBAOO6ECK_cjs.TagInput; }
 });
 Object.defineProperty(exports, "TenantSwitcher", {
   enumerable: true,
-  get: function () { return chunk6PDYGUXX_cjs.TenantSwitcher; }
+  get: function () { return chunkBAOO6ECK_cjs.TenantSwitcher; }
 });
 Object.defineProperty(exports, "TextArea", {
   enumerable: true,
-  get: function () { return chunk6PDYGUXX_cjs.Textarea; }
+  get: function () { return chunkBAOO6ECK_cjs.Textarea; }
 });
 Object.defineProperty(exports, "TextInput", {
   enumerable: true,
-  get: function () { return chunk6PDYGUXX_cjs.Input; }
+  get: function () { return chunkBAOO6ECK_cjs.Input; }
 });
 Object.defineProperty(exports, "Textarea", {
   enumerable: true,
-  get: function () { return chunk6PDYGUXX_cjs.Textarea; }
+  get: function () { return chunkBAOO6ECK_cjs.Textarea; }
 });
 Object.defineProperty(exports, "TimeRangePicker", {
   enumerable: true,
-  get: function () { return chunk6PDYGUXX_cjs.TimeRangePicker; }
+  get: function () { return chunkBAOO6ECK_cjs.TimeRangePicker; }
 });
 Object.defineProperty(exports, "ToastProvider", {
   enumerable: true,
-  get: function () { return chunk6PDYGUXX_cjs.ToastProvider; }
+  get: function () { return chunkBAOO6ECK_cjs.ToastProvider; }
 });
 Object.defineProperty(exports, "Tooltip", {
   enumerable: true,
-  get: function () { return chunk6PDYGUXX_cjs.Tooltip; }
+  get: function () { return chunkBAOO6ECK_cjs.Tooltip; }
 });
 Object.defineProperty(exports, "TooltipProvider", {
   enumerable: true,
-  get: function () { return chunk6PDYGUXX_cjs.TooltipProvider; }
+  get: function () { return chunkBAOO6ECK_cjs.TooltipProvider; }
 });
 Object.defineProperty(exports, "TruncatedText", {
   enumerable: true,
-  get: function () { return chunk6PDYGUXX_cjs.TruncatedText; }
+  get: function () { return chunkBAOO6ECK_cjs.TruncatedText; }
 });
 Object.defineProperty(exports, "VirtualList", {
   enumerable: true,
-  get: function () { return chunk6PDYGUXX_cjs.VirtualList; }
+  get: function () { return chunkBAOO6ECK_cjs.VirtualList; }
+});
+Object.defineProperty(exports, "dialogBase", {
+  enumerable: true,
+  get: function () { return chunkBAOO6ECK_cjs.dialogBase; }
+});
+Object.defineProperty(exports, "dialogSizes", {
+  enumerable: true,
+  get: function () { return chunkBAOO6ECK_cjs.dialogSizes; }
 });
 Object.defineProperty(exports, "formatRelative", {
   enumerable: true,
-  get: function () { return chunk6PDYGUXX_cjs.formatRelative; }
+  get: function () { return chunkBAOO6ECK_cjs.formatRelative; }
 });
 Object.defineProperty(exports, "observeRectWithFallback", {
   enumerable: true,
-  get: function () { return chunk6PDYGUXX_cjs.observeRectWithFallback; }
+  get: function () { return chunkBAOO6ECK_cjs.observeRectWithFallback; }
 });
 Object.defineProperty(exports, "useToast", {
   enumerable: true,
-  get: function () { return chunk6PDYGUXX_cjs.useToast; }
+  get: function () { return chunkBAOO6ECK_cjs.useToast; }
 });
 Object.defineProperty(exports, "useToasts", {
   enumerable: true,
-  get: function () { return chunk6PDYGUXX_cjs.useToasts; }
+  get: function () { return chunkBAOO6ECK_cjs.useToasts; }
 });
 Object.defineProperty(exports, "diffLines", {
   enumerable: true,
@@ -9571,6 +9470,138 @@ Object.defineProperty(exports, "matchesAccept", {
 Object.defineProperty(exports, "useControllableState", {
   enumerable: true,
   get: function () { return chunkRNP4RJYX_cjs.useControllableState; }
+});
+Object.defineProperty(exports, "Button", {
+  enumerable: true,
+  get: function () { return chunkIP6HZMS5_cjs.Button; }
+});
+Object.defineProperty(exports, "buttonVariants", {
+  enumerable: true,
+  get: function () { return chunkIP6HZMS5_cjs.buttonVariants; }
+});
+Object.defineProperty(exports, "ClusterGlyph", {
+  enumerable: true,
+  get: function () { return chunkWERLSPEU_cjs.ClusterGlyph; }
+});
+Object.defineProperty(exports, "DatacenterGlyph", {
+  enumerable: true,
+  get: function () { return chunkWERLSPEU_cjs.DatacenterGlyph; }
+});
+Object.defineProperty(exports, "DiskArrayGlyph", {
+  enumerable: true,
+  get: function () { return chunkWERLSPEU_cjs.DiskArrayGlyph; }
+});
+Object.defineProperty(exports, "FirewallGlyph", {
+  enumerable: true,
+  get: function () { return chunkWERLSPEU_cjs.FirewallGlyph; }
+});
+Object.defineProperty(exports, "HddGlyph", {
+  enumerable: true,
+  get: function () { return chunkWERLSPEU_cjs.HddGlyph; }
+});
+Object.defineProperty(exports, "IscsiGlyph", {
+  enumerable: true,
+  get: function () { return chunkWERLSPEU_cjs.IscsiGlyph; }
+});
+Object.defineProperty(exports, "LoadBalancerGlyph", {
+  enumerable: true,
+  get: function () { return chunkWERLSPEU_cjs.LoadBalancerGlyph; }
+});
+Object.defineProperty(exports, "LunGlyph", {
+  enumerable: true,
+  get: function () { return chunkWERLSPEU_cjs.LunGlyph; }
+});
+Object.defineProperty(exports, "NasGlyph", {
+  enumerable: true,
+  get: function () { return chunkWERLSPEU_cjs.NasGlyph; }
+});
+Object.defineProperty(exports, "NfsGlyph", {
+  enumerable: true,
+  get: function () { return chunkWERLSPEU_cjs.NfsGlyph; }
+});
+Object.defineProperty(exports, "NvmeGlyph", {
+  enumerable: true,
+  get: function () { return chunkWERLSPEU_cjs.NvmeGlyph; }
+});
+Object.defineProperty(exports, "ObjectIcon", {
+  enumerable: true,
+  get: function () { return chunkWERLSPEU_cjs.ObjectIcon; }
+});
+Object.defineProperty(exports, "RaidGlyph", {
+  enumerable: true,
+  get: function () { return chunkWERLSPEU_cjs.RaidGlyph; }
+});
+Object.defineProperty(exports, "RouterGlyph", {
+  enumerable: true,
+  get: function () { return chunkWERLSPEU_cjs.RouterGlyph; }
+});
+Object.defineProperty(exports, "SanGlyph", {
+  enumerable: true,
+  get: function () { return chunkWERLSPEU_cjs.SanGlyph; }
+});
+Object.defineProperty(exports, "ServerGlyph", {
+  enumerable: true,
+  get: function () { return chunkWERLSPEU_cjs.ServerGlyph; }
+});
+Object.defineProperty(exports, "SsdGlyph", {
+  enumerable: true,
+  get: function () { return chunkWERLSPEU_cjs.SsdGlyph; }
+});
+Object.defineProperty(exports, "StateBadge", {
+  enumerable: true,
+  get: function () { return chunkWERLSPEU_cjs.StateBadge; }
+});
+Object.defineProperty(exports, "TemplateGlyph", {
+  enumerable: true,
+  get: function () { return chunkWERLSPEU_cjs.TemplateGlyph; }
+});
+Object.defineProperty(exports, "UplinkGlyph", {
+  enumerable: true,
+  get: function () { return chunkWERLSPEU_cjs.UplinkGlyph; }
+});
+Object.defineProperty(exports, "VSwitchGlyph", {
+  enumerable: true,
+  get: function () { return chunkWERLSPEU_cjs.VSwitchGlyph; }
+});
+Object.defineProperty(exports, "VdiskGlyph", {
+  enumerable: true,
+  get: function () { return chunkWERLSPEU_cjs.VdiskGlyph; }
+});
+Object.defineProperty(exports, "VlanGlyph", {
+  enumerable: true,
+  get: function () { return chunkWERLSPEU_cjs.VlanGlyph; }
+});
+Object.defineProperty(exports, "VmGlyph", {
+  enumerable: true,
+  get: function () { return chunkWERLSPEU_cjs.VmGlyph; }
+});
+Object.defineProperty(exports, "VnicGlyph", {
+  enumerable: true,
+  get: function () { return chunkWERLSPEU_cjs.VnicGlyph; }
+});
+Object.defineProperty(exports, "VolumeGlyph", {
+  enumerable: true,
+  get: function () { return chunkWERLSPEU_cjs.VolumeGlyph; }
+});
+Object.defineProperty(exports, "VpnGlyph", {
+  enumerable: true,
+  get: function () { return chunkWERLSPEU_cjs.VpnGlyph; }
+});
+Object.defineProperty(exports, "objectKinds", {
+  enumerable: true,
+  get: function () { return chunkWERLSPEU_cjs.objectKinds; }
+});
+Object.defineProperty(exports, "objectStateMeta", {
+  enumerable: true,
+  get: function () { return chunkWERLSPEU_cjs.objectStateMeta; }
+});
+Object.defineProperty(exports, "objectStates", {
+  enumerable: true,
+  get: function () { return chunkWERLSPEU_cjs.objectStates; }
+});
+Object.defineProperty(exports, "registerObjectKind", {
+  enumerable: true,
+  get: function () { return chunkWERLSPEU_cjs.registerObjectKind; }
 });
 Object.defineProperty(exports, "LafProvider", {
   enumerable: true,
@@ -9595,14 +9626,6 @@ Object.defineProperty(exports, "useLafDefaults", {
 Object.defineProperty(exports, "usePortalContainer", {
   enumerable: true,
   get: function () { return chunkRDHTRBBP_cjs.usePortalContainer; }
-});
-Object.defineProperty(exports, "Button", {
-  enumerable: true,
-  get: function () { return chunkIP6HZMS5_cjs.Button; }
-});
-Object.defineProperty(exports, "buttonVariants", {
-  enumerable: true,
-  get: function () { return chunkIP6HZMS5_cjs.buttonVariants; }
 });
 Object.defineProperty(exports, "cn", {
   enumerable: true,
@@ -9630,7 +9653,6 @@ exports.CapacityBar = CapacityBar;
 exports.CidrInput = CidrInput;
 exports.ClientInfo = ClientInfo;
 exports.ClipboardCopy = ClipboardCopy;
-exports.ClusterGlyph = ClusterGlyph;
 exports.CodeBlock = CodeBlock;
 exports.CodeBlockCode = CodeBlockCode;
 exports.CodeDisplay = CodeDisplay;
@@ -9650,7 +9672,6 @@ exports.ContextMenuTrigger = ContextMenuTrigger;
 exports.CopyButton = CopyButton;
 exports.CountCard = CountCard;
 exports.DataGrid = DataGrid;
-exports.DatacenterGlyph = DatacenterGlyph;
 exports.DatastoreBrowser = DatastoreBrowser;
 exports.DatePicker = DatePicker;
 exports.DateTimeInput = DateTimeInput;
@@ -9739,7 +9760,6 @@ exports.NavLink = NavLink;
 exports.NavTree = NavTree;
 exports.NotificationCenter = NotificationCenter;
 exports.ObjectHeader = ObjectHeader;
-exports.ObjectIcon = ObjectIcon;
 exports.ObjectPage = ObjectPage;
 exports.OptionPicker = OptionPicker;
 exports.OtpInput = OtpInput;
@@ -9767,7 +9787,6 @@ exports.ScopeList = ScopeList;
 exports.SecretDisplay = SecretDisplay;
 exports.SecurityFactors = SecurityFactors;
 exports.ServerDataGrid = ServerDataGrid;
-exports.ServerGlyph = ServerGlyph;
 exports.ServiceTile = ServiceTile;
 exports.SessionExpiryDialog = SessionExpiryDialog;
 exports.SessionList = SessionList;
@@ -9786,7 +9805,6 @@ exports.Stepper = Stepper;
 exports.SubNav = SubNav;
 exports.Table = Table;
 exports.TaskPanel = TaskPanel;
-exports.TemplateGlyph = TemplateGlyph;
 exports.ThemeToggle = ThemeToggle;
 exports.Title = Title4;
 exports.Toolbar = Toolbar;
@@ -9810,7 +9828,6 @@ exports.UserMenu = UserMenu;
 exports.UserSelector = UserSelector;
 exports.UtilizationColumn = UtilizationColumn;
 exports.UtilizationPanel = UtilizationPanel;
-exports.VmGlyph = VmGlyph;
 exports.Wizard = Wizard;
 exports.WizardReview = WizardReview;
 exports.browserSearchParams = browserSearchParams;
@@ -9824,15 +9841,11 @@ exports.isIPv6 = isIPv6;
 exports.isIp = isIp;
 exports.isMacPlatform = isMacPlatform;
 exports.normalizeHex = normalizeHex;
-exports.objectKinds = objectKinds;
-exports.objectStateMeta = objectStateMeta;
-exports.objectStates = objectStates;
 exports.parseCidr = parseCidr;
 exports.parseFilter = parseFilter;
 exports.parseHotkey = parseHotkey;
 exports.portalBreadcrumbs = portalBreadcrumbs;
 exports.portalNavEntries = portalNavEntries;
-exports.registerObjectKind = registerObjectKind;
 exports.resolvePortalRoute = resolvePortalRoute;
 exports.serializeFilter = serializeFilter;
 exports.serializeToken = serializeToken;

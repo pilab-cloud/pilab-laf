@@ -13,40 +13,65 @@ export const Dialog = DialogPrimitive.Root;
 export const DialogTrigger = DialogPrimitive.Trigger;
 export const DialogClose = DialogPrimitive.Close;
 
+/** Width presets for dialogs. `full` fills the viewport; every size shrinks to the viewport on small screens. */
+export const dialogSizes = {
+  xs: "max-w-xs",
+  sm: "max-w-sm",
+  md: "max-w-md",
+  lg: "max-w-2xl",
+  xl: "max-w-4xl",
+  "2xl": "max-w-6xl",
+  full: "max-w-none h-[calc(100dvh-2rem)]",
+} as const;
+export type DialogSize = keyof typeof dialogSizes;
+
+export const dialogBase =
+  "popup fixed top-1/2 start-1/2 z-50 flex max-h-[calc(100dvh-2rem)] w-[calc(100vw-2rem)] -translate-x-1/2 -translate-y-1/2 flex-col rtl:translate-x-1/2";
+
 export function DialogContent({
   title,
   description,
   footer,
   children,
   className,
+  size = "md",
   ...props
 }: Omit<React.ComponentProps<typeof DialogPrimitive.Content>, "title"> & {
   title: string;
   description?: string;
   footer?: React.ReactNode;
+  /** Width preset; defaults to `md`. */
+  size?: DialogSize;
 }) {
   const { t: laf, portalContainer } = useLaf();
   return (
     <DialogPrimitive.Portal container={portalContainer}>
       <DialogPrimitive.Overlay className="fixed inset-0 z-50 bg-[rgba(5,5,10,0.7)] backdrop-blur-xs" />
       <DialogPrimitive.Content
-        className={cn("popup fixed top-1/2 start-1/2 z-50 -translate-x-1/2 -translate-y-1/2 rtl:translate-x-1/2", className)}
+        className={cn(dialogBase, dialogSizes[size], className)}
+        data-size={size}
         {...(description ? {} : { "aria-describedby": undefined })}
         {...props}
       >
-        <div className="popup-head">
+        <div className="popup-head shrink-0">
           <div>
-            <DialogPrimitive.Title className="popup-title">{title}</DialogPrimitive.Title>
+            <DialogPrimitive.Title className="popup-title">
+              {title}
+            </DialogPrimitive.Title>
             {description && (
-              <DialogPrimitive.Description className="popup-sub">{description}</DialogPrimitive.Description>
+              <DialogPrimitive.Description className="popup-sub">
+                {description}
+              </DialogPrimitive.Description>
             )}
           </div>
           <DialogPrimitive.Close className="popup-close" aria-label={laf.close}>
             <X className="size-4" aria-hidden />
           </DialogPrimitive.Close>
         </div>
-        <div className="popup-body">{children}</div>
-        {footer && <div className="popup-foot">{footer}</div>}
+        <div className="popup-body min-h-0 flex-1 overflow-auto">
+          {children}
+        </div>
+        {footer && <div className="popup-foot shrink-0">{footer}</div>}
       </DialogPrimitive.Content>
     </DialogPrimitive.Portal>
   );
@@ -74,13 +99,20 @@ export function PopoverContent({
       <PopoverPrimitive.Content
         align={align}
         sideOffset={8}
-        className={cn("popover-panel relative! top-auto! start-auto! z-30", className)}
+        className={cn(
+          "popover-panel relative! top-auto! start-auto! z-30",
+          className,
+        )}
         {...props}
       >
         {title && <div className="popover-title">{title}</div>}
         {children}
         {footer && <div className="popover-foot">{footer}</div>}
-        <PopoverPrimitive.Arrow className="fill-menu stroke-line-strong" width={12} height={6} />
+        <PopoverPrimitive.Arrow
+          className="fill-menu stroke-line-strong"
+          width={12}
+          height={6}
+        />
       </PopoverPrimitive.Content>
     </PopoverPrimitive.Portal>
   );
@@ -101,7 +133,10 @@ export function DropdownMenuContent({
       <DropdownPrimitive.Content
         align={align}
         sideOffset={4}
-        className={cn("dropdown-menu relative! top-auto! start-auto! z-30 min-w-48", className)}
+        className={cn(
+          "dropdown-menu relative! top-auto! start-auto! z-30 min-w-48",
+          className,
+        )}
         {...props}
       />
     </DropdownPrimitive.Portal>
@@ -115,29 +150,55 @@ export function DropdownMenuItem({
 }: React.ComponentProps<typeof DropdownPrimitive.Item> & { danger?: boolean }) {
   return (
     <DropdownPrimitive.Item
-      className={cn("dropdown-item outline-none data-[highlighted]:bg-surface-hover data-[highlighted]:text-fg", danger && "danger", className)}
+      className={cn(
+        "dropdown-item outline-none data-[highlighted]:bg-surface-hover data-[highlighted]:text-fg",
+        danger && "danger",
+        className,
+      )}
       {...props}
     />
   );
 }
 
-export function DropdownMenuLabel({ className, ...props }: React.ComponentProps<typeof DropdownPrimitive.Label>) {
-  return <DropdownPrimitive.Label className={cn("dropdown-label", className)} {...props} />;
+export function DropdownMenuLabel({
+  className,
+  ...props
+}: React.ComponentProps<typeof DropdownPrimitive.Label>) {
+  return (
+    <DropdownPrimitive.Label
+      className={cn("dropdown-label", className)}
+      {...props}
+    />
+  );
 }
 
-export function DropdownMenuSeparator({ className, ...props }: React.ComponentProps<typeof DropdownPrimitive.Separator>) {
-  return <DropdownPrimitive.Separator className={cn("dropdown-sep", className)} {...props} />;
+export function DropdownMenuSeparator({
+  className,
+  ...props
+}: React.ComponentProps<typeof DropdownPrimitive.Separator>) {
+  return (
+    <DropdownPrimitive.Separator
+      className={cn("dropdown-sep", className)}
+      {...props}
+    />
+  );
 }
 
 /* ── Tabs (underline) ── */
 export const Tabs = TabsPrimitive.Root;
 export const TabsContent = TabsPrimitive.Content;
 
-export function TabsList({ className, ...props }: React.ComponentProps<typeof TabsPrimitive.List>) {
+export function TabsList({
+  className,
+  ...props
+}: React.ComponentProps<typeof TabsPrimitive.List>) {
   return <TabsPrimitive.List className={cn("tabs", className)} {...props} />;
 }
 
-export function TabsTrigger({ className, ...props }: React.ComponentProps<typeof TabsPrimitive.Trigger>) {
+export function TabsTrigger({
+  className,
+  ...props
+}: React.ComponentProps<typeof TabsPrimitive.Trigger>) {
   return (
     <TabsPrimitive.Trigger
       className={cn(
@@ -168,7 +229,11 @@ export function Tooltip({
 }) {
   const container = usePortalContainer();
   return (
-    <TooltipPrimitive.Root delayDuration={400} open={open} onOpenChange={onOpenChange}>
+    <TooltipPrimitive.Root
+      delayDuration={400}
+      open={open}
+      onOpenChange={onOpenChange}
+    >
       <TooltipPrimitive.Trigger asChild>{children}</TooltipPrimitive.Trigger>
       <TooltipPrimitive.Portal container={container}>
         <TooltipPrimitive.Content

@@ -5,7 +5,7 @@ import { uiEn } from "../messages/ui.en";
 import { useControllableState } from "../utils";
 import { Button } from "./button";
 import { DefinitionList, Stepper } from "./helpers";
-import { Dialog, DialogContent } from "./overlay";
+import { Dialog, DialogContent, type DialogSize } from "./overlay";
 import { UnsavedChangesDialog, useUnsavedChangesGuard } from "./layout";
 
 export interface WizardStep {
@@ -39,6 +39,8 @@ export interface WizardProps {
   title?: string;
   /** "dialog" renders in a large Dialog controlled by `open`; "page" renders inline. */
   mode?: "page" | "dialog";
+  /** Dialog width preset (dialog mode only). */
+  size?: DialogSize;
   open?: boolean;
   onOpenChange?: (open: boolean) => void;
   current?: number;
@@ -55,6 +57,7 @@ export function Wizard({
   dirty,
   title: titleProp,
   mode = "page",
+  size = "xl",
   open,
   onOpenChange,
   current: currentProp,
@@ -63,10 +66,15 @@ export function Wizard({
   labels: labelsProp,
   className,
 }: WizardProps) {
-  const { title: defaultTitle, ...defaultLabels } = useLafDefaults(lafDefaults).t.components.ui.wizard;
+  const { title: defaultTitle, ...defaultLabels } =
+    useLafDefaults(lafDefaults).t.components.ui.wizard;
   const labels = { ...defaultLabels, ...labelsProp };
   const title = titleProp ?? defaultTitle;
-  const [current, setCurrent] = useControllableState({ value: currentProp, defaultValue: defaultCurrent, onChange: onCurrentChange });
+  const [current, setCurrent] = useControllableState({
+    value: currentProp,
+    defaultValue: defaultCurrent,
+    onChange: onCurrentChange,
+  });
   const [errors, setErrors] = React.useState<string[]>([]);
   const [failed, setFailed] = React.useState<Record<string, boolean>>({});
   const [busy, setBusy] = React.useState(false);
@@ -125,7 +133,7 @@ export function Wizard({
 
   const body = (
     <div
-      className={cn("grid gap-5 md:grid-cols-[14rem_minmax(0,1fr)]", className)}
+      className={cn("@container grid min-w-0 gap-4", className)}
       onKeyDown={(e) => {
         if (e.key === "Enter" && (e.ctrlKey || e.metaKey)) {
           e.preventDefault();
@@ -133,54 +141,72 @@ export function Wizard({
         }
       }}
     >
-      <nav aria-label={labels.steps}>
-        <Stepper
-          current={current}
-          onStepClick={goTo}
-          steps={steps.map((s) => ({
-            id: s.id,
-            label: s.optional ? (
-              <>
-                {s.label} <span className="text-xs text-subtle">({labels.optional})</span>
-              </>
-            ) : (
-              s.label
-            ),
-            error: failed[s.id],
-          }))}
-        />
-      </nav>
-      <div className="grid min-w-0 content-start gap-4">
-        <h2 ref={headingRef} tabIndex={-1} className="text-base font-semibold text-fg outline-none">
-          {step.label}
-        </h2>
-        <div role="alert" id={errId}>
-          {errors.length > 0 && (
-            <ul className="list-disc ps-5 text-sm text-danger">
-              {errors.map((m) => (
-                <li key={m}>{m}</li>
-              ))}
-            </ul>
-          )}
-        </div>
-        <div>{step.render()}</div>
-        <div className="flex items-center gap-2 border-t border-line pt-4">
-          <Button variant="ghost" onClick={cancel}>
-            {labels.cancel}
-          </Button>
-          <div className="ms-auto flex gap-2">
-            <Button variant="secondary" disabled={current === 0 || busy} onClick={() => goTo(current - 1)}>
-              {labels.back}
-            </Button>
-            {step.optional && !last && (
-              <Button variant="secondary" disabled={busy} onClick={() => void advance(true)}>
-                {labels.skip}
-              </Button>
+      <div className="grid min-w-0 gap-5 @2xl:grid-cols-[12rem_minmax(0,1fr)]">
+        <nav aria-label={labels.steps}>
+          <Stepper
+            className="flex-row flex-wrap gap-x-4 gap-y-1.5 @2xl:flex-col @2xl:gap-2"
+            current={current}
+            onStepClick={goTo}
+            steps={steps.map((s) => ({
+              id: s.id,
+              label: s.optional ? (
+                <>
+                  {s.label}{" "}
+                  <span className="text-xs text-subtle">
+                    ({labels.optional})
+                  </span>
+                </>
+              ) : (
+                s.label
+              ),
+              error: failed[s.id],
+            }))}
+          />
+        </nav>
+        <div className="grid min-w-0 content-start gap-4">
+          <h2
+            ref={headingRef}
+            tabIndex={-1}
+            className="text-base font-semibold text-fg outline-none"
+          >
+            {step.label}
+          </h2>
+          <div role="alert" id={errId}>
+            {errors.length > 0 && (
+              <ul className="list-disc ps-5 text-sm text-danger">
+                {errors.map((m) => (
+                  <li key={m}>{m}</li>
+                ))}
+              </ul>
             )}
-            <Button loading={busy} onClick={() => void advance()}>
-              {last ? labels.finish : labels.next}
-            </Button>
           </div>
+          <div>{step.render()}</div>
+        </div>
+      </div>
+      <div className="flex flex-wrap items-center gap-2 border-t border-line pt-4">
+        <Button variant="ghost" onClick={cancel}>
+          {labels.cancel}
+        </Button>
+        <div className="ms-auto flex flex-wrap justify-end gap-2">
+          <Button
+            variant="secondary"
+            disabled={current === 0 || busy}
+            onClick={() => goTo(current - 1)}
+          >
+            {labels.back}
+          </Button>
+          {step.optional && !last && (
+            <Button
+              variant="secondary"
+              disabled={busy}
+              onClick={() => void advance(true)}
+            >
+              {labels.skip}
+            </Button>
+          )}
+          <Button loading={busy} onClick={() => void advance()}>
+            {last ? labels.finish : labels.next}
+          </Button>
         </div>
       </div>
       <UnsavedChangesDialog guard={guard} />
@@ -189,18 +215,17 @@ export function Wizard({
 
   if (mode === "dialog") {
     return (
-      <Dialog open={open} onOpenChange={(o) => (o ? onOpenChange?.(true) : cancel())}>
-        <DialogContent title={title} className="w-[min(56rem,95vw)]">
+      <Dialog
+        open={open}
+        onOpenChange={(o) => (o ? onOpenChange?.(true) : cancel())}
+      >
+        <DialogContent title={title} size={size}>
           {body}
         </DialogContent>
       </Dialog>
     );
   }
-  return (
-    <section aria-label={title}>
-      {body}
-    </section>
-  );
+  return <section aria-label={title}>{body}</section>;
 }
 
 /** Review step helper: lists the collected values. */

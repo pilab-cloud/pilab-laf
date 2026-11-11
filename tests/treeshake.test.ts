@@ -2,6 +2,7 @@
 import { build } from "esbuild";
 import { join } from "node:path";
 import { gzipSync } from "node:zlib";
+import { siUbuntu } from "simple-icons";
 import { describe, expect, it } from "vitest";
 
 const root = join(__dirname, "..");
@@ -74,6 +75,17 @@ describe("tree-shaking (design §2.2)", () => {
     expect(topo.gzip).toBeLessThanOrEqual(20 * 1024);
     const core = await bundle('import * as L from "./lib/index.ts"; console.log(L);');
     expect(core.text).not.toContain("xyflow");
+  });
+
+  it("@pilab/laf/os-icons stays within budget (simple-icons paths included) and the core never pulls it in", async () => {
+    const os = await bundle('import * as O from "./lib/os-icons/index.ts"; console.log(O);');
+    expect(os.gzip).toBeLessThanOrEqual(52 * 1024); // ~14 kB shared catalogue via useLaf + ~30 kB of brand path data
+    // only the named brand marks are bundled, not the whole simple-icons set
+    expect(os.text.length).toBeLessThan(400 * 1024);
+    const core = await bundle('import * as L from "./lib/index.ts"; console.log(L);');
+    expect(core.text).not.toContain("simple-icons");
+    expect(core.text).not.toContain(siUbuntu.path);
+    expect(os.text).toContain(siUbuntu.path);
   });
 
   it("charts entry (third-party deps external) stays within its size budget and the core stays visx-free", async () => {

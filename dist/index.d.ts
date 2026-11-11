@@ -9,15 +9,17 @@ import * as DropdownPrimitive from '@radix-ui/react-dropdown-menu';
 import * as PopoverPrimitive from '@radix-ui/react-popover';
 import * as TabsPrimitive from '@radix-ui/react-tabs';
 import * as TooltipPrimitive from '@radix-ui/react-tooltip';
-import { C as ComboboxOption, K as Kbd, L as LafMessages, t as trackerEn, u as uiEn, p as portalEn, N as NotificationCenterProps } from './i18n-DbHH7nyn.js';
-export { A as AccountSession, a as AlarmItem, b as AlarmList, c as AllowListEditor, d as AllowListEditorProps, e as ApiKeyCreateInput, f as ApiKeyItem, g as ApiKeyManager, h as ApiKeyManagerLabels, i as ApiKeyManagerProps, B as BarChart, j as Branding, k as BrandingEditor, l as BrandingEditorLabels, m as BrandingEditorProps, n as CidrInput, o as ColorField, q as ColorFieldLabels, r as ColorFieldProps, s as Combobox, v as ComboboxProps, w as ComponentMessageOverrides, x as ComponentMessages, y as ConsoleEvent, z as ConsoleFrame, D as ConsoleFrameLabels, E as ConsoleFrameProps, F as ConsoleStatus, G as DatastoreBrowser, H as DatastoreBrowserLabels, I as DatastoreBrowserProps, J as DatastoreEntry, M as DateTimeInput, O as Device, P as DeviceKind, Q as DeviceSelector, R as Donut, S as ErrorSummary, T as EventConsole, U as EventConsoleLabels, V as EventConsoleProps, W as EventSeverity, X as FileDropzone, Y as FormField, Z as Gauge, _ as HardwareCapabilities, $ as HardwareEditor, a0 as HardwareEditorLabels, a1 as HardwareEditorProps, a2 as HwDevice, a3 as HwKind, a4 as InlineEdit, a5 as IpInput, a6 as LafContextValue, a7 as LafProvider, a8 as NetworkLabels, a9 as NotificationCenter, aa as NotificationCenterLabels, ab as NotificationItem, ac as PasskeyItem, ad as PermissionAssignDialog, ae as PermissionAssignDialogProps, af as PermissionAssignLabels, ag as PermissionAssignment, ah as PermissionRole, ai as ReauthDialog, aj as ReauthDialogLabels, ak as ReauthDialogProps, al as ReauthMethod, am as SecurityFactors, an as SecurityFactorsLabels, ao as SecurityFactorsProps, ap as SessionExpiryDialog, aq as SessionExpiryDialogLabels, ar as SessionExpiryDialogProps, as as SessionList, at as SessionListLabels, au as SessionListProps, av as SnapshotNode, aw as SnapshotTree, ax as SnapshotTreeLabels, ay as SnapshotTreeProps, az as TransferItem, aA as TransferList, aB as TransferListLabels, aC as TransferListProps, aD as UploadFile, aE as User, aF as UserSelector, aG as UserSelectorProps, aH as contrastRatio, aI as en, aJ as isCidr, aK as isIPv4, aL as isIPv6, aM as isIp, aN as normalizeHex, aO as parseCidr, aP as useLaf, aQ as useLafDefaults, aR as usePortalContainer } from './i18n-DbHH7nyn.js';
+import { C as ComboboxOption, K as Kbd, t as trackerEn, u as uiEn, p as portalEn, N as NotificationCenterProps } from './i18n-CWjDK5Jp.js';
+export { A as AccountSession, a as AlarmItem, b as AlarmList, c as AllowListEditor, d as AllowListEditorProps, e as ApiKeyCreateInput, f as ApiKeyItem, g as ApiKeyManager, h as ApiKeyManagerLabels, i as ApiKeyManagerProps, B as BarChart, j as Branding, k as BrandingEditor, l as BrandingEditorLabels, m as BrandingEditorProps, n as CidrInput, o as ColorField, q as ColorFieldLabels, r as ColorFieldProps, s as Combobox, v as ComboboxProps, w as ComponentMessageOverrides, x as ComponentMessages, y as ConsoleEvent, z as ConsoleFrame, D as ConsoleFrameLabels, E as ConsoleFrameProps, F as ConsoleStatus, G as DatastoreBrowser, H as DatastoreBrowserLabels, I as DatastoreBrowserProps, J as DatastoreEntry, L as DateTimeInput, M as Device, O as DeviceKind, P as DeviceSelector, Q as Donut, R as ErrorSummary, S as EventConsole, T as EventConsoleLabels, U as EventConsoleProps, V as EventSeverity, W as FileDropzone, X as FormField, Y as Gauge, Z as HardwareCapabilities, _ as HardwareEditor, $ as HardwareEditorLabels, a0 as HardwareEditorProps, a1 as HwDevice, a2 as HwKind, a3 as InlineEdit, a4 as IpInput, a5 as LafContextValue, a6 as LafMessages, a7 as LafProvider, a8 as NetworkLabels, a9 as NotificationCenter, aa as NotificationCenterLabels, ab as NotificationItem, ac as PasskeyItem, ad as PermissionAssignDialog, ae as PermissionAssignDialogProps, af as PermissionAssignLabels, ag as PermissionAssignment, ah as PermissionRole, ai as ReauthDialog, aj as ReauthDialogLabels, ak as ReauthDialogProps, al as ReauthMethod, am as SecurityFactors, an as SecurityFactorsLabels, ao as SecurityFactorsProps, ap as SessionExpiryDialog, aq as SessionExpiryDialogLabels, ar as SessionExpiryDialogProps, as as SessionList, at as SessionListLabels, au as SessionListProps, av as SnapshotNode, aw as SnapshotTree, ax as SnapshotTreeLabels, ay as SnapshotTreeProps, az as TransferItem, aA as TransferList, aB as TransferListLabels, aC as TransferListProps, aD as UploadFile, aE as User, aF as UserSelector, aG as UserSelectorProps, aH as contrastRatio, aI as en, aJ as isCidr, aK as isIPv4, aL as isIPv6, aM as isIp, aN as normalizeHex, aO as parseCidr, aP as useLaf, aQ as useLafDefaults, aR as usePortalContainer } from './i18n-CWjDK5Jp.js';
 import * as ContextPrimitive from '@radix-ui/react-context-menu';
 import { Virtualizer } from '@tanstack/react-virtual';
-import { LucideIcon } from 'lucide-react';
+import { O as ObjectKind, a as ObjectState, b as ObjectGlyph } from './object-icon-1uNCkZBX.js';
+export { C as ClusterGlyph, D as DatacenterGlyph, c as ObjectIcon, d as ObjectIconProps, e as ObjectStateMeta, S as ServerGlyph, f as StateBadge, T as TemplateGlyph, V as VmGlyph, o as objectKinds, g as objectStateMeta, h as objectStates, r as registerObjectKind } from './object-icon-1uNCkZBX.js';
 import { M as MenuItemSpec$1, a as TreeViewProps } from './tree-Cv6L-PZI.js';
 export { T as TreeDragAdapter, b as TreeDropPosition, c as TreeNode, d as TreeStatus, e as TreeView } from './tree-Cv6L-PZI.js';
 import { C as CardProps } from './card-D00VCi3j.js';
 export { a as Card, b as CardActions, c as CardBody, d as CardDescription, e as CardFooter, f as CardGrid, g as CardHeader, h as CardStatus, i as CardTitle, j as CardVariant, E as ExpandableCard, k as ExpandableCardProps } from './card-D00VCi3j.js';
+import 'lucide-react';
 
 declare function cn(...inputs: ClassValue[]): string;
 
@@ -232,10 +234,24 @@ declare function PageHead({ title, description, actions, breadcrumb, }: {
 declare const Dialog: React.FC<DialogPrimitive.DialogProps>;
 declare const DialogTrigger: React.ForwardRefExoticComponent<DialogPrimitive.DialogTriggerProps & React.RefAttributes<HTMLButtonElement>>;
 declare const DialogClose: React.ForwardRefExoticComponent<DialogPrimitive.DialogCloseProps & React.RefAttributes<HTMLButtonElement>>;
-declare function DialogContent({ title, description, footer, children, className, ...props }: Omit<React.ComponentProps<typeof DialogPrimitive.Content>, "title"> & {
+/** Width presets for dialogs. `full` fills the viewport; every size shrinks to the viewport on small screens. */
+declare const dialogSizes: {
+    readonly xs: "max-w-xs";
+    readonly sm: "max-w-sm";
+    readonly md: "max-w-md";
+    readonly lg: "max-w-2xl";
+    readonly xl: "max-w-4xl";
+    readonly "2xl": "max-w-6xl";
+    readonly full: "max-w-none h-[calc(100dvh-2rem)]";
+};
+type DialogSize = keyof typeof dialogSizes;
+declare const dialogBase = "popup fixed top-1/2 start-1/2 z-50 flex max-h-[calc(100dvh-2rem)] w-[calc(100vw-2rem)] -translate-x-1/2 -translate-y-1/2 flex-col rtl:translate-x-1/2";
+declare function DialogContent({ title, description, footer, children, className, size, ...props }: Omit<React.ComponentProps<typeof DialogPrimitive.Content>, "title"> & {
     title: string;
     description?: string;
     footer?: React.ReactNode;
+    /** Width preset; defaults to `md`. */
+    size?: DialogSize;
 }): React.JSX.Element;
 declare const Popover: React.FC<PopoverPrimitive.PopoverProps>;
 declare const PopoverTrigger: React.ForwardRefExoticComponent<PopoverPrimitive.PopoverTriggerProps & React.RefAttributes<HTMLButtonElement>>;
@@ -1351,6 +1367,8 @@ interface WizardProps {
     title?: string;
     /** "dialog" renders in a large Dialog controlled by `open`; "page" renders inline. */
     mode?: "page" | "dialog";
+    /** Dialog width preset (dialog mode only). */
+    size?: DialogSize;
     open?: boolean;
     onOpenChange?: (open: boolean) => void;
     current?: number;
@@ -1359,7 +1377,7 @@ interface WizardProps {
     labels?: Partial<WizardLabels>;
     className?: string;
 }
-declare function Wizard({ steps, onFinish, onCancel, dirty, title: titleProp, mode, open, onOpenChange, current: currentProp, defaultCurrent, onCurrentChange, labels: labelsProp, className, }: WizardProps): React.JSX.Element;
+declare function Wizard({ steps, onFinish, onCancel, dirty, title: titleProp, mode, size, open, onOpenChange, current: currentProp, defaultCurrent, onCurrentChange, labels: labelsProp, className, }: WizardProps): React.JSX.Element;
 /** Review step helper: lists the collected values. */
 declare function WizardReview({ items, className, }: {
     items: {
@@ -1407,50 +1425,6 @@ declare class LafErrorBoundary extends React.Component<BoundaryProps, {
     reset: () => void;
     render(): string | number | bigint | boolean | Iterable<React.ReactNode> | Promise<string | number | bigint | boolean | React.ReactPortal | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | null | undefined> | React.JSX.Element | null | undefined;
 }
-
-/** Stroke-based 24×24 glyphs matching the lucide set (currentColor, round caps), drawn for infrastructure objects. */
-type ObjectGlyph = React.ComponentType<React.SVGProps<SVGSVGElement>>;
-/** Virtual machine: a screen with a cube inside. */
-declare const VmGlyph: ObjectGlyph;
-/** VM template: the VM glyph with a dashed screen. */
-declare const TemplateGlyph: ObjectGlyph;
-/** One physical server: a single tower/rack unit with drive bays and a status LED. */
-declare const ServerGlyph: ObjectGlyph;
-/** Cluster: several servers side by side. */
-declare const ClusterGlyph: ObjectGlyph;
-/** Data center: a headquarters building with server racks inside. */
-declare const DatacenterGlyph: ObjectGlyph;
-
-type ObjectKind = "datacenter" | "cluster" | "host" | "vm" | "template" | "vapp" | "folder" | "resource-pool" | "datastore" | "datastore-cluster" | "network" | "dvswitch" | "portgroup" | "snapshot" | "user" | "group" | "client" | "issue" | "project" | "mailbox" | "shared-mailbox" | "domain" | "mail-queue" | "repository" | "token" | "policy";
-type ObjectState = "on" | "off" | "suspended" | "maintenance" | "disconnected" | "warning" | "error" | "running" | "paused" | "stopped" | "crashed" | "hibernated";
-/** Every state, in the order a state picker or legend should list them. */
-declare const objectStates: readonly ObjectState[];
-/** Register (or override) an icon for an app-specific kind. Call it from app start-up, not at import time of this library. */
-declare function registerObjectKind(kind: string, icon: ObjectGlyph | LucideIcon): void;
-interface ObjectStateMeta {
-    Icon: LucideIcon;
-    /** Text colour for inline glyphs. */
-    tone: string;
-    /** Solid fill for the composite badge disc. */
-    fill: string;
-    text: keyof LafMessages;
-    /** How the base glyph is treated so the state reads even without the badge. */
-    base: "normal" | "dim" | "faded" | "danger";
-}
-declare const objectStateMeta: Record<ObjectState, ObjectStateMeta>;
-interface ObjectIconProps {
-    kind: ObjectKind | (string & {});
-    state?: ObjectState;
-    /** Second badge on the opposite corner, e.g. an alarm on a running VM or maintenance on a powered-off host. */
-    overlay?: ObjectState;
-    size?: 16 | 20;
-    /** Accessible name of the object kind/instance; without it (and without a state) the icon is decorative. */
-    label?: string;
-    className?: string;
-}
-declare function ObjectIcon({ kind, state, overlay, size, label, className }: ObjectIconProps): React.JSX.Element;
-/** Every built-in kind, for galleries, pickers and tests. */
-declare const objectKinds: ObjectKind[];
 
 type FilterOp = ":" | ">" | ">=" | "<" | "<=";
 interface Filter {
@@ -2324,19 +2298,13 @@ declare function DropdownItem({ icon, description, children, ...props }: React.C
     description?: React.ReactNode;
 }): React.JSX.Element;
 declare const DropdownSeparator: typeof DropdownMenuSeparator;
-declare const modalSize: {
-    sm: string;
-    md: string;
-    lg: string;
-    xl: string;
-};
 interface ModalProps {
     open?: boolean;
     defaultOpen?: boolean;
     onOpenChange?: (open: boolean) => void;
     /** Called when the modal is dismissed (Escape, overlay, close button). */
     onClose?: () => void;
-    size?: keyof typeof modalSize;
+    size?: DialogSize;
     /** Accessible name when there is no `ModalHeader`. */
     "aria-label"?: string;
     /** Rendered outside the portal; usually a `ModalTrigger asChild` button. */
@@ -3329,4 +3297,50 @@ interface ActionToolbarProps {
  */
 declare function ActionToolbar({ actions, label, size, className }: ActionToolbarProps): React.JSX.Element;
 
-export { Accordion, type AccordionItem, AccountItem, AccountList, ActionBar, type ActionBarProps, ActionGroup, ActionToolbar, type ActionToolbarProps, type ActivityComment, type ActivityEvent, type ActivityItem, ActivityTimeline, AdminShell, Alert, AlertGroup, type AlertProps, type AlertTone, AppFooter, type AppFooterBuild, type AppFooterProps, AppFrame, type AppFrameContextValue, type AppFrameLabels, type AppFrameProps, AppSwitcher, type AppSwitcherProps, type AuditEvent, AuditLog, AuthFooter, Avatar, AvatarGroup, Badge, Banner, BrandHeader, Breadcrumb, type BreadcrumbItemProps, Button, ButtonGroup, type ButtonProps, CapacityBar, type CapacityBarProps, CardProps, type ChartSeries, Checkbox, Chip, ClientInfo, ClipboardCopy, type ClipboardCopyProps, ClusterGlyph, CodeBlock, CodeBlockCode, type CodeBlockProps, CodeDisplay, CodeEditor, CodeEditorLite, CodeInput, ComboboxOption, type Command, CommandPalette, ConfirmDialog, ContextMenu, ContextMenuContent, ContextMenuFor, ContextMenuItem, ContextMenuSeparator, ContextMenuTrigger, CopyButton, CountCard, type CountCardItem, type CountCardProps, DataGrid, type DataGridProps, DatacenterGlyph, DatePicker, type DatePickerProps, type DateRangeValue, DefinitionList, DescriptionList, DescriptionListDescription, DescriptionListGroup, type DescriptionListProps, DescriptionListTerm, DetailPage, DetailsCard, type DetailsCardProps, type DetailsItem, DeviceSteps, type DeviceStepsProps, Dialog, DialogClose, DialogContent, DialogTrigger, type DiffOp, DiffView, Divider, type DnsRecord, type DnsRecordState, DnsRecordTable, type DnsRecordTableProps, DockedTaskPanel, Drawer, DrawerClose, DrawerContent, DrawerPanel, type DrawerPanelProps, type DrawerPlacement, DrawerTrigger, Dropdown, DropdownGroup, DropdownItem, DropdownList, DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger, type DropdownProps, DropdownSeparator, EmptyState, ErrorPage, type ErrorVariant, Field, type FieldProps, type Filter, FilterBar, type FilterBarLabels, type FilterBarProps, type FilterField, type FilterOp, type FilterOption, type FilterToken, Flex, FlexItem, type FlexProps, type FooterLink, type FooterLinkGroup, Form, FormFooter, FormGroup, type FormGroupProps, FormHelperText, FormPage, FormSection, Formatters, type Gap, GaugeCard, type GaugeCardProps, type GaugeThreshold, Grid, type GridColumn, GridColumnsMenu, type GridDensity, GridDensityToggle, type GridFilter, type GridFilterRenderer, GridItem, type GridItemProps, type GridLabels, type GridMenuItem, type GridPagination, GridSearch, type GridSort, HealthGrid, type HealthGridProps, Heatmap, HelperText, HelperTextItem, type HotkeyOptions, HotkeysProvider, HoverCard, IconButton, type IconButtonProps, IdentityCard, type IdentityCardProps, InfiniteList, type InfiniteListProps, InfoBox, InlineDrawer, Input, type InputProps, InventoryLayout, type InventoryLayoutProps, IssueCard, type IssueData, IssueRow, Kbd, type KeyValue, KeyValueEditor, Label, type LabelDef, LabelPicker, type LabelSlot, LabelSwatch, LafErrorBoundary, LafMessages, LanguageSwitcher, LineChart, type LogLine, LogViewer, type LogViewerLabels, Masthead, MastheadActions, MastheadBrand, type MastheadBrandProps, MastheadContent, MastheadToggle, Menu, type MenuItemSpec, MenuShortcut, MenuToggle, type MenuToggleProps, MetricCard, type MetricCardProps, type MetricDelta, MetricGrid, type MetricTone, type MetricTrend, MfaEnrolment, type MfaEnrolmentProps, type MfaMethod, MobileNav, Modal, ModalBody, ModalClose, ModalFooter, ModalHeader, type ModalProps, ModalTrigger, type NavDivider, type NavEntry, NavGroup, type NavHeading, type NavItem, NavLink, type NavRenderProps, NavTree, type NavTreeProps, NotificationCenterProps, NumberInput, type ObjectGlyph, ObjectHeader, type ObjectHeaderProps, ObjectIcon, type ObjectIconProps, type ObjectKind, ObjectPage, type ObjectPageCard, type ObjectPageProps, type ObjectState, type ObjectStateMeta, OptionPicker, type OptionPickerProps, OtpInput, OverflowTabs, PageHead, PageHeader, type PageHeaderProps, PageSection, type PageSectionProps, Pagination, type PaginationProps, Panel, type ParsedFilter, PasswordField, type PasswordFieldProps, type PermissionGroup, PermissionMatrix, type PermissionMatrixLabels, type PickerOption, Popover, PopoverClose, PopoverContent, PopoverTrigger, type PortalAnnouncement, type PortalApp, PortalHome, type PortalHomeLabels, type PortalHomeProps, type PortalLabels, PortalLayout, type PortalLayoutProps, type PortalLinkProps, type PortalLinkRenderer, type PortalMatch, type PortalPageContext, type PortalParams, type PortalQuickAction, type PortalRoute, type PortalSearch, type PortalTab, type PortalUser, PowerState, type PowerStateProps, Progress, ProgressCard, type ProgressCardProps, ProgressSummary, PropertiesPane, type PropertyField, type PropertyGroup, type QueueJobStatus, QueueStatusBadge, QuotaBar, type QuotaBarProps, RadialGauge, type RadialGaugeProps, Radio, RadioGroup, type RadioGroupProps, type RadioProps, type Reaction, Reactions, type RegisteredHotkey, RelativeTime, type ResolvedTheme, ResourceOverviewLayout, type ResourceOverviewLayoutProps, type SavedView, SavedViews, type SavedViewsLabels, type SavedViewsProps, type SavedViewsStorage, ScopeList, SearchInput, SecretDisplay, SegmentedControl, type SegmentedControlProps, type SegmentedItem, Select, type SelectGroup, SelectMenu, type SelectOption, type SelectProps, ServerDataGrid, type ServerDataGridProps, ServerGlyph, type ServerGridController, type ServerGridFetcher, type ServerGridQuery, type ServerGridRequest, type ServerGridResult, type ServerGridUrlAdapter, type ServerGridUrlOptions, type ServiceHealth, ServiceTile, type ServiceTileProps, type Severity, ShortcutHelp, SideCard, type SideCardProps, Sidebar, type SidebarProps, Skeleton, Slider, type SliderProps, SocialButton, SocialButtons, SocialDivider, Sparkline, type SparklineProps, Spinner, SplitButton, SplitPane, Stack, StackItem, StackedBarChart, Stat, StatGrid, StatusDot, StatusSummaryCard, type StatusSummaryCardProps, type StatusSummaryItem, type Step, Stepper, SubNav, type SubNavGroup, type SubNavItem, Switch, Table, Tabs, TabsContent, TabsList, TabsTrigger, TagInput, type TaskItem, TaskPanel, type TaskStatus, TemplateGlyph, TenantSwitcher, Textarea as TextArea, Input as TextInput, type TextTerm, Textarea, type ThemeMode, ThemeToggle, type ThemeToggleProps, TimeRangePicker, Title, type TitleSize, type ToastOptions, ToastProvider, type ToastTone, Toolbar, type ToolbarAction, ToolbarActions, ToolbarBulk, type ToolbarBulkProps, ToolbarContent, ToolbarDivider, type ToolbarFilter, ToolbarFilterChips, type ToolbarFilterChipsProps, ToolbarGroup, type ToolbarGroupProps, ToolbarItem, type ToolbarMenuItem, type ToolbarProps, ToolbarSpacer, Tooltip, TooltipProvider, TopBar, type TopBarCounter, type TopologyEdge, TopologyGraph, type TopologyNode, type TraceHop, TraceTimeline, type TraceTimelineProps, TreeTable, type TreeTableNode, type TreeTableProps, TreeViewProps, TruncatedText, type UnitOption, UnsavedChangesDialog, type UnsavedChangesGuard, type UseSavedViewsOptions, type UseServerGridOptions, UserCell, UserMenu, UtilizationColumn, type UtilizationColumnProps, UtilizationPanel, type UtilizationPanelProps, VirtualList, VmGlyph, Wizard, type WizardLabels, type WizardProps, WizardReview, type WizardStep, browserSearchParams, buttonVariants, cn, diffLines, format, formatHotkey, formatRelative, gaugeTone, highlight, isMacPlatform, matchesAccept, objectKinds, objectStateMeta, objectStates, observeRectWithFallback, parseFilter, parseHotkey, portalBreadcrumbs, portalNavEntries, registerObjectKind, resolvePortalRoute, serializeFilter, serializeToken, serverGridFromSearchParams, serverGridToSearchParams, useAppFrame, useControllableState, useHotkeys, useRegisteredHotkeys, useSavedViews, useServerGrid, useToast, useToasts, useUnsavedChangesGuard };
+/** Solid-state drive: a board with a controller chip and a status LED. */
+declare const SsdGlyph: ObjectGlyph;
+/** Hard disk drive: a platter with its spindle and the actuator arm. */
+declare const HddGlyph: ObjectGlyph;
+/** NVMe drive: an M.2 stick with a connector notch and a bolt. */
+declare const NvmeGlyph: ObjectGlyph;
+/** iSCSI target: a disk reached over an IP network. */
+declare const IscsiGlyph: ObjectGlyph;
+/** SAN: hosts, a fibre-channel switch and an array. */
+declare const SanGlyph: ObjectGlyph;
+/** NAS: a two-bay enclosure with handles and activity LEDs. */
+declare const NasGlyph: ObjectGlyph;
+/** NFS export: a shared folder with network nodes. */
+declare const NfsGlyph: ObjectGlyph;
+/** Virtual disk: a dashed disk with a cube. */
+declare const VdiskGlyph: ObjectGlyph;
+/** Disk array: two stacked enclosures with drive bays. */
+declare const DiskArrayGlyph: ObjectGlyph;
+/** LUN: one slice carved out of a storage pool. */
+declare const LunGlyph: ObjectGlyph;
+/** Volume: a cylinder with a partition band. */
+declare const VolumeGlyph: ObjectGlyph;
+type RaidLevel = 0 | 1 | 5 | 6 | 10;
+interface RaidGlyphProps extends React.SVGProps<SVGSVGElement> {
+    /** RAID level; each level has its own drive-bar drawing. Omit for the generic RAID set. */
+    level?: RaidLevel;
+}
+/** RAID set: drive bars, drawn per level (0 striped, 1 mirrored, 5/6 distributed parity, 10 mirrored pairs). */
+declare const RaidGlyph: React.FC<RaidGlyphProps>;
+/** Virtual switch: a dashed switch with vNIC ports up and an uplink down. */
+declare const VSwitchGlyph: ObjectGlyph;
+/** Virtual NIC: a dashed adapter card with a port and edge connector. */
+declare const VnicGlyph: ObjectGlyph;
+/** VLAN: a trunk fanning out into separate lanes. */
+declare const VlanGlyph: ObjectGlyph;
+/** Firewall: a brick wall. */
+declare const FirewallGlyph: ObjectGlyph;
+/** Load balancer: one entry point spreading to three targets. */
+declare const LoadBalancerGlyph: ObjectGlyph;
+/** Router: four arrows leaving a hub. */
+declare const RouterGlyph: ObjectGlyph;
+/** Uplink: an arrow leaving a physical port. */
+declare const UplinkGlyph: ObjectGlyph;
+/** VPN: a padlock with a tunnel on each side. */
+declare const VpnGlyph: ObjectGlyph;
+
+export { Accordion, type AccordionItem, AccountItem, AccountList, ActionBar, type ActionBarProps, ActionGroup, ActionToolbar, type ActionToolbarProps, type ActivityComment, type ActivityEvent, type ActivityItem, ActivityTimeline, AdminShell, Alert, AlertGroup, type AlertProps, type AlertTone, AppFooter, type AppFooterBuild, type AppFooterProps, AppFrame, type AppFrameContextValue, type AppFrameLabels, type AppFrameProps, AppSwitcher, type AppSwitcherProps, type AuditEvent, AuditLog, AuthFooter, Avatar, AvatarGroup, Badge, Banner, BrandHeader, Breadcrumb, type BreadcrumbItemProps, Button, ButtonGroup, type ButtonProps, CapacityBar, type CapacityBarProps, CardProps, type ChartSeries, Checkbox, Chip, ClientInfo, ClipboardCopy, type ClipboardCopyProps, CodeBlock, CodeBlockCode, type CodeBlockProps, CodeDisplay, CodeEditor, CodeEditorLite, CodeInput, ComboboxOption, type Command, CommandPalette, ConfirmDialog, ContextMenu, ContextMenuContent, ContextMenuFor, ContextMenuItem, ContextMenuSeparator, ContextMenuTrigger, CopyButton, CountCard, type CountCardItem, type CountCardProps, DataGrid, type DataGridProps, DatePicker, type DatePickerProps, type DateRangeValue, DefinitionList, DescriptionList, DescriptionListDescription, DescriptionListGroup, type DescriptionListProps, DescriptionListTerm, DetailPage, DetailsCard, type DetailsCardProps, type DetailsItem, DeviceSteps, type DeviceStepsProps, Dialog, DialogClose, DialogContent, type DialogSize, DialogTrigger, type DiffOp, DiffView, DiskArrayGlyph, Divider, type DnsRecord, type DnsRecordState, DnsRecordTable, type DnsRecordTableProps, DockedTaskPanel, Drawer, DrawerClose, DrawerContent, DrawerPanel, type DrawerPanelProps, type DrawerPlacement, DrawerTrigger, Dropdown, DropdownGroup, DropdownItem, DropdownList, DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger, type DropdownProps, DropdownSeparator, EmptyState, ErrorPage, type ErrorVariant, Field, type FieldProps, type Filter, FilterBar, type FilterBarLabels, type FilterBarProps, type FilterField, type FilterOp, type FilterOption, type FilterToken, FirewallGlyph, Flex, FlexItem, type FlexProps, type FooterLink, type FooterLinkGroup, Form, FormFooter, FormGroup, type FormGroupProps, FormHelperText, FormPage, FormSection, Formatters, type Gap, GaugeCard, type GaugeCardProps, type GaugeThreshold, Grid, type GridColumn, GridColumnsMenu, type GridDensity, GridDensityToggle, type GridFilter, type GridFilterRenderer, GridItem, type GridItemProps, type GridLabels, type GridMenuItem, type GridPagination, GridSearch, type GridSort, HddGlyph, HealthGrid, type HealthGridProps, Heatmap, HelperText, HelperTextItem, type HotkeyOptions, HotkeysProvider, HoverCard, IconButton, type IconButtonProps, IdentityCard, type IdentityCardProps, InfiniteList, type InfiniteListProps, InfoBox, InlineDrawer, Input, type InputProps, InventoryLayout, type InventoryLayoutProps, IscsiGlyph, IssueCard, type IssueData, IssueRow, Kbd, type KeyValue, KeyValueEditor, Label, type LabelDef, LabelPicker, type LabelSlot, LabelSwatch, LafErrorBoundary, LanguageSwitcher, LineChart, LoadBalancerGlyph, type LogLine, LogViewer, type LogViewerLabels, LunGlyph, Masthead, MastheadActions, MastheadBrand, type MastheadBrandProps, MastheadContent, MastheadToggle, Menu, type MenuItemSpec, MenuShortcut, MenuToggle, type MenuToggleProps, MetricCard, type MetricCardProps, type MetricDelta, MetricGrid, type MetricTone, type MetricTrend, MfaEnrolment, type MfaEnrolmentProps, type MfaMethod, MobileNav, Modal, ModalBody, ModalClose, ModalFooter, ModalHeader, type ModalProps, ModalTrigger, NasGlyph, type NavDivider, type NavEntry, NavGroup, type NavHeading, type NavItem, NavLink, type NavRenderProps, NavTree, type NavTreeProps, NfsGlyph, NotificationCenterProps, NumberInput, NvmeGlyph, ObjectGlyph, ObjectHeader, type ObjectHeaderProps, ObjectKind, ObjectPage, type ObjectPageCard, type ObjectPageProps, ObjectState, OptionPicker, type OptionPickerProps, OtpInput, OverflowTabs, PageHead, PageHeader, type PageHeaderProps, PageSection, type PageSectionProps, Pagination, type PaginationProps, Panel, type ParsedFilter, PasswordField, type PasswordFieldProps, type PermissionGroup, PermissionMatrix, type PermissionMatrixLabels, type PickerOption, Popover, PopoverClose, PopoverContent, PopoverTrigger, type PortalAnnouncement, type PortalApp, PortalHome, type PortalHomeLabels, type PortalHomeProps, type PortalLabels, PortalLayout, type PortalLayoutProps, type PortalLinkProps, type PortalLinkRenderer, type PortalMatch, type PortalPageContext, type PortalParams, type PortalQuickAction, type PortalRoute, type PortalSearch, type PortalTab, type PortalUser, PowerState, type PowerStateProps, Progress, ProgressCard, type ProgressCardProps, ProgressSummary, PropertiesPane, type PropertyField, type PropertyGroup, type QueueJobStatus, QueueStatusBadge, QuotaBar, type QuotaBarProps, RadialGauge, type RadialGaugeProps, Radio, RadioGroup, type RadioGroupProps, type RadioProps, RaidGlyph, type RaidGlyphProps, type Reaction, Reactions, type RegisteredHotkey, RelativeTime, type ResolvedTheme, ResourceOverviewLayout, type ResourceOverviewLayoutProps, RouterGlyph, SanGlyph, type SavedView, SavedViews, type SavedViewsLabels, type SavedViewsProps, type SavedViewsStorage, ScopeList, SearchInput, SecretDisplay, SegmentedControl, type SegmentedControlProps, type SegmentedItem, Select, type SelectGroup, SelectMenu, type SelectOption, type SelectProps, ServerDataGrid, type ServerDataGridProps, type ServerGridController, type ServerGridFetcher, type ServerGridQuery, type ServerGridRequest, type ServerGridResult, type ServerGridUrlAdapter, type ServerGridUrlOptions, type ServiceHealth, ServiceTile, type ServiceTileProps, type Severity, ShortcutHelp, SideCard, type SideCardProps, Sidebar, type SidebarProps, Skeleton, Slider, type SliderProps, SocialButton, SocialButtons, SocialDivider, Sparkline, type SparklineProps, Spinner, SplitButton, SplitPane, SsdGlyph, Stack, StackItem, StackedBarChart, Stat, StatGrid, StatusDot, StatusSummaryCard, type StatusSummaryCardProps, type StatusSummaryItem, type Step, Stepper, SubNav, type SubNavGroup, type SubNavItem, Switch, Table, Tabs, TabsContent, TabsList, TabsTrigger, TagInput, type TaskItem, TaskPanel, type TaskStatus, TenantSwitcher, Textarea as TextArea, Input as TextInput, type TextTerm, Textarea, type ThemeMode, ThemeToggle, type ThemeToggleProps, TimeRangePicker, Title, type TitleSize, type ToastOptions, ToastProvider, type ToastTone, Toolbar, type ToolbarAction, ToolbarActions, ToolbarBulk, type ToolbarBulkProps, ToolbarContent, ToolbarDivider, type ToolbarFilter, ToolbarFilterChips, type ToolbarFilterChipsProps, ToolbarGroup, type ToolbarGroupProps, ToolbarItem, type ToolbarMenuItem, type ToolbarProps, ToolbarSpacer, Tooltip, TooltipProvider, TopBar, type TopBarCounter, type TopologyEdge, TopologyGraph, type TopologyNode, type TraceHop, TraceTimeline, type TraceTimelineProps, TreeTable, type TreeTableNode, type TreeTableProps, TreeViewProps, TruncatedText, type UnitOption, UnsavedChangesDialog, type UnsavedChangesGuard, UplinkGlyph, type UseSavedViewsOptions, type UseServerGridOptions, UserCell, UserMenu, UtilizationColumn, type UtilizationColumnProps, UtilizationPanel, type UtilizationPanelProps, VSwitchGlyph, VdiskGlyph, VirtualList, VlanGlyph, VnicGlyph, VolumeGlyph, VpnGlyph, Wizard, type WizardLabels, type WizardProps, WizardReview, type WizardStep, browserSearchParams, buttonVariants, cn, dialogBase, dialogSizes, diffLines, format, formatHotkey, formatRelative, gaugeTone, highlight, isMacPlatform, matchesAccept, observeRectWithFallback, parseFilter, parseHotkey, portalBreadcrumbs, portalNavEntries, resolvePortalRoute, serializeFilter, serializeToken, serverGridFromSearchParams, serverGridToSearchParams, useAppFrame, useControllableState, useHotkeys, useRegisteredHotkeys, useSavedViews, useServerGrid, useToast, useToasts, useUnsavedChangesGuard };

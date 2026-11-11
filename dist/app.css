@@ -866,6 +866,9 @@
   .h-\[1400px\] {
     height: 1400px;
   }
+  .h-\[calc\(100dvh-2rem\)\] {
+    height: calc(100dvh - 2rem);
+  }
   .h-auto {
     height: auto;
   }
@@ -907,6 +910,9 @@
   }
   .max-h-\[90dvh\] {
     max-height: 90dvh;
+  }
+  .max-h-\[calc\(100dvh-2rem\)\] {
+    max-height: calc(100dvh - 2rem);
   }
   .max-h-full {
     max-height: 100%;
@@ -1022,6 +1028,9 @@
   .w-\[640px\] {
     width: 640px;
   }
+  .w-\[calc\(100vw-2rem\)\] {
+    width: calc(100vw - 2rem);
+  }
   .w-\[min\(26rem\,calc\(100vw-2rem\)\)\] {
     width: min(26rem, calc(100vw - 2rem));
   }
@@ -1039,6 +1048,9 @@
   }
   .w-auto {
     width: auto;
+  }
+  .w-fit {
+    width: fit-content;
   }
   .w-full {
     width: 100%;
@@ -1084,6 +1096,9 @@
   }
   .max-w-md {
     max-width: var(--container-md);
+  }
+  .max-w-none {
+    max-width: none;
   }
   .max-w-sm {
     max-width: var(--container-sm);
@@ -1301,6 +1316,9 @@
   .grid-cols-\[minmax\(6rem\,12rem\)_1fr\] {
     grid-template-columns: minmax(6rem,12rem) 1fr;
   }
+  .grid-cols-\[repeat\(auto-fill\,minmax\(11rem\,1fr\)\)\] {
+    grid-template-columns: repeat(auto-fill,minmax(11rem,1fr));
+  }
   .grid-cols-\[repeat\(auto-fill\,minmax\(15rem\,1fr\)\)\] {
     grid-template-columns: repeat(auto-fill,minmax(15rem,1fr));
   }
@@ -1461,6 +1479,9 @@
   }
   .gap-y-1 {
     row-gap: var(--spacing);
+  }
+  .gap-y-1\.5 {
+    row-gap: calc(var(--spacing) * 1.5);
   }
   .gap-y-2 {
     row-gap: calc(var(--spacing) * 2);
@@ -1993,6 +2014,9 @@
   }
   .pe-5 {
     padding-inline-end: calc(var(--spacing) * 5);
+  }
+  .pe-6 {
+    padding-inline-end: calc(var(--spacing) * 6);
   }
   .pe-8 {
     padding-inline-end: calc(var(--spacing) * 8);
@@ -3298,6 +3322,17 @@
   @container (width >= 34rem) {
     .\@min-\[34rem\]\:grid-cols-2 {
       grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  @container (width >= 42rem) {
+    .\@2xl\:grid-cols-\[12rem_minmax\(0\,1fr\)\] {
+      grid-template-columns: 12rem minmax(0,1fr);
+    }
+    .\@2xl\:flex-col {
+      flex-direction: column;
+    }
+    .\@2xl\:gap-2 {
+      gap: calc(var(--spacing) * 2);
     }
   }
   @container (width >= 52rem) {
