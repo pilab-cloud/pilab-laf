@@ -1,21 +1,21 @@
-import { Avatar, Combobox, Badge, Input, Dialog, DialogContent, DialogClose, DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuItem, uiEn, RadioGroup, Popover, PopoverTrigger, PopoverContent, TabsList, TabsTrigger, Breadcrumb, Drawer, DrawerTrigger, DrawerContent, observeRectWithFallback, Skeleton, EmptyState, Alert, Field, Checkbox, Tabs, TabsContent, Panel, SplitPane, LABEL_SLOTS, Switch, Banner, Chip, VirtualList } from './chunk-RHOPALM3.js';
-export { Accordion, Alert, Avatar, Badge, Banner, Breadcrumb, Card, Checkbox, Chip, Combobox, Dialog, DialogClose, DialogContent, DialogTrigger, Drawer, DrawerClose, DrawerContent, DrawerTrigger, DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger, EmptyState, Field, InfiniteList, Input, KeyValueEditor, LineChart, LogViewer, NumberInput, PageHead, Panel, PermissionMatrix, Popover, PopoverClose, PopoverContent, PopoverTrigger, Radio, RadioGroup, SearchInput, Select, Skeleton, Slider, Sparkline, Spinner, SplitPane, Stat, StatGrid, Switch, Tabs, TabsContent, TabsList, TabsTrigger, TagInput, TenantSwitcher, Textarea, TimeRangePicker, ToastProvider, Tooltip, TooltipProvider, VirtualList, observeRectWithFallback, useToast } from './chunk-RHOPALM3.js';
-import { format, diffLines, useControllableState, matchesAccept } from './chunk-S35X7I3V.js';
-export { diffLines, format, matchesAccept, useControllableState } from './chunk-S35X7I3V.js';
-import { useLaf, useLafDefaults, usePortalContainer } from './chunk-NSGYLS4R.js';
-export { LafProvider, createFormatters, en, useLaf, useLafDefaults, usePortalContainer } from './chunk-NSGYLS4R.js';
+import { DropdownMenuSeparator, Avatar, Combobox, Badge, Input, Dialog, DialogContent, DialogClose, DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuLabel, DropdownMenuItem, uiEn, RadioGroup, Popover, PopoverTrigger, PopoverContent, TabsList, TabsTrigger, Breadcrumb, Drawer, DrawerTrigger, DrawerContent, observeRectWithFallback, Skeleton, EmptyState, Alert, Field, Checkbox, Tabs, TabsContent, Panel, SplitPane, LABEL_SLOTS, Switch, Banner, Chip, Textarea, TooltipProvider, VirtualList, TruncatedText, Tooltip } from './chunk-S2LMFD7V.js';
+export { Accordion, Alert, Avatar, Badge, Banner, Breadcrumb, Card, Checkbox, Chip, Combobox, Dialog, DialogClose, DialogContent, DialogTrigger, Drawer, DrawerClose, DrawerContent, DrawerTrigger, DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger, EmptyState, Field, InfiniteList, Input, KeyValueEditor, LineChart, LogViewer, NumberInput, PageHead, Panel, PermissionMatrix, Popover, PopoverClose, PopoverContent, PopoverTrigger, Radio, RadioGroup, SearchInput, Select, Skeleton, Slider, Sparkline, Spinner, SplitPane, Stat, StatGrid, Switch, Tabs, TabsContent, TabsList, TabsTrigger, TagInput, TenantSwitcher, Textarea as TextArea, Input as TextInput, Textarea, TimeRangePicker, ToastProvider, Tooltip, TooltipProvider, TruncatedText, VirtualList, observeRectWithFallback, useToast } from './chunk-S2LMFD7V.js';
+import { format, diffLines, useControllableState, matchesAccept } from './chunk-RS4YZTWT.js';
+export { diffLines, format, matchesAccept, useControllableState } from './chunk-RS4YZTWT.js';
+import { useLaf, useLafDefaults, usePortalContainer } from './chunk-VH75C6SL.js';
+export { LafProvider, createFormatters, en, useLaf, useLafDefaults, usePortalContainer } from './chunk-VH75C6SL.js';
 import { Button } from './chunk-2O5Y6D5F.js';
 export { Button, buttonVariants } from './chunk-2O5Y6D5F.js';
 import { cn } from './chunk-3TRXGDSZ.js';
 export { cn } from './chunk-3TRXGDSZ.js';
-import { ChevronLeft, ChevronRight, KeyRound, Tablet, Laptop, Smartphone, Check, Copy, EyeOff, Eye, LogOut, ChevronDown, Pencil, UploadCloud, X, Search, Fingerprint, MoreHorizontal, ChevronUp, Menu as Menu$1, FolderKanban, CircleDot, AppWindow, Users, User, Camera, Waypoints, Router, Network, HardDrive, Database, Layers, Folder, Package, Monitor, Server, Boxes, Building2, Cable, CircleX, TriangleAlert, Unplug, Wrench, Pause, Square, Play, Bookmark, Star, Trash2, Rows3, Columns3, ArrowUp, ArrowDown, Plus, RefreshCw, ShieldCheck, Bell, PanelLeft, SmilePlus, MessageSquare, Minimize2, Maximize2, FolderPlus, Download, RotateCw, Circle, TimerOff, WifiOff, ServerCrash, FileQuestion, LockKeyhole } from 'lucide-react';
-import { jsx, jsxs, Fragment } from 'react/jsx-runtime';
+import { ChevronDown, ChevronLeft, ChevronRight, KeyRound, Tablet, Laptop, Smartphone, Check, Copy, EyeOff, Eye, LogOut, Pencil, UploadCloud, X, Search, Fingerprint, MoreHorizontal, ChevronUp, Menu as Menu$1, FolderKanban, CircleDot, AppWindow, Users, User, Camera, Waypoints, Router, Network, HardDrive, Database, Layers, Folder, Package, Monitor, Server, Boxes, Building2, Cable, CircleX, TriangleAlert, Unplug, Wrench, Pause, Square, Play, Bookmark, Star, Trash2, Rows3, Columns3, ArrowUp, ArrowDown, Plus, RefreshCw, ShieldCheck, Bell, PanelLeft, SmilePlus, MessageSquare, Minimize2, Maximize2, FolderPlus, Download, AlertCircle, CheckCircle2, Moon, Sun, ChevronsUp, ChevronsDown, ChevronsRight, ChevronsLeft, RotateCw, Circle, TimerOff, WifiOff, ServerCrash, FileQuestion, LockKeyhole, ExternalLink } from 'lucide-react';
+import { jsxs, jsx, Fragment } from 'react/jsx-runtime';
 import * as React25 from 'react';
 import * as SelectPrimitive from '@radix-ui/react-select';
 import * as ToggleGroupPrimitive from '@radix-ui/react-toggle-group';
 import * as TooltipPrimitive from '@radix-ui/react-tooltip';
 import * as ContextPrimitive from '@radix-ui/react-context-menu';
-import * as DialogPrimitive2 from '@radix-ui/react-dialog';
+import * as DialogPrimitive3 from '@radix-ui/react-dialog';
 import * as DropdownPrimitive2 from '@radix-ui/react-dropdown-menu';
 import * as PopoverPrimitive from '@radix-ui/react-popover';
 import { useVirtualizer, defaultRangeExtractor } from '@tanstack/react-virtual';
@@ -23,9 +23,6 @@ import { useLegacyTable, getFilteredRowModel, getSortedRowModel, getCoreRowModel
 import { Command } from 'cmdk';
 import * as HoverCardPrimitive from '@radix-ui/react-hover-card';
 
-function Toolbar({ className, ...props }) {
-  return /* @__PURE__ */ jsx("div", { className: cn("toolbar", className), ...props });
-}
 function Table({ className, children, ...props }) {
   return /* @__PURE__ */ jsx("div", { className: "table-wrap", children: /* @__PURE__ */ jsx("table", { className: cn("table", className), ...props, children }) });
 }
@@ -1472,15 +1469,15 @@ function CommandPalette({
     onCommandRun?.(c);
   };
   let flat = 0;
-  return /* @__PURE__ */ jsx(DialogPrimitive2.Root, { open, onOpenChange, children: /* @__PURE__ */ jsxs(DialogPrimitive2.Portal, { container: portalContainer, children: [
-    /* @__PURE__ */ jsx(DialogPrimitive2.Overlay, { className: "fixed inset-0 z-50 bg-[rgba(5,5,10,0.7)] backdrop-blur-xs" }),
+  return /* @__PURE__ */ jsx(DialogPrimitive3.Root, { open, onOpenChange, children: /* @__PURE__ */ jsxs(DialogPrimitive3.Portal, { container: portalContainer, children: [
+    /* @__PURE__ */ jsx(DialogPrimitive3.Overlay, { className: "fixed inset-0 z-50 bg-[rgba(5,5,10,0.7)] backdrop-blur-xs" }),
     /* @__PURE__ */ jsxs(
-      DialogPrimitive2.Content,
+      DialogPrimitive3.Content,
       {
         "aria-describedby": void 0,
         className: "popup fixed top-[20%] start-1/2 z-50 w-[min(36rem,calc(100vw-2rem))] -translate-x-1/2 rtl:translate-x-1/2 overflow-hidden p-0",
         children: [
-          /* @__PURE__ */ jsx(DialogPrimitive2.Title, { className: "sr-only", children: t.commandPalette }),
+          /* @__PURE__ */ jsx(DialogPrimitive3.Title, { className: "sr-only", children: t.commandPalette }),
           /* @__PURE__ */ jsxs("div", { className: "flex items-center gap-2 border-b border-line px-3", children: [
             /* @__PURE__ */ jsx(Search, { className: "size-4 text-subtle", "aria-hidden": true }),
             /* @__PURE__ */ jsx(
@@ -2050,35 +2047,35 @@ function disabledProps(d) {
   return d ? { disabled: true, title: typeof d === "string" ? d : void 0 } : {};
 }
 function renderItems(P, items) {
-  const X7 = P;
+  const X9 = P;
   return items.map((it, i) => {
     const key = "id" in it && it.id || `${it.type}-${i}`;
     switch (it.type) {
       case "separator":
-        return /* @__PURE__ */ jsx(X7.Separator, { className: "dropdown-sep" }, key);
+        return /* @__PURE__ */ jsx(X9.Separator, { className: "dropdown-sep" }, key);
       case "label":
-        return /* @__PURE__ */ jsx(X7.Label, { className: "dropdown-label", children: it.label }, key);
+        return /* @__PURE__ */ jsx(X9.Label, { className: "dropdown-label", children: it.label }, key);
       case "checkbox":
-        return /* @__PURE__ */ jsxs(X7.CheckboxItem, { className: cn(itemCls, "relative ps-8"), checked: it.checked, onCheckedChange: it.onCheckedChange, ...disabledProps(it.disabled), children: [
-          /* @__PURE__ */ jsx(X7.ItemIndicator, { className: "absolute start-3 inline-flex", children: /* @__PURE__ */ jsx(Check, { className: "size-3.5", "aria-hidden": true }) }),
+        return /* @__PURE__ */ jsxs(X9.CheckboxItem, { className: cn(itemCls, "relative ps-8"), checked: it.checked, onCheckedChange: it.onCheckedChange, ...disabledProps(it.disabled), children: [
+          /* @__PURE__ */ jsx(X9.ItemIndicator, { className: "absolute start-3 inline-flex", children: /* @__PURE__ */ jsx(Check, { className: "size-3.5", "aria-hidden": true }) }),
           it.label
         ] }, key);
       case "radio":
-        return /* @__PURE__ */ jsx(X7.RadioGroup, { value: it.value, onValueChange: it.onValueChange, children: it.options.map((o) => /* @__PURE__ */ jsxs(X7.RadioItem, { value: o.value, className: cn(itemCls, "relative ps-8"), children: [
-          /* @__PURE__ */ jsx(X7.ItemIndicator, { className: "absolute start-3.5 inline-flex", children: /* @__PURE__ */ jsx(Circle, { className: "size-2 fill-current", "aria-hidden": true }) }),
+        return /* @__PURE__ */ jsx(X9.RadioGroup, { value: it.value, onValueChange: it.onValueChange, children: it.options.map((o) => /* @__PURE__ */ jsxs(X9.RadioItem, { value: o.value, className: cn(itemCls, "relative ps-8"), children: [
+          /* @__PURE__ */ jsx(X9.ItemIndicator, { className: "absolute start-3.5 inline-flex", children: /* @__PURE__ */ jsx(Circle, { className: "size-2 fill-current", "aria-hidden": true }) }),
           o.label
         ] }, o.value)) }, key);
       case "submenu":
-        return /* @__PURE__ */ jsxs(X7.Sub, { children: [
-          /* @__PURE__ */ jsxs(X7.SubTrigger, { className: itemCls, ...disabledProps(it.disabled), children: [
+        return /* @__PURE__ */ jsxs(X9.Sub, { children: [
+          /* @__PURE__ */ jsxs(X9.SubTrigger, { className: itemCls, ...disabledProps(it.disabled), children: [
             it.icon,
             it.label,
             /* @__PURE__ */ jsx(ChevronRight, { className: "ms-auto size-3.5 rtl:rotate-180", "aria-hidden": true })
           ] }),
-          /* @__PURE__ */ jsx(X7.Portal, { children: /* @__PURE__ */ jsx(X7.SubContent, { sideOffset: 2, alignOffset: -4, className: contentCls, children: renderItems(P, it.items) }) })
+          /* @__PURE__ */ jsx(X9.Portal, { children: /* @__PURE__ */ jsx(X9.SubContent, { sideOffset: 2, alignOffset: -4, className: contentCls, children: renderItems(P, it.items) }) })
         ] }, key);
       default:
-        return /* @__PURE__ */ jsxs(X7.Item, { className: cn(itemCls, it.danger && "danger"), onSelect: () => it.onSelect(), ...disabledProps(it.disabled), children: [
+        return /* @__PURE__ */ jsxs(X9.Item, { className: cn(itemCls, it.danger && "danger"), onSelect: () => it.onSelect(), ...disabledProps(it.disabled), children: [
           it.icon,
           it.label,
           it.shortcut && /* @__PURE__ */ jsx(MenuShortcut, { children: it.shortcut })
@@ -2089,13 +2086,13 @@ function renderItems(P, items) {
 function Menu({
   items,
   trigger,
-  align = "end",
+  align: align2 = "end",
   open,
   onOpenChange
 }) {
   return /* @__PURE__ */ jsxs(DropdownPrimitive2.Root, { open, onOpenChange, children: [
     /* @__PURE__ */ jsx(DropdownPrimitive2.Trigger, { asChild: true, children: trigger }),
-    /* @__PURE__ */ jsx(DropdownPrimitive2.Portal, { children: /* @__PURE__ */ jsx(DropdownPrimitive2.Content, { align, sideOffset: 4, collisionPadding: 8, className: contentCls, children: renderItems(DropdownPrimitive2, items) }) })
+    /* @__PURE__ */ jsx(DropdownPrimitive2.Portal, { children: /* @__PURE__ */ jsx(DropdownPrimitive2.Content, { align: align2, sideOffset: 4, collisionPadding: 8, className: contentCls, children: renderItems(DropdownPrimitive2, items) }) })
   ] });
 }
 function ContextMenuFor({ items, children, disabled }) {
@@ -2215,9 +2212,10 @@ function TopBar({
   notifications,
   userMenu,
   start,
-  className
+  className,
+  as: Tag = "header"
 }) {
-  return /* @__PURE__ */ jsxs("header", { className: cn("flex h-12 items-center gap-3 border-b border-line bg-surface px-3", className), children: [
+  return /* @__PURE__ */ jsxs(Tag, { className: cn("flex h-12 items-center gap-3 border-b border-line bg-surface px-3", className), children: [
     start,
     logo && /* @__PURE__ */ jsx("div", { className: "flex shrink-0 items-center font-semibold text-fg", children: logo }),
     /* @__PURE__ */ jsx("div", { className: "mx-auto flex min-w-0 max-w-xl flex-1 items-center", children: search }),
@@ -3631,8 +3629,8 @@ function TreeView({
       }
     }
   );
-  const Root15 = dragAdapter && onMove ? dragAdapter.Root : null;
-  const wrap = (el) => Root15 ? /* @__PURE__ */ jsx(Root15, { selectedIds, onMove, children: el }) : el;
+  const Root16 = dragAdapter && onMove ? dragAdapter.Root : null;
+  const wrap = (el) => Root16 ? /* @__PURE__ */ jsx(Root16, { selectedIds, onMove, children: el }) : el;
   if (!useVirt) {
     return /* @__PURE__ */ jsxs(Fragment, { children: [
       wrap(
@@ -5540,17 +5538,17 @@ function ShortcutHelp({ open, onOpenChange }) {
   useHotkeys({ "?": () => onOpenChange(true) });
   const groups = /* @__PURE__ */ new Map();
   items.forEach((h) => groups.set(h.scope, [...groups.get(h.scope) ?? [], h]));
-  return /* @__PURE__ */ jsx(DialogPrimitive2.Root, { open, onOpenChange, children: /* @__PURE__ */ jsxs(DialogPrimitive2.Portal, { container, children: [
-    /* @__PURE__ */ jsx(DialogPrimitive2.Overlay, { className: "fixed inset-0 z-50 bg-[rgba(5,5,10,0.7)] backdrop-blur-xs" }),
+  return /* @__PURE__ */ jsx(DialogPrimitive3.Root, { open, onOpenChange, children: /* @__PURE__ */ jsxs(DialogPrimitive3.Portal, { container, children: [
+    /* @__PURE__ */ jsx(DialogPrimitive3.Overlay, { className: "fixed inset-0 z-50 bg-[rgba(5,5,10,0.7)] backdrop-blur-xs" }),
     /* @__PURE__ */ jsxs(
-      DialogPrimitive2.Content,
+      DialogPrimitive3.Content,
       {
         "aria-describedby": void 0,
         className: "popup fixed top-[15%] start-1/2 z-50 max-h-[70vh] w-[min(32rem,calc(100vw-2rem))] -translate-x-1/2 rtl:translate-x-1/2 overflow-auto p-4",
         children: [
           /* @__PURE__ */ jsxs("div", { className: "mb-3 flex items-center justify-between", children: [
-            /* @__PURE__ */ jsx(DialogPrimitive2.Title, { className: "m-0 text-base font-semibold text-fg", children: t.shortcuts }),
-            /* @__PURE__ */ jsx(DialogPrimitive2.Close, { className: "btn btn-ghost btn-sm", "aria-label": t.close, children: /* @__PURE__ */ jsx(X, { className: "size-4", "aria-hidden": true }) })
+            /* @__PURE__ */ jsx(DialogPrimitive3.Title, { className: "m-0 text-base font-semibold text-fg", children: t.shortcuts }),
+            /* @__PURE__ */ jsx(DialogPrimitive3.Close, { className: "btn btn-ghost btn-sm", "aria-label": t.close, children: /* @__PURE__ */ jsx(X, { className: "size-4", "aria-hidden": true }) })
           ] }),
           items.length === 0 && /* @__PURE__ */ jsx("p", { className: "text-sm text-muted", children: t.noShortcuts }),
           [...groups].map(([scope, list]) => /* @__PURE__ */ jsxs("section", { className: "mb-3", children: [
@@ -6851,6 +6849,1191 @@ function EventConsole({ events, liveTail: liveProp, onLiveTailChange, labels, cl
   ] });
 }
 
-export { AccountItem, AccountList, ActionBar, ActivityTimeline, AdminShell, AlarmList, AllowListEditor, ApiKeyManager, AuditLog, AuthFooter, AvatarGroup, BarChart, BrandHeader, BrandingEditor, ButtonGroup, CapacityBar, CidrInput, ClientInfo, CodeDisplay, CodeEditor, CodeEditorLite, CodeInput, ColorField, CommandPalette, ConfirmDialog, ConsoleFrame, ContextMenu, ContextMenuContent, ContextMenuFor, ContextMenuItem, ContextMenuSeparator, ContextMenuTrigger, CopyButton, DataGrid, DatastoreBrowser, DatePicker, DateTimeInput, DefinitionList, DetailPage, DeviceSelector, DeviceSteps, DiffView, DockedTaskPanel, Donut, ErrorPage, ErrorSummary, EventConsole, FileDropzone, FilterBar, FormField, FormFooter, FormPage, FormSection, Gauge, GridColumnsMenu, GridDensityToggle, GridSearch, HardwareEditor, Heatmap, HotkeysProvider, HoverCard, IconButton, InfoBox, InlineEdit, InventoryLayout, IpInput, IssueCard, IssueRow, Kbd, Label3 as Label, LabelPicker, LabelSwatch, LafErrorBoundary, LanguageSwitcher, Menu, MenuShortcut, MfaEnrolment, MobileNav, NavGroup, NavLink, NotificationCenter, ObjectIcon, ObjectPage, OptionPicker, OtpInput, OverflowTabs, Pagination, PasswordField, PermissionAssignDialog, Progress, ProgressSummary, PropertiesPane, Reactions, ReauthDialog, RelativeTime, SavedViews, ScopeList, SecretDisplay, SecurityFactors, SegmentedControl, SelectMenu, SessionExpiryDialog, SessionList, ShortcutHelp, SnapshotTree, SocialButton, SocialButtons, SocialDivider, SplitButton, StackedBarChart, StatusDot, Stepper, SubNav, Table, TaskPanel, Toolbar, TopBar, TopologyGraph, TransferList, TreeTable, TreeView, UnsavedChangesDialog, UserCell, UserMenu, UserSelector, Wizard, WizardReview, contrastRatio, formatHotkey, formatRelative, highlight, isCidr, isIPv4, isIPv6, isIp, isMacPlatform, normalizeHex, parseCidr, parseFilter, parseHotkey, registerObjectKind, serializeFilter, serializeToken, useHotkeys, useRegisteredHotkeys, useSavedViews, useUnsavedChangesGuard };
+// lib/messages/content.en.ts
+var contentEn = {
+  toolbar: {
+    selected: (n) => `${n} selected`,
+    clearSelection: "Clear selection",
+    activeFilters: "Active filters",
+    removeFilter: (label) => `Remove filter ${label}`,
+    clearAll: "Clear all filters",
+    actions: "Actions"
+  },
+  codeBlock: { label: "Code", copy: "Copy code", copied: "Copied", wrap: "Wrap lines" },
+  clipboard: { copy: "Copy to clipboard", copied: "Copied", expand: "Show full value", collapse: "Hide full value" },
+  form: { required: "required" }
+};
+var lafDefaults9 = { content: contentEn };
+var FOCUSABLE = 'a[href],button,input:not([type="hidden"]),select,textarea,[role="button"],[role="combobox"],[role="radio"],[role="switch"],[role="checkbox"],[role="tab"],[tabindex]';
+var TEXT_ENTRY = 'input:not([type="checkbox"]):not([type="radio"]):not([type="button"]):not([type="submit"]),textarea,select,[contenteditable="true"]';
+function navigable(root) {
+  return [...root.querySelectorAll(FOCUSABLE)].filter(
+    (el) => !el.hasAttribute("disabled") && el.getAttribute("aria-disabled") !== "true" && !el.closest("[hidden],[aria-hidden='true']") && el.closest('[role="toolbar"]') === root
+  );
+}
+function Toolbar({ className, sticky, selectedCount = 0, bulkActions, onClearSelection, labels, children, onKeyDown, ...props }) {
+  const isToolbar = !!props["aria-label"] || !!props["aria-labelledby"];
+  const bulk = selectedCount > 0;
+  const keyDown = (e) => {
+    onKeyDown?.(e);
+    const root = e.currentTarget;
+    if (!isToolbar || e.defaultPrevented || e.altKey || e.ctrlKey || e.metaKey) return;
+    const target = e.target;
+    if (!root.contains(target) || target.closest('[role="toolbar"]') !== root || target.matches(TEXT_ENTRY)) return;
+    if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(e.key)) return;
+    const items = navigable(root);
+    const i = items.indexOf(target.closest(FOCUSABLE) ?? target);
+    if (i < 0) return;
+    const rtl = getComputedStyle(root).direction === "rtl";
+    const step = e.key === "ArrowRight" ? rtl ? -1 : 1 : e.key === "ArrowLeft" ? rtl ? 1 : -1 : 0;
+    const next = e.key === "Home" ? 0 : e.key === "End" ? items.length - 1 : (i + step + items.length) % items.length;
+    e.preventDefault();
+    items[next]?.focus();
+  };
+  return /* @__PURE__ */ jsxs(
+    "div",
+    {
+      role: isToolbar ? "toolbar" : void 0,
+      className: cn("toolbar", sticky && "sticky top-0 z-10 border-b border-line bg-[var(--bg)] py-2", bulk && "bg-primary-light", className),
+      onKeyDown: keyDown,
+      ...props,
+      children: [
+        bulk && /* @__PURE__ */ jsx(ToolbarBulk, { count: selectedCount, onClear: onClearSelection, labels, children: bulkActions }),
+        /* @__PURE__ */ jsx("div", { hidden: bulk, className: "contents [&[hidden]]:hidden", children })
+      ]
+    }
+  );
+}
+function ToolbarContent({ className, ...props }) {
+  return /* @__PURE__ */ jsx("div", { className: cn("flex w-full min-w-0 flex-wrap items-center gap-2.5", className), ...props });
+}
+function ToolbarGroup({ variant, align: align2, className, ...props }) {
+  return /* @__PURE__ */ jsx(
+    "div",
+    {
+      "data-variant": variant,
+      className: cn(
+        "flex min-w-0 flex-wrap items-center gap-2",
+        (variant === "pagination" || align2 === "end") && "ms-auto",
+        variant === "pagination" && "[&_.pagination]:p-0",
+        className
+      ),
+      ...props
+    }
+  );
+}
+function ToolbarItem({ grow, className, ...props }) {
+  return /* @__PURE__ */ jsx("div", { className: cn("flex min-w-0 items-center", grow && "min-w-56 flex-1", className), ...props });
+}
+function ToolbarSpacer({ className, ...props }) {
+  return /* @__PURE__ */ jsx("div", { "aria-hidden": true, className: cn("flex-1", className), ...props });
+}
+function ToolbarDivider({ className, ...props }) {
+  return /* @__PURE__ */ jsx("div", { role: "separator", "aria-orientation": "vertical", className: cn("h-5 w-px shrink-0 self-center bg-line", className), ...props });
+}
+function ToolbarActions({ className, ...props }) {
+  return /* @__PURE__ */ jsx(ActionBar, { className: cn("min-w-0 flex-1", className), ...props });
+}
+function ToolbarFilterChips({ filters, onRemove, onClearAll, className, labels }) {
+  const { t } = useLafDefaults(lafDefaults9);
+  const m = t.components.content.toolbar;
+  if (filters.length === 0) return null;
+  const groups = /* @__PURE__ */ new Map();
+  for (const f of filters) groups.set(f.category ?? "", [...groups.get(f.category ?? "") ?? [], f]);
+  return /* @__PURE__ */ jsxs("div", { role: "group", "aria-label": labels?.activeFilters ?? m.activeFilters, className: cn("flex w-full flex-wrap items-center gap-x-4 gap-y-2", className), children: [
+    [...groups].map(([category, list]) => /* @__PURE__ */ jsxs("div", { role: category ? "group" : void 0, "aria-label": category || void 0, className: "flex flex-wrap items-center gap-1.5", children: [
+      category && /* @__PURE__ */ jsx("span", { "aria-hidden": true, className: "text-xs text-muted", children: category }),
+      list.map((f) => /* @__PURE__ */ jsx(Chip, { onRemove: onRemove ? () => onRemove(f) : void 0, removeLabel: (labels?.removeFilter ?? m.removeFilter)(f.label), children: f.label }, f.id))
+    ] }, category)),
+    onClearAll && /* @__PURE__ */ jsx(Button, { variant: "ghost", size: "sm", onClick: onClearAll, children: labels?.clearAll ?? m.clearAll })
+  ] });
+}
+function ToolbarBulk({ count, onClear, children, className, labels }) {
+  const { t } = useLafDefaults(lafDefaults9);
+  const m = t.components.content.toolbar;
+  return /* @__PURE__ */ jsxs("div", { className: cn("flex w-full min-w-0 flex-wrap items-center gap-2", className), children: [
+    /* @__PURE__ */ jsx("span", { role: "status", className: "me-1 text-sm font-medium text-fg", children: (labels?.selected ?? m.selected)(count) }),
+    children,
+    onClear && /* @__PURE__ */ jsx(Button, { variant: "ghost", size: "sm", className: "ms-auto", onClick: onClear, children: labels?.clearSelection ?? m.clearSelection })
+  ] });
+}
+var lafDefaults10 = { content: contentEn };
+var titleSize = { md: "text-base", lg: "text-lg", xl: "text-xl", "2xl": "text-2xl", "3xl": "text-3xl", "4xl": "text-4xl" };
+var defaultTitleSize = { h1: "2xl", h2: "xl", h3: "lg", h4: "md", h5: "md", h6: "md" };
+function Title4({ headingLevel: Tag = "h2", size, className, ...props }) {
+  return /* @__PURE__ */ jsx(Tag, { className: cn("font-semibold text-fg", titleSize[size ?? defaultTitleSize[Tag]], className), ...props });
+}
+function Divider({ orientation = "horizontal", className, ...props }) {
+  if (orientation === "vertical") {
+    return /* @__PURE__ */ jsx("div", { role: "separator", "aria-orientation": "vertical", className: cn("w-px shrink-0 self-stretch bg-line", className), ...props });
+  }
+  return /* @__PURE__ */ jsx("hr", { className: cn("m-0 h-px w-full shrink-0 border-0 bg-line", className), ...props });
+}
+var gapClass = { none: "gap-0", xs: "gap-1", sm: "gap-2", md: "gap-4", lg: "gap-6", xl: "gap-8" };
+var spans = {
+  base: "col-span-1 col-span-2 col-span-3 col-span-4 col-span-5 col-span-6 col-span-7 col-span-8 col-span-9 col-span-10 col-span-11 col-span-12".split(" "),
+  sm: "sm:col-span-1 sm:col-span-2 sm:col-span-3 sm:col-span-4 sm:col-span-5 sm:col-span-6 sm:col-span-7 sm:col-span-8 sm:col-span-9 sm:col-span-10 sm:col-span-11 sm:col-span-12".split(" "),
+  md: "md:col-span-1 md:col-span-2 md:col-span-3 md:col-span-4 md:col-span-5 md:col-span-6 md:col-span-7 md:col-span-8 md:col-span-9 md:col-span-10 md:col-span-11 md:col-span-12".split(" "),
+  lg: "lg:col-span-1 lg:col-span-2 lg:col-span-3 lg:col-span-4 lg:col-span-5 lg:col-span-6 lg:col-span-7 lg:col-span-8 lg:col-span-9 lg:col-span-10 lg:col-span-11 lg:col-span-12".split(" "),
+  xl: "xl:col-span-1 xl:col-span-2 xl:col-span-3 xl:col-span-4 xl:col-span-5 xl:col-span-6 xl:col-span-7 xl:col-span-8 xl:col-span-9 xl:col-span-10 xl:col-span-11 xl:col-span-12".split(" "),
+  xxl: "2xl:col-span-1 2xl:col-span-2 2xl:col-span-3 2xl:col-span-4 2xl:col-span-5 2xl:col-span-6 2xl:col-span-7 2xl:col-span-8 2xl:col-span-9 2xl:col-span-10 2xl:col-span-11 2xl:col-span-12".split(" ")
+};
+var rowSpans = "row-span-1 row-span-2 row-span-3 row-span-4 row-span-5 row-span-6".split(" ");
+function Grid({ gap = "md", className, ...props }) {
+  return /* @__PURE__ */ jsx("div", { className: cn("grid grid-cols-12", gapClass[gap], className), ...props });
+}
+function GridItem({ span = 12, sm, md, lg, xl, xxl, rowSpan, className, ...props }) {
+  return /* @__PURE__ */ jsx(
+    "div",
+    {
+      className: cn(
+        "min-w-0",
+        spans.base[span - 1],
+        sm && spans.sm[sm - 1],
+        md && spans.md[md - 1],
+        lg && spans.lg[lg - 1],
+        xl && spans.xl[xl - 1],
+        xxl && spans.xxl[xxl - 1],
+        rowSpan && rowSpans[rowSpan - 1],
+        className
+      ),
+      ...props
+    }
+  );
+}
+var justify = { start: "justify-start", end: "justify-end", center: "justify-center", between: "justify-between", around: "justify-around", evenly: "justify-evenly" };
+var align = { start: "items-start", end: "items-end", center: "items-center", stretch: "items-stretch", baseline: "items-baseline" };
+var selfAlign = { start: "self-start", end: "self-end", center: "self-center", stretch: "self-stretch", baseline: "self-baseline" };
+var direction = { row: "flex-row", column: "flex-col", "row-reverse": "flex-row-reverse", "column-reverse": "flex-col-reverse" };
+function Flex({ direction: dir = "row", justify: j, align: a, gap = "sm", wrap = true, inline, className, ...props }) {
+  return /* @__PURE__ */ jsx("div", { className: cn(inline ? "inline-flex" : "flex", direction[dir], wrap ? "flex-wrap" : "flex-nowrap", j && justify[j], a && align[a], gapClass[gap], className), ...props });
+}
+function FlexItem({ grow, shrink = true, align: a, pushEnd, className, ...props }) {
+  return /* @__PURE__ */ jsx("div", { className: cn("min-w-0", grow && "grow", !shrink && "shrink-0", a && selfAlign[a], pushEnd && "ms-auto", className), ...props });
+}
+function Stack({ gap = "md", className, ...props }) {
+  return /* @__PURE__ */ jsx("div", { className: cn("flex flex-col", gapClass[gap], className), ...props });
+}
+function StackItem({ fill, className, ...props }) {
+  return /* @__PURE__ */ jsx("div", { className: cn(fill && "flex-1", className), ...props });
+}
+var DlContext = React25.createContext({ layout: "vertical", compact: false });
+var gridCols = { 1: "grid-cols-1", 2: "grid-cols-1 sm:grid-cols-2", 3: "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3", 4: "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4" };
+function DescriptionList({ layout = "vertical", columns = 2, compact = false, className, ...props }) {
+  const ctx = React25.useMemo(() => ({ layout, compact }), [layout, compact]);
+  return /* @__PURE__ */ jsx(DlContext.Provider, { value: ctx, children: /* @__PURE__ */ jsx("dl", { className: cn("m-0 grid", compact ? "gap-x-4 gap-y-2" : "gap-x-6 gap-y-3.5", layout === "grid" ? gridCols[columns] : "grid-cols-1", className), ...props }) });
+}
+function DescriptionListGroup({ className, ...props }) {
+  const { layout } = React25.useContext(DlContext);
+  return /* @__PURE__ */ jsx("div", { className: cn("min-w-0", layout === "horizontal" && "grid grid-cols-[minmax(6rem,12rem)_1fr] gap-x-4", className), ...props });
+}
+function DescriptionListTerm({ icon, className, children, ...props }) {
+  const { layout, compact } = React25.useContext(DlContext);
+  return /* @__PURE__ */ jsxs("dt", { className: cn("flex items-center gap-1.5 text-[0.6875rem] tracking-wider text-subtle uppercase", layout !== "horizontal" && (compact ? "mb-0" : "mb-0.5"), className), ...props, children: [
+    icon,
+    children
+  ] });
+}
+function DescriptionListDescription({ mono, className, ...props }) {
+  const { compact } = React25.useContext(DlContext);
+  return /* @__PURE__ */ jsx("dd", { className: cn("m-0 min-w-0 break-words text-fg", compact ? "text-xs" : "text-sm", mono && "font-mono break-all", className), ...props });
+}
+function nodeText(node) {
+  if (node == null || typeof node === "boolean") return "";
+  if (typeof node === "string" || typeof node === "number") return String(node);
+  if (Array.isArray(node)) return node.map(nodeText).join("");
+  if (React25.isValidElement(node)) return nodeText(node.props.children);
+  return "";
+}
+function CodeBlockCode({ children }) {
+  return /* @__PURE__ */ jsx(Fragment, { children });
+}
+function CodeBlock({ code, children, language, lineNumbers, wrap, defaultWrap = false, onWrapChange, wrapToggle, maxHeight, copy = true, actions, label, className, labels }) {
+  const { t } = useLafDefaults(lafDefaults10);
+  const m = t.components.content.codeBlock;
+  const text = code ?? nodeText(children);
+  const [wrapped, setWrapped] = useControllableState({ value: wrap, defaultValue: defaultWrap, onChange: onWrapChange });
+  const lines = text.replace(/\n$/, "").split("\n");
+  const hasHeader = !!language || copy || !!actions || wrapToggle;
+  return /* @__PURE__ */ jsxs("div", { className: cn("min-w-0 overflow-hidden rounded-md border border-line bg-input", className), children: [
+    hasHeader && /* @__PURE__ */ jsxs("div", { className: "flex items-center gap-1 border-b border-line ps-3 pe-1 py-0.5", children: [
+      language && /* @__PURE__ */ jsx("span", { className: "text-xs tracking-wider text-subtle uppercase", children: language }),
+      /* @__PURE__ */ jsxs("span", { className: "ms-auto flex items-center gap-0.5", children: [
+        wrapToggle && /* @__PURE__ */ jsx(Button, { variant: "ghost", size: "sm", "aria-pressed": wrapped, onClick: () => setWrapped(!wrapped), children: labels?.wrap ?? m.wrap }),
+        actions,
+        copy && /* @__PURE__ */ jsx(CopyButton, { value: text, label: labels?.copy ?? m.copy, copiedLabel: labels?.copied ?? m.copied })
+      ] })
+    ] }),
+    /* @__PURE__ */ jsx(
+      "pre",
+      {
+        tabIndex: 0,
+        role: "region",
+        "aria-label": label ?? language ?? m.label,
+        style: maxHeight === void 0 ? void 0 : { maxBlockSize: maxHeight },
+        className: cn("m-0 overflow-auto p-3 font-mono text-[0.8125rem] leading-relaxed text-fg [tab-size:4]", wrapped ? "break-words whitespace-pre-wrap" : "whitespace-pre"),
+        children: /* @__PURE__ */ jsx("code", { children: lines.map((line, i) => /* @__PURE__ */ jsx(
+          "span",
+          {
+            "data-n": i + 1,
+            className: cn("block", lineNumbers && "before:me-4 before:inline-block before:w-[3ch] before:text-end before:text-subtle before:content-[attr(data-n)] before:select-none"),
+            children: line === "" ? " " : line
+          },
+          i
+        )) })
+      }
+    )
+  ] });
+}
+function ClipboardCopy({
+  value,
+  defaultValue,
+  children,
+  onChange,
+  variant = "inline",
+  readOnly,
+  expanded,
+  defaultExpanded = false,
+  onExpandedChange,
+  onCopy,
+  label,
+  hoverTip,
+  clickTip,
+  className,
+  labels
+}) {
+  const { t } = useLafDefaults(lafDefaults10);
+  const m = t.components.content.clipboard;
+  const [text, setText] = useControllableState({ value, defaultValue: defaultValue ?? nodeText(children), onChange });
+  const [open, setOpen] = useControllableState({ value: expanded, defaultValue: defaultExpanded, onChange: onExpandedChange });
+  const id = React25.useId();
+  const copyProps = { value: text, label: hoverTip ?? m.copy, copiedLabel: clickTip ?? m.copied };
+  const report = onCopy ? { onClickCapture: () => onCopy(text) } : {};
+  if (variant === "inline-compact") {
+    return /* @__PURE__ */ jsxs("span", { className: cn("inline-flex max-w-full items-center rounded-sm border border-line bg-muted-bg ps-1.5 align-middle", className), ...report, children: [
+      /* @__PURE__ */ jsx("code", { className: "min-w-0 truncate font-mono text-xs", children: text }),
+      /* @__PURE__ */ jsx(CopyButton, { ...copyProps })
+    ] });
+  }
+  const fieldLabel = label ?? t.value;
+  const expandable2 = variant === "expandable";
+  const toggle = open ? labels?.collapse ?? m.collapse : labels?.expand ?? m.expand;
+  return /* @__PURE__ */ jsxs("div", { className: cn("min-w-0", className), children: [
+    /* @__PURE__ */ jsxs("div", { className: "flex items-center gap-1", ...report, children: [
+      expandable2 && /* @__PURE__ */ jsx(Button, { variant: "ghost", size: "sm", "aria-expanded": open, "aria-controls": `${id}-full`, "aria-label": toggle, onClick: () => setOpen(!open), children: /* @__PURE__ */ jsx(ChevronRight, { className: cn("size-4 transition-transform rtl:rotate-180", open && "rotate-90 rtl:rotate-90"), "aria-hidden": true }) }),
+      /* @__PURE__ */ jsx(Input, { readOnly, "aria-label": fieldLabel, value: expandable2 && open ? text.split("\n")[0] : text, onChange: (e) => setText(e.target.value), className: "min-w-0 flex-1 font-mono text-[0.8125rem]" }),
+      /* @__PURE__ */ jsx(CopyButton, { ...copyProps })
+    ] }),
+    expandable2 && open && /* @__PURE__ */ jsx(Textarea, { id: `${id}-full`, readOnly, "aria-label": fieldLabel, value: text, rows: Math.min(12, text.split("\n").length + 1), onChange: (e) => setText(e.target.value), className: "mt-1 w-full font-mono text-[0.8125rem]" })
+  ] });
+}
+function Form({ className, ...props }) {
+  return /* @__PURE__ */ jsx("form", { className: cn("grid gap-4", className), ...props });
+}
+function FormGroup({ label, fieldId, required, fieldset, labelInfo, className, children, labels }) {
+  const { t } = useLafDefaults(lafDefaults10);
+  const mark = required && /* @__PURE__ */ jsxs(Fragment, { children: [
+    /* @__PURE__ */ jsx("span", { "aria-hidden": "true", className: "ms-0.5 text-danger", children: "*" }),
+    " ",
+    /* @__PURE__ */ jsxs("span", { className: "sr-only", children: [
+      "(",
+      labels?.required ?? t.components.content.form.required,
+      ")"
+    ] })
+  ] });
+  const head = label && (fieldset ? (
+    // A legend must be a direct child of its fieldset to name it.
+    /* @__PURE__ */ jsxs("legend", { className: "form-label flex w-full items-baseline justify-between gap-2 p-0", children: [
+      /* @__PURE__ */ jsxs("span", { children: [
+        label,
+        mark
+      ] }),
+      labelInfo
+    ] })
+  ) : /* @__PURE__ */ jsxs("span", { className: "flex items-baseline justify-between gap-2", children: [
+    /* @__PURE__ */ jsxs("label", { className: "form-label", htmlFor: fieldId, children: [
+      label,
+      mark
+    ] }),
+    labelInfo
+  ] }));
+  if (fieldset) {
+    return /* @__PURE__ */ jsxs("fieldset", { className: cn("form-group m-0 min-w-0 border-0 p-0", className), children: [
+      head,
+      children
+    ] });
+  }
+  return /* @__PURE__ */ jsxs("div", { className: cn("form-group", className), children: [
+    head,
+    children
+  ] });
+}
+function ActionGroup({ className, ...props }) {
+  return /* @__PURE__ */ jsx("div", { className: cn("flex flex-wrap items-center gap-2.5 pt-2", className), ...props });
+}
+function HelperText({ className, ...props }) {
+  return /* @__PURE__ */ jsx("div", { className: cn("flex flex-col gap-0.5", className), ...props });
+}
+var helperTone = { default: "text-muted", success: "text-ok", warning: "text-warn", error: "text-danger" };
+var helperIcon = { default: null, success: CheckCircle2, warning: TriangleAlert, error: AlertCircle };
+function HelperTextItem({ variant = "default", icon, className, children, ...props }) {
+  const Icon2 = helperIcon[variant];
+  return /* @__PURE__ */ jsxs("p", { role: variant === "error" ? "alert" : void 0, className: cn("m-0 flex items-center gap-1.5 text-xs", helperTone[variant], className), ...props, children: [
+    icon ?? (Icon2 && /* @__PURE__ */ jsx(Icon2, { className: "size-3.5 shrink-0", "aria-hidden": true })),
+    /* @__PURE__ */ jsx("span", { children })
+  ] });
+}
+function FormHelperText({ className, ...props }) {
+  return /* @__PURE__ */ jsx("div", { className: cn("mt-1", className), ...props });
+}
+var MenuToggle = React25.forwardRef(function MenuToggle2({ variant = "default", hideCaret, expanded, children, ...props }, ref) {
+  return /* @__PURE__ */ jsxs(Button, { ref, type: "button", variant: variant === "primary" ? "primary" : variant === "plain" ? "ghost" : "secondary", "aria-expanded": expanded, ...props, children: [
+    children,
+    !hideCaret && /* @__PURE__ */ jsx(ChevronDown, { className: "size-4", "aria-hidden": true })
+  ] });
+});
+function Dropdown({ toggle, open, defaultOpen, onOpenChange, align: align2 = "start", className, children }) {
+  return /* @__PURE__ */ jsxs(DropdownMenu, { open, defaultOpen, onOpenChange, children: [
+    /* @__PURE__ */ jsx(DropdownMenuTrigger, { asChild: true, children: toggle }),
+    /* @__PURE__ */ jsx(DropdownMenuContent, { align: align2, className, children })
+  ] });
+}
+function DropdownList({ children }) {
+  return /* @__PURE__ */ jsx(Fragment, { children });
+}
+function DropdownGroup({ label, children }) {
+  return /* @__PURE__ */ jsxs("div", { role: "group", "aria-label": label, children: [
+    label && /* @__PURE__ */ jsx(DropdownMenuLabel, { children: label }),
+    children
+  ] });
+}
+function DropdownItem({ icon, description, children, ...props }) {
+  return /* @__PURE__ */ jsxs(DropdownMenuItem, { ...props, children: [
+    icon,
+    /* @__PURE__ */ jsxs("span", { className: "min-w-0 flex-1", children: [
+      children,
+      description && /* @__PURE__ */ jsx("span", { className: "block text-xs text-muted", children: description })
+    ] })
+  ] });
+}
+var DropdownSeparator = DropdownMenuSeparator;
+var ModalContext = React25.createContext({ setHasDescription() {
+} });
+var modalSize = { sm: "max-w-sm", md: "max-w-md", lg: "max-w-2xl", xl: "max-w-4xl" };
+function Modal({ open, defaultOpen, onOpenChange, onClose, trigger, size = "md", "aria-label": ariaLabel, className, children }) {
+  const { portalContainer } = useLaf();
+  const [hasDescription, setHasDescription] = React25.useState(false);
+  const ctx = React25.useMemo(() => ({ setHasDescription }), []);
+  return /* @__PURE__ */ jsxs(
+    DialogPrimitive3.Root,
+    {
+      open,
+      defaultOpen,
+      onOpenChange: (o) => {
+        onOpenChange?.(o);
+        if (!o) onClose?.();
+      },
+      children: [
+        trigger,
+        /* @__PURE__ */ jsxs(DialogPrimitive3.Portal, { container: portalContainer, children: [
+          /* @__PURE__ */ jsx(DialogPrimitive3.Overlay, { className: "fixed inset-0 z-50 bg-[rgba(5,5,10,0.7)] backdrop-blur-xs" }),
+          /* @__PURE__ */ jsx(
+            DialogPrimitive3.Content,
+            {
+              "aria-label": ariaLabel,
+              ...hasDescription ? {} : { "aria-describedby": void 0 },
+              className: cn("popup fixed top-1/2 start-1/2 z-50 flex max-h-[90dvh] -translate-x-1/2 -translate-y-1/2 flex-col rtl:translate-x-1/2", modalSize[size], className),
+              children: /* @__PURE__ */ jsx(ModalContext.Provider, { value: ctx, children })
+            }
+          )
+        ] })
+      ]
+    }
+  );
+}
+var ModalTrigger = DialogPrimitive3.Trigger;
+var ModalClose = DialogPrimitive3.Close;
+function ModalHeader({ title, description, className, children }) {
+  const { t } = useLaf();
+  const { setHasDescription } = React25.useContext(ModalContext);
+  const has = !!description;
+  React25.useEffect(() => {
+    setHasDescription(has);
+    return () => setHasDescription(false);
+  }, [has, setHasDescription]);
+  return /* @__PURE__ */ jsxs("div", { className: cn("popup-head shrink-0", className), children: [
+    /* @__PURE__ */ jsxs("div", { className: "min-w-0", children: [
+      /* @__PURE__ */ jsx(DialogPrimitive3.Title, { className: "popup-title", children: title }),
+      description && /* @__PURE__ */ jsx(DialogPrimitive3.Description, { className: "popup-sub", children: description }),
+      children
+    ] }),
+    /* @__PURE__ */ jsx(DialogPrimitive3.Close, { className: "popup-close", "aria-label": t.close, children: /* @__PURE__ */ jsx(X, { className: "size-4", "aria-hidden": true }) })
+  ] });
+}
+function ModalBody({ className, ...props }) {
+  return /* @__PURE__ */ jsx("div", { className: cn("popup-body min-h-0 overflow-auto", className), ...props });
+}
+function ModalFooter({ className, ...props }) {
+  return /* @__PURE__ */ jsx("div", { className: cn("popup-foot shrink-0", className), ...props });
+}
+var lafDefaults11 = { ui: uiEn };
+function useAppFrameLabels(labels) {
+  const ui = useLafDefaults(lafDefaults11).t.components.ui.appFrame;
+  return React25.useMemo(() => ({ ...ui, ...labels }), [ui, labels]);
+}
+var NARROW_QUERY = "(max-width: 859px)";
+function useMediaQuery(query) {
+  return React25.useSyncExternalStore(
+    (cb) => {
+      if (typeof window === "undefined" || !window.matchMedia) return () => {
+      };
+      const mq = window.matchMedia(query);
+      mq.addEventListener("change", cb);
+      return () => mq.removeEventListener("change", cb);
+    },
+    () => typeof window !== "undefined" && !!window.matchMedia ? window.matchMedia(query).matches : false,
+    () => false
+  );
+}
+function readStored2(key) {
+  if (!key || typeof localStorage === "undefined") return null;
+  try {
+    return localStorage.getItem(key);
+  } catch {
+    return null;
+  }
+}
+function writeStored(key, value) {
+  if (!key || typeof localStorage === "undefined") return;
+  try {
+    localStorage.setItem(key, value);
+  } catch {
+  }
+}
+var noop = () => {
+};
+var AppFrameContext = React25.createContext({
+  active: false,
+  isMobile: false,
+  sidebarOpen: true,
+  setSidebarOpen: noop,
+  toggleSidebar: noop,
+  rail: false,
+  sidebarId: "",
+  mainId: "",
+  navigated: noop
+});
+function useAppFrame() {
+  return React25.useContext(AppFrameContext);
+}
+var placementOf = (p) => p === "left" || p === "start" ? "start" : p === "bottom" ? "bottom" : "end";
+function AppFrame({
+  masthead,
+  sidebar,
+  breadcrumb,
+  pageHeader,
+  footer,
+  drawer,
+  drawerPlacement,
+  sidebarOpen,
+  defaultSidebarOpen = true,
+  onSidebarOpenChange,
+  sidebarCollapse = "hide",
+  persistKey,
+  mainId: mainIdProp,
+  labels,
+  className,
+  children
+}) {
+  const l = useAppFrameLabels(labels);
+  const uid = React25.useId();
+  const mainId = mainIdProp ?? `${uid}-main`;
+  const sidebarId = `${uid}-sidebar`;
+  const isMobile = useMediaQuery(NARROW_QUERY);
+  const storageKey2 = persistKey ? `${persistKey}:sidebar` : void 0;
+  const [initialOpen] = React25.useState(() => {
+    const stored = readStored2(storageKey2);
+    return stored === null ? defaultSidebarOpen : stored === "1";
+  });
+  const [desktopOpen, setDesktopOpenRaw] = useControllableState({ value: sidebarOpen, defaultValue: initialOpen, onChange: onSidebarOpenChange });
+  const setDesktopOpen = React25.useCallback(
+    (open2) => {
+      setDesktopOpenRaw(open2);
+      writeStored(storageKey2, open2 ? "1" : "0");
+    },
+    [setDesktopOpenRaw, storageKey2]
+  );
+  const [mobileOpen, setMobileOpen] = React25.useState(false);
+  React25.useEffect(() => {
+    if (!isMobile) setMobileOpen(false);
+  }, [isMobile]);
+  const sidebarRef = React25.useRef(null);
+  React25.useEffect(() => {
+    if (!isMobile || !mobileOpen) return;
+    const opener = document.activeElement;
+    sidebarRef.current?.querySelector('[tabindex="0"], a[href], button:not([disabled])')?.focus();
+    const onKey = (e) => {
+      if (e.key === "Escape") setMobileOpen(false);
+    };
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      opener?.focus?.();
+    };
+  }, [isMobile, mobileOpen]);
+  const open = isMobile ? mobileOpen : desktopOpen;
+  const rail = !isMobile && sidebarCollapse === "rail" && !desktopOpen;
+  const setOpen = React25.useCallback((o) => isMobile ? setMobileOpen(o) : setDesktopOpen(o), [isMobile, setDesktopOpen]);
+  const ctx = React25.useMemo(
+    () => ({
+      active: true,
+      isMobile,
+      sidebarOpen: open,
+      setSidebarOpen: setOpen,
+      toggleSidebar: () => setOpen(!open),
+      rail,
+      sidebarId,
+      mainId,
+      navigated: () => setMobileOpen(false)
+    }),
+    [isMobile, open, setOpen, rail, sidebarId, mainId]
+  );
+  const placement = placementOf(drawerPlacement ?? (React25.isValidElement(drawer) ? drawer.props.placement : void 0));
+  const sidebarVisible = isMobile ? mobileOpen : desktopOpen || sidebarCollapse === "rail";
+  return /* @__PURE__ */ jsx(AppFrameContext.Provider, { value: ctx, children: /* @__PURE__ */ jsxs("div", { className: cn("relative flex h-dvh min-h-0 flex-col overflow-hidden", className), children: [
+    /* @__PURE__ */ jsx(
+      "a",
+      {
+        href: `#${mainId}`,
+        onClick: (e) => {
+          e.preventDefault();
+          document.getElementById(mainId)?.focus();
+        },
+        className: "sr-only focus:not-sr-only focus:absolute focus:start-2 focus:top-2 focus:z-50 focus:rounded-md focus:border focus:border-line-strong focus:bg-menu focus:px-3 focus:py-2 focus:text-fg focus:ring-2 focus:ring-primary",
+        children: l.skipToContent
+      }
+    ),
+    masthead && /* @__PURE__ */ jsx("div", { className: "sticky top-0 z-30 shrink-0", children: masthead }),
+    /* @__PURE__ */ jsxs("div", { className: "relative flex min-h-0 flex-1", children: [
+      sidebar && isMobile && mobileOpen && /* @__PURE__ */ jsx("div", { "aria-hidden": true, className: "absolute inset-0 z-30 bg-[rgba(5,5,10,0.7)]", onClick: () => setMobileOpen(false) }),
+      sidebar && /* @__PURE__ */ jsx(
+        "div",
+        {
+          ref: sidebarRef,
+          id: sidebarId,
+          "data-sidebar": isMobile ? "overlay" : rail ? "rail" : desktopOpen ? "open" : "closed",
+          className: cn(
+            "z-40 flex min-h-0 shrink-0 flex-col border-e border-line bg-[rgba(12,12,16,0.72)] backdrop-blur-md transition-[width] motion-reduce:transition-none",
+            isMobile ? "absolute inset-y-0 start-0 w-72 max-w-[85%]" : rail ? "w-14" : "w-64",
+            !sidebarVisible && "hidden"
+          ),
+          children: sidebar
+        }
+      ),
+      /* @__PURE__ */ jsx("div", { className: "flex min-h-0 min-w-0 flex-1 flex-col", children: /* @__PURE__ */ jsxs("div", { className: cn("relative flex min-h-0 min-w-0 flex-1", placement === "bottom" && "flex-col"), children: [
+        placement === "start" && drawer,
+        /* @__PURE__ */ jsxs("div", { className: "flex min-h-0 min-w-0 flex-1 flex-col overflow-y-auto", children: [
+          breadcrumb && /* @__PURE__ */ jsx("div", { className: "shrink-0 px-6 pt-4 max-[859px]:px-4", children: breadcrumb }),
+          /* @__PURE__ */ jsxs("main", { id: mainId, tabIndex: -1, className: "min-w-0 flex-1 outline-none", children: [
+            pageHeader,
+            children
+          ] }),
+          footer
+        ] }),
+        placement !== "start" && drawer
+      ] }) })
+    ] })
+  ] }) });
+}
+function Masthead({ className, ...props }) {
+  return /* @__PURE__ */ jsx("header", { className: cn("flex h-14 w-full items-center gap-3 border-b border-line bg-[rgba(12,12,16,0.72)] px-3 backdrop-blur-md", className), ...props });
+}
+function MastheadToggle({ className, onClick, labels, ...props }) {
+  const l = useAppFrameLabels(labels);
+  const f = useAppFrame();
+  const name = f.isMobile ? f.sidebarOpen ? l.closeNavigation : l.openNavigation : f.sidebarOpen ? l.collapseSidebar : l.expandSidebar;
+  return /* @__PURE__ */ jsx(
+    "button",
+    {
+      type: "button",
+      "aria-label": name,
+      "aria-expanded": f.active ? f.sidebarOpen : void 0,
+      "aria-controls": f.active && f.sidebarId ? f.sidebarId : void 0,
+      onClick: (e) => {
+        onClick?.(e);
+        if (!e.defaultPrevented) f.toggleSidebar();
+      },
+      className: cn("btn btn-ghost btn-sm auto shrink-0", className),
+      ...props,
+      children: /* @__PURE__ */ jsx(Menu$1, { "aria-hidden": true })
+    }
+  );
+}
+function MastheadBrand({ logo, title, subtitle, href, onClick, render, className }) {
+  const cls = cn("flex min-w-0 items-center gap-3 text-fg no-underline", (href || onClick || render) && "rounded-md outline-none focus-visible:ring-2 focus-visible:ring-primary/50", className);
+  const children = /* @__PURE__ */ jsxs(Fragment, { children: [
+    logo && /* @__PURE__ */ jsx("span", { className: "flex shrink-0 items-center [&>svg]:size-8", children: logo }),
+    (title || subtitle) && /* @__PURE__ */ jsxs("span", { className: "flex min-w-0 flex-col leading-tight", children: [
+      title && /* @__PURE__ */ jsx("span", { className: "truncate text-lg font-bold tracking-tight", children: title }),
+      subtitle && /* @__PURE__ */ jsx("span", { className: "truncate text-xs text-muted max-[480px]:hidden", children: subtitle })
+    ] })
+  ] });
+  if (render) return render({ className: cls, children, href, onClick });
+  if (href) {
+    return /* @__PURE__ */ jsx("a", { href, onClick, className: cls, children });
+  }
+  if (onClick) {
+    return /* @__PURE__ */ jsx("button", { type: "button", onClick, className: cn(cls, "border-0 bg-transparent p-0 text-start"), children });
+  }
+  return /* @__PURE__ */ jsx("div", { className: cls, children });
+}
+function MastheadContent({ className, ...props }) {
+  return /* @__PURE__ */ jsx("div", { className: cn("flex min-w-0 flex-1 items-center gap-3", className), ...props });
+}
+function MastheadActions({ className, ...props }) {
+  return /* @__PURE__ */ jsx("div", { className: cn("ms-auto flex shrink-0 items-center gap-1", className), ...props });
+}
+var DARK_QUERY = "(prefers-color-scheme: dark)";
+var modeIcon = { light: Sun, dark: Moon, system: Monitor };
+var modes = ["light", "dark", "system"];
+function ThemeToggle({ value, defaultValue = "system", onChange, onResolvedChange, persistKey, apply = true, variant = "menu", labels, className }) {
+  const l = useAppFrameLabels(labels);
+  const [initial] = React25.useState(() => {
+    const s = readStored2(persistKey);
+    return s === "light" || s === "dark" || s === "system" ? s : defaultValue;
+  });
+  const [mode, setMode] = useControllableState({ value, defaultValue: initial, onChange });
+  const systemDark = useMediaQuery(DARK_QUERY);
+  const resolved = mode === "system" ? systemDark ? "dark" : "light" : mode;
+  const onResolved = React25.useRef(onResolvedChange);
+  onResolved.current = onResolvedChange;
+  React25.useEffect(() => {
+    if (typeof apply === "function") apply(resolved);
+    else if (apply) document.documentElement.dataset.theme = resolved;
+    onResolved.current?.(resolved);
+  }, [resolved, apply]);
+  const choose = (m) => {
+    setMode(m);
+    writeStored(persistKey, m);
+  };
+  const names = { light: l.themeLight, dark: l.themeDark, system: l.themeSystem };
+  const Icon2 = modeIcon[mode];
+  if (variant === "segmented") {
+    return /* @__PURE__ */ jsx("div", { role: "group", "aria-label": l.theme, className: cn("inline-flex rounded-md border border-line", className), children: modes.map((m) => {
+      const I = modeIcon[m];
+      return /* @__PURE__ */ jsx(
+        "button",
+        {
+          type: "button",
+          "aria-pressed": mode === m,
+          "aria-label": names[m],
+          onClick: () => choose(m),
+          className: "inline-flex items-center px-2.5 py-1.5 text-muted outline-none first:rounded-s-md last:rounded-e-md hover:text-fg focus-visible:ring-2 focus-visible:ring-primary/50 aria-pressed:bg-primary-light aria-pressed:text-primary",
+          children: /* @__PURE__ */ jsx(I, { "aria-hidden": true, className: "size-4" })
+        },
+        m
+      );
+    }) });
+  }
+  return /* @__PURE__ */ jsxs(DropdownMenu, { children: [
+    /* @__PURE__ */ jsx(DropdownMenuTrigger, { asChild: true, children: /* @__PURE__ */ jsx("button", { type: "button", "aria-label": l.themeCurrent(names[mode]), className: cn("btn btn-ghost btn-sm auto", className), children: /* @__PURE__ */ jsx(Icon2, { "aria-hidden": true }) }) }),
+    /* @__PURE__ */ jsx(DropdownMenuContent, { children: /* @__PURE__ */ jsx(DropdownPrimitive2.RadioGroup, { value: mode, onValueChange: (v) => choose(v), children: modes.map((m) => {
+      const I = modeIcon[m];
+      return /* @__PURE__ */ jsxs(DropdownPrimitive2.RadioItem, { value: m, className: "dropdown-item outline-none data-[highlighted]:bg-surface-hover data-[highlighted]:text-fg data-[state=checked]:text-fg", children: [
+        /* @__PURE__ */ jsx(I, { "aria-hidden": true, className: "size-4" }),
+        names[m],
+        /* @__PURE__ */ jsx(DropdownPrimitive2.ItemIndicator, { className: "ms-auto text-primary", children: /* @__PURE__ */ jsx(Check, { "aria-hidden": true, className: "size-4" }) })
+      ] }, m);
+    }) }) })
+  ] });
+}
+function FooterAnchor({ link, hint }) {
+  return /* @__PURE__ */ jsxs(
+    "a",
+    {
+      href: link.href,
+      onClick: link.onClick,
+      ...link.external ? { target: "_blank", rel: "noopener noreferrer" } : {},
+      className: "inline-flex items-center gap-1 rounded-sm text-muted no-underline outline-none hover:text-fg hover:underline focus-visible:ring-2 focus-visible:ring-primary/50",
+      children: [
+        link.label,
+        link.external && /* @__PURE__ */ jsxs(Fragment, { children: [
+          /* @__PURE__ */ jsx(ExternalLink, { "aria-hidden": true, className: "size-3" }),
+          /* @__PURE__ */ jsxs("span", { className: "sr-only", children: [
+            "(",
+            hint,
+            ")"
+          ] })
+        ] })
+      ]
+    }
+  );
+}
+function AppFooter({ start, center, end, copyright, version, build, links, linkGroups, status, variant = "default", labels, className }) {
+  const l = useAppFrameLabels(labels);
+  const uid = React25.useId();
+  const b = typeof build === "string" ? { commit: build } : build;
+  const buildText = b && [b.env, b.commit, b.date].filter(Boolean).join(" \xB7 ");
+  const compact = variant === "compact";
+  const startItems = (copyright || version || buildText || start) && /* @__PURE__ */ jsxs("div", { className: "flex min-w-0 flex-wrap items-center gap-x-4 gap-y-1", children: [
+    copyright && /* @__PURE__ */ jsx("span", { children: copyright }),
+    version && /* @__PURE__ */ jsxs("span", { children: [
+      l.version,
+      " ",
+      version
+    ] }),
+    buildText && /* @__PURE__ */ jsxs("span", { children: [
+      l.build,
+      " ",
+      buildText
+    ] }),
+    start
+  ] });
+  const centerItems = (variant !== "columns" && links?.length || center) && /* @__PURE__ */ jsxs("div", { className: "flex flex-wrap items-center justify-center gap-x-4 gap-y-1", children: [
+    variant !== "columns" && links && links.length > 0 && /* @__PURE__ */ jsx("ul", { className: "m-0 flex list-none flex-wrap items-center gap-x-4 gap-y-1 p-0", children: links.map((k, i) => /* @__PURE__ */ jsx("li", { children: /* @__PURE__ */ jsx(FooterAnchor, { link: k, hint: l.opensInNewTab }) }, `${i}-${k.label}`)) }),
+    center
+  ] });
+  const endItems = (status || end) && /* @__PURE__ */ jsxs("div", { className: "flex flex-wrap items-center justify-end gap-x-4 gap-y-1", children: [
+    status && /* @__PURE__ */ jsx(StatusDot, { tone: status.tone, pulse: status.pulse, label: status.label, className: "text-[inherit]" }),
+    end
+  ] });
+  return /* @__PURE__ */ jsxs("footer", { className: cn("shrink-0 border-t border-line bg-[rgba(12,12,16,0.72)] text-muted backdrop-blur-md", compact ? "text-[0.8125rem]" : "text-sm", className), children: [
+    variant === "columns" && linkGroups && linkGroups.length > 0 && /* @__PURE__ */ jsx("div", { className: "grid grid-cols-[repeat(auto-fit,minmax(10rem,1fr))] gap-6 border-b border-line px-6 py-6 max-[859px]:px-4", children: linkGroups.map((g, gi) => /* @__PURE__ */ jsxs("div", { children: [
+      /* @__PURE__ */ jsx("div", { id: `${uid}-${gi}`, className: "mb-2 text-[0.6875rem] font-semibold tracking-wider text-subtle uppercase", children: g.title }),
+      /* @__PURE__ */ jsx("ul", { "aria-labelledby": `${uid}-${gi}`, className: "m-0 grid list-none gap-1.5 p-0", children: g.links.map((k, i) => /* @__PURE__ */ jsx("li", { children: /* @__PURE__ */ jsx(FooterAnchor, { link: k, hint: l.opensInNewTab }) }, `${i}-${k.label}`)) })
+    ] }, `${gi}-${g.title}`)) }),
+    /* @__PURE__ */ jsxs("div", { className: cn("flex flex-wrap items-center justify-between gap-x-6 gap-y-2 px-6 max-[859px]:px-4", compact ? "py-2" : "py-3"), children: [
+      startItems,
+      centerItems,
+      endItems
+    ] })
+  ] });
+}
+function PageHeader({ breadcrumb, icon, title, subtitle, badges, actions, help, headingLevel = 1, labels, className }) {
+  const l = useAppFrameLabels(labels);
+  const Heading = `h${headingLevel}`;
+  const crumbs = Array.isArray(breadcrumb) ? /* @__PURE__ */ jsx(Breadcrumb, { items: breadcrumb }) : breadcrumb;
+  return /* @__PURE__ */ jsxs("div", { className: cn("flex flex-col gap-3 px-6 pt-6 pb-4 max-[859px]:px-4", className), children: [
+    crumbs && /* @__PURE__ */ jsx("div", { children: crumbs }),
+    /* @__PURE__ */ jsxs("div", { className: "flex flex-wrap items-start gap-x-4 gap-y-3", children: [
+      icon && /* @__PURE__ */ jsx("span", { "aria-hidden": true, className: "flex shrink-0 text-primary [&>svg]:size-8", children: icon }),
+      /* @__PURE__ */ jsxs("div", { className: "min-w-0 flex-1 basis-64", children: [
+        /* @__PURE__ */ jsxs("div", { className: "flex flex-wrap items-center gap-x-3 gap-y-1", children: [
+          /* @__PURE__ */ jsx(Heading, { className: "min-w-0 text-2xl font-semibold tracking-tight text-fg", children: title }),
+          badges
+        ] }),
+        subtitle && /* @__PURE__ */ jsx("p", { className: "mt-1 max-w-3xl text-sm text-muted", children: subtitle })
+      ] }),
+      (actions || help) && /* @__PURE__ */ jsxs("div", { className: "flex shrink-0 flex-wrap items-center gap-2.5", children: [
+        help && /* @__PURE__ */ jsx("a", { href: help.href, onClick: help.onClick, className: "text-sm text-muted hover:text-fg", children: help.label ?? l.help }),
+        actions
+      ] })
+    ] })
+  ] });
+}
+var sectionPad = { none: "", sm: "px-4 py-2", md: "px-6 py-4 max-[859px]:px-4", lg: "px-8 py-8 max-[859px]:px-4 max-[859px]:py-6" };
+function PageSection({ padding = "md", filled, sticky, className, ...props }) {
+  return /* @__PURE__ */ jsx(
+    "section",
+    {
+      className: cn(
+        sectionPad[padding],
+        filled && "border-y border-line bg-surface",
+        sticky && "z-10 backdrop-blur-md",
+        sticky === "top" && "sticky top-0",
+        sticky === "bottom" && "sticky bottom-0",
+        sticky && !filled && "bg-[rgba(12,12,16,0.72)]",
+        className
+      ),
+      ...props
+    }
+  );
+}
+var isItem = (e) => !e.type || e.type === "item";
+var textOf3 = (it) => it.textValue ?? (typeof it.label === "string" ? it.label : it.id);
+var isGroup2 = (it) => !!it.children?.some(isItem);
+var safeId = (s) => s.replace(/\s+/g, "_");
+function visibleRows(entries, expanded, rail, parent, out = []) {
+  for (const e of entries) {
+    if (!isItem(e)) continue;
+    if (!e.disabled) out.push({ item: e, parent });
+    if (!rail && isGroup2(e) && expanded.has(e.id)) visibleRows(e.children, expanded, rail, e, out);
+  }
+  return out;
+}
+function ancestorsOf(entries, id, path = []) {
+  for (const e of entries) {
+    if (!isItem(e)) continue;
+    if (e.id === id) return path;
+    const found = e.children && ancestorsOf(e.children, id, [...path, e.id]);
+    if (found) return found;
+  }
+  return null;
+}
+function currentOf(entries, current) {
+  for (const e of entries) {
+    if (!isItem(e)) continue;
+    if (e.current) return e.id;
+    const c = e.children && currentOf(e.children);
+    if (c) return c;
+  }
+  return current;
+}
+var rowCls = "flex w-full min-w-0 items-center gap-2.5 rounded-md px-2.5 py-2 text-start text-sm font-medium text-muted no-underline outline-none transition hover:bg-surface-hover hover:text-fg focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary/50 aria-[current=page]:bg-primary-light aria-[current=page]:text-primary aria-disabled:pointer-events-none aria-disabled:opacity-50 data-[within=true]:text-fg";
+function NavTree({ items, label, current, onSelect, expanded: expandedProp, defaultExpanded, onExpandedChange, collapsed, labels, className }) {
+  const l = useAppFrameLabels(labels);
+  const frame = useAppFrame();
+  const rail = collapsed ?? frame.rail;
+  const uid = React25.useId();
+  const currentId = currentOf(items, current);
+  const [expandedIds, setExpanded] = useControllableState({
+    value: expandedProp,
+    defaultValue: defaultExpanded ?? (currentId ? ancestorsOf(items, currentId) ?? [] : []),
+    onChange: onExpandedChange
+  });
+  const expanded = React25.useMemo(() => new Set(expandedIds), [expandedIds]);
+  const [activeId, setActiveId] = React25.useState();
+  const rows = visibleRows(items, expanded, rail);
+  const active = rows.find((r) => r.item.id === activeId)?.item.id ?? rows.find((r) => r.item.id === currentId)?.item.id ?? rows[0]?.item.id;
+  const rootRef = React25.useRef(null);
+  const typed = React25.useRef({ text: "", timer: 0 });
+  React25.useEffect(() => () => clearTimeout(typed.current.timer), []);
+  const focusRow = (id) => {
+    setActiveId(id);
+    [...rootRef.current?.querySelectorAll("[data-nav-id]") ?? []].find((el) => el.dataset.navId === id)?.focus();
+  };
+  const setOpen = (id, open) => setExpanded((prev) => open ? prev.includes(id) ? prev : [...prev, id] : prev.filter((x) => x !== id));
+  const onKeyDown = (e) => {
+    if (e.ctrlKey || e.metaKey || e.altKey) return;
+    const id = e.target.closest("[data-nav-id]")?.dataset.navId;
+    const i = rows.findIndex((r) => r.item.id === id);
+    if (i < 0) return;
+    const row = rows[i];
+    const go = (n) => {
+      const r = rows[n];
+      if (r) focusRow(r.item.id);
+    };
+    switch (e.key) {
+      case "ArrowDown":
+        go(i + 1);
+        break;
+      case "ArrowUp":
+        go(i - 1);
+        break;
+      case "Home":
+        go(0);
+        break;
+      case "End":
+        go(rows.length - 1);
+        break;
+      case "ArrowRight":
+      case "ArrowLeft": {
+        const rtl = getComputedStyle(e.currentTarget).direction === "rtl";
+        const forward = e.key === "ArrowRight" !== rtl;
+        if (forward) {
+          if (!isGroup2(row.item) || rail) return;
+          if (!expanded.has(row.item.id)) setOpen(row.item.id, true);
+          else go(i + 1);
+        } else if (isGroup2(row.item) && expanded.has(row.item.id) && !rail) setOpen(row.item.id, false);
+        else if (row.parent) focusRow(row.parent.id);
+        else return;
+        break;
+      }
+      default: {
+        if (e.key.length !== 1 || e.key === " " && !typed.current.text) return;
+        clearTimeout(typed.current.timer);
+        typed.current.text += e.key.toLowerCase();
+        typed.current.timer = setTimeout(() => typed.current.text = "", 500);
+        const q = typed.current.text;
+        const from = q.length === 1 ? i + 1 : i;
+        const hit = [...rows.slice(from), ...rows.slice(0, from)].find((r) => textOf3(r.item).toLowerCase().startsWith(q));
+        if (!hit) return;
+        focusRow(hit.item.id);
+      }
+    }
+    e.preventDefault();
+  };
+  const activate = (it, e) => {
+    if (it.disabled) {
+      e.preventDefault();
+      return;
+    }
+    if (isGroup2(it)) {
+      if (rail) {
+        frame.setSidebarOpen(true);
+        setOpen(it.id, true);
+      } else setOpen(it.id, !expanded.has(it.id));
+      return;
+    }
+    it.onSelect?.(it.id);
+    onSelect?.(it.id, it);
+    if (it.href && !it.render && (it.onSelect || onSelect) && !e.metaKey && !e.ctrlKey && !e.shiftKey && e.button === 0) e.preventDefault();
+    frame.navigated();
+  };
+  const renderItem = (it) => {
+    const group = isGroup2(it);
+    const open = group && expanded.has(it.id);
+    const isCurrent = !group && (it.current ?? it.id === current);
+    const within = group && currentId !== void 0 && !open && !!ancestorsOf(items, currentId)?.includes(it.id);
+    const text = textOf3(it);
+    const childId = `${uid}-c-${safeId(it.id)}`;
+    const content = /* @__PURE__ */ jsxs(Fragment, { children: [
+      it.icon ? /* @__PURE__ */ jsx("span", { "aria-hidden": true, className: "flex shrink-0 [&>svg]:size-4", children: it.icon }) : rail && /* @__PURE__ */ jsx("span", { "aria-hidden": true, className: "flex size-4 shrink-0 items-center justify-center text-xs font-semibold uppercase", children: text.charAt(0) }),
+      !rail && /* @__PURE__ */ jsxs(Fragment, { children: [
+        /* @__PURE__ */ jsx(TruncatedText, { className: "flex-1", children: it.label }),
+        it.badge && /* @__PURE__ */ jsx("span", { className: "ms-auto shrink-0", children: it.badge }),
+        group && /* @__PURE__ */ jsx(ChevronDown, { "aria-hidden": true, className: cn("size-4 shrink-0 transition-transform motion-reduce:transition-none", open && "rotate-180") })
+      ] })
+    ] });
+    const props = {
+      "data-nav-id": it.id,
+      "data-nav-text": text.toLowerCase(),
+      tabIndex: it.id === active ? 0 : -1,
+      className: cn(rowCls, rail && "justify-center px-0"),
+      onClick: (e) => activate(it, e),
+      children: content,
+      ...it.disabled ? { "aria-disabled": true } : {},
+      ...isCurrent ? { "aria-current": "page" } : {},
+      ...rail ? { "aria-label": text } : {}
+    };
+    let el;
+    if (group) {
+      el = /* @__PURE__ */ jsx("button", { type: "button", "aria-expanded": open, "aria-controls": childId, "data-within": within, ...props });
+    } else if (it.render) el = it.render({ ...props, href: it.disabled ? void 0 : it.href });
+    else if (it.href && !it.disabled) el = /* @__PURE__ */ jsx("a", { href: it.href, ...props });
+    else el = /* @__PURE__ */ jsx("button", { type: "button", ...props });
+    if (rail) {
+      el = /* @__PURE__ */ jsx(
+        Tooltip,
+        {
+          side: "right",
+          content: /* @__PURE__ */ jsxs("span", { className: "flex items-center gap-2", children: [
+            it.label,
+            it.badge
+          ] }),
+          children: el
+        }
+      );
+    }
+    return /* @__PURE__ */ jsxs("li", { children: [
+      el,
+      group && !rail && /* @__PURE__ */ jsx("div", { id: childId, hidden: !open, className: "ms-4 border-s border-line ps-1", children: renderEntries(it.children, safeId(it.id)) })
+    ] }, it.id);
+  };
+  const renderEntries = (entries, scope) => {
+    const sections = [{ key: "first", items: [] }];
+    entries.forEach((e, n) => {
+      if (isItem(e)) sections[sections.length - 1].items.push(e);
+      else if (e.type === "heading") sections.push({ key: `h-${e.id}`, heading: e, items: [] });
+      else sections.push({ key: `d-${e.id ?? n}`, divider: true, items: [] });
+    });
+    return sections.filter((s) => s.items.length > 0 || s.heading && !rail).map((s) => {
+      const hid = s.heading ? `${uid}-${scope}-${safeId(s.heading.id)}` : void 0;
+      return /* @__PURE__ */ jsxs("div", { className: cn(s.divider && "mt-2 border-t border-line pt-2"), children: [
+        s.heading && !rail && /* @__PURE__ */ jsx("div", { id: hid, className: "nav-group", children: s.heading.label }),
+        s.items.length > 0 && /* @__PURE__ */ jsx("ul", { "aria-labelledby": s.heading && !rail ? hid : void 0, className: "m-0 grid list-none gap-0.5 p-0", children: s.items.map(renderItem) })
+      ] }, s.key);
+    });
+  };
+  return /* @__PURE__ */ jsx(TooltipProvider, { children: /* @__PURE__ */ jsx(
+    "nav",
+    {
+      ref: rootRef,
+      "aria-label": label ?? l.mainNavigation,
+      onKeyDown,
+      onFocus: (e) => {
+        const id = e.target.closest("[data-nav-id]")?.dataset.navId;
+        if (id) setActiveId(id);
+      },
+      className: cn("min-w-0", className),
+      children: renderEntries(items, "root")
+    }
+  ) });
+}
+function hasChildren(nodes, id) {
+  for (const n of nodes) {
+    if (n.id === id) return !!n.children?.length || !!n.hasChildren;
+    if (n.children && hasChildren(n.children, id)) return true;
+  }
+  return false;
+}
+function Sidebar({ items, tree, mode: modeProp, defaultMode, onModeChange, header, footer, railFooter, collapsed, labels, className, ...nav }) {
+  const l = useAppFrameLabels(labels);
+  const frame = useAppFrame();
+  const rail = collapsed ?? frame.rail;
+  const [mode, setMode] = useControllableState({ value: modeProp, defaultValue: defaultMode ?? (items ? "nav" : "tree"), onChange: onModeChange });
+  const both = !!items && !!tree;
+  const shown = items && (mode === "nav" || !tree || rail) ? "nav" : tree && !rail ? "tree" : void 0;
+  const switchBtn = (m, text) => /* @__PURE__ */ jsx(
+    "button",
+    {
+      type: "button",
+      "aria-pressed": mode === m,
+      onClick: () => setMode(m),
+      className: "flex-1 rounded-sm px-2 py-1 text-[0.8125rem] font-semibold text-muted outline-none hover:text-fg focus-visible:ring-2 focus-visible:ring-primary/50 aria-pressed:bg-primary-light aria-pressed:text-primary",
+      children: text
+    }
+  );
+  const foot = rail ? railFooter : footer;
+  return /* @__PURE__ */ jsxs("div", { className: cn("flex min-h-0 flex-1 flex-col", className), children: [
+    header && /* @__PURE__ */ jsx("div", { className: "shrink-0 border-b border-line p-3", children: header }),
+    /* @__PURE__ */ jsxs("div", { className: cn("min-h-0 flex-1 overflow-y-auto", rail ? "p-2" : "p-3"), children: [
+      both && !rail && /* @__PURE__ */ jsxs("div", { role: "group", "aria-label": l.sidebarView, className: "mb-3 flex gap-1 rounded-md border border-line p-0.5", children: [
+        switchBtn("nav", l.navigationView),
+        switchBtn("tree", l.treeView)
+      ] }),
+      shown === "nav" && items && /* @__PURE__ */ jsx(NavTree, { items, collapsed: rail, labels, ...nav }),
+      shown === "tree" && tree && /* @__PURE__ */ jsx("nav", { "aria-label": tree.label, children: /* @__PURE__ */ jsx(
+        TreeView,
+        {
+          ...tree,
+          onSelect: (id) => {
+            tree.onSelect?.(id);
+            if (!hasChildren(tree.nodes, id)) frame.navigated();
+          }
+        }
+      ) })
+    ] }),
+    foot && /* @__PURE__ */ jsx("div", { className: cn("shrink-0 border-t border-line text-sm text-muted", rail ? "flex justify-center p-2" : "p-4"), children: foot })
+  ] });
+}
+var STEP = 16;
+var STEP_LARGE = 64;
+function DrawerPanel({
+  open: openProp,
+  defaultOpen = true,
+  onOpenChange,
+  placement: placementProp = "end",
+  mode = "push",
+  title,
+  icon,
+  actions,
+  footer,
+  size: sizeProp,
+  defaultSize = 360,
+  onSizeChange,
+  minSize = 240,
+  maxSize = 640,
+  resizable,
+  collapsible,
+  collapsed: collapsedProp,
+  defaultCollapsed = false,
+  onCollapsedChange,
+  closable = true,
+  manageFocus,
+  labels,
+  className,
+  children
+}) {
+  const l = useAppFrameLabels(labels);
+  const placement = placementProp === "left" ? "start" : placementProp === "right" ? "end" : placementProp;
+  const bottom = placement === "bottom";
+  const narrow = useMediaQuery(NARROW_QUERY);
+  const overlay = mode === "overlay" || narrow;
+  const [open, setOpen] = useControllableState({ value: openProp, defaultValue: defaultOpen, onChange: onOpenChange });
+  const [collapsed, setCollapsed] = useControllableState({ value: collapsedProp, defaultValue: defaultCollapsed, onChange: onCollapsedChange });
+  const [size, setSize] = useControllableState({ value: sizeProp, defaultValue: defaultSize, onChange: onSizeChange });
+  const clamp = (n) => Math.min(maxSize, Math.max(minSize, n));
+  const titleId = React25.useId();
+  const ref = React25.useRef(null);
+  const wasOpen = React25.useRef(open);
+  const opener = React25.useRef(null);
+  React25.useEffect(() => {
+    if (!manageFocus) return;
+    if (open && !wasOpen.current) {
+      opener.current = document.activeElement;
+      ref.current?.focus();
+    } else if (!open && wasOpen.current) {
+      opener.current?.focus?.();
+    }
+    wasOpen.current = open;
+  }, [open, manageFocus]);
+  const drag = React25.useRef(null);
+  const isRtl = () => !!ref.current && getComputedStyle(ref.current).direction === "rtl";
+  const grow = (dx, dy) => {
+    if (bottom) return -dy;
+    const towardStart = isRtl() ? dx : -dx;
+    return placement === "end" ? towardStart : -towardStart;
+  };
+  const onKeyDown = (e) => {
+    const step = e.shiftKey ? STEP_LARGE : STEP;
+    const outward = bottom ? "ArrowUp" : placement === "end" !== isRtl() ? "ArrowLeft" : "ArrowRight";
+    const inward = bottom ? "ArrowDown" : outward === "ArrowLeft" ? "ArrowRight" : "ArrowLeft";
+    if (e.key === outward) setSize(clamp(size + step));
+    else if (e.key === inward) setSize(clamp(size - step));
+    else if (e.key === "Home") setSize(minSize);
+    else if (e.key === "End") setSize(maxSize);
+    else return;
+    e.preventDefault();
+  };
+  if (!open) return null;
+  const CollapseIcon = bottom ? collapsed ? ChevronsUp : ChevronsDown : placement === "end" !== !!collapsed ? ChevronsRight : ChevronsLeft;
+  const toggle = collapsible && /* @__PURE__ */ jsx("button", { type: "button", onClick: () => setCollapsed(!collapsed), "aria-expanded": !collapsed, "aria-label": collapsed ? l.expandPanel : l.collapsePanel, className: "popup-close", children: /* @__PURE__ */ jsx(CollapseIcon, { "aria-hidden": true, className: cn("size-4", !bottom && "rtl:rotate-180") }) });
+  const edge = bottom ? "border-t" : placement === "end" ? "border-s" : "border-e";
+  const where = bottom ? "inset-x-0 bottom-0" : placement === "end" ? "inset-y-0 end-0" : "inset-y-0 start-0";
+  const surface = overlay ? "bg-menu shadow-[0_16px_32px_rgba(0,0,0,0.5)]" : "bg-[rgba(12,12,16,0.72)] backdrop-blur-md";
+  const base = cn("flex min-h-0 min-w-0 shrink-0 flex-col border-line-strong outline-none", edge, surface, overlay ? cn("absolute z-20", where) : "relative", placement === "start" && "order-first");
+  if (collapsed) {
+    return /* @__PURE__ */ jsxs("aside", { ref, tabIndex: -1, "aria-label": title, className: cn(base, bottom ? "h-10 flex-row items-center gap-2 px-3" : "w-10 items-center py-2", className), children: [
+      toggle,
+      bottom && /* @__PURE__ */ jsx("span", { className: "truncate text-sm text-muted", children: title })
+    ] });
+  }
+  return /* @__PURE__ */ jsxs(
+    "aside",
+    {
+      ref,
+      tabIndex: -1,
+      "aria-labelledby": titleId,
+      "data-placement": placement,
+      style: { "--drawer-size": `${clamp(size)}px` },
+      onKeyDown: (e) => {
+        if (manageFocus && closable && e.key === "Escape" && !e.defaultPrevented) setOpen(false);
+      },
+      className: cn(base, bottom ? "h-(--drawer-size) max-h-full w-full" : "w-(--drawer-size) max-w-full", className),
+      children: [
+        resizable && /* @__PURE__ */ jsx(
+          "div",
+          {
+            role: "separator",
+            tabIndex: 0,
+            "aria-orientation": bottom ? "horizontal" : "vertical",
+            "aria-label": l.resizePanel,
+            "aria-valuemin": minSize,
+            "aria-valuemax": maxSize,
+            "aria-valuenow": clamp(size),
+            onKeyDown,
+            onPointerDown: (e) => {
+              e.currentTarget.setPointerCapture?.(e.pointerId);
+              drag.current = { x: e.clientX, y: e.clientY, size: clamp(size) };
+            },
+            onPointerMove: (e) => {
+              const d = drag.current;
+              if (d) setSize(clamp(d.size + grow(e.clientX - d.x, e.clientY - d.y)));
+            },
+            onPointerUp: () => drag.current = null,
+            onPointerCancel: () => drag.current = null,
+            className: cn(
+              "absolute z-10 touch-none outline-none hover:bg-primary-light focus-visible:bg-primary-light focus-visible:ring-2 focus-visible:ring-primary/50",
+              bottom ? "inset-x-0 -top-1 h-2 cursor-row-resize" : cn("inset-y-0 w-2 cursor-col-resize", placement === "end" ? "-start-1" : "-end-1")
+            )
+          }
+        ),
+        /* @__PURE__ */ jsxs("div", { className: "flex shrink-0 items-center gap-2 border-b border-line px-4 py-3", children: [
+          icon && /* @__PURE__ */ jsx("span", { "aria-hidden": true, className: "flex shrink-0 text-muted", children: icon }),
+          /* @__PURE__ */ jsx("h2", { id: titleId, className: "min-w-0 flex-1 truncate text-base font-semibold text-fg", children: title }),
+          actions,
+          toggle,
+          closable && /* @__PURE__ */ jsx("button", { type: "button", onClick: () => setOpen(false), "aria-label": l.closePanel, className: "popup-close", children: /* @__PURE__ */ jsx(X, { "aria-hidden": true, className: "size-4" }) })
+        ] }),
+        /* @__PURE__ */ jsx("div", { className: "min-h-0 flex-1 overflow-auto px-4 py-3 text-sm text-muted", children }),
+        footer && /* @__PURE__ */ jsx("div", { className: "flex shrink-0 justify-end gap-2.5 border-t border-line px-4 py-3", children: footer })
+      ]
+    }
+  );
+}
+var InlineDrawer = DrawerPanel;
+
+export { AccountItem, AccountList, ActionBar, ActionGroup, ActivityTimeline, AdminShell, AlarmList, AllowListEditor, ApiKeyManager, AppFooter, AppFrame, AuditLog, AuthFooter, AvatarGroup, BarChart, BrandHeader, BrandingEditor, ButtonGroup, CapacityBar, CidrInput, ClientInfo, ClipboardCopy, CodeBlock, CodeBlockCode, CodeDisplay, CodeEditor, CodeEditorLite, CodeInput, ColorField, CommandPalette, ConfirmDialog, ConsoleFrame, ContextMenu, ContextMenuContent, ContextMenuFor, ContextMenuItem, ContextMenuSeparator, ContextMenuTrigger, CopyButton, DataGrid, DatastoreBrowser, DatePicker, DateTimeInput, DefinitionList, DescriptionList, DescriptionListDescription, DescriptionListGroup, DescriptionListTerm, DetailPage, DeviceSelector, DeviceSteps, DiffView, Divider, DockedTaskPanel, Donut, DrawerPanel, Dropdown, DropdownGroup, DropdownItem, DropdownList, DropdownSeparator, ErrorPage, ErrorSummary, EventConsole, FileDropzone, FilterBar, Flex, FlexItem, Form, FormField, FormFooter, FormGroup, FormHelperText, FormPage, FormSection, Gauge, Grid, GridColumnsMenu, GridDensityToggle, GridItem, GridSearch, HardwareEditor, Heatmap, HelperText, HelperTextItem, HotkeysProvider, HoverCard, IconButton, InfoBox, InlineDrawer, InlineEdit, InventoryLayout, IpInput, IssueCard, IssueRow, Kbd, Label3 as Label, LabelPicker, LabelSwatch, LafErrorBoundary, LanguageSwitcher, Masthead, MastheadActions, MastheadBrand, MastheadContent, MastheadToggle, Menu, MenuShortcut, MenuToggle, MfaEnrolment, MobileNav, Modal, ModalBody, ModalClose, ModalFooter, ModalHeader, ModalTrigger, NavGroup, NavLink, NavTree, NotificationCenter, ObjectIcon, ObjectPage, OptionPicker, OtpInput, OverflowTabs, PageHeader, PageSection, Pagination, PasswordField, PermissionAssignDialog, Progress, ProgressSummary, PropertiesPane, Reactions, ReauthDialog, RelativeTime, SavedViews, ScopeList, SecretDisplay, SecurityFactors, SegmentedControl, SelectMenu, SessionExpiryDialog, SessionList, ShortcutHelp, Sidebar, SnapshotTree, SocialButton, SocialButtons, SocialDivider, SplitButton, Stack, StackItem, StackedBarChart, StatusDot, Stepper, SubNav, Table, TaskPanel, ThemeToggle, Title4 as Title, Toolbar, ToolbarActions, ToolbarBulk, ToolbarContent, ToolbarDivider, ToolbarFilterChips, ToolbarGroup, ToolbarItem, ToolbarSpacer, TopBar, TopologyGraph, TransferList, TreeTable, TreeView, UnsavedChangesDialog, UserCell, UserMenu, UserSelector, Wizard, WizardReview, contrastRatio, formatHotkey, formatRelative, highlight, isCidr, isIPv4, isIPv6, isIp, isMacPlatform, normalizeHex, parseCidr, parseFilter, parseHotkey, registerObjectKind, serializeFilter, serializeToken, useAppFrame, useHotkeys, useRegisteredHotkeys, useSavedViews, useUnsavedChangesGuard };
 //# sourceMappingURL=index.js.map
 //# sourceMappingURL=index.js.map

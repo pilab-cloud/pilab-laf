@@ -1,8 +1,8 @@
 'use strict';
 
-var chunkOKADVGBW_cjs = require('./chunk-OKADVGBW.cjs');
-var chunk5WBFJQAZ_cjs = require('./chunk-5WBFJQAZ.cjs');
-var chunkQ6OCMENQ_cjs = require('./chunk-Q6OCMENQ.cjs');
+var chunkAN24WGJJ_cjs = require('./chunk-AN24WGJJ.cjs');
+var chunkXNG22HMC_cjs = require('./chunk-XNG22HMC.cjs');
+var chunkGWTYGDXC_cjs = require('./chunk-GWTYGDXC.cjs');
 var chunkIP6HZMS5_cjs = require('./chunk-IP6HZMS5.cjs');
 var chunkFTHFEMX6_cjs = require('./chunk-FTHFEMX6.cjs');
 var lucideReact = require('lucide-react');
@@ -12,7 +12,7 @@ var SelectPrimitive = require('@radix-ui/react-select');
 var ToggleGroupPrimitive = require('@radix-ui/react-toggle-group');
 var TooltipPrimitive = require('@radix-ui/react-tooltip');
 var ContextPrimitive = require('@radix-ui/react-context-menu');
-var DialogPrimitive2 = require('@radix-ui/react-dialog');
+var DialogPrimitive3 = require('@radix-ui/react-dialog');
 var DropdownPrimitive2 = require('@radix-ui/react-dropdown-menu');
 var PopoverPrimitive = require('@radix-ui/react-popover');
 var reactVirtual = require('@tanstack/react-virtual');
@@ -43,20 +43,17 @@ var SelectPrimitive__namespace = /*#__PURE__*/_interopNamespace(SelectPrimitive)
 var ToggleGroupPrimitive__namespace = /*#__PURE__*/_interopNamespace(ToggleGroupPrimitive);
 var TooltipPrimitive__namespace = /*#__PURE__*/_interopNamespace(TooltipPrimitive);
 var ContextPrimitive__namespace = /*#__PURE__*/_interopNamespace(ContextPrimitive);
-var DialogPrimitive2__namespace = /*#__PURE__*/_interopNamespace(DialogPrimitive2);
+var DialogPrimitive3__namespace = /*#__PURE__*/_interopNamespace(DialogPrimitive3);
 var DropdownPrimitive2__namespace = /*#__PURE__*/_interopNamespace(DropdownPrimitive2);
 var PopoverPrimitive__namespace = /*#__PURE__*/_interopNamespace(PopoverPrimitive);
 var HoverCardPrimitive__namespace = /*#__PURE__*/_interopNamespace(HoverCardPrimitive);
 
-function Toolbar({ className, ...props }) {
-  return /* @__PURE__ */ jsxRuntime.jsx("div", { className: chunkFTHFEMX6_cjs.cn("toolbar", className), ...props });
-}
 function Table({ className, children, ...props }) {
   return /* @__PURE__ */ jsxRuntime.jsx("div", { className: "table-wrap", children: /* @__PURE__ */ jsxRuntime.jsx("table", { className: chunkFTHFEMX6_cjs.cn("table", className), ...props, children }) });
 }
 function UserCell({ name, email }) {
   return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "cell-user", children: [
-    /* @__PURE__ */ jsxRuntime.jsx(chunkOKADVGBW_cjs.Avatar, { name }),
+    /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Avatar, { name }),
     /* @__PURE__ */ jsxRuntime.jsxs("div", { children: [
       /* @__PURE__ */ jsxRuntime.jsx("div", { children: name }),
       email && /* @__PURE__ */ jsxRuntime.jsx("div", { className: "cell-sub", children: email })
@@ -74,7 +71,7 @@ function pageWindow(page, count) {
   return out;
 }
 function Pagination({ page, pageCount, total, pageSize, onPageChange }) {
-  const { t } = chunkQ6OCMENQ_cjs.useLaf();
+  const { t } = chunkGWTYGDXC_cjs.useLaf();
   const from = total && pageSize ? (page - 1) * pageSize + 1 : void 0;
   const to = total && pageSize ? Math.min(page * pageSize, total) : void 0;
   return /* @__PURE__ */ jsxRuntime.jsxs("nav", { className: "pagination", "aria-label": t.pagination, children: [
@@ -137,7 +134,7 @@ function UserSelector({
   disabled,
   label: labelProp
 }) {
-  const { t } = chunkQ6OCMENQ_cjs.useLaf();
+  const { t } = chunkGWTYGDXC_cjs.useLaf();
   const placeholder = placeholderProp ?? t.searchUsers;
   const label = labelProp ?? t.users;
   const limitReached = max !== void 0 && value.length >= max;
@@ -153,7 +150,7 @@ function UserSelector({
   );
   const opts = value.map(toOption);
   return /* @__PURE__ */ jsxRuntime.jsx(
-    chunkOKADVGBW_cjs.Combobox,
+    chunkAN24WGJJ_cjs.Combobox,
     {
       label,
       placeholder,
@@ -163,7 +160,7 @@ function UserSelector({
       value: opts,
       emptyText: limitReached ? `Limit of ${max} reached` : void 0,
       renderOption: (o) => /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
-        /* @__PURE__ */ jsxRuntime.jsx(chunkOKADVGBW_cjs.Avatar, { name: o.label }),
+        /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Avatar, { name: o.label }),
         /* @__PURE__ */ jsxRuntime.jsxs("span", { className: "flex flex-col", children: [
           /* @__PURE__ */ jsxRuntime.jsx("span", { children: o.label }),
           o.description && /* @__PURE__ */ jsxRuntime.jsx("span", { className: "text-xs text-subtle", children: o.description })
@@ -217,7 +214,7 @@ function AuditLog({ events }) {
           e.action,
           e.target && /* @__PURE__ */ jsxRuntime.jsx("small", { children: e.target })
         ] }),
-        e.result ? /* @__PURE__ */ jsxRuntime.jsx(chunkOKADVGBW_cjs.Badge, { tone: badgeTone[e.severity], children: e.result }) : /* @__PURE__ */ jsxRuntime.jsx("span", {})
+        e.result ? /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Badge, { tone: badgeTone[e.severity], children: e.result }) : /* @__PURE__ */ jsxRuntime.jsx("span", {})
       ] }),
       e.details && /* @__PURE__ */ jsxRuntime.jsx("dl", { className: "audit-detail", children: Object.entries(e.details).map(([k, v]) => /* @__PURE__ */ jsxRuntime.jsxs("div", { children: [
         /* @__PURE__ */ jsxRuntime.jsx("dt", { children: k }),
@@ -311,7 +308,7 @@ function OtpInput({
 }) {
   const [inner, setInner] = React25__namespace.useState(defaultValue);
   const current = value ?? inner;
-  const { t: laf } = chunkQ6OCMENQ_cjs.useLaf();
+  const { t: laf } = chunkGWTYGDXC_cjs.useLaf();
   return /* @__PURE__ */ jsxRuntime.jsx(
     "input",
     {
@@ -352,7 +349,7 @@ function CodeDisplay({
   copiedLabel: copiedLabelProp,
   className
 }) {
-  const { t: laf } = chunkQ6OCMENQ_cjs.useLaf();
+  const { t: laf } = chunkGWTYGDXC_cjs.useLaf();
   const copyLabel = copyLabelProp ?? laf.copyCode;
   const copiedLabel = copiedLabelProp ?? laf.copied;
   const [copied, setCopied] = React25__namespace.useState(false);
@@ -410,7 +407,7 @@ function LanguageSwitcher({
   className,
   label
 }) {
-  const { t: laf } = chunkQ6OCMENQ_cjs.useLaf();
+  const { t: laf } = chunkGWTYGDXC_cjs.useLaf();
   return /* @__PURE__ */ jsxRuntime.jsx("nav", { className: chunkFTHFEMX6_cjs.cn("lang-switch", className), "aria-label": label ?? laf.language, children: languages.map((l) => /* @__PURE__ */ jsxRuntime.jsx(
     "a",
     {
@@ -439,7 +436,7 @@ function CopyButton({
   copiedLabel: copiedLabelProp,
   className
 }) {
-  const { t } = chunkQ6OCMENQ_cjs.useLaf();
+  const { t } = chunkGWTYGDXC_cjs.useLaf();
   const label = labelProp ?? t.copy;
   const copiedLabel = copiedLabelProp ?? t.copied;
   const [copied, setCopied] = React25__namespace.useState(false);
@@ -490,7 +487,7 @@ function PasswordField({
   const score = strength ? strength(current) : 0;
   const mismatch = confirmOf !== void 0 && current !== "" && current !== confirmOf;
   const uid = React25__namespace.useId();
-  const { t } = chunkQ6OCMENQ_cjs.useLaf();
+  const { t } = chunkGWTYGDXC_cjs.useLaf();
   const showLabel = showLabelProp ?? t.showPassword;
   const hideLabel = hideLabelProp ?? t.hidePassword;
   const strengthLabels = strengthLabelsProp ?? t.passwordStrength;
@@ -501,7 +498,7 @@ function PasswordField({
   return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "grid gap-1", children: [
     /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "relative", children: [
       /* @__PURE__ */ jsxRuntime.jsx(
-        chunkOKADVGBW_cjs.Input,
+        chunkAN24WGJJ_cjs.Input,
         {
           ...props,
           type: visible ? "text" : "password",
@@ -567,7 +564,7 @@ function ConfirmDialog({
   pending,
   onConfirm
 }) {
-  const { t: laf } = chunkQ6OCMENQ_cjs.useLaf();
+  const { t: laf } = chunkGWTYGDXC_cjs.useLaf();
   const cancelLabel = cancelLabelProp ?? laf.cancel;
   const confirmTextLabel = confirmTextLabelProp ?? laf.typeToConfirm;
   const [typed, setTyped] = React25__namespace.useState("");
@@ -575,13 +572,13 @@ function ConfirmDialog({
     if (!open) setTyped("");
   }, [open]);
   const blocked = confirmText !== void 0 && typed !== confirmText;
-  return /* @__PURE__ */ jsxRuntime.jsx(chunkOKADVGBW_cjs.Dialog, { open, onOpenChange, children: /* @__PURE__ */ jsxRuntime.jsxs(
-    chunkOKADVGBW_cjs.DialogContent,
+  return /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Dialog, { open, onOpenChange, children: /* @__PURE__ */ jsxRuntime.jsxs(
+    chunkAN24WGJJ_cjs.DialogContent,
     {
       role: "alertdialog",
       title,
       footer: /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
-        /* @__PURE__ */ jsxRuntime.jsx(chunkOKADVGBW_cjs.DialogClose, { asChild: true, children: /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { variant: "secondary", size: "sm", autoFocus: true, children: cancelLabel }) }),
+        /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.DialogClose, { asChild: true, children: /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { variant: "secondary", size: "sm", autoFocus: true, children: cancelLabel }) }),
         /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { variant: "danger", size: "sm", loading: pending, disabled: blocked, onClick: onConfirm, children: confirmLabel })
       ] }),
       children: [
@@ -593,7 +590,7 @@ function ConfirmDialog({
             ": ",
             /* @__PURE__ */ jsxRuntime.jsx("b", { className: "font-mono text-fg", children: confirmText })
           ] }),
-          /* @__PURE__ */ jsxRuntime.jsx(chunkOKADVGBW_cjs.Input, { value: typed, onChange: (e) => setTyped(e.target.value), autoComplete: "off" })
+          /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Input, { value: typed, onChange: (e) => setTyped(e.target.value), autoComplete: "off" })
         ] })
       ]
     }
@@ -677,7 +674,7 @@ function SecretDisplay({
   acknowledged,
   masked = false
 }) {
-  const { t: laf } = chunkQ6OCMENQ_cjs.useLaf();
+  const { t: laf } = chunkGWTYGDXC_cjs.useLaf();
   const shown = masked ? `${"\u2022".repeat(Math.max(0, Math.min(value.length - 4, 12)))}${value.slice(-4)}` : value;
   return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "grid gap-2.5", children: [
     /* @__PURE__ */ jsxRuntime.jsx("span", { className: "form-label", children: label }),
@@ -703,7 +700,7 @@ function TaskPanel({
   docked,
   labels: labelsProp
 }) {
-  const { t: laf, format: format2 } = chunkQ6OCMENQ_cjs.useLaf();
+  const { t: laf, format: format2 } = chunkGWTYGDXC_cjs.useLaf();
   const labels = {
     cancel: laf.cancel,
     retry: laf.retry,
@@ -774,7 +771,7 @@ function TaskPanel({
             t.name,
             t.target && (onOpenTarget ? /* @__PURE__ */ jsxRuntime.jsx("button", { type: "button", className: chunkFTHFEMX6_cjs.cn(linkBtn, "ms-2 font-normal"), onClick: () => onOpenTarget(t), children: t.target }) : /* @__PURE__ */ jsxRuntime.jsx("span", { className: "ms-2 font-normal text-muted", children: t.target }))
           ] }),
-          /* @__PURE__ */ jsxRuntime.jsx("span", { "aria-live": "polite", children: /* @__PURE__ */ jsxRuntime.jsx(chunkOKADVGBW_cjs.Badge, { tone: taskTone[t.status], children: t.status }) }),
+          /* @__PURE__ */ jsxRuntime.jsx("span", { "aria-live": "polite", children: /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Badge, { tone: taskTone[t.status], children: t.status }) }),
           t.status === "running" && onCancel && /* @__PURE__ */ jsxRuntime.jsx("button", { type: "button", className: linkBtn, onClick: () => onCancel(t.id), children: labels.cancel }),
           t.status === "failed" && onRetry && /* @__PURE__ */ jsxRuntime.jsx("button", { type: "button", className: linkBtn, onClick: () => onRetry(t.id), children: labels.retry })
         ] }),
@@ -798,28 +795,28 @@ function UserMenu({
   expiryWarnMs = 3e5,
   expiryLabel = (r) => `Session expires in ${r}`
 }) {
-  const { t: laf, format: format2 } = chunkQ6OCMENQ_cjs.useLaf();
+  const { t: laf, format: format2 } = chunkGWTYGDXC_cjs.useLaf();
   const signOutLabel = signOutLabelProp ?? laf.signOut;
   const remainingMs = expiresAt === void 0 ? void 0 : new Date(expiresAt).getTime() - Date.now();
   const showExpiry = remainingMs !== void 0 && remainingMs <= expiryWarnMs;
-  return /* @__PURE__ */ jsxRuntime.jsxs(chunkOKADVGBW_cjs.DropdownMenu, { children: [
-    /* @__PURE__ */ jsxRuntime.jsx(chunkOKADVGBW_cjs.DropdownMenuTrigger, { asChild: true, children: /* @__PURE__ */ jsxRuntime.jsx("button", { className: "border-0 bg-transparent p-0", children: /* @__PURE__ */ jsxRuntime.jsx(chunkOKADVGBW_cjs.Avatar, { name }) }) }),
-    /* @__PURE__ */ jsxRuntime.jsxs(chunkOKADVGBW_cjs.DropdownMenuContent, { children: [
-      /* @__PURE__ */ jsxRuntime.jsxs(chunkOKADVGBW_cjs.DropdownMenuLabel, { children: [
+  return /* @__PURE__ */ jsxRuntime.jsxs(chunkAN24WGJJ_cjs.DropdownMenu, { children: [
+    /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.DropdownMenuTrigger, { asChild: true, children: /* @__PURE__ */ jsxRuntime.jsx("button", { className: "border-0 bg-transparent p-0", children: /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Avatar, { name }) }) }),
+    /* @__PURE__ */ jsxRuntime.jsxs(chunkAN24WGJJ_cjs.DropdownMenuContent, { children: [
+      /* @__PURE__ */ jsxRuntime.jsxs(chunkAN24WGJJ_cjs.DropdownMenuLabel, { children: [
         /* @__PURE__ */ jsxRuntime.jsx("div", { className: "text-fg", children: name }),
         email && /* @__PURE__ */ jsxRuntime.jsx("div", { className: "text-xs font-normal text-muted", children: email }),
         tenant && /* @__PURE__ */ jsxRuntime.jsx("div", { className: "text-xs font-normal text-subtle", children: tenant })
       ] }),
-      (impersonating || showExpiry) && /* @__PURE__ */ jsxRuntime.jsx(chunkOKADVGBW_cjs.DropdownMenuSeparator, {}),
-      impersonating && /* @__PURE__ */ jsxRuntime.jsx(chunkOKADVGBW_cjs.DropdownMenuItem, { onSelect: impersonating.onStop, children: `${impersonating.stopLabel ?? "Stop impersonating"}: ${impersonating.as}` }),
+      (impersonating || showExpiry) && /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.DropdownMenuSeparator, {}),
+      impersonating && /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.DropdownMenuItem, { onSelect: impersonating.onStop, children: `${impersonating.stopLabel ?? "Stop impersonating"}: ${impersonating.as}` }),
       showExpiry && /* @__PURE__ */ jsxRuntime.jsx("div", { role: "status", className: "px-2 py-1.5 text-xs text-warn", children: expiryLabel(format2.duration(Math.max(0, remainingMs))) }),
-      /* @__PURE__ */ jsxRuntime.jsx(chunkOKADVGBW_cjs.DropdownMenuSeparator, {}),
-      items?.map((it) => /* @__PURE__ */ jsxRuntime.jsxs(chunkOKADVGBW_cjs.DropdownMenuItem, { onSelect: it.onSelect, children: [
+      /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.DropdownMenuSeparator, {}),
+      items?.map((it) => /* @__PURE__ */ jsxRuntime.jsxs(chunkAN24WGJJ_cjs.DropdownMenuItem, { onSelect: it.onSelect, children: [
         it.icon,
         it.label
       ] }, it.id)),
-      items && items.length > 0 && /* @__PURE__ */ jsxRuntime.jsx(chunkOKADVGBW_cjs.DropdownMenuSeparator, {}),
-      /* @__PURE__ */ jsxRuntime.jsxs(chunkOKADVGBW_cjs.DropdownMenuItem, { danger: true, onSelect: onSignOut, children: [
+      items && items.length > 0 && /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.DropdownMenuSeparator, {}),
+      /* @__PURE__ */ jsxRuntime.jsxs(chunkAN24WGJJ_cjs.DropdownMenuItem, { danger: true, onSelect: onSignOut, children: [
         /* @__PURE__ */ jsxRuntime.jsx(lucideReact.LogOut, { "aria-hidden": true }),
         signOutLabel
       ] })
@@ -1004,7 +1001,7 @@ function formatRelative(date, now, locale) {
   return rtf.format(Math.round(diff / secs), unit);
 }
 function RelativeTime({ value, className }) {
-  const { locale } = chunkQ6OCMENQ_cjs.useLaf();
+  const { locale } = chunkGWTYGDXC_cjs.useLaf();
   const now = React25__namespace.useSyncExternalStore(subscribeTick, getTick, getTick);
   const date = new Date(value);
   const local = date.toLocaleString(locale);
@@ -1033,7 +1030,7 @@ function ButtonGroup({ className, ...props }) {
     }
   );
 }
-var lafDefaults = { ui: chunkOKADVGBW_cjs.uiEn };
+var lafDefaults = { ui: chunkAN24WGJJ_cjs.uiEn };
 function SplitButton({
   children,
   onClick,
@@ -1044,13 +1041,13 @@ function SplitButton({
   menu,
   className
 }) {
-  const { t } = chunkQ6OCMENQ_cjs.useLafDefaults(lafDefaults);
+  const { t } = chunkGWTYGDXC_cjs.useLafDefaults(lafDefaults);
   const menuLabel = menuLabelProp ?? t.components.ui.splitButton.more;
   return /* @__PURE__ */ jsxRuntime.jsxs(ButtonGroup, { className, children: [
     /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { variant, size, disabled, onClick, children }),
-    /* @__PURE__ */ jsxRuntime.jsxs(chunkOKADVGBW_cjs.DropdownMenu, { children: [
-      /* @__PURE__ */ jsxRuntime.jsx(chunkOKADVGBW_cjs.DropdownMenuTrigger, { asChild: true, children: /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { variant, size, disabled, "aria-label": menuLabel, className: "px-2", children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.ChevronDown, { "aria-hidden": true }) }) }),
-      /* @__PURE__ */ jsxRuntime.jsx(chunkOKADVGBW_cjs.DropdownMenuContent, { children: menu })
+    /* @__PURE__ */ jsxRuntime.jsxs(chunkAN24WGJJ_cjs.DropdownMenu, { children: [
+      /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.DropdownMenuTrigger, { asChild: true, children: /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { variant, size, disabled, "aria-label": menuLabel, className: "px-2", children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.ChevronDown, { "aria-hidden": true }) }) }),
+      /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.DropdownMenuContent, { children: menu })
     ] })
   ] });
 }
@@ -1064,7 +1061,7 @@ function AvatarGroup({
   const rest = users.slice(max);
   const ring = "ring-2 ring-surface";
   return /* @__PURE__ */ jsxRuntime.jsxs("div", { role: "group", "aria-label": users.map((u) => u.name).join(", "), className: chunkFTHFEMX6_cjs.cn("flex items-center", className), children: [
-    shown.map((u, i) => /* @__PURE__ */ jsxRuntime.jsx(chunkOKADVGBW_cjs.Avatar, { name: u.name, src: u.src, size, className: chunkFTHFEMX6_cjs.cn(ring, i > 0 && "-ms-2") }, `${u.name}-${i}`)),
+    shown.map((u, i) => /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Avatar, { name: u.name, src: u.src, size, className: chunkFTHFEMX6_cjs.cn(ring, i > 0 && "-ms-2") }, `${u.name}-${i}`)),
     rest.length > 0 && /* @__PURE__ */ jsxRuntime.jsx(Tip, { content: rest.map((u) => u.name).join(", "), children: /* @__PURE__ */ jsxRuntime.jsxs(
       "span",
       {
@@ -1098,7 +1095,7 @@ function InlineEdit({
   min,
   max
 }) {
-  const { t: laf } = chunkQ6OCMENQ_cjs.useLaf();
+  const { t: laf } = chunkGWTYGDXC_cjs.useLaf();
   const [editing, setEditing] = React25__namespace.useState(false);
   const [text, setText] = React25__namespace.useState(value);
   const [error, setError] = React25__namespace.useState();
@@ -1168,7 +1165,7 @@ function InlineEdit({
         children: options?.map((o) => /* @__PURE__ */ jsxRuntime.jsx("option", { value: o.value, children: o.label }, o.value))
       }
     ) : /* @__PURE__ */ jsxRuntime.jsx(
-      chunkOKADVGBW_cjs.Input,
+      chunkAN24WGJJ_cjs.Input,
       {
         autoFocus: true,
         "aria-label": label,
@@ -1196,7 +1193,7 @@ function FileDropzone({
   multiple = true,
   label: labelProp
 }) {
-  const { t: laf } = chunkQ6OCMENQ_cjs.useLaf();
+  const { t: laf } = chunkGWTYGDXC_cjs.useLaf();
   const label = labelProp ?? laf.dropFiles;
   const input = React25__namespace.useRef(null);
   const [over, setOver] = React25__namespace.useState(false);
@@ -1204,7 +1201,7 @@ function FileDropzone({
   const take = (list) => {
     if (!list) return;
     const all = [...list];
-    const typed = all.filter((f) => chunk5WBFJQAZ_cjs.matchesAccept(f, accept));
+    const typed = all.filter((f) => chunkXNG22HMC_cjs.matchesAccept(f, accept));
     const ok = maxSize ? typed.filter((f) => f.size <= maxSize) : typed;
     const badType = all.length - typed.length;
     const tooBig = typed.length - ok.length;
@@ -1243,7 +1240,7 @@ function FileDropzone({
     rejected && /* @__PURE__ */ jsxRuntime.jsx("p", { className: "field-error", role: "alert", children: rejected }),
     files.length > 0 && /* @__PURE__ */ jsxRuntime.jsx("ul", { className: "divide-y divide-line rounded-md border border-line text-sm", children: files.map((f) => /* @__PURE__ */ jsxRuntime.jsxs("li", { className: "flex items-center gap-3 px-3 py-2", children: [
       /* @__PURE__ */ jsxRuntime.jsx("span", { className: "min-w-0 flex-1 truncate text-fg", children: f.name }),
-      /* @__PURE__ */ jsxRuntime.jsx("span", { className: "font-mono text-xs text-subtle", children: chunk5WBFJQAZ_cjs.format.bytes(f.size) }),
+      /* @__PURE__ */ jsxRuntime.jsx("span", { className: "font-mono text-xs text-subtle", children: chunkXNG22HMC_cjs.format.bytes(f.size) }),
       f.error ? /* @__PURE__ */ jsxRuntime.jsx("span", { className: "text-xs text-danger", children: f.error }) : f.progress !== void 0 && f.progress < 100 ? /* @__PURE__ */ jsxRuntime.jsxs("span", { className: "font-mono text-xs text-muted", children: [
         f.progress,
         "%"
@@ -1261,7 +1258,7 @@ function AlarmList({
   selectable,
   empty: emptyProp
 }) {
-  const { t: laf } = chunkQ6OCMENQ_cjs.useLaf();
+  const { t: laf } = chunkGWTYGDXC_cjs.useLaf();
   const empty = emptyProp ?? laf.noActiveAlarms;
   const [selected, setSelected] = React25__namespace.useState(() => /* @__PURE__ */ new Set());
   const chosen = alarms.filter((a) => selected.has(a.id));
@@ -1307,7 +1304,7 @@ function AlarmList({
     ] }),
     /* @__PURE__ */ jsxRuntime.jsx("ul", { className: "divide-y divide-line overflow-hidden rounded-lg border border-line bg-surface", children: alarms.map((a) => /* @__PURE__ */ jsxRuntime.jsxs("li", { className: "flex items-center gap-3 px-4 py-3 text-sm", children: [
       selectable && /* @__PURE__ */ jsxRuntime.jsx("input", { type: "checkbox", "aria-label": `${laf.vsSelectAlarm}: ${a.name}`, checked: selected.has(a.id), onChange: () => toggle(a.id) }),
-      /* @__PURE__ */ jsxRuntime.jsx(chunkOKADVGBW_cjs.Badge, { tone: alarmTone[a.severity], children: a.severity }),
+      /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Badge, { tone: alarmTone[a.severity], children: a.severity }),
       /* @__PURE__ */ jsxRuntime.jsxs("span", { className: "min-w-0 flex-1", children: [
         /* @__PURE__ */ jsxRuntime.jsx("b", { className: "font-semibold text-fg", children: a.name }),
         onOpenEntity ? /* @__PURE__ */ jsxRuntime.jsx("button", { type: "button", className: chunkFTHFEMX6_cjs.cn(linkBtn, "ms-2"), onClick: () => onOpenEntity(a), children: a.entity }) : /* @__PURE__ */ jsxRuntime.jsx("span", { className: "ms-2 text-muted", children: a.entity })
@@ -1364,7 +1361,7 @@ function BarChart({ data, label }) {
   ] }, d.name)) });
 }
 function DateTimeInput({ mode = "date", className, ...props }) {
-  return /* @__PURE__ */ jsxRuntime.jsx(chunkOKADVGBW_cjs.Input, { type: mode, className: chunkFTHFEMX6_cjs.cn("font-mono [color-scheme:dark]", className), ...props });
+  return /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Input, { type: mode, className: chunkFTHFEMX6_cjs.cn("font-mono [color-scheme:dark]", className), ...props });
 }
 function FormField({
   id: idProp,
@@ -1386,7 +1383,7 @@ function FormField({
   ] });
 }
 function ErrorSummary({ errors, title: titleProp }) {
-  const { t: laf } = chunkQ6OCMENQ_cjs.useLaf();
+  const { t: laf } = chunkGWTYGDXC_cjs.useLaf();
   const title = titleProp ?? laf.fixFollowing;
   if (errors.length === 0) return null;
   return /* @__PURE__ */ jsxRuntime.jsx("div", { role: "alert", className: "alert alert-error", children: /* @__PURE__ */ jsxRuntime.jsxs("div", { children: [
@@ -1397,7 +1394,7 @@ function ErrorSummary({ errors, title: titleProp }) {
 var ContextMenu = ContextPrimitive__namespace.Root;
 var ContextMenuTrigger = ContextPrimitive__namespace.Trigger;
 function ContextMenuContent({ className, ...props }) {
-  const container = chunkQ6OCMENQ_cjs.usePortalContainer();
+  const container = chunkGWTYGDXC_cjs.usePortalContainer();
   return /* @__PURE__ */ jsxRuntime.jsx(ContextPrimitive__namespace.Portal, { container, children: /* @__PURE__ */ jsxRuntime.jsx(ContextPrimitive__namespace.Content, { className: chunkFTHFEMX6_cjs.cn("dropdown-menu relative! top-auto! start-auto! z-30 min-w-48", className), ...props }) });
 }
 function ContextMenuItem({ danger, className, ...props }) {
@@ -1422,8 +1419,8 @@ function CommandPalette({
   recent,
   onCommandRun
 }) {
-  const { t } = chunkQ6OCMENQ_cjs.useLaf();
-  const portalContainer = chunkQ6OCMENQ_cjs.usePortalContainer();
+  const { t } = chunkGWTYGDXC_cjs.useLaf();
+  const portalContainer = chunkGWTYGDXC_cjs.usePortalContainer();
   const placeholder = placeholderProp ?? t.commandPlaceholder;
   const emptyText = emptyTextProp ?? t.noResults;
   const [query, setQuery] = React25__namespace.useState("");
@@ -1497,15 +1494,15 @@ function CommandPalette({
     onCommandRun?.(c);
   };
   let flat = 0;
-  return /* @__PURE__ */ jsxRuntime.jsx(DialogPrimitive2__namespace.Root, { open, onOpenChange, children: /* @__PURE__ */ jsxRuntime.jsxs(DialogPrimitive2__namespace.Portal, { container: portalContainer, children: [
-    /* @__PURE__ */ jsxRuntime.jsx(DialogPrimitive2__namespace.Overlay, { className: "fixed inset-0 z-50 bg-[rgba(5,5,10,0.7)] backdrop-blur-xs" }),
+  return /* @__PURE__ */ jsxRuntime.jsx(DialogPrimitive3__namespace.Root, { open, onOpenChange, children: /* @__PURE__ */ jsxRuntime.jsxs(DialogPrimitive3__namespace.Portal, { container: portalContainer, children: [
+    /* @__PURE__ */ jsxRuntime.jsx(DialogPrimitive3__namespace.Overlay, { className: "fixed inset-0 z-50 bg-[rgba(5,5,10,0.7)] backdrop-blur-xs" }),
     /* @__PURE__ */ jsxRuntime.jsxs(
-      DialogPrimitive2__namespace.Content,
+      DialogPrimitive3__namespace.Content,
       {
         "aria-describedby": void 0,
         className: "popup fixed top-[20%] start-1/2 z-50 w-[min(36rem,calc(100vw-2rem))] -translate-x-1/2 rtl:translate-x-1/2 overflow-hidden p-0",
         children: [
-          /* @__PURE__ */ jsxRuntime.jsx(DialogPrimitive2__namespace.Title, { className: "sr-only", children: t.commandPalette }),
+          /* @__PURE__ */ jsxRuntime.jsx(DialogPrimitive3__namespace.Title, { className: "sr-only", children: t.commandPalette }),
           /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex items-center gap-2 border-b border-line px-3", children: [
             /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Search, { className: "size-4 text-subtle", "aria-hidden": true }),
             /* @__PURE__ */ jsxRuntime.jsx(
@@ -1566,7 +1563,7 @@ function CommandPalette({
   ] }) });
 }
 function DiffView({ before, after, label, mode = "split" }) {
-  const ops = React25__namespace.useMemo(() => chunk5WBFJQAZ_cjs.diffLines(before, after), [before, after]);
+  const ops = React25__namespace.useMemo(() => chunkXNG22HMC_cjs.diffLines(before, after), [before, after]);
   const wrap = "overflow-auto rounded-md border border-line bg-black/30 font-mono text-[0.8125rem]";
   if (mode === "unified")
     return /* @__PURE__ */ jsxRuntime.jsx("div", { role: "group", "aria-label": label, className: wrap, children: ops.map((op, i) => /* @__PURE__ */ jsxRuntime.jsxs("div", { className: chunkFTHFEMX6_cjs.cn("px-3 whitespace-pre", op.type === "del" && "bg-danger-bg text-danger", op.type === "add" && "bg-ok-bg text-ok"), children: [
@@ -1592,7 +1589,7 @@ function DiffView({ before, after, label, mode = "split" }) {
   ] }, i)) });
 }
 function MfaEnrolment({ qr, secret, recoveryCodes, onVerify, onRegisterPasskey, onComplete, labels }) {
-  const { t: laf } = chunkQ6OCMENQ_cjs.useLaf();
+  const { t: laf } = chunkGWTYGDXC_cjs.useLaf();
   const l = {
     method: laf.mfaMethod,
     scan: laf.mfaScan,
@@ -1673,7 +1670,7 @@ function MfaEnrolment({ qr, secret, recoveryCodes, onVerify, onRegisterPasskey, 
     /* @__PURE__ */ jsxRuntime.jsx(Stepper, { steps, current: step, onStepClick: (i) => setStep(i) }),
     /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "card", children: [
       id === "m" && /* @__PURE__ */ jsxRuntime.jsx(
-        chunkOKADVGBW_cjs.RadioGroup,
+        chunkAN24WGJJ_cjs.RadioGroup,
         {
           name: "mfa-method",
           value: method,
@@ -1723,7 +1720,7 @@ var ISO_DATE = /^\d{4}-\d{2}-\d{2}$/;
 function DatePicker(props) {
   const { label: labelProp, placeholder: placeholderProp, min, max, disabledDates, showTimeZone } = props;
   const mode = props.mode ?? "date";
-  const { t: laf, timeZone } = chunkQ6OCMENQ_cjs.useLaf();
+  const { t: laf, timeZone } = chunkGWTYGDXC_cjs.useLaf();
   const label = labelProp ?? laf.chooseDate;
   const placeholder = placeholderProp ?? laf.datePlaceholder;
   const [open, setOpen] = React25__namespace.useState(false);
@@ -1769,9 +1766,9 @@ function DatePicker(props) {
   };
   const text = mode === "range" ? range.from && `${range.from} \u2013 ${range.to ?? "\u2026"}` : mode === "datetime" ? single && single.replace("T", " ") : single;
   const inRange = (v) => mode === "range" && !!range.from && !!range.to && v >= range.from && v <= range.to;
-  return /* @__PURE__ */ jsxRuntime.jsxs(chunkOKADVGBW_cjs.Popover, { open, onOpenChange: setOpen, children: [
-    /* @__PURE__ */ jsxRuntime.jsx(chunkOKADVGBW_cjs.PopoverTrigger, { asChild: true, children: /* @__PURE__ */ jsxRuntime.jsx("button", { type: "button", "aria-label": `${label}: ${text || placeholder}`, className: chunkFTHFEMX6_cjs.cn("input inline-flex items-center text-start font-mono", mode === "date" ? "w-44" : "w-56"), children: text || /* @__PURE__ */ jsxRuntime.jsx("span", { className: "text-muted", children: placeholder }) }) }),
-    /* @__PURE__ */ jsxRuntime.jsxs(chunkOKADVGBW_cjs.PopoverContent, { className: "w-64", children: [
+  return /* @__PURE__ */ jsxRuntime.jsxs(chunkAN24WGJJ_cjs.Popover, { open, onOpenChange: setOpen, children: [
+    /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.PopoverTrigger, { asChild: true, children: /* @__PURE__ */ jsxRuntime.jsx("button", { type: "button", "aria-label": `${label}: ${text || placeholder}`, className: chunkFTHFEMX6_cjs.cn("input inline-flex items-center text-start font-mono", mode === "date" ? "w-44" : "w-56"), children: text || /* @__PURE__ */ jsxRuntime.jsx("span", { className: "text-muted", children: placeholder }) }) }),
+    /* @__PURE__ */ jsxRuntime.jsxs(chunkAN24WGJJ_cjs.PopoverContent, { className: "w-64", children: [
       mode !== "range" && /* @__PURE__ */ jsxRuntime.jsx(
         "input",
         {
@@ -1901,15 +1898,15 @@ function OverflowTabs({
   moreLabel: moreLabelProp,
   onSelect
 }) {
-  const { t: laf } = chunkQ6OCMENQ_cjs.useLaf();
+  const { t: laf } = chunkGWTYGDXC_cjs.useLaf();
   const moreLabel = moreLabelProp ?? laf.moreTabs;
   const visible = tabs.slice(0, maxVisible);
   const rest = tabs.slice(maxVisible);
   return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex min-w-0 flex-wrap items-center", children: [
-    /* @__PURE__ */ jsxRuntime.jsx(chunkOKADVGBW_cjs.TabsList, { children: visible.map((t) => /* @__PURE__ */ jsxRuntime.jsx(chunkOKADVGBW_cjs.TabsTrigger, { value: t.value, children: t.label }, t.value)) }),
-    rest.length > 0 && /* @__PURE__ */ jsxRuntime.jsxs(chunkOKADVGBW_cjs.DropdownMenu, { children: [
-      /* @__PURE__ */ jsxRuntime.jsx(chunkOKADVGBW_cjs.DropdownMenuTrigger, { asChild: true, children: /* @__PURE__ */ jsxRuntime.jsx("button", { type: "button", "aria-label": moreLabel, className: "ms-1 border-0 bg-transparent px-2 text-muted hover:text-fg", children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.MoreHorizontal, { size: 16 }) }) }),
-      /* @__PURE__ */ jsxRuntime.jsx(chunkOKADVGBW_cjs.DropdownMenuContent, { children: rest.map((t) => /* @__PURE__ */ jsxRuntime.jsx(chunkOKADVGBW_cjs.DropdownMenuItem, { onSelect: () => onSelect(t.value), children: t.label }, t.value)) })
+    /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.TabsList, { children: visible.map((t) => /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.TabsTrigger, { value: t.value, children: t.label }, t.value)) }),
+    rest.length > 0 && /* @__PURE__ */ jsxRuntime.jsxs(chunkAN24WGJJ_cjs.DropdownMenu, { children: [
+      /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.DropdownMenuTrigger, { asChild: true, children: /* @__PURE__ */ jsxRuntime.jsx("button", { type: "button", "aria-label": moreLabel, className: "ms-1 border-0 bg-transparent px-2 text-muted hover:text-fg", children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.MoreHorizontal, { size: 16 }) }) }),
+      /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.DropdownMenuContent, { children: rest.map((t) => /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.DropdownMenuItem, { onSelect: () => onSelect(t.value), children: t.label }, t.value)) })
     ] })
   ] });
 }
@@ -1920,7 +1917,7 @@ function DockedTaskPanel({
   title: titleProp,
   defaultOpen = false
 }) {
-  const { t: laf } = chunkQ6OCMENQ_cjs.useLaf();
+  const { t: laf } = chunkGWTYGDXC_cjs.useLaf();
   const title = titleProp ?? laf.recentTasks;
   const [open, setOpen] = React25__namespace.useState(defaultOpen);
   const running = tasks.filter((t) => t.status === "running").length;
@@ -2075,35 +2072,35 @@ function disabledProps(d) {
   return d ? { disabled: true, title: typeof d === "string" ? d : void 0 } : {};
 }
 function renderItems(P, items) {
-  const X7 = P;
+  const X9 = P;
   return items.map((it, i) => {
     const key = "id" in it && it.id || `${it.type}-${i}`;
     switch (it.type) {
       case "separator":
-        return /* @__PURE__ */ jsxRuntime.jsx(X7.Separator, { className: "dropdown-sep" }, key);
+        return /* @__PURE__ */ jsxRuntime.jsx(X9.Separator, { className: "dropdown-sep" }, key);
       case "label":
-        return /* @__PURE__ */ jsxRuntime.jsx(X7.Label, { className: "dropdown-label", children: it.label }, key);
+        return /* @__PURE__ */ jsxRuntime.jsx(X9.Label, { className: "dropdown-label", children: it.label }, key);
       case "checkbox":
-        return /* @__PURE__ */ jsxRuntime.jsxs(X7.CheckboxItem, { className: chunkFTHFEMX6_cjs.cn(itemCls, "relative ps-8"), checked: it.checked, onCheckedChange: it.onCheckedChange, ...disabledProps(it.disabled), children: [
-          /* @__PURE__ */ jsxRuntime.jsx(X7.ItemIndicator, { className: "absolute start-3 inline-flex", children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Check, { className: "size-3.5", "aria-hidden": true }) }),
+        return /* @__PURE__ */ jsxRuntime.jsxs(X9.CheckboxItem, { className: chunkFTHFEMX6_cjs.cn(itemCls, "relative ps-8"), checked: it.checked, onCheckedChange: it.onCheckedChange, ...disabledProps(it.disabled), children: [
+          /* @__PURE__ */ jsxRuntime.jsx(X9.ItemIndicator, { className: "absolute start-3 inline-flex", children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Check, { className: "size-3.5", "aria-hidden": true }) }),
           it.label
         ] }, key);
       case "radio":
-        return /* @__PURE__ */ jsxRuntime.jsx(X7.RadioGroup, { value: it.value, onValueChange: it.onValueChange, children: it.options.map((o) => /* @__PURE__ */ jsxRuntime.jsxs(X7.RadioItem, { value: o.value, className: chunkFTHFEMX6_cjs.cn(itemCls, "relative ps-8"), children: [
-          /* @__PURE__ */ jsxRuntime.jsx(X7.ItemIndicator, { className: "absolute start-3.5 inline-flex", children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Circle, { className: "size-2 fill-current", "aria-hidden": true }) }),
+        return /* @__PURE__ */ jsxRuntime.jsx(X9.RadioGroup, { value: it.value, onValueChange: it.onValueChange, children: it.options.map((o) => /* @__PURE__ */ jsxRuntime.jsxs(X9.RadioItem, { value: o.value, className: chunkFTHFEMX6_cjs.cn(itemCls, "relative ps-8"), children: [
+          /* @__PURE__ */ jsxRuntime.jsx(X9.ItemIndicator, { className: "absolute start-3.5 inline-flex", children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Circle, { className: "size-2 fill-current", "aria-hidden": true }) }),
           o.label
         ] }, o.value)) }, key);
       case "submenu":
-        return /* @__PURE__ */ jsxRuntime.jsxs(X7.Sub, { children: [
-          /* @__PURE__ */ jsxRuntime.jsxs(X7.SubTrigger, { className: itemCls, ...disabledProps(it.disabled), children: [
+        return /* @__PURE__ */ jsxRuntime.jsxs(X9.Sub, { children: [
+          /* @__PURE__ */ jsxRuntime.jsxs(X9.SubTrigger, { className: itemCls, ...disabledProps(it.disabled), children: [
             it.icon,
             it.label,
             /* @__PURE__ */ jsxRuntime.jsx(lucideReact.ChevronRight, { className: "ms-auto size-3.5 rtl:rotate-180", "aria-hidden": true })
           ] }),
-          /* @__PURE__ */ jsxRuntime.jsx(X7.Portal, { children: /* @__PURE__ */ jsxRuntime.jsx(X7.SubContent, { sideOffset: 2, alignOffset: -4, className: contentCls, children: renderItems(P, it.items) }) })
+          /* @__PURE__ */ jsxRuntime.jsx(X9.Portal, { children: /* @__PURE__ */ jsxRuntime.jsx(X9.SubContent, { sideOffset: 2, alignOffset: -4, className: contentCls, children: renderItems(P, it.items) }) })
         ] }, key);
       default:
-        return /* @__PURE__ */ jsxRuntime.jsxs(X7.Item, { className: chunkFTHFEMX6_cjs.cn(itemCls, it.danger && "danger"), onSelect: () => it.onSelect(), ...disabledProps(it.disabled), children: [
+        return /* @__PURE__ */ jsxRuntime.jsxs(X9.Item, { className: chunkFTHFEMX6_cjs.cn(itemCls, it.danger && "danger"), onSelect: () => it.onSelect(), ...disabledProps(it.disabled), children: [
           it.icon,
           it.label,
           it.shortcut && /* @__PURE__ */ jsxRuntime.jsx(MenuShortcut, { children: it.shortcut })
@@ -2114,13 +2111,13 @@ function renderItems(P, items) {
 function Menu({
   items,
   trigger,
-  align = "end",
+  align: align2 = "end",
   open,
   onOpenChange
 }) {
   return /* @__PURE__ */ jsxRuntime.jsxs(DropdownPrimitive2__namespace.Root, { open, onOpenChange, children: [
     /* @__PURE__ */ jsxRuntime.jsx(DropdownPrimitive2__namespace.Trigger, { asChild: true, children: trigger }),
-    /* @__PURE__ */ jsxRuntime.jsx(DropdownPrimitive2__namespace.Portal, { children: /* @__PURE__ */ jsxRuntime.jsx(DropdownPrimitive2__namespace.Content, { align, sideOffset: 4, collisionPadding: 8, className: contentCls, children: renderItems(DropdownPrimitive2__namespace, items) }) })
+    /* @__PURE__ */ jsxRuntime.jsx(DropdownPrimitive2__namespace.Portal, { children: /* @__PURE__ */ jsxRuntime.jsx(DropdownPrimitive2__namespace.Content, { align: align2, sideOffset: 4, collisionPadding: 8, className: contentCls, children: renderItems(DropdownPrimitive2__namespace, items) }) })
   ] });
 }
 function ContextMenuFor({ items, children, disabled }) {
@@ -2166,7 +2163,7 @@ function UnsavedChangesDialog({
   confirmLabel: confirmLabelProp,
   cancelLabel: cancelLabelProp
 }) {
-  const u = chunkQ6OCMENQ_cjs.useLafDefaults(lafDefaults2).t.components.ui.unsavedChanges;
+  const u = chunkGWTYGDXC_cjs.useLafDefaults(lafDefaults2).t.components.ui.unsavedChanges;
   const title = titleProp ?? u.title;
   const description = descriptionProp ?? u.description;
   const confirmLabel = confirmLabelProp ?? u.confirm;
@@ -2184,7 +2181,7 @@ function UnsavedChangesDialog({
     }
   );
 }
-var lafDefaults2 = { ui: chunkOKADVGBW_cjs.uiEn };
+var lafDefaults2 = { ui: chunkAN24WGJJ_cjs.uiEn };
 function FormSection({
   title,
   description,
@@ -2214,7 +2211,7 @@ function FormFooter({
   children,
   className
 }) {
-  const f = chunkQ6OCMENQ_cjs.useLafDefaults(lafDefaults2).t.components.ui.formFooter;
+  const f = chunkGWTYGDXC_cjs.useLafDefaults(lafDefaults2).t.components.ui.formFooter;
   const saveLabel = saveLabelProp ?? f.save;
   const cancelLabel = cancelLabelProp ?? f.cancel;
   return /* @__PURE__ */ jsxRuntime.jsxs(
@@ -2240,9 +2237,10 @@ function TopBar({
   notifications,
   userMenu,
   start,
-  className
+  className,
+  as: Tag = "header"
 }) {
-  return /* @__PURE__ */ jsxRuntime.jsxs("header", { className: chunkFTHFEMX6_cjs.cn("flex h-12 items-center gap-3 border-b border-line bg-surface px-3", className), children: [
+  return /* @__PURE__ */ jsxRuntime.jsxs(Tag, { className: chunkFTHFEMX6_cjs.cn("flex h-12 items-center gap-3 border-b border-line bg-surface px-3", className), children: [
     start,
     logo && /* @__PURE__ */ jsxRuntime.jsx("div", { className: "flex shrink-0 items-center font-semibold text-fg", children: logo }),
     /* @__PURE__ */ jsxRuntime.jsx("div", { className: "mx-auto flex min-w-0 max-w-xl flex-1 items-center", children: search }),
@@ -2278,7 +2276,7 @@ function DetailPage({
   className
 }) {
   return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: chunkFTHFEMX6_cjs.cn("grid gap-4", className), children: [
-    breadcrumb && /* @__PURE__ */ jsxRuntime.jsx(chunkOKADVGBW_cjs.Breadcrumb, { items: breadcrumb }),
+    breadcrumb && /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Breadcrumb, { items: breadcrumb }),
     /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex flex-wrap items-center gap-3", children: [
       icon,
       /* @__PURE__ */ jsxRuntime.jsx("h1", { className: "min-w-0 text-xl font-semibold text-fg", children: title }),
@@ -2302,7 +2300,7 @@ function FormPage({
   className
 }) {
   return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: chunkFTHFEMX6_cjs.cn("mx-auto grid w-full max-w-3xl gap-4", className), children: [
-    breadcrumb && /* @__PURE__ */ jsxRuntime.jsx(chunkOKADVGBW_cjs.Breadcrumb, { items: breadcrumb }),
+    breadcrumb && /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Breadcrumb, { items: breadcrumb }),
     /* @__PURE__ */ jsxRuntime.jsxs("header", { children: [
       /* @__PURE__ */ jsxRuntime.jsx("h1", { className: "text-xl font-semibold text-fg", children: title }),
       description && /* @__PURE__ */ jsxRuntime.jsx("p", { className: "mt-1 text-sm text-muted", children: description })
@@ -2330,7 +2328,7 @@ function SubNav({
   label: labelProp,
   className
 }) {
-  const { t } = chunkQ6OCMENQ_cjs.useLafDefaults(lafDefaults2);
+  const { t } = chunkGWTYGDXC_cjs.useLafDefaults(lafDefaults2);
   const label = labelProp ?? t.components.ui.subNav.label;
   return /* @__PURE__ */ jsxRuntime.jsx("nav", { "aria-label": label, className: chunkFTHFEMX6_cjs.cn("grid w-56 gap-4 text-sm", className), children: groups.map((g) => /* @__PURE__ */ jsxRuntime.jsxs("div", { role: "group", "aria-label": g.label, children: [
     g.label && /* @__PURE__ */ jsxRuntime.jsx("div", { className: "mb-1 px-2 text-[0.6875rem] tracking-wider text-subtle uppercase", "aria-hidden": true, children: g.label }),
@@ -2372,15 +2370,15 @@ function MobileNav({
   onOpenChange,
   className
 }) {
-  const m = chunkQ6OCMENQ_cjs.useLafDefaults(lafDefaults2).t.components.ui.mobileNav;
+  const m = chunkGWTYGDXC_cjs.useLafDefaults(lafDefaults2).t.components.ui.mobileNav;
   const title = titleProp ?? m.title;
   const triggerLabel = triggerLabelProp ?? m.trigger;
-  return /* @__PURE__ */ jsxRuntime.jsxs(chunkOKADVGBW_cjs.Drawer, { open, onOpenChange, children: [
-    /* @__PURE__ */ jsxRuntime.jsx(chunkOKADVGBW_cjs.DrawerTrigger, { asChild: true, children: /* @__PURE__ */ jsxRuntime.jsx("button", { type: "button", "aria-label": triggerLabel, className: chunkFTHFEMX6_cjs.cn("btn btn-ghost btn-sm min-[860px]:hidden", className), children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Menu, { "aria-hidden": true }) }) }),
-    /* @__PURE__ */ jsxRuntime.jsx(chunkOKADVGBW_cjs.DrawerContent, { title, width: "sm", children })
+  return /* @__PURE__ */ jsxRuntime.jsxs(chunkAN24WGJJ_cjs.Drawer, { open, onOpenChange, children: [
+    /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.DrawerTrigger, { asChild: true, children: /* @__PURE__ */ jsxRuntime.jsx("button", { type: "button", "aria-label": triggerLabel, className: chunkFTHFEMX6_cjs.cn("btn btn-ghost btn-sm min-[860px]:hidden", className), children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Menu, { "aria-hidden": true }) }) }),
+    /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.DrawerContent, { title, width: "sm", children })
   ] });
 }
-var lafDefaults3 = { ui: chunkOKADVGBW_cjs.uiEn };
+var lafDefaults3 = { ui: chunkAN24WGJJ_cjs.uiEn };
 function Wizard({
   steps,
   onFinish,
@@ -2396,10 +2394,10 @@ function Wizard({
   labels: labelsProp,
   className
 }) {
-  const { title: defaultTitle, ...defaultLabels3 } = chunkQ6OCMENQ_cjs.useLafDefaults(lafDefaults3).t.components.ui.wizard;
+  const { title: defaultTitle, ...defaultLabels3 } = chunkGWTYGDXC_cjs.useLafDefaults(lafDefaults3).t.components.ui.wizard;
   const labels = { ...defaultLabels3, ...labelsProp };
   const title = titleProp ?? defaultTitle;
-  const [current, setCurrent] = chunk5WBFJQAZ_cjs.useControllableState({ value: currentProp, defaultValue: defaultCurrent, onChange: onCurrentChange });
+  const [current, setCurrent] = chunkXNG22HMC_cjs.useControllableState({ value: currentProp, defaultValue: defaultCurrent, onChange: onCurrentChange });
   const [errors, setErrors] = React25__namespace.useState([]);
   const [failed, setFailed] = React25__namespace.useState({});
   const [busy, setBusy] = React25__namespace.useState(false);
@@ -2497,7 +2495,7 @@ function Wizard({
     }
   );
   if (mode === "dialog") {
-    return /* @__PURE__ */ jsxRuntime.jsx(chunkOKADVGBW_cjs.Dialog, { open, onOpenChange: (o) => o ? onOpenChange?.(true) : cancel(), children: /* @__PURE__ */ jsxRuntime.jsx(chunkOKADVGBW_cjs.DialogContent, { title, className: "w-[min(56rem,95vw)]", children: body }) });
+    return /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Dialog, { open, onOpenChange: (o) => o ? onOpenChange?.(true) : cancel(), children: /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.DialogContent, { title, className: "w-[min(56rem,95vw)]", children: body }) });
   }
   return /* @__PURE__ */ jsxRuntime.jsx("section", { "aria-label": title, children: body });
 }
@@ -2507,7 +2505,7 @@ function WizardReview({
 }) {
   return /* @__PURE__ */ jsxRuntime.jsx(DefinitionList, { items, className });
 }
-var lafDefaults4 = { ui: chunkOKADVGBW_cjs.uiEn };
+var lafDefaults4 = { ui: chunkAN24WGJJ_cjs.uiEn };
 var icons = {
   "403": /* @__PURE__ */ jsxRuntime.jsx(lucideReact.LockKeyhole, {}),
   "404": /* @__PURE__ */ jsxRuntime.jsx(lucideReact.FileQuestion, {}),
@@ -2525,7 +2523,7 @@ function ErrorPage({
   requestIdLabel: requestIdLabelProp,
   className
 }) {
-  const { t } = chunkQ6OCMENQ_cjs.useLafDefaults(lafDefaults4);
+  const { t } = chunkGWTYGDXC_cjs.useLafDefaults(lafDefaults4);
   const ui = t.components.ui;
   const d = { icon: icons[variant], ...ui[textKey[variant]] };
   const requestIdLabel = requestIdLabelProp ?? ui.errors.requestId;
@@ -2578,7 +2576,7 @@ var LafErrorBoundary = class extends React25__namespace.Component {
   }
 };
 function BoundaryFallback({ requestId, retryLabel, reset }) {
-  const { t } = chunkQ6OCMENQ_cjs.useLafDefaults(lafDefaults4);
+  const { t } = chunkGWTYGDXC_cjs.useLafDefaults(lafDefaults4);
   return /* @__PURE__ */ jsxRuntime.jsx(ErrorPage, { variant: "500", requestId, action: /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { onClick: reset, children: retryLabel ?? t.components.ui.errors.tryAgain }) });
 }
 var baseKinds = {
@@ -2616,7 +2614,7 @@ var stateGlyph = {
   error: { Icon: lucideReact.CircleX, tone: "text-danger", text: "stateError" }
 };
 function ObjectIcon({ kind, state, size = 16, label, className }) {
-  const { t } = chunkQ6OCMENQ_cjs.useLaf();
+  const { t } = chunkGWTYGDXC_cjs.useLaf();
   const Icon2 = custom.get(kind) ?? baseKinds[kind] ?? lucideReact.Cable;
   const glyph = state ? stateGlyph[state] : void 0;
   const stateText = glyph ? t[glyph.text] : void 0;
@@ -2791,12 +2789,12 @@ function useSavedViews(opts = {}) {
   const { storageKey: storageKey2 = "pilab.savedViews", storage: storageProp } = opts;
   const storage = storageProp === null ? void 0 : storageProp ?? localStorageAdapter();
   const [initial] = React25__namespace.useState(() => opts.views === void 0 ? readStored(storage, storageKey2) : { views: [] });
-  const [views, setViews] = chunk5WBFJQAZ_cjs.useControllableState({
+  const [views, setViews] = chunkXNG22HMC_cjs.useControllableState({
     value: opts.views,
     defaultValue: opts.defaultViews && initial.views.length === 0 ? opts.defaultViews : initial.views,
     onChange: opts.onViewsChange
   });
-  const [defaultId, setDefaultId] = chunk5WBFJQAZ_cjs.useControllableState({
+  const [defaultId, setDefaultId] = chunkXNG22HMC_cjs.useControllableState({
     value: opts.defaultViewId,
     defaultValue: initial.defaultId ?? null,
     onChange: opts.onDefaultViewChange
@@ -2970,7 +2968,7 @@ function FilterBar({
   const { views: viewLabels, ...barLabels } = labelsProp ?? {};
   const l = { ...defaultLabels, ...barLabels };
   const id = React25__namespace.useId();
-  const [query, setQuery] = chunk5WBFJQAZ_cjs.useControllableState({
+  const [query, setQuery] = chunkXNG22HMC_cjs.useControllableState({
     value,
     defaultValue,
     onChange: (q) => onChange?.(q, parseFilter(q))
@@ -3354,12 +3352,12 @@ function TreeView({
 }) {
   const l = { loading: "Loading\u2026", error: "Failed to load", retry: "Retry", contextMenu: "Actions", ...labels };
   const multi = selection === "multiple";
-  const [expanded, setExpanded] = chunk5WBFJQAZ_cjs.useControllableState({
+  const [expanded, setExpanded] = chunkXNG22HMC_cjs.useControllableState({
     value: expandedProp,
     defaultValue: defaultExpanded,
     onChange: onExpandedChange
   });
-  const [selectedIds, setSelectedIds] = chunk5WBFJQAZ_cjs.useControllableState({
+  const [selectedIds, setSelectedIds] = chunkXNG22HMC_cjs.useControllableState({
     value: toArr(selectedProp),
     defaultValue: toArr(defaultSelected) ?? [],
     onChange: onSelectedChange
@@ -3402,7 +3400,7 @@ function TreeView({
     estimateSize: () => rowHeight,
     overscan: 8,
     initialRect: { width: 0, height },
-    observeElementRect: chunkOKADVGBW_cjs.observeRectWithFallback,
+    observeElementRect: chunkAN24WGJJ_cjs.observeRectWithFallback,
     // keep the roving-tabindex row mounted so the tree stays reachable by Tab
     rangeExtractor: (range) => {
       const base = reactVirtual.defaultRangeExtractor(range);
@@ -3566,7 +3564,7 @@ function TreeView({
           className: "flex h-7 items-center gap-2 pe-2 text-sm text-muted outline-none",
           style: { ...style, paddingInlineStart: `${indent + 20}px` },
           children: r.kind === "loading" ? /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
-            /* @__PURE__ */ jsxRuntime.jsx(chunkOKADVGBW_cjs.Skeleton, { className: "h-3 w-24" }),
+            /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Skeleton, { className: "h-3 w-24" }),
             /* @__PURE__ */ jsxRuntime.jsx("span", { className: "sr-only", children: l.loading })
           ] }) : /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
             /* @__PURE__ */ jsxRuntime.jsx("span", { className: "text-danger", children: l.error }),
@@ -3656,8 +3654,8 @@ function TreeView({
       }
     }
   );
-  const Root15 = dragAdapter && onMove ? dragAdapter.Root : null;
-  const wrap = (el) => Root15 ? /* @__PURE__ */ jsxRuntime.jsx(Root15, { selectedIds, onMove, children: el }) : el;
+  const Root16 = dragAdapter && onMove ? dragAdapter.Root : null;
+  const wrap = (el) => Root16 ? /* @__PURE__ */ jsxRuntime.jsx(Root16, { selectedIds, onMove, children: el }) : el;
   if (!useVirt) {
     return /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
       wrap(
@@ -3846,12 +3844,12 @@ function GridDensityToggle() {
 }
 function GridColumnsMenu() {
   const g = useGrid();
-  return /* @__PURE__ */ jsxRuntime.jsxs(chunkOKADVGBW_cjs.Popover, { children: [
-    /* @__PURE__ */ jsxRuntime.jsx(chunkOKADVGBW_cjs.PopoverTrigger, { asChild: true, children: /* @__PURE__ */ jsxRuntime.jsxs("button", { type: "button", className: "inline-flex h-8 items-center gap-1 border border-line px-2 text-xs text-muted hover:bg-surface-hover", children: [
+  return /* @__PURE__ */ jsxRuntime.jsxs(chunkAN24WGJJ_cjs.Popover, { children: [
+    /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.PopoverTrigger, { asChild: true, children: /* @__PURE__ */ jsxRuntime.jsxs("button", { type: "button", className: "inline-flex h-8 items-center gap-1 border border-line px-2 text-xs text-muted hover:bg-surface-hover", children: [
       /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Columns3, { className: "size-3.5", "aria-hidden": true }),
       g.labels.columns
     ] }) }),
-    /* @__PURE__ */ jsxRuntime.jsx(chunkOKADVGBW_cjs.PopoverContent, { align: "end", className: "w-60 p-2", children: /* @__PURE__ */ jsxRuntime.jsx("ul", { className: "flex flex-col gap-0.5", children: g.columns.map((c, i) => /* @__PURE__ */ jsxRuntime.jsxs("li", { className: "flex items-center gap-2 px-1 py-0.5 text-sm", children: [
+    /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.PopoverContent, { align: "end", className: "w-60 p-2", children: /* @__PURE__ */ jsxRuntime.jsx("ul", { className: "flex flex-col gap-0.5", children: g.columns.map((c, i) => /* @__PURE__ */ jsxRuntime.jsxs("li", { className: "flex items-center gap-2 px-1 py-0.5 text-sm", children: [
       /* @__PURE__ */ jsxRuntime.jsxs("label", { className: "flex flex-1 items-center gap-2", children: [
         /* @__PURE__ */ jsxRuntime.jsx("input", { type: "checkbox", checked: c.visible, disabled: !c.hideable, onChange: (e) => g.setVisible(c.id, e.target.checked) }),
         /* @__PURE__ */ jsxRuntime.jsx("span", { className: "truncate", children: c.label })
@@ -3917,24 +3915,24 @@ function DataGrid(props) {
     getRowProps,
     onRowKeyDown
   } = props;
-  const { t: laf } = chunkQ6OCMENQ_cjs.useLaf();
+  const { t: laf } = chunkGWTYGDXC_cjs.useLaf();
   const L = { ...defaultLabels2, ...props.labels };
   const selectAllLabel = props.labels?.selectAll ?? laf.selectAllRows;
   const selectRowLabel = props.labels?.selectRow ?? laf.selectRow;
   const uid = React25__namespace.useId();
   const persisted = React25__namespace.useMemo(() => readView(viewKey), [viewKey]);
-  const [sort, setSort] = chunk5WBFJQAZ_cjs.useControllableState({ value: props.sort, defaultValue: [], onChange: props.onSortChange });
-  const [selected, setSelected] = chunk5WBFJQAZ_cjs.useControllableState({ value: props.selected, defaultValue: [], onChange: props.onSelectedChange });
-  const [visibility, setVisibility] = chunk5WBFJQAZ_cjs.useControllableState({
+  const [sort, setSort] = chunkXNG22HMC_cjs.useControllableState({ value: props.sort, defaultValue: [], onChange: props.onSortChange });
+  const [selected, setSelected] = chunkXNG22HMC_cjs.useControllableState({ value: props.selected, defaultValue: [], onChange: props.onSelectedChange });
+  const [visibility, setVisibility] = chunkXNG22HMC_cjs.useControllableState({
     value: props.columnVisibility,
     defaultValue: persisted.columnVisibility ?? {},
     onChange: props.onColumnVisibilityChange
   });
-  const [order, setOrder] = chunk5WBFJQAZ_cjs.useControllableState({ value: props.columnOrder, defaultValue: persisted.columnOrder ?? [], onChange: props.onColumnOrderChange });
-  const [sizing, setSizing] = chunk5WBFJQAZ_cjs.useControllableState({ value: props.columnSizing, defaultValue: persisted.columnSizing ?? {}, onChange: props.onColumnSizingChange });
-  const [filters, setFilters] = chunk5WBFJQAZ_cjs.useControllableState({ value: props.filters, defaultValue: [], onChange: props.onFiltersChange });
-  const [search, setSearch] = chunk5WBFJQAZ_cjs.useControllableState({ value: props.search, defaultValue: "", onChange: props.onSearchChange });
-  const [density, setDensity] = chunk5WBFJQAZ_cjs.useControllableState({ value: props.density, defaultValue: persisted.density ?? "default", onChange: props.onDensityChange });
+  const [order, setOrder] = chunkXNG22HMC_cjs.useControllableState({ value: props.columnOrder, defaultValue: persisted.columnOrder ?? [], onChange: props.onColumnOrderChange });
+  const [sizing, setSizing] = chunkXNG22HMC_cjs.useControllableState({ value: props.columnSizing, defaultValue: persisted.columnSizing ?? {}, onChange: props.onColumnSizingChange });
+  const [filters, setFilters] = chunkXNG22HMC_cjs.useControllableState({ value: props.filters, defaultValue: [], onChange: props.onFiltersChange });
+  const [search, setSearch] = chunkXNG22HMC_cjs.useControllableState({ value: props.search, defaultValue: "", onChange: props.onSearchChange });
+  const [density, setDensity] = chunkXNG22HMC_cjs.useControllableState({ value: props.density, defaultValue: persisted.density ?? "default", onChange: props.onDensityChange });
   const [expandedIds, setExpandedIds] = React25__namespace.useState(() => /* @__PURE__ */ new Set());
   React25__namespace.useEffect(() => {
     if (!viewKey || typeof window === "undefined") return;
@@ -4387,23 +4385,23 @@ function DataGrid(props) {
             ] })
           ] }),
           /* @__PURE__ */ jsxRuntime.jsxs("div", { role: "rowgroup", style: virtualOn ? { height: virtualizer.getTotalSize() - rowH, position: "relative", minWidth: totalWidth } : { minWidth: totalWidth }, children: [
-            loading && Array.from({ length: 4 }, (_, i) => /* @__PURE__ */ jsxRuntime.jsx("div", { role: "row", style: { display: "grid", gridTemplateColumns: template, height: rowH }, className: "border-b border-line", children: Array.from({ length: colCount }, (_2, j) => /* @__PURE__ */ jsxRuntime.jsx("div", { role: "gridcell", className: "flex items-center px-3", children: /* @__PURE__ */ jsxRuntime.jsx(chunkOKADVGBW_cjs.Skeleton, {}) }, j)) }, i)),
+            loading && Array.from({ length: 4 }, (_, i) => /* @__PURE__ */ jsxRuntime.jsx("div", { role: "row", style: { display: "grid", gridTemplateColumns: template, height: rowH }, className: "border-b border-line", children: Array.from({ length: colCount }, (_2, j) => /* @__PURE__ */ jsxRuntime.jsx("div", { role: "gridcell", className: "flex items-center px-3", children: /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Skeleton, {}) }, j)) }, i)),
             !loading && !error && (virtualOn ? virtualizer.getVirtualItems().map((v) => renderRow(v.index, { transform: `translateY(${v.start - rowH}px)` }, virtualizer.measureElement)) : modelRows.map((_, i) => renderRow(i)))
           ] })
         ]
       }
     ),
     error && /* @__PURE__ */ jsxRuntime.jsx("div", { role: "alert", className: "border border-danger-line bg-danger-bg p-3 text-sm text-danger", children: error }),
-    showEmpty && (empty ?? /* @__PURE__ */ jsxRuntime.jsx(chunkOKADVGBW_cjs.EmptyState, { title: L.empty })),
+    showEmpty && (empty ?? /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.EmptyState, { title: L.empty })),
     bulkActions && selected.length > 0 && /* @__PURE__ */ jsxRuntime.jsxs("div", { role: "toolbar", "aria-label": L.selectedCount(selected.length), className: "sticky bottom-0 z-10 flex items-center gap-3 border border-line bg-surface px-3 py-2 text-sm", children: [
       /* @__PURE__ */ jsxRuntime.jsx("span", { className: "font-medium", children: L.selectedCount(selected.length) }),
       bulkActions(selected),
       /* @__PURE__ */ jsxRuntime.jsx("button", { type: "button", "aria-label": L.clearSelection, className: "ms-auto text-muted hover:text-fg", onClick: () => setSelected([]), children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.X, { className: "size-4", "aria-hidden": true }) })
     ] }),
-    rowActions && /* @__PURE__ */ jsxRuntime.jsxs(chunkOKADVGBW_cjs.DropdownMenu, { open: !!menu && menuItems.length > 0, onOpenChange: (o) => !o && setMenu(null), children: [
-      /* @__PURE__ */ jsxRuntime.jsx(chunkOKADVGBW_cjs.DropdownMenuTrigger, { asChild: true, children: /* @__PURE__ */ jsxRuntime.jsx("span", { "aria-hidden": true, className: "pointer-events-none fixed size-0", style: menu ? { left: menu.x, top: menu.y } : void 0 }) }),
+    rowActions && /* @__PURE__ */ jsxRuntime.jsxs(chunkAN24WGJJ_cjs.DropdownMenu, { open: !!menu && menuItems.length > 0, onOpenChange: (o) => !o && setMenu(null), children: [
+      /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.DropdownMenuTrigger, { asChild: true, children: /* @__PURE__ */ jsxRuntime.jsx("span", { "aria-hidden": true, className: "pointer-events-none fixed size-0", style: menu ? { left: menu.x, top: menu.y } : void 0 }) }),
       /* @__PURE__ */ jsxRuntime.jsx(
-        chunkOKADVGBW_cjs.DropdownMenuContent,
+        chunkAN24WGJJ_cjs.DropdownMenuContent,
         {
           align: "start",
           onCloseAutoFocus: (e) => {
@@ -4411,8 +4409,8 @@ function DataGrid(props) {
             scrollRef.current?.focus();
           },
           children: menuItems.map((m) => /* @__PURE__ */ jsxRuntime.jsxs(React25__namespace.Fragment, { children: [
-            m.separatorBefore && /* @__PURE__ */ jsxRuntime.jsx(chunkOKADVGBW_cjs.DropdownMenuSeparator, {}),
-            /* @__PURE__ */ jsxRuntime.jsxs(chunkOKADVGBW_cjs.DropdownMenuItem, { danger: m.danger, disabled: m.disabled, onSelect: () => m.onSelect(), children: [
+            m.separatorBefore && /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.DropdownMenuSeparator, {}),
+            /* @__PURE__ */ jsxRuntime.jsxs(chunkAN24WGJJ_cjs.DropdownMenuItem, { danger: m.danger, disabled: m.disabled, onSelect: () => m.onSelect(), children: [
               m.icon,
               m.label
             ] })
@@ -4443,8 +4441,8 @@ function TreeTable({
   bulkActions,
   ...rest
 }) {
-  const [open, setOpen] = chunk5WBFJQAZ_cjs.useControllableState({ value: expanded, defaultValue: defaultExpanded ?? [], onChange: onExpandedChange });
-  const [sort, setSort] = chunk5WBFJQAZ_cjs.useControllableState({ value: sortProp, defaultValue: [], onChange: onSortChange });
+  const [open, setOpen] = chunkXNG22HMC_cjs.useControllableState({ value: expanded, defaultValue: defaultExpanded ?? [], onChange: onExpandedChange });
+  const [sort, setSort] = chunkXNG22HMC_cjs.useControllableState({ value: sortProp, defaultValue: [], onChange: onSortChange });
   const openSet = React25__namespace.useMemo(() => new Set(open), [open]);
   const treeCol = treeColumn ?? columns[0]?.id;
   const getters = React25__namespace.useMemo(() => new Map(columns.map((c) => [c.id, c.accessor ?? ((r) => r[c.id])])), [columns]);
@@ -4618,7 +4616,7 @@ var accountEn = {
   }
 };
 var lafDefaults5 = { account: accountEn };
-var useLaf2 = () => chunkQ6OCMENQ_cjs.useLafDefaults(lafDefaults5);
+var useLaf2 = () => chunkGWTYGDXC_cjs.useLafDefaults(lafDefaults5);
 var deviceIcon2 = { phone: lucideReact.Smartphone, laptop: lucideReact.Laptop, tablet: lucideReact.Tablet, key: lucideReact.KeyRound };
 function SessionList({ sessions, onRevoke, onRevokeOthers, showUser, labels }) {
   const l = { ...useLaf2().t.components.account.sessions, ...labels };
@@ -4635,7 +4633,7 @@ function SessionList({ sessions, onRevoke, onRevokeOthers, showUser, labels }) {
         /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "min-w-0 flex-1", children: [
           /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex flex-wrap items-center gap-2 text-fg", children: [
             /* @__PURE__ */ jsxRuntime.jsx("span", { children: title }),
-            s.current && /* @__PURE__ */ jsxRuntime.jsx(chunkOKADVGBW_cjs.Badge, { tone: "primary", children: l.thisDevice })
+            s.current && /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Badge, { tone: "primary", children: l.thisDevice })
           ] }),
           /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "text-xs text-muted", children: [
             showUser && s.user && /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
@@ -4731,18 +4729,18 @@ function ApiKeyManager({ keys, scopes, expiryPresets = [30, 90, 365, null], onCr
   };
   return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "grid gap-3", children: [
     /* @__PURE__ */ jsxRuntime.jsx("div", { className: "flex justify-end", children: /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { size: "sm", leftIcon: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Plus, {}), onClick: () => setForm(true), children: l.create }) }),
-    error && !form && /* @__PURE__ */ jsxRuntime.jsx(chunkOKADVGBW_cjs.Alert, { tone: "error", children: /* @__PURE__ */ jsxRuntime.jsx("span", { role: "alert", children: error }) }),
+    error && !form && /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Alert, { tone: "error", children: /* @__PURE__ */ jsxRuntime.jsx("span", { role: "alert", children: error }) }),
     keys.length === 0 ? /* @__PURE__ */ jsxRuntime.jsx("p", { className: "text-sm text-muted", children: l.empty }) : /* @__PURE__ */ jsxRuntime.jsx("ul", { className: "m-0 grid list-none gap-2 p-0", children: keys.map((k) => /* @__PURE__ */ jsxRuntime.jsxs("li", { className: "card grid gap-1.5", children: [
       /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex flex-wrap items-center gap-2", children: [
         /* @__PURE__ */ jsxRuntime.jsx("span", { className: "text-fg", children: k.name }),
         /* @__PURE__ */ jsxRuntime.jsx("code", { className: "font-mono text-xs text-muted", children: k.prefix }),
-        k.revoked && /* @__PURE__ */ jsxRuntime.jsx(chunkOKADVGBW_cjs.Badge, { tone: "danger", children: l.revoked }),
+        k.revoked && /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Badge, { tone: "danger", children: l.revoked }),
         /* @__PURE__ */ jsxRuntime.jsxs("span", { className: "ms-auto flex gap-1", children: [
           onRotate && !k.revoked && /* @__PURE__ */ jsxRuntime.jsx(IconButton, { label: `${l.rotate}: ${k.name}`, size: "sm", icon: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.RefreshCw, { className: "size-4" }), onClick: () => void rotate(k.id) }),
           !k.revoked && /* @__PURE__ */ jsxRuntime.jsx(IconButton, { label: `${l.revoke}: ${k.name}`, size: "sm", icon: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Trash2, { className: "size-4" }), onClick: () => setRevoking(k) })
         ] })
       ] }),
-      k.scopes.length > 0 && /* @__PURE__ */ jsxRuntime.jsx("ul", { className: "m-0 flex list-none flex-wrap gap-1 p-0", "aria-label": l.scopes, children: k.scopes.map((s) => /* @__PURE__ */ jsxRuntime.jsx("li", { children: /* @__PURE__ */ jsxRuntime.jsx(chunkOKADVGBW_cjs.Badge, { plain: true, children: s }) }, s)) }),
+      k.scopes.length > 0 && /* @__PURE__ */ jsxRuntime.jsx("ul", { className: "m-0 flex list-none flex-wrap gap-1 p-0", "aria-label": l.scopes, children: k.scopes.map((s) => /* @__PURE__ */ jsxRuntime.jsx("li", { children: /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Badge, { plain: true, children: s }) }, s)) }),
       /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex flex-wrap gap-x-4 text-xs text-muted", children: [
         /* @__PURE__ */ jsxRuntime.jsxs("span", { children: [
           l.created,
@@ -4761,16 +4759,16 @@ function ApiKeyManager({ keys, scopes, expiryPresets = [30, 90, 365, null], onCr
         ] })
       ] })
     ] }, k.id)) }),
-    /* @__PURE__ */ jsxRuntime.jsx(chunkOKADVGBW_cjs.Dialog, { open: form, onOpenChange: setForm, children: /* @__PURE__ */ jsxRuntime.jsx(
-      chunkOKADVGBW_cjs.DialogContent,
+    /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Dialog, { open: form, onOpenChange: setForm, children: /* @__PURE__ */ jsxRuntime.jsx(
+      chunkAN24WGJJ_cjs.DialogContent,
       {
         title: l.createTitle,
         footer: /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
-          /* @__PURE__ */ jsxRuntime.jsx(chunkOKADVGBW_cjs.DialogClose, { asChild: true, children: /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { variant: "secondary", size: "sm", children: l.cancel }) }),
+          /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.DialogClose, { asChild: true, children: /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { variant: "secondary", size: "sm", children: l.cancel }) }),
           /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { size: "sm", loading: busy, disabled: !name.trim(), onClick: submit, children: l.create })
         ] }),
         children: /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "grid gap-3", children: [
-          /* @__PURE__ */ jsxRuntime.jsx(chunkOKADVGBW_cjs.Field, { label: l.name, htmlFor: nameId, children: /* @__PURE__ */ jsxRuntime.jsx(chunkOKADVGBW_cjs.Input, { id: nameId, value: name, onChange: (e) => setName(e.target.value), autoComplete: "off" }) }),
+          /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Field, { label: l.name, htmlFor: nameId, children: /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Input, { id: nameId, value: name, onChange: (e) => setName(e.target.value), autoComplete: "off" }) }),
           /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "grid gap-1", children: [
             /* @__PURE__ */ jsxRuntime.jsx("label", { className: "form-label", htmlFor: expId, children: l.expiry }),
             /* @__PURE__ */ jsxRuntime.jsx("select", { id: expId, className: "form-select", value: String(expiry), onChange: (e) => setExpiry(e.target.value === "null" ? null : Number(e.target.value)), children: expiryPresets.map((p) => /* @__PURE__ */ jsxRuntime.jsx("option", { value: String(p), children: p === null ? l.never : l.days(p) }, String(p))) })
@@ -4778,7 +4776,7 @@ function ApiKeyManager({ keys, scopes, expiryPresets = [30, 90, 365, null], onCr
           /* @__PURE__ */ jsxRuntime.jsxs("fieldset", { className: "m-0 grid gap-1 border-0 p-0", children: [
             /* @__PURE__ */ jsxRuntime.jsx("legend", { className: "form-label", children: l.scopes }),
             scopes.map((s) => /* @__PURE__ */ jsxRuntime.jsx(
-              chunkOKADVGBW_cjs.Checkbox,
+              chunkAN24WGJJ_cjs.Checkbox,
               {
                 checked: picked.includes(s.value),
                 onChange: (e) => setPicked((p) => e.target.checked ? [...p, s.value] : p.filter((x) => x !== s.value)),
@@ -4791,8 +4789,8 @@ function ApiKeyManager({ keys, scopes, expiryPresets = [30, 90, 365, null], onCr
         ] })
       }
     ) }),
-    /* @__PURE__ */ jsxRuntime.jsx(chunkOKADVGBW_cjs.Dialog, { open: secret !== void 0, onOpenChange: (o) => ack && !o && setSecret(void 0), children: /* @__PURE__ */ jsxRuntime.jsx(
-      chunkOKADVGBW_cjs.DialogContent,
+    /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Dialog, { open: secret !== void 0, onOpenChange: (o) => ack && !o && setSecret(void 0), children: /* @__PURE__ */ jsxRuntime.jsx(
+      chunkAN24WGJJ_cjs.DialogContent,
       {
         title: l.secretLabel,
         description: l.secretNotice,
@@ -4914,8 +4912,8 @@ function SecurityFactors({ password, totp, passkeys, recovery, labels }) {
         }
       }
     ),
-    /* @__PURE__ */ jsxRuntime.jsx(chunkOKADVGBW_cjs.Dialog, { open: !!codes, onOpenChange: (o) => ack && !o && setCodes(void 0), children: /* @__PURE__ */ jsxRuntime.jsx(
-      chunkOKADVGBW_cjs.DialogContent,
+    /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Dialog, { open: !!codes, onOpenChange: (o) => ack && !o && setCodes(void 0), children: /* @__PURE__ */ jsxRuntime.jsx(
+      chunkAN24WGJJ_cjs.DialogContent,
       {
         title: l.recoveryTitle,
         description: l.recoveryNotice,
@@ -4924,7 +4922,7 @@ function SecurityFactors({ password, totp, passkeys, recovery, labels }) {
         footer: /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { size: "sm", disabled: !ack, onClick: () => setCodes(void 0), children: l.done }),
         children: /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "grid gap-3", children: [
           /* @__PURE__ */ jsxRuntime.jsx("ul", { className: "m-0 grid list-none grid-cols-2 gap-2 p-0 font-mono text-sm text-fg", children: codes?.map((c) => /* @__PURE__ */ jsxRuntime.jsx("li", { className: "rounded-sm border border-line bg-muted-bg px-2 py-1", children: c }, c)) }),
-          /* @__PURE__ */ jsxRuntime.jsx(chunkOKADVGBW_cjs.Checkbox, { checked: ack, onChange: (e) => setAck(e.target.checked), children: l.acknowledge })
+          /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Checkbox, { checked: ack, onChange: (e) => setAck(e.target.checked), children: l.acknowledge })
         ] })
       }
     ) })
@@ -4956,13 +4954,13 @@ function ReauthDialog({ open, onOpenChange, onReauth, passkey, labels }) {
       setBusy(false);
     }
   };
-  return /* @__PURE__ */ jsxRuntime.jsx(chunkOKADVGBW_cjs.Dialog, { open, onOpenChange, children: /* @__PURE__ */ jsxRuntime.jsx(
-    chunkOKADVGBW_cjs.DialogContent,
+  return /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Dialog, { open, onOpenChange, children: /* @__PURE__ */ jsxRuntime.jsx(
+    chunkAN24WGJJ_cjs.DialogContent,
     {
       title: l.title,
       description: l.description,
       footer: /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
-        /* @__PURE__ */ jsxRuntime.jsx(chunkOKADVGBW_cjs.DialogClose, { asChild: true, children: /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { variant: "secondary", size: "sm", children: l.cancel }) }),
+        /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.DialogClose, { asChild: true, children: /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { variant: "secondary", size: "sm", children: l.cancel }) }),
         /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { size: "sm", loading: busy, disabled: method === "password" && !pw, form: `${id}-f`, type: "submit", children: method === "passkey" ? l.usePasskey : l.confirm })
       ] }),
       children: /* @__PURE__ */ jsxRuntime.jsxs(
@@ -4975,7 +4973,7 @@ function ReauthDialog({ open, onOpenChange, onReauth, passkey, labels }) {
             if (!busy && (method === "passkey" || pw)) void run();
           },
           children: [
-            method === "password" ? /* @__PURE__ */ jsxRuntime.jsx(chunkOKADVGBW_cjs.Field, { label: l.password, htmlFor: `${id}-pw`, error, children: /* @__PURE__ */ jsxRuntime.jsx(chunkOKADVGBW_cjs.Input, { id: `${id}-pw`, type: "password", autoComplete: "current-password", autoFocus: true, value: pw, invalid: !!error, onChange: (e) => setPw(e.target.value) }) }) : error && /* @__PURE__ */ jsxRuntime.jsx("p", { className: "field-error", role: "alert", children: error }),
+            method === "password" ? /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Field, { label: l.password, htmlFor: `${id}-pw`, error, children: /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Input, { id: `${id}-pw`, type: "password", autoComplete: "current-password", autoFocus: true, value: pw, invalid: !!error, onChange: (e) => setPw(e.target.value) }) }) : error && /* @__PURE__ */ jsxRuntime.jsx("p", { className: "field-error", role: "alert", children: error }),
             passkey && /* @__PURE__ */ jsxRuntime.jsx(
               "button",
               {
@@ -5017,8 +5015,8 @@ function SessionExpiryDialog({ expiresAt, warnBeforeMs = 3e5, onStay, onSignOut,
   const secs = Math.ceil(left / 1e3);
   const mark = secs <= 10 ? 10 : secs <= 60 ? 60 : 0;
   const announcement = open && left > 0 && mark ? l.announce(format2.duration(mark * 1e3)) : "";
-  return /* @__PURE__ */ jsxRuntime.jsx(chunkOKADVGBW_cjs.Dialog, { open, onOpenChange: () => void 0, children: /* @__PURE__ */ jsxRuntime.jsxs(
-    chunkOKADVGBW_cjs.DialogContent,
+  return /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Dialog, { open, onOpenChange: () => void 0, children: /* @__PURE__ */ jsxRuntime.jsxs(
+    chunkAN24WGJJ_cjs.DialogContent,
     {
       title: l.title,
       onInteractOutside: (e) => e.preventDefault(),
@@ -5093,7 +5091,7 @@ var adminEn = {
   }
 };
 var lafDefaults6 = { admin: adminEn };
-var useLaf3 = () => chunkQ6OCMENQ_cjs.useLafDefaults(lafDefaults6);
+var useLaf3 = () => chunkGWTYGDXC_cjs.useLafDefaults(lafDefaults6);
 function isIPv4(s) {
   const parts = s.split(".");
   return parts.length === 4 && parts.every((p) => /^\d{1,3}$/.test(p) && (p === "0" || !p.startsWith("0")) && Number(p) <= 255);
@@ -5132,11 +5130,11 @@ function isCidr(s) {
 function NetInput({ validate, message, label, hint, errorMessage, value, defaultValue = "", onChange, className, id, ...rest }) {
   const auto = React25__namespace.useId();
   const inputId = id ?? auto;
-  const [val, setVal] = chunk5WBFJQAZ_cjs.useControllableState({ value, defaultValue, onChange });
+  const [val, setVal] = chunkXNG22HMC_cjs.useControllableState({ value, defaultValue, onChange });
   const [touched, setTouched] = React25__namespace.useState(false);
   const invalid = touched && val !== "" && !validate(val);
   const input = /* @__PURE__ */ jsxRuntime.jsx(
-    chunkOKADVGBW_cjs.Input,
+    chunkAN24WGJJ_cjs.Input,
     {
       ...rest,
       id: inputId,
@@ -5163,7 +5161,7 @@ function NetInput({ validate, message, label, hint, errorMessage, value, default
     }
   );
   if (!label) return input;
-  return /* @__PURE__ */ jsxRuntime.jsx(chunkOKADVGBW_cjs.Field, { label, hint, htmlFor: inputId, error: invalid ? errorMessage ?? message : void 0, children: input });
+  return /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Field, { label, hint, htmlFor: inputId, error: invalid ? errorMessage ?? message : void 0, children: input });
 }
 function IpInput(props) {
   const L = useLaf3().t.components.admin.network;
@@ -5178,7 +5176,7 @@ function AllowListEditor({ value, defaultValue = [], onChange, label: labelProp,
   const label = labelProp ?? laf.components.admin.allowList;
   const L = { ...laf.components.admin.network, ...l };
   const id = React25__namespace.useId();
-  const [list, setList] = chunk5WBFJQAZ_cjs.useControllableState({ value, defaultValue, onChange });
+  const [list, setList] = chunkXNG22HMC_cjs.useControllableState({ value, defaultValue, onChange });
   const [draft, setDraft] = React25__namespace.useState("");
   const [error, setError] = React25__namespace.useState();
   const add = () => {
@@ -5191,9 +5189,9 @@ function AllowListEditor({ value, defaultValue = [], onChange, label: labelProp,
     setError(void 0);
   };
   return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "grid gap-2", children: [
-    /* @__PURE__ */ jsxRuntime.jsx(chunkOKADVGBW_cjs.Field, { label, htmlFor: id, error, children: /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex gap-2", children: [
+    /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Field, { label, htmlFor: id, error, children: /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex gap-2", children: [
       /* @__PURE__ */ jsxRuntime.jsx(
-        chunkOKADVGBW_cjs.Input,
+        chunkAN24WGJJ_cjs.Input,
         {
           id,
           value: draft,
@@ -5219,7 +5217,7 @@ function AllowListEditor({ value, defaultValue = [], onChange, label: labelProp,
     ] }) }),
     list.length === 0 ? /* @__PURE__ */ jsxRuntime.jsx("p", { className: "text-sm text-muted", children: L.empty }) : /* @__PURE__ */ jsxRuntime.jsx("ul", { "aria-label": label, className: "divide-y divide-line rounded-md border border-line text-sm", children: list.map((entry) => /* @__PURE__ */ jsxRuntime.jsxs("li", { className: "flex items-center gap-3 px-3 py-1.5", children: [
       /* @__PURE__ */ jsxRuntime.jsx("span", { className: "flex-1 font-mono", children: entry }),
-      /* @__PURE__ */ jsxRuntime.jsx(chunkOKADVGBW_cjs.Badge, { tone: "neutral", children: isCidr(entry) ? "CIDR" : isIPv6(entry) ? "IPv6" : "IPv4" }),
+      /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Badge, { tone: "neutral", children: isCidr(entry) ? "CIDR" : isIPv6(entry) ? "IPv6" : "IPv4" }),
       /* @__PURE__ */ jsxRuntime.jsx("button", { type: "button", disabled, "aria-label": L.remove(entry), className: "text-muted hover:text-fg", onClick: () => setList(list.filter((x) => x !== entry)), children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.X, { className: "size-4", "aria-hidden": true }) })
     ] }, entry)) })
   ] });
@@ -5235,9 +5233,9 @@ function TransferColumn({ title, items, checked, setChecked, L, height }) {
       /* @__PURE__ */ jsxRuntime.jsx("span", { className: "font-semibold text-fg", children: title }),
       /* @__PURE__ */ jsxRuntime.jsx("span", { className: "text-xs text-muted", "aria-live": "polite", children: L.count(n, items.length) })
     ] }),
-    /* @__PURE__ */ jsxRuntime.jsx(chunkOKADVGBW_cjs.Input, { type: "search", "aria-label": L.search(title), placeholder: L.search(title), value: q, onChange: (e) => setQ(e.target.value) }),
+    /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Input, { type: "search", "aria-label": L.search(title), placeholder: L.search(title), value: q, onChange: (e) => setQ(e.target.value) }),
     shown.length === 0 ? /* @__PURE__ */ jsxRuntime.jsx("p", { className: "px-1 py-2 text-sm text-muted", children: L.empty }) : /* @__PURE__ */ jsxRuntime.jsx(
-      chunkOKADVGBW_cjs.VirtualList,
+      chunkAN24WGJJ_cjs.VirtualList,
       {
         items: shown,
         rowHeight: ROW,
@@ -5266,7 +5264,7 @@ function TransferColumn({ title, items, checked, setChecked, L, height }) {
 }
 function TransferList({ items, value, defaultValue = [], onChange, labels, height = 224 }) {
   const L = { ...useLaf3().t.components.admin.transfer, ...labels };
-  const [sel, setSel] = chunk5WBFJQAZ_cjs.useControllableState({ value, defaultValue, onChange });
+  const [sel, setSel] = chunkXNG22HMC_cjs.useControllableState({ value, defaultValue, onChange });
   const [leftChecked, setLeftChecked] = React25__namespace.useState(/* @__PURE__ */ new Set());
   const [rightChecked, setRightChecked] = React25__namespace.useState(/* @__PURE__ */ new Set());
   const chosen = new Set(sel);
@@ -5318,7 +5316,7 @@ function contrastRatio(a, b) {
 function ColorField({ value, defaultValue = DEFAULT_PRIMARY, onChange, cardColor = DEFAULT_CARD, onPrimaryColor = DEFAULT_ON_PRIMARY, minCardRatio = 3, minTextRatio = 4.5, labels }) {
   const L = { ...useLaf3().t.components.admin.color, ...labels };
   const id = React25__namespace.useId();
-  const [accepted, setAccepted] = chunk5WBFJQAZ_cjs.useControllableState({ value, defaultValue, onChange });
+  const [accepted, setAccepted] = chunkXNG22HMC_cjs.useControllableState({ value, defaultValue, onChange });
   const [draft, setDraft] = React25__namespace.useState(accepted);
   React25__namespace.useEffect(() => setDraft(accepted), [accepted]);
   const hex = normalizeHex(draft);
@@ -5335,14 +5333,14 @@ function ColorField({ value, defaultValue = DEFAULT_PRIMARY, onChange, cardColor
     /* @__PURE__ */ jsxRuntime.jsx("span", { children: name }),
     /* @__PURE__ */ jsxRuntime.jsxs("span", { className: "flex items-center gap-2", children: [
       /* @__PURE__ */ jsxRuntime.jsx("span", { className: "font-mono text-xs", children: hex ? `${ratio.toFixed(2)}:1` : "\u2013" }),
-      /* @__PURE__ */ jsxRuntime.jsx(chunkOKADVGBW_cjs.Badge, { tone: hex && ratio >= min ? "ok" : "danger", children: hex && ratio >= min ? L.pass : L.fail })
+      /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Badge, { tone: hex && ratio >= min ? "ok" : "danger", children: hex && ratio >= min ? L.pass : L.fail })
     ] })
   ] });
   const shown = passes ? hex : accepted;
   return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "grid gap-3", children: [
-    /* @__PURE__ */ jsxRuntime.jsx(chunkOKADVGBW_cjs.Field, { label: L.label, htmlFor: id, error, children: /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex items-center gap-2", children: [
+    /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Field, { label: L.label, htmlFor: id, error, children: /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex items-center gap-2", children: [
       /* @__PURE__ */ jsxRuntime.jsx("input", { type: "color", "aria-label": L.colorPicker, value: normalizeHex(accepted) ?? fromRgb(0), onChange: (e) => update(e.target.value), className: "h-8 w-10 rounded-sm border border-line bg-transparent p-0.5" }),
-      /* @__PURE__ */ jsxRuntime.jsx(chunkOKADVGBW_cjs.Input, { id, value: draft, invalid: !!error, spellCheck: false, maxLength: 7, className: "max-w-32 font-mono", onChange: (e) => update(e.target.value, false), onBlur: (e) => update(e.target.value) })
+      /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Input, { id, value: draft, invalid: !!error, spellCheck: false, maxLength: 7, className: "max-w-32 font-mono", onChange: (e) => update(e.target.value, false), onBlur: (e) => update(e.target.value) })
     ] }) }),
     /* @__PURE__ */ jsxRuntime.jsxs("ul", { "aria-label": L.contrast, className: "grid gap-1 text-sm", children: [
       row(L.onCard, onCard, minCardRatio),
@@ -5350,19 +5348,19 @@ function ColorField({ value, defaultValue = DEFAULT_PRIMARY, onChange, cardColor
     ] }),
     /* @__PURE__ */ jsxRuntime.jsxs("div", { "aria-label": L.preview, role: "group", className: "flex items-center gap-3 rounded-md border border-line p-3", style: { "--primary": shown, "--primary-hover": shown }, children: [
       /* @__PURE__ */ jsxRuntime.jsx("span", { className: "btn btn-primary pointer-events-none", "aria-hidden": true, children: L.sampleButton }),
-      /* @__PURE__ */ jsxRuntime.jsx(chunkOKADVGBW_cjs.Badge, { tone: "primary", children: L.sampleBadge }),
+      /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Badge, { tone: "primary", children: L.sampleBadge }),
       /* @__PURE__ */ jsxRuntime.jsx("span", { "aria-hidden": true, className: "inline-block size-6 rounded-sm bg-card outline-2 outline-offset-2 outline-primary" })
     ] })
   ] });
 }
 function BrandingEditor({ value, defaultValue = { productName: "", primary: DEFAULT_PRIMARY }, onChange, maxLogoSize = 512 * 1024, cardColor, onPrimaryColor, labels }) {
   const L = { ...useLaf3().t.components.admin.branding, ...labels };
-  const [b, setB] = chunk5WBFJQAZ_cjs.useControllableState({ value, defaultValue, onChange });
+  const [b, setB] = chunkXNG22HMC_cjs.useControllableState({ value, defaultValue, onChange });
   const nameId = React25__namespace.useId();
   const [files, setFiles] = React25__namespace.useState([]);
   return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "grid gap-6 md:grid-cols-2", children: [
     /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "grid content-start gap-4", children: [
-      /* @__PURE__ */ jsxRuntime.jsx(chunkOKADVGBW_cjs.Field, { label: L.productName, htmlFor: nameId, children: /* @__PURE__ */ jsxRuntime.jsx(chunkOKADVGBW_cjs.Input, { id: nameId, value: b.productName, onChange: (e) => setB({ ...b, productName: e.target.value }) }) }),
+      /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Field, { label: L.productName, htmlFor: nameId, children: /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Input, { id: nameId, value: b.productName, onChange: (e) => setB({ ...b, productName: e.target.value }) }) }),
       /* @__PURE__ */ jsxRuntime.jsx(ColorField, { value: b.primary, onChange: (primary) => setB({ ...b, primary }), cardColor, onPrimaryColor, labels: labels?.color }),
       /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "grid gap-1.5", children: [
         /* @__PURE__ */ jsxRuntime.jsx("span", { className: "form-label", children: L.logo }),
@@ -5416,13 +5414,13 @@ function NotificationCenter({ items, onMarkRead, onMarkAllRead, onViewAll, onOpe
   const groups = /* @__PURE__ */ new Map();
   for (const i of items) groups.set(i.group, [...groups.get(i.group) ?? [], i]);
   const bellLabel = unread ? `${L.bell} (${unread})` : L.bell;
-  return /* @__PURE__ */ jsxRuntime.jsxs(chunkOKADVGBW_cjs.Popover, { children: [
+  return /* @__PURE__ */ jsxRuntime.jsxs(chunkAN24WGJJ_cjs.Popover, { children: [
     /* @__PURE__ */ jsxRuntime.jsxs("span", { className: "relative inline-flex", children: [
-      /* @__PURE__ */ jsxRuntime.jsx(chunkOKADVGBW_cjs.PopoverTrigger, { asChild: true, children: /* @__PURE__ */ jsxRuntime.jsx(IconButton, { label: bellLabel, icon: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Bell, { className: "size-4" }) }) }),
+      /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.PopoverTrigger, { asChild: true, children: /* @__PURE__ */ jsxRuntime.jsx(IconButton, { label: bellLabel, icon: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Bell, { className: "size-4" }) }) }),
       unread > 0 && /* @__PURE__ */ jsxRuntime.jsx("span", { "aria-hidden": true, className: "pointer-events-none absolute -end-0.5 -top-0.5 flex min-w-4 items-center justify-center rounded-sm bg-danger px-1 text-[0.625rem] leading-4 font-bold text-on-primary", children: unread > 99 ? "99+" : unread }),
       /* @__PURE__ */ jsxRuntime.jsx("span", { className: "sr-only", "aria-live": "polite", children: L.unreadCount(unread) })
     ] }),
-    /* @__PURE__ */ jsxRuntime.jsxs(chunkOKADVGBW_cjs.PopoverContent, { title: L.title, align: "end", className: "w-80 max-w-[calc(100vw-2rem)] p-0", footer: onViewAll && /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { variant: "ghost", size: "sm", onClick: onViewAll, children: L.viewAll }), children: [
+    /* @__PURE__ */ jsxRuntime.jsxs(chunkAN24WGJJ_cjs.PopoverContent, { title: L.title, align: "end", className: "w-80 max-w-[calc(100vw-2rem)] p-0", footer: onViewAll && /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { variant: "ghost", size: "sm", onClick: onViewAll, children: L.viewAll }), children: [
       unread > 0 && onMarkAllRead && /* @__PURE__ */ jsxRuntime.jsx("div", { className: "flex justify-end px-3 pb-1", children: /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { size: "sm", variant: "ghost", onClick: onMarkAllRead, children: L.markAllRead }) }),
       items.length === 0 ? /* @__PURE__ */ jsxRuntime.jsx("p", { className: "px-3 py-6 text-center text-sm text-muted", children: L.empty }) : /* @__PURE__ */ jsxRuntime.jsx("div", { className: "max-h-80 overflow-auto", children: [...groups].map(([group, list]) => /* @__PURE__ */ jsxRuntime.jsxs("section", { "aria-label": group, children: [
         group && /* @__PURE__ */ jsxRuntime.jsx("h3", { className: "bg-muted-bg px-3 py-1 text-xs font-semibold text-muted uppercase", children: group }),
@@ -5559,23 +5557,23 @@ function formatHotkey(combo, mac = isMacPlatform()) {
   ).join(" ");
 }
 function ShortcutHelp({ open, onOpenChange }) {
-  const { t } = chunkQ6OCMENQ_cjs.useLaf();
-  const container = chunkQ6OCMENQ_cjs.usePortalContainer();
+  const { t } = chunkGWTYGDXC_cjs.useLaf();
+  const container = chunkGWTYGDXC_cjs.usePortalContainer();
   const items = useRegisteredHotkeys().filter((h) => h.combo !== "?");
   useHotkeys({ "?": () => onOpenChange(true) });
   const groups = /* @__PURE__ */ new Map();
   items.forEach((h) => groups.set(h.scope, [...groups.get(h.scope) ?? [], h]));
-  return /* @__PURE__ */ jsxRuntime.jsx(DialogPrimitive2__namespace.Root, { open, onOpenChange, children: /* @__PURE__ */ jsxRuntime.jsxs(DialogPrimitive2__namespace.Portal, { container, children: [
-    /* @__PURE__ */ jsxRuntime.jsx(DialogPrimitive2__namespace.Overlay, { className: "fixed inset-0 z-50 bg-[rgba(5,5,10,0.7)] backdrop-blur-xs" }),
+  return /* @__PURE__ */ jsxRuntime.jsx(DialogPrimitive3__namespace.Root, { open, onOpenChange, children: /* @__PURE__ */ jsxRuntime.jsxs(DialogPrimitive3__namespace.Portal, { container, children: [
+    /* @__PURE__ */ jsxRuntime.jsx(DialogPrimitive3__namespace.Overlay, { className: "fixed inset-0 z-50 bg-[rgba(5,5,10,0.7)] backdrop-blur-xs" }),
     /* @__PURE__ */ jsxRuntime.jsxs(
-      DialogPrimitive2__namespace.Content,
+      DialogPrimitive3__namespace.Content,
       {
         "aria-describedby": void 0,
         className: "popup fixed top-[15%] start-1/2 z-50 max-h-[70vh] w-[min(32rem,calc(100vw-2rem))] -translate-x-1/2 rtl:translate-x-1/2 overflow-auto p-4",
         children: [
           /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "mb-3 flex items-center justify-between", children: [
-            /* @__PURE__ */ jsxRuntime.jsx(DialogPrimitive2__namespace.Title, { className: "m-0 text-base font-semibold text-fg", children: t.shortcuts }),
-            /* @__PURE__ */ jsxRuntime.jsx(DialogPrimitive2__namespace.Close, { className: "btn btn-ghost btn-sm", "aria-label": t.close, children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.X, { className: "size-4", "aria-hidden": true }) })
+            /* @__PURE__ */ jsxRuntime.jsx(DialogPrimitive3__namespace.Title, { className: "m-0 text-base font-semibold text-fg", children: t.shortcuts }),
+            /* @__PURE__ */ jsxRuntime.jsx(DialogPrimitive3__namespace.Close, { className: "btn btn-ghost btn-sm", "aria-label": t.close, children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.X, { className: "size-4", "aria-hidden": true }) })
           ] }),
           items.length === 0 && /* @__PURE__ */ jsxRuntime.jsx("p", { className: "text-sm text-muted", children: t.noShortcuts }),
           [...groups].map(([scope, list]) => /* @__PURE__ */ jsxRuntime.jsxs("section", { className: "mb-3", children: [
@@ -5601,7 +5599,7 @@ function CapacityBar({
   labels: labelsProp,
   className
 }) {
-  const { t: laf, format: format2 } = chunkQ6OCMENQ_cjs.useLaf();
+  const { t: laf, format: format2 } = chunkGWTYGDXC_cjs.useLaf();
   const l = { used: laf.vsUsed, reserved: laf.vsReserved, free: laf.vsFree, capacity: laf.vsCapacity, ...labelsProp };
   const fmt = (n) => unit === "bytes" ? format2.bytes(n, { base: 1024 }) : unit === "frequency" ? format2.frequency(n) : String(n);
   const safeTotal = total > 0 ? total : 1;
@@ -5660,9 +5658,9 @@ function ObjectPage({
   labels: labelsProp,
   className
 }) {
-  const { t: laf } = chunkQ6OCMENQ_cjs.useLaf();
+  const { t: laf } = chunkGWTYGDXC_cjs.useLaf();
   const l = { summary: laf.vsSummary, monitor: laf.vsMonitor, configure: laf.vsConfigure, ...labelsProp };
-  const [tab, setTab] = chunk5WBFJQAZ_cjs.useControllableState({ value: tabProp, defaultValue: defaultTab, onChange: onTabChange });
+  const [tab, setTab] = chunkXNG22HMC_cjs.useControllableState({ value: tabProp, defaultValue: defaultTab, onChange: onTabChange });
   return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: chunkFTHFEMX6_cjs.cn("grid gap-4", className), children: [
     /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex flex-wrap items-center gap-3", children: [
       /* @__PURE__ */ jsxRuntime.jsx(ObjectIcon, { kind, state, size: 20 }),
@@ -5670,18 +5668,18 @@ function ObjectPage({
       statusLabel && /* @__PURE__ */ jsxRuntime.jsx(StatusDot, { tone: statusTone2, label: statusLabel }),
       actions && actions.length > 0 && /* @__PURE__ */ jsxRuntime.jsx("div", { className: "ms-auto", children: /* @__PURE__ */ jsxRuntime.jsx(ActionBar, { items: actions, label: actionsLabel ?? name }) })
     ] }),
-    /* @__PURE__ */ jsxRuntime.jsxs(chunkOKADVGBW_cjs.Tabs, { value: tab, onValueChange: setTab, children: [
-      /* @__PURE__ */ jsxRuntime.jsxs(chunkOKADVGBW_cjs.TabsList, { children: [
-        /* @__PURE__ */ jsxRuntime.jsx(chunkOKADVGBW_cjs.TabsTrigger, { value: "summary", children: l.summary }),
-        monitor !== void 0 && /* @__PURE__ */ jsxRuntime.jsx(chunkOKADVGBW_cjs.TabsTrigger, { value: "monitor", children: l.monitor }),
-        configure !== void 0 && /* @__PURE__ */ jsxRuntime.jsx(chunkOKADVGBW_cjs.TabsTrigger, { value: "configure", children: l.configure })
+    /* @__PURE__ */ jsxRuntime.jsxs(chunkAN24WGJJ_cjs.Tabs, { value: tab, onValueChange: setTab, children: [
+      /* @__PURE__ */ jsxRuntime.jsxs(chunkAN24WGJJ_cjs.TabsList, { children: [
+        /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.TabsTrigger, { value: "summary", children: l.summary }),
+        monitor !== void 0 && /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.TabsTrigger, { value: "monitor", children: l.monitor }),
+        configure !== void 0 && /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.TabsTrigger, { value: "configure", children: l.configure })
       ] }),
-      /* @__PURE__ */ jsxRuntime.jsxs(chunkOKADVGBW_cjs.TabsContent, { value: "summary", className: "grid gap-4 pt-4", children: [
+      /* @__PURE__ */ jsxRuntime.jsxs(chunkAN24WGJJ_cjs.TabsContent, { value: "summary", className: "grid gap-4 pt-4", children: [
         facts && /* @__PURE__ */ jsxRuntime.jsx(DefinitionList, { items: facts }),
-        cards && /* @__PURE__ */ jsxRuntime.jsx("div", { className: "grid gap-4 md:grid-cols-2", children: cards.map((c) => /* @__PURE__ */ jsxRuntime.jsx(chunkOKADVGBW_cjs.Panel, { title: c.title, headingLevel: 2, children: c.content }, c.id)) })
+        cards && /* @__PURE__ */ jsxRuntime.jsx("div", { className: "grid gap-4 md:grid-cols-2", children: cards.map((c) => /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Panel, { title: c.title, headingLevel: 2, children: c.content }, c.id)) })
       ] }),
-      monitor !== void 0 && /* @__PURE__ */ jsxRuntime.jsx(chunkOKADVGBW_cjs.TabsContent, { value: "monitor", className: "pt-4", children: monitor }),
-      configure !== void 0 && /* @__PURE__ */ jsxRuntime.jsx(chunkOKADVGBW_cjs.TabsContent, { value: "configure", className: "pt-4", children: configure })
+      monitor !== void 0 && /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.TabsContent, { value: "monitor", className: "pt-4", children: monitor }),
+      configure !== void 0 && /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.TabsContent, { value: "configure", className: "pt-4", children: configure })
     ] })
   ] });
 }
@@ -5712,13 +5710,13 @@ function InventoryLayout({
   defaultBottomSize = 220,
   className
 }) {
-  const { t: laf } = chunkQ6OCMENQ_cjs.useLaf();
+  const { t: laf } = chunkGWTYGDXC_cjs.useLaf();
   const mqNarrow = useNarrow();
   const narrow = narrowProp ?? mqNarrow;
   const [drawer, setDrawer] = React25__namespace.useState(false);
   const treeTitle = treeLabel ?? laf.vsInventoryTree;
   const main = bottom ? /* @__PURE__ */ jsxRuntime.jsx(
-    chunkOKADVGBW_cjs.SplitPane,
+    chunkAN24WGJJ_cjs.SplitPane,
     {
       orientation: "vertical",
       primary: "end",
@@ -5736,13 +5734,13 @@ function InventoryLayout({
   return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: chunkFTHFEMX6_cjs.cn("flex h-full min-h-0 flex-col", className), children: [
     top,
     /* @__PURE__ */ jsxRuntime.jsx("div", { className: "min-h-0 flex-1", children: narrow ? /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex h-full min-h-0 flex-col", children: [
-      /* @__PURE__ */ jsxRuntime.jsx("div", { className: "flex items-center border-b border-line px-2 py-1", children: /* @__PURE__ */ jsxRuntime.jsxs(chunkOKADVGBW_cjs.Drawer, { open: drawer, onOpenChange: setDrawer, children: [
-        /* @__PURE__ */ jsxRuntime.jsx(chunkOKADVGBW_cjs.DrawerTrigger, { className: "btn btn-ghost btn-sm", "aria-label": treeTitle, children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.PanelLeft, { className: "size-4", "aria-hidden": true }) }),
-        /* @__PURE__ */ jsxRuntime.jsx(chunkOKADVGBW_cjs.DrawerContent, { title: treeTitle, width: "sm", children: /* @__PURE__ */ jsxRuntime.jsx("div", { onClickCapture: (e) => e.target.closest('[role="treeitem"]') && setDrawer(false), children: tree }) })
+      /* @__PURE__ */ jsxRuntime.jsx("div", { className: "flex items-center border-b border-line px-2 py-1", children: /* @__PURE__ */ jsxRuntime.jsxs(chunkAN24WGJJ_cjs.Drawer, { open: drawer, onOpenChange: setDrawer, children: [
+        /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.DrawerTrigger, { className: "btn btn-ghost btn-sm", "aria-label": treeTitle, children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.PanelLeft, { className: "size-4", "aria-hidden": true }) }),
+        /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.DrawerContent, { title: treeTitle, width: "sm", children: /* @__PURE__ */ jsxRuntime.jsx("div", { onClickCapture: (e) => e.target.closest('[role="treeitem"]') && setDrawer(false), children: tree }) })
       ] }) }),
       /* @__PURE__ */ jsxRuntime.jsx("div", { className: "min-h-0 flex-1", children: main })
     ] }) : /* @__PURE__ */ jsxRuntime.jsx(
-      chunkOKADVGBW_cjs.SplitPane,
+      chunkAN24WGJJ_cjs.SplitPane,
       {
         collapsible: true,
         label: treeTitle,
@@ -5784,7 +5782,7 @@ var trackerEn = {
   progress: { todo: "To do", doing: "In progress", done: "Done", summary: (pct) => `${pct}% complete` }
 };
 var lafDefaults7 = { tracker: trackerEn };
-var useLaf4 = () => chunkQ6OCMENQ_cjs.useLafDefaults(lafDefaults7);
+var useLaf4 = () => chunkGWTYGDXC_cjs.useLafDefaults(lafDefaults7);
 function Tip2({ content, children }) {
   return /* @__PURE__ */ jsxRuntime.jsx(TooltipPrimitive__namespace.Provider, { delayDuration: 300, children: /* @__PURE__ */ jsxRuntime.jsxs(TooltipPrimitive__namespace.Root, { children: [
     /* @__PURE__ */ jsxRuntime.jsx(TooltipPrimitive__namespace.Trigger, { asChild: true, children }),
@@ -5793,7 +5791,7 @@ function Tip2({ content, children }) {
 }
 var withLabels = (defaults, labels) => ({ ...defaults, ...labels });
 function Label3({ slot, description, onRemove, removeLabel, children }) {
-  const chip = /* @__PURE__ */ jsxRuntime.jsx(chunkOKADVGBW_cjs.Chip, { color: slot, onRemove, removeLabel, children });
+  const chip = /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Chip, { color: slot, onRemove, removeLabel, children });
   return description ? /* @__PURE__ */ jsxRuntime.jsx(Tip2, { content: description, children: /* @__PURE__ */ jsxRuntime.jsx("span", { className: "inline-flex", children: chip }) }) : chip;
 }
 function LabelSwatch({ slot, className }) {
@@ -5813,7 +5811,7 @@ function LabelPicker({
   const options = labels.map((x) => ({ value: x.id, label: x.name, description: x.description }));
   return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "grid gap-2", children: [
     /* @__PURE__ */ jsxRuntime.jsx(
-      chunkOKADVGBW_cjs.Combobox,
+      chunkAN24WGJJ_cjs.Combobox,
       {
         multiple: true,
         label: l.label,
@@ -5830,7 +5828,7 @@ function LabelPicker({
         ] })
       }
     ),
-    onCreate && /* @__PURE__ */ jsxRuntime.jsx("div", { role: "radiogroup", "aria-label": l.newColour, className: "flex flex-wrap gap-1", children: chunkOKADVGBW_cjs.LABEL_SLOTS.map((s) => /* @__PURE__ */ jsxRuntime.jsx(
+    onCreate && /* @__PURE__ */ jsxRuntime.jsx("div", { role: "radiogroup", "aria-label": l.newColour, className: "flex flex-wrap gap-1", children: chunkAN24WGJJ_cjs.LABEL_SLOTS.map((s) => /* @__PURE__ */ jsxRuntime.jsx(
       "button",
       {
         type: "button",
@@ -5956,7 +5954,7 @@ function ActivityTimeline({
         ] }, r.id);
       }
       return /* @__PURE__ */ jsxRuntime.jsxs("li", { className: "flex gap-3", children: [
-        /* @__PURE__ */ jsxRuntime.jsx(chunkOKADVGBW_cjs.Avatar, { name: r.author.name, src: r.author.src }),
+        /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Avatar, { name: r.author.name, src: r.author.src }),
         /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "min-w-0 flex-1 rounded-md border border-line bg-surface", children: [
           /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex items-center gap-2 border-b border-line px-3 py-1.5 text-xs", children: [
             /* @__PURE__ */ jsxRuntime.jsx("strong", { className: "text-fg", children: r.author.name }),
@@ -6309,7 +6307,7 @@ var vsphereObjectsEn = {
   }
 };
 var lafDefaults8 = { vsphereObjects: vsphereObjectsEn };
-var useLaf5 = () => chunkQ6OCMENQ_cjs.useLafDefaults(lafDefaults8);
+var useLaf5 = () => chunkGWTYGDXC_cjs.useLafDefaults(lafDefaults8);
 var statusTone = { connecting: "warn", connected: "ok", disconnected: "neutral", error: "danger" };
 function ConsoleFrame({
   children,
@@ -6330,7 +6328,7 @@ function ConsoleFrame({
   const l = { ...laf.components.vsphereObjects.console, ...labels };
   const root = React25__namespace.useRef(null);
   const [full, setFull] = React25__namespace.useState(false);
-  const [scale, setScale] = chunk5WBFJQAZ_cjs.useControllableState({ value: scaleProp, defaultValue: "fit", onChange: onScaleChange });
+  const [scale, setScale] = chunkXNG22HMC_cjs.useControllableState({ value: scaleProp, defaultValue: "fit", onChange: onScaleChange });
   React25__namespace.useEffect(() => {
     const on = () => setFull(document.fullscreenElement === root.current);
     document.addEventListener("fullscreenchange", on);
@@ -6344,9 +6342,9 @@ function ConsoleFrame({
   return /* @__PURE__ */ jsxRuntime.jsxs("div", { ref: root, className: chunkFTHFEMX6_cjs.cn("flex flex-col overflow-hidden rounded-lg border border-line bg-surface", className), children: [
     /* @__PURE__ */ jsxRuntime.jsxs("div", { role: "toolbar", "aria-label": l.console, className: "flex flex-wrap items-center gap-2 border-b border-line px-3 py-2", children: [
       /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { size: "sm", variant: "secondary", disabled: !live, onClick: () => onSendKeys?.("ctrl-alt-del"), children: l.sendCad }),
-      keyCombos && keyCombos.length > 0 && /* @__PURE__ */ jsxRuntime.jsxs(chunkOKADVGBW_cjs.DropdownMenu, { children: [
-        /* @__PURE__ */ jsxRuntime.jsx(chunkOKADVGBW_cjs.DropdownMenuTrigger, { asChild: true, children: /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { size: "sm", variant: "ghost", disabled: !live, children: l.keys }) }),
-        /* @__PURE__ */ jsxRuntime.jsx(chunkOKADVGBW_cjs.DropdownMenuContent, { align: "start", children: keyCombos.map((k) => /* @__PURE__ */ jsxRuntime.jsx(chunkOKADVGBW_cjs.DropdownMenuItem, { onSelect: () => onSendKeys?.(k.id), children: k.label }, k.id)) })
+      keyCombos && keyCombos.length > 0 && /* @__PURE__ */ jsxRuntime.jsxs(chunkAN24WGJJ_cjs.DropdownMenu, { children: [
+        /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.DropdownMenuTrigger, { asChild: true, children: /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { size: "sm", variant: "ghost", disabled: !live, children: l.keys }) }),
+        /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.DropdownMenuContent, { align: "start", children: keyCombos.map((k) => /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.DropdownMenuItem, { onSelect: () => onSendKeys?.(k.id), children: k.label }, k.id)) })
       ] }),
       /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { size: "sm", variant: "ghost", "aria-pressed": scale === "actual", onClick: () => setScale(scale === "fit" ? "actual" : "fit"), children: scale === "fit" ? l.actual : l.fit }),
       onScreenshot && /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { size: "sm", variant: "ghost", disabled: !live, onClick: onScreenshot, children: l.screenshot }),
@@ -6405,7 +6403,7 @@ function HardwareEditor({ devices: devicesProp, defaultDevices = [], onChange, b
   const l = { ...laf.components.vsphereObjects.hardware, ...labels };
   const initial = React25__namespace.useRef(devicesProp ?? defaultDevices);
   const base = baseline ?? initial.current;
-  const [devices, setDevices] = chunk5WBFJQAZ_cjs.useControllableState({ value: devicesProp, defaultValue: defaultDevices, onChange });
+  const [devices, setDevices] = chunkXNG22HMC_cjs.useControllableState({ value: devicesProp, defaultValue: defaultDevices, onChange });
   const [pickFor, setPickFor] = React25__namespace.useState(null);
   const counter = React25__namespace.useRef(0);
   const update = (id, patch) => setDevices(devices.map((d) => d.id === id ? { ...d, ...patch } : d));
@@ -6419,8 +6417,8 @@ function HardwareEditor({ devices: devicesProp, defaultDevices = [], onChange, b
   const errors = devices.map((d) => validateDevice(d, base.find((b) => b.id === d.id), cap, l));
   const invalid = errors.some((e) => Object.keys(e).length > 0);
   const diff = describeDiff(devices, base, l);
-  const num = (d, field, text, value, err, disabled) => /* @__PURE__ */ jsxRuntime.jsx(chunkOKADVGBW_cjs.Field, { label: text, error: err, htmlFor: `${d.id}-${field}`, children: /* @__PURE__ */ jsxRuntime.jsx(
-    chunkOKADVGBW_cjs.Input,
+  const num = (d, field, text, value, err, disabled) => /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Field, { label: text, error: err, htmlFor: `${d.id}-${field}`, children: /* @__PURE__ */ jsxRuntime.jsx(
+    chunkAN24WGJJ_cjs.Input,
     {
       id: `${d.id}-${field}`,
       type: "number",
@@ -6447,21 +6445,21 @@ function HardwareEditor({ devices: devicesProp, defaultDevices = [], onChange, b
       case "disk":
         return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "grid gap-3 sm:grid-cols-3", children: [
           num(d, "sizeGb", l.diskSize, d.sizeGb, e.sizeGb),
-          /* @__PURE__ */ jsxRuntime.jsx(chunkOKADVGBW_cjs.Field, { label: l.provisioning, htmlFor: `${d.id}-prov`, children: /* @__PURE__ */ jsxRuntime.jsxs("select", { id: `${d.id}-prov`, className: "form-select", value: d.provisioning, onChange: (ev) => update(d.id, { provisioning: ev.target.value }), children: [
+          /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Field, { label: l.provisioning, htmlFor: `${d.id}-prov`, children: /* @__PURE__ */ jsxRuntime.jsxs("select", { id: `${d.id}-prov`, className: "form-select", value: d.provisioning, onChange: (ev) => update(d.id, { provisioning: ev.target.value }), children: [
             /* @__PURE__ */ jsxRuntime.jsx("option", { value: "thin", children: l.thin }),
             /* @__PURE__ */ jsxRuntime.jsx("option", { value: "thick-lazy", children: l.thickLazy }),
             /* @__PURE__ */ jsxRuntime.jsx("option", { value: "thick-eager", children: l.thickEager })
           ] }) }),
-          /* @__PURE__ */ jsxRuntime.jsx(chunkOKADVGBW_cjs.Field, { label: l.controller, htmlFor: `${d.id}-ctl`, children: /* @__PURE__ */ jsxRuntime.jsx("select", { id: `${d.id}-ctl`, className: "form-select", value: d.controller, onChange: (ev) => update(d.id, { controller: ev.target.value }), children: (cap.controllers ?? [d.controller]).map((c) => /* @__PURE__ */ jsxRuntime.jsx("option", { children: c }, c)) }) })
+          /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Field, { label: l.controller, htmlFor: `${d.id}-ctl`, children: /* @__PURE__ */ jsxRuntime.jsx("select", { id: `${d.id}-ctl`, className: "form-select", value: d.controller, onChange: (ev) => update(d.id, { controller: ev.target.value }), children: (cap.controllers ?? [d.controller]).map((c) => /* @__PURE__ */ jsxRuntime.jsx("option", { children: c }, c)) }) })
         ] });
       case "nic":
         return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "grid gap-3 sm:grid-cols-3", children: [
-          /* @__PURE__ */ jsxRuntime.jsx(chunkOKADVGBW_cjs.Field, { label: l.network, error: e.network, htmlFor: `${d.id}-net`, children: /* @__PURE__ */ jsxRuntime.jsxs("select", { id: `${d.id}-net`, className: "form-select", "aria-invalid": !!e.network || void 0, value: d.network, onChange: (ev) => update(d.id, { network: ev.target.value }), children: [
+          /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Field, { label: l.network, error: e.network, htmlFor: `${d.id}-net`, children: /* @__PURE__ */ jsxRuntime.jsxs("select", { id: `${d.id}-net`, className: "form-select", "aria-invalid": !!e.network || void 0, value: d.network, onChange: (ev) => update(d.id, { network: ev.target.value }), children: [
             /* @__PURE__ */ jsxRuntime.jsx("option", { value: "" }),
             cap.networks.map((n) => /* @__PURE__ */ jsxRuntime.jsx("option", { children: n }, n))
           ] }) }),
-          /* @__PURE__ */ jsxRuntime.jsx(chunkOKADVGBW_cjs.Field, { label: l.adapter, htmlFor: `${d.id}-ad`, children: /* @__PURE__ */ jsxRuntime.jsx("select", { id: `${d.id}-ad`, className: "form-select", value: d.adapter, onChange: (ev) => update(d.id, { adapter: ev.target.value }), children: (cap.adapters ?? [d.adapter]).map((a) => /* @__PURE__ */ jsxRuntime.jsx("option", { children: a }, a)) }) }),
-          /* @__PURE__ */ jsxRuntime.jsx(chunkOKADVGBW_cjs.Switch, { checked: d.connected, onChange: (ev) => update(d.id, { connected: ev.target.checked }), children: l.connected })
+          /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Field, { label: l.adapter, htmlFor: `${d.id}-ad`, children: /* @__PURE__ */ jsxRuntime.jsx("select", { id: `${d.id}-ad`, className: "form-select", value: d.adapter, onChange: (ev) => update(d.id, { adapter: ev.target.value }), children: (cap.adapters ?? [d.adapter]).map((a) => /* @__PURE__ */ jsxRuntime.jsx("option", { children: a }, a)) }) }),
+          /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Switch, { checked: d.connected, onChange: (ev) => update(d.id, { connected: ev.target.checked }), children: l.connected })
         ] });
       case "cdrom":
         return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex flex-wrap items-center gap-3", children: [
@@ -6471,7 +6469,7 @@ function HardwareEditor({ devices: devicesProp, defaultDevices = [], onChange, b
             /* @__PURE__ */ jsxRuntime.jsx("span", { className: "text-fg", children: d.iso ?? l.noIso })
           ] }),
           renderIsoPicker && /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { size: "sm", variant: "secondary", onClick: () => setPickFor(d.id), children: l.chooseIso }),
-          /* @__PURE__ */ jsxRuntime.jsx(chunkOKADVGBW_cjs.Switch, { checked: d.connected, onChange: (ev) => update(d.id, { connected: ev.target.checked }), children: l.connected })
+          /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Switch, { checked: d.connected, onChange: (ev) => update(d.id, { connected: ev.target.checked }), children: l.connected })
         ] });
     }
   };
@@ -6479,9 +6477,9 @@ function HardwareEditor({ devices: devicesProp, defaultDevices = [], onChange, b
   return /* @__PURE__ */ jsxRuntime.jsxs("section", { "aria-label": l.title, className: chunkFTHFEMX6_cjs.cn("grid gap-3", className), children: [
     /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex items-center justify-between", children: [
       /* @__PURE__ */ jsxRuntime.jsx("h3", { className: "text-sm font-semibold", children: l.title }),
-      /* @__PURE__ */ jsxRuntime.jsxs(chunkOKADVGBW_cjs.DropdownMenu, { children: [
-        /* @__PURE__ */ jsxRuntime.jsx(chunkOKADVGBW_cjs.DropdownMenuTrigger, { asChild: true, children: /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { size: "sm", variant: "secondary", leftIcon: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Plus, { "aria-hidden": true }), children: l.addDevice }) }),
-        /* @__PURE__ */ jsxRuntime.jsx(chunkOKADVGBW_cjs.DropdownMenuContent, { children: addable.map((k) => /* @__PURE__ */ jsxRuntime.jsx(chunkOKADVGBW_cjs.DropdownMenuItem, { disabled: locked(k), title: locked(k) ? l.hotAddDisabled : void 0, onSelect: () => add(k), children: l[k] }, k)) })
+      /* @__PURE__ */ jsxRuntime.jsxs(chunkAN24WGJJ_cjs.DropdownMenu, { children: [
+        /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.DropdownMenuTrigger, { asChild: true, children: /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { size: "sm", variant: "secondary", leftIcon: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Plus, { "aria-hidden": true }), children: l.addDevice }) }),
+        /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.DropdownMenuContent, { children: addable.map((k) => /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.DropdownMenuItem, { disabled: locked(k), title: locked(k) ? l.hotAddDisabled : void 0, onSelect: () => add(k), children: l[k] }, k)) })
       ] })
     ] }),
     /* @__PURE__ */ jsxRuntime.jsx("ul", { className: "grid gap-2", children: devices.map((d, i) => /* @__PURE__ */ jsxRuntime.jsxs("li", { className: "relative rounded-md border border-line bg-surface", children: [
@@ -6489,7 +6487,7 @@ function HardwareEditor({ devices: devicesProp, defaultDevices = [], onChange, b
         /* @__PURE__ */ jsxRuntime.jsxs("summary", { className: "flex cursor-pointer items-center gap-2 px-3 py-2 text-sm font-medium", children: [
           /* @__PURE__ */ jsxRuntime.jsx(lucideReact.ChevronRight, { className: "size-4 transition-transform group-open:rotate-90 rtl:-scale-x-100", "aria-hidden": true }),
           /* @__PURE__ */ jsxRuntime.jsx("span", { children: nameOf(d, l) }),
-          Object.keys(errors[i]).length > 0 && /* @__PURE__ */ jsxRuntime.jsx(chunkOKADVGBW_cjs.Badge, { tone: "danger", children: "!" })
+          Object.keys(errors[i]).length > 0 && /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Badge, { tone: "danger", children: "!" })
         ] }),
         /* @__PURE__ */ jsxRuntime.jsx("div", { className: "border-t border-line p-3", children: body(d, errors[i]) })
       ] }),
@@ -6514,7 +6512,7 @@ function HardwareEditor({ devices: devicesProp, defaultDevices = [], onChange, b
       /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { variant: "ghost", disabled: diff.length === 0, onClick: () => setDevices(base), children: l.discard }),
       /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { disabled: diff.length === 0 || invalid, onClick: () => onSave?.(devices), children: l.save })
     ] }),
-    renderIsoPicker && /* @__PURE__ */ jsxRuntime.jsx(chunkOKADVGBW_cjs.Dialog, { open: pickFor !== null, onOpenChange: (o) => !o && setPickFor(null), children: /* @__PURE__ */ jsxRuntime.jsx(chunkOKADVGBW_cjs.DialogContent, { title: l.chooseIso, className: "w-[min(56rem,95vw)]", children: renderIsoPicker(
+    renderIsoPicker && /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Dialog, { open: pickFor !== null, onOpenChange: (o) => !o && setPickFor(null), children: /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.DialogContent, { title: l.chooseIso, className: "w-[min(56rem,95vw)]", children: renderIsoPicker(
       (iso2) => {
         if (pickFor) update(pickFor, { iso: iso2 });
         setPickFor(null);
@@ -6545,7 +6543,7 @@ function DatastoreBrowser({
 }) {
   const { format: format2, t: laf } = useLaf5();
   const l = { ...laf.components.vsphereObjects.datastore, ...labels };
-  const [path, setPath] = chunk5WBFJQAZ_cjs.useControllableState({ value: pathProp, defaultValue: defaultPath, onChange: onPathChange });
+  const [path, setPath] = chunkXNG22HMC_cjs.useControllableState({ value: pathProp, defaultValue: defaultPath, onChange: onPathChange });
   const [chosen, setChosen] = React25__namespace.useState(null);
   const [toDelete, setToDelete] = React25__namespace.useState(null);
   const [naming, setNaming] = React25__namespace.useState(false);
@@ -6603,7 +6601,7 @@ function DatastoreBrowser({
           setNaming(false);
         },
         children: [
-          /* @__PURE__ */ jsxRuntime.jsx(chunkOKADVGBW_cjs.Field, { label: l.folderName, htmlFor: "ds-new-folder", children: /* @__PURE__ */ jsxRuntime.jsx(chunkOKADVGBW_cjs.Input, { id: "ds-new-folder", autoFocus: true, value: folderName, onChange: (e) => setFolderName(e.target.value) }) }),
+          /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Field, { label: l.folderName, htmlFor: "ds-new-folder", children: /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Input, { id: "ds-new-folder", autoFocus: true, value: folderName, onChange: (e) => setFolderName(e.target.value) }) }),
           /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { type: "submit", size: "sm", children: l.create }),
           /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { size: "sm", variant: "ghost", onClick: () => setNaming(false), children: l.cancel })
         ]
@@ -6731,8 +6729,8 @@ function PermissionAssignDialog({ open, onOpenChange, principals, roles, objectP
       setPending(false);
     }
   };
-  return /* @__PURE__ */ jsxRuntime.jsx(chunkOKADVGBW_cjs.Dialog, { open, onOpenChange, children: /* @__PURE__ */ jsxRuntime.jsx(
-    chunkOKADVGBW_cjs.DialogContent,
+  return /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Dialog, { open, onOpenChange, children: /* @__PURE__ */ jsxRuntime.jsx(
+    chunkAN24WGJJ_cjs.DialogContent,
     {
       title: l.title,
       footer: /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
@@ -6740,13 +6738,13 @@ function PermissionAssignDialog({ open, onOpenChange, principals, roles, objectP
         /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { loading: pending, disabled: !principal[0] || !roleId, onClick: submit, children: l.assign })
       ] }),
       children: /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "grid gap-4", children: [
-        /* @__PURE__ */ jsxRuntime.jsx(chunkOKADVGBW_cjs.Field, { label: l.object, htmlFor: "perm-object", children: /* @__PURE__ */ jsxRuntime.jsx(chunkOKADVGBW_cjs.Input, { id: "perm-object", readOnly: true, value: objectPath }) }),
+        /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Field, { label: l.object, htmlFor: "perm-object", children: /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Input, { id: "perm-object", readOnly: true, value: objectPath }) }),
         /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "grid gap-1", children: [
           /* @__PURE__ */ jsxRuntime.jsx("span", { className: "text-sm font-medium", children: l.principal }),
-          /* @__PURE__ */ jsxRuntime.jsx(chunkOKADVGBW_cjs.Combobox, { label: l.principal, options: principals, value: principal, onChange: setPrincipal })
+          /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Combobox, { label: l.principal, options: principals, value: principal, onChange: setPrincipal })
         ] }),
-        /* @__PURE__ */ jsxRuntime.jsx(chunkOKADVGBW_cjs.Field, { label: l.role, htmlFor: "perm-role", hint: role?.description, children: /* @__PURE__ */ jsxRuntime.jsx("select", { id: "perm-role", className: "form-select", value: roleId, onChange: (e) => setRoleId(e.target.value), children: roles.map((r) => /* @__PURE__ */ jsxRuntime.jsx("option", { value: r.id, children: r.name }, r.id)) }) }),
-        /* @__PURE__ */ jsxRuntime.jsx(chunkOKADVGBW_cjs.Switch, { checked: propagate, onChange: (e) => setPropagate(e.target.checked), children: l.propagate })
+        /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Field, { label: l.role, htmlFor: "perm-role", hint: role?.description, children: /* @__PURE__ */ jsxRuntime.jsx("select", { id: "perm-role", className: "form-select", value: roleId, onChange: (e) => setRoleId(e.target.value), children: roles.map((r) => /* @__PURE__ */ jsxRuntime.jsx("option", { value: r.id, children: r.name }, r.id)) }) }),
+        /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Switch, { checked: propagate, onChange: (e) => setPropagate(e.target.checked), children: l.propagate })
       ] })
     }
   ) });
@@ -6770,7 +6768,7 @@ function SnapshotTree({ snapshots, currentId, onTake, onRevert, onDelete, onDele
       /* @__PURE__ */ jsxRuntime.jsx("span", { children: s.name }),
       /* @__PURE__ */ jsxRuntime.jsx("span", { className: "text-xs text-muted", children: /* @__PURE__ */ jsxRuntime.jsx(RelativeTime, { value: s.createdAt }) }),
       s.sizeBytes !== void 0 && /* @__PURE__ */ jsxRuntime.jsx("span", { className: "text-xs text-muted", children: format2.bytes(s.sizeBytes, { base: 1024 }) }),
-      s.id === currentId && /* @__PURE__ */ jsxRuntime.jsx(chunkOKADVGBW_cjs.Badge, { tone: "primary", children: l.youAreHere })
+      s.id === currentId && /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Badge, { tone: "primary", children: l.youAreHere })
     ] }),
     children: s.children?.map(toNode)
   });
@@ -6779,7 +6777,7 @@ function SnapshotTree({ snapshots, currentId, onTake, onRevert, onDelete, onDele
   const sel = selected ? index.get(selected) : void 0;
   const confirmText = confirm ? (confirm.kind === "revert" ? l.confirmRevert : confirm.kind === "delete" ? l.confirmDelete : l.confirmDeleteChildren)(confirm.node.name) : "";
   return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: chunkFTHFEMX6_cjs.cn("grid gap-3", className), children: [
-    needsConsolidation && /* @__PURE__ */ jsxRuntime.jsx(chunkOKADVGBW_cjs.Banner, { tone: "warn", action: onConsolidate && /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { size: "sm", variant: "secondary", onClick: onConsolidate, children: l.consolidate }), children: l.consolidationNeeded }),
+    needsConsolidation && /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Banner, { tone: "warn", action: onConsolidate && /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { size: "sm", variant: "secondary", onClick: onConsolidate, children: l.consolidate }), children: l.consolidationNeeded }),
     /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex flex-wrap gap-2", children: [
       onTake && /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { size: "sm", onClick: onTake, children: l.take }),
       /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { size: "sm", variant: "secondary", disabled: !sel, onClick: () => sel && setConfirm({ kind: "revert", node: sel }), children: l.revert }),
@@ -6810,7 +6808,7 @@ var sevTone = { info: "primary", warning: "warn", error: "danger" };
 function EventConsole({ events, liveTail: liveProp, onLiveTailChange, labels, className }) {
   const { t: laf } = useLaf5();
   const l = { ...laf.components.vsphereObjects.events, ...labels };
-  const [live, setLive] = chunk5WBFJQAZ_cjs.useControllableState({ value: liveProp, defaultValue: false, onChange: onLiveTailChange });
+  const [live, setLive] = chunkXNG22HMC_cjs.useControllableState({ value: liveProp, defaultValue: false, onChange: onLiveTailChange });
   const [query, setQuery] = React25__namespace.useState("");
   const [sev, setSev] = React25__namespace.useState("all");
   const [open, setOpen] = React25__namespace.useState(null);
@@ -6820,14 +6818,14 @@ function EventConsole({ events, liveTail: liveProp, onLiveTailChange, labels, cl
   }, [events, query, sev]);
   return /* @__PURE__ */ jsxRuntime.jsxs("section", { "aria-label": l.title, className: chunkFTHFEMX6_cjs.cn("grid gap-3", className), children: [
     /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex flex-wrap items-center gap-2", children: [
-      /* @__PURE__ */ jsxRuntime.jsx(chunkOKADVGBW_cjs.Input, { type: "search", className: "max-w-xs", "aria-label": l.search, placeholder: `${l.search}\u2026`, value: query, onChange: (e) => setQuery(e.target.value) }),
+      /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Input, { type: "search", className: "max-w-xs", "aria-label": l.search, placeholder: `${l.search}\u2026`, value: query, onChange: (e) => setQuery(e.target.value) }),
       /* @__PURE__ */ jsxRuntime.jsxs("select", { "aria-label": l.severity, className: "form-select w-auto", value: sev, onChange: (e) => setSev(e.target.value), children: [
         /* @__PURE__ */ jsxRuntime.jsx("option", { value: "all", children: l.all }),
         /* @__PURE__ */ jsxRuntime.jsx("option", { value: "info", children: l.info }),
         /* @__PURE__ */ jsxRuntime.jsx("option", { value: "warning", children: l.warning }),
         /* @__PURE__ */ jsxRuntime.jsx("option", { value: "error", children: l.error })
       ] }),
-      /* @__PURE__ */ jsxRuntime.jsx(chunkOKADVGBW_cjs.Switch, { className: "ms-auto", checked: live, onChange: (e) => setLive(e.target.checked), children: l.liveTail })
+      /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Switch, { className: "ms-auto", checked: live, onChange: (e) => setLive(e.target.checked), children: l.liveTail })
     ] }),
     /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "overflow-auto rounded-md border border-line bg-surface", children: [
       /* @__PURE__ */ jsxRuntime.jsxs("table", { className: "w-full text-sm", children: [
@@ -6858,7 +6856,7 @@ function EventConsole({ events, liveTail: liveProp, onLiveTailChange, labels, cl
       ] }),
       rows.length === 0 && /* @__PURE__ */ jsxRuntime.jsx("p", { className: "p-4 text-center text-sm text-subtle", children: l.empty })
     ] }),
-    /* @__PURE__ */ jsxRuntime.jsx(chunkOKADVGBW_cjs.Drawer, { open: open !== null, onOpenChange: (o) => !o && setOpen(null), children: /* @__PURE__ */ jsxRuntime.jsx(chunkOKADVGBW_cjs.DrawerContent, { title: l.details, description: open?.message, children: open && /* @__PURE__ */ jsxRuntime.jsxs("dl", { className: "grid gap-2 text-sm", children: [
+    /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Drawer, { open: open !== null, onOpenChange: (o) => !o && setOpen(null), children: /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.DrawerContent, { title: l.details, description: open?.message, children: open && /* @__PURE__ */ jsxRuntime.jsxs("dl", { className: "grid gap-2 text-sm", children: [
       /* @__PURE__ */ jsxRuntime.jsx("dt", { className: "text-muted", children: l.severity }),
       /* @__PURE__ */ jsxRuntime.jsx("dd", { children: l[open.severity] }),
       /* @__PURE__ */ jsxRuntime.jsx("dt", { className: "text-muted", children: l.time }),
@@ -6876,305 +6874,1502 @@ function EventConsole({ events, liveTail: liveProp, onLiveTailChange, labels, cl
   ] });
 }
 
+// lib/messages/content.en.ts
+var contentEn = {
+  toolbar: {
+    selected: (n) => `${n} selected`,
+    clearSelection: "Clear selection",
+    activeFilters: "Active filters",
+    removeFilter: (label) => `Remove filter ${label}`,
+    clearAll: "Clear all filters",
+    actions: "Actions"
+  },
+  codeBlock: { label: "Code", copy: "Copy code", copied: "Copied", wrap: "Wrap lines" },
+  clipboard: { copy: "Copy to clipboard", copied: "Copied", expand: "Show full value", collapse: "Hide full value" },
+  form: { required: "required" }
+};
+var lafDefaults9 = { content: contentEn };
+var FOCUSABLE = 'a[href],button,input:not([type="hidden"]),select,textarea,[role="button"],[role="combobox"],[role="radio"],[role="switch"],[role="checkbox"],[role="tab"],[tabindex]';
+var TEXT_ENTRY = 'input:not([type="checkbox"]):not([type="radio"]):not([type="button"]):not([type="submit"]),textarea,select,[contenteditable="true"]';
+function navigable(root) {
+  return [...root.querySelectorAll(FOCUSABLE)].filter(
+    (el) => !el.hasAttribute("disabled") && el.getAttribute("aria-disabled") !== "true" && !el.closest("[hidden],[aria-hidden='true']") && el.closest('[role="toolbar"]') === root
+  );
+}
+function Toolbar({ className, sticky, selectedCount = 0, bulkActions, onClearSelection, labels, children, onKeyDown, ...props }) {
+  const isToolbar = !!props["aria-label"] || !!props["aria-labelledby"];
+  const bulk = selectedCount > 0;
+  const keyDown = (e) => {
+    onKeyDown?.(e);
+    const root = e.currentTarget;
+    if (!isToolbar || e.defaultPrevented || e.altKey || e.ctrlKey || e.metaKey) return;
+    const target = e.target;
+    if (!root.contains(target) || target.closest('[role="toolbar"]') !== root || target.matches(TEXT_ENTRY)) return;
+    if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(e.key)) return;
+    const items = navigable(root);
+    const i = items.indexOf(target.closest(FOCUSABLE) ?? target);
+    if (i < 0) return;
+    const rtl = getComputedStyle(root).direction === "rtl";
+    const step = e.key === "ArrowRight" ? rtl ? -1 : 1 : e.key === "ArrowLeft" ? rtl ? 1 : -1 : 0;
+    const next = e.key === "Home" ? 0 : e.key === "End" ? items.length - 1 : (i + step + items.length) % items.length;
+    e.preventDefault();
+    items[next]?.focus();
+  };
+  return /* @__PURE__ */ jsxRuntime.jsxs(
+    "div",
+    {
+      role: isToolbar ? "toolbar" : void 0,
+      className: chunkFTHFEMX6_cjs.cn("toolbar", sticky && "sticky top-0 z-10 border-b border-line bg-[var(--bg)] py-2", bulk && "bg-primary-light", className),
+      onKeyDown: keyDown,
+      ...props,
+      children: [
+        bulk && /* @__PURE__ */ jsxRuntime.jsx(ToolbarBulk, { count: selectedCount, onClear: onClearSelection, labels, children: bulkActions }),
+        /* @__PURE__ */ jsxRuntime.jsx("div", { hidden: bulk, className: "contents [&[hidden]]:hidden", children })
+      ]
+    }
+  );
+}
+function ToolbarContent({ className, ...props }) {
+  return /* @__PURE__ */ jsxRuntime.jsx("div", { className: chunkFTHFEMX6_cjs.cn("flex w-full min-w-0 flex-wrap items-center gap-2.5", className), ...props });
+}
+function ToolbarGroup({ variant, align: align2, className, ...props }) {
+  return /* @__PURE__ */ jsxRuntime.jsx(
+    "div",
+    {
+      "data-variant": variant,
+      className: chunkFTHFEMX6_cjs.cn(
+        "flex min-w-0 flex-wrap items-center gap-2",
+        (variant === "pagination" || align2 === "end") && "ms-auto",
+        variant === "pagination" && "[&_.pagination]:p-0",
+        className
+      ),
+      ...props
+    }
+  );
+}
+function ToolbarItem({ grow, className, ...props }) {
+  return /* @__PURE__ */ jsxRuntime.jsx("div", { className: chunkFTHFEMX6_cjs.cn("flex min-w-0 items-center", grow && "min-w-56 flex-1", className), ...props });
+}
+function ToolbarSpacer({ className, ...props }) {
+  return /* @__PURE__ */ jsxRuntime.jsx("div", { "aria-hidden": true, className: chunkFTHFEMX6_cjs.cn("flex-1", className), ...props });
+}
+function ToolbarDivider({ className, ...props }) {
+  return /* @__PURE__ */ jsxRuntime.jsx("div", { role: "separator", "aria-orientation": "vertical", className: chunkFTHFEMX6_cjs.cn("h-5 w-px shrink-0 self-center bg-line", className), ...props });
+}
+function ToolbarActions({ className, ...props }) {
+  return /* @__PURE__ */ jsxRuntime.jsx(ActionBar, { className: chunkFTHFEMX6_cjs.cn("min-w-0 flex-1", className), ...props });
+}
+function ToolbarFilterChips({ filters, onRemove, onClearAll, className, labels }) {
+  const { t } = chunkGWTYGDXC_cjs.useLafDefaults(lafDefaults9);
+  const m = t.components.content.toolbar;
+  if (filters.length === 0) return null;
+  const groups = /* @__PURE__ */ new Map();
+  for (const f of filters) groups.set(f.category ?? "", [...groups.get(f.category ?? "") ?? [], f]);
+  return /* @__PURE__ */ jsxRuntime.jsxs("div", { role: "group", "aria-label": labels?.activeFilters ?? m.activeFilters, className: chunkFTHFEMX6_cjs.cn("flex w-full flex-wrap items-center gap-x-4 gap-y-2", className), children: [
+    [...groups].map(([category, list]) => /* @__PURE__ */ jsxRuntime.jsxs("div", { role: category ? "group" : void 0, "aria-label": category || void 0, className: "flex flex-wrap items-center gap-1.5", children: [
+      category && /* @__PURE__ */ jsxRuntime.jsx("span", { "aria-hidden": true, className: "text-xs text-muted", children: category }),
+      list.map((f) => /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Chip, { onRemove: onRemove ? () => onRemove(f) : void 0, removeLabel: (labels?.removeFilter ?? m.removeFilter)(f.label), children: f.label }, f.id))
+    ] }, category)),
+    onClearAll && /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { variant: "ghost", size: "sm", onClick: onClearAll, children: labels?.clearAll ?? m.clearAll })
+  ] });
+}
+function ToolbarBulk({ count, onClear, children, className, labels }) {
+  const { t } = chunkGWTYGDXC_cjs.useLafDefaults(lafDefaults9);
+  const m = t.components.content.toolbar;
+  return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: chunkFTHFEMX6_cjs.cn("flex w-full min-w-0 flex-wrap items-center gap-2", className), children: [
+    /* @__PURE__ */ jsxRuntime.jsx("span", { role: "status", className: "me-1 text-sm font-medium text-fg", children: (labels?.selected ?? m.selected)(count) }),
+    children,
+    onClear && /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { variant: "ghost", size: "sm", className: "ms-auto", onClick: onClear, children: labels?.clearSelection ?? m.clearSelection })
+  ] });
+}
+var lafDefaults10 = { content: contentEn };
+var titleSize = { md: "text-base", lg: "text-lg", xl: "text-xl", "2xl": "text-2xl", "3xl": "text-3xl", "4xl": "text-4xl" };
+var defaultTitleSize = { h1: "2xl", h2: "xl", h3: "lg", h4: "md", h5: "md", h6: "md" };
+function Title4({ headingLevel: Tag = "h2", size, className, ...props }) {
+  return /* @__PURE__ */ jsxRuntime.jsx(Tag, { className: chunkFTHFEMX6_cjs.cn("font-semibold text-fg", titleSize[size ?? defaultTitleSize[Tag]], className), ...props });
+}
+function Divider({ orientation = "horizontal", className, ...props }) {
+  if (orientation === "vertical") {
+    return /* @__PURE__ */ jsxRuntime.jsx("div", { role: "separator", "aria-orientation": "vertical", className: chunkFTHFEMX6_cjs.cn("w-px shrink-0 self-stretch bg-line", className), ...props });
+  }
+  return /* @__PURE__ */ jsxRuntime.jsx("hr", { className: chunkFTHFEMX6_cjs.cn("m-0 h-px w-full shrink-0 border-0 bg-line", className), ...props });
+}
+var gapClass = { none: "gap-0", xs: "gap-1", sm: "gap-2", md: "gap-4", lg: "gap-6", xl: "gap-8" };
+var spans = {
+  base: "col-span-1 col-span-2 col-span-3 col-span-4 col-span-5 col-span-6 col-span-7 col-span-8 col-span-9 col-span-10 col-span-11 col-span-12".split(" "),
+  sm: "sm:col-span-1 sm:col-span-2 sm:col-span-3 sm:col-span-4 sm:col-span-5 sm:col-span-6 sm:col-span-7 sm:col-span-8 sm:col-span-9 sm:col-span-10 sm:col-span-11 sm:col-span-12".split(" "),
+  md: "md:col-span-1 md:col-span-2 md:col-span-3 md:col-span-4 md:col-span-5 md:col-span-6 md:col-span-7 md:col-span-8 md:col-span-9 md:col-span-10 md:col-span-11 md:col-span-12".split(" "),
+  lg: "lg:col-span-1 lg:col-span-2 lg:col-span-3 lg:col-span-4 lg:col-span-5 lg:col-span-6 lg:col-span-7 lg:col-span-8 lg:col-span-9 lg:col-span-10 lg:col-span-11 lg:col-span-12".split(" "),
+  xl: "xl:col-span-1 xl:col-span-2 xl:col-span-3 xl:col-span-4 xl:col-span-5 xl:col-span-6 xl:col-span-7 xl:col-span-8 xl:col-span-9 xl:col-span-10 xl:col-span-11 xl:col-span-12".split(" "),
+  xxl: "2xl:col-span-1 2xl:col-span-2 2xl:col-span-3 2xl:col-span-4 2xl:col-span-5 2xl:col-span-6 2xl:col-span-7 2xl:col-span-8 2xl:col-span-9 2xl:col-span-10 2xl:col-span-11 2xl:col-span-12".split(" ")
+};
+var rowSpans = "row-span-1 row-span-2 row-span-3 row-span-4 row-span-5 row-span-6".split(" ");
+function Grid({ gap = "md", className, ...props }) {
+  return /* @__PURE__ */ jsxRuntime.jsx("div", { className: chunkFTHFEMX6_cjs.cn("grid grid-cols-12", gapClass[gap], className), ...props });
+}
+function GridItem({ span = 12, sm, md, lg, xl, xxl, rowSpan, className, ...props }) {
+  return /* @__PURE__ */ jsxRuntime.jsx(
+    "div",
+    {
+      className: chunkFTHFEMX6_cjs.cn(
+        "min-w-0",
+        spans.base[span - 1],
+        sm && spans.sm[sm - 1],
+        md && spans.md[md - 1],
+        lg && spans.lg[lg - 1],
+        xl && spans.xl[xl - 1],
+        xxl && spans.xxl[xxl - 1],
+        rowSpan && rowSpans[rowSpan - 1],
+        className
+      ),
+      ...props
+    }
+  );
+}
+var justify = { start: "justify-start", end: "justify-end", center: "justify-center", between: "justify-between", around: "justify-around", evenly: "justify-evenly" };
+var align = { start: "items-start", end: "items-end", center: "items-center", stretch: "items-stretch", baseline: "items-baseline" };
+var selfAlign = { start: "self-start", end: "self-end", center: "self-center", stretch: "self-stretch", baseline: "self-baseline" };
+var direction = { row: "flex-row", column: "flex-col", "row-reverse": "flex-row-reverse", "column-reverse": "flex-col-reverse" };
+function Flex({ direction: dir = "row", justify: j, align: a, gap = "sm", wrap = true, inline, className, ...props }) {
+  return /* @__PURE__ */ jsxRuntime.jsx("div", { className: chunkFTHFEMX6_cjs.cn(inline ? "inline-flex" : "flex", direction[dir], wrap ? "flex-wrap" : "flex-nowrap", j && justify[j], a && align[a], gapClass[gap], className), ...props });
+}
+function FlexItem({ grow, shrink = true, align: a, pushEnd, className, ...props }) {
+  return /* @__PURE__ */ jsxRuntime.jsx("div", { className: chunkFTHFEMX6_cjs.cn("min-w-0", grow && "grow", !shrink && "shrink-0", a && selfAlign[a], pushEnd && "ms-auto", className), ...props });
+}
+function Stack({ gap = "md", className, ...props }) {
+  return /* @__PURE__ */ jsxRuntime.jsx("div", { className: chunkFTHFEMX6_cjs.cn("flex flex-col", gapClass[gap], className), ...props });
+}
+function StackItem({ fill, className, ...props }) {
+  return /* @__PURE__ */ jsxRuntime.jsx("div", { className: chunkFTHFEMX6_cjs.cn(fill && "flex-1", className), ...props });
+}
+var DlContext = React25__namespace.createContext({ layout: "vertical", compact: false });
+var gridCols = { 1: "grid-cols-1", 2: "grid-cols-1 sm:grid-cols-2", 3: "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3", 4: "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4" };
+function DescriptionList({ layout = "vertical", columns = 2, compact = false, className, ...props }) {
+  const ctx = React25__namespace.useMemo(() => ({ layout, compact }), [layout, compact]);
+  return /* @__PURE__ */ jsxRuntime.jsx(DlContext.Provider, { value: ctx, children: /* @__PURE__ */ jsxRuntime.jsx("dl", { className: chunkFTHFEMX6_cjs.cn("m-0 grid", compact ? "gap-x-4 gap-y-2" : "gap-x-6 gap-y-3.5", layout === "grid" ? gridCols[columns] : "grid-cols-1", className), ...props }) });
+}
+function DescriptionListGroup({ className, ...props }) {
+  const { layout } = React25__namespace.useContext(DlContext);
+  return /* @__PURE__ */ jsxRuntime.jsx("div", { className: chunkFTHFEMX6_cjs.cn("min-w-0", layout === "horizontal" && "grid grid-cols-[minmax(6rem,12rem)_1fr] gap-x-4", className), ...props });
+}
+function DescriptionListTerm({ icon, className, children, ...props }) {
+  const { layout, compact } = React25__namespace.useContext(DlContext);
+  return /* @__PURE__ */ jsxRuntime.jsxs("dt", { className: chunkFTHFEMX6_cjs.cn("flex items-center gap-1.5 text-[0.6875rem] tracking-wider text-subtle uppercase", layout !== "horizontal" && (compact ? "mb-0" : "mb-0.5"), className), ...props, children: [
+    icon,
+    children
+  ] });
+}
+function DescriptionListDescription({ mono, className, ...props }) {
+  const { compact } = React25__namespace.useContext(DlContext);
+  return /* @__PURE__ */ jsxRuntime.jsx("dd", { className: chunkFTHFEMX6_cjs.cn("m-0 min-w-0 break-words text-fg", compact ? "text-xs" : "text-sm", mono && "font-mono break-all", className), ...props });
+}
+function nodeText(node) {
+  if (node == null || typeof node === "boolean") return "";
+  if (typeof node === "string" || typeof node === "number") return String(node);
+  if (Array.isArray(node)) return node.map(nodeText).join("");
+  if (React25__namespace.isValidElement(node)) return nodeText(node.props.children);
+  return "";
+}
+function CodeBlockCode({ children }) {
+  return /* @__PURE__ */ jsxRuntime.jsx(jsxRuntime.Fragment, { children });
+}
+function CodeBlock({ code, children, language, lineNumbers, wrap, defaultWrap = false, onWrapChange, wrapToggle, maxHeight, copy = true, actions, label, className, labels }) {
+  const { t } = chunkGWTYGDXC_cjs.useLafDefaults(lafDefaults10);
+  const m = t.components.content.codeBlock;
+  const text = code ?? nodeText(children);
+  const [wrapped, setWrapped] = chunkXNG22HMC_cjs.useControllableState({ value: wrap, defaultValue: defaultWrap, onChange: onWrapChange });
+  const lines = text.replace(/\n$/, "").split("\n");
+  const hasHeader = !!language || copy || !!actions || wrapToggle;
+  return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: chunkFTHFEMX6_cjs.cn("min-w-0 overflow-hidden rounded-md border border-line bg-input", className), children: [
+    hasHeader && /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex items-center gap-1 border-b border-line ps-3 pe-1 py-0.5", children: [
+      language && /* @__PURE__ */ jsxRuntime.jsx("span", { className: "text-xs tracking-wider text-subtle uppercase", children: language }),
+      /* @__PURE__ */ jsxRuntime.jsxs("span", { className: "ms-auto flex items-center gap-0.5", children: [
+        wrapToggle && /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { variant: "ghost", size: "sm", "aria-pressed": wrapped, onClick: () => setWrapped(!wrapped), children: labels?.wrap ?? m.wrap }),
+        actions,
+        copy && /* @__PURE__ */ jsxRuntime.jsx(CopyButton, { value: text, label: labels?.copy ?? m.copy, copiedLabel: labels?.copied ?? m.copied })
+      ] })
+    ] }),
+    /* @__PURE__ */ jsxRuntime.jsx(
+      "pre",
+      {
+        tabIndex: 0,
+        role: "region",
+        "aria-label": label ?? language ?? m.label,
+        style: maxHeight === void 0 ? void 0 : { maxBlockSize: maxHeight },
+        className: chunkFTHFEMX6_cjs.cn("m-0 overflow-auto p-3 font-mono text-[0.8125rem] leading-relaxed text-fg [tab-size:4]", wrapped ? "break-words whitespace-pre-wrap" : "whitespace-pre"),
+        children: /* @__PURE__ */ jsxRuntime.jsx("code", { children: lines.map((line, i) => /* @__PURE__ */ jsxRuntime.jsx(
+          "span",
+          {
+            "data-n": i + 1,
+            className: chunkFTHFEMX6_cjs.cn("block", lineNumbers && "before:me-4 before:inline-block before:w-[3ch] before:text-end before:text-subtle before:content-[attr(data-n)] before:select-none"),
+            children: line === "" ? " " : line
+          },
+          i
+        )) })
+      }
+    )
+  ] });
+}
+function ClipboardCopy({
+  value,
+  defaultValue,
+  children,
+  onChange,
+  variant = "inline",
+  readOnly,
+  expanded,
+  defaultExpanded = false,
+  onExpandedChange,
+  onCopy,
+  label,
+  hoverTip,
+  clickTip,
+  className,
+  labels
+}) {
+  const { t } = chunkGWTYGDXC_cjs.useLafDefaults(lafDefaults10);
+  const m = t.components.content.clipboard;
+  const [text, setText] = chunkXNG22HMC_cjs.useControllableState({ value, defaultValue: defaultValue ?? nodeText(children), onChange });
+  const [open, setOpen] = chunkXNG22HMC_cjs.useControllableState({ value: expanded, defaultValue: defaultExpanded, onChange: onExpandedChange });
+  const id = React25__namespace.useId();
+  const copyProps = { value: text, label: hoverTip ?? m.copy, copiedLabel: clickTip ?? m.copied };
+  const report = onCopy ? { onClickCapture: () => onCopy(text) } : {};
+  if (variant === "inline-compact") {
+    return /* @__PURE__ */ jsxRuntime.jsxs("span", { className: chunkFTHFEMX6_cjs.cn("inline-flex max-w-full items-center rounded-sm border border-line bg-muted-bg ps-1.5 align-middle", className), ...report, children: [
+      /* @__PURE__ */ jsxRuntime.jsx("code", { className: "min-w-0 truncate font-mono text-xs", children: text }),
+      /* @__PURE__ */ jsxRuntime.jsx(CopyButton, { ...copyProps })
+    ] });
+  }
+  const fieldLabel = label ?? t.value;
+  const expandable2 = variant === "expandable";
+  const toggle = open ? labels?.collapse ?? m.collapse : labels?.expand ?? m.expand;
+  return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: chunkFTHFEMX6_cjs.cn("min-w-0", className), children: [
+    /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex items-center gap-1", ...report, children: [
+      expandable2 && /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { variant: "ghost", size: "sm", "aria-expanded": open, "aria-controls": `${id}-full`, "aria-label": toggle, onClick: () => setOpen(!open), children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.ChevronRight, { className: chunkFTHFEMX6_cjs.cn("size-4 transition-transform rtl:rotate-180", open && "rotate-90 rtl:rotate-90"), "aria-hidden": true }) }),
+      /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Input, { readOnly, "aria-label": fieldLabel, value: expandable2 && open ? text.split("\n")[0] : text, onChange: (e) => setText(e.target.value), className: "min-w-0 flex-1 font-mono text-[0.8125rem]" }),
+      /* @__PURE__ */ jsxRuntime.jsx(CopyButton, { ...copyProps })
+    ] }),
+    expandable2 && open && /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Textarea, { id: `${id}-full`, readOnly, "aria-label": fieldLabel, value: text, rows: Math.min(12, text.split("\n").length + 1), onChange: (e) => setText(e.target.value), className: "mt-1 w-full font-mono text-[0.8125rem]" })
+  ] });
+}
+function Form({ className, ...props }) {
+  return /* @__PURE__ */ jsxRuntime.jsx("form", { className: chunkFTHFEMX6_cjs.cn("grid gap-4", className), ...props });
+}
+function FormGroup({ label, fieldId, required, fieldset, labelInfo, className, children, labels }) {
+  const { t } = chunkGWTYGDXC_cjs.useLafDefaults(lafDefaults10);
+  const mark = required && /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
+    /* @__PURE__ */ jsxRuntime.jsx("span", { "aria-hidden": "true", className: "ms-0.5 text-danger", children: "*" }),
+    " ",
+    /* @__PURE__ */ jsxRuntime.jsxs("span", { className: "sr-only", children: [
+      "(",
+      labels?.required ?? t.components.content.form.required,
+      ")"
+    ] })
+  ] });
+  const head = label && (fieldset ? (
+    // A legend must be a direct child of its fieldset to name it.
+    /* @__PURE__ */ jsxRuntime.jsxs("legend", { className: "form-label flex w-full items-baseline justify-between gap-2 p-0", children: [
+      /* @__PURE__ */ jsxRuntime.jsxs("span", { children: [
+        label,
+        mark
+      ] }),
+      labelInfo
+    ] })
+  ) : /* @__PURE__ */ jsxRuntime.jsxs("span", { className: "flex items-baseline justify-between gap-2", children: [
+    /* @__PURE__ */ jsxRuntime.jsxs("label", { className: "form-label", htmlFor: fieldId, children: [
+      label,
+      mark
+    ] }),
+    labelInfo
+  ] }));
+  if (fieldset) {
+    return /* @__PURE__ */ jsxRuntime.jsxs("fieldset", { className: chunkFTHFEMX6_cjs.cn("form-group m-0 min-w-0 border-0 p-0", className), children: [
+      head,
+      children
+    ] });
+  }
+  return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: chunkFTHFEMX6_cjs.cn("form-group", className), children: [
+    head,
+    children
+  ] });
+}
+function ActionGroup({ className, ...props }) {
+  return /* @__PURE__ */ jsxRuntime.jsx("div", { className: chunkFTHFEMX6_cjs.cn("flex flex-wrap items-center gap-2.5 pt-2", className), ...props });
+}
+function HelperText({ className, ...props }) {
+  return /* @__PURE__ */ jsxRuntime.jsx("div", { className: chunkFTHFEMX6_cjs.cn("flex flex-col gap-0.5", className), ...props });
+}
+var helperTone = { default: "text-muted", success: "text-ok", warning: "text-warn", error: "text-danger" };
+var helperIcon = { default: null, success: lucideReact.CheckCircle2, warning: lucideReact.TriangleAlert, error: lucideReact.AlertCircle };
+function HelperTextItem({ variant = "default", icon, className, children, ...props }) {
+  const Icon2 = helperIcon[variant];
+  return /* @__PURE__ */ jsxRuntime.jsxs("p", { role: variant === "error" ? "alert" : void 0, className: chunkFTHFEMX6_cjs.cn("m-0 flex items-center gap-1.5 text-xs", helperTone[variant], className), ...props, children: [
+    icon ?? (Icon2 && /* @__PURE__ */ jsxRuntime.jsx(Icon2, { className: "size-3.5 shrink-0", "aria-hidden": true })),
+    /* @__PURE__ */ jsxRuntime.jsx("span", { children })
+  ] });
+}
+function FormHelperText({ className, ...props }) {
+  return /* @__PURE__ */ jsxRuntime.jsx("div", { className: chunkFTHFEMX6_cjs.cn("mt-1", className), ...props });
+}
+var MenuToggle = React25__namespace.forwardRef(function MenuToggle2({ variant = "default", hideCaret, expanded, children, ...props }, ref) {
+  return /* @__PURE__ */ jsxRuntime.jsxs(chunkIP6HZMS5_cjs.Button, { ref, type: "button", variant: variant === "primary" ? "primary" : variant === "plain" ? "ghost" : "secondary", "aria-expanded": expanded, ...props, children: [
+    children,
+    !hideCaret && /* @__PURE__ */ jsxRuntime.jsx(lucideReact.ChevronDown, { className: "size-4", "aria-hidden": true })
+  ] });
+});
+function Dropdown({ toggle, open, defaultOpen, onOpenChange, align: align2 = "start", className, children }) {
+  return /* @__PURE__ */ jsxRuntime.jsxs(chunkAN24WGJJ_cjs.DropdownMenu, { open, defaultOpen, onOpenChange, children: [
+    /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.DropdownMenuTrigger, { asChild: true, children: toggle }),
+    /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.DropdownMenuContent, { align: align2, className, children })
+  ] });
+}
+function DropdownList({ children }) {
+  return /* @__PURE__ */ jsxRuntime.jsx(jsxRuntime.Fragment, { children });
+}
+function DropdownGroup({ label, children }) {
+  return /* @__PURE__ */ jsxRuntime.jsxs("div", { role: "group", "aria-label": label, children: [
+    label && /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.DropdownMenuLabel, { children: label }),
+    children
+  ] });
+}
+function DropdownItem({ icon, description, children, ...props }) {
+  return /* @__PURE__ */ jsxRuntime.jsxs(chunkAN24WGJJ_cjs.DropdownMenuItem, { ...props, children: [
+    icon,
+    /* @__PURE__ */ jsxRuntime.jsxs("span", { className: "min-w-0 flex-1", children: [
+      children,
+      description && /* @__PURE__ */ jsxRuntime.jsx("span", { className: "block text-xs text-muted", children: description })
+    ] })
+  ] });
+}
+var DropdownSeparator = chunkAN24WGJJ_cjs.DropdownMenuSeparator;
+var ModalContext = React25__namespace.createContext({ setHasDescription() {
+} });
+var modalSize = { sm: "max-w-sm", md: "max-w-md", lg: "max-w-2xl", xl: "max-w-4xl" };
+function Modal({ open, defaultOpen, onOpenChange, onClose, trigger, size = "md", "aria-label": ariaLabel, className, children }) {
+  const { portalContainer } = chunkGWTYGDXC_cjs.useLaf();
+  const [hasDescription, setHasDescription] = React25__namespace.useState(false);
+  const ctx = React25__namespace.useMemo(() => ({ setHasDescription }), []);
+  return /* @__PURE__ */ jsxRuntime.jsxs(
+    DialogPrimitive3__namespace.Root,
+    {
+      open,
+      defaultOpen,
+      onOpenChange: (o) => {
+        onOpenChange?.(o);
+        if (!o) onClose?.();
+      },
+      children: [
+        trigger,
+        /* @__PURE__ */ jsxRuntime.jsxs(DialogPrimitive3__namespace.Portal, { container: portalContainer, children: [
+          /* @__PURE__ */ jsxRuntime.jsx(DialogPrimitive3__namespace.Overlay, { className: "fixed inset-0 z-50 bg-[rgba(5,5,10,0.7)] backdrop-blur-xs" }),
+          /* @__PURE__ */ jsxRuntime.jsx(
+            DialogPrimitive3__namespace.Content,
+            {
+              "aria-label": ariaLabel,
+              ...hasDescription ? {} : { "aria-describedby": void 0 },
+              className: chunkFTHFEMX6_cjs.cn("popup fixed top-1/2 start-1/2 z-50 flex max-h-[90dvh] -translate-x-1/2 -translate-y-1/2 flex-col rtl:translate-x-1/2", modalSize[size], className),
+              children: /* @__PURE__ */ jsxRuntime.jsx(ModalContext.Provider, { value: ctx, children })
+            }
+          )
+        ] })
+      ]
+    }
+  );
+}
+var ModalTrigger = DialogPrimitive3__namespace.Trigger;
+var ModalClose = DialogPrimitive3__namespace.Close;
+function ModalHeader({ title, description, className, children }) {
+  const { t } = chunkGWTYGDXC_cjs.useLaf();
+  const { setHasDescription } = React25__namespace.useContext(ModalContext);
+  const has = !!description;
+  React25__namespace.useEffect(() => {
+    setHasDescription(has);
+    return () => setHasDescription(false);
+  }, [has, setHasDescription]);
+  return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: chunkFTHFEMX6_cjs.cn("popup-head shrink-0", className), children: [
+    /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "min-w-0", children: [
+      /* @__PURE__ */ jsxRuntime.jsx(DialogPrimitive3__namespace.Title, { className: "popup-title", children: title }),
+      description && /* @__PURE__ */ jsxRuntime.jsx(DialogPrimitive3__namespace.Description, { className: "popup-sub", children: description }),
+      children
+    ] }),
+    /* @__PURE__ */ jsxRuntime.jsx(DialogPrimitive3__namespace.Close, { className: "popup-close", "aria-label": t.close, children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.X, { className: "size-4", "aria-hidden": true }) })
+  ] });
+}
+function ModalBody({ className, ...props }) {
+  return /* @__PURE__ */ jsxRuntime.jsx("div", { className: chunkFTHFEMX6_cjs.cn("popup-body min-h-0 overflow-auto", className), ...props });
+}
+function ModalFooter({ className, ...props }) {
+  return /* @__PURE__ */ jsxRuntime.jsx("div", { className: chunkFTHFEMX6_cjs.cn("popup-foot shrink-0", className), ...props });
+}
+var lafDefaults11 = { ui: chunkAN24WGJJ_cjs.uiEn };
+function useAppFrameLabels(labels) {
+  const ui = chunkGWTYGDXC_cjs.useLafDefaults(lafDefaults11).t.components.ui.appFrame;
+  return React25__namespace.useMemo(() => ({ ...ui, ...labels }), [ui, labels]);
+}
+var NARROW_QUERY = "(max-width: 859px)";
+function useMediaQuery(query) {
+  return React25__namespace.useSyncExternalStore(
+    (cb) => {
+      if (typeof window === "undefined" || !window.matchMedia) return () => {
+      };
+      const mq = window.matchMedia(query);
+      mq.addEventListener("change", cb);
+      return () => mq.removeEventListener("change", cb);
+    },
+    () => typeof window !== "undefined" && !!window.matchMedia ? window.matchMedia(query).matches : false,
+    () => false
+  );
+}
+function readStored2(key) {
+  if (!key || typeof localStorage === "undefined") return null;
+  try {
+    return localStorage.getItem(key);
+  } catch {
+    return null;
+  }
+}
+function writeStored(key, value) {
+  if (!key || typeof localStorage === "undefined") return;
+  try {
+    localStorage.setItem(key, value);
+  } catch {
+  }
+}
+var noop = () => {
+};
+var AppFrameContext = React25__namespace.createContext({
+  active: false,
+  isMobile: false,
+  sidebarOpen: true,
+  setSidebarOpen: noop,
+  toggleSidebar: noop,
+  rail: false,
+  sidebarId: "",
+  mainId: "",
+  navigated: noop
+});
+function useAppFrame() {
+  return React25__namespace.useContext(AppFrameContext);
+}
+var placementOf = (p) => p === "left" || p === "start" ? "start" : p === "bottom" ? "bottom" : "end";
+function AppFrame({
+  masthead,
+  sidebar,
+  breadcrumb,
+  pageHeader,
+  footer,
+  drawer,
+  drawerPlacement,
+  sidebarOpen,
+  defaultSidebarOpen = true,
+  onSidebarOpenChange,
+  sidebarCollapse = "hide",
+  persistKey,
+  mainId: mainIdProp,
+  labels,
+  className,
+  children
+}) {
+  const l = useAppFrameLabels(labels);
+  const uid = React25__namespace.useId();
+  const mainId = mainIdProp ?? `${uid}-main`;
+  const sidebarId = `${uid}-sidebar`;
+  const isMobile = useMediaQuery(NARROW_QUERY);
+  const storageKey2 = persistKey ? `${persistKey}:sidebar` : void 0;
+  const [initialOpen] = React25__namespace.useState(() => {
+    const stored = readStored2(storageKey2);
+    return stored === null ? defaultSidebarOpen : stored === "1";
+  });
+  const [desktopOpen, setDesktopOpenRaw] = chunkXNG22HMC_cjs.useControllableState({ value: sidebarOpen, defaultValue: initialOpen, onChange: onSidebarOpenChange });
+  const setDesktopOpen = React25__namespace.useCallback(
+    (open2) => {
+      setDesktopOpenRaw(open2);
+      writeStored(storageKey2, open2 ? "1" : "0");
+    },
+    [setDesktopOpenRaw, storageKey2]
+  );
+  const [mobileOpen, setMobileOpen] = React25__namespace.useState(false);
+  React25__namespace.useEffect(() => {
+    if (!isMobile) setMobileOpen(false);
+  }, [isMobile]);
+  const sidebarRef = React25__namespace.useRef(null);
+  React25__namespace.useEffect(() => {
+    if (!isMobile || !mobileOpen) return;
+    const opener = document.activeElement;
+    sidebarRef.current?.querySelector('[tabindex="0"], a[href], button:not([disabled])')?.focus();
+    const onKey = (e) => {
+      if (e.key === "Escape") setMobileOpen(false);
+    };
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      opener?.focus?.();
+    };
+  }, [isMobile, mobileOpen]);
+  const open = isMobile ? mobileOpen : desktopOpen;
+  const rail = !isMobile && sidebarCollapse === "rail" && !desktopOpen;
+  const setOpen = React25__namespace.useCallback((o) => isMobile ? setMobileOpen(o) : setDesktopOpen(o), [isMobile, setDesktopOpen]);
+  const ctx = React25__namespace.useMemo(
+    () => ({
+      active: true,
+      isMobile,
+      sidebarOpen: open,
+      setSidebarOpen: setOpen,
+      toggleSidebar: () => setOpen(!open),
+      rail,
+      sidebarId,
+      mainId,
+      navigated: () => setMobileOpen(false)
+    }),
+    [isMobile, open, setOpen, rail, sidebarId, mainId]
+  );
+  const placement = placementOf(drawerPlacement ?? (React25__namespace.isValidElement(drawer) ? drawer.props.placement : void 0));
+  const sidebarVisible = isMobile ? mobileOpen : desktopOpen || sidebarCollapse === "rail";
+  return /* @__PURE__ */ jsxRuntime.jsx(AppFrameContext.Provider, { value: ctx, children: /* @__PURE__ */ jsxRuntime.jsxs("div", { className: chunkFTHFEMX6_cjs.cn("relative flex h-dvh min-h-0 flex-col overflow-hidden", className), children: [
+    /* @__PURE__ */ jsxRuntime.jsx(
+      "a",
+      {
+        href: `#${mainId}`,
+        onClick: (e) => {
+          e.preventDefault();
+          document.getElementById(mainId)?.focus();
+        },
+        className: "sr-only focus:not-sr-only focus:absolute focus:start-2 focus:top-2 focus:z-50 focus:rounded-md focus:border focus:border-line-strong focus:bg-menu focus:px-3 focus:py-2 focus:text-fg focus:ring-2 focus:ring-primary",
+        children: l.skipToContent
+      }
+    ),
+    masthead && /* @__PURE__ */ jsxRuntime.jsx("div", { className: "sticky top-0 z-30 shrink-0", children: masthead }),
+    /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "relative flex min-h-0 flex-1", children: [
+      sidebar && isMobile && mobileOpen && /* @__PURE__ */ jsxRuntime.jsx("div", { "aria-hidden": true, className: "absolute inset-0 z-30 bg-[rgba(5,5,10,0.7)]", onClick: () => setMobileOpen(false) }),
+      sidebar && /* @__PURE__ */ jsxRuntime.jsx(
+        "div",
+        {
+          ref: sidebarRef,
+          id: sidebarId,
+          "data-sidebar": isMobile ? "overlay" : rail ? "rail" : desktopOpen ? "open" : "closed",
+          className: chunkFTHFEMX6_cjs.cn(
+            "z-40 flex min-h-0 shrink-0 flex-col border-e border-line bg-[rgba(12,12,16,0.72)] backdrop-blur-md transition-[width] motion-reduce:transition-none",
+            isMobile ? "absolute inset-y-0 start-0 w-72 max-w-[85%]" : rail ? "w-14" : "w-64",
+            !sidebarVisible && "hidden"
+          ),
+          children: sidebar
+        }
+      ),
+      /* @__PURE__ */ jsxRuntime.jsx("div", { className: "flex min-h-0 min-w-0 flex-1 flex-col", children: /* @__PURE__ */ jsxRuntime.jsxs("div", { className: chunkFTHFEMX6_cjs.cn("relative flex min-h-0 min-w-0 flex-1", placement === "bottom" && "flex-col"), children: [
+        placement === "start" && drawer,
+        /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex min-h-0 min-w-0 flex-1 flex-col overflow-y-auto", children: [
+          breadcrumb && /* @__PURE__ */ jsxRuntime.jsx("div", { className: "shrink-0 px-6 pt-4 max-[859px]:px-4", children: breadcrumb }),
+          /* @__PURE__ */ jsxRuntime.jsxs("main", { id: mainId, tabIndex: -1, className: "min-w-0 flex-1 outline-none", children: [
+            pageHeader,
+            children
+          ] }),
+          footer
+        ] }),
+        placement !== "start" && drawer
+      ] }) })
+    ] })
+  ] }) });
+}
+function Masthead({ className, ...props }) {
+  return /* @__PURE__ */ jsxRuntime.jsx("header", { className: chunkFTHFEMX6_cjs.cn("flex h-14 w-full items-center gap-3 border-b border-line bg-[rgba(12,12,16,0.72)] px-3 backdrop-blur-md", className), ...props });
+}
+function MastheadToggle({ className, onClick, labels, ...props }) {
+  const l = useAppFrameLabels(labels);
+  const f = useAppFrame();
+  const name = f.isMobile ? f.sidebarOpen ? l.closeNavigation : l.openNavigation : f.sidebarOpen ? l.collapseSidebar : l.expandSidebar;
+  return /* @__PURE__ */ jsxRuntime.jsx(
+    "button",
+    {
+      type: "button",
+      "aria-label": name,
+      "aria-expanded": f.active ? f.sidebarOpen : void 0,
+      "aria-controls": f.active && f.sidebarId ? f.sidebarId : void 0,
+      onClick: (e) => {
+        onClick?.(e);
+        if (!e.defaultPrevented) f.toggleSidebar();
+      },
+      className: chunkFTHFEMX6_cjs.cn("btn btn-ghost btn-sm auto shrink-0", className),
+      ...props,
+      children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Menu, { "aria-hidden": true })
+    }
+  );
+}
+function MastheadBrand({ logo, title, subtitle, href, onClick, render, className }) {
+  const cls = chunkFTHFEMX6_cjs.cn("flex min-w-0 items-center gap-3 text-fg no-underline", (href || onClick || render) && "rounded-md outline-none focus-visible:ring-2 focus-visible:ring-primary/50", className);
+  const children = /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
+    logo && /* @__PURE__ */ jsxRuntime.jsx("span", { className: "flex shrink-0 items-center [&>svg]:size-8", children: logo }),
+    (title || subtitle) && /* @__PURE__ */ jsxRuntime.jsxs("span", { className: "flex min-w-0 flex-col leading-tight", children: [
+      title && /* @__PURE__ */ jsxRuntime.jsx("span", { className: "truncate text-lg font-bold tracking-tight", children: title }),
+      subtitle && /* @__PURE__ */ jsxRuntime.jsx("span", { className: "truncate text-xs text-muted max-[480px]:hidden", children: subtitle })
+    ] })
+  ] });
+  if (render) return render({ className: cls, children, href, onClick });
+  if (href) {
+    return /* @__PURE__ */ jsxRuntime.jsx("a", { href, onClick, className: cls, children });
+  }
+  if (onClick) {
+    return /* @__PURE__ */ jsxRuntime.jsx("button", { type: "button", onClick, className: chunkFTHFEMX6_cjs.cn(cls, "border-0 bg-transparent p-0 text-start"), children });
+  }
+  return /* @__PURE__ */ jsxRuntime.jsx("div", { className: cls, children });
+}
+function MastheadContent({ className, ...props }) {
+  return /* @__PURE__ */ jsxRuntime.jsx("div", { className: chunkFTHFEMX6_cjs.cn("flex min-w-0 flex-1 items-center gap-3", className), ...props });
+}
+function MastheadActions({ className, ...props }) {
+  return /* @__PURE__ */ jsxRuntime.jsx("div", { className: chunkFTHFEMX6_cjs.cn("ms-auto flex shrink-0 items-center gap-1", className), ...props });
+}
+var DARK_QUERY = "(prefers-color-scheme: dark)";
+var modeIcon = { light: lucideReact.Sun, dark: lucideReact.Moon, system: lucideReact.Monitor };
+var modes = ["light", "dark", "system"];
+function ThemeToggle({ value, defaultValue = "system", onChange, onResolvedChange, persistKey, apply = true, variant = "menu", labels, className }) {
+  const l = useAppFrameLabels(labels);
+  const [initial] = React25__namespace.useState(() => {
+    const s = readStored2(persistKey);
+    return s === "light" || s === "dark" || s === "system" ? s : defaultValue;
+  });
+  const [mode, setMode] = chunkXNG22HMC_cjs.useControllableState({ value, defaultValue: initial, onChange });
+  const systemDark = useMediaQuery(DARK_QUERY);
+  const resolved = mode === "system" ? systemDark ? "dark" : "light" : mode;
+  const onResolved = React25__namespace.useRef(onResolvedChange);
+  onResolved.current = onResolvedChange;
+  React25__namespace.useEffect(() => {
+    if (typeof apply === "function") apply(resolved);
+    else if (apply) document.documentElement.dataset.theme = resolved;
+    onResolved.current?.(resolved);
+  }, [resolved, apply]);
+  const choose = (m) => {
+    setMode(m);
+    writeStored(persistKey, m);
+  };
+  const names = { light: l.themeLight, dark: l.themeDark, system: l.themeSystem };
+  const Icon2 = modeIcon[mode];
+  if (variant === "segmented") {
+    return /* @__PURE__ */ jsxRuntime.jsx("div", { role: "group", "aria-label": l.theme, className: chunkFTHFEMX6_cjs.cn("inline-flex rounded-md border border-line", className), children: modes.map((m) => {
+      const I = modeIcon[m];
+      return /* @__PURE__ */ jsxRuntime.jsx(
+        "button",
+        {
+          type: "button",
+          "aria-pressed": mode === m,
+          "aria-label": names[m],
+          onClick: () => choose(m),
+          className: "inline-flex items-center px-2.5 py-1.5 text-muted outline-none first:rounded-s-md last:rounded-e-md hover:text-fg focus-visible:ring-2 focus-visible:ring-primary/50 aria-pressed:bg-primary-light aria-pressed:text-primary",
+          children: /* @__PURE__ */ jsxRuntime.jsx(I, { "aria-hidden": true, className: "size-4" })
+        },
+        m
+      );
+    }) });
+  }
+  return /* @__PURE__ */ jsxRuntime.jsxs(chunkAN24WGJJ_cjs.DropdownMenu, { children: [
+    /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.DropdownMenuTrigger, { asChild: true, children: /* @__PURE__ */ jsxRuntime.jsx("button", { type: "button", "aria-label": l.themeCurrent(names[mode]), className: chunkFTHFEMX6_cjs.cn("btn btn-ghost btn-sm auto", className), children: /* @__PURE__ */ jsxRuntime.jsx(Icon2, { "aria-hidden": true }) }) }),
+    /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.DropdownMenuContent, { children: /* @__PURE__ */ jsxRuntime.jsx(DropdownPrimitive2__namespace.RadioGroup, { value: mode, onValueChange: (v) => choose(v), children: modes.map((m) => {
+      const I = modeIcon[m];
+      return /* @__PURE__ */ jsxRuntime.jsxs(DropdownPrimitive2__namespace.RadioItem, { value: m, className: "dropdown-item outline-none data-[highlighted]:bg-surface-hover data-[highlighted]:text-fg data-[state=checked]:text-fg", children: [
+        /* @__PURE__ */ jsxRuntime.jsx(I, { "aria-hidden": true, className: "size-4" }),
+        names[m],
+        /* @__PURE__ */ jsxRuntime.jsx(DropdownPrimitive2__namespace.ItemIndicator, { className: "ms-auto text-primary", children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Check, { "aria-hidden": true, className: "size-4" }) })
+      ] }, m);
+    }) }) })
+  ] });
+}
+function FooterAnchor({ link, hint }) {
+  return /* @__PURE__ */ jsxRuntime.jsxs(
+    "a",
+    {
+      href: link.href,
+      onClick: link.onClick,
+      ...link.external ? { target: "_blank", rel: "noopener noreferrer" } : {},
+      className: "inline-flex items-center gap-1 rounded-sm text-muted no-underline outline-none hover:text-fg hover:underline focus-visible:ring-2 focus-visible:ring-primary/50",
+      children: [
+        link.label,
+        link.external && /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
+          /* @__PURE__ */ jsxRuntime.jsx(lucideReact.ExternalLink, { "aria-hidden": true, className: "size-3" }),
+          /* @__PURE__ */ jsxRuntime.jsxs("span", { className: "sr-only", children: [
+            "(",
+            hint,
+            ")"
+          ] })
+        ] })
+      ]
+    }
+  );
+}
+function AppFooter({ start, center, end, copyright, version, build, links, linkGroups, status, variant = "default", labels, className }) {
+  const l = useAppFrameLabels(labels);
+  const uid = React25__namespace.useId();
+  const b = typeof build === "string" ? { commit: build } : build;
+  const buildText = b && [b.env, b.commit, b.date].filter(Boolean).join(" \xB7 ");
+  const compact = variant === "compact";
+  const startItems = (copyright || version || buildText || start) && /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex min-w-0 flex-wrap items-center gap-x-4 gap-y-1", children: [
+    copyright && /* @__PURE__ */ jsxRuntime.jsx("span", { children: copyright }),
+    version && /* @__PURE__ */ jsxRuntime.jsxs("span", { children: [
+      l.version,
+      " ",
+      version
+    ] }),
+    buildText && /* @__PURE__ */ jsxRuntime.jsxs("span", { children: [
+      l.build,
+      " ",
+      buildText
+    ] }),
+    start
+  ] });
+  const centerItems = (variant !== "columns" && links?.length || center) && /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex flex-wrap items-center justify-center gap-x-4 gap-y-1", children: [
+    variant !== "columns" && links && links.length > 0 && /* @__PURE__ */ jsxRuntime.jsx("ul", { className: "m-0 flex list-none flex-wrap items-center gap-x-4 gap-y-1 p-0", children: links.map((k, i) => /* @__PURE__ */ jsxRuntime.jsx("li", { children: /* @__PURE__ */ jsxRuntime.jsx(FooterAnchor, { link: k, hint: l.opensInNewTab }) }, `${i}-${k.label}`)) }),
+    center
+  ] });
+  const endItems = (status || end) && /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex flex-wrap items-center justify-end gap-x-4 gap-y-1", children: [
+    status && /* @__PURE__ */ jsxRuntime.jsx(StatusDot, { tone: status.tone, pulse: status.pulse, label: status.label, className: "text-[inherit]" }),
+    end
+  ] });
+  return /* @__PURE__ */ jsxRuntime.jsxs("footer", { className: chunkFTHFEMX6_cjs.cn("shrink-0 border-t border-line bg-[rgba(12,12,16,0.72)] text-muted backdrop-blur-md", compact ? "text-[0.8125rem]" : "text-sm", className), children: [
+    variant === "columns" && linkGroups && linkGroups.length > 0 && /* @__PURE__ */ jsxRuntime.jsx("div", { className: "grid grid-cols-[repeat(auto-fit,minmax(10rem,1fr))] gap-6 border-b border-line px-6 py-6 max-[859px]:px-4", children: linkGroups.map((g, gi) => /* @__PURE__ */ jsxRuntime.jsxs("div", { children: [
+      /* @__PURE__ */ jsxRuntime.jsx("div", { id: `${uid}-${gi}`, className: "mb-2 text-[0.6875rem] font-semibold tracking-wider text-subtle uppercase", children: g.title }),
+      /* @__PURE__ */ jsxRuntime.jsx("ul", { "aria-labelledby": `${uid}-${gi}`, className: "m-0 grid list-none gap-1.5 p-0", children: g.links.map((k, i) => /* @__PURE__ */ jsxRuntime.jsx("li", { children: /* @__PURE__ */ jsxRuntime.jsx(FooterAnchor, { link: k, hint: l.opensInNewTab }) }, `${i}-${k.label}`)) })
+    ] }, `${gi}-${g.title}`)) }),
+    /* @__PURE__ */ jsxRuntime.jsxs("div", { className: chunkFTHFEMX6_cjs.cn("flex flex-wrap items-center justify-between gap-x-6 gap-y-2 px-6 max-[859px]:px-4", compact ? "py-2" : "py-3"), children: [
+      startItems,
+      centerItems,
+      endItems
+    ] })
+  ] });
+}
+function PageHeader({ breadcrumb, icon, title, subtitle, badges, actions, help, headingLevel = 1, labels, className }) {
+  const l = useAppFrameLabels(labels);
+  const Heading = `h${headingLevel}`;
+  const crumbs = Array.isArray(breadcrumb) ? /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.Breadcrumb, { items: breadcrumb }) : breadcrumb;
+  return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: chunkFTHFEMX6_cjs.cn("flex flex-col gap-3 px-6 pt-6 pb-4 max-[859px]:px-4", className), children: [
+    crumbs && /* @__PURE__ */ jsxRuntime.jsx("div", { children: crumbs }),
+    /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex flex-wrap items-start gap-x-4 gap-y-3", children: [
+      icon && /* @__PURE__ */ jsxRuntime.jsx("span", { "aria-hidden": true, className: "flex shrink-0 text-primary [&>svg]:size-8", children: icon }),
+      /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "min-w-0 flex-1 basis-64", children: [
+        /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex flex-wrap items-center gap-x-3 gap-y-1", children: [
+          /* @__PURE__ */ jsxRuntime.jsx(Heading, { className: "min-w-0 text-2xl font-semibold tracking-tight text-fg", children: title }),
+          badges
+        ] }),
+        subtitle && /* @__PURE__ */ jsxRuntime.jsx("p", { className: "mt-1 max-w-3xl text-sm text-muted", children: subtitle })
+      ] }),
+      (actions || help) && /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex shrink-0 flex-wrap items-center gap-2.5", children: [
+        help && /* @__PURE__ */ jsxRuntime.jsx("a", { href: help.href, onClick: help.onClick, className: "text-sm text-muted hover:text-fg", children: help.label ?? l.help }),
+        actions
+      ] })
+    ] })
+  ] });
+}
+var sectionPad = { none: "", sm: "px-4 py-2", md: "px-6 py-4 max-[859px]:px-4", lg: "px-8 py-8 max-[859px]:px-4 max-[859px]:py-6" };
+function PageSection({ padding = "md", filled, sticky, className, ...props }) {
+  return /* @__PURE__ */ jsxRuntime.jsx(
+    "section",
+    {
+      className: chunkFTHFEMX6_cjs.cn(
+        sectionPad[padding],
+        filled && "border-y border-line bg-surface",
+        sticky && "z-10 backdrop-blur-md",
+        sticky === "top" && "sticky top-0",
+        sticky === "bottom" && "sticky bottom-0",
+        sticky && !filled && "bg-[rgba(12,12,16,0.72)]",
+        className
+      ),
+      ...props
+    }
+  );
+}
+var isItem = (e) => !e.type || e.type === "item";
+var textOf3 = (it) => it.textValue ?? (typeof it.label === "string" ? it.label : it.id);
+var isGroup2 = (it) => !!it.children?.some(isItem);
+var safeId = (s) => s.replace(/\s+/g, "_");
+function visibleRows(entries, expanded, rail, parent, out = []) {
+  for (const e of entries) {
+    if (!isItem(e)) continue;
+    if (!e.disabled) out.push({ item: e, parent });
+    if (!rail && isGroup2(e) && expanded.has(e.id)) visibleRows(e.children, expanded, rail, e, out);
+  }
+  return out;
+}
+function ancestorsOf(entries, id, path = []) {
+  for (const e of entries) {
+    if (!isItem(e)) continue;
+    if (e.id === id) return path;
+    const found = e.children && ancestorsOf(e.children, id, [...path, e.id]);
+    if (found) return found;
+  }
+  return null;
+}
+function currentOf(entries, current) {
+  for (const e of entries) {
+    if (!isItem(e)) continue;
+    if (e.current) return e.id;
+    const c = e.children && currentOf(e.children);
+    if (c) return c;
+  }
+  return current;
+}
+var rowCls = "flex w-full min-w-0 items-center gap-2.5 rounded-md px-2.5 py-2 text-start text-sm font-medium text-muted no-underline outline-none transition hover:bg-surface-hover hover:text-fg focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary/50 aria-[current=page]:bg-primary-light aria-[current=page]:text-primary aria-disabled:pointer-events-none aria-disabled:opacity-50 data-[within=true]:text-fg";
+function NavTree({ items, label, current, onSelect, expanded: expandedProp, defaultExpanded, onExpandedChange, collapsed, labels, className }) {
+  const l = useAppFrameLabels(labels);
+  const frame = useAppFrame();
+  const rail = collapsed ?? frame.rail;
+  const uid = React25__namespace.useId();
+  const currentId = currentOf(items, current);
+  const [expandedIds, setExpanded] = chunkXNG22HMC_cjs.useControllableState({
+    value: expandedProp,
+    defaultValue: defaultExpanded ?? (currentId ? ancestorsOf(items, currentId) ?? [] : []),
+    onChange: onExpandedChange
+  });
+  const expanded = React25__namespace.useMemo(() => new Set(expandedIds), [expandedIds]);
+  const [activeId, setActiveId] = React25__namespace.useState();
+  const rows = visibleRows(items, expanded, rail);
+  const active = rows.find((r) => r.item.id === activeId)?.item.id ?? rows.find((r) => r.item.id === currentId)?.item.id ?? rows[0]?.item.id;
+  const rootRef = React25__namespace.useRef(null);
+  const typed = React25__namespace.useRef({ text: "", timer: 0 });
+  React25__namespace.useEffect(() => () => clearTimeout(typed.current.timer), []);
+  const focusRow = (id) => {
+    setActiveId(id);
+    [...rootRef.current?.querySelectorAll("[data-nav-id]") ?? []].find((el) => el.dataset.navId === id)?.focus();
+  };
+  const setOpen = (id, open) => setExpanded((prev) => open ? prev.includes(id) ? prev : [...prev, id] : prev.filter((x) => x !== id));
+  const onKeyDown = (e) => {
+    if (e.ctrlKey || e.metaKey || e.altKey) return;
+    const id = e.target.closest("[data-nav-id]")?.dataset.navId;
+    const i = rows.findIndex((r) => r.item.id === id);
+    if (i < 0) return;
+    const row = rows[i];
+    const go = (n) => {
+      const r = rows[n];
+      if (r) focusRow(r.item.id);
+    };
+    switch (e.key) {
+      case "ArrowDown":
+        go(i + 1);
+        break;
+      case "ArrowUp":
+        go(i - 1);
+        break;
+      case "Home":
+        go(0);
+        break;
+      case "End":
+        go(rows.length - 1);
+        break;
+      case "ArrowRight":
+      case "ArrowLeft": {
+        const rtl = getComputedStyle(e.currentTarget).direction === "rtl";
+        const forward = e.key === "ArrowRight" !== rtl;
+        if (forward) {
+          if (!isGroup2(row.item) || rail) return;
+          if (!expanded.has(row.item.id)) setOpen(row.item.id, true);
+          else go(i + 1);
+        } else if (isGroup2(row.item) && expanded.has(row.item.id) && !rail) setOpen(row.item.id, false);
+        else if (row.parent) focusRow(row.parent.id);
+        else return;
+        break;
+      }
+      default: {
+        if (e.key.length !== 1 || e.key === " " && !typed.current.text) return;
+        clearTimeout(typed.current.timer);
+        typed.current.text += e.key.toLowerCase();
+        typed.current.timer = setTimeout(() => typed.current.text = "", 500);
+        const q = typed.current.text;
+        const from = q.length === 1 ? i + 1 : i;
+        const hit = [...rows.slice(from), ...rows.slice(0, from)].find((r) => textOf3(r.item).toLowerCase().startsWith(q));
+        if (!hit) return;
+        focusRow(hit.item.id);
+      }
+    }
+    e.preventDefault();
+  };
+  const activate = (it, e) => {
+    if (it.disabled) {
+      e.preventDefault();
+      return;
+    }
+    if (isGroup2(it)) {
+      if (rail) {
+        frame.setSidebarOpen(true);
+        setOpen(it.id, true);
+      } else setOpen(it.id, !expanded.has(it.id));
+      return;
+    }
+    it.onSelect?.(it.id);
+    onSelect?.(it.id, it);
+    if (it.href && !it.render && (it.onSelect || onSelect) && !e.metaKey && !e.ctrlKey && !e.shiftKey && e.button === 0) e.preventDefault();
+    frame.navigated();
+  };
+  const renderItem = (it) => {
+    const group = isGroup2(it);
+    const open = group && expanded.has(it.id);
+    const isCurrent = !group && (it.current ?? it.id === current);
+    const within = group && currentId !== void 0 && !open && !!ancestorsOf(items, currentId)?.includes(it.id);
+    const text = textOf3(it);
+    const childId = `${uid}-c-${safeId(it.id)}`;
+    const content = /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
+      it.icon ? /* @__PURE__ */ jsxRuntime.jsx("span", { "aria-hidden": true, className: "flex shrink-0 [&>svg]:size-4", children: it.icon }) : rail && /* @__PURE__ */ jsxRuntime.jsx("span", { "aria-hidden": true, className: "flex size-4 shrink-0 items-center justify-center text-xs font-semibold uppercase", children: text.charAt(0) }),
+      !rail && /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
+        /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.TruncatedText, { className: "flex-1", children: it.label }),
+        it.badge && /* @__PURE__ */ jsxRuntime.jsx("span", { className: "ms-auto shrink-0", children: it.badge }),
+        group && /* @__PURE__ */ jsxRuntime.jsx(lucideReact.ChevronDown, { "aria-hidden": true, className: chunkFTHFEMX6_cjs.cn("size-4 shrink-0 transition-transform motion-reduce:transition-none", open && "rotate-180") })
+      ] })
+    ] });
+    const props = {
+      "data-nav-id": it.id,
+      "data-nav-text": text.toLowerCase(),
+      tabIndex: it.id === active ? 0 : -1,
+      className: chunkFTHFEMX6_cjs.cn(rowCls, rail && "justify-center px-0"),
+      onClick: (e) => activate(it, e),
+      children: content,
+      ...it.disabled ? { "aria-disabled": true } : {},
+      ...isCurrent ? { "aria-current": "page" } : {},
+      ...rail ? { "aria-label": text } : {}
+    };
+    let el;
+    if (group) {
+      el = /* @__PURE__ */ jsxRuntime.jsx("button", { type: "button", "aria-expanded": open, "aria-controls": childId, "data-within": within, ...props });
+    } else if (it.render) el = it.render({ ...props, href: it.disabled ? void 0 : it.href });
+    else if (it.href && !it.disabled) el = /* @__PURE__ */ jsxRuntime.jsx("a", { href: it.href, ...props });
+    else el = /* @__PURE__ */ jsxRuntime.jsx("button", { type: "button", ...props });
+    if (rail) {
+      el = /* @__PURE__ */ jsxRuntime.jsx(
+        chunkAN24WGJJ_cjs.Tooltip,
+        {
+          side: "right",
+          content: /* @__PURE__ */ jsxRuntime.jsxs("span", { className: "flex items-center gap-2", children: [
+            it.label,
+            it.badge
+          ] }),
+          children: el
+        }
+      );
+    }
+    return /* @__PURE__ */ jsxRuntime.jsxs("li", { children: [
+      el,
+      group && !rail && /* @__PURE__ */ jsxRuntime.jsx("div", { id: childId, hidden: !open, className: "ms-4 border-s border-line ps-1", children: renderEntries(it.children, safeId(it.id)) })
+    ] }, it.id);
+  };
+  const renderEntries = (entries, scope) => {
+    const sections = [{ key: "first", items: [] }];
+    entries.forEach((e, n) => {
+      if (isItem(e)) sections[sections.length - 1].items.push(e);
+      else if (e.type === "heading") sections.push({ key: `h-${e.id}`, heading: e, items: [] });
+      else sections.push({ key: `d-${e.id ?? n}`, divider: true, items: [] });
+    });
+    return sections.filter((s) => s.items.length > 0 || s.heading && !rail).map((s) => {
+      const hid = s.heading ? `${uid}-${scope}-${safeId(s.heading.id)}` : void 0;
+      return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: chunkFTHFEMX6_cjs.cn(s.divider && "mt-2 border-t border-line pt-2"), children: [
+        s.heading && !rail && /* @__PURE__ */ jsxRuntime.jsx("div", { id: hid, className: "nav-group", children: s.heading.label }),
+        s.items.length > 0 && /* @__PURE__ */ jsxRuntime.jsx("ul", { "aria-labelledby": s.heading && !rail ? hid : void 0, className: "m-0 grid list-none gap-0.5 p-0", children: s.items.map(renderItem) })
+      ] }, s.key);
+    });
+  };
+  return /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.TooltipProvider, { children: /* @__PURE__ */ jsxRuntime.jsx(
+    "nav",
+    {
+      ref: rootRef,
+      "aria-label": label ?? l.mainNavigation,
+      onKeyDown,
+      onFocus: (e) => {
+        const id = e.target.closest("[data-nav-id]")?.dataset.navId;
+        if (id) setActiveId(id);
+      },
+      className: chunkFTHFEMX6_cjs.cn("min-w-0", className),
+      children: renderEntries(items, "root")
+    }
+  ) });
+}
+function hasChildren(nodes, id) {
+  for (const n of nodes) {
+    if (n.id === id) return !!n.children?.length || !!n.hasChildren;
+    if (n.children && hasChildren(n.children, id)) return true;
+  }
+  return false;
+}
+function Sidebar({ items, tree, mode: modeProp, defaultMode, onModeChange, header, footer, railFooter, collapsed, labels, className, ...nav }) {
+  const l = useAppFrameLabels(labels);
+  const frame = useAppFrame();
+  const rail = collapsed ?? frame.rail;
+  const [mode, setMode] = chunkXNG22HMC_cjs.useControllableState({ value: modeProp, defaultValue: defaultMode ?? (items ? "nav" : "tree"), onChange: onModeChange });
+  const both = !!items && !!tree;
+  const shown = items && (mode === "nav" || !tree || rail) ? "nav" : tree && !rail ? "tree" : void 0;
+  const switchBtn = (m, text) => /* @__PURE__ */ jsxRuntime.jsx(
+    "button",
+    {
+      type: "button",
+      "aria-pressed": mode === m,
+      onClick: () => setMode(m),
+      className: "flex-1 rounded-sm px-2 py-1 text-[0.8125rem] font-semibold text-muted outline-none hover:text-fg focus-visible:ring-2 focus-visible:ring-primary/50 aria-pressed:bg-primary-light aria-pressed:text-primary",
+      children: text
+    }
+  );
+  const foot = rail ? railFooter : footer;
+  return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: chunkFTHFEMX6_cjs.cn("flex min-h-0 flex-1 flex-col", className), children: [
+    header && /* @__PURE__ */ jsxRuntime.jsx("div", { className: "shrink-0 border-b border-line p-3", children: header }),
+    /* @__PURE__ */ jsxRuntime.jsxs("div", { className: chunkFTHFEMX6_cjs.cn("min-h-0 flex-1 overflow-y-auto", rail ? "p-2" : "p-3"), children: [
+      both && !rail && /* @__PURE__ */ jsxRuntime.jsxs("div", { role: "group", "aria-label": l.sidebarView, className: "mb-3 flex gap-1 rounded-md border border-line p-0.5", children: [
+        switchBtn("nav", l.navigationView),
+        switchBtn("tree", l.treeView)
+      ] }),
+      shown === "nav" && items && /* @__PURE__ */ jsxRuntime.jsx(NavTree, { items, collapsed: rail, labels, ...nav }),
+      shown === "tree" && tree && /* @__PURE__ */ jsxRuntime.jsx("nav", { "aria-label": tree.label, children: /* @__PURE__ */ jsxRuntime.jsx(
+        TreeView,
+        {
+          ...tree,
+          onSelect: (id) => {
+            tree.onSelect?.(id);
+            if (!hasChildren(tree.nodes, id)) frame.navigated();
+          }
+        }
+      ) })
+    ] }),
+    foot && /* @__PURE__ */ jsxRuntime.jsx("div", { className: chunkFTHFEMX6_cjs.cn("shrink-0 border-t border-line text-sm text-muted", rail ? "flex justify-center p-2" : "p-4"), children: foot })
+  ] });
+}
+var STEP = 16;
+var STEP_LARGE = 64;
+function DrawerPanel({
+  open: openProp,
+  defaultOpen = true,
+  onOpenChange,
+  placement: placementProp = "end",
+  mode = "push",
+  title,
+  icon,
+  actions,
+  footer,
+  size: sizeProp,
+  defaultSize = 360,
+  onSizeChange,
+  minSize = 240,
+  maxSize = 640,
+  resizable,
+  collapsible,
+  collapsed: collapsedProp,
+  defaultCollapsed = false,
+  onCollapsedChange,
+  closable = true,
+  manageFocus,
+  labels,
+  className,
+  children
+}) {
+  const l = useAppFrameLabels(labels);
+  const placement = placementProp === "left" ? "start" : placementProp === "right" ? "end" : placementProp;
+  const bottom = placement === "bottom";
+  const narrow = useMediaQuery(NARROW_QUERY);
+  const overlay = mode === "overlay" || narrow;
+  const [open, setOpen] = chunkXNG22HMC_cjs.useControllableState({ value: openProp, defaultValue: defaultOpen, onChange: onOpenChange });
+  const [collapsed, setCollapsed] = chunkXNG22HMC_cjs.useControllableState({ value: collapsedProp, defaultValue: defaultCollapsed, onChange: onCollapsedChange });
+  const [size, setSize] = chunkXNG22HMC_cjs.useControllableState({ value: sizeProp, defaultValue: defaultSize, onChange: onSizeChange });
+  const clamp = (n) => Math.min(maxSize, Math.max(minSize, n));
+  const titleId = React25__namespace.useId();
+  const ref = React25__namespace.useRef(null);
+  const wasOpen = React25__namespace.useRef(open);
+  const opener = React25__namespace.useRef(null);
+  React25__namespace.useEffect(() => {
+    if (!manageFocus) return;
+    if (open && !wasOpen.current) {
+      opener.current = document.activeElement;
+      ref.current?.focus();
+    } else if (!open && wasOpen.current) {
+      opener.current?.focus?.();
+    }
+    wasOpen.current = open;
+  }, [open, manageFocus]);
+  const drag = React25__namespace.useRef(null);
+  const isRtl = () => !!ref.current && getComputedStyle(ref.current).direction === "rtl";
+  const grow = (dx, dy) => {
+    if (bottom) return -dy;
+    const towardStart = isRtl() ? dx : -dx;
+    return placement === "end" ? towardStart : -towardStart;
+  };
+  const onKeyDown = (e) => {
+    const step = e.shiftKey ? STEP_LARGE : STEP;
+    const outward = bottom ? "ArrowUp" : placement === "end" !== isRtl() ? "ArrowLeft" : "ArrowRight";
+    const inward = bottom ? "ArrowDown" : outward === "ArrowLeft" ? "ArrowRight" : "ArrowLeft";
+    if (e.key === outward) setSize(clamp(size + step));
+    else if (e.key === inward) setSize(clamp(size - step));
+    else if (e.key === "Home") setSize(minSize);
+    else if (e.key === "End") setSize(maxSize);
+    else return;
+    e.preventDefault();
+  };
+  if (!open) return null;
+  const CollapseIcon = bottom ? collapsed ? lucideReact.ChevronsUp : lucideReact.ChevronsDown : placement === "end" !== !!collapsed ? lucideReact.ChevronsRight : lucideReact.ChevronsLeft;
+  const toggle = collapsible && /* @__PURE__ */ jsxRuntime.jsx("button", { type: "button", onClick: () => setCollapsed(!collapsed), "aria-expanded": !collapsed, "aria-label": collapsed ? l.expandPanel : l.collapsePanel, className: "popup-close", children: /* @__PURE__ */ jsxRuntime.jsx(CollapseIcon, { "aria-hidden": true, className: chunkFTHFEMX6_cjs.cn("size-4", !bottom && "rtl:rotate-180") }) });
+  const edge = bottom ? "border-t" : placement === "end" ? "border-s" : "border-e";
+  const where = bottom ? "inset-x-0 bottom-0" : placement === "end" ? "inset-y-0 end-0" : "inset-y-0 start-0";
+  const surface = overlay ? "bg-menu shadow-[0_16px_32px_rgba(0,0,0,0.5)]" : "bg-[rgba(12,12,16,0.72)] backdrop-blur-md";
+  const base = chunkFTHFEMX6_cjs.cn("flex min-h-0 min-w-0 shrink-0 flex-col border-line-strong outline-none", edge, surface, overlay ? chunkFTHFEMX6_cjs.cn("absolute z-20", where) : "relative", placement === "start" && "order-first");
+  if (collapsed) {
+    return /* @__PURE__ */ jsxRuntime.jsxs("aside", { ref, tabIndex: -1, "aria-label": title, className: chunkFTHFEMX6_cjs.cn(base, bottom ? "h-10 flex-row items-center gap-2 px-3" : "w-10 items-center py-2", className), children: [
+      toggle,
+      bottom && /* @__PURE__ */ jsxRuntime.jsx("span", { className: "truncate text-sm text-muted", children: title })
+    ] });
+  }
+  return /* @__PURE__ */ jsxRuntime.jsxs(
+    "aside",
+    {
+      ref,
+      tabIndex: -1,
+      "aria-labelledby": titleId,
+      "data-placement": placement,
+      style: { "--drawer-size": `${clamp(size)}px` },
+      onKeyDown: (e) => {
+        if (manageFocus && closable && e.key === "Escape" && !e.defaultPrevented) setOpen(false);
+      },
+      className: chunkFTHFEMX6_cjs.cn(base, bottom ? "h-(--drawer-size) max-h-full w-full" : "w-(--drawer-size) max-w-full", className),
+      children: [
+        resizable && /* @__PURE__ */ jsxRuntime.jsx(
+          "div",
+          {
+            role: "separator",
+            tabIndex: 0,
+            "aria-orientation": bottom ? "horizontal" : "vertical",
+            "aria-label": l.resizePanel,
+            "aria-valuemin": minSize,
+            "aria-valuemax": maxSize,
+            "aria-valuenow": clamp(size),
+            onKeyDown,
+            onPointerDown: (e) => {
+              e.currentTarget.setPointerCapture?.(e.pointerId);
+              drag.current = { x: e.clientX, y: e.clientY, size: clamp(size) };
+            },
+            onPointerMove: (e) => {
+              const d = drag.current;
+              if (d) setSize(clamp(d.size + grow(e.clientX - d.x, e.clientY - d.y)));
+            },
+            onPointerUp: () => drag.current = null,
+            onPointerCancel: () => drag.current = null,
+            className: chunkFTHFEMX6_cjs.cn(
+              "absolute z-10 touch-none outline-none hover:bg-primary-light focus-visible:bg-primary-light focus-visible:ring-2 focus-visible:ring-primary/50",
+              bottom ? "inset-x-0 -top-1 h-2 cursor-row-resize" : chunkFTHFEMX6_cjs.cn("inset-y-0 w-2 cursor-col-resize", placement === "end" ? "-start-1" : "-end-1")
+            )
+          }
+        ),
+        /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex shrink-0 items-center gap-2 border-b border-line px-4 py-3", children: [
+          icon && /* @__PURE__ */ jsxRuntime.jsx("span", { "aria-hidden": true, className: "flex shrink-0 text-muted", children: icon }),
+          /* @__PURE__ */ jsxRuntime.jsx("h2", { id: titleId, className: "min-w-0 flex-1 truncate text-base font-semibold text-fg", children: title }),
+          actions,
+          toggle,
+          closable && /* @__PURE__ */ jsxRuntime.jsx("button", { type: "button", onClick: () => setOpen(false), "aria-label": l.closePanel, className: "popup-close", children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.X, { "aria-hidden": true, className: "size-4" }) })
+        ] }),
+        /* @__PURE__ */ jsxRuntime.jsx("div", { className: "min-h-0 flex-1 overflow-auto px-4 py-3 text-sm text-muted", children }),
+        footer && /* @__PURE__ */ jsxRuntime.jsx("div", { className: "flex shrink-0 justify-end gap-2.5 border-t border-line px-4 py-3", children: footer })
+      ]
+    }
+  );
+}
+var InlineDrawer = DrawerPanel;
+
 Object.defineProperty(exports, "Accordion", {
   enumerable: true,
-  get: function () { return chunkOKADVGBW_cjs.Accordion; }
+  get: function () { return chunkAN24WGJJ_cjs.Accordion; }
 });
 Object.defineProperty(exports, "Alert", {
   enumerable: true,
-  get: function () { return chunkOKADVGBW_cjs.Alert; }
+  get: function () { return chunkAN24WGJJ_cjs.Alert; }
 });
 Object.defineProperty(exports, "Avatar", {
   enumerable: true,
-  get: function () { return chunkOKADVGBW_cjs.Avatar; }
+  get: function () { return chunkAN24WGJJ_cjs.Avatar; }
 });
 Object.defineProperty(exports, "Badge", {
   enumerable: true,
-  get: function () { return chunkOKADVGBW_cjs.Badge; }
+  get: function () { return chunkAN24WGJJ_cjs.Badge; }
 });
 Object.defineProperty(exports, "Banner", {
   enumerable: true,
-  get: function () { return chunkOKADVGBW_cjs.Banner; }
+  get: function () { return chunkAN24WGJJ_cjs.Banner; }
 });
 Object.defineProperty(exports, "Breadcrumb", {
   enumerable: true,
-  get: function () { return chunkOKADVGBW_cjs.Breadcrumb; }
+  get: function () { return chunkAN24WGJJ_cjs.Breadcrumb; }
 });
 Object.defineProperty(exports, "Card", {
   enumerable: true,
-  get: function () { return chunkOKADVGBW_cjs.Card; }
+  get: function () { return chunkAN24WGJJ_cjs.Card; }
 });
 Object.defineProperty(exports, "Checkbox", {
   enumerable: true,
-  get: function () { return chunkOKADVGBW_cjs.Checkbox; }
+  get: function () { return chunkAN24WGJJ_cjs.Checkbox; }
 });
 Object.defineProperty(exports, "Chip", {
   enumerable: true,
-  get: function () { return chunkOKADVGBW_cjs.Chip; }
+  get: function () { return chunkAN24WGJJ_cjs.Chip; }
 });
 Object.defineProperty(exports, "Combobox", {
   enumerable: true,
-  get: function () { return chunkOKADVGBW_cjs.Combobox; }
+  get: function () { return chunkAN24WGJJ_cjs.Combobox; }
 });
 Object.defineProperty(exports, "Dialog", {
   enumerable: true,
-  get: function () { return chunkOKADVGBW_cjs.Dialog; }
+  get: function () { return chunkAN24WGJJ_cjs.Dialog; }
 });
 Object.defineProperty(exports, "DialogClose", {
   enumerable: true,
-  get: function () { return chunkOKADVGBW_cjs.DialogClose; }
+  get: function () { return chunkAN24WGJJ_cjs.DialogClose; }
 });
 Object.defineProperty(exports, "DialogContent", {
   enumerable: true,
-  get: function () { return chunkOKADVGBW_cjs.DialogContent; }
+  get: function () { return chunkAN24WGJJ_cjs.DialogContent; }
 });
 Object.defineProperty(exports, "DialogTrigger", {
   enumerable: true,
-  get: function () { return chunkOKADVGBW_cjs.DialogTrigger; }
+  get: function () { return chunkAN24WGJJ_cjs.DialogTrigger; }
 });
 Object.defineProperty(exports, "Drawer", {
   enumerable: true,
-  get: function () { return chunkOKADVGBW_cjs.Drawer; }
+  get: function () { return chunkAN24WGJJ_cjs.Drawer; }
 });
 Object.defineProperty(exports, "DrawerClose", {
   enumerable: true,
-  get: function () { return chunkOKADVGBW_cjs.DrawerClose; }
+  get: function () { return chunkAN24WGJJ_cjs.DrawerClose; }
 });
 Object.defineProperty(exports, "DrawerContent", {
   enumerable: true,
-  get: function () { return chunkOKADVGBW_cjs.DrawerContent; }
+  get: function () { return chunkAN24WGJJ_cjs.DrawerContent; }
 });
 Object.defineProperty(exports, "DrawerTrigger", {
   enumerable: true,
-  get: function () { return chunkOKADVGBW_cjs.DrawerTrigger; }
+  get: function () { return chunkAN24WGJJ_cjs.DrawerTrigger; }
 });
 Object.defineProperty(exports, "DropdownMenu", {
   enumerable: true,
-  get: function () { return chunkOKADVGBW_cjs.DropdownMenu; }
+  get: function () { return chunkAN24WGJJ_cjs.DropdownMenu; }
 });
 Object.defineProperty(exports, "DropdownMenuContent", {
   enumerable: true,
-  get: function () { return chunkOKADVGBW_cjs.DropdownMenuContent; }
+  get: function () { return chunkAN24WGJJ_cjs.DropdownMenuContent; }
 });
 Object.defineProperty(exports, "DropdownMenuItem", {
   enumerable: true,
-  get: function () { return chunkOKADVGBW_cjs.DropdownMenuItem; }
+  get: function () { return chunkAN24WGJJ_cjs.DropdownMenuItem; }
 });
 Object.defineProperty(exports, "DropdownMenuLabel", {
   enumerable: true,
-  get: function () { return chunkOKADVGBW_cjs.DropdownMenuLabel; }
+  get: function () { return chunkAN24WGJJ_cjs.DropdownMenuLabel; }
 });
 Object.defineProperty(exports, "DropdownMenuSeparator", {
   enumerable: true,
-  get: function () { return chunkOKADVGBW_cjs.DropdownMenuSeparator; }
+  get: function () { return chunkAN24WGJJ_cjs.DropdownMenuSeparator; }
 });
 Object.defineProperty(exports, "DropdownMenuTrigger", {
   enumerable: true,
-  get: function () { return chunkOKADVGBW_cjs.DropdownMenuTrigger; }
+  get: function () { return chunkAN24WGJJ_cjs.DropdownMenuTrigger; }
 });
 Object.defineProperty(exports, "EmptyState", {
   enumerable: true,
-  get: function () { return chunkOKADVGBW_cjs.EmptyState; }
+  get: function () { return chunkAN24WGJJ_cjs.EmptyState; }
 });
 Object.defineProperty(exports, "Field", {
   enumerable: true,
-  get: function () { return chunkOKADVGBW_cjs.Field; }
+  get: function () { return chunkAN24WGJJ_cjs.Field; }
 });
 Object.defineProperty(exports, "InfiniteList", {
   enumerable: true,
-  get: function () { return chunkOKADVGBW_cjs.InfiniteList; }
+  get: function () { return chunkAN24WGJJ_cjs.InfiniteList; }
 });
 Object.defineProperty(exports, "Input", {
   enumerable: true,
-  get: function () { return chunkOKADVGBW_cjs.Input; }
+  get: function () { return chunkAN24WGJJ_cjs.Input; }
 });
 Object.defineProperty(exports, "KeyValueEditor", {
   enumerable: true,
-  get: function () { return chunkOKADVGBW_cjs.KeyValueEditor; }
+  get: function () { return chunkAN24WGJJ_cjs.KeyValueEditor; }
 });
 Object.defineProperty(exports, "LineChart", {
   enumerable: true,
-  get: function () { return chunkOKADVGBW_cjs.LineChart; }
+  get: function () { return chunkAN24WGJJ_cjs.LineChart; }
 });
 Object.defineProperty(exports, "LogViewer", {
   enumerable: true,
-  get: function () { return chunkOKADVGBW_cjs.LogViewer; }
+  get: function () { return chunkAN24WGJJ_cjs.LogViewer; }
 });
 Object.defineProperty(exports, "NumberInput", {
   enumerable: true,
-  get: function () { return chunkOKADVGBW_cjs.NumberInput; }
+  get: function () { return chunkAN24WGJJ_cjs.NumberInput; }
 });
 Object.defineProperty(exports, "PageHead", {
   enumerable: true,
-  get: function () { return chunkOKADVGBW_cjs.PageHead; }
+  get: function () { return chunkAN24WGJJ_cjs.PageHead; }
 });
 Object.defineProperty(exports, "Panel", {
   enumerable: true,
-  get: function () { return chunkOKADVGBW_cjs.Panel; }
+  get: function () { return chunkAN24WGJJ_cjs.Panel; }
 });
 Object.defineProperty(exports, "PermissionMatrix", {
   enumerable: true,
-  get: function () { return chunkOKADVGBW_cjs.PermissionMatrix; }
+  get: function () { return chunkAN24WGJJ_cjs.PermissionMatrix; }
 });
 Object.defineProperty(exports, "Popover", {
   enumerable: true,
-  get: function () { return chunkOKADVGBW_cjs.Popover; }
+  get: function () { return chunkAN24WGJJ_cjs.Popover; }
 });
 Object.defineProperty(exports, "PopoverClose", {
   enumerable: true,
-  get: function () { return chunkOKADVGBW_cjs.PopoverClose; }
+  get: function () { return chunkAN24WGJJ_cjs.PopoverClose; }
 });
 Object.defineProperty(exports, "PopoverContent", {
   enumerable: true,
-  get: function () { return chunkOKADVGBW_cjs.PopoverContent; }
+  get: function () { return chunkAN24WGJJ_cjs.PopoverContent; }
 });
 Object.defineProperty(exports, "PopoverTrigger", {
   enumerable: true,
-  get: function () { return chunkOKADVGBW_cjs.PopoverTrigger; }
+  get: function () { return chunkAN24WGJJ_cjs.PopoverTrigger; }
 });
 Object.defineProperty(exports, "Radio", {
   enumerable: true,
-  get: function () { return chunkOKADVGBW_cjs.Radio; }
+  get: function () { return chunkAN24WGJJ_cjs.Radio; }
 });
 Object.defineProperty(exports, "RadioGroup", {
   enumerable: true,
-  get: function () { return chunkOKADVGBW_cjs.RadioGroup; }
+  get: function () { return chunkAN24WGJJ_cjs.RadioGroup; }
 });
 Object.defineProperty(exports, "SearchInput", {
   enumerable: true,
-  get: function () { return chunkOKADVGBW_cjs.SearchInput; }
+  get: function () { return chunkAN24WGJJ_cjs.SearchInput; }
 });
 Object.defineProperty(exports, "Select", {
   enumerable: true,
-  get: function () { return chunkOKADVGBW_cjs.Select; }
+  get: function () { return chunkAN24WGJJ_cjs.Select; }
 });
 Object.defineProperty(exports, "Skeleton", {
   enumerable: true,
-  get: function () { return chunkOKADVGBW_cjs.Skeleton; }
+  get: function () { return chunkAN24WGJJ_cjs.Skeleton; }
 });
 Object.defineProperty(exports, "Slider", {
   enumerable: true,
-  get: function () { return chunkOKADVGBW_cjs.Slider; }
+  get: function () { return chunkAN24WGJJ_cjs.Slider; }
 });
 Object.defineProperty(exports, "Sparkline", {
   enumerable: true,
-  get: function () { return chunkOKADVGBW_cjs.Sparkline; }
+  get: function () { return chunkAN24WGJJ_cjs.Sparkline; }
 });
 Object.defineProperty(exports, "Spinner", {
   enumerable: true,
-  get: function () { return chunkOKADVGBW_cjs.Spinner; }
+  get: function () { return chunkAN24WGJJ_cjs.Spinner; }
 });
 Object.defineProperty(exports, "SplitPane", {
   enumerable: true,
-  get: function () { return chunkOKADVGBW_cjs.SplitPane; }
+  get: function () { return chunkAN24WGJJ_cjs.SplitPane; }
 });
 Object.defineProperty(exports, "Stat", {
   enumerable: true,
-  get: function () { return chunkOKADVGBW_cjs.Stat; }
+  get: function () { return chunkAN24WGJJ_cjs.Stat; }
 });
 Object.defineProperty(exports, "StatGrid", {
   enumerable: true,
-  get: function () { return chunkOKADVGBW_cjs.StatGrid; }
+  get: function () { return chunkAN24WGJJ_cjs.StatGrid; }
 });
 Object.defineProperty(exports, "Switch", {
   enumerable: true,
-  get: function () { return chunkOKADVGBW_cjs.Switch; }
+  get: function () { return chunkAN24WGJJ_cjs.Switch; }
 });
 Object.defineProperty(exports, "Tabs", {
   enumerable: true,
-  get: function () { return chunkOKADVGBW_cjs.Tabs; }
+  get: function () { return chunkAN24WGJJ_cjs.Tabs; }
 });
 Object.defineProperty(exports, "TabsContent", {
   enumerable: true,
-  get: function () { return chunkOKADVGBW_cjs.TabsContent; }
+  get: function () { return chunkAN24WGJJ_cjs.TabsContent; }
 });
 Object.defineProperty(exports, "TabsList", {
   enumerable: true,
-  get: function () { return chunkOKADVGBW_cjs.TabsList; }
+  get: function () { return chunkAN24WGJJ_cjs.TabsList; }
 });
 Object.defineProperty(exports, "TabsTrigger", {
   enumerable: true,
-  get: function () { return chunkOKADVGBW_cjs.TabsTrigger; }
+  get: function () { return chunkAN24WGJJ_cjs.TabsTrigger; }
 });
 Object.defineProperty(exports, "TagInput", {
   enumerable: true,
-  get: function () { return chunkOKADVGBW_cjs.TagInput; }
+  get: function () { return chunkAN24WGJJ_cjs.TagInput; }
 });
 Object.defineProperty(exports, "TenantSwitcher", {
   enumerable: true,
-  get: function () { return chunkOKADVGBW_cjs.TenantSwitcher; }
+  get: function () { return chunkAN24WGJJ_cjs.TenantSwitcher; }
+});
+Object.defineProperty(exports, "TextArea", {
+  enumerable: true,
+  get: function () { return chunkAN24WGJJ_cjs.Textarea; }
+});
+Object.defineProperty(exports, "TextInput", {
+  enumerable: true,
+  get: function () { return chunkAN24WGJJ_cjs.Input; }
 });
 Object.defineProperty(exports, "Textarea", {
   enumerable: true,
-  get: function () { return chunkOKADVGBW_cjs.Textarea; }
+  get: function () { return chunkAN24WGJJ_cjs.Textarea; }
 });
 Object.defineProperty(exports, "TimeRangePicker", {
   enumerable: true,
-  get: function () { return chunkOKADVGBW_cjs.TimeRangePicker; }
+  get: function () { return chunkAN24WGJJ_cjs.TimeRangePicker; }
 });
 Object.defineProperty(exports, "ToastProvider", {
   enumerable: true,
-  get: function () { return chunkOKADVGBW_cjs.ToastProvider; }
+  get: function () { return chunkAN24WGJJ_cjs.ToastProvider; }
 });
 Object.defineProperty(exports, "Tooltip", {
   enumerable: true,
-  get: function () { return chunkOKADVGBW_cjs.Tooltip; }
+  get: function () { return chunkAN24WGJJ_cjs.Tooltip; }
 });
 Object.defineProperty(exports, "TooltipProvider", {
   enumerable: true,
-  get: function () { return chunkOKADVGBW_cjs.TooltipProvider; }
+  get: function () { return chunkAN24WGJJ_cjs.TooltipProvider; }
+});
+Object.defineProperty(exports, "TruncatedText", {
+  enumerable: true,
+  get: function () { return chunkAN24WGJJ_cjs.TruncatedText; }
 });
 Object.defineProperty(exports, "VirtualList", {
   enumerable: true,
-  get: function () { return chunkOKADVGBW_cjs.VirtualList; }
+  get: function () { return chunkAN24WGJJ_cjs.VirtualList; }
 });
 Object.defineProperty(exports, "observeRectWithFallback", {
   enumerable: true,
-  get: function () { return chunkOKADVGBW_cjs.observeRectWithFallback; }
+  get: function () { return chunkAN24WGJJ_cjs.observeRectWithFallback; }
 });
 Object.defineProperty(exports, "useToast", {
   enumerable: true,
-  get: function () { return chunkOKADVGBW_cjs.useToast; }
+  get: function () { return chunkAN24WGJJ_cjs.useToast; }
 });
 Object.defineProperty(exports, "diffLines", {
   enumerable: true,
-  get: function () { return chunk5WBFJQAZ_cjs.diffLines; }
+  get: function () { return chunkXNG22HMC_cjs.diffLines; }
 });
 Object.defineProperty(exports, "format", {
   enumerable: true,
-  get: function () { return chunk5WBFJQAZ_cjs.format; }
+  get: function () { return chunkXNG22HMC_cjs.format; }
 });
 Object.defineProperty(exports, "matchesAccept", {
   enumerable: true,
-  get: function () { return chunk5WBFJQAZ_cjs.matchesAccept; }
+  get: function () { return chunkXNG22HMC_cjs.matchesAccept; }
 });
 Object.defineProperty(exports, "useControllableState", {
   enumerable: true,
-  get: function () { return chunk5WBFJQAZ_cjs.useControllableState; }
+  get: function () { return chunkXNG22HMC_cjs.useControllableState; }
 });
 Object.defineProperty(exports, "LafProvider", {
   enumerable: true,
-  get: function () { return chunkQ6OCMENQ_cjs.LafProvider; }
+  get: function () { return chunkGWTYGDXC_cjs.LafProvider; }
 });
 Object.defineProperty(exports, "createFormatters", {
   enumerable: true,
-  get: function () { return chunkQ6OCMENQ_cjs.createFormatters; }
+  get: function () { return chunkGWTYGDXC_cjs.createFormatters; }
 });
 Object.defineProperty(exports, "en", {
   enumerable: true,
-  get: function () { return chunkQ6OCMENQ_cjs.en; }
+  get: function () { return chunkGWTYGDXC_cjs.en; }
 });
 Object.defineProperty(exports, "useLaf", {
   enumerable: true,
-  get: function () { return chunkQ6OCMENQ_cjs.useLaf; }
+  get: function () { return chunkGWTYGDXC_cjs.useLaf; }
 });
 Object.defineProperty(exports, "useLafDefaults", {
   enumerable: true,
-  get: function () { return chunkQ6OCMENQ_cjs.useLafDefaults; }
+  get: function () { return chunkGWTYGDXC_cjs.useLafDefaults; }
 });
 Object.defineProperty(exports, "usePortalContainer", {
   enumerable: true,
-  get: function () { return chunkQ6OCMENQ_cjs.usePortalContainer; }
+  get: function () { return chunkGWTYGDXC_cjs.usePortalContainer; }
 });
 Object.defineProperty(exports, "Button", {
   enumerable: true,
@@ -7191,11 +8386,14 @@ Object.defineProperty(exports, "cn", {
 exports.AccountItem = AccountItem;
 exports.AccountList = AccountList;
 exports.ActionBar = ActionBar;
+exports.ActionGroup = ActionGroup;
 exports.ActivityTimeline = ActivityTimeline;
 exports.AdminShell = AdminShell;
 exports.AlarmList = AlarmList;
 exports.AllowListEditor = AllowListEditor;
 exports.ApiKeyManager = ApiKeyManager;
+exports.AppFooter = AppFooter;
+exports.AppFrame = AppFrame;
 exports.AuditLog = AuditLog;
 exports.AuthFooter = AuthFooter;
 exports.AvatarGroup = AvatarGroup;
@@ -7206,6 +8404,9 @@ exports.ButtonGroup = ButtonGroup;
 exports.CapacityBar = CapacityBar;
 exports.CidrInput = CidrInput;
 exports.ClientInfo = ClientInfo;
+exports.ClipboardCopy = ClipboardCopy;
+exports.CodeBlock = CodeBlock;
+exports.CodeBlockCode = CodeBlockCode;
 exports.CodeDisplay = CodeDisplay;
 exports.CodeEditor = CodeEditor;
 exports.CodeEditorLite = CodeEditorLite;
@@ -7226,31 +8427,52 @@ exports.DatastoreBrowser = DatastoreBrowser;
 exports.DatePicker = DatePicker;
 exports.DateTimeInput = DateTimeInput;
 exports.DefinitionList = DefinitionList;
+exports.DescriptionList = DescriptionList;
+exports.DescriptionListDescription = DescriptionListDescription;
+exports.DescriptionListGroup = DescriptionListGroup;
+exports.DescriptionListTerm = DescriptionListTerm;
 exports.DetailPage = DetailPage;
 exports.DeviceSelector = DeviceSelector;
 exports.DeviceSteps = DeviceSteps;
 exports.DiffView = DiffView;
+exports.Divider = Divider;
 exports.DockedTaskPanel = DockedTaskPanel;
 exports.Donut = Donut;
+exports.DrawerPanel = DrawerPanel;
+exports.Dropdown = Dropdown;
+exports.DropdownGroup = DropdownGroup;
+exports.DropdownItem = DropdownItem;
+exports.DropdownList = DropdownList;
+exports.DropdownSeparator = DropdownSeparator;
 exports.ErrorPage = ErrorPage;
 exports.ErrorSummary = ErrorSummary;
 exports.EventConsole = EventConsole;
 exports.FileDropzone = FileDropzone;
 exports.FilterBar = FilterBar;
+exports.Flex = Flex;
+exports.FlexItem = FlexItem;
+exports.Form = Form;
 exports.FormField = FormField;
 exports.FormFooter = FormFooter;
+exports.FormGroup = FormGroup;
+exports.FormHelperText = FormHelperText;
 exports.FormPage = FormPage;
 exports.FormSection = FormSection;
 exports.Gauge = Gauge;
+exports.Grid = Grid;
 exports.GridColumnsMenu = GridColumnsMenu;
 exports.GridDensityToggle = GridDensityToggle;
+exports.GridItem = GridItem;
 exports.GridSearch = GridSearch;
 exports.HardwareEditor = HardwareEditor;
 exports.Heatmap = Heatmap;
+exports.HelperText = HelperText;
+exports.HelperTextItem = HelperTextItem;
 exports.HotkeysProvider = HotkeysProvider;
 exports.HoverCard = HoverCard;
 exports.IconButton = IconButton;
 exports.InfoBox = InfoBox;
+exports.InlineDrawer = InlineDrawer;
 exports.InlineEdit = InlineEdit;
 exports.InventoryLayout = InventoryLayout;
 exports.IpInput = IpInput;
@@ -7262,18 +8484,33 @@ exports.LabelPicker = LabelPicker;
 exports.LabelSwatch = LabelSwatch;
 exports.LafErrorBoundary = LafErrorBoundary;
 exports.LanguageSwitcher = LanguageSwitcher;
+exports.Masthead = Masthead;
+exports.MastheadActions = MastheadActions;
+exports.MastheadBrand = MastheadBrand;
+exports.MastheadContent = MastheadContent;
+exports.MastheadToggle = MastheadToggle;
 exports.Menu = Menu;
 exports.MenuShortcut = MenuShortcut;
+exports.MenuToggle = MenuToggle;
 exports.MfaEnrolment = MfaEnrolment;
 exports.MobileNav = MobileNav;
+exports.Modal = Modal;
+exports.ModalBody = ModalBody;
+exports.ModalClose = ModalClose;
+exports.ModalFooter = ModalFooter;
+exports.ModalHeader = ModalHeader;
+exports.ModalTrigger = ModalTrigger;
 exports.NavGroup = NavGroup;
 exports.NavLink = NavLink;
+exports.NavTree = NavTree;
 exports.NotificationCenter = NotificationCenter;
 exports.ObjectIcon = ObjectIcon;
 exports.ObjectPage = ObjectPage;
 exports.OptionPicker = OptionPicker;
 exports.OtpInput = OtpInput;
 exports.OverflowTabs = OverflowTabs;
+exports.PageHeader = PageHeader;
+exports.PageSection = PageSection;
 exports.Pagination = Pagination;
 exports.PasswordField = PasswordField;
 exports.PermissionAssignDialog = PermissionAssignDialog;
@@ -7292,18 +8529,31 @@ exports.SelectMenu = SelectMenu;
 exports.SessionExpiryDialog = SessionExpiryDialog;
 exports.SessionList = SessionList;
 exports.ShortcutHelp = ShortcutHelp;
+exports.Sidebar = Sidebar;
 exports.SnapshotTree = SnapshotTree;
 exports.SocialButton = SocialButton;
 exports.SocialButtons = SocialButtons;
 exports.SocialDivider = SocialDivider;
 exports.SplitButton = SplitButton;
+exports.Stack = Stack;
+exports.StackItem = StackItem;
 exports.StackedBarChart = StackedBarChart;
 exports.StatusDot = StatusDot;
 exports.Stepper = Stepper;
 exports.SubNav = SubNav;
 exports.Table = Table;
 exports.TaskPanel = TaskPanel;
+exports.ThemeToggle = ThemeToggle;
+exports.Title = Title4;
 exports.Toolbar = Toolbar;
+exports.ToolbarActions = ToolbarActions;
+exports.ToolbarBulk = ToolbarBulk;
+exports.ToolbarContent = ToolbarContent;
+exports.ToolbarDivider = ToolbarDivider;
+exports.ToolbarFilterChips = ToolbarFilterChips;
+exports.ToolbarGroup = ToolbarGroup;
+exports.ToolbarItem = ToolbarItem;
+exports.ToolbarSpacer = ToolbarSpacer;
 exports.TopBar = TopBar;
 exports.TopologyGraph = TopologyGraph;
 exports.TransferList = TransferList;
@@ -7331,6 +8581,7 @@ exports.parseHotkey = parseHotkey;
 exports.registerObjectKind = registerObjectKind;
 exports.serializeFilter = serializeFilter;
 exports.serializeToken = serializeToken;
+exports.useAppFrame = useAppFrame;
 exports.useHotkeys = useHotkeys;
 exports.useRegisteredHotkeys = useRegisteredHotkeys;
 exports.useSavedViews = useSavedViews;

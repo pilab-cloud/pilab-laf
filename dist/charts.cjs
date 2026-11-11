@@ -1,8 +1,8 @@
 'use strict';
 
-var chunkOKADVGBW_cjs = require('./chunk-OKADVGBW.cjs');
-var chunk5WBFJQAZ_cjs = require('./chunk-5WBFJQAZ.cjs');
-var chunkQ6OCMENQ_cjs = require('./chunk-Q6OCMENQ.cjs');
+var chunkAN24WGJJ_cjs = require('./chunk-AN24WGJJ.cjs');
+var chunkXNG22HMC_cjs = require('./chunk-XNG22HMC.cjs');
+var chunkGWTYGDXC_cjs = require('./chunk-GWTYGDXC.cjs');
 var chunkIP6HZMS5_cjs = require('./chunk-IP6HZMS5.cjs');
 var chunkFTHFEMX6_cjs = require('./chunk-FTHFEMX6.cjs');
 var axis = require('@visx/axis');
@@ -117,7 +117,7 @@ var chartsEn = {
   }
 };
 var lafDefaults = { charts: chartsEn };
-var useLaf = () => chunkQ6OCMENQ_cjs.useLafDefaults(lafDefaults);
+var useLaf = () => chunkGWTYGDXC_cjs.useLafDefaults(lafDefaults);
 var SERIES_TONES = ["text-primary", "text-ok", "text-warn", "text-danger"];
 var SERIES_DASH = [void 0, "4 2", "1 3", "6 2 1 2"];
 var MARGIN = { top: 8, bottom: 24, left: 56, right: 12, right2: 56 };
@@ -183,8 +183,8 @@ function TimeSeriesChart({
   const l = { ...laf.components.charts.timeSeries, ...labelsProp };
   const uid = React__namespace.useId();
   const [wrap, width] = useWidth(widthProp);
-  const [hidden, setHidden] = chunk5WBFJQAZ_cjs.useControllableState({ value: hiddenProp, defaultValue: [], onChange: onHiddenSeriesChange });
-  const [zoom, setZoom] = chunk5WBFJQAZ_cjs.useControllableState({ value: rangeProp, defaultValue: null, onChange: (r) => r && onRangeChange?.(r) });
+  const [hidden, setHidden] = chunkXNG22HMC_cjs.useControllableState({ value: hiddenProp, defaultValue: [], onChange: onHiddenSeriesChange });
+  const [zoom, setZoom] = chunkXNG22HMC_cjs.useControllableState({ value: rangeProp, defaultValue: null, onChange: (r) => r && onRangeChange?.(r) });
   const [cursor, setCursor] = React__namespace.useState(null);
   const [sel, setSel] = React__namespace.useState(null);
   const [kbd, setKbd] = React__namespace.useState(false);
@@ -639,7 +639,7 @@ function Heatmap({
   );
 }
 var lafDefaults2 = { charts: chartsEn };
-var useLaf2 = () => chunkQ6OCMENQ_cjs.useLafDefaults(lafDefaults2);
+var useLaf2 = () => chunkGWTYGDXC_cjs.useLafDefaults(lafDefaults2);
 var UNIT_MS = { m: 6e4, h: 36e5, d: 864e5 };
 function presetToMs(preset) {
   const m = /^(\d+)([mhd])$/.exec(preset);
@@ -672,12 +672,12 @@ function PerfPanel({
 }) {
   const { format, t: laf } = useLaf2();
   const l = { ...laf.components.charts.perfPanel, ...labelsProp };
-  const [selected, setSelected] = chunk5WBFJQAZ_cjs.useControllableState({
+  const [selected, setSelected] = chunkXNG22HMC_cjs.useControllableState({
     value: selectedProp,
     defaultValue: metrics.length ? [metrics[0].id] : [],
     onChange: onSelectedChange
   });
-  const [preset, setPreset] = chunk5WBFJQAZ_cjs.useControllableState({ value: rangeProp, defaultValue: presets.includes("1h") ? "1h" : presets[0], onChange: onTimeRangeChange });
+  const [preset, setPreset] = chunkXNG22HMC_cjs.useControllableState({ value: rangeProp, defaultValue: presets.includes("1h") ? "1h" : presets[0], onChange: onTimeRangeChange });
   const [custom, setCustom] = React__namespace.useState();
   const newest = React__namespace.useMemo(() => nowProp ?? metrics.reduce((m, s) => s.points.reduce((a, p) => Math.max(a, p[0]), m), -Infinity), [metrics, nowProp]);
   const win = React__namespace.useMemo(() => {
@@ -716,7 +716,7 @@ function PerfPanel({
   return /* @__PURE__ */ jsxRuntime.jsxs("section", { "aria-label": label, className: chunkFTHFEMX6_cjs.cn("grid gap-3", className), children: [
     /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex flex-wrap items-center gap-3", children: [
       /* @__PURE__ */ jsxRuntime.jsx(
-        chunkOKADVGBW_cjs.Combobox,
+        chunkAN24WGJJ_cjs.Combobox,
         {
           multiple: true,
           label: l.metrics,
@@ -727,7 +727,7 @@ function PerfPanel({
           className: "min-w-56"
         }
       ),
-      /* @__PURE__ */ jsxRuntime.jsx(chunkOKADVGBW_cjs.TimeRangePicker, { value: preset, onChange: setPreset, presets, range: win, onRangeChange: zoomTo, showTimeZone: true }),
+      /* @__PURE__ */ jsxRuntime.jsx(chunkAN24WGJJ_cjs.TimeRangePicker, { value: preset, onChange: setPreset, presets, range: win, onRangeChange: zoomTo, showTimeZone: true }),
       /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { variant: "ghost", size: "sm", className: "ms-auto", onClick: doExport, disabled: !active.length, children: l.exportCsv })
     ] }),
     active.length || loading ? /* @__PURE__ */ jsxRuntime.jsx(TimeSeriesChart, { label, series: active, type, thresholds, height, loading, range: win, onRangeChange: zoomTo }) : /* @__PURE__ */ jsxRuntime.jsx("p", { className: "m-0 text-sm text-muted", children: l.noMetrics }),

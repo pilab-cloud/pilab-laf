@@ -3,6 +3,7 @@ import { createFormatters, type Formatters } from "./foundation-format";
 import type { accountEn } from "./messages/account.en";
 import type { adminEn } from "./messages/admin.en";
 import type { chartsEn } from "./messages/charts.en";
+import type { contentEn } from "./messages/content.en";
 import type { trackerEn } from "./messages/tracker.en";
 import type { uiEn } from "./messages/ui.en";
 import type { vsphereObjectsEn } from "./messages/vsphere-objects.en";
@@ -18,6 +19,7 @@ export interface ComponentMessages {
   vsphereObjects: typeof vsphereObjectsEn;
   charts: typeof chartsEn;
   ui: typeof uiEn;
+  content: typeof contentEn;
 }
 type Overrides<G> = { [S in keyof G]?: G[S] extends string ? string : Partial<G[S]> };
 export type ComponentMessageOverrides = { [K in keyof ComponentMessages]?: Overrides<ComponentMessages[K]> };

@@ -172,6 +172,21 @@ var chartsHu = {
   }
 };
 
+// lib/locales/content.hu.ts
+var contentHu = {
+  toolbar: {
+    selected: (n) => `${n} kijel\xF6lve`,
+    clearSelection: "Kijel\xF6l\xE9s t\xF6rl\xE9se",
+    activeFilters: "Akt\xEDv sz\u0171r\u0151k",
+    removeFilter: (label) => `${label} sz\u0171r\u0151 elt\xE1vol\xEDt\xE1sa`,
+    clearAll: "\xD6sszes sz\u0171r\u0151 t\xF6rl\xE9se",
+    actions: "M\u0171veletek"
+  },
+  codeBlock: { label: "K\xF3d", copy: "K\xF3d m\xE1sol\xE1sa", copied: "M\xE1solva", wrap: "Sort\xF6r\xE9s" },
+  clipboard: { copy: "M\xE1sol\xE1s a v\xE1g\xF3lapra", copied: "M\xE1solva", expand: "Teljes \xE9rt\xE9k megjelen\xEDt\xE9se", collapse: "Teljes \xE9rt\xE9k elrejt\xE9se" },
+  form: { required: "k\xF6telez\u0151" }
+};
+
 // lib/locales/tracker.hu.ts
 var trackerHu = {
   labelPicker: {
@@ -217,6 +232,31 @@ var uiHu = {
   subNav: { label: "Szakaszok navig\xE1ci\xF3ja" },
   mobileNav: { title: "Navig\xE1ci\xF3", trigger: "Navig\xE1ci\xF3 megnyit\xE1sa" },
   splitButton: { more: "Tov\xE1bbi m\u0171veletek" },
+  appFrame: {
+    skipToContent: "Ugr\xE1s a f\u0151 tartalomra",
+    openNavigation: "Navig\xE1ci\xF3 megnyit\xE1sa",
+    closeNavigation: "Navig\xE1ci\xF3 bez\xE1r\xE1sa",
+    collapseSidebar: "Oldals\xE1v \xF6sszecsuk\xE1sa",
+    expandSidebar: "Oldals\xE1v kibont\xE1sa",
+    mainNavigation: "F\u0151navig\xE1ci\xF3",
+    sidebarView: "Oldals\xE1v n\xE9zet",
+    navigationView: "Navig\xE1ci\xF3",
+    treeView: "Objektumok",
+    theme: "T\xE9ma",
+    themeLight: "Vil\xE1gos",
+    themeDark: "S\xF6t\xE9t",
+    themeSystem: "Rendszer",
+    themeCurrent: (mode) => `T\xE9ma: ${mode}`,
+    panel: "Oldalpanel",
+    closePanel: "Panel bez\xE1r\xE1sa",
+    collapsePanel: "Panel \xF6sszecsuk\xE1sa",
+    expandPanel: "Panel kibont\xE1sa",
+    resizePanel: "Panel \xE1tm\xE9retez\xE9se",
+    version: "Verzi\xF3",
+    build: "Build",
+    opensInNewTab: "\xFAj lapon ny\xEDlik meg",
+    help: "S\xFAg\xF3"
+  },
   wizard: {
     title: "Var\xE1zsl\xF3",
     back: "Vissza",
@@ -355,7 +395,7 @@ var vsphereObjectsHu = {
 
 // lib/locales/hu.ts
 var hu = {
-  components: { account: accountHu, admin: adminHu, tracker: trackerHu, vsphereObjects: vsphereObjectsHu, charts: chartsHu, ui: uiHu },
+  components: { account: accountHu, admin: adminHu, tracker: trackerHu, vsphereObjects: vsphereObjectsHu, charts: chartsHu, ui: uiHu, content: contentHu },
   close: "Bez\xE1r\xE1s",
   noResults: "Nincs tal\xE1lat",
   loading: "Bet\xF6lt\xE9s",

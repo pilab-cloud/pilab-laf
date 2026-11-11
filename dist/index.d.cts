@@ -9,14 +9,14 @@ import * as DropdownPrimitive from '@radix-ui/react-dropdown-menu';
 import * as PopoverPrimitive from '@radix-ui/react-popover';
 import * as TabsPrimitive from '@radix-ui/react-tabs';
 import * as TooltipPrimitive from '@radix-ui/react-tooltip';
-import { C as ComboboxOption, K as Kbd, t as trackerEn } from './i18n-irBAIN8C.cjs';
-export { A as AccountSession, a as AlarmItem, b as AlarmList, c as AllowListEditor, d as AllowListEditorProps, e as ApiKeyCreateInput, f as ApiKeyItem, g as ApiKeyManager, h as ApiKeyManagerLabels, i as ApiKeyManagerProps, B as BarChart, j as Branding, k as BrandingEditor, l as BrandingEditorLabels, m as BrandingEditorProps, n as CidrInput, o as ColorField, p as ColorFieldLabels, q as ColorFieldProps, r as Combobox, s as ComboboxProps, u as ComponentMessageOverrides, v as ComponentMessages, w as ConsoleEvent, x as ConsoleFrame, y as ConsoleFrameLabels, z as ConsoleFrameProps, D as ConsoleStatus, E as DatastoreBrowser, F as DatastoreBrowserLabels, G as DatastoreBrowserProps, H as DatastoreEntry, I as DateTimeInput, J as Device, L as DeviceKind, M as DeviceSelector, N as Donut, O as ErrorSummary, P as EventConsole, Q as EventConsoleLabels, R as EventConsoleProps, S as EventSeverity, T as FileDropzone, U as FormField, V as Gauge, W as HardwareCapabilities, X as HardwareEditor, Y as HardwareEditorLabels, Z as HardwareEditorProps, _ as HwDevice, $ as HwKind, a0 as InlineEdit, a1 as IpInput, a2 as LafContextValue, a3 as LafMessages, a4 as LafProvider, a5 as NetworkLabels, a6 as NotificationCenter, a7 as NotificationCenterLabels, a8 as NotificationCenterProps, a9 as NotificationItem, aa as PasskeyItem, ab as PermissionAssignDialog, ac as PermissionAssignDialogProps, ad as PermissionAssignLabels, ae as PermissionAssignment, af as PermissionRole, ag as ReauthDialog, ah as ReauthDialogLabels, ai as ReauthDialogProps, aj as ReauthMethod, ak as SecurityFactors, al as SecurityFactorsLabels, am as SecurityFactorsProps, an as SessionExpiryDialog, ao as SessionExpiryDialogLabels, ap as SessionExpiryDialogProps, aq as SessionList, ar as SessionListLabels, as as SessionListProps, at as SnapshotNode, au as SnapshotTree, av as SnapshotTreeLabels, aw as SnapshotTreeProps, ax as TransferItem, ay as TransferList, az as TransferListLabels, aA as TransferListProps, aB as UploadFile, aC as User, aD as UserSelector, aE as UserSelectorProps, aF as contrastRatio, aG as en, aH as isCidr, aI as isIPv4, aJ as isIPv6, aK as isIp, aL as normalizeHex, aM as parseCidr, aN as useLaf, aO as useLafDefaults, aP as usePortalContainer } from './i18n-irBAIN8C.cjs';
+import { C as ComboboxOption, K as Kbd, t as trackerEn, u as uiEn } from './i18n-ClzQ4E35.cjs';
+export { A as AccountSession, a as AlarmItem, b as AlarmList, c as AllowListEditor, d as AllowListEditorProps, e as ApiKeyCreateInput, f as ApiKeyItem, g as ApiKeyManager, h as ApiKeyManagerLabels, i as ApiKeyManagerProps, B as BarChart, j as Branding, k as BrandingEditor, l as BrandingEditorLabels, m as BrandingEditorProps, n as CidrInput, o as ColorField, p as ColorFieldLabels, q as ColorFieldProps, r as Combobox, s as ComboboxProps, v as ComponentMessageOverrides, w as ComponentMessages, x as ConsoleEvent, y as ConsoleFrame, z as ConsoleFrameLabels, D as ConsoleFrameProps, E as ConsoleStatus, F as DatastoreBrowser, G as DatastoreBrowserLabels, H as DatastoreBrowserProps, I as DatastoreEntry, J as DateTimeInput, L as Device, M as DeviceKind, N as DeviceSelector, O as Donut, P as ErrorSummary, Q as EventConsole, R as EventConsoleLabels, S as EventConsoleProps, T as EventSeverity, U as FileDropzone, V as FormField, W as Gauge, X as HardwareCapabilities, Y as HardwareEditor, Z as HardwareEditorLabels, _ as HardwareEditorProps, $ as HwDevice, a0 as HwKind, a1 as InlineEdit, a2 as IpInput, a3 as LafContextValue, a4 as LafMessages, a5 as LafProvider, a6 as NetworkLabels, a7 as NotificationCenter, a8 as NotificationCenterLabels, a9 as NotificationCenterProps, aa as NotificationItem, ab as PasskeyItem, ac as PermissionAssignDialog, ad as PermissionAssignDialogProps, ae as PermissionAssignLabels, af as PermissionAssignment, ag as PermissionRole, ah as ReauthDialog, ai as ReauthDialogLabels, aj as ReauthDialogProps, ak as ReauthMethod, al as SecurityFactors, am as SecurityFactorsLabels, an as SecurityFactorsProps, ao as SessionExpiryDialog, ap as SessionExpiryDialogLabels, aq as SessionExpiryDialogProps, ar as SessionList, as as SessionListLabels, at as SessionListProps, au as SnapshotNode, av as SnapshotTree, aw as SnapshotTreeLabels, ax as SnapshotTreeProps, ay as TransferItem, az as TransferList, aA as TransferListLabels, aB as TransferListProps, aC as UploadFile, aD as User, aE as UserSelector, aF as UserSelectorProps, aG as contrastRatio, aH as en, aI as isCidr, aJ as isIPv4, aK as isIPv6, aL as isIp, aM as normalizeHex, aN as parseCidr, aO as useLaf, aP as useLafDefaults, aQ as usePortalContainer } from './i18n-ClzQ4E35.cjs';
 import * as lucide_react from 'lucide-react';
 import { LucideIcon } from 'lucide-react';
 import * as ContextPrimitive from '@radix-ui/react-context-menu';
 import { Virtualizer } from '@tanstack/react-virtual';
-import { M as MenuItemSpec$1 } from './tree-DtuKM6CY.cjs';
-export { T as TreeDragAdapter, a as TreeDropPosition, b as TreeNode, c as TreeStatus, d as TreeView, e as TreeViewProps } from './tree-DtuKM6CY.cjs';
+import { M as MenuItemSpec$1, a as TreeViewProps } from './tree-Cv6L-PZI.cjs';
+export { T as TreeDragAdapter, b as TreeDropPosition, c as TreeNode, d as TreeStatus, e as TreeView } from './tree-Cv6L-PZI.cjs';
 
 declare function cn(...inputs: ClassValue[]): string;
 
@@ -154,13 +154,34 @@ declare function EmptyState({ icon, title, description, action, }: {
     description?: string;
     action?: React.ReactNode;
 }): React.JSX.Element;
-declare function Breadcrumb({ items, maxItems, label }: {
-    items: {
-        label: string;
+/** Single-line text that shows its full content in a tooltip while it is actually truncated. */
+declare function TruncatedText({ children, text, className }: {
+    children?: React.ReactNode;
+    text?: string;
+    className?: string;
+}): React.JSX.Element;
+interface BreadcrumbItemProps {
+    label: string;
+    href?: string;
+    onClick?: (e: React.MouseEvent<HTMLElement>) => void;
+    icon?: React.ReactNode;
+    /** Router-link escape hatch: return your `<Link>`; spread `props` onto it. */
+    render?: (props: {
+        className: string;
+        children: React.ReactNode;
         href?: string;
-    }[];
+        onClick?: (e: React.MouseEvent<HTMLElement>) => void;
+        "aria-current"?: "page";
+    }) => React.ReactElement;
+    /** Overrides the default "last item is the current page". */
+    current?: boolean;
+}
+declare function Breadcrumb({ items, maxItems, label, separator, }: {
+    items: BreadcrumbItemProps[];
     maxItems?: number;
     label?: string;
+    /** Replaces the default "/" between items; decorative. */
+    separator?: React.ReactNode;
 }): React.JSX.Element;
 declare function PageHead({ title, description, actions, breadcrumb, }: {
     title: string;
@@ -197,13 +218,15 @@ declare const TabsContent: React.ForwardRefExoticComponent<TabsPrimitive.TabsCon
 declare function TabsList({ className, ...props }: React.ComponentProps<typeof TabsPrimitive.List>): React.JSX.Element;
 declare function TabsTrigger({ className, ...props }: React.ComponentProps<typeof TabsPrimitive.Trigger>): React.JSX.Element;
 declare const TooltipProvider: React.FC<TooltipPrimitive.TooltipProviderProps>;
-declare function Tooltip({ content, children, side, }: {
+declare function Tooltip({ content, children, side, open, onOpenChange, }: {
     content: React.ReactNode;
     children: React.ReactNode;
     side?: "top" | "right" | "bottom" | "left";
+    /** Controlled open state, e.g. to show the tooltip only while the text is truncated. */
+    open?: boolean;
+    onOpenChange?: (open: boolean) => void;
 }): React.JSX.Element;
 
-declare function Toolbar({ className, ...props }: React.ComponentProps<"div">): React.JSX.Element;
 declare function Table({ className, children, ...props }: React.ComponentProps<"table">): React.JSX.Element;
 declare function UserCell({ name, email }: {
     name: string;
@@ -1171,7 +1194,9 @@ interface TopBarCounter {
     icon?: React.ReactNode;
     onClick?: () => void;
 }
-declare function TopBar({ logo, search, counters, notifications, userMenu, start, className, }: {
+declare function TopBar({ logo, search, counters, notifications, userMenu, start, className, as: Tag, }: {
+    /** Use `"div"` when nesting inside a `Masthead` (which is already the page's banner). */
+    as?: "header" | "div";
     logo?: React.ReactNode;
     /** Global search slot (e.g. an Input or command-palette trigger). */
     search?: React.ReactNode;
@@ -1905,4 +1930,602 @@ declare function ProgressSummary({ todo, doing, done, burndown, title, text, }: 
     text?: Partial<TrackerEn["progress"]>;
 }): React.JSX.Element;
 
-export { Accordion, type AccordionItem, AccountItem, AccountList, ActionBar, type ActionBarProps, type ActivityComment, type ActivityEvent, type ActivityItem, ActivityTimeline, AdminShell, Alert, type AuditEvent, AuditLog, AuthFooter, Avatar, AvatarGroup, Badge, Banner, BrandHeader, Breadcrumb, Button, ButtonGroup, type ButtonProps, CapacityBar, type CapacityBarProps, Card, type ChartSeries, Checkbox, Chip, ClientInfo, CodeDisplay, CodeEditor, CodeEditorLite, CodeInput, ComboboxOption, type Command, CommandPalette, ConfirmDialog, ContextMenu, ContextMenuContent, ContextMenuFor, ContextMenuItem, ContextMenuSeparator, ContextMenuTrigger, CopyButton, DataGrid, type DataGridProps, DatePicker, type DatePickerProps, type DateRangeValue, DefinitionList, DetailPage, DeviceSteps, type DeviceStepsProps, Dialog, DialogClose, DialogContent, DialogTrigger, type DiffOp, DiffView, DockedTaskPanel, Drawer, DrawerClose, DrawerContent, DrawerTrigger, DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger, EmptyState, ErrorPage, type ErrorVariant, Field, type FieldProps, type Filter, FilterBar, type FilterBarLabels, type FilterBarProps, type FilterField, type FilterOp, type FilterOption, type FilterToken, FormFooter, FormPage, FormSection, Formatters, type GridColumn, GridColumnsMenu, type GridDensity, GridDensityToggle, type GridFilter, type GridFilterRenderer, type GridLabels, type GridMenuItem, GridSearch, type GridSort, Heatmap, type HotkeyOptions, HotkeysProvider, HoverCard, IconButton, type IconButtonProps, InfiniteList, type InfiniteListProps, InfoBox, Input, type InputProps, InventoryLayout, type InventoryLayoutProps, IssueCard, type IssueData, IssueRow, Kbd, type KeyValue, KeyValueEditor, Label, type LabelDef, LabelPicker, type LabelSlot, LabelSwatch, LafErrorBoundary, LanguageSwitcher, LineChart, type LogLine, LogViewer, type LogViewerLabels, Menu, type MenuItemSpec, MenuShortcut, MfaEnrolment, type MfaEnrolmentProps, type MfaMethod, MobileNav, NavGroup, NavLink, NumberInput, ObjectIcon, type ObjectIconProps, type ObjectKind, ObjectPage, type ObjectPageCard, type ObjectPageProps, type ObjectState, OptionPicker, type OptionPickerProps, OtpInput, OverflowTabs, PageHead, Pagination, type PaginationProps, Panel, type ParsedFilter, PasswordField, type PasswordFieldProps, type PermissionGroup, PermissionMatrix, type PermissionMatrixLabels, type PickerOption, Popover, PopoverClose, PopoverContent, PopoverTrigger, Progress, ProgressSummary, PropertiesPane, type PropertyField, type PropertyGroup, Radio, RadioGroup, type RadioGroupProps, type RadioProps, type Reaction, Reactions, type RegisteredHotkey, RelativeTime, type SavedView, SavedViews, type SavedViewsLabels, type SavedViewsProps, type SavedViewsStorage, ScopeList, SearchInput, SecretDisplay, SegmentedControl, type SegmentedControlProps, type SegmentedItem, Select, type SelectGroup, SelectMenu, type SelectOption, type SelectProps, type Severity, ShortcutHelp, Skeleton, Slider, type SliderProps, SocialButton, SocialButtons, SocialDivider, Sparkline, Spinner, SplitButton, SplitPane, StackedBarChart, Stat, StatGrid, StatusDot, type Step, Stepper, SubNav, type SubNavGroup, type SubNavItem, Switch, Table, Tabs, TabsContent, TabsList, TabsTrigger, TagInput, type TaskItem, TaskPanel, type TaskStatus, TenantSwitcher, type TextTerm, Textarea, TimeRangePicker, type ToastOptions, ToastProvider, type ToastTone, Toolbar, Tooltip, TooltipProvider, TopBar, type TopBarCounter, type TopologyEdge, TopologyGraph, type TopologyNode, TreeTable, type TreeTableNode, type TreeTableProps, type UnitOption, UnsavedChangesDialog, type UnsavedChangesGuard, type UseSavedViewsOptions, UserCell, UserMenu, VirtualList, Wizard, type WizardLabels, type WizardProps, WizardReview, type WizardStep, buttonVariants, cn, diffLines, format, formatHotkey, formatRelative, highlight, isMacPlatform, matchesAccept, observeRectWithFallback, parseFilter, parseHotkey, registerObjectKind, serializeFilter, serializeToken, useControllableState, useHotkeys, useRegisteredHotkeys, useSavedViews, useToast, useUnsavedChangesGuard };
+interface ToolbarProps extends React.ComponentProps<"div"> {
+    /** Stick to the top of the scroll container. */
+    sticky?: boolean;
+    /** Bulk-selection mode: shows the count and `bulkActions` in place of the regular content. */
+    selectedCount?: number;
+    bulkActions?: React.ReactNode;
+    onClearSelection?: () => void;
+    labels?: {
+        selected?: (n: number) => string;
+        clearSelection?: string;
+    };
+}
+/**
+ * Flexible, wrapping action row. With an `aria-label` it becomes `role="toolbar"` and ←/→ (mirrored in RTL), Home and End
+ * move focus between its controls; text fields keep their own arrow keys.
+ */
+declare function Toolbar({ className, sticky, selectedCount, bulkActions, onClearSelection, labels, children, onKeyDown, ...props }: ToolbarProps): React.JSX.Element;
+/** Single line of toolbar content; use when a toolbar holds several rows (e.g. controls + filter chips). */
+declare function ToolbarContent({ className, ...props }: React.ComponentProps<"div">): React.JSX.Element;
+interface ToolbarGroupProps extends React.ComponentProps<"div"> {
+    /** `pagination` and `align="end"` push the group to the inline end. */
+    variant?: "filter" | "action" | "pagination";
+    align?: "start" | "end";
+}
+declare function ToolbarGroup({ variant, align, className, ...props }: ToolbarGroupProps): React.JSX.Element;
+declare function ToolbarItem({ grow, className, ...props }: React.ComponentProps<"div"> & {
+    grow?: boolean;
+}): React.JSX.Element;
+/** Pushes the following items to the inline end. */
+declare function ToolbarSpacer({ className, ...props }: React.ComponentProps<"div">): React.JSX.Element;
+declare function ToolbarDivider({ className, ...props }: React.ComponentProps<"div">): React.JSX.Element;
+/** `ActionBar` as a toolbar item: actions that do not fit collapse into an overflow menu. */
+declare function ToolbarActions({ className, ...props }: ActionBarProps): React.JSX.Element;
+interface ToolbarFilter {
+    id: string;
+    label: string;
+    /** Chips with the same category are grouped under it. */
+    category?: string;
+}
+interface ToolbarFilterChipsProps {
+    filters: ToolbarFilter[];
+    onRemove?: (filter: ToolbarFilter) => void;
+    onClearAll?: () => void;
+    className?: string;
+    labels?: {
+        activeFilters?: string;
+        removeFilter?: (label: string) => string;
+        clearAll?: string;
+    };
+}
+/** Row of applied filters with a "clear all" action. Renders nothing when empty. */
+declare function ToolbarFilterChips({ filters, onRemove, onClearAll, className, labels }: ToolbarFilterChipsProps): React.JSX.Element | null;
+interface ToolbarBulkProps {
+    count: number;
+    onClear?: () => void;
+    children?: React.ReactNode;
+    className?: string;
+    labels?: {
+        selected?: (n: number) => string;
+        clearSelection?: string;
+    };
+}
+/** Selected-count + actions strip, announced politely as the selection changes. */
+declare function ToolbarBulk({ count, onClear, children, className, labels }: ToolbarBulkProps): React.JSX.Element;
+
+type HeadingLevel = "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
+type TitleSize = "md" | "lg" | "xl" | "2xl" | "3xl" | "4xl";
+/** Heading with the level (semantics) decoupled from the size (looks), like PatternFly's `Title`. */
+declare function Title({ headingLevel: Tag, size, className, ...props }: React.ComponentProps<"h2"> & {
+    headingLevel?: HeadingLevel;
+    size?: TitleSize;
+}): React.JSX.Element;
+declare function Divider({ orientation, className, ...props }: Omit<React.ComponentProps<"hr">, "children"> & {
+    orientation?: "horizontal" | "vertical";
+}): React.JSX.Element;
+type Gap = "none" | "xs" | "sm" | "md" | "lg" | "xl";
+type Span = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
+/** 12-column grid; pair with `GridItem`. `gap` defaults to `md` (PatternFly's `hasGutter`). */
+declare function Grid({ gap, className, ...props }: React.ComponentProps<"div"> & {
+    gap?: Gap;
+}): React.JSX.Element;
+interface GridItemProps extends React.ComponentProps<"div"> {
+    /** Columns at every width (default 12); the breakpoint props apply from that width up. */
+    span?: Span;
+    sm?: Span;
+    md?: Span;
+    lg?: Span;
+    xl?: Span;
+    xxl?: Span;
+    rowSpan?: 1 | 2 | 3 | 4 | 5 | 6;
+}
+declare function GridItem({ span, sm, md, lg, xl, xxl, rowSpan, className, ...props }: GridItemProps): React.JSX.Element;
+declare const justify: {
+    start: string;
+    end: string;
+    center: string;
+    between: string;
+    around: string;
+    evenly: string;
+};
+declare const align: {
+    start: string;
+    end: string;
+    center: string;
+    stretch: string;
+    baseline: string;
+};
+declare const selfAlign: {
+    start: string;
+    end: string;
+    center: string;
+    stretch: string;
+    baseline: string;
+};
+declare const direction: {
+    row: string;
+    column: string;
+    "row-reverse": string;
+    "column-reverse": string;
+};
+interface FlexProps extends React.ComponentProps<"div"> {
+    direction?: keyof typeof direction;
+    justify?: keyof typeof justify;
+    align?: keyof typeof align;
+    gap?: Gap;
+    /** `true` wraps; `false` keeps one line. Defaults to wrapping. */
+    wrap?: boolean;
+    inline?: boolean;
+}
+declare function Flex({ direction: dir, justify: j, align: a, gap, wrap, inline, className, ...props }: FlexProps): React.JSX.Element;
+declare function FlexItem({ grow, shrink, align: a, pushEnd, className, ...props }: React.ComponentProps<"div"> & {
+    grow?: boolean;
+    shrink?: boolean;
+    align?: keyof typeof selfAlign; /** Margin-inline-start: auto. */
+    pushEnd?: boolean;
+}): React.JSX.Element;
+declare function Stack({ gap, className, ...props }: React.ComponentProps<"div"> & {
+    gap?: Gap;
+}): React.JSX.Element;
+declare function StackItem({ fill, className, ...props }: React.ComponentProps<"div"> & {
+    fill?: boolean;
+}): React.JSX.Element;
+type DlLayout = "vertical" | "horizontal" | "grid";
+interface DescriptionListProps extends React.ComponentProps<"dl"> {
+    /** `vertical` stacks term over description, `horizontal` puts them side by side, `grid` flows groups into columns. */
+    layout?: DlLayout;
+    /** Columns for `layout="grid"` (collapses on narrow screens). */
+    columns?: 1 | 2 | 3 | 4;
+    compact?: boolean;
+}
+declare function DescriptionList({ layout, columns, compact, className, ...props }: DescriptionListProps): React.JSX.Element;
+declare function DescriptionListGroup({ className, ...props }: React.ComponentProps<"div">): React.JSX.Element;
+declare function DescriptionListTerm({ icon, className, children, ...props }: React.ComponentProps<"dt"> & {
+    icon?: React.ReactNode;
+}): React.JSX.Element;
+declare function DescriptionListDescription({ mono, className, ...props }: React.ComponentProps<"dd"> & {
+    mono?: boolean;
+}): React.JSX.Element;
+/** Marker for PatternFly-style `<CodeBlock><CodeBlockCode>…</CodeBlockCode></CodeBlock>`; the text is read by `CodeBlock`. */
+declare function CodeBlockCode({ children }: {
+    children?: React.ReactNode;
+}): React.JSX.Element;
+interface CodeBlockProps {
+    /** Source text; alternatively pass it as children (strings or `CodeBlockCode`). */
+    code?: string;
+    children?: React.ReactNode;
+    language?: string;
+    lineNumbers?: boolean;
+    /** Controlled wrapping; omit for uncontrolled (`defaultWrap`). */
+    wrap?: boolean;
+    defaultWrap?: boolean;
+    onWrapChange?: (wrap: boolean) => void;
+    /** Show a toggle for line wrapping. */
+    wrapToggle?: boolean;
+    /** Max block size before the code scrolls (any CSS length). */
+    maxHeight?: string | number;
+    /** Set `false` to hide the copy button. */
+    copy?: boolean;
+    /** Extra header actions (buttons), shown before copy. */
+    actions?: React.ReactNode;
+    /** Accessible name of the scrollable region; defaults to the language or "Code". */
+    label?: string;
+    className?: string;
+    labels?: {
+        copy?: string;
+        copied?: string;
+        wrap?: string;
+    };
+}
+declare function CodeBlock({ code, children, language, lineNumbers, wrap, defaultWrap, onWrapChange, wrapToggle, maxHeight, copy, actions, label, className, labels }: CodeBlockProps): React.JSX.Element;
+interface ClipboardCopyProps {
+    /** Text to copy; alternatively pass it as string children. */
+    value?: string;
+    defaultValue?: string;
+    children?: React.ReactNode;
+    onChange?: (value: string) => void;
+    /** `expandable` reveals the full (multi-line) value; `inline-compact` renders as inline code. */
+    variant?: "inline" | "expandable" | "inline-compact";
+    readOnly?: boolean;
+    expanded?: boolean;
+    defaultExpanded?: boolean;
+    onExpandedChange?: (expanded: boolean) => void;
+    onCopy?: (value: string) => void;
+    /** Accessible name of the text field. */
+    label?: string;
+    /** Accessible name of the copy button. */
+    hoverTip?: string;
+    /** Announced after copying. */
+    clickTip?: string;
+    className?: string;
+    labels?: {
+        expand?: string;
+        collapse?: string;
+    };
+}
+declare function ClipboardCopy({ value, defaultValue, children, onChange, variant, readOnly, expanded, defaultExpanded, onExpandedChange, onCopy, label, hoverTip, clickTip, className, labels, }: ClipboardCopyProps): React.JSX.Element;
+declare function Form({ className, ...props }: React.ComponentProps<"form">): React.JSX.Element;
+interface FormGroupProps {
+    label?: React.ReactNode;
+    /** Id of the control the label points at. */
+    fieldId?: string;
+    required?: boolean;
+    /** Render a `<fieldset>` + `<legend>` for radio/checkbox groups instead of a `<label>`. */
+    fieldset?: boolean;
+    /** Content next to the label (help link, optional hint). */
+    labelInfo?: React.ReactNode;
+    className?: string;
+    children?: React.ReactNode;
+    labels?: {
+        required?: string;
+    };
+}
+declare function FormGroup({ label, fieldId, required, fieldset, labelInfo, className, children, labels }: FormGroupProps): React.JSX.Element;
+/** Row for a form's submit/cancel buttons. */
+declare function ActionGroup({ className, ...props }: React.ComponentProps<"div">): React.JSX.Element;
+declare function HelperText({ className, ...props }: React.ComponentProps<"div">): React.JSX.Element;
+declare const helperTone: {
+    default: string;
+    success: string;
+    warning: string;
+    error: string;
+};
+/** One line of helper/validation text; `error` is announced when it appears. */
+declare function HelperTextItem({ variant, icon, className, children, ...props }: React.ComponentProps<"p"> & {
+    variant?: keyof typeof helperTone;
+    icon?: React.ReactNode;
+}): React.JSX.Element;
+declare function FormHelperText({ className, ...props }: React.ComponentProps<"div">): React.JSX.Element;
+
+interface MenuToggleProps extends Omit<ButtonProps, "variant"> {
+    variant?: "default" | "plain" | "primary";
+    /** Hide the trailing chevron. */
+    hideCaret?: boolean;
+    expanded?: boolean;
+}
+declare const MenuToggle: React.ForwardRefExoticComponent<Omit<MenuToggleProps, "ref"> & React.RefAttributes<HTMLButtonElement>>;
+interface DropdownProps {
+    /** Element that opens the menu (rendered via asChild); typically a `MenuToggle`. */
+    toggle: React.ReactNode;
+    open?: boolean;
+    defaultOpen?: boolean;
+    onOpenChange?: (open: boolean) => void;
+    align?: "start" | "center" | "end";
+    className?: string;
+    children?: React.ReactNode;
+}
+declare function Dropdown({ toggle, open, defaultOpen, onOpenChange, align, className, children }: DropdownProps): React.JSX.Element;
+declare function DropdownList({ children }: {
+    children?: React.ReactNode;
+}): React.JSX.Element;
+declare function DropdownGroup({ label, children }: {
+    label?: string;
+    children?: React.ReactNode;
+}): React.JSX.Element;
+declare function DropdownItem({ icon, description, children, ...props }: React.ComponentProps<typeof DropdownMenuItem> & {
+    icon?: React.ReactNode;
+    description?: React.ReactNode;
+}): React.JSX.Element;
+declare const DropdownSeparator: typeof DropdownMenuSeparator;
+declare const modalSize: {
+    sm: string;
+    md: string;
+    lg: string;
+    xl: string;
+};
+interface ModalProps {
+    open?: boolean;
+    defaultOpen?: boolean;
+    onOpenChange?: (open: boolean) => void;
+    /** Called when the modal is dismissed (Escape, overlay, close button). */
+    onClose?: () => void;
+    size?: keyof typeof modalSize;
+    /** Accessible name when there is no `ModalHeader`. */
+    "aria-label"?: string;
+    /** Rendered outside the portal; usually a `ModalTrigger asChild` button. */
+    trigger?: React.ReactNode;
+    className?: string;
+    children?: React.ReactNode;
+}
+declare function Modal({ open, defaultOpen, onOpenChange, onClose, trigger, size, "aria-label": ariaLabel, className, children }: ModalProps): React.JSX.Element;
+declare const ModalTrigger: React.ForwardRefExoticComponent<DialogPrimitive.DialogTriggerProps & React.RefAttributes<HTMLButtonElement>>;
+declare const ModalClose: React.ForwardRefExoticComponent<DialogPrimitive.DialogCloseProps & React.RefAttributes<HTMLButtonElement>>;
+declare function ModalHeader({ title, description, className, children }: {
+    title: React.ReactNode;
+    description?: React.ReactNode;
+    className?: string;
+    children?: React.ReactNode;
+}): React.JSX.Element;
+declare function ModalBody({ className, ...props }: React.ComponentProps<"div">): React.JSX.Element;
+declare function ModalFooter({ className, ...props }: React.ComponentProps<"div">): React.JSX.Element;
+
+/** Catalogue keys of the app-frame family; every component takes `labels` to override single entries. */
+type AppFrameLabels = (typeof uiEn)["appFrame"];
+interface AppFrameContextValue {
+    /** True inside an `AppFrame`. */
+    active: boolean;
+    /** Viewport is below 860px: the sidebar is an overlay. */
+    isMobile: boolean;
+    /** Sidebar visible in the current mode (overlay open on mobile, expanded on desktop). */
+    sidebarOpen: boolean;
+    setSidebarOpen: (open: boolean) => void;
+    toggleSidebar: () => void;
+    /** Desktop sidebar is collapsed to the icon rail. */
+    rail: boolean;
+    sidebarId: string;
+    mainId: string;
+    /** Call after a navigation so the mobile overlay closes. */
+    navigated: () => void;
+}
+/** State of the surrounding `AppFrame` (sidebar, viewport mode). Safe to call outside one. */
+declare function useAppFrame(): AppFrameContextValue;
+
+type DrawerPlacement = "start" | "end" | "bottom" | "left" | "right";
+interface AppFrameProps {
+    /** `Masthead` (or any element rendering a `<header>`); sticky at the top. */
+    masthead?: React.ReactNode;
+    /** `Sidebar`/`NavTree`; collapsible, an overlay below 860px. */
+    sidebar?: React.ReactNode;
+    /** Rendered above `<main>`, e.g. a `Breadcrumb`. */
+    breadcrumb?: React.ReactNode;
+    /** Rendered at the top of `<main>`, e.g. a `PageHeader`. */
+    pageHeader?: React.ReactNode;
+    /** `AppFooter`; stays at the bottom even with short content. */
+    footer?: React.ReactNode;
+    /** An inline `DrawerPanel` next to (or under) the content. */
+    drawer?: React.ReactNode;
+    /** Defaults to the `placement` of the `drawer` element, else `end`. */
+    drawerPlacement?: DrawerPlacement;
+    /** Controlled desktop sidebar state; omit for uncontrolled. The mobile overlay is always internal. */
+    sidebarOpen?: boolean;
+    defaultSidebarOpen?: boolean;
+    onSidebarOpenChange?: (open: boolean) => void;
+    /** What "collapsed" means on desktop: slide away (`hide`) or shrink to an icon rail. */
+    sidebarCollapse?: "hide" | "rail";
+    /** localStorage key remembering the desktop sidebar state. Read on first render, never at import. */
+    persistKey?: string;
+    /** Id of `<main>`; the skip link points at it. */
+    mainId?: string;
+    labels?: Partial<AppFrameLabels>;
+    className?: string;
+    children?: React.ReactNode;
+}
+declare function AppFrame({ masthead, sidebar, breadcrumb, pageHeader, footer, drawer, drawerPlacement, sidebarOpen, defaultSidebarOpen, onSidebarOpenChange, sidebarCollapse, persistKey, mainId: mainIdProp, labels, className, children, }: AppFrameProps): React.JSX.Element;
+declare function Masthead({ className, ...props }: React.ComponentProps<"header">): React.JSX.Element;
+/** Hamburger wired to the surrounding `AppFrame`; pass `onClick` to use it standalone. */
+declare function MastheadToggle({ className, onClick, labels, ...props }: React.ComponentProps<"button"> & {
+    labels?: Partial<AppFrameLabels>;
+}): React.JSX.Element;
+interface MastheadBrandProps {
+    logo?: React.ReactNode;
+    title?: React.ReactNode;
+    subtitle?: React.ReactNode;
+    href?: string;
+    onClick?: (e: React.MouseEvent<HTMLElement>) => void;
+    /** Router-link escape hatch: spread `props` onto your `<Link>`. */
+    render?: (props: {
+        className: string;
+        children: React.ReactNode;
+        href?: string;
+        onClick?: (e: React.MouseEvent<HTMLElement>) => void;
+    }) => React.ReactElement;
+    className?: string;
+}
+declare function MastheadBrand({ logo, title, subtitle, href, onClick, render, className }: MastheadBrandProps): React.JSX.Element;
+/** Flexible middle of the masthead (search, host indicator …). */
+declare function MastheadContent({ className, ...props }: React.ComponentProps<"div">): React.JSX.Element;
+/** End-aligned utilities: `ThemeToggle`, `NotificationCenter`, `UserMenu` … */
+declare function MastheadActions({ className, ...props }: React.ComponentProps<"div">): React.JSX.Element;
+type ThemeMode = "light" | "dark" | "system";
+type ResolvedTheme = "light" | "dark";
+interface ThemeToggleProps {
+    /** Controlled mode. */
+    value?: ThemeMode;
+    defaultValue?: ThemeMode;
+    onChange?: (mode: ThemeMode) => void;
+    /** Called with the effective theme whenever mode or the OS preference changes. */
+    onResolvedChange?: (resolved: ResolvedTheme) => void;
+    /** localStorage key remembering the choice (uncontrolled). Read on first render. */
+    persistKey?: string;
+    /**
+     * `true` (default) sets `data-theme="light|dark"` on `<html>` after mount; a function takes over applying
+     * the theme; `false` leaves the document alone. LAF itself ships the dark palette only, so light tokens come from the app.
+     */
+    apply?: boolean | ((resolved: ResolvedTheme) => void);
+    variant?: "menu" | "segmented";
+    labels?: Partial<AppFrameLabels>;
+    className?: string;
+}
+declare function ThemeToggle({ value, defaultValue, onChange, onResolvedChange, persistKey, apply, variant, labels, className }: ThemeToggleProps): React.JSX.Element;
+interface FooterLink {
+    label: string;
+    href?: string;
+    onClick?: (e: React.MouseEvent<HTMLElement>) => void;
+    /** Opens in a new tab with an icon and a screen-reader hint. */
+    external?: boolean;
+}
+interface FooterLinkGroup {
+    title: string;
+    links: FooterLink[];
+}
+interface AppFooterBuild {
+    commit?: string;
+    date?: string;
+    env?: string;
+}
+interface AppFooterProps {
+    start?: React.ReactNode;
+    center?: React.ReactNode;
+    end?: React.ReactNode;
+    copyright?: React.ReactNode;
+    version?: string;
+    build?: string | AppFooterBuild;
+    /** Inline link row (default/compact variants). */
+    links?: FooterLink[];
+    /** Titled link columns (`columns` variant). */
+    linkGroups?: FooterLinkGroup[];
+    status?: {
+        label: string;
+        tone?: React.ComponentProps<typeof StatusDot>["tone"];
+        pulse?: boolean;
+    };
+    variant?: "default" | "compact" | "columns";
+    labels?: Partial<AppFrameLabels>;
+    className?: string;
+}
+declare function AppFooter({ start, center, end, copyright, version, build, links, linkGroups, status, variant, labels, className }: AppFooterProps): React.JSX.Element;
+interface PageHeaderProps {
+    /** Breadcrumb items, or a ready-made node. */
+    breadcrumb?: BreadcrumbItemProps[] | React.ReactNode;
+    icon?: React.ReactNode;
+    title: React.ReactNode;
+    subtitle?: React.ReactNode;
+    /** Labels/badges next to the title. */
+    badges?: React.ReactNode;
+    actions?: React.ReactNode;
+    help?: {
+        href?: string;
+        onClick?: (e: React.MouseEvent<HTMLElement>) => void;
+        label?: string;
+    };
+    headingLevel?: 1 | 2 | 3;
+    labels?: Partial<AppFrameLabels>;
+    className?: string;
+}
+declare function PageHeader({ breadcrumb, icon, title, subtitle, badges, actions, help, headingLevel, labels, className }: PageHeaderProps): React.JSX.Element;
+declare const sectionPad: {
+    readonly none: "";
+    readonly sm: "px-4 py-2";
+    readonly md: "px-6 py-4 max-[859px]:px-4";
+    readonly lg: "px-8 py-8 max-[859px]:px-4 max-[859px]:py-6";
+};
+interface PageSectionProps extends React.ComponentProps<"section"> {
+    padding?: keyof typeof sectionPad;
+    /** Translucent surface with a border, for toolbars and grouped content. */
+    filled?: boolean;
+    /** Sticks to the edge of the scrolling `main`. */
+    sticky?: "top" | "bottom";
+}
+/** A `<section>`; give it an `aria-label` to expose it as a region landmark. */
+declare function PageSection({ padding, filled, sticky, className, ...props }: PageSectionProps): React.JSX.Element;
+
+interface NavItem {
+    type?: "item";
+    id: string;
+    label: React.ReactNode;
+    /** Plain text for type-ahead and the rail's accessible name when `label` is not a string. */
+    textValue?: string;
+    icon?: React.ReactNode;
+    badge?: React.ReactNode;
+    href?: string;
+    onSelect?: (id: string) => void;
+    /** Overrides the `current` id of the tree. */
+    current?: boolean;
+    disabled?: boolean;
+    /** Nested entries of any depth turn the item into an expandable group. */
+    children?: NavEntry[];
+    /** Router-link escape hatch: return your `<Link>` spreading `props` (it must forward its ref). */
+    render?: (props: NavRenderProps) => React.ReactElement;
+}
+interface NavHeading {
+    type: "heading";
+    id: string;
+    label: React.ReactNode;
+}
+interface NavDivider {
+    type: "divider";
+    id?: string;
+}
+type NavEntry = NavItem | NavHeading | NavDivider;
+interface NavRenderProps extends React.HTMLAttributes<HTMLElement> {
+    href?: string;
+    "data-nav-id": string;
+    "data-nav-text": string;
+    "aria-current"?: "page";
+    "aria-disabled"?: true;
+    tabIndex: number;
+}
+interface NavTreeProps {
+    items: NavEntry[];
+    /** Accessible name of the `<nav>`. */
+    label?: string;
+    /** Id of the current page; an item's own `current` wins. */
+    current?: string;
+    /** Called for every activated leaf (after the item's own `onSelect`). */
+    onSelect?: (id: string, item: NavItem) => void;
+    /** Controlled expanded group ids; omit for uncontrolled (ancestors of the current item start open). */
+    expanded?: string[];
+    defaultExpanded?: string[];
+    onExpandedChange?: (ids: string[]) => void;
+    /** Icon-rail mode: top-level icons with tooltips. Defaults to the surrounding `AppFrame`'s rail state. */
+    collapsed?: boolean;
+    labels?: Partial<AppFrameLabels>;
+    className?: string;
+}
+/**
+ * Navigation of arbitrary depth: `<nav>` with nested lists, `aria-current` on the current page and
+ * `aria-expanded` on groups. One roving tab stop; arrows, Home/End, Left/Right and type-ahead move focus.
+ */
+declare function NavTree({ items, label, current, onSelect, expanded: expandedProp, defaultExpanded, onExpandedChange, collapsed, labels, className }: NavTreeProps): React.JSX.Element;
+interface SidebarProps extends Omit<NavTreeProps, "items"> {
+    items?: NavEntry[];
+    /** Object tree (TreeView v2) shown in the sidebar; with `items` too, a switch toggles between the two. */
+    tree?: TreeViewProps;
+    mode?: "nav" | "tree";
+    defaultMode?: "nav" | "tree";
+    onModeChange?: (mode: "nav" | "tree") => void;
+    /** Top slot, e.g. a brand block on mobile. */
+    header?: React.ReactNode;
+    /** Bottom slot: user info, environment, status. Hidden in the rail unless `railFooter` is given. */
+    footer?: React.ReactNode;
+    /** Compact footer for the icon rail. */
+    railFooter?: React.ReactNode;
+}
+/** Body of the `AppFrame` sidebar: navigation and/or an object tree, scrolling independently, with header and footer slots. */
+declare function Sidebar({ items, tree, mode: modeProp, defaultMode, onModeChange, header, footer, railFooter, collapsed, labels, className, ...nav }: SidebarProps): React.JSX.Element;
+
+interface DrawerPanelProps {
+    /** Controlled visibility; omit for uncontrolled. A closed panel renders nothing. */
+    open?: boolean;
+    defaultOpen?: boolean;
+    onOpenChange?: (open: boolean) => void;
+    /** `left`/`right` are logical (they follow the writing direction, like `start`/`end`). */
+    placement?: DrawerPlacement;
+    /** `push` takes space from the content; `overlay` floats above it (always below 860px). */
+    mode?: "push" | "overlay";
+    title: string;
+    icon?: React.ReactNode;
+    /** Extra header controls, before the collapse/close buttons. */
+    actions?: React.ReactNode;
+    footer?: React.ReactNode;
+    /** Width (start/end) or height (bottom) in px. */
+    size?: number;
+    defaultSize?: number;
+    onSizeChange?: (size: number) => void;
+    minSize?: number;
+    maxSize?: number;
+    /** Adds a keyboard- and pointer-operable splitter on the inner edge. */
+    resizable?: boolean;
+    collapsible?: boolean;
+    collapsed?: boolean;
+    defaultCollapsed?: boolean;
+    onCollapsedChange?: (collapsed: boolean) => void;
+    closable?: boolean;
+    /** Moves focus into the panel when it opens and back to the opener when it closes; Escape closes. */
+    manageFocus?: boolean;
+    labels?: Partial<AppFrameLabels>;
+    className?: string;
+    children?: React.ReactNode;
+}
+/**
+ * Non-modal panel that lives in the page flow (use the modal `Drawer` for blocking tasks). Inside `AppFrame`
+ * pass it as `drawer`; elsewhere place it in a flex row/column, inside a `relative` parent for overlay mode.
+ * It renders an `<aside>` landmark, so keep it outside `<main>`.
+ */
+declare function DrawerPanel({ open: openProp, defaultOpen, onOpenChange, placement: placementProp, mode, title, icon, actions, footer, size: sizeProp, defaultSize, onSizeChange, minSize, maxSize, resizable, collapsible, collapsed: collapsedProp, defaultCollapsed, onCollapsedChange, closable, manageFocus, labels, className, children, }: DrawerPanelProps): React.JSX.Element | null;
+/** Alias of `DrawerPanel`, for readers looking for the inline counterpart of the modal `Drawer`. */
+declare const InlineDrawer: typeof DrawerPanel;
+
+export { Accordion, type AccordionItem, AccountItem, AccountList, ActionBar, type ActionBarProps, ActionGroup, type ActivityComment, type ActivityEvent, type ActivityItem, ActivityTimeline, AdminShell, Alert, AppFooter, type AppFooterBuild, type AppFooterProps, AppFrame, type AppFrameContextValue, type AppFrameLabels, type AppFrameProps, type AuditEvent, AuditLog, AuthFooter, Avatar, AvatarGroup, Badge, Banner, BrandHeader, Breadcrumb, type BreadcrumbItemProps, Button, ButtonGroup, type ButtonProps, CapacityBar, type CapacityBarProps, Card, type ChartSeries, Checkbox, Chip, ClientInfo, ClipboardCopy, type ClipboardCopyProps, CodeBlock, CodeBlockCode, type CodeBlockProps, CodeDisplay, CodeEditor, CodeEditorLite, CodeInput, ComboboxOption, type Command, CommandPalette, ConfirmDialog, ContextMenu, ContextMenuContent, ContextMenuFor, ContextMenuItem, ContextMenuSeparator, ContextMenuTrigger, CopyButton, DataGrid, type DataGridProps, DatePicker, type DatePickerProps, type DateRangeValue, DefinitionList, DescriptionList, DescriptionListDescription, DescriptionListGroup, type DescriptionListProps, DescriptionListTerm, DetailPage, DeviceSteps, type DeviceStepsProps, Dialog, DialogClose, DialogContent, DialogTrigger, type DiffOp, DiffView, Divider, DockedTaskPanel, Drawer, DrawerClose, DrawerContent, DrawerPanel, type DrawerPanelProps, type DrawerPlacement, DrawerTrigger, Dropdown, DropdownGroup, DropdownItem, DropdownList, DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger, type DropdownProps, DropdownSeparator, EmptyState, ErrorPage, type ErrorVariant, Field, type FieldProps, type Filter, FilterBar, type FilterBarLabels, type FilterBarProps, type FilterField, type FilterOp, type FilterOption, type FilterToken, Flex, FlexItem, type FlexProps, type FooterLink, type FooterLinkGroup, Form, FormFooter, FormGroup, type FormGroupProps, FormHelperText, FormPage, FormSection, Formatters, type Gap, Grid, type GridColumn, GridColumnsMenu, type GridDensity, GridDensityToggle, type GridFilter, type GridFilterRenderer, GridItem, type GridItemProps, type GridLabels, type GridMenuItem, GridSearch, type GridSort, Heatmap, HelperText, HelperTextItem, type HotkeyOptions, HotkeysProvider, HoverCard, IconButton, type IconButtonProps, InfiniteList, type InfiniteListProps, InfoBox, InlineDrawer, Input, type InputProps, InventoryLayout, type InventoryLayoutProps, IssueCard, type IssueData, IssueRow, Kbd, type KeyValue, KeyValueEditor, Label, type LabelDef, LabelPicker, type LabelSlot, LabelSwatch, LafErrorBoundary, LanguageSwitcher, LineChart, type LogLine, LogViewer, type LogViewerLabels, Masthead, MastheadActions, MastheadBrand, type MastheadBrandProps, MastheadContent, MastheadToggle, Menu, type MenuItemSpec, MenuShortcut, MenuToggle, type MenuToggleProps, MfaEnrolment, type MfaEnrolmentProps, type MfaMethod, MobileNav, Modal, ModalBody, ModalClose, ModalFooter, ModalHeader, type ModalProps, ModalTrigger, type NavDivider, type NavEntry, NavGroup, type NavHeading, type NavItem, NavLink, type NavRenderProps, NavTree, type NavTreeProps, NumberInput, ObjectIcon, type ObjectIconProps, type ObjectKind, ObjectPage, type ObjectPageCard, type ObjectPageProps, type ObjectState, OptionPicker, type OptionPickerProps, OtpInput, OverflowTabs, PageHead, PageHeader, type PageHeaderProps, PageSection, type PageSectionProps, Pagination, type PaginationProps, Panel, type ParsedFilter, PasswordField, type PasswordFieldProps, type PermissionGroup, PermissionMatrix, type PermissionMatrixLabels, type PickerOption, Popover, PopoverClose, PopoverContent, PopoverTrigger, Progress, ProgressSummary, PropertiesPane, type PropertyField, type PropertyGroup, Radio, RadioGroup, type RadioGroupProps, type RadioProps, type Reaction, Reactions, type RegisteredHotkey, RelativeTime, type ResolvedTheme, type SavedView, SavedViews, type SavedViewsLabels, type SavedViewsProps, type SavedViewsStorage, ScopeList, SearchInput, SecretDisplay, SegmentedControl, type SegmentedControlProps, type SegmentedItem, Select, type SelectGroup, SelectMenu, type SelectOption, type SelectProps, type Severity, ShortcutHelp, Sidebar, type SidebarProps, Skeleton, Slider, type SliderProps, SocialButton, SocialButtons, SocialDivider, Sparkline, Spinner, SplitButton, SplitPane, Stack, StackItem, StackedBarChart, Stat, StatGrid, StatusDot, type Step, Stepper, SubNav, type SubNavGroup, type SubNavItem, Switch, Table, Tabs, TabsContent, TabsList, TabsTrigger, TagInput, type TaskItem, TaskPanel, type TaskStatus, TenantSwitcher, Textarea as TextArea, Input as TextInput, type TextTerm, Textarea, type ThemeMode, ThemeToggle, type ThemeToggleProps, TimeRangePicker, Title, type TitleSize, type ToastOptions, ToastProvider, type ToastTone, Toolbar, ToolbarActions, ToolbarBulk, type ToolbarBulkProps, ToolbarContent, ToolbarDivider, type ToolbarFilter, ToolbarFilterChips, type ToolbarFilterChipsProps, ToolbarGroup, type ToolbarGroupProps, ToolbarItem, type ToolbarProps, ToolbarSpacer, Tooltip, TooltipProvider, TopBar, type TopBarCounter, type TopologyEdge, TopologyGraph, type TopologyNode, TreeTable, type TreeTableNode, type TreeTableProps, TreeViewProps, TruncatedText, type UnitOption, UnsavedChangesDialog, type UnsavedChangesGuard, type UseSavedViewsOptions, UserCell, UserMenu, VirtualList, Wizard, type WizardLabels, type WizardProps, WizardReview, type WizardStep, buttonVariants, cn, diffLines, format, formatHotkey, formatRelative, highlight, isMacPlatform, matchesAccept, observeRectWithFallback, parseFilter, parseHotkey, registerObjectKind, serializeFilter, serializeToken, useAppFrame, useControllableState, useHotkeys, useRegisteredHotkeys, useSavedViews, useToast, useUnsavedChangesGuard };

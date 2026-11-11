@@ -602,6 +602,10 @@ packages/ui/
 - [ ] Reduced-motion respected.
 - [ ] Exported from `index.ts`, documented props, no hardcoded strings.
 
+### App shell
+
+`AppFrame` (masthead · sidebar · breadcrumb · `PageHeader` · content · `AppFooter` · optional `DrawerPanel`) with `Masthead`/`MastheadToggle`/`MastheadBrand`/`MastheadContent`/`MastheadActions`, `ThemeToggle`, `Sidebar`/`NavTree` (arbitrary depth, `aria-current`/`aria-expanded`, roving tabindex, icon rail, `tree` slot using TreeView) and `PageSection`. The sidebar overlays below 860 px; `persistKey` remembers collapse state. Labels live in `messages.components.ui.appFrame`. See `?demo=app-frame`.
+
 ## 8. Anti-patterns (reject in review)
 
 Pill buttons or circular avatars · gradients other than brand/page · coloured text on coloured fill without a token pair · more than one primary button per region · tooltips as the only label · modals opening modals · hover-only disclosure · hardcoded `#54a2ff` · `font-weight: 500/600` expectations with Lato · centring the whole admin table layout · a second font.

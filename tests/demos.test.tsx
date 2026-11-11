@@ -79,4 +79,21 @@ describe("playground demos", () => {
     await waitFor(() => expect(screen.getAllByText("demo-vm").length).toBeGreaterThan(0), { timeout: 3000 });
     await waitFor(() => expect(screen.getByText("Create virtual machine", { selector: "*" })).toBeInTheDocument());
   }, 20000);
+  it("content: bulk mode, filter chips and the modal work", async () => {
+    const Content = (await import("../playground/pages/Content")).default;
+    const { container } = render(
+      <Wrap>
+        <Content />
+      </Wrap>,
+    );
+    fireEvent.click(screen.getByRole("button", { name: "Remove filter eu-west" }));
+    expect(screen.queryByRole("button", { name: "Remove filter eu-west" })).toBeNull();
+    fireEvent.click(screen.getByRole("button", { name: "Select 3" }));
+    expect(screen.getByText("3 selected")).toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button", { name: "Open modal" }));
+    await screen.findByRole("dialog", { name: "Create token" });
+    fireEvent.click(screen.getByRole("button", { name: "Cancel" }));
+    await waitFor(() => expect(screen.queryByRole("dialog")).toBeNull());
+    expect((await axe(container)).violations).toEqual([]);
+  });
 });

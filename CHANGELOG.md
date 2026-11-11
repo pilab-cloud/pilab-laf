@@ -7,6 +7,7 @@ Follows [semver](https://semver.org). Pre-1.0, minor versions may contain breaki
 See [`docs/MIGRATION.md`](docs/MIGRATION.md).
 
 ### Added
+- App shell: `AppFrame`, `Masthead*`, `ThemeToggle`, `NavTree`/`Sidebar` (nested nav, rail, tree mode), `AppFooter`, `PageHeader`/`PageSection`, inline `DrawerPanel`/`InlineDrawer`; `Breadcrumb` gains `onClick`/`icon`/`render`/`current`/`separator`; `TopBar as="div"`; `Tooltip` `open`/`onOpenChange`. Demo `?demo=app-frame`.
 - `@pilab/laf/topology` entry (`TopologyGraphFlow`, optional peer `@xyflow/react`).
 - Per-component label sets (account, admin, tracker, vSphere objects, charts) in `messages.components` with Hungarian translations; `useLafDefaults`.
 - Rules tests: logical (RTL-safe) CSS classes, no unguarded fixed widths ≥ 320 px, `hu` long-string sweep, `dir="rtl"` smoke test. `src/app.css` and components use logical properties (`ms-`/`me-`/`ps-`/`pe-`/`start-`/`end-`).

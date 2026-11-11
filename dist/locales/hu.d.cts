@@ -1,4 +1,4 @@
-import { a3 as LafMessages } from '../i18n-irBAIN8C.cjs';
+import { a4 as LafMessages } from '../i18n-ClzQ4E35.cjs';
 import 'react';
 import '../perf-panel-CcKCFsOd.cjs';
 

@@ -4,10 +4,6 @@ import { cn } from "../cn";
 import { Avatar } from "./display";
 import { useLaf } from "../i18n";
 
-export function Toolbar({ className, ...props }: React.ComponentProps<"div">) {
-  return <div className={cn("toolbar", className)} {...props} />;
-}
-
 export function Table({ className, children, ...props }: React.ComponentProps<"table">) {
   return (
     <div className="table-wrap">

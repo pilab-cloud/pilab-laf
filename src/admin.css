@@ -64,7 +64,7 @@
   .breadcrumb a {
     @apply text-muted no-underline hover:text-fg;
   }
-  .breadcrumb span::before {
+  .breadcrumb > span::before {
     content: "/";
     @apply mr-1.5 text-subtle;
   }

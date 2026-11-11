@@ -189,7 +189,10 @@ export function TopBar({
   userMenu,
   start,
   className,
+  as: Tag = "header",
 }: {
+  /** Use `"div"` when nesting inside a `Masthead` (which is already the page's banner). */
+  as?: "header" | "div";
   logo?: React.ReactNode;
   /** Global search slot (e.g. an Input or command-palette trigger). */
   search?: React.ReactNode;
@@ -202,7 +205,7 @@ export function TopBar({
   className?: string;
 }) {
   return (
-    <header className={cn("flex h-12 items-center gap-3 border-b border-line bg-surface px-3", className)}>
+    <Tag className={cn("flex h-12 items-center gap-3 border-b border-line bg-surface px-3", className)}>
       {start}
       {logo && <div className="flex shrink-0 items-center font-semibold text-fg">{logo}</div>}
       <div className="mx-auto flex min-w-0 max-w-xl flex-1 items-center">{search}</div>
@@ -222,7 +225,7 @@ export function TopBar({
         {notifications}
         {userMenu}
       </div>
-    </header>
+    </Tag>
   );
 }
 

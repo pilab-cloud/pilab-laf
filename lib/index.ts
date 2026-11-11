@@ -38,3 +38,8 @@ export * from "./components/hotkeys";
 export * from "./components/vsphere-layout";
 export * from "./components/tracker";
 export * from "./components/vsphere-objects";
+export * from "./components/toolbar";
+export * from "./components/content";
+export * from "./components/app-frame";
+export * from "./components/nav-tree";
+export * from "./components/drawer-panel";

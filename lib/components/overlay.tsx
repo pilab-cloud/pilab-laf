@@ -156,14 +156,19 @@ export function Tooltip({
   content,
   children,
   side = "top",
+  open,
+  onOpenChange,
 }: {
   content: React.ReactNode;
   children: React.ReactNode;
   side?: "top" | "right" | "bottom" | "left";
+  /** Controlled open state, e.g. to show the tooltip only while the text is truncated. */
+  open?: boolean;
+  onOpenChange?: (open: boolean) => void;
 }) {
   const container = usePortalContainer();
   return (
-    <TooltipPrimitive.Root delayDuration={400}>
+    <TooltipPrimitive.Root delayDuration={400} open={open} onOpenChange={onOpenChange}>
       <TooltipPrimitive.Trigger asChild>{children}</TooltipPrimitive.Trigger>
       <TooltipPrimitive.Portal container={container}>
         <TooltipPrimitive.Content
