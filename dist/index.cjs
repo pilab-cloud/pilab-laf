@@ -2773,7 +2773,7 @@ function DataGrid(props) {
       } else off = Number.POSITIVE_INFINITY;
     });
   }
-  const template = [selectable && `${SELECT_W}px`, renderExpanded && `${EXPAND_W}px`, ...leaf.map((c) => `${c.getSize()}px`), rowActions && `${ACTION_W}px`].filter(Boolean).join(" ");
+  const template = [selectable && `${SELECT_W}px`, renderExpanded && `${EXPAND_W}px`, ...leaf.map((c) => `${c.getSize()}px`), rowActions && `minmax(${ACTION_W}px, 1fr)`].filter(Boolean).join(" ");
   const totalWidth = leading + leaf.reduce((a, c) => a + c.getSize(), 0) + (rowActions ? ACTION_W : 0);
   const colCount = leaf.length + (selectable ? 1 : 0) + (renderExpanded ? 1 : 0) + (rowActions ? 1 : 0);
   const rowH = typeof virtual === "object" ? virtual.rowHeight : density === "compact" ? 28 : 36;
@@ -3038,7 +3038,7 @@ function DataGrid(props) {
                 c.id
               );
             }),
-            rowActions && /* @__PURE__ */ jsxRuntime.jsx("div", { role: "gridcell", className: chunkFTHFEMX6_cjs.cn(cellBase, "justify-center px-0"), children: /* @__PURE__ */ jsxRuntime.jsx(
+            rowActions && /* @__PURE__ */ jsxRuntime.jsx("div", { role: "gridcell", className: chunkFTHFEMX6_cjs.cn(cellBase, "justify-end px-1"), children: /* @__PURE__ */ jsxRuntime.jsx(
               "button",
               {
                 type: "button",

@@ -451,7 +451,7 @@ export function DataGrid<T>(props: DataGridProps<T>) {
       } else off = Number.POSITIVE_INFINITY; // only a contiguous leading run can stick
     });
   }
-  const template = [selectable && `${SELECT_W}px`, renderExpanded && `${EXPAND_W}px`, ...leaf.map((c) => `${c.getSize()}px`), rowActions && `${ACTION_W}px`].filter(Boolean).join(" ");
+  const template = [selectable && `${SELECT_W}px`, renderExpanded && `${EXPAND_W}px`, ...leaf.map((c) => `${c.getSize()}px`), rowActions && `minmax(${ACTION_W}px, 1fr)`].filter(Boolean).join(" ");
   const totalWidth = leading + leaf.reduce((a, c) => a + c.getSize(), 0) + (rowActions ? ACTION_W : 0);
   const colCount = leaf.length + (selectable ? 1 : 0) + (renderExpanded ? 1 : 0) + (rowActions ? 1 : 0);
 
@@ -741,7 +741,7 @@ export function DataGrid<T>(props: DataGridProps<T>) {
             );
           })}
           {rowActions && (
-            <div role="gridcell" className={cn(cellBase, "justify-center px-0")}>
+            <div role="gridcell" className={cn(cellBase, "justify-end px-1")}>
               <button
                 type="button"
                 aria-label={L.actions}
