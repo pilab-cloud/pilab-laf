@@ -1,4 +1,4 @@
-import { a6 as LafMessages } from '../i18n-CgrKjKV1.js';
+import { a6 as LafMessages } from '../i18n-D_vprv9U.js';
 import 'react';
 import '../perf-panel-WnUE1l-N.js';
 

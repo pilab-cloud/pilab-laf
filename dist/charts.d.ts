@@ -205,6 +205,10 @@ interface ThresholdDonutProps {
     size?: number;
     /** Show the legend list beside the ring. */
     legend?: boolean;
+    /** Centre text instead of the percentage, e.g. "25" with `subtext="GB Used"`. The accessible summary still uses the percentage. */
+    centerText?: React.ReactNode;
+    /** Colour of the usage arc below `warnAt`: the brand colour (default) or the success colour. */
+    okTone?: "primary" | "ok";
     /** The usage arc sweeps in and re-sweeps on change; off under `prefers-reduced-motion`. Default on. */
     animate?: ChartAnimate;
     /** Tooltip with the usage and thresholds (hover, tap, focus): `false`, a render function or `{formatter, header}`. Default on. */
@@ -216,7 +220,7 @@ declare function thresholdTone(pct: number, warnAt: number, dangerAt: number): "
  * Usage ring with the value in the centre. The outer ring shows the warning and critical bands as muted arcs; the
  * inner arc is the usage, coloured by the band it is in. The legend lists the thresholds with numbers, so colour is never alone.
  */
-declare function ThresholdDonut({ value, max, warnAt, dangerAt, subtext, label, size, legend, animate, tooltip, className }: ThresholdDonutProps): React.JSX.Element;
+declare function ThresholdDonut({ value, max, warnAt, dangerAt, subtext, label, size, legend, centerText, okTone, animate, tooltip, className }: ThresholdDonutProps): React.JSX.Element;
 
 interface UtilizationBase {
     title: React.ReactNode;

@@ -601,10 +601,12 @@ export interface SparklineProps {
   formatValue?: (v: number) => string;
   /** Tooltip header per point (default "1", "2", …). */
   xLabels?: string[];
+  /** Fills the area under the line with a faint tint. */
+  area?: boolean;
   className?: string;
 }
 
-export function Sparkline({ data, label, animate, tooltip = false, formatValue = (v) => String(Math.round(v * 100) / 100), xLabels, className }: SparklineProps) {
+export function Sparkline({ data, label, animate, tooltip = false, area, formatValue = (v) => String(Math.round(v * 100) / 100), xLabels, className }: SparklineProps) {
   const w = 100;
   const h = 24;
   const motion = useChartMotion(animate);
@@ -643,6 +645,7 @@ export function Sparkline({ data, label, animate, tooltip = false, formatValue =
         onPointerDown={tooltip === false ? undefined : (e) => setHover(at(e))}
         onPointerLeave={tooltip === false ? undefined : (e) => e.pointerType !== "touch" && setHover(null)}
       >
+        {area && data.length > 1 && <polygon points={`0,${h} ${pts.join(" ")} ${w},${h}`} fill="currentColor" opacity="0.15" stroke="none" className={enter.className} style={enter.style} />}
         <polyline points={pts.join(" ")} fill="none" stroke="currentColor" strokeWidth="1.5" vectorEffect="non-scaling-stroke" className={enter.className} style={enter.style} />
       </svg>
       {tipOn && hover !== null && <ChartTooltipFor option={tooltip} ctx={ctx} x={(xy(data[hover]!, hover)[0] / w) * width} y={0} id={tipId} container={box} />}

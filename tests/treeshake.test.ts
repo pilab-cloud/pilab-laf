@@ -46,7 +46,7 @@ describe("tree-shaking (design §2.2)", () => {
 
   it("everything stays below the full-kit budget", async () => {
     const { gzip } = await bundle(`import * as L from "./lib/index.ts"; console.log(Object.keys(L).length, L);`);
-    expect(gzip).toBeLessThanOrEqual(220 * 1024);
+    expect(gzip).toBeLessThanOrEqual(230 * 1024);
   });
 
   it("dnd entry stays within its 30 kB gzip budget and the core never pulls in dnd-kit", async () => {

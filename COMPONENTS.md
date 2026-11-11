@@ -531,6 +531,8 @@ Concise entries for what `docs/design.md` specified and 1.0 ships. Per-prop deta
 
 **SSO pack** — account (sessions, devices, MFA, tokens, audit), admin (shell, notifications, allow-list editor, audit log). **Tracker pack** — issue card, board, comments, labels, priorities. **vSphere pack** — inventory tree, object pages, `ObjectIcon`, console/performance panels.
 
+**Resource overview** (`lib/components/overview.tsx`, demo `?demo=resource-overview`) — object detail page pattern (oVirt VM page). `ResourceOverviewLayout` (`identity`, `details`, `utilization`, `aside` slots; sized by its own width via a container query: one column below 860 px, safe at 320 px), `ObjectHeader` (breadcrumb of ancestors + `h1` title + switch icon button + actions row), `ActionToolbar` (`ToolbarAction[]`: plain buttons or split buttons with `menu` items; `variant: "primary"` for the call to action; built on `SplitButton`/`DropdownMenu`, so arrows/Enter/Escape work), `IdentityCard` (icon, name, status, description, ribbon, edit), `DetailsCard` (`DescriptionList` in 1–3 columns, `sub` lines, edit), `SideCard`/`CountCard` (icon, title, count badge, edit, list or empty state), `UtilizationPanel` + `UtilizationColumn` (heading, big "available" number with "of capacity" caption, `ThresholdDonut` (`gauge="donut"`) or `RadialGauge` (`gauge="radial"`) coloured by `warnAt`/`dangerAt`, `centerText`/`centerSubtext`, area `Sparkline` with range caption; `animate`/`tooltip` as on the charts), `PowerState` (icon + text, reuses the `stateOn…` catalogue strings). Strings: `overview` group. The same layout serves VMs, mailboxes, services or any object with identity, properties, related collections and utilization.
+
 #### G. Packages beyond LAF (not styled components)
 - **App sign-in:** out of scope; apps use `@pilab/shadow-sso` (`../3so/shadow-sso-client`: FedCM, silent login, One Tap, PKCE). No `@pilab/auth` package.
 - **Heavy engines:** charts, editor and drag & drop ship as tree-shakeable subpath entries (`@pilab/laf/charts`, `/editor`, `/dnd`) with optional peer dependencies ([`docs/design.md`](docs/design.md) ADR-1).
@@ -614,6 +616,10 @@ packages/ui/
 `PortalLayout` (on `AppFrame`): masthead with brand, global search (`CommandPalette`), `AppSwitcher` grid menu, notifications, `ThemeToggle`, `UserMenu`; sidebar sections, `PageHeader` and breadcrumb derived from a `routes` model (`resolvePortalRoute`, `portalBreadcrumbs`, `portalNavEntries`; router-agnostic through `path` + `onNavigate`/`render`/`hrefFor`); `route.tabs` render in the header; `AppFooter` via `footer`. `PortalHome` is the launchpad (favourite/recent app cards, announcements, quick actions).
 
 `useServerGrid({ fetcher, initialSort, pageSize, debounceMs, urlSync })` owns sort, page/cursor, page size, filters and debounced search; the previous request is aborted (`signal`), old rows stay while loading (`stale`), errors expose `refresh()`. `fetcher({ sort, page, pageSize, filters, search, signal })` returns `{ rows, total }`. `ServerDataGrid` wires it into `DataGrid` (manual mode: `aria-sort`, skeleton/overlay loading, in-grid error row with retry, footer with total and page size, `aria-rowcount`) plus `Toolbar`/`SearchInput`/`FilterBar`. `DataGrid` also accepts `pagination` and `onRetry` directly. Strings live in `messages.components.portal`. See `?demo=portal`.
+
+### Mail admin kit
+
+`QueueStatusBadge` (outbound job status), `QuotaBar` (meter + usage text, unlimited when quota 0), `ServiceTile`/`HealthGrid` (daemon health up/degraded/down/unknown), `DnsRecordTable` (record, copy button, verification badge), `TraceTimeline` (hops with tone and elapsed time). Labels in `messages.components.mail`. See `docs/mail-admin.md`, `?demo=mail-admin`.
 
 ## 8. Anti-patterns (reject in review)
 

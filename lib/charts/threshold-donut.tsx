@@ -16,6 +16,10 @@ export interface ThresholdDonutProps {
   size?: number;
   /** Show the legend list beside the ring. */
   legend?: boolean;
+  /** Centre text instead of the percentage, e.g. "25" with `subtext="GB Used"`. The accessible summary still uses the percentage. */
+  centerText?: React.ReactNode;
+  /** Colour of the usage arc below `warnAt`: the brand colour (default) or the success colour. */
+  okTone?: "primary" | "ok";
   /** The usage arc sweeps in and re-sweeps on change; off under `prefers-reduced-motion`. Default on. */
   animate?: ChartAnimate;
   /** Tooltip with the usage and thresholds (hover, tap, focus): `false`, a render function or `{formatter, header}`. Default on. */
@@ -27,14 +31,15 @@ export function thresholdTone(pct: number, warnAt: number, dangerAt: number) {
   return pct >= dangerAt ? "danger" : pct >= warnAt ? "warn" : "ok";
 }
 
-const toneClass = { ok: "text-primary", warn: "text-warn", danger: "text-danger" } as const;
+const toneClasses = { primary: { ok: "text-primary", warn: "text-warn", danger: "text-danger" }, ok: { ok: "text-ok", warn: "text-warn", danger: "text-danger" } } as const;
 
 /**
  * Usage ring with the value in the centre. The outer ring shows the warning and critical bands as muted arcs; the
  * inner arc is the usage, coloured by the band it is in. The legend lists the thresholds with numbers, so colour is never alone.
  */
-export function ThresholdDonut({ value, max = 100, warnAt = 60, dangerAt = 90, subtext, label, size = 160, legend = true, animate, tooltip = true, className }: ThresholdDonutProps) {
+export function ThresholdDonut({ value, max = 100, warnAt = 60, dangerAt = 90, subtext, label, size = 160, legend = true, centerText, okTone = "primary", animate, tooltip = true, className }: ThresholdDonutProps) {
   const { t, format } = useChartLaf();
+  const toneClass = toneClasses[okTone];
   const u = t.components.dashboard.utilization;
   const pct = max > 0 ? Math.min(100, Math.max(0, (value / max) * 100)) : 0;
   const tone = thresholdTone(pct, warnAt, dangerAt);
@@ -94,7 +99,7 @@ export function ThresholdDonut({ value, max = 100, warnAt = 60, dangerAt = 90, s
         </svg>
         {tipOn && <ChartTooltipFor option={tooltip} ctx={ctx} x={c} y={0} id={tipId} container={box} />}
         <div aria-hidden className="absolute inset-0 grid place-content-center text-center">
-          <span className="text-2xl leading-tight text-fg tabular-nums">{pctText}</span>
+          <span className="text-2xl leading-tight text-fg tabular-nums">{centerText ?? pctText}</span>
           {subtext && <span className="text-xs text-muted">{subtext}</span>}
         </div>
       </div>

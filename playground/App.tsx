@@ -30,6 +30,8 @@ export const DEMOS = [
   { id: "app-frame", label: "AppFrame", Component: page(() => import("./pages/AppFrame")) },
   { id: "dashboard", label: "Dashboard", Component: page(() => import("./pages/Dashboard")) },
   { id: "portal", label: "Portal", Component: page(() => import("./pages/Portal")) },
+  { id: "mail-admin", label: "Mail admin", Component: page(() => import("./pages/MailAdmin")) },
+  { id: "resource-overview", label: "Resource overview", Component: page(() => import("./pages/ResourceOverview")) },
 ];
 
 /** `?demo=<id>` wins; otherwise `?bench=grid|tree` picks the benchmark demo. */

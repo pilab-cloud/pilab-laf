@@ -1,14 +1,14 @@
-import { DropdownMenuSeparator, Avatar, Combobox, Badge, Input, Dialog, DialogContent, DialogClose, DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuLabel, DropdownMenuItem, RelativeTime, useChartMotion, entryAnim, tweenClass, motionVars, RadioGroup, Popover, PopoverTrigger, PopoverContent, TabsList, TabsTrigger, uiEn, Breadcrumb, Drawer, DrawerTrigger, DrawerContent, observeRectWithFallback, Skeleton, Select, EmptyState, IconButton, Alert, Field, Checkbox, StatusDot, Tabs, TabsContent, Panel, SplitPane, LABEL_SLOTS, AvatarGroup, Switch, Banner, Chip, Textarea, TooltipProvider, Card, Sparkline, CardHeader, CardTitle, CardBody, CardDescription, PopoverClose, SearchInput, VirtualList, dashboardEn, TruncatedText, Tooltip } from './chunk-KVFEYZK4.js';
-export { Accordion, Alert, AlertGroup, Avatar, AvatarGroup, Badge, Banner, Breadcrumb, ButtonGroup, Card, CardActions, CardBody, CardDescription, CardFooter, CardGrid, CardHeader, CardTitle, Checkbox, Chip, Combobox, Dialog, DialogClose, DialogContent, DialogTrigger, Drawer, DrawerClose, DrawerContent, DrawerTrigger, DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger, EmptyState, ExpandableCard, Field, IconButton, InfiniteList, Input, KeyValueEditor, LineChart, LogViewer, NumberInput, PageHead, Panel, PermissionMatrix, Popover, PopoverClose, PopoverContent, PopoverTrigger, Radio, RadioGroup, RelativeTime, SearchInput, SegmentedControl, Select, SelectMenu, Skeleton, Slider, Sparkline, Spinner, SplitButton, SplitPane, Stat, StatGrid, StatusDot, Switch, Tabs, TabsContent, TabsList, TabsTrigger, TagInput, TenantSwitcher, Textarea as TextArea, Input as TextInput, Textarea, TimeRangePicker, ToastProvider, Tooltip, TooltipProvider, TruncatedText, VirtualList, formatRelative, observeRectWithFallback, useToast, useToasts } from './chunk-KVFEYZK4.js';
-import { format, diffLines, useControllableState, matchesAccept } from './chunk-2AHMKLOE.js';
-export { diffLines, format, matchesAccept, useControllableState } from './chunk-2AHMKLOE.js';
-import { useLaf, usePortalContainer, useLafDefaults } from './chunk-3FIUWOWG.js';
-export { LafProvider, createFormatters, en, useLaf, useLafDefaults, usePortalContainer } from './chunk-3FIUWOWG.js';
+import { DropdownMenuSeparator, Avatar, Combobox, Badge, Input, Dialog, DialogContent, DialogClose, DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuLabel, DropdownMenuItem, RelativeTime, useChartMotion, entryAnim, tweenClass, motionVars, RadioGroup, Popover, PopoverTrigger, PopoverContent, TabsList, TabsTrigger, uiEn, Breadcrumb, Drawer, DrawerTrigger, DrawerContent, observeRectWithFallback, Skeleton, Select, EmptyState, IconButton, Alert, Field, Checkbox, StatusDot, Tabs, TabsContent, Panel, SplitPane, LABEL_SLOTS, AvatarGroup, Switch, Banner, Chip, Textarea, TooltipProvider, Card, Sparkline, CardHeader, CardTitle, CardBody, CardDescription, PopoverClose, SearchInput, ThresholdDonut, SplitButton, VirtualList, dashboardEn, TruncatedText, Tooltip } from './chunk-WJUYE5Q3.js';
+export { Accordion, Alert, AlertGroup, Avatar, AvatarGroup, Badge, Banner, Breadcrumb, ButtonGroup, Card, CardActions, CardBody, CardDescription, CardFooter, CardGrid, CardHeader, CardTitle, Checkbox, Chip, Combobox, Dialog, DialogClose, DialogContent, DialogTrigger, Drawer, DrawerClose, DrawerContent, DrawerTrigger, DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger, EmptyState, ExpandableCard, Field, IconButton, InfiniteList, Input, KeyValueEditor, LineChart, LogViewer, NumberInput, PageHead, Panel, PermissionMatrix, Popover, PopoverClose, PopoverContent, PopoverTrigger, Radio, RadioGroup, RelativeTime, SearchInput, SegmentedControl, Select, SelectMenu, Skeleton, Slider, Sparkline, Spinner, SplitButton, SplitPane, Stat, StatGrid, StatusDot, Switch, Tabs, TabsContent, TabsList, TabsTrigger, TagInput, TenantSwitcher, Textarea as TextArea, Input as TextInput, Textarea, TimeRangePicker, ToastProvider, Tooltip, TooltipProvider, TruncatedText, VirtualList, formatRelative, observeRectWithFallback, useToast, useToasts } from './chunk-WJUYE5Q3.js';
+import { format, diffLines, useControllableState, matchesAccept } from './chunk-4U2OTYLA.js';
+export { diffLines, format, matchesAccept, useControllableState } from './chunk-4U2OTYLA.js';
+import { useLaf, usePortalContainer, useLafDefaults } from './chunk-TDEK4ACJ.js';
+export { LafProvider, createFormatters, en, useLaf, useLafDefaults, usePortalContainer } from './chunk-TDEK4ACJ.js';
 import { Button } from './chunk-2O5Y6D5F.js';
 export { Button, buttonVariants } from './chunk-2O5Y6D5F.js';
 import { cn } from './chunk-3TRXGDSZ.js';
 export { cn } from './chunk-3TRXGDSZ.js';
-import { ChevronDown, ChevronLeft, ChevronRight, KeyRound, Tablet, Laptop, Smartphone, Check, Copy, EyeOff, Eye, LogOut, Pencil, UploadCloud, X, Search, Fingerprint, MoreHorizontal, ChevronUp, Menu as Menu$1, FolderKanban, CircleDot, AppWindow, Users, User, Camera, Waypoints, Router, Network, HardDrive, Database, Layers, Folder, Package, Monitor, Server, Boxes, Building2, Cable, CircleX, TriangleAlert, Unplug, Wrench, Pause, Square, Play, Bookmark, Star, Trash2, Rows3, Columns3, ArrowUp, ArrowDown, RefreshCw, Loader2, Plus, ShieldCheck, Bell, PanelLeft, SmilePlus, MessageSquare, Minimize2, Maximize2, FolderPlus, Download, AlertCircle, CheckCircle2, Moon, Sun, ChevronsUp, ChevronsDown, ChevronsRight, ChevronsLeft, LayoutGrid, RotateCw, Circle, TimerOff, WifiOff, ServerCrash, FileQuestion, LockKeyhole, ExternalLink, Minus } from 'lucide-react';
+import { ChevronDown, ChevronLeft, ChevronRight, KeyRound, Tablet, Laptop, Smartphone, Check, Copy, EyeOff, Eye, LogOut, Pencil, UploadCloud, X, Search, Fingerprint, MoreHorizontal, ChevronUp, Menu as Menu$1, FolderKanban, CircleDot, AppWindow, Users, User, Camera, Waypoints, Router, Network, HardDrive, Database, Layers, Folder, Package, Monitor, Server, Boxes, Building2, Cable, CircleX, TriangleAlert, Unplug, Wrench, Pause, Square, Play, Bookmark, Star, Trash2, Rows3, Columns3, ArrowUp, ArrowDown, RefreshCw, Loader2, Plus, ShieldCheck, Bell, PanelLeft, SmilePlus, MessageSquare, Minimize2, Maximize2, FolderPlus, Download, AlertCircle, CheckCircle2, Moon, Sun, ChevronsUp, ChevronsDown, ChevronsRight, ChevronsLeft, LayoutGrid, Power, RotateCw, Circle, TimerOff, WifiOff, ServerCrash, FileQuestion, LockKeyhole, ExternalLink, Minus } from 'lucide-react';
 import { jsxs, jsx, Fragment } from 'react/jsx-runtime';
 import * as React24 from 'react';
 import * as ContextPrimitive from '@radix-ui/react-context-menu';
@@ -8784,6 +8784,327 @@ function ServerDataGrid({
   return /* @__PURE__ */ jsx(DataGrid, { ...grid, ...gridProps, pagination, toolbar: toolbar || void 0 });
 }
 
-export { AccountItem, AccountList, ActionBar, ActionGroup, ActivityTimeline, AdminShell, AlarmList, AllowListEditor, ApiKeyManager, AppFooter, AppFrame, AppSwitcher, AuditLog, AuthFooter, BarChart, BrandHeader, BrandingEditor, CapacityBar, CidrInput, ClientInfo, ClipboardCopy, CodeBlock, CodeBlockCode, CodeDisplay, CodeEditor, CodeEditorLite, CodeInput, ColorField, CommandPalette, ConfirmDialog, ConsoleFrame, ContextMenu, ContextMenuContent, ContextMenuFor, ContextMenuItem, ContextMenuSeparator, ContextMenuTrigger, CopyButton, DataGrid, DatastoreBrowser, DatePicker, DateTimeInput, DefinitionList, DescriptionList, DescriptionListDescription, DescriptionListGroup, DescriptionListTerm, DetailPage, DeviceSelector, DeviceSteps, DiffView, Divider, DockedTaskPanel, Donut, DrawerPanel, Dropdown, DropdownGroup, DropdownItem, DropdownList, DropdownSeparator, ErrorPage, ErrorSummary, EventConsole, FileDropzone, FilterBar, Flex, FlexItem, Form, FormField, FormFooter, FormGroup, FormHelperText, FormPage, FormSection, Gauge, GaugeCard, Grid, GridColumnsMenu, GridDensityToggle, GridItem, GridSearch, HardwareEditor, Heatmap, HelperText, HelperTextItem, HotkeysProvider, HoverCard, InfoBox, InlineDrawer, InlineEdit, InventoryLayout, IpInput, IssueCard, IssueRow, Kbd, Label2 as Label, LabelPicker, LabelSwatch, LafErrorBoundary, LanguageSwitcher, Masthead, MastheadActions, MastheadBrand, MastheadContent, MastheadToggle, Menu, MenuShortcut, MenuToggle, MetricCard, MetricGrid, MfaEnrolment, MobileNav, Modal, ModalBody, ModalClose, ModalFooter, ModalHeader, ModalTrigger, NavGroup, NavLink, NavTree, NotificationCenter, ObjectIcon, ObjectPage, OptionPicker, OtpInput, OverflowTabs, PageHeader, PageSection, Pagination, PasswordField, PermissionAssignDialog, PortalHome, PortalLayout, Progress, ProgressCard, ProgressSummary, PropertiesPane, RadialGauge, Reactions, ReauthDialog, SavedViews, ScopeList, SecretDisplay, SecurityFactors, ServerDataGrid, SessionExpiryDialog, SessionList, ShortcutHelp, Sidebar, SnapshotTree, SocialButton, SocialButtons, SocialDivider, Stack, StackItem, StackedBarChart, StatusSummaryCard, Stepper, SubNav, Table, TaskPanel, ThemeToggle, Title4 as Title, Toolbar, ToolbarActions, ToolbarBulk, ToolbarContent, ToolbarDivider, ToolbarFilterChips, ToolbarGroup, ToolbarItem, ToolbarSpacer, TopBar, TopologyGraph, TransferList, TreeTable, TreeView, UnsavedChangesDialog, UserCell, UserMenu, UserSelector, Wizard, WizardReview, browserSearchParams, contrastRatio, formatHotkey, gaugeTone, highlight, isCidr, isIPv4, isIPv6, isIp, isMacPlatform, normalizeHex, parseCidr, parseFilter, parseHotkey, portalBreadcrumbs, portalNavEntries, registerObjectKind, resolvePortalRoute, serializeFilter, serializeToken, serverGridFromSearchParams, serverGridToSearchParams, useAppFrame, useHotkeys, useRegisteredHotkeys, useSavedViews, useServerGrid, useUnsavedChangesGuard };
+// lib/messages/mail.en.ts
+var mailEn = {
+  queueStatus: { PENDING: "Pending", DELIVERED: "Delivered", TRANSIENT_FAILURE: "Retrying", PERMANENT_FAILURE: "Failed", UNKNOWN: "Unknown" },
+  quota: {
+    label: "Storage quota",
+    usage: (used, total, pct) => `${used} of ${total} (${pct})`,
+    unlimited: (used) => `${used} used, no quota`
+  },
+  health: {
+    label: "Service health",
+    status: { up: "Operational", degraded: "Degraded", down: "Down", unknown: "Unknown" }
+  },
+  dns: {
+    label: "DNS records",
+    type: "Type",
+    host: "Host",
+    value: "Value",
+    purpose: "Purpose",
+    status: "Status",
+    copy: (host) => `Copy value of ${host}`,
+    copied: "Copied",
+    empty: "No DNS records",
+    state: { verified: "Verified", missing: "Missing", mismatch: "Mismatch", optional: "Optional", unknown: "Not checked" }
+  },
+  timeline: { label: "Delivery timeline", elapsed: (ms) => `+${ms}`, empty: "No hops recorded" }
+};
+var lafDefaults12 = { mail: mailEn };
+var useLaf7 = () => useLafDefaults(lafDefaults12);
+var queueTone = { PENDING: "primary", DELIVERED: "ok", TRANSIENT_FAILURE: "warn", PERMANENT_FAILURE: "danger", UNKNOWN: "neutral" };
+function QueueStatusBadge({ status, className }) {
+  const { t } = useLaf7();
+  const key = status in queueTone ? status : "UNKNOWN";
+  return /* @__PURE__ */ jsx(Badge, { tone: queueTone[key], className, children: t.components.mail.queueStatus[key] });
+}
+function QuotaBar({ usedBytes, quotaBytes = 0, label, warnAt = 80, dangerAt = 95, className }) {
+  const { t, format: format2 } = useLaf7();
+  const m = t.components.mail.quota;
+  const limited = quotaBytes > 0;
+  const name = label ?? m.label;
+  return /* @__PURE__ */ jsxs("div", { className: cn("grid gap-1", className), children: [
+    limited ? /* @__PURE__ */ jsx(Progress, { meter: true, label: name, value: usedBytes, max: quotaBytes, warnAt, dangerAt }) : /* @__PURE__ */ jsx(Progress, { meter: true, label: name, value: 0, max: 1 }),
+    /* @__PURE__ */ jsx("p", { className: "m-0 text-xs text-muted tabular-nums", children: limited ? m.usage(format2.bytes(usedBytes), format2.bytes(quotaBytes), format2.percent(Math.min(1, usedBytes / quotaBytes), { fractionDigits: 0 })) : m.unlimited(format2.bytes(usedBytes)) })
+  ] });
+}
+var healthTone = { up: "ok", degraded: "warn", down: "danger", unknown: "neutral" };
+function ServiceTile({ name, status, detail, onSelect, className }) {
+  const { t } = useLaf7();
+  const body = /* @__PURE__ */ jsxs(Fragment, { children: [
+    /* @__PURE__ */ jsx("span", { className: "min-w-0 truncate font-semibold text-fg", children: name }),
+    /* @__PURE__ */ jsx(StatusDot, { tone: healthTone[status], label: t.components.mail.health.status[status], pulse: status === "down", className: "text-xs text-muted" }),
+    detail !== void 0 && /* @__PURE__ */ jsx("span", { className: "min-w-0 truncate text-xs text-subtle", children: detail })
+  ] });
+  const cls = cn("grid min-w-0 gap-0.5 rounded-md border border-line bg-card px-3 py-2 text-start", onSelect && "cursor-pointer hover:bg-card-hover", className);
+  return onSelect ? /* @__PURE__ */ jsx("button", { type: "button", className: cls, onClick: onSelect, children: body }) : /* @__PURE__ */ jsx("div", { className: cls, children: body });
+}
+function HealthGrid({ services, label, className }) {
+  const { t } = useLaf7();
+  return /* @__PURE__ */ jsx("ul", { "aria-label": label ?? t.components.mail.health.label, className: cn("m-0 grid list-none grid-cols-[repeat(auto-fill,minmax(min(100%,11rem),1fr))] gap-2 p-0", className), children: services.map(({ id, ...s }) => /* @__PURE__ */ jsx("li", { className: "min-w-0", children: /* @__PURE__ */ jsx(ServiceTile, { ...s }) }, id)) });
+}
+var dnsTone = { verified: "ok", missing: "danger", mismatch: "warn", optional: "neutral", unknown: "neutral" };
+function DnsRecordTable({ records, label, className }) {
+  const { t } = useLaf7();
+  const m = t.components.mail.dns;
+  if (!records.length) return /* @__PURE__ */ jsx("p", { className: "m-0 text-sm text-muted", children: m.empty });
+  return /* @__PURE__ */ jsx("div", { className: cn("table-wrap", className), children: /* @__PURE__ */ jsxs("table", { className: "table", "aria-label": label ?? m.label, children: [
+    /* @__PURE__ */ jsx("thead", { children: /* @__PURE__ */ jsxs("tr", { children: [
+      /* @__PURE__ */ jsx("th", { scope: "col", children: m.purpose }),
+      /* @__PURE__ */ jsx("th", { scope: "col", children: m.type }),
+      /* @__PURE__ */ jsx("th", { scope: "col", children: m.host }),
+      /* @__PURE__ */ jsx("th", { scope: "col", children: m.value }),
+      /* @__PURE__ */ jsx("th", { scope: "col", children: m.status })
+    ] }) }),
+    /* @__PURE__ */ jsx("tbody", { children: records.map((r) => {
+      const state = r.state ?? "unknown";
+      return /* @__PURE__ */ jsxs("tr", { children: [
+        /* @__PURE__ */ jsx("th", { scope: "row", className: "font-semibold", children: r.purpose }),
+        /* @__PURE__ */ jsx("td", { className: "font-mono text-xs", children: r.type }),
+        /* @__PURE__ */ jsx("td", { className: "font-mono text-xs break-all", children: r.host }),
+        /* @__PURE__ */ jsx("td", { children: /* @__PURE__ */ jsxs("span", { className: "flex min-w-0 items-start gap-1", children: [
+          /* @__PURE__ */ jsx("code", { className: "min-w-0 max-w-xs break-all text-xs", children: r.value }),
+          /* @__PURE__ */ jsx(CopyButton, { value: r.value, label: m.copy(r.host), copiedLabel: m.copied })
+        ] }) }),
+        /* @__PURE__ */ jsx("td", { children: /* @__PURE__ */ jsx(Badge, { tone: dnsTone[state], children: m.state[state] }) })
+      ] }, r.id);
+    }) })
+  ] }) });
+}
+function TraceTimeline({ hops, label, className }) {
+  const { t, format: format2 } = useLaf7();
+  const m = t.components.mail.timeline;
+  if (!hops.length) return /* @__PURE__ */ jsx("p", { className: "m-0 text-sm text-muted", children: m.empty });
+  return /* @__PURE__ */ jsx("ol", { "aria-label": label ?? m.label, className: cn("m-0 grid list-none gap-0 p-0", className), children: hops.map((h, i) => /* @__PURE__ */ jsxs("li", { className: "relative grid grid-cols-[auto_1fr] gap-x-3 pb-3 last:pb-0", children: [
+    /* @__PURE__ */ jsxs("span", { className: "flex flex-col items-center", "aria-hidden": true, children: [
+      /* @__PURE__ */ jsx("span", { className: cn("mt-1.5 size-2.5 shrink-0 rounded-xs", { ok: "bg-ok", warn: "bg-warn", danger: "bg-danger", neutral: "bg-muted", primary: "bg-primary" }[h.tone ?? "primary"]) }),
+      i < hops.length - 1 && /* @__PURE__ */ jsx("span", { className: "mt-1 w-px flex-1 bg-line" })
+    ] }),
+    /* @__PURE__ */ jsxs("div", { className: "min-w-0", children: [
+      /* @__PURE__ */ jsxs("div", { className: "flex flex-wrap items-baseline gap-x-2 text-sm", children: [
+        /* @__PURE__ */ jsx("span", { className: "font-semibold text-fg", children: h.label }),
+        /* @__PURE__ */ jsx("time", { className: "text-xs text-subtle tabular-nums", dateTime: new Date(h.time).toISOString(), children: format2.dateTime(h.time, { timeStyle: "medium" }) }),
+        h.elapsedMs !== void 0 && /* @__PURE__ */ jsx("span", { className: "text-xs text-muted tabular-nums", children: m.elapsed(format2.duration(h.elapsedMs)) })
+      ] }),
+      h.detail !== void 0 && /* @__PURE__ */ jsx("div", { className: "text-xs break-words text-muted", children: h.detail })
+    ] })
+  ] }, h.id)) });
+}
+
+// lib/messages/overview.en.ts
+var overviewEn = {
+  edit: (title) => `Edit ${title}`,
+  details: "Details",
+  empty: "Nothing to show",
+  actions: "Actions",
+  actionOptions: (label) => `${label} options`,
+  switchObject: "Switch object",
+  utilization: {
+    title: "Utilization",
+    available: "Available",
+    ofTotal: (capacity) => `of ${capacity}`,
+    used: "Used",
+    range: "Last 7 days",
+    trend: (title) => `${title} trend`
+  }
+};
+var lafDefaults13 = { overview: overviewEn };
+var useLaf8 = () => useLafDefaults(lafDefaults13);
+function ResourceOverviewLayout({ identity, details, utilization, aside, className }) {
+  return /* @__PURE__ */ jsx("div", { className: cn("@container min-w-0", className), children: /* @__PURE__ */ jsxs("div", { className: cn("grid grid-cols-1 gap-4", aside ? "@min-[860px]:grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)_minmax(15rem,0.8fr)]" : "@min-[860px]:grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)]"), children: [
+    identity && /* @__PURE__ */ jsx("div", { className: "min-w-0 [&>*]:h-full", children: identity }),
+    details && /* @__PURE__ */ jsx("div", { className: cn("min-w-0 [&>*]:h-full", !identity && "@min-[860px]:col-span-2"), children: details }),
+    aside && /* @__PURE__ */ jsx("div", { className: "flex min-w-0 flex-col gap-4 @min-[860px]:col-start-3 @min-[860px]:row-span-2 @min-[860px]:row-start-1 @min-[860px]:[&>*]:flex-1", children: aside }),
+    utilization && /* @__PURE__ */ jsx("div", { className: "min-w-0 @min-[860px]:col-span-2", children: utilization })
+  ] }) });
+}
+var stateView = {
+  on: { Icon: Power, tone: "text-ok", text: "stateOn" },
+  off: { Icon: Power, tone: "text-muted", text: "stateOff" },
+  suspended: { Icon: Pause, tone: "text-warn", text: "stateSuspended" },
+  maintenance: { Icon: Wrench, tone: "text-warn", text: "stateMaintenance" },
+  disconnected: { Icon: Unplug, tone: "text-muted", text: "stateDisconnected" },
+  warning: { Icon: TriangleAlert, tone: "text-warn", text: "stateWarning" },
+  error: { Icon: CircleX, tone: "text-danger", text: "stateError" }
+};
+function PowerState({ state, label, className }) {
+  const { t } = useLaf8();
+  const v = stateView[state];
+  return /* @__PURE__ */ jsxs("span", { "data-state": state, className: cn("inline-flex items-center gap-1.5 text-sm text-fg", className), children: [
+    /* @__PURE__ */ jsx(v.Icon, { "aria-hidden": true, className: cn("size-4 shrink-0", v.tone) }),
+    label ?? t[v.text]
+  ] });
+}
+function EditButton({ title, label, onClick }) {
+  const { t } = useLaf8();
+  return /* @__PURE__ */ jsx(IconButton, { size: "sm", label: label ?? t.components.overview.edit(title), icon: /* @__PURE__ */ jsx(Pencil, { className: "size-4" }), onClick });
+}
+function IdentityCard({ icon, name, status, description, ribbon, onEdit, editLabel, headingLevel = 2, className, children }) {
+  return /* @__PURE__ */ jsxs(Card, { variant: "default", className: cn("relative gap-0 overflow-hidden p-0", className), children: [
+    ribbon && /* @__PURE__ */ jsx("span", { className: "absolute end-0 top-0 bg-muted-bg px-3 py-1 text-xs font-semibold tracking-wide text-muted uppercase", children: ribbon }),
+    /* @__PURE__ */ jsxs("div", { className: "flex min-w-0 flex-wrap items-start gap-5 p-5 pt-9", children: [
+      icon && /* @__PURE__ */ jsx("div", { "aria-hidden": true, className: "grid size-24 shrink-0 place-items-center text-primary [&>svg]:size-full", children: icon }),
+      /* @__PURE__ */ jsxs("div", { className: "grid min-w-0 flex-1 basis-48 gap-2", children: [
+        /* @__PURE__ */ jsxs("div", { className: "flex items-start gap-2", children: [
+          /* @__PURE__ */ jsx(CardTitle, { as: `h${headingLevel}`, className: "min-w-0 flex-1 text-2xl font-normal break-words", children: name }),
+          onEdit && /* @__PURE__ */ jsx(EditButton, { title: name, label: editLabel, onClick: onEdit })
+        ] }),
+        status,
+        description && /* @__PURE__ */ jsx("p", { className: "m-0 text-sm text-muted", children: description }),
+        children
+      ] })
+    ] })
+  ] });
+}
+function CardFrame({ title, icon, count, onEdit, editLabel, headingLevel = 3, className, bodyClassName, children }) {
+  return /* @__PURE__ */ jsxs(Card, { variant: "default", className: cn("gap-0 p-0", className), children: [
+    /* @__PURE__ */ jsxs("div", { className: "flex min-w-0 items-center gap-2 border-b border-line px-4 py-2.5", children: [
+      /* @__PURE__ */ jsxs(CardTitle, { as: `h${headingLevel}`, className: "flex min-w-0 flex-1 flex-wrap items-center gap-x-2 text-base font-normal", children: [
+        icon && /* @__PURE__ */ jsx("span", { "aria-hidden": true, className: "inline-flex shrink-0 text-muted [&>svg]:size-5", children: icon }),
+        /* @__PURE__ */ jsx("span", { children: title }),
+        count !== void 0 && /* @__PURE__ */ jsx(Badge, { className: "shrink-0", children: count })
+      ] }),
+      onEdit && /* @__PURE__ */ jsx(EditButton, { title, label: editLabel, onClick: onEdit })
+    ] }),
+    /* @__PURE__ */ jsx("div", { className: cn("min-w-0 flex-1 p-4", bodyClassName), children })
+  ] });
+}
+function DetailsCard({ title, items, columns = 2, ...rest }) {
+  const { t } = useLaf8();
+  const per = Math.ceil(items.length / columns) || 1;
+  const cols = Array.from({ length: columns }, (_, i) => items.slice(i * per, (i + 1) * per)).filter((c) => c.length);
+  return /* @__PURE__ */ jsx(CardFrame, { title: title ?? t.components.overview.details, ...rest, children: /* @__PURE__ */ jsx("div", { className: "@container", children: /* @__PURE__ */ jsx("div", { className: cn("grid grid-cols-1 gap-x-8 gap-y-3.5", columns === 2 && "@min-[34rem]:grid-cols-2", columns === 3 && "@min-[34rem]:grid-cols-2 @min-[52rem]:grid-cols-3"), children: cols.map((col, i) => /* @__PURE__ */ jsx(DescriptionList, { layout: "horizontal", compact: false, className: "content-start", children: col.map((it) => /* @__PURE__ */ jsxs(DescriptionListGroup, { className: "items-baseline grid-cols-[minmax(5rem,8rem)_minmax(0,1fr)]", children: [
+    /* @__PURE__ */ jsx(DescriptionListTerm, { className: "text-sm font-semibold tracking-normal text-fg normal-case", children: it.label }),
+    /* @__PURE__ */ jsxs(DescriptionListDescription, { children: [
+      it.value,
+      it.sub && /* @__PURE__ */ jsx("span", { className: "block text-xs text-muted italic", children: it.sub })
+    ] })
+  ] }, it.id ?? it.label)) }, i)) }) }) });
+}
+function SideCard({ empty, children, ...rest }) {
+  const { t } = useLaf8();
+  const hasContent = React24.Children.toArray(children).length > 0;
+  return /* @__PURE__ */ jsx(CardFrame, { ...rest, children: hasContent ? children : /* @__PURE__ */ jsx("p", { className: "m-0 text-sm text-muted", children: empty ?? t.components.overview.empty }) });
+}
+function CountCard({ items, count, ...rest }) {
+  return /* @__PURE__ */ jsx(SideCard, { count: count ?? items.length, ...rest, children: items.length > 0 && /* @__PURE__ */ jsx("ul", { className: "m-0 grid list-none gap-1.5 p-0 text-sm", children: items.map((it) => /* @__PURE__ */ jsx("li", { className: "min-w-0 break-words", children: it.content }, it.id)) }) });
+}
+function UtilizationPanel({ title, headingLevel = 3, min = "8rem", className, children }) {
+  const { t } = useLaf8();
+  return /* @__PURE__ */ jsxs(Card, { variant: "default", className: cn("gap-0 p-0", className), children: [
+    /* @__PURE__ */ jsx("div", { className: "border-b border-line px-5 py-3", children: /* @__PURE__ */ jsx(CardTitle, { as: `h${headingLevel}`, className: "text-base font-normal", children: title ?? t.components.overview.utilization.title }) }),
+    /* @__PURE__ */ jsx("div", { className: "grid gap-x-6 gap-y-6 p-5", style: { gridTemplateColumns: `repeat(auto-fit, minmax(min(100%, ${min}), 1fr))` }, children })
+  ] });
+}
+function UtilizationColumn({
+  title,
+  available,
+  capacity,
+  used,
+  max = 100,
+  warnAt = 60,
+  dangerAt = 90,
+  centerText,
+  centerSubtext,
+  gauge = "donut",
+  okTone = "ok",
+  history: history2,
+  rangeLabel,
+  formatValue,
+  xLabels,
+  size = 128,
+  animate,
+  tooltip = true,
+  headingLevel = 4,
+  className
+}) {
+  const { t } = useLaf8();
+  const m = t.components.overview.utilization;
+  const Heading = `h${headingLevel}`;
+  const id = React24.useId();
+  const used$ = centerSubtext ?? m.used;
+  const thresholds = [
+    ...okTone === "ok" ? [{ value: 0, tone: "ok" }] : [],
+    { value: warnAt / 100 * max, tone: "warn" },
+    { value: dangerAt / 100 * max, tone: "danger" }
+  ];
+  return /* @__PURE__ */ jsxs("div", { role: "group", "aria-labelledby": id, className: cn("grid min-w-0 content-start gap-3", className), children: [
+    /* @__PURE__ */ jsx(Heading, { id, className: "m-0 text-base font-normal text-fg", children: title }),
+    /* @__PURE__ */ jsxs("div", { className: "flex items-end gap-2 border-b border-line pb-2", children: [
+      /* @__PURE__ */ jsx("span", { className: "text-3xl leading-none font-light text-fg tabular-nums", children: available }),
+      /* @__PURE__ */ jsxs("span", { className: "pb-0.5 text-xs leading-tight text-muted", children: [
+        /* @__PURE__ */ jsx("span", { className: "block", children: m.available }),
+        /* @__PURE__ */ jsx("span", { className: "block", children: m.ofTotal(capacity) })
+      ] })
+    ] }),
+    /* @__PURE__ */ jsx("div", { className: "grid place-items-center py-1", children: gauge === "radial" ? /* @__PURE__ */ jsx(RadialGauge, { label: title, value: used, max, size, thresholds, formatValue: (v) => String(Math.round(v)), unit: max === 100 ? "%" : void 0, animate }) : /* @__PURE__ */ jsx(
+      ThresholdDonut,
+      {
+        label: title,
+        value: used,
+        max,
+        warnAt,
+        dangerAt,
+        okTone,
+        size,
+        legend: false,
+        centerText,
+        subtext: used$,
+        animate,
+        tooltip
+      }
+    ) }),
+    history2 && history2.length > 1 && /* @__PURE__ */ jsxs("div", { className: "grid gap-1", children: [
+      /* @__PURE__ */ jsx(Sparkline, { data: history2, label: m.trend(title), area: true, animate, tooltip, formatValue, xLabels, className: "h-12 w-full" }),
+      /* @__PURE__ */ jsx("span", { className: "text-xs text-muted", children: rangeLabel ?? m.range })
+    ] })
+  ] });
+}
+function ObjectHeader({ breadcrumb = [], title, onSwitch, switchIcon, switchLabel, actions, breadcrumbLabel, headingLevel = 1, className }) {
+  const { t } = useLaf8();
+  const H = `h${headingLevel}`;
+  return /* @__PURE__ */ jsxs("header", { className: cn("border-b border-line bg-surface", className), children: [
+    /* @__PURE__ */ jsxs("div", { className: "flex min-w-0 flex-wrap items-center gap-x-2 gap-y-1 px-5 py-3", children: [
+      breadcrumb.length > 0 && /* @__PURE__ */ jsxs(Fragment, { children: [
+        /* @__PURE__ */ jsx(Breadcrumb, { items: breadcrumb.map((b) => ({ ...b, current: false })), label: breadcrumbLabel }),
+        /* @__PURE__ */ jsx(ChevronRight, { "aria-hidden": true, className: "size-4 shrink-0 text-subtle rtl:rotate-180" })
+      ] }),
+      /* @__PURE__ */ jsx(H, { className: "m-0 min-w-0 text-2xl leading-tight font-normal break-words text-fg", children: title }),
+      onSwitch && /* @__PURE__ */ jsx(IconButton, { variant: "secondary", size: "sm", label: switchLabel ?? t.components.overview.switchObject, icon: switchIcon ?? /* @__PURE__ */ jsx(SwitchGlyph, {}), onClick: onSwitch })
+    ] }),
+    actions && /* @__PURE__ */ jsx("div", { className: "flex min-w-0 justify-end border-t border-line px-5 py-3", children: actions })
+  ] });
+}
+function SwitchGlyph() {
+  return /* @__PURE__ */ jsx("svg", { viewBox: "0 0 24 24", width: "16", height: "16", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "square", "aria-hidden": true, children: /* @__PURE__ */ jsx("path", { d: "M4 8h15m-4-4 4 4-4 4M20 16H5m4-4-4 4 4 4" }) });
+}
+function ActionToolbar({ actions, label, size, className }) {
+  const { t } = useLaf8();
+  return /* @__PURE__ */ jsx("div", { role: "group", "aria-label": label ?? t.components.overview.actions, className: cn("flex min-w-0 flex-wrap items-center justify-end gap-2", className), children: actions.map((a) => {
+    const variant = a.variant ?? "secondary";
+    const content = /* @__PURE__ */ jsxs(Fragment, { children: [
+      a.icon,
+      a.label
+    ] });
+    return a.menu ? /* @__PURE__ */ jsx(
+      SplitButton,
+      {
+        variant,
+        size,
+        disabled: a.disabled,
+        onClick: () => a.onClick?.(),
+        menuLabel: a.menuLabel ?? t.components.overview.actionOptions(a.label),
+        menu: a.menu.map((m) => /* @__PURE__ */ jsxs(DropdownMenuItem, { danger: m.danger, disabled: m.disabled, onSelect: () => m.onSelect?.(), children: [
+          m.icon,
+          m.label
+        ] }, m.id)),
+        children: content
+      },
+      a.id
+    ) : /* @__PURE__ */ jsx(Button, { variant, size, disabled: a.disabled, onClick: () => a.onClick?.(), children: content }, a.id);
+  }) });
+}
+
+export { AccountItem, AccountList, ActionBar, ActionGroup, ActionToolbar, ActivityTimeline, AdminShell, AlarmList, AllowListEditor, ApiKeyManager, AppFooter, AppFrame, AppSwitcher, AuditLog, AuthFooter, BarChart, BrandHeader, BrandingEditor, CapacityBar, CidrInput, ClientInfo, ClipboardCopy, CodeBlock, CodeBlockCode, CodeDisplay, CodeEditor, CodeEditorLite, CodeInput, ColorField, CommandPalette, ConfirmDialog, ConsoleFrame, ContextMenu, ContextMenuContent, ContextMenuFor, ContextMenuItem, ContextMenuSeparator, ContextMenuTrigger, CopyButton, CountCard, DataGrid, DatastoreBrowser, DatePicker, DateTimeInput, DefinitionList, DescriptionList, DescriptionListDescription, DescriptionListGroup, DescriptionListTerm, DetailPage, DetailsCard, DeviceSelector, DeviceSteps, DiffView, Divider, DnsRecordTable, DockedTaskPanel, Donut, DrawerPanel, Dropdown, DropdownGroup, DropdownItem, DropdownList, DropdownSeparator, ErrorPage, ErrorSummary, EventConsole, FileDropzone, FilterBar, Flex, FlexItem, Form, FormField, FormFooter, FormGroup, FormHelperText, FormPage, FormSection, Gauge, GaugeCard, Grid, GridColumnsMenu, GridDensityToggle, GridItem, GridSearch, HardwareEditor, HealthGrid, Heatmap, HelperText, HelperTextItem, HotkeysProvider, HoverCard, IdentityCard, InfoBox, InlineDrawer, InlineEdit, InventoryLayout, IpInput, IssueCard, IssueRow, Kbd, Label2 as Label, LabelPicker, LabelSwatch, LafErrorBoundary, LanguageSwitcher, Masthead, MastheadActions, MastheadBrand, MastheadContent, MastheadToggle, Menu, MenuShortcut, MenuToggle, MetricCard, MetricGrid, MfaEnrolment, MobileNav, Modal, ModalBody, ModalClose, ModalFooter, ModalHeader, ModalTrigger, NavGroup, NavLink, NavTree, NotificationCenter, ObjectHeader, ObjectIcon, ObjectPage, OptionPicker, OtpInput, OverflowTabs, PageHeader, PageSection, Pagination, PasswordField, PermissionAssignDialog, PortalHome, PortalLayout, PowerState, Progress, ProgressCard, ProgressSummary, PropertiesPane, QueueStatusBadge, QuotaBar, RadialGauge, Reactions, ReauthDialog, ResourceOverviewLayout, SavedViews, ScopeList, SecretDisplay, SecurityFactors, ServerDataGrid, ServiceTile, SessionExpiryDialog, SessionList, ShortcutHelp, SideCard, Sidebar, SnapshotTree, SocialButton, SocialButtons, SocialDivider, Stack, StackItem, StackedBarChart, StatusSummaryCard, Stepper, SubNav, Table, TaskPanel, ThemeToggle, Title4 as Title, Toolbar, ToolbarActions, ToolbarBulk, ToolbarContent, ToolbarDivider, ToolbarFilterChips, ToolbarGroup, ToolbarItem, ToolbarSpacer, TopBar, TopologyGraph, TraceTimeline, TransferList, TreeTable, TreeView, UnsavedChangesDialog, UserCell, UserMenu, UserSelector, UtilizationColumn, UtilizationPanel, Wizard, WizardReview, browserSearchParams, contrastRatio, formatHotkey, gaugeTone, highlight, isCidr, isIPv4, isIPv6, isIp, isMacPlatform, normalizeHex, parseCidr, parseFilter, parseHotkey, portalBreadcrumbs, portalNavEntries, registerObjectKind, resolvePortalRoute, serializeFilter, serializeToken, serverGridFromSearchParams, serverGridToSearchParams, useAppFrame, useHotkeys, useRegisteredHotkeys, useSavedViews, useServerGrid, useUnsavedChangesGuard };
 //# sourceMappingURL=index.js.map
 //# sourceMappingURL=index.js.map

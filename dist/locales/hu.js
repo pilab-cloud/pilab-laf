@@ -238,6 +238,51 @@ var dashboardHu = {
   }
 };
 
+// lib/locales/mail.hu.ts
+var mailHu = {
+  queueStatus: { PENDING: "F\xFCgg\u0151ben", DELIVERED: "K\xE9zbes\xEDtve", TRANSIENT_FAILURE: "\xDAjrapr\xF3b\xE1l\xE1s", PERMANENT_FAILURE: "Sikertelen", UNKNOWN: "Ismeretlen" },
+  quota: {
+    label: "T\xE1rhelykv\xF3ta",
+    usage: (used, total, pct) => `${used} / ${total} (${pct})`,
+    unlimited: (used) => `${used} felhaszn\xE1lva, nincs kv\xF3ta`
+  },
+  health: {
+    label: "Szolg\xE1ltat\xE1sok \xE1llapota",
+    status: { up: "M\u0171k\xF6dik", degraded: "Cs\xF6kkent teljes\xEDtm\xE9ny", down: "Le\xE1llt", unknown: "Ismeretlen" }
+  },
+  dns: {
+    label: "DNS-rekordok",
+    type: "T\xEDpus",
+    host: "Hoszt",
+    value: "\xC9rt\xE9k",
+    purpose: "C\xE9l",
+    status: "\xC1llapot",
+    copy: (host) => `${host} \xE9rt\xE9k\xE9nek m\xE1sol\xE1sa`,
+    copied: "M\xE1solva",
+    empty: "Nincs DNS-rekord",
+    state: { verified: "Ellen\u0151rizve", missing: "Hi\xE1nyzik", mismatch: "Elt\xE9r\xE9s", optional: "Opcion\xE1lis", unknown: "Nincs ellen\u0151rizve" }
+  },
+  timeline: { label: "K\xE9zbes\xEDt\xE9si id\u0151vonal", elapsed: (ms) => `+${ms}`, empty: "Nincs r\xF6gz\xEDtett l\xE9p\xE9s" }
+};
+
+// lib/locales/overview.hu.ts
+var overviewHu = {
+  edit: (title) => `${title} szerkeszt\xE9se`,
+  details: "R\xE9szletek",
+  empty: "Nincs megjelen\xEDthet\u0151 elem",
+  actions: "M\u0171veletek",
+  actionOptions: (label) => `${label} \u2013 tov\xE1bbi lehet\u0151s\xE9gek`,
+  switchObject: "Objektum v\xE1lt\xE1sa",
+  utilization: {
+    title: "Kihaszn\xE1lts\xE1g",
+    available: "Szabad",
+    ofTotal: (capacity) => `\xF6sszesen ${capacity}`,
+    used: "Haszn\xE1lt",
+    range: "Elm\xFAlt 7 nap",
+    trend: (title) => `${title} alakul\xE1sa`
+  }
+};
+
 // lib/locales/portal.hu.ts
 var portalHu = {
   layout: {
@@ -498,7 +543,7 @@ var vsphereObjectsHu = {
 
 // lib/locales/hu.ts
 var hu = {
-  components: { account: accountHu, admin: adminHu, tracker: trackerHu, vsphereObjects: vsphereObjectsHu, charts: chartsHu, ui: uiHu, content: contentHu, dashboard: dashboardHu, portal: portalHu },
+  components: { account: accountHu, admin: adminHu, tracker: trackerHu, vsphereObjects: vsphereObjectsHu, charts: chartsHu, ui: uiHu, content: contentHu, dashboard: dashboardHu, portal: portalHu, mail: mailHu, overview: overviewHu },
   close: "Bez\xE1r\xE1s",
   noResults: "Nincs tal\xE1lat",
   loading: "Bet\xF6lt\xE9s",
