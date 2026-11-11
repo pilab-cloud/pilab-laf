@@ -8,6 +8,8 @@ import type { Formatters } from "../foundation-format";
 import { useLafDefaults } from "../i18n";
 import { chartsEn } from "../messages/charts.en";
 import { useControllableState } from "../utils";
+import { entryAnim, motionVars, tweenClass, useChartMotion, useTweenProgress, type ChartAnimate } from "./chart-motion";
+import { ChartTooltipFor, useTooltipDismiss, type ChartTooltipContext, type ChartTooltipOption } from "./chart-tooltip";
 import { downsample, type Point } from "./lttb";
 
 const lafDefaults = { charts: chartsEn };
@@ -54,6 +56,10 @@ export interface TimeSeriesChartProps {
   height?: number;
   /** Fixed width in px; measured from the container when omitted. */
   width?: number;
+  /** Line/area draw-in on mount, smooth tween between data updates, series emphasis on hover; off under `prefers-reduced-motion`. Default on. */
+  animate?: ChartAnimate;
+  /** Shared crosshair tooltip (nearest point by x, all series): `false`, a render function or `{formatter, header}`. Default on. */
+  tooltip?: ChartTooltipOption;
   /** Rows shown in the data-table alternative. */
   maxTableRows?: number;
   labels?: Partial<TimeSeriesChartLabels>;
@@ -125,6 +131,8 @@ export function TimeSeriesChart({
   height = 240,
   width: widthProp,
   maxTableRows = 200,
+  animate,
+  tooltip = true,
   labels: labelsProp,
   className,
 }: TimeSeriesChartProps) {
@@ -141,6 +149,35 @@ export function TimeSeriesChart({
   const drag = React.useRef<{ anchor: number; moved: boolean } | null>(null);
   const anchor = React.useRef<number | null>(null);
   const svgRef = React.useRef<SVGSVGElement>(null);
+  const motion = useChartMotion(animate);
+  const [legendEmph, setLegendEmph] = React.useState<string | null>(null);
+  const [ptrY, setPtrY] = React.useState<number | null>(null);
+  const tipId = `${uid}-tip`;
+  useTooltipDismiss(cursor !== null, wrap, () => (setCursor(null), setPtrY(null)));
+
+  // Value-change tween: pixel positions of the previous render are interpolated toward the new ones (same point count only).
+  const sig = React.useMemo(
+    () => `${type}|${hidden.join()}|${zoom?.from}-${zoom?.to}|${series.map((s) => `${s.id}:${s.points.length}:${s.points.reduce((a, p) => a + (p[1] ?? 0) * ((p[0] % 97) + 1), 0)}`).join()}`,
+    [series, hidden, zoom, type],
+  );
+  const progress = useTweenProgress(sig, motion);
+  const settled = React.useRef(new Map<string, number[]>());
+  const fromPx = React.useRef(new Map<string, number[]>());
+  const lastSig = React.useRef(sig);
+  if (lastSig.current !== sig) {
+    fromPx.current = settled.current;
+    lastSig.current = sig;
+  }
+  const rendered = new Map<string, number[]>();
+  const lerp = (id: string, to: number[]) => {
+    const f = fromPx.current.get(id);
+    const out = progress < 1 && f && f.length === to.length ? to.map((v, i) => f[i]! + (v - f[i]!) * progress) : to;
+    rendered.set(id, out);
+    return out;
+  };
+  React.useLayoutEffect(() => {
+    settled.current = rendered;
+  });
 
   const full = React.useMemo<ChartRange | null>(() => {
     let from = Infinity;
@@ -244,6 +281,8 @@ export function TimeSeriesChart({
     return e.clientX - (rect?.left ?? 0) - MARGIN.left;
   };
 
+  const localY = (e: React.PointerEvent) => e.clientY - (svgRef.current?.getBoundingClientRect().top ?? 0) - MARGIN.top;
+
   const applySel = (r: ChartRange | null) => {
     if (r && r.to > r.from) setZoom({ from: r.from, to: r.to });
     setSel(null);
@@ -254,6 +293,8 @@ export function TimeSeriesChart({
     if (!domain || e.button > 0) return;
     const px = localX(e);
     drag.current = { anchor: clampT(px), moved: false };
+    setCursor(clampT(px));
+    setPtrY(localY(e));
     setKbd(false);
     try {
       svgRef.current?.setPointerCapture?.(e.pointerId);
@@ -265,6 +306,7 @@ export function TimeSeriesChart({
     if (!domain || !stamps.length) return;
     const t = clampT(localX(e));
     setCursor(t);
+    setPtrY(localY(e));
     setKbd(false);
     const d = drag.current;
     if (d) {
@@ -290,6 +332,7 @@ export function TimeSeriesChart({
         setSel({ from: Math.min(anchor.current, t), to: Math.max(anchor.current, t) });
       }
       setCursor(t);
+      setPtrY(null);
       setKbd(true);
       e.preventDefault();
     };
@@ -303,6 +346,7 @@ export function TimeSeriesChart({
     } else if (e.key === "Escape") {
       setSel(null);
       setCursor(null);
+      setPtrY(null);
       anchor.current = null;
     }
   };
@@ -333,6 +377,23 @@ export function TimeSeriesChart({
     });
     return { t, rows };
   }, [cursor, stamps, shown, visible]);
+  const nearestId =
+    tip && ptrY !== null && !stacked
+      ? tip.rows.reduce<{ id: string; d: number } | null>((best, r) => {
+          if (r.v === null) return best;
+          const d = Math.abs(ys[axisOf(r.s.unit)]!(r.v) - ptrY);
+          return !best || d < best.d ? { id: r.s.id, d } : best;
+        }, null)?.id
+      : undefined;
+  const emph = legendEmph ?? nearestId ?? null;
+  const tipCtx: ChartTooltipContext | null = tip
+    ? {
+        point: { label: fullT(tip.t), x: tip.t },
+        index: stamps.indexOf(tip.t),
+        series: tip.rows.map((r) => ({ id: r.s.id, name: r.s.name, value: r.v, formatted: r.v === null ? "–" : formatUnit(format, r.s.unit, r.v), tone: SERIES_TONES[series.indexOf(r.s) % 4] })),
+      }
+    : null;
+  const tipOn = !!tipCtx && tooltip !== false;
   const tipText = tip ? `${fullT(tip.t)}: ${tip.rows.map((r) => `${r.s.name} ${r.v === null ? "–" : formatUnit(format, r.s.unit, r.v)}`).join(", ")}` : "";
 
   const tableRows = stamps.length > maxTableRows ? stamps.filter((_, i) => i % Math.ceil(stamps.length / maxTableRows) === 0) : stamps;
@@ -342,8 +403,8 @@ export function TimeSeriesChart({
   const tipLeft = tip ? MARGIN.left + x(tip.t) : 0;
 
   return (
-    <figure aria-label={label} aria-busy={loading || undefined} className={cn("m-0 grid grid-cols-1 gap-2", className)}>
-      <div ref={wrap} className="relative min-w-0" style={{ height }}>
+    <figure aria-label={label} aria-busy={loading || undefined} data-animate={motion.enabled ? "on" : "off"} className={cn("m-0 grid grid-cols-1 gap-2", className)}>
+      <div ref={wrap} className="relative min-w-0" style={{ height, ...motionVars(motion) }}>
         {loading ? (
           <div role="status" aria-label={l.loading} className="size-full animate-pulse rounded-sm bg-muted-bg" />
         ) : empty ? (
@@ -356,14 +417,14 @@ export function TimeSeriesChart({
               height={height}
               role="img"
               aria-label={label}
-              aria-describedby={hintId}
+              aria-describedby={tipOn ? `${hintId} ${tipId}` : hintId}
               tabIndex={0}
               className="touch-none text-muted select-none focus-visible:outline-2 focus-visible:outline-primary"
               onPointerDown={onPointerDown}
               onPointerMove={onPointerMove}
               onPointerUp={onPointerUp}
-              onPointerLeave={() => {
-                if (!drag.current) setCursor(null);
+              onPointerLeave={(e) => {
+                if (!drag.current && e.pointerType !== "touch") (setCursor(null), setPtrY(null));
               }}
               onKeyDown={onKeyDown}
               onKeyUp={onKeyUp}
@@ -390,43 +451,55 @@ export function TimeSeriesChart({
                   />
                 ))}
                 {stacked
-                  ? shown.map((s, i) => (
-                      <Area
-                        key={s.id}
-                        data={stackedRows ?? []}
-                        x={(d) => x(d.t)}
-                        y0={(d) => ys[0]!(d.layers[i]![0])}
-                        y1={(d) => ys[0]!(d.layers[i]![1])}
-                        fill="currentColor"
-                        fillOpacity={0.45}
-                        stroke="currentColor"
-                        className={SERIES_TONES[series.indexOf(s) % 4]}
-                      />
-                    ))
+                  ? shown.map((s, i) => {
+                      const rows = stackedRows ?? [];
+                      const lo = lerp(`${s.id}:lo`, rows.map((d) => ys[0]!(d.layers[i]![0])));
+                      const hi = lerp(`${s.id}:hi`, rows.map((d) => ys[0]!(d.layers[i]![1])));
+                      const enter = entryAnim(motion, "reveal", i);
+                      return (
+                        <Area
+                          key={s.id}
+                          data={rows}
+                          x={(d) => x(d.t)}
+                          y0={(_, k) => lo[k]!}
+                          y1={(_, k) => hi[k]!}
+                          fill="currentColor"
+                          fillOpacity={0.45}
+                          stroke="currentColor"
+                          className={cn(SERIES_TONES[series.indexOf(s) % 4], tweenClass(motion), enter.className, emph !== null && emph !== s.id && "opacity-40")}
+                          style={enter.style}
+                        />
+                      );
+                    })
                   : shown.map((s, i) => {
                       const si = series.indexOf(s);
                       const ys_ = ys[axisOf(s.unit)]!;
                       const tone = SERIES_TONES[si % 4];
+                      const py = lerp(s.id, lines[i]!.map((d) => (d[1] === null ? 0 : ys_(d[1]))));
+                      const enter = entryAnim(motion, "reveal", i);
+                      const fade = entryAnim(motion, "fade", i);
                       return (
-                        <g key={s.id} className={tone} data-series={s.id}>
+                        <g key={s.id} className={cn(tone, tweenClass(motion), enter.className, emph !== null && emph !== s.id && "opacity-30")} style={enter.style} data-series={s.id}>
                           {type === "area" && (
                             <Area<Point>
                               data={lines[i]!}
                               defined={(d) => d[1] !== null}
                               x={(d) => x(d[0])}
                               y0={ys_(Math.max(ys_.domain()[0]!, 0))}
-                              y1={(d) => ys_(d[1] as number)}
+                              y1={(_, k) => py[k]!}
                               fill="currentColor"
                               fillOpacity={0.15}
+                              className={fade.className}
+                              style={fade.style}
                             />
                           )}
                           <LinePath<Point>
                             data={lines[i]!}
                             defined={(d) => d[1] !== null}
                             x={(d) => x(d[0])}
-                            y={(d) => ys_(d[1] as number)}
+                            y={(_, k) => py[k]!}
                             stroke="currentColor"
-                            strokeWidth={1.5}
+                            strokeWidth={emph === s.id ? 2.5 : 1.5}
                             strokeDasharray={SERIES_DASH[si % 4]}
                           />
                         </g>
@@ -450,24 +523,7 @@ export function TimeSeriesChart({
               </Group>
             </svg>
             <span id={hintId} className="sr-only">{l.keyboardHint}</span>
-            {tip && (
-              <div
-                role="tooltip"
-                className="pointer-events-none absolute top-2 z-10 min-w-36 rounded-md border border-line bg-surface px-2.5 py-1.5 text-xs text-fg shadow-card"
-                style={tipLeft > width / 2 ? { insetInlineStart: tipLeft - 8, transform: "translateX(-100%)" } : { insetInlineStart: tipLeft + 8 }}
-              >
-                <div className="mb-1 font-mono text-subtle">{fullT(tip.t)}</div>
-                {tip.rows.map((r) => (
-                  <div key={r.s.id} className="flex items-center justify-between gap-3">
-                    <span className="inline-flex items-center gap-1.5">
-                      <span aria-hidden className={cn("inline-block size-2 rounded-sm bg-current", SERIES_TONES[series.indexOf(r.s) % 4])} />
-                      {r.s.name}
-                    </span>
-                    <b className="font-mono">{r.v === null ? "–" : formatUnit(format, r.s.unit, r.v)}</b>
-                  </div>
-                ))}
-              </div>
-            )}
+            {tipOn && <ChartTooltipFor option={tooltip} ctx={tipCtx} x={tipLeft} y={MARGIN.top + 4} id={tipId} container={wrap} placement="side" />}
             <span className="sr-only" aria-live="polite">{kbd ? tipText : ""}</span>
           </>
         )}
@@ -481,6 +537,10 @@ export function TimeSeriesChart({
                 <button
                   type="button"
                   aria-pressed={on}
+                  onPointerEnter={() => setLegendEmph(s.id)}
+                  onPointerLeave={() => setLegendEmph(null)}
+                  onFocus={() => setLegendEmph(s.id)}
+                  onBlur={() => setLegendEmph(null)}
                   onClick={() => toggle(s.id)}
                   className={cn("inline-flex cursor-pointer items-center gap-1.5 rounded-sm border-0 bg-transparent p-0 text-xs text-muted hover:text-fg", !on && "opacity-50 line-through")}
                 >

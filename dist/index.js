@@ -1,5 +1,5 @@
-import { DropdownMenuSeparator, Avatar, Combobox, Badge, Input, Dialog, DialogContent, DialogClose, DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuLabel, DropdownMenuItem, RelativeTime, RadioGroup, Popover, PopoverTrigger, PopoverContent, TabsList, TabsTrigger, uiEn, Breadcrumb, Drawer, DrawerTrigger, DrawerContent, observeRectWithFallback, Skeleton, Select, EmptyState, IconButton, Alert, Field, Checkbox, StatusDot, Tabs, TabsContent, Panel, SplitPane, LABEL_SLOTS, AvatarGroup, Switch, Banner, Chip, Textarea, TooltipProvider, Card, Sparkline, CardHeader, CardTitle, CardBody, CardDescription, PopoverClose, SearchInput, VirtualList, dashboardEn, TruncatedText, Tooltip } from './chunk-5XECMTGI.js';
-export { Accordion, Alert, AlertGroup, Avatar, AvatarGroup, Badge, Banner, Breadcrumb, ButtonGroup, Card, CardActions, CardBody, CardDescription, CardFooter, CardGrid, CardHeader, CardTitle, Checkbox, Chip, Combobox, Dialog, DialogClose, DialogContent, DialogTrigger, Drawer, DrawerClose, DrawerContent, DrawerTrigger, DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger, EmptyState, ExpandableCard, Field, IconButton, InfiniteList, Input, KeyValueEditor, LineChart, LogViewer, NumberInput, PageHead, Panel, PermissionMatrix, Popover, PopoverClose, PopoverContent, PopoverTrigger, Radio, RadioGroup, RelativeTime, SearchInput, SegmentedControl, Select, SelectMenu, Skeleton, Slider, Sparkline, Spinner, SplitButton, SplitPane, Stat, StatGrid, StatusDot, Switch, Tabs, TabsContent, TabsList, TabsTrigger, TagInput, TenantSwitcher, Textarea as TextArea, Input as TextInput, Textarea, TimeRangePicker, ToastProvider, Tooltip, TooltipProvider, TruncatedText, VirtualList, formatRelative, observeRectWithFallback, useToast, useToasts } from './chunk-5XECMTGI.js';
+import { DropdownMenuSeparator, Avatar, Combobox, Badge, Input, Dialog, DialogContent, DialogClose, DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuLabel, DropdownMenuItem, RelativeTime, useChartMotion, entryAnim, tweenClass, motionVars, RadioGroup, Popover, PopoverTrigger, PopoverContent, TabsList, TabsTrigger, uiEn, Breadcrumb, Drawer, DrawerTrigger, DrawerContent, observeRectWithFallback, Skeleton, Select, EmptyState, IconButton, Alert, Field, Checkbox, StatusDot, Tabs, TabsContent, Panel, SplitPane, LABEL_SLOTS, AvatarGroup, Switch, Banner, Chip, Textarea, TooltipProvider, Card, Sparkline, CardHeader, CardTitle, CardBody, CardDescription, PopoverClose, SearchInput, VirtualList, dashboardEn, TruncatedText, Tooltip } from './chunk-KVFEYZK4.js';
+export { Accordion, Alert, AlertGroup, Avatar, AvatarGroup, Badge, Banner, Breadcrumb, ButtonGroup, Card, CardActions, CardBody, CardDescription, CardFooter, CardGrid, CardHeader, CardTitle, Checkbox, Chip, Combobox, Dialog, DialogClose, DialogContent, DialogTrigger, Drawer, DrawerClose, DrawerContent, DrawerTrigger, DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger, EmptyState, ExpandableCard, Field, IconButton, InfiniteList, Input, KeyValueEditor, LineChart, LogViewer, NumberInput, PageHead, Panel, PermissionMatrix, Popover, PopoverClose, PopoverContent, PopoverTrigger, Radio, RadioGroup, RelativeTime, SearchInput, SegmentedControl, Select, SelectMenu, Skeleton, Slider, Sparkline, Spinner, SplitButton, SplitPane, Stat, StatGrid, StatusDot, Switch, Tabs, TabsContent, TabsList, TabsTrigger, TagInput, TenantSwitcher, Textarea as TextArea, Input as TextInput, Textarea, TimeRangePicker, ToastProvider, Tooltip, TooltipProvider, TruncatedText, VirtualList, formatRelative, observeRectWithFallback, useToast, useToasts } from './chunk-KVFEYZK4.js';
 import { format, diffLines, useControllableState, matchesAccept } from './chunk-2AHMKLOE.js';
 export { diffLines, format, matchesAccept, useControllableState } from './chunk-2AHMKLOE.js';
 import { useLaf, usePortalContainer, useLafDefaults } from './chunk-3FIUWOWG.js';
@@ -1036,15 +1036,17 @@ function AlarmList({
     ] }, a.id)) })
   ] });
 }
-function Gauge({ value, max = 100, label, warnAt = 70, dangerAt = 90 }) {
+function Gauge({ value, max = 100, label, warnAt = 70, dangerAt = 90, animate }) {
+  const motion = useChartMotion(animate);
+  const sweep = entryAnim(motion, "sweep");
   const pct = Math.min(100, Math.max(0, value / max * 100));
   const tone = pct >= dangerAt ? "text-danger" : pct >= warnAt ? "text-warn" : "text-ok";
   const r = 40;
   const c = Math.PI * r;
   return /* @__PURE__ */ jsxs("figure", { className: "m-0 inline-block text-center", children: [
-    /* @__PURE__ */ jsxs("svg", { viewBox: "0 0 100 56", role: "meter", "aria-label": label, "aria-valuenow": value, "aria-valuemin": 0, "aria-valuemax": max, className: "w-32", children: [
+    /* @__PURE__ */ jsxs("svg", { viewBox: "0 0 100 56", style: motionVars(motion), "data-animate": motion.enabled ? "on" : "off", role: "meter", "aria-label": label, "aria-valuenow": value, "aria-valuemin": 0, "aria-valuemax": max, className: "w-32", children: [
       /* @__PURE__ */ jsx("path", { d: "M10 50 A40 40 0 0 1 90 50", fill: "none", stroke: "var(--bg-muted)", strokeWidth: "8" }),
-      /* @__PURE__ */ jsx("path", { d: "M10 50 A40 40 0 0 1 90 50", fill: "none", stroke: "currentColor", strokeWidth: "8", strokeDasharray: `${pct / 100 * c} ${c}`, className: tone })
+      /* @__PURE__ */ jsx("path", { d: "M10 50 A40 40 0 0 1 90 50", fill: "none", stroke: "currentColor", strokeWidth: "8", strokeDasharray: `${pct / 100 * c} ${c}`, className: cn(tone, tweenClass(motion), sweep.className), style: sweep.style })
     ] }),
     /* @__PURE__ */ jsxs("figcaption", { className: "-mt-3 font-mono text-lg text-fg", children: [
       Math.round(pct),
@@ -7936,7 +7938,9 @@ function gaugeTone(value, thresholds = []) {
 var ARC = 0.75;
 var R = 42;
 var C = 2 * Math.PI * R;
-function RadialGauge({ value, min = 0, max = 100, unit, label, thresholds, formatValue = (v) => String(Math.round(v * 10) / 10), size = 128, className }) {
+function RadialGauge({ value, min = 0, max = 100, unit, label, thresholds, formatValue = (v) => String(Math.round(v * 10) / 10), size = 128, animate, className }) {
+  const motion = useChartMotion(animate);
+  const sweep = entryAnim(motion, "sweep");
   const { t } = useLaf6();
   const g = t.components.dashboard.gauge;
   const frac = max > min ? Math.min(1, Math.max(0, (value - min) / (max - min))) : 0;
@@ -7956,8 +7960,9 @@ function RadialGauge({ value, min = 0, max = 100, unit, label, thresholds, forma
       "aria-valuemax": max,
       "aria-valuenow": value,
       "aria-valuetext": `${g.valueText(text, `${formatValue(max)}${unit ?? ""}`)}${stateText ? `, ${stateText}` : ""}`,
+      "data-animate": motion.enabled ? "on" : "off",
       className: cn("relative inline-grid shrink-0 place-items-center", className),
-      style: { width: size, height: size },
+      style: { width: size, height: size, ...motionVars(motion) },
       children: [
         /* @__PURE__ */ jsxs("svg", { viewBox: "0 0 100 100", "aria-hidden": true, className: "absolute inset-0 size-full", "data-tone": tone, children: [
           /* @__PURE__ */ jsx("circle", { cx: "50", cy: "50", r: R, fill: "none", stroke: "var(--bg-muted)", strokeWidth: "8", strokeLinecap: "butt", strokeDasharray: `${ARC * C} ${C}`, transform: "rotate(135 50 50)" }),
@@ -7973,7 +7978,8 @@ function RadialGauge({ value, min = 0, max = 100, unit, label, thresholds, forma
               strokeLinecap: "butt",
               strokeDasharray: `${ARC * C * frac} ${C}`,
               transform: "rotate(135 50 50)",
-              className: cn(toneStroke[tone], "motion-safe:transition-[stroke-dasharray] motion-safe:duration-500")
+              className: cn(toneStroke[tone], tweenClass(motion), sweep.className),
+              style: sweep.style
             }
           ),
           thresholds?.map((th) => /* @__PURE__ */ jsx("line", { ...mark(th.value), stroke: "var(--border-strong)", strokeWidth: "1.5" }, `${th.tone}-${th.value}`))
@@ -7986,12 +7992,12 @@ function RadialGauge({ value, min = 0, max = 100, unit, label, thresholds, forma
     }
   );
 }
-function GaugeCard({ title, description, loading, error, onRetry, value, min, max, unit, thresholds, formatValue, size, className, ...rest }) {
+function GaugeCard({ title, description, loading, error, onRetry, value, min, max, unit, thresholds, formatValue, size, animate, className, ...rest }) {
   const { t } = useLaf6();
   return /* @__PURE__ */ jsxs(Card, { variant: "default", compact: true, ...rest, className, "aria-busy": loading || void 0, children: [
     /* @__PURE__ */ jsx(CardHeader, { children: /* @__PURE__ */ jsx(CardTitle, { children: title }) }),
     /* @__PURE__ */ jsxs(CardBody, { className: "grid place-items-center gap-2", children: [
-      loading ? /* @__PURE__ */ jsx("div", { role: "status", "aria-label": t.components.dashboard.metric.loading, children: /* @__PURE__ */ jsx(Skeleton, { className: "size-28 rounded-full" }) }) : error ? /* @__PURE__ */ jsx(ErrorBlock, { message: typeof error === "string" ? error : t.components.dashboard.metric.error, onRetry }) : /* @__PURE__ */ jsx(RadialGauge, { value, min, max, unit, label: title, thresholds, formatValue, size }),
+      loading ? /* @__PURE__ */ jsx("div", { role: "status", "aria-label": t.components.dashboard.metric.loading, children: /* @__PURE__ */ jsx(Skeleton, { className: "size-28 rounded-full" }) }) : error ? /* @__PURE__ */ jsx(ErrorBlock, { message: typeof error === "string" ? error : t.components.dashboard.metric.error, onRetry }) : /* @__PURE__ */ jsx(RadialGauge, { value, min, max, unit, label: title, thresholds, formatValue, size, animate }),
       description && /* @__PURE__ */ jsx(CardDescription, { className: "text-center", children: description })
     ] })
   ] });

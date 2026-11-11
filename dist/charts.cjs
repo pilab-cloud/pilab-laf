@@ -1,6 +1,6 @@
 'use strict';
 
-var chunk77S32ZEH_cjs = require('./chunk-77S32ZEH.cjs');
+var chunk3K2VEKQR_cjs = require('./chunk-3K2VEKQR.cjs');
 var chunkYGX6XE22_cjs = require('./chunk-YGX6XE22.cjs');
 var chunkE6JUACLJ_cjs = require('./chunk-E6JUACLJ.cjs');
 var chunkIP6HZMS5_cjs = require('./chunk-IP6HZMS5.cjs');
@@ -178,6 +178,8 @@ function TimeSeriesChart({
   height = 240,
   width: widthProp,
   maxTableRows = 200,
+  animate,
+  tooltip = true,
   labels: labelsProp,
   className
 }) {
@@ -194,6 +196,33 @@ function TimeSeriesChart({
   const drag = React__namespace.useRef(null);
   const anchor = React__namespace.useRef(null);
   const svgRef = React__namespace.useRef(null);
+  const motion = chunk3K2VEKQR_cjs.useChartMotion(animate);
+  const [legendEmph, setLegendEmph] = React__namespace.useState(null);
+  const [ptrY, setPtrY] = React__namespace.useState(null);
+  const tipId = `${uid}-tip`;
+  chunk3K2VEKQR_cjs.useTooltipDismiss(cursor !== null, wrap, () => (setCursor(null), setPtrY(null)));
+  const sig = React__namespace.useMemo(
+    () => `${type}|${hidden.join()}|${zoom?.from}-${zoom?.to}|${series.map((s) => `${s.id}:${s.points.length}:${s.points.reduce((a, p) => a + (p[1] ?? 0) * (p[0] % 97 + 1), 0)}`).join()}`,
+    [series, hidden, zoom, type]
+  );
+  const progress = chunk3K2VEKQR_cjs.useTweenProgress(sig, motion);
+  const settled = React__namespace.useRef(/* @__PURE__ */ new Map());
+  const fromPx = React__namespace.useRef(/* @__PURE__ */ new Map());
+  const lastSig = React__namespace.useRef(sig);
+  if (lastSig.current !== sig) {
+    fromPx.current = settled.current;
+    lastSig.current = sig;
+  }
+  const rendered = /* @__PURE__ */ new Map();
+  const lerp = (id, to) => {
+    const f = fromPx.current.get(id);
+    const out = progress < 1 && f && f.length === to.length ? to.map((v, i) => f[i] + (v - f[i]) * progress) : to;
+    rendered.set(id, out);
+    return out;
+  };
+  React__namespace.useLayoutEffect(() => {
+    settled.current = rendered;
+  });
   const full = React__namespace.useMemo(() => {
     let from = Infinity;
     let to = -Infinity;
@@ -281,6 +310,7 @@ function TimeSeriesChart({
     const rect = svgRef.current?.getBoundingClientRect();
     return e.clientX - (rect?.left ?? 0) - MARGIN.left;
   };
+  const localY = (e) => e.clientY - (svgRef.current?.getBoundingClientRect().top ?? 0) - MARGIN.top;
   const applySel = (r) => {
     if (r && r.to > r.from) setZoom({ from: r.from, to: r.to });
     setSel(null);
@@ -290,6 +320,8 @@ function TimeSeriesChart({
     if (!domain || e.button > 0) return;
     const px = localX(e);
     drag.current = { anchor: clampT(px), moved: false };
+    setCursor(clampT(px));
+    setPtrY(localY(e));
     setKbd(false);
     try {
       svgRef.current?.setPointerCapture?.(e.pointerId);
@@ -300,6 +332,7 @@ function TimeSeriesChart({
     if (!domain || !stamps.length) return;
     const t = clampT(localX(e));
     setCursor(t);
+    setPtrY(localY(e));
     setKbd(false);
     const d = drag.current;
     if (d) {
@@ -324,6 +357,7 @@ function TimeSeriesChart({
         setSel({ from: Math.min(anchor.current, t), to: Math.max(anchor.current, t) });
       }
       setCursor(t);
+      setPtrY(null);
       setKbd(true);
       e.preventDefault();
     };
@@ -337,6 +371,7 @@ function TimeSeriesChart({
     } else if (e.key === "Escape") {
       setSel(null);
       setCursor(null);
+      setPtrY(null);
       anchor.current = null;
     }
   };
@@ -362,14 +397,26 @@ function TimeSeriesChart({
     });
     return { t, rows };
   }, [cursor, stamps, shown, visible]);
+  const nearestId = tip && ptrY !== null && !stacked ? tip.rows.reduce((best, r) => {
+    if (r.v === null) return best;
+    const d = Math.abs(ys[axisOf(r.s.unit)](r.v) - ptrY);
+    return !best || d < best.d ? { id: r.s.id, d } : best;
+  }, null)?.id : void 0;
+  const emph = legendEmph ?? nearestId ?? null;
+  const tipCtx = tip ? {
+    point: { label: fullT(tip.t), x: tip.t },
+    index: stamps.indexOf(tip.t),
+    series: tip.rows.map((r) => ({ id: r.s.id, name: r.s.name, value: r.v, formatted: r.v === null ? "\u2013" : formatUnit(format, r.s.unit, r.v), tone: SERIES_TONES[series.indexOf(r.s) % 4] }))
+  } : null;
+  const tipOn = !!tipCtx && tooltip !== false;
   const tipText = tip ? `${fullT(tip.t)}: ${tip.rows.map((r) => `${r.s.name} ${r.v === null ? "\u2013" : formatUnit(format, r.s.unit, r.v)}`).join(", ")}` : "";
   const tableRows = stamps.length > maxTableRows ? stamps.filter((_, i) => i % Math.ceil(stamps.length / maxTableRows) === 0) : stamps;
   const tableId = `${uid}-table`;
   const hintId = `${uid}-hint`;
   const empty = !loading && (!domain || series.every((s) => s.points.length === 0));
   const tipLeft = tip ? MARGIN.left + x(tip.t) : 0;
-  return /* @__PURE__ */ jsxRuntime.jsxs("figure", { "aria-label": label, "aria-busy": loading || void 0, className: chunkFTHFEMX6_cjs.cn("m-0 grid grid-cols-1 gap-2", className), children: [
-    /* @__PURE__ */ jsxRuntime.jsx("div", { ref: wrap, className: "relative min-w-0", style: { height }, children: loading ? /* @__PURE__ */ jsxRuntime.jsx("div", { role: "status", "aria-label": l.loading, className: "size-full animate-pulse rounded-sm bg-muted-bg" }) : empty ? /* @__PURE__ */ jsxRuntime.jsx("div", { className: "grid size-full place-items-center text-sm text-muted", children: l.noData }) : /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
+  return /* @__PURE__ */ jsxRuntime.jsxs("figure", { "aria-label": label, "aria-busy": loading || void 0, "data-animate": motion.enabled ? "on" : "off", className: chunkFTHFEMX6_cjs.cn("m-0 grid grid-cols-1 gap-2", className), children: [
+    /* @__PURE__ */ jsxRuntime.jsx("div", { ref: wrap, className: "relative min-w-0", style: { height, ...chunk3K2VEKQR_cjs.motionVars(motion) }, children: loading ? /* @__PURE__ */ jsxRuntime.jsx("div", { role: "status", "aria-label": l.loading, className: "size-full animate-pulse rounded-sm bg-muted-bg" }) : empty ? /* @__PURE__ */ jsxRuntime.jsx("div", { className: "grid size-full place-items-center text-sm text-muted", children: l.noData }) : /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
       /* @__PURE__ */ jsxRuntime.jsx(
         "svg",
         {
@@ -378,14 +425,14 @@ function TimeSeriesChart({
           height,
           role: "img",
           "aria-label": label,
-          "aria-describedby": hintId,
+          "aria-describedby": tipOn ? `${hintId} ${tipId}` : hintId,
           tabIndex: 0,
           className: "touch-none text-muted select-none focus-visible:outline-2 focus-visible:outline-primary",
           onPointerDown,
           onPointerMove,
           onPointerUp,
-          onPointerLeave: () => {
-            if (!drag.current) setCursor(null);
+          onPointerLeave: (e) => {
+            if (!drag.current && e.pointerType !== "touch") setCursor(null), setPtrY(null);
           },
           onKeyDown,
           onKeyUp,
@@ -409,24 +456,34 @@ function TimeSeriesChart({
               },
               `${th.tone}-${th.value}`
             )),
-            stacked ? shown.map((s, i) => /* @__PURE__ */ jsxRuntime.jsx(
-              shape.Area,
-              {
-                data: stackedRows ?? [],
-                x: (d) => x(d.t),
-                y0: (d) => ys[0](d.layers[i][0]),
-                y1: (d) => ys[0](d.layers[i][1]),
-                fill: "currentColor",
-                fillOpacity: 0.45,
-                stroke: "currentColor",
-                className: SERIES_TONES[series.indexOf(s) % 4]
-              },
-              s.id
-            )) : shown.map((s, i) => {
+            stacked ? shown.map((s, i) => {
+              const rows = stackedRows ?? [];
+              const lo = lerp(`${s.id}:lo`, rows.map((d) => ys[0](d.layers[i][0])));
+              const hi = lerp(`${s.id}:hi`, rows.map((d) => ys[0](d.layers[i][1])));
+              const enter = chunk3K2VEKQR_cjs.entryAnim(motion, "reveal", i);
+              return /* @__PURE__ */ jsxRuntime.jsx(
+                shape.Area,
+                {
+                  data: rows,
+                  x: (d) => x(d.t),
+                  y0: (_, k) => lo[k],
+                  y1: (_, k) => hi[k],
+                  fill: "currentColor",
+                  fillOpacity: 0.45,
+                  stroke: "currentColor",
+                  className: chunkFTHFEMX6_cjs.cn(SERIES_TONES[series.indexOf(s) % 4], chunk3K2VEKQR_cjs.tweenClass(motion), enter.className, emph !== null && emph !== s.id && "opacity-40"),
+                  style: enter.style
+                },
+                s.id
+              );
+            }) : shown.map((s, i) => {
               const si = series.indexOf(s);
               const ys_ = ys[axisOf(s.unit)];
               const tone = SERIES_TONES[si % 4];
-              return /* @__PURE__ */ jsxRuntime.jsxs("g", { className: tone, "data-series": s.id, children: [
+              const py = lerp(s.id, lines[i].map((d) => d[1] === null ? 0 : ys_(d[1])));
+              const enter = chunk3K2VEKQR_cjs.entryAnim(motion, "reveal", i);
+              const fade = chunk3K2VEKQR_cjs.entryAnim(motion, "fade", i);
+              return /* @__PURE__ */ jsxRuntime.jsxs("g", { className: chunkFTHFEMX6_cjs.cn(tone, chunk3K2VEKQR_cjs.tweenClass(motion), enter.className, emph !== null && emph !== s.id && "opacity-30"), style: enter.style, "data-series": s.id, children: [
                 type === "area" && /* @__PURE__ */ jsxRuntime.jsx(
                   shape.Area,
                   {
@@ -434,9 +491,11 @@ function TimeSeriesChart({
                     defined: (d) => d[1] !== null,
                     x: (d) => x(d[0]),
                     y0: ys_(Math.max(ys_.domain()[0], 0)),
-                    y1: (d) => ys_(d[1]),
+                    y1: (_, k) => py[k],
                     fill: "currentColor",
-                    fillOpacity: 0.15
+                    fillOpacity: 0.15,
+                    className: fade.className,
+                    style: fade.style
                   }
                 ),
                 /* @__PURE__ */ jsxRuntime.jsx(
@@ -445,9 +504,9 @@ function TimeSeriesChart({
                     data: lines[i],
                     defined: (d) => d[1] !== null,
                     x: (d) => x(d[0]),
-                    y: (d) => ys_(d[1]),
+                    y: (_, k) => py[k],
                     stroke: "currentColor",
-                    strokeWidth: 1.5,
+                    strokeWidth: emph === s.id ? 2.5 : 1.5,
                     strokeDasharray: SERIES_DASH[si % 4]
                   }
                 )
@@ -467,24 +526,7 @@ function TimeSeriesChart({
         }
       ),
       /* @__PURE__ */ jsxRuntime.jsx("span", { id: hintId, className: "sr-only", children: l.keyboardHint }),
-      tip && /* @__PURE__ */ jsxRuntime.jsxs(
-        "div",
-        {
-          role: "tooltip",
-          className: "pointer-events-none absolute top-2 z-10 min-w-36 rounded-md border border-line bg-surface px-2.5 py-1.5 text-xs text-fg shadow-card",
-          style: tipLeft > width / 2 ? { insetInlineStart: tipLeft - 8, transform: "translateX(-100%)" } : { insetInlineStart: tipLeft + 8 },
-          children: [
-            /* @__PURE__ */ jsxRuntime.jsx("div", { className: "mb-1 font-mono text-subtle", children: fullT(tip.t) }),
-            tip.rows.map((r) => /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex items-center justify-between gap-3", children: [
-              /* @__PURE__ */ jsxRuntime.jsxs("span", { className: "inline-flex items-center gap-1.5", children: [
-                /* @__PURE__ */ jsxRuntime.jsx("span", { "aria-hidden": true, className: chunkFTHFEMX6_cjs.cn("inline-block size-2 rounded-sm bg-current", SERIES_TONES[series.indexOf(r.s) % 4]) }),
-                r.s.name
-              ] }),
-              /* @__PURE__ */ jsxRuntime.jsx("b", { className: "font-mono", children: r.v === null ? "\u2013" : formatUnit(format, r.s.unit, r.v) })
-            ] }, r.s.id))
-          ]
-        }
-      ),
+      tipOn && /* @__PURE__ */ jsxRuntime.jsx(chunk3K2VEKQR_cjs.ChartTooltipFor, { option: tooltip, ctx: tipCtx, x: tipLeft, y: MARGIN.top + 4, id: tipId, container: wrap, placement: "side" }),
       /* @__PURE__ */ jsxRuntime.jsx("span", { className: "sr-only", "aria-live": "polite", children: kbd ? tipText : "" })
     ] }) }),
     /* @__PURE__ */ jsxRuntime.jsxs("figcaption", { className: "flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-muted", children: [
@@ -495,6 +537,10 @@ function TimeSeriesChart({
           {
             type: "button",
             "aria-pressed": on,
+            onPointerEnter: () => setLegendEmph(s.id),
+            onPointerLeave: () => setLegendEmph(null),
+            onFocus: () => setLegendEmph(s.id),
+            onBlur: () => setLegendEmph(null),
             onClick: () => toggle(s.id),
             className: chunkFTHFEMX6_cjs.cn("inline-flex cursor-pointer items-center gap-1.5 rounded-sm border-0 bg-transparent p-0 text-xs text-muted hover:text-fg", !on && "opacity-50 line-through"),
             children: [
@@ -525,6 +571,106 @@ function TimeSeriesChart({
     ] }) })
   ] });
 }
+var lafDefaults2 = { dashboard: chunk3K2VEKQR_cjs.dashboardEn };
+var useChartLaf = () => chunkE6JUACLJ_cjs.useLafDefaults(lafDefaults2);
+var CHART_TONES = ["text-label-9", "text-label-5", "text-label-3", "text-label-1", "text-label-7", "text-label-11", "text-label-2", "text-label-6"];
+var chartTone = (i) => CHART_TONES[i % CHART_TONES.length];
+function useChartWidth(fixed, initial = 480) {
+  const ref = React__namespace.useRef(null);
+  const [w, setW] = React__namespace.useState(initial);
+  React__namespace.useEffect(() => {
+    const el = ref.current;
+    if (fixed !== void 0 || !el || typeof ResizeObserver === "undefined") return;
+    const apply = () => el.clientWidth > 0 && setW(el.clientWidth);
+    apply();
+    const ro = new ResizeObserver(apply);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, [fixed]);
+  return [ref, fixed ?? w];
+}
+function useActiveIndex(count, containerRef) {
+  const [active, setActive] = React__namespace.useState(null);
+  const [keyboard, setKeyboard] = React__namespace.useState(false);
+  const fallback = React__namespace.useRef(null);
+  chunk3K2VEKQR_cjs.useTooltipDismiss(active !== null, containerRef ?? fallback, () => (setActive(null), setKeyboard(false)));
+  const onKeyDown = (e) => {
+    if (!count) return;
+    const cur = active ?? -1;
+    const go = (i) => {
+      e.preventDefault();
+      setKeyboard(true);
+      setActive(Math.min(count - 1, Math.max(0, i)));
+    };
+    const next = e.key === "ArrowDown" || e.key === "ArrowRight";
+    const prev = e.key === "ArrowUp" || e.key === "ArrowLeft";
+    if (next) go(cur + 1);
+    else if (prev) go(cur < 0 ? count - 1 : cur - 1);
+    else if (e.key === "Home") go(0);
+    else if (e.key === "End") go(count - 1);
+    else if (e.key === "Escape") setActive(null);
+  };
+  return { active, setActive, keyboard, setKeyboard, onKeyDown, onBlur: () => (setActive(null), setKeyboard(false)) };
+}
+function ChartLegend({ items, hidden = [], onToggle, onHover, label, className }) {
+  const { t } = useChartLaf();
+  const c = t.components.dashboard.chart;
+  return /* @__PURE__ */ jsxRuntime.jsx("ul", { "aria-label": label ?? c.legend, className: chunkFTHFEMX6_cjs.cn("m-0 flex list-none flex-wrap items-center gap-x-4 gap-y-1 p-0 text-xs text-muted", className), children: items.map((it) => {
+    const off = hidden.includes(it.id);
+    const swatch = /* @__PURE__ */ jsxRuntime.jsx("svg", { width: "14", height: "8", "aria-hidden": true, className: chunkFTHFEMX6_cjs.cn(it.tone, off && "opacity-40"), children: it.dash ? /* @__PURE__ */ jsxRuntime.jsx("line", { x1: "0", x2: "14", y1: "4", y2: "4", stroke: "currentColor", strokeWidth: "2.5", strokeDasharray: it.dash }) : /* @__PURE__ */ jsxRuntime.jsx("rect", { width: "14", height: "8", rx: "2", fill: "currentColor" }) });
+    return /* @__PURE__ */ jsxRuntime.jsx("li", { children: onToggle ? /* @__PURE__ */ jsxRuntime.jsxs("button", { type: "button", onPointerEnter: () => onHover?.(it.id), onPointerLeave: () => onHover?.(null), onFocus: () => onHover?.(it.id), onBlur: () => onHover?.(null), "aria-pressed": !off, "aria-label": c.toggleSeries(it.name), onClick: () => onToggle(it.id), className: chunkFTHFEMX6_cjs.cn("inline-flex items-center gap-1.5 rounded-sm border-0 bg-transparent p-0.5 text-muted outline-none hover:text-fg focus-visible:ring-2 focus-visible:ring-primary/50", off && "line-through opacity-70"), children: [
+      swatch,
+      /* @__PURE__ */ jsxRuntime.jsx("span", { children: it.name }),
+      it.value !== void 0 && /* @__PURE__ */ jsxRuntime.jsx("b", { className: "font-mono text-fg", children: it.value })
+    ] }) : /* @__PURE__ */ jsxRuntime.jsxs("span", { className: "inline-flex items-center gap-1.5", children: [
+      swatch,
+      /* @__PURE__ */ jsxRuntime.jsx("span", { children: it.name }),
+      it.value !== void 0 && /* @__PURE__ */ jsxRuntime.jsx("b", { className: "font-mono text-fg", children: it.value })
+    ] }) }, it.id);
+  }) });
+}
+function ChartFrame({
+  label,
+  plot,
+  legend,
+  table,
+  announce,
+  loading,
+  empty,
+  error,
+  onRetry,
+  height,
+  plotRef,
+  animate,
+  className
+}) {
+  const { t } = useChartLaf();
+  const c = t.components.dashboard.chart;
+  const [showTable, setShowTable] = React__namespace.useState(false);
+  const id = React__namespace.useId();
+  const status = loading ? /* @__PURE__ */ jsxRuntime.jsx("div", { role: "status", "aria-label": c.loading, className: "size-full animate-pulse rounded-sm bg-muted-bg motion-reduce:animate-none" }) : error ? /* @__PURE__ */ jsxRuntime.jsxs("div", { role: "alert", className: "grid size-full place-content-center justify-items-center gap-2 text-sm text-danger", children: [
+    /* @__PURE__ */ jsxRuntime.jsx("span", { children: typeof error === "string" ? error : c.error }),
+    onRetry && /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { size: "sm", variant: "secondary", onClick: onRetry, children: c.retry })
+  ] }) : empty ? /* @__PURE__ */ jsxRuntime.jsx("div", { className: "grid size-full place-items-center text-sm text-muted", children: c.empty }) : null;
+  return /* @__PURE__ */ jsxRuntime.jsxs("figure", { "aria-label": label, "aria-busy": loading || void 0, "data-animate": animate === void 0 ? void 0 : animate ? "on" : "off", className: chunkFTHFEMX6_cjs.cn("m-0 grid min-w-0 grid-cols-1 gap-2", className), children: [
+    /* @__PURE__ */ jsxRuntime.jsx("div", { ref: plotRef, dir: "ltr", className: "relative min-w-0", style: { height }, children: status ?? plot }),
+    !status && legend,
+    !status && table && /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
+      /* @__PURE__ */ jsxRuntime.jsxs("button", { type: "button", "aria-expanded": showTable, "aria-controls": `${id}-table`, onClick: () => setShowTable((v) => !v), className: "inline-flex items-center gap-1.5 justify-self-start border-0 bg-transparent p-0.5 text-xs text-muted outline-none hover:text-fg focus-visible:ring-2 focus-visible:ring-primary/50", children: [
+        showTable ? /* @__PURE__ */ jsxRuntime.jsx(lucideReact.BarChart3, { "aria-hidden": true, className: "size-3.5" }) : /* @__PURE__ */ jsxRuntime.jsx(lucideReact.TableProperties, { "aria-hidden": true, className: "size-3.5" }),
+        showTable ? c.hideData : c.showData
+      ] }),
+      /* @__PURE__ */ jsxRuntime.jsx("div", { id: `${id}-table`, hidden: !showTable, className: "max-h-60 overflow-auto", children: showTable && /* @__PURE__ */ jsxRuntime.jsxs("table", { className: "w-full border-collapse text-xs tabular-nums", children: [
+        /* @__PURE__ */ jsxRuntime.jsx("caption", { className: "sr-only", children: label }),
+        /* @__PURE__ */ jsxRuntime.jsx("thead", { children: /* @__PURE__ */ jsxRuntime.jsx("tr", { children: table.head.map((h) => /* @__PURE__ */ jsxRuntime.jsx("th", { scope: "col", className: "border-b border-line px-2 py-1 text-start font-medium text-muted", children: h }, h)) }) }),
+        /* @__PURE__ */ jsxRuntime.jsx("tbody", { children: table.rows.map((r, i) => /* @__PURE__ */ jsxRuntime.jsx("tr", { children: r.map(
+          (cell, j) => j === 0 ? /* @__PURE__ */ jsxRuntime.jsx("th", { scope: "row", className: "border-b border-line px-2 py-1 text-start font-normal", children: cell }, j) : /* @__PURE__ */ jsxRuntime.jsx("td", { className: "border-b border-line px-2 py-1 text-start", children: cell }, j)
+        ) }, i)) })
+      ] }) })
+    ] }),
+    /* @__PURE__ */ jsxRuntime.jsx("div", { className: "sr-only", role: "status", "aria-live": "polite", children: announce })
+  ] });
+}
 var TONES = SERIES_TONES;
 function StackedBarChart({
   data,
@@ -533,28 +679,85 @@ function StackedBarChart({
   formatValue = (v) => String(v),
   width = 480,
   barHeight = 14,
+  animate,
+  tooltip = true,
   className
 }) {
+  const { t } = useChartLaf();
+  const c = t.components.dashboard.chart;
+  const motion = chunk3K2VEKQR_cjs.useChartMotion(animate);
+  const box = React__namespace.useRef(null);
+  const hintId = React__namespace.useId();
+  const tipId = React__namespace.useId();
+  const cells = data.flatMap((d, ri) => d.values.map((v, si) => ({ ri, si, v })));
+  const nav = useActiveIndex(cells.length, box);
   const nameW = 96;
   const gap = 8;
   const rowH = barHeight + gap;
   const totals = data.map((d) => d.values.reduce((a, b) => a + b, 0));
   const max = Math.max(...totals, 1);
   const x = scale.scaleLinear({ domain: [0, max], range: [0, Math.max(width - nameW - 56, 10)], nice: true });
-  return /* @__PURE__ */ jsxRuntime.jsxs("figure", { "aria-label": label, className: chunkFTHFEMX6_cjs.cn("m-0 grid gap-2", className), children: [
-    /* @__PURE__ */ jsxRuntime.jsx("svg", { role: "img", "aria-label": label, width: "100%", viewBox: `0 0 ${width} ${Math.max(data.length * rowH, 1)}`, className: "text-muted", children: data.map((d, ri) => {
-      let acc = 0;
-      return /* @__PURE__ */ jsxRuntime.jsxs(group.Group, { top: ri * rowH, children: [
-        /* @__PURE__ */ jsxRuntime.jsx("text", { x: nameW - 8, y: barHeight / 2, dy: "0.33em", textAnchor: "end", fontSize: 11, fill: "currentColor", children: d.name }),
-        /* @__PURE__ */ jsxRuntime.jsx("rect", { x: nameW, y: 0, width: x.range()[1], height: barHeight, rx: 2, className: "text-muted-bg", fill: "currentColor" }),
-        d.values.map((v, i) => {
-          const x0 = x(acc);
-          acc += v;
-          return /* @__PURE__ */ jsxRuntime.jsx(shape.Bar, { x: nameW + x0, y: 0, width: Math.max(x(acc) - x0, 0), height: barHeight, fill: "currentColor", className: TONES[i % TONES.length], children: /* @__PURE__ */ jsxRuntime.jsx("title", { children: `${d.name} \xB7 ${series[i]}: ${formatValue(v)}` }) }, i);
-        }),
-        /* @__PURE__ */ jsxRuntime.jsx("text", { x: nameW + x(totals[ri]) + 6, y: barHeight / 2, dy: "0.33em", fontSize: 11, fill: "currentColor", className: "font-mono", children: formatValue(totals[ri]) })
-      ] }, d.name);
-    }) }),
+  const cur = nav.active === null ? null : cells[nav.active];
+  let tipX = 0;
+  if (cur) {
+    let acc = 0;
+    for (let k = 0; k < cur.si; k++) acc += data[cur.ri].values[k];
+    tipX = (nameW + (x(acc) + x(acc + cur.v)) / 2) * ((box.current?.clientWidth || width) / width);
+  }
+  const segName = cur ? `${data[cur.ri].name} \xB7 ${series[cur.si]}` : "";
+  const ctx = cur ? { point: { label: segName, x: data[cur.ri].name, value: cur.v, formatted: formatValue(cur.v) }, index: nav.active, series: [{ id: String(cur.si), name: String(series[cur.si]), value: cur.v, formatted: formatValue(cur.v), tone: TONES[cur.si % TONES.length] }] } : null;
+  const tipOn = !!ctx && tooltip !== false;
+  return /* @__PURE__ */ jsxRuntime.jsxs("figure", { "aria-label": label, "data-animate": motion.enabled ? "on" : "off", className: chunkFTHFEMX6_cjs.cn("m-0 grid gap-2", className), children: [
+    /* @__PURE__ */ jsxRuntime.jsxs("div", { ref: box, className: "relative", style: chunk3K2VEKQR_cjs.motionVars(motion), children: [
+      /* @__PURE__ */ jsxRuntime.jsx(
+        "svg",
+        {
+          role: "img",
+          "aria-label": label,
+          "aria-describedby": tipOn ? `${hintId} ${tipId}` : hintId,
+          tabIndex: 0,
+          width: "100%",
+          viewBox: `0 0 ${width} ${Math.max(data.length * rowH, 1)}`,
+          className: "block text-muted outline-none focus-visible:outline-2 focus-visible:outline-primary",
+          onKeyDown: nav.onKeyDown,
+          onBlur: nav.onBlur,
+          onPointerLeave: (e) => e.pointerType !== "touch" && !nav.keyboard && nav.setActive(null),
+          children: data.map((d, ri) => {
+            let acc = 0;
+            return /* @__PURE__ */ jsxRuntime.jsxs(group.Group, { top: ri * rowH, children: [
+              /* @__PURE__ */ jsxRuntime.jsx("text", { x: nameW - 8, y: barHeight / 2, dy: "0.33em", textAnchor: "end", fontSize: 11, fill: "currentColor", children: d.name }),
+              /* @__PURE__ */ jsxRuntime.jsx("rect", { x: nameW, y: 0, width: x.range()[1], height: barHeight, rx: 2, className: "text-muted-bg", fill: "currentColor" }),
+              d.values.map((v, i) => {
+                const x0 = x(acc);
+                acc += v;
+                const flat = cells.findIndex((cc) => cc.ri === ri && cc.si === i);
+                const enter = chunk3K2VEKQR_cjs.entryAnim(motion, "grow-x", ri);
+                return /* @__PURE__ */ jsxRuntime.jsx(
+                  shape.Bar,
+                  {
+                    x: nameW + x0,
+                    y: 0,
+                    width: Math.max(x(acc) - x0, 0),
+                    height: barHeight,
+                    fill: "currentColor",
+                    className: chunkFTHFEMX6_cjs.cn(TONES[i % TONES.length], chunk3K2VEKQR_cjs.tweenClass(motion), enter.className, nav.active !== null && nav.active !== flat && "opacity-40"),
+                    style: enter.style,
+                    onPointerEnter: () => (nav.setKeyboard(false), nav.setActive(flat)),
+                    onPointerDown: () => (nav.setKeyboard(false), nav.setActive(flat)),
+                    children: tooltip === false && /* @__PURE__ */ jsxRuntime.jsx("title", { children: `${d.name} \xB7 ${series[i]}: ${formatValue(v)}` })
+                  },
+                  i
+                );
+              }),
+              /* @__PURE__ */ jsxRuntime.jsx("text", { x: nameW + x(totals[ri]) + 6, y: barHeight / 2, dy: "0.33em", fontSize: 11, fill: "currentColor", className: "font-mono", children: formatValue(totals[ri]) })
+            ] }, d.name);
+          })
+        }
+      ),
+      tipOn && /* @__PURE__ */ jsxRuntime.jsx(chunk3K2VEKQR_cjs.ChartTooltipFor, { option: tooltip, ctx, x: tipX, y: (cur.ri + 0.5) * rowH, id: tipId, container: box }),
+      /* @__PURE__ */ jsxRuntime.jsx("span", { id: hintId, className: "sr-only", children: c.keyboardHint })
+    ] }),
+    /* @__PURE__ */ jsxRuntime.jsx("div", { className: "sr-only", role: "status", "aria-live": "polite", children: nav.keyboard && cur ? `${segName}: ${formatValue(cur.v)}` : "" }),
     /* @__PURE__ */ jsxRuntime.jsx("figcaption", { className: "flex flex-wrap gap-3 text-xs text-muted", children: series.map((s, i) => /* @__PURE__ */ jsxRuntime.jsxs("span", { className: "inline-flex items-center gap-1", children: [
       /* @__PURE__ */ jsxRuntime.jsx("span", { className: chunkFTHFEMX6_cjs.cn("size-2 rounded-sm bg-current", TONES[i % TONES.length]), "aria-hidden": true }),
       " ",
@@ -570,8 +773,15 @@ function Heatmap({
   max,
   formatValue = (v) => String(v),
   cell = 28,
+  animate,
+  tooltip = true,
   className
 }) {
+  const motion = chunk3K2VEKQR_cjs.useChartMotion(animate);
+  const box = React__namespace.useRef(null);
+  const tipId = React__namespace.useId();
+  const [tip, setTip] = React__namespace.useState(null);
+  chunk3K2VEKQR_cjs.useTooltipDismiss(tip !== null, box, () => setTip(null));
   const top = max ?? Math.max(...values.flat(), 1);
   const headW = 96;
   const headH = 20;
@@ -586,7 +796,8 @@ function Heatmap({
   const onKey = (e, r, c) => {
     const d = { ArrowUp: [-1, 0], ArrowDown: [1, 0], ArrowLeft: [0, -1], ArrowRight: [0, 1] };
     const step = d[e.key];
-    if (step) {
+    if (e.key === "Escape") setTip(null);
+    else if (step) {
       e.preventDefault();
       move(r + step[0], c + step[1]);
     } else if (e.key === "Home") {
@@ -597,51 +808,75 @@ function Heatmap({
       move(r, columns.length - 1);
     }
   };
-  return /* @__PURE__ */ jsxRuntime.jsxs(
-    "svg",
-    {
-      role: "grid",
-      "aria-label": label,
-      "aria-rowcount": rows.length + 1,
-      "aria-colcount": columns.length,
-      width: headW + columns.length * cell,
-      height: headH + rows.length * cell,
-      className: chunkFTHFEMX6_cjs.cn("text-muted", className),
-      children: [
-        /* @__PURE__ */ jsxRuntime.jsx("g", { role: "row", "aria-rowindex": 1, children: columns.map((c, ci) => /* @__PURE__ */ jsxRuntime.jsx("text", { role: "columnheader", x: headW + ci * cell + cell / 2, y: headH - 6, textAnchor: "middle", fontSize: 10, fill: "currentColor", children: c }, c)) }),
-        rows.map((r, ri) => /* @__PURE__ */ jsxRuntime.jsxs("g", { role: "row", "aria-rowindex": ri + 2, transform: `translate(0 ${headH + ri * cell})`, children: [
-          /* @__PURE__ */ jsxRuntime.jsx("text", { role: "rowheader", x: headW - 8, y: cell / 2, dy: "0.33em", textAnchor: "end", fontSize: 11, fill: "currentColor", children: r }),
-          columns.map((c, ci) => {
-            const v = values[ri]?.[ci] ?? 0;
-            const text = `${r} ${c}: ${formatValue(v)}`;
-            return /* @__PURE__ */ jsxRuntime.jsxs(
-              "g",
-              {
-                ref: (el) => {
-                  if (el) refs.current.set(`${ri}:${ci}`, el);
-                  else refs.current.delete(`${ri}:${ci}`);
+  const tipValue = tip ? values[tip[0]]?.[tip[1]] ?? 0 : 0;
+  const ctx = tip ? { point: { label: `${rows[tip[0]]} \xB7 ${columns[tip[1]]}`, x: columns[tip[1]], value: tipValue, formatted: formatValue(tipValue) }, index: tip[0] * columns.length + tip[1], series: [{ id: `${tip[0]}:${tip[1]}`, name: String(rows[tip[0]]), value: tipValue, formatted: formatValue(tipValue), tone: "text-primary" }] } : null;
+  const tipOn = !!ctx && tooltip !== false;
+  return /* @__PURE__ */ jsxRuntime.jsxs("div", { ref: box, className: "relative inline-block max-w-full align-top", style: chunk3K2VEKQR_cjs.motionVars(motion), "data-animate": motion.enabled ? "on" : "off", children: [
+    /* @__PURE__ */ jsxRuntime.jsxs(
+      "svg",
+      {
+        role: "grid",
+        "aria-label": label,
+        "aria-rowcount": rows.length + 1,
+        "aria-colcount": columns.length,
+        width: headW + columns.length * cell,
+        height: headH + rows.length * cell,
+        className: chunkFTHFEMX6_cjs.cn("block text-muted", className),
+        children: [
+          /* @__PURE__ */ jsxRuntime.jsx("g", { role: "row", "aria-rowindex": 1, children: columns.map((c, ci) => /* @__PURE__ */ jsxRuntime.jsx("text", { role: "columnheader", x: headW + ci * cell + cell / 2, y: headH - 6, textAnchor: "middle", fontSize: 10, fill: "currentColor", children: c }, c)) }),
+          rows.map((r, ri) => /* @__PURE__ */ jsxRuntime.jsxs("g", { role: "row", "aria-rowindex": ri + 2, transform: `translate(0 ${headH + ri * cell})`, children: [
+            /* @__PURE__ */ jsxRuntime.jsx("text", { role: "rowheader", x: headW - 8, y: cell / 2, dy: "0.33em", textAnchor: "end", fontSize: 11, fill: "currentColor", children: r }),
+            columns.map((c, ci) => {
+              const v = values[ri]?.[ci] ?? 0;
+              const text = `${r} ${c}: ${formatValue(v)}`;
+              return /* @__PURE__ */ jsxRuntime.jsxs(
+                "g",
+                {
+                  ref: (el) => {
+                    if (el) refs.current.set(`${ri}:${ci}`, el);
+                    else refs.current.delete(`${ri}:${ci}`);
+                  },
+                  role: "gridcell",
+                  "aria-label": text,
+                  "aria-describedby": tipOn && tip[0] === ri && tip[1] === ci ? tipId : void 0,
+                  tabIndex: active[0] === ri && active[1] === ci ? 0 : -1,
+                  onKeyDown: (e) => onKey(e, ri, ci),
+                  onFocus: () => (setActive([ri, ci]), setTip([ri, ci])),
+                  onBlur: () => setTip(null),
+                  onPointerEnter: () => setTip([ri, ci]),
+                  onPointerDown: () => setTip([ri, ci]),
+                  onPointerLeave: (e) => e.pointerType !== "touch" && setTip(null),
+                  className: "text-primary outline-none [&:focus-visible>rect]:stroke-[var(--primary)] [&:focus-visible>rect]:stroke-2",
+                  children: [
+                    tooltip === false && /* @__PURE__ */ jsxRuntime.jsx("title", { children: text }),
+                    /* @__PURE__ */ jsxRuntime.jsx(
+                      "rect",
+                      {
+                        x: headW + ci * cell + 1,
+                        y: 1,
+                        width: cell - 2,
+                        height: cell - 2,
+                        rx: 2,
+                        fill: "currentColor",
+                        fillOpacity: 0.1 + 0.9 * Math.min(v / top, 1),
+                        className: chunkFTHFEMX6_cjs.cn(chunk3K2VEKQR_cjs.tweenClass(motion), chunk3K2VEKQR_cjs.entryAnim(motion, "fade", ri + ci).className, tip && !(tip[0] === ri && tip[1] === ci) && "opacity-60"),
+                        style: chunk3K2VEKQR_cjs.entryAnim(motion, "fade", ri + ci).style
+                      }
+                    )
+                  ]
                 },
-                role: "gridcell",
-                "aria-label": text,
-                tabIndex: active[0] === ri && active[1] === ci ? 0 : -1,
-                onKeyDown: (e) => onKey(e, ri, ci),
-                onFocus: () => setActive([ri, ci]),
-                className: "text-primary outline-none [&:focus-visible>rect]:stroke-[var(--primary)] [&:focus-visible>rect]:stroke-2",
-                children: [
-                  /* @__PURE__ */ jsxRuntime.jsx("title", { children: text }),
-                  /* @__PURE__ */ jsxRuntime.jsx("rect", { x: headW + ci * cell + 1, y: 1, width: cell - 2, height: cell - 2, rx: 2, fill: "currentColor", fillOpacity: 0.1 + 0.9 * Math.min(v / top, 1) })
-                ]
-              },
-              c
-            );
-          })
-        ] }, r))
-      ]
-    }
-  );
+                c
+              );
+            })
+          ] }, r))
+        ]
+      }
+    ),
+    tipOn && /* @__PURE__ */ jsxRuntime.jsx(chunk3K2VEKQR_cjs.ChartTooltipFor, { option: tooltip, ctx, x: headW + tip[1] * cell + cell / 2, y: headH + tip[0] * cell, id: tipId, container: box })
+  ] });
 }
-var lafDefaults2 = { charts: chartsEn };
-var useLaf2 = () => chunkE6JUACLJ_cjs.useLafDefaults(lafDefaults2);
+var lafDefaults3 = { charts: chartsEn };
+var useLaf2 = () => chunkE6JUACLJ_cjs.useLafDefaults(lafDefaults3);
 var UNIT_MS = { m: 6e4, h: 36e5, d: 864e5 };
 function presetToMs(preset) {
   const m = /^(\d+)([mhd])$/.exec(preset);
@@ -718,7 +953,7 @@ function PerfPanel({
   return /* @__PURE__ */ jsxRuntime.jsxs("section", { "aria-label": label, className: chunkFTHFEMX6_cjs.cn("grid gap-3", className), children: [
     /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex flex-wrap items-center gap-3", children: [
       /* @__PURE__ */ jsxRuntime.jsx(
-        chunk77S32ZEH_cjs.Combobox,
+        chunk3K2VEKQR_cjs.Combobox,
         {
           multiple: true,
           label: l.metrics,
@@ -729,7 +964,7 @@ function PerfPanel({
           className: "min-w-56"
         }
       ),
-      /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.TimeRangePicker, { value: preset, onChange: setPreset, presets, range: win, onRangeChange: zoomTo, showTimeZone: true }),
+      /* @__PURE__ */ jsxRuntime.jsx(chunk3K2VEKQR_cjs.TimeRangePicker, { value: preset, onChange: setPreset, presets, range: win, onRangeChange: zoomTo, showTimeZone: true }),
       /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { variant: "ghost", size: "sm", className: "ms-auto", onClick: doExport, disabled: !active.length, children: l.exportCsv })
     ] }),
     active.length || loading ? /* @__PURE__ */ jsxRuntime.jsx(TimeSeriesChart, { label, series: active, type, thresholds, height, loading, range: win, onRangeChange: zoomTo }) : /* @__PURE__ */ jsxRuntime.jsx("p", { className: "m-0 text-sm text-muted", children: l.noMetrics }),
@@ -751,125 +986,19 @@ function AreaChart({ stacked, ...props }) {
 function LineChart(props) {
   return /* @__PURE__ */ jsxRuntime.jsx(TimeSeriesChart, { ...props, type: "line" });
 }
-var lafDefaults3 = { dashboard: chunk77S32ZEH_cjs.dashboardEn };
-var useChartLaf = () => chunkE6JUACLJ_cjs.useLafDefaults(lafDefaults3);
-var CHART_TONES = ["text-label-9", "text-label-5", "text-label-3", "text-label-1", "text-label-7", "text-label-11", "text-label-2", "text-label-6"];
-var chartTone = (i) => CHART_TONES[i % CHART_TONES.length];
-function useChartWidth(fixed, initial = 480) {
-  const ref = React__namespace.useRef(null);
-  const [w, setW] = React__namespace.useState(initial);
-  React__namespace.useEffect(() => {
-    const el = ref.current;
-    if (fixed !== void 0 || !el || typeof ResizeObserver === "undefined") return;
-    const apply = () => el.clientWidth > 0 && setW(el.clientWidth);
-    apply();
-    const ro = new ResizeObserver(apply);
-    ro.observe(el);
-    return () => ro.disconnect();
-  }, [fixed]);
-  return [ref, fixed ?? w];
-}
-function useActiveIndex(count) {
-  const [active, setActive] = React__namespace.useState(null);
-  const [keyboard, setKeyboard] = React__namespace.useState(false);
-  const onKeyDown = (e) => {
-    if (!count) return;
-    const cur = active ?? -1;
-    const go = (i) => {
-      e.preventDefault();
-      setKeyboard(true);
-      setActive(Math.min(count - 1, Math.max(0, i)));
-    };
-    const next = e.key === "ArrowDown" || e.key === "ArrowRight";
-    const prev = e.key === "ArrowUp" || e.key === "ArrowLeft";
-    if (next) go(cur + 1);
-    else if (prev) go(cur < 0 ? count - 1 : cur - 1);
-    else if (e.key === "Home") go(0);
-    else if (e.key === "End") go(count - 1);
-    else if (e.key === "Escape") setActive(null);
-  };
-  return { active, setActive, keyboard, setKeyboard, onKeyDown, onBlur: () => (setActive(null), setKeyboard(false)) };
-}
-function ChartLegend({ items, hidden = [], onToggle, label, className }) {
-  const { t } = useChartLaf();
-  const c = t.components.dashboard.chart;
-  return /* @__PURE__ */ jsxRuntime.jsx("ul", { "aria-label": label ?? c.legend, className: chunkFTHFEMX6_cjs.cn("m-0 flex list-none flex-wrap items-center gap-x-4 gap-y-1 p-0 text-xs text-muted", className), children: items.map((it) => {
-    const off = hidden.includes(it.id);
-    const swatch = /* @__PURE__ */ jsxRuntime.jsx("svg", { width: "14", height: "8", "aria-hidden": true, className: chunkFTHFEMX6_cjs.cn(it.tone, off && "opacity-40"), children: it.dash ? /* @__PURE__ */ jsxRuntime.jsx("line", { x1: "0", x2: "14", y1: "4", y2: "4", stroke: "currentColor", strokeWidth: "2.5", strokeDasharray: it.dash }) : /* @__PURE__ */ jsxRuntime.jsx("rect", { width: "14", height: "8", rx: "2", fill: "currentColor" }) });
-    return /* @__PURE__ */ jsxRuntime.jsx("li", { children: onToggle ? /* @__PURE__ */ jsxRuntime.jsxs("button", { type: "button", "aria-pressed": !off, "aria-label": c.toggleSeries(it.name), onClick: () => onToggle(it.id), className: chunkFTHFEMX6_cjs.cn("inline-flex items-center gap-1.5 rounded-sm border-0 bg-transparent p-0.5 text-muted outline-none hover:text-fg focus-visible:ring-2 focus-visible:ring-primary/50", off && "line-through opacity-70"), children: [
-      swatch,
-      /* @__PURE__ */ jsxRuntime.jsx("span", { children: it.name }),
-      it.value !== void 0 && /* @__PURE__ */ jsxRuntime.jsx("b", { className: "font-mono text-fg", children: it.value })
-    ] }) : /* @__PURE__ */ jsxRuntime.jsxs("span", { className: "inline-flex items-center gap-1.5", children: [
-      swatch,
-      /* @__PURE__ */ jsxRuntime.jsx("span", { children: it.name }),
-      it.value !== void 0 && /* @__PURE__ */ jsxRuntime.jsx("b", { className: "font-mono text-fg", children: it.value })
-    ] }) }, it.id);
-  }) });
-}
-function ChartTooltip({ x, y, title, rows, className }) {
-  return /* @__PURE__ */ jsxRuntime.jsxs("div", { "aria-hidden": true, className: chunkFTHFEMX6_cjs.cn("pointer-events-none absolute z-10 min-w-28 -translate-x-1/2 rounded-sm border border-line-strong bg-menu px-2 py-1.5 text-xs text-fg shadow-(--shadow-card)", className), style: { left: x, top: y }, children: [
-    title && /* @__PURE__ */ jsxRuntime.jsx("div", { className: "mb-1 font-medium", children: title }),
-    rows.map((r) => /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex items-center justify-between gap-3", children: [
-      /* @__PURE__ */ jsxRuntime.jsxs("span", { className: "inline-flex items-center gap-1.5 text-muted", children: [
-        r.tone && /* @__PURE__ */ jsxRuntime.jsx("span", { className: chunkFTHFEMX6_cjs.cn("size-2 rounded-xs bg-current", r.tone) }),
-        r.name
-      ] }),
-      /* @__PURE__ */ jsxRuntime.jsx("b", { className: "font-mono", children: r.value })
-    ] }, r.name))
-  ] });
-}
-function ChartFrame({
-  label,
-  plot,
-  legend,
-  table,
-  announce,
-  loading,
-  empty,
-  error,
-  onRetry,
-  height,
-  plotRef,
-  className
-}) {
-  const { t } = useChartLaf();
-  const c = t.components.dashboard.chart;
-  const [showTable, setShowTable] = React__namespace.useState(false);
-  const id = React__namespace.useId();
-  const status = loading ? /* @__PURE__ */ jsxRuntime.jsx("div", { role: "status", "aria-label": c.loading, className: "size-full animate-pulse rounded-sm bg-muted-bg motion-reduce:animate-none" }) : error ? /* @__PURE__ */ jsxRuntime.jsxs("div", { role: "alert", className: "grid size-full place-content-center justify-items-center gap-2 text-sm text-danger", children: [
-    /* @__PURE__ */ jsxRuntime.jsx("span", { children: typeof error === "string" ? error : c.error }),
-    onRetry && /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { size: "sm", variant: "secondary", onClick: onRetry, children: c.retry })
-  ] }) : empty ? /* @__PURE__ */ jsxRuntime.jsx("div", { className: "grid size-full place-items-center text-sm text-muted", children: c.empty }) : null;
-  return /* @__PURE__ */ jsxRuntime.jsxs("figure", { "aria-label": label, "aria-busy": loading || void 0, className: chunkFTHFEMX6_cjs.cn("m-0 grid min-w-0 grid-cols-1 gap-2", className), children: [
-    /* @__PURE__ */ jsxRuntime.jsx("div", { ref: plotRef, dir: "ltr", className: "relative min-w-0", style: { height }, children: status ?? plot }),
-    !status && legend,
-    !status && table && /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
-      /* @__PURE__ */ jsxRuntime.jsxs("button", { type: "button", "aria-expanded": showTable, "aria-controls": `${id}-table`, onClick: () => setShowTable((v) => !v), className: "inline-flex items-center gap-1.5 justify-self-start border-0 bg-transparent p-0.5 text-xs text-muted outline-none hover:text-fg focus-visible:ring-2 focus-visible:ring-primary/50", children: [
-        showTable ? /* @__PURE__ */ jsxRuntime.jsx(lucideReact.BarChart3, { "aria-hidden": true, className: "size-3.5" }) : /* @__PURE__ */ jsxRuntime.jsx(lucideReact.TableProperties, { "aria-hidden": true, className: "size-3.5" }),
-        showTable ? c.hideData : c.showData
-      ] }),
-      /* @__PURE__ */ jsxRuntime.jsx("div", { id: `${id}-table`, hidden: !showTable, className: "max-h-60 overflow-auto", children: showTable && /* @__PURE__ */ jsxRuntime.jsxs("table", { className: "w-full border-collapse text-xs tabular-nums", children: [
-        /* @__PURE__ */ jsxRuntime.jsx("caption", { className: "sr-only", children: label }),
-        /* @__PURE__ */ jsxRuntime.jsx("thead", { children: /* @__PURE__ */ jsxRuntime.jsx("tr", { children: table.head.map((h) => /* @__PURE__ */ jsxRuntime.jsx("th", { scope: "col", className: "border-b border-line px-2 py-1 text-start font-medium text-muted", children: h }, h)) }) }),
-        /* @__PURE__ */ jsxRuntime.jsx("tbody", { children: table.rows.map((r, i) => /* @__PURE__ */ jsxRuntime.jsx("tr", { children: r.map(
-          (cell, j) => j === 0 ? /* @__PURE__ */ jsxRuntime.jsx("th", { scope: "row", className: "border-b border-line px-2 py-1 text-start font-normal", children: cell }, j) : /* @__PURE__ */ jsxRuntime.jsx("td", { className: "border-b border-line px-2 py-1 text-start", children: cell }, j)
-        ) }, i)) })
-      ] }) })
-    ] }),
-    /* @__PURE__ */ jsxRuntime.jsx("div", { className: "sr-only", role: "status", "aria-live": "polite", children: announce })
-  ] });
-}
 var M = { top: 8, right: 12, bottom: 24, left: 44 };
 var tick = { fill: "currentColor", fontSize: 10 };
-function BarChart({ categories, series, stacked, orientation = "vertical", formatValue = (v) => String(Math.round(v * 10) / 10), label, height = 240, width: widthProp, legend = true, loading, error, onRetry, className }) {
+function BarChart({ categories, series, stacked, orientation = "vertical", formatValue = (v) => String(Math.round(v * 10) / 10), label, height = 240, width: widthProp, legend = true, animate, tooltip = true, loading, error, onRetry, className }) {
   const { t } = useChartLaf();
   const c = t.components.dashboard.chart;
   const [wrap, width] = useChartWidth(widthProp);
   const [hidden, setHidden] = React__namespace.useState([]);
   const svgRef = React__namespace.useRef(null);
   const hintId = React__namespace.useId();
-  const nav = useActiveIndex(categories.length);
+  const nav = useActiveIndex(categories.length, wrap);
+  const motion = chunk3K2VEKQR_cjs.useChartMotion(animate);
+  const [emph, setEmph] = React__namespace.useState(null);
+  const tipId = React__namespace.useId();
   const horizontal = orientation === "horizontal";
   const margin = { ...M, left: horizontal ? 72 : M.left };
   const shown = series.filter((s) => !hidden.includes(s.id));
@@ -910,6 +1039,12 @@ function BarChart({ categories, series, stacked, orientation = "vertical", forma
   const rows = (i) => shown.map((s) => ({ name: s.name, value: formatValue(s.data[i] ?? 0), tone: tones(s) }));
   const cat = nav.active === null ? null : categories[nav.active];
   const announce = cat === null || cat === void 0 ? "" : `${cat}: ${rows(nav.active).map((r) => c.point(r.name, r.value)).join(", ")}`;
+  const ctx = nav.active === null || cat === null || cat === void 0 ? null : {
+    point: { label: cat, x: cat },
+    index: nav.active,
+    series: shown.map((s) => ({ id: s.id, name: s.name, value: s.data[nav.active] ?? 0, formatted: formatValue(s.data[nav.active] ?? 0), tone: tones(s) }))
+  };
+  const tipOn = !!ctx && tooltip !== false;
   const bandCenter = nav.active === null ? 0 : (band(categories[nav.active]) ?? 0) + band.bandwidth() / 2;
   const tipX = horizontal ? margin.left + innerW / 2 : margin.left + bandCenter;
   const tipY = horizontal ? margin.top + bandCenter + 8 : margin.top;
@@ -929,12 +1064,13 @@ function BarChart({ categories, series, stacked, orientation = "vertical", forma
       className,
       height,
       plotRef: wrap,
+      animate: motion.enabled,
       loading,
       error,
       onRetry,
       empty: !categories.length || !series.length,
       announce: nav.keyboard ? announce : "",
-      legend: legend && /* @__PURE__ */ jsxRuntime.jsx(ChartLegend, { items: legendItems, hidden, onToggle: (id) => setHidden((h) => h.includes(id) ? h.filter((x) => x !== id) : [...h, id]) }),
+      legend: legend && /* @__PURE__ */ jsxRuntime.jsx(ChartLegend, { items: legendItems, hidden, onHover: setEmph, onToggle: (id) => setHidden((h) => h.includes(id) ? h.filter((x) => x !== id) : [...h, id]) }),
       table: { head: [c.category, ...series.map((s) => s.name)], rows: categories.map((name, i) => [name, ...series.map((s) => formatValue(s.data[i] ?? 0))]) },
       plot: /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
         /* @__PURE__ */ jsxRuntime.jsx(
@@ -945,17 +1081,23 @@ function BarChart({ categories, series, stacked, orientation = "vertical", forma
             height,
             role: "img",
             "aria-label": label,
-            "aria-describedby": hintId,
+            "aria-describedby": tipOn ? `${hintId} ${tipId}` : hintId,
             tabIndex: 0,
+            style: chunk3K2VEKQR_cjs.motionVars(motion),
             className: "text-muted outline-none select-none focus-visible:outline-2 focus-visible:outline-primary",
             onKeyDown: nav.onKeyDown,
             onBlur: nav.onBlur,
+            onPointerDown: onPointerMove,
             onPointerMove,
-            onPointerLeave: () => !nav.keyboard && nav.setActive(null),
+            onPointerLeave: (e) => e.pointerType !== "touch" && !nav.keyboard && nav.setActive(null),
             children: /* @__PURE__ */ jsxRuntime.jsxs(group.Group, { left: margin.left, top: margin.top, children: [
               val.ticks(4).map((tv) => /* @__PURE__ */ jsxRuntime.jsx("line", { x1: horizontal ? val(tv) : 0, x2: horizontal ? val(tv) : innerW, y1: horizontal ? 0 : val(tv), y2: horizontal ? innerH : val(tv), stroke: "var(--border)" }, tv)),
               nav.active !== null && /* @__PURE__ */ jsxRuntime.jsx("rect", { "data-active": categories[nav.active], x: horizontal ? 0 : band(categories[nav.active]) - 2, y: horizontal ? band(categories[nav.active]) - 2 : 0, width: horizontal ? innerW : band.bandwidth() + 4, height: horizontal ? band.bandwidth() + 4 : innerH, fill: "var(--bg-muted)", opacity: 0.6 }),
-              rects.map((r) => /* @__PURE__ */ jsxRuntime.jsx("rect", { x: r.x, y: r.y, width: Math.max(r.w, 0), height: Math.max(r.h, 0), rx: 1, fill: "currentColor", className: chunkFTHFEMX6_cjs.cn(tones(r.s), "motion-safe:transition-[height,width,y,x] motion-safe:duration-300") }, r.key)),
+              rects.map((r) => {
+                const enter = chunk3K2VEKQR_cjs.entryAnim(motion, horizontal ? "grow-x" : "grow-y", r.ci);
+                const dim = nav.active !== null && nav.active !== r.ci || emph !== null && emph !== r.s.id;
+                return /* @__PURE__ */ jsxRuntime.jsx("rect", { "data-bar": r.key, x: r.x, y: r.y, width: Math.max(r.w, 0), height: Math.max(r.h, 0), rx: 1, fill: "currentColor", className: chunkFTHFEMX6_cjs.cn(tones(r.s), chunk3K2VEKQR_cjs.tweenClass(motion), enter.className, dim && "opacity-40"), style: enter.style }, r.key);
+              }),
               horizontal ? /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
                 /* @__PURE__ */ jsxRuntime.jsx(axis.AxisLeft, { scale: band, stroke: "var(--border-strong)", tickStroke: "var(--border-strong)", tickLabelProps: { ...tick, textAnchor: "end", dy: "0.33em" } }),
                 /* @__PURE__ */ jsxRuntime.jsx(axis.AxisBottom, { top: innerH, scale: val, numTicks: 4, tickFormat: (v) => formatValue(v), stroke: "var(--border-strong)", tickStroke: "var(--border-strong)", tickLabelProps: { ...tick, textAnchor: "middle" } })
@@ -966,24 +1108,37 @@ function BarChart({ categories, series, stacked, orientation = "vertical", forma
             ] })
           }
         ),
-        nav.active !== null && /* @__PURE__ */ jsxRuntime.jsx(ChartTooltip, { x: tipX, y: tipY, title: categories[nav.active], rows: rows(nav.active) }),
+        tipOn && /* @__PURE__ */ jsxRuntime.jsx(chunk3K2VEKQR_cjs.ChartTooltipFor, { option: tooltip, ctx, x: tipX, y: tipY, id: tipId, container: wrap }),
         /* @__PURE__ */ jsxRuntime.jsx("span", { id: hintId, className: "sr-only", children: c.keyboardHint })
       ] })
     }
   );
 }
-function DonutChart({ data, centerLabel, centerValue, formatValue = (v) => String(Math.round(v * 10) / 10), label, size = 200, thickness = 28, legend = true, loading, error, onRetry, className }) {
+function DonutChart({ data, centerLabel, centerValue, formatValue = (v) => String(Math.round(v * 10) / 10), label, size = 200, thickness = 28, legend = true, animate, tooltip = true, loading, error, onRetry, className }) {
   const { t, format } = useChartLaf();
   const c = t.components.dashboard.chart;
   const [hidden, setHidden] = React__namespace.useState([]);
   const shown = data.filter((d) => !hidden.includes(d.id) && d.value > 0);
   const total = shown.reduce((a, d) => a + d.value, 0);
-  const nav = useActiveIndex(shown.length);
+  const box = React__namespace.useRef(null);
+  const nav = useActiveIndex(shown.length, box);
+  const motion = chunk3K2VEKQR_cjs.useChartMotion(animate);
+  const tweened = chunk3K2VEKQR_cjs.useTweenedNumbers(shown.map((d) => d.value), motion);
+  const drawn = shown.map((d, i) => ({ ...d, value: tweened[i] ?? d.value }));
   const hintId = React__namespace.useId();
+  const tipId = React__namespace.useId();
+  const maskId = `${React__namespace.useId().replace(/:/g, "")}-sweep`;
   const r = size / 2;
   const line = (d) => `${d.name}: ${formatValue(d.value)} (${format.percent(total ? d.value / total : 0, { fractionDigits: 1 })})`;
   const active = nav.active === null ? null : shown[nav.active];
-  const toneOf = (d) => chartTone(data.indexOf(d));
+  const toneOf = (d) => chartTone(data.findIndex((x) => x.id === d.id));
+  const share = (d) => format.percent(total ? d.value / total : 0, { fractionDigits: 1 });
+  const ctx = active ? { point: { label: active.name, x: active.id, value: active.value, formatted: formatValue(active.value) }, index: nav.active, series: [{ id: active.id, name: c.value, value: active.value, formatted: `${formatValue(active.value)} (${share(active)})`, tone: toneOf(active) }] } : null;
+  const tipOn = !!ctx && tooltip !== false;
+  let before = 0;
+  for (let i = 0; i < (nav.active ?? 0); i++) before += shown[i].value;
+  const mid = active && total ? (before + active.value / 2) / total * 2 * Math.PI : 0;
+  const rm = r - thickness / 2;
   const legendItems = data.map((d, i) => ({ id: d.id, name: d.name, tone: chartTone(i), value: formatValue(d.value) }));
   return /* @__PURE__ */ jsxRuntime.jsx(
     ChartFrame,
@@ -991,6 +1146,7 @@ function DonutChart({ data, centerLabel, centerValue, formatValue = (v) => Strin
       label,
       className,
       height: size,
+      animate: motion.enabled,
       loading,
       error,
       onRetry,
@@ -998,37 +1154,41 @@ function DonutChart({ data, centerLabel, centerValue, formatValue = (v) => Strin
       announce: nav.keyboard && active ? line(active) : "",
       legend: legend && /* @__PURE__ */ jsxRuntime.jsx(ChartLegend, { items: legendItems, hidden, onToggle: (id) => setHidden((h) => h.includes(id) ? h.filter((x) => x !== id) : [...h, id]) }),
       table: { head: [c.category, c.value, c.share], rows: data.map((d) => [d.name, formatValue(d.value), format.percent(total ? d.value / total : 0, { fractionDigits: 1 })]) },
-      plot: /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "relative mx-auto", style: { width: size, height: size }, children: [
-        /* @__PURE__ */ jsxRuntime.jsx(
+      plot: /* @__PURE__ */ jsxRuntime.jsxs("div", { ref: box, className: "relative mx-auto", style: { width: size, height: size, ...chunk3K2VEKQR_cjs.motionVars(motion) }, children: [
+        /* @__PURE__ */ jsxRuntime.jsxs(
           "svg",
           {
             width: size,
             height: size,
             role: "img",
             "aria-label": label,
-            "aria-describedby": hintId,
+            "aria-describedby": tipOn ? `${hintId} ${tipId}` : hintId,
             tabIndex: 0,
             className: "text-muted outline-none focus-visible:outline-2 focus-visible:outline-primary",
             onKeyDown: nav.onKeyDown,
             onBlur: nav.onBlur,
-            onPointerLeave: () => !nav.keyboard && nav.setActive(null),
-            children: /* @__PURE__ */ jsxRuntime.jsx("g", { transform: `translate(${r} ${r})`, children: /* @__PURE__ */ jsxRuntime.jsx(shape.Pie, { data: shown, pieValue: (d) => d.value, outerRadius: r - 2, innerRadius: r - thickness, padAngle: shown.length > 1 ? 0.02 : 0, pieSort: null, children: (pie) => pie.arcs.map((arc, i) => /* @__PURE__ */ jsxRuntime.jsx(
-              "path",
-              {
-                d: pie.path(arc) ?? void 0,
-                fill: "currentColor",
-                className: chunkFTHFEMX6_cjs.cn(toneOf(arc.data), "motion-safe:transition-opacity motion-safe:duration-200", nav.active !== null && nav.active !== i && "opacity-50"),
-                onPointerEnter: () => (nav.setKeyboard(false), nav.setActive(i))
-              },
-              arc.data.id
-            )) }) })
+            onPointerLeave: (e) => e.pointerType !== "touch" && !nav.keyboard && nav.setActive(null),
+            children: [
+              motion.enabled && /* @__PURE__ */ jsxRuntime.jsx("defs", { children: /* @__PURE__ */ jsxRuntime.jsx("mask", { id: maskId, children: /* @__PURE__ */ jsxRuntime.jsx("circle", { r: r / 2, cx: r, cy: r, fill: "none", stroke: "white", strokeWidth: r + 4, pathLength: 100, strokeDasharray: "100 100", transform: `rotate(-90 ${r} ${r})`, ...chunk3K2VEKQR_cjs.entryAnim(motion, "sweep") }) }) }),
+              /* @__PURE__ */ jsxRuntime.jsx("g", { transform: `translate(${r} ${r})`, mask: motion.enabled ? `url(#${maskId})` : void 0, children: /* @__PURE__ */ jsxRuntime.jsx(shape.Pie, { data: drawn, pieValue: (d) => d.value, outerRadius: r - 2, innerRadius: r - thickness, padAngle: shown.length > 1 ? 0.02 : 0, pieSort: null, children: (pie) => pie.arcs.map((arc, i) => /* @__PURE__ */ jsxRuntime.jsx(
+                "path",
+                {
+                  d: pie.path(arc) ?? void 0,
+                  fill: "currentColor",
+                  className: chunkFTHFEMX6_cjs.cn(toneOf(arc.data), chunk3K2VEKQR_cjs.tweenClass(motion), nav.active !== null && nav.active !== i && "opacity-40"),
+                  onPointerEnter: () => (nav.setKeyboard(false), nav.setActive(i)),
+                  onPointerDown: () => (nav.setKeyboard(false), nav.setActive(i))
+                },
+                arc.data.id
+              )) }) })
+            ]
           }
         ),
         /* @__PURE__ */ jsxRuntime.jsxs("div", { "aria-hidden": true, className: "pointer-events-none absolute inset-0 grid place-content-center text-center leading-tight", children: [
           /* @__PURE__ */ jsxRuntime.jsx("span", { className: "text-xl font-semibold tabular-nums", children: active ? formatValue(active.value) : centerValue ?? formatValue(total) }),
           /* @__PURE__ */ jsxRuntime.jsx("span", { className: "max-w-24 truncate text-xs text-muted", children: active ? active.name : centerLabel ?? c.total })
         ] }),
-        active && /* @__PURE__ */ jsxRuntime.jsx(ChartTooltip, { x: r, y: -4, title: active.name, rows: [{ name: c.value, value: formatValue(active.value), tone: toneOf(active) }, { name: c.share, value: format.percent(total ? active.value / total : 0, { fractionDigits: 1 }) }], className: "-translate-y-full" }),
+        tipOn && /* @__PURE__ */ jsxRuntime.jsx(chunk3K2VEKQR_cjs.ChartTooltipFor, { option: tooltip, ctx, x: r + Math.sin(mid) * rm, y: r - Math.cos(mid) * rm, id: tipId, container: box }),
         /* @__PURE__ */ jsxRuntime.jsx("span", { id: hintId, className: "sr-only", children: c.keyboardHint })
       ] })
     }
@@ -1066,35 +1226,84 @@ function ChartCard({
     /* @__PURE__ */ jsxRuntime.jsx("span", { children: typeof error === "string" ? error : c.error }),
     onRetry && /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { size: "sm", variant: "secondary", onClick: onRetry, children: c.retry })
   ] }) : empty ? /* @__PURE__ */ jsxRuntime.jsx("div", { className: "grid h-48 place-items-center text-sm text-muted", children: c.empty }) : null;
-  return /* @__PURE__ */ jsxRuntime.jsxs(chunk77S32ZEH_cjs.Card, { variant: "default", ...rest, className: chunkFTHFEMX6_cjs.cn("gap-3", className), "aria-busy": loading || void 0, children: [
-    /* @__PURE__ */ jsxRuntime.jsxs(chunk77S32ZEH_cjs.CardHeader, { className: "flex-wrap", children: [
+  return /* @__PURE__ */ jsxRuntime.jsxs(chunk3K2VEKQR_cjs.Card, { variant: "default", ...rest, className: chunkFTHFEMX6_cjs.cn("gap-3", className), "aria-busy": loading || void 0, children: [
+    /* @__PURE__ */ jsxRuntime.jsxs(chunk3K2VEKQR_cjs.CardHeader, { className: "flex-wrap", children: [
       /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "min-w-0", children: [
-        /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.CardTitle, { as: `h${headingLevel}`, children: title }),
-        description && /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.CardDescription, { className: "mt-0.5", children: description })
+        /* @__PURE__ */ jsxRuntime.jsx(chunk3K2VEKQR_cjs.CardTitle, { as: `h${headingLevel}`, children: title }),
+        description && /* @__PURE__ */ jsxRuntime.jsx(chunk3K2VEKQR_cjs.CardDescription, { className: "mt-0.5", children: description })
       ] }),
-      /* @__PURE__ */ jsxRuntime.jsxs(chunk77S32ZEH_cjs.CardActions, { className: "flex-wrap", children: [
+      /* @__PURE__ */ jsxRuntime.jsxs(chunk3K2VEKQR_cjs.CardActions, { className: "flex-wrap", children: [
         actions,
-        ranges && ranges.length > 0 && /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.SegmentedControl, { "aria-label": c.range, items: ranges.map((r) => ({ value: r.value, label: r.label })), value: range, onValueChange: setRange, className: "h-7" }),
+        ranges && ranges.length > 0 && /* @__PURE__ */ jsxRuntime.jsx(chunk3K2VEKQR_cjs.SegmentedControl, { "aria-label": c.range, items: ranges.map((r) => ({ value: r.value, label: r.label })), value: range, onValueChange: setRange, className: "h-7" }),
         legendToggle && /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { size: "sm", variant: "ghost", "aria-pressed": legend, "aria-label": legend ? c.hideLegend : c.showLegend, onClick: () => setLegend(!legend), className: "px-0 w-7", children: legend ? /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Eye, { "aria-hidden": true }) : /* @__PURE__ */ jsxRuntime.jsx(lucideReact.EyeOff, { "aria-hidden": true }) }),
         onRefresh && /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { size: "sm", variant: "ghost", "aria-label": c.refresh, disabled: refreshing, onClick: onRefresh, className: "px-0 w-7", children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.RefreshCw, { "aria-hidden": true, className: chunkFTHFEMX6_cjs.cn(refreshing && "animate-spin motion-reduce:animate-none") }) }),
         onExport && /* @__PURE__ */ jsxRuntime.jsx(chunkIP6HZMS5_cjs.Button, { size: "sm", variant: "ghost", "aria-label": c.export, onClick: onExport, className: "px-0 w-7", children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Download, { "aria-hidden": true }) })
       ] })
     ] }),
-    /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.CardBody, { children: state ?? (typeof children === "function" ? children({ range, legend }) : children) }),
+    /* @__PURE__ */ jsxRuntime.jsx(chunk3K2VEKQR_cjs.CardBody, { children: state ?? (typeof children === "function" ? children({ range, legend }) : children) }),
     footer && /* @__PURE__ */ jsxRuntime.jsx("div", { className: "text-xs text-muted", children: footer })
   ] });
 }
-function SegmentedBar({ segments, label, formatValue = (v) => String(v), legend = true, height = 16, className }) {
-  const { t } = useChartLaf();
+function SegmentedBar({ segments, label, formatValue = (v) => String(v), legend = true, height = 16, animate, tooltip = true, className }) {
+  const { t, format } = useChartLaf();
   const u = t.components.dashboard.utilization;
+  const c = t.components.dashboard.chart;
+  const motion = chunk3K2VEKQR_cjs.useChartMotion(animate);
+  const box = React__namespace.useRef(null);
+  const hintId = React__namespace.useId();
+  const tipId = React__namespace.useId();
   const total = segments.reduce((a, s) => a + Math.max(0, s.value), 0);
   const toneOf = (s, i) => s.tone ?? chartTone(i);
+  const visible = segments.map((s, i) => ({ s, i })).filter(({ s }) => s.value > 0);
+  const nav = useActiveIndex(visible.length, box);
+  const cur = nav.active === null ? null : visible[nav.active];
+  const share = (v) => format.percent(total ? v / total : 0, { fractionDigits: 1 });
+  const ctx = cur ? { point: { label: cur.s.name, x: cur.s.id, value: cur.s.value, formatted: formatValue(cur.s.value) }, index: nav.active, series: [{ id: cur.s.id, name: c.value, value: cur.s.value, formatted: `${formatValue(cur.s.value)} (${share(cur.s.value)})`, tone: toneOf(cur.s, cur.i) }] } : null;
+  const tipOn = !!ctx && tooltip !== false;
+  const [anchorX, setAnchorX] = React__namespace.useState(0);
+  React__namespace.useLayoutEffect(() => {
+    const el = cur && Array.from(box.current?.querySelectorAll("[data-segment]") ?? []).find((e) => e.dataset.segment === cur.s.id);
+    if (el) setAnchorX(el.offsetLeft + el.offsetWidth / 2);
+  }, [cur]);
   const summary = u.barSummary(label, formatValue(total), segments.map((s) => u.percentLine(s.name, formatValue(s.value))).join(", "));
   const items = segments.map((s, i) => ({ id: s.id, name: s.name, tone: toneOf(s, i) }));
-  return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: chunkFTHFEMX6_cjs.cn("grid min-w-0 gap-2", className), children: [
-    /* @__PURE__ */ jsxRuntime.jsx("div", { role: "img", "aria-label": summary, className: "flex w-full overflow-hidden rounded-sm bg-muted-bg", style: { height }, children: segments.map(
-      (s, i) => s.value > 0 ? /* @__PURE__ */ jsxRuntime.jsx("div", { "aria-hidden": true, title: void 0, "data-segment": s.id, className: chunkFTHFEMX6_cjs.cn("h-full bg-current motion-safe:transition-[flex-grow] motion-safe:duration-300", toneOf(s, i)), style: { flexGrow: s.value, flexBasis: 0 } }, s.id) : null
-    ) }),
+  return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: chunkFTHFEMX6_cjs.cn("grid min-w-0 gap-2", className), "data-animate": motion.enabled ? "on" : "off", style: chunk3K2VEKQR_cjs.motionVars(motion), children: [
+    /* @__PURE__ */ jsxRuntime.jsxs("div", { ref: box, className: "relative", children: [
+      /* @__PURE__ */ jsxRuntime.jsx(
+        "div",
+        {
+          role: "img",
+          "aria-label": summary,
+          "aria-describedby": tipOn ? `${hintId} ${tipId}` : hintId,
+          tabIndex: 0,
+          className: "flex w-full overflow-hidden rounded-sm bg-muted-bg outline-none focus-visible:outline-2 focus-visible:outline-primary",
+          style: { height },
+          onKeyDown: nav.onKeyDown,
+          onBlur: nav.onBlur,
+          onPointerLeave: (e) => e.pointerType !== "touch" && !nav.keyboard && nav.setActive(null),
+          children: segments.map((s, i) => {
+            if (s.value <= 0) return null;
+            const k = visible.findIndex((v) => v.s === s);
+            const enter = chunk3K2VEKQR_cjs.entryAnim(motion, "grow-x", k);
+            return /* @__PURE__ */ jsxRuntime.jsx(
+              "div",
+              {
+                "aria-hidden": true,
+                "data-segment": s.id,
+                className: chunkFTHFEMX6_cjs.cn("h-full bg-current", toneOf(s, i), chunk3K2VEKQR_cjs.tweenClass(motion), enter.className, nav.active !== null && nav.active !== k && "opacity-40"),
+                style: { flexGrow: s.value, flexBasis: 0, ...enter.style },
+                onPointerEnter: () => (nav.setKeyboard(false), nav.setActive(k)),
+                onPointerDown: () => (nav.setKeyboard(false), nav.setActive(k))
+              },
+              s.id
+            );
+          })
+        }
+      ),
+      tipOn && /* @__PURE__ */ jsxRuntime.jsx(chunk3K2VEKQR_cjs.ChartTooltipFor, { option: tooltip, ctx, x: anchorX, y: 0, id: tipId, container: box }),
+      /* @__PURE__ */ jsxRuntime.jsx("span", { id: hintId, className: "sr-only", children: c.keyboardHint }),
+      /* @__PURE__ */ jsxRuntime.jsx("span", { className: "sr-only", role: "status", "aria-live": "polite", children: nav.keyboard && cur ? `${cur.s.name}: ${formatValue(cur.s.value)} (${share(cur.s.value)})` : "" })
+    ] }),
     legend && /* @__PURE__ */ jsxRuntime.jsx(ChartLegend, { items, label: u.segments })
   ] });
 }
@@ -1102,34 +1311,67 @@ function thresholdTone(pct, warnAt, dangerAt) {
   return pct >= dangerAt ? "danger" : pct >= warnAt ? "warn" : "ok";
 }
 var toneClass = { ok: "text-primary", warn: "text-warn", danger: "text-danger" };
-function ThresholdDonut({ value, max = 100, warnAt = 60, dangerAt = 90, subtext, label, size = 160, legend = true, className }) {
+function ThresholdDonut({ value, max = 100, warnAt = 60, dangerAt = 90, subtext, label, size = 160, legend = true, animate, tooltip = true, className }) {
   const { t, format } = useChartLaf();
   const u = t.components.dashboard.utilization;
   const pct = max > 0 ? Math.min(100, Math.max(0, value / max * 100)) : 0;
   const tone = thresholdTone(pct, warnAt, dangerAt);
   const pctText = format.percent(pct / 100, { fractionDigits: 0 });
   const summary = `${u.donutSummary(label, pctText, typeof subtext === "string" ? subtext : "", format.percent(warnAt / 100, { fractionDigits: 0 }), format.percent(dangerAt / 100, { fractionDigits: 0 }))} ${u.status[tone]}.`.replace(/\s+\./g, ".");
+  const motion = chunk3K2VEKQR_cjs.useChartMotion(animate);
+  const box = React__namespace.useRef(null);
+  const [open, setOpen] = React__namespace.useState(false);
+  chunk3K2VEKQR_cjs.useTooltipDismiss(open, box, () => setOpen(false));
+  const tipId = React__namespace.useId();
   const c = size / 2;
   const outerW = Math.max(4, size / 20);
   const innerW = Math.max(8, size / 10);
   const rOuter = c - outerW / 2;
   const rInner = rOuter - outerW / 2 - 4 - innerW / 2;
-  const arc = (r, w, from, to, cls, extra) => /* @__PURE__ */ jsxRuntime.jsx("circle", { cx: c, cy: c, r, fill: "none", stroke: "currentColor", strokeWidth: w, pathLength: 100, strokeDasharray: `${Math.max(0, to - from)} ${100 - Math.max(0, to - from)}`, strokeDashoffset: -from, transform: `rotate(-90 ${c} ${c})`, className: chunkFTHFEMX6_cjs.cn(cls, extra) });
+  const arc = (r, w, from, to, cls, anim) => /* @__PURE__ */ jsxRuntime.jsx("circle", { cx: c, cy: c, r, fill: "none", stroke: "currentColor", strokeWidth: w, pathLength: 100, strokeDasharray: `${Math.max(0, to - from)} ${100 - Math.max(0, to - from)}`, strokeDashoffset: -from, transform: `rotate(-90 ${c} ${c})`, className: chunkFTHFEMX6_cjs.cn(cls, anim?.className), style: anim?.style });
   const pctOf = (n) => format.percent(n / 100, { fractionDigits: 0 });
+  const ctx = {
+    point: { label, value: pct, formatted: pctText },
+    index: 0,
+    series: [
+      { id: "usage", name: u.capacity, value: pct, formatted: pctText, tone: toneClass[tone] },
+      { id: "warn", name: u.warning, value: warnAt, formatted: pctOf(warnAt), tone: "text-warn" },
+      { id: "danger", name: u.danger, value: dangerAt, formatted: pctOf(dangerAt), tone: "text-danger" }
+    ]
+  };
+  const tipOn = open && tooltip !== false;
   const items = [
     { id: "warn", name: u.warning, tone: "text-warn opacity-50", value: pctOf(warnAt) },
     { id: "danger", name: u.danger, tone: "text-danger opacity-50", value: pctOf(dangerAt) },
     { id: "usage", name: u.capacity, tone: toneClass[tone], value: pctText }
   ];
   return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: chunkFTHFEMX6_cjs.cn("flex flex-wrap items-center gap-4", className), children: [
-    /* @__PURE__ */ jsxRuntime.jsxs("div", { dir: "ltr", className: "relative shrink-0", style: { width: size, height: size }, children: [
-      /* @__PURE__ */ jsxRuntime.jsxs("svg", { width: size, height: size, role: "img", "aria-label": summary, className: "block", children: [
-        arc(rOuter, outerW, 0, 100, "text-line"),
-        arc(rOuter, outerW, warnAt, dangerAt, "text-warn opacity-50"),
-        arc(rOuter, outerW, dangerAt, 100, "text-danger opacity-50"),
-        arc(rInner, innerW, 0, 100, "text-muted-bg"),
-        arc(rInner, innerW, 0, pct, toneClass[tone], "motion-safe:transition-[stroke-dasharray] motion-safe:duration-500")
-      ] }),
+    /* @__PURE__ */ jsxRuntime.jsxs("div", { ref: box, dir: "ltr", "data-animate": motion.enabled ? "on" : "off", className: "relative shrink-0", style: { width: size, height: size, ...chunk3K2VEKQR_cjs.motionVars(motion) }, children: [
+      /* @__PURE__ */ jsxRuntime.jsxs(
+        "svg",
+        {
+          width: size,
+          height: size,
+          role: "img",
+          "aria-label": summary,
+          "aria-describedby": tipOn ? tipId : void 0,
+          tabIndex: tooltip === false ? void 0 : 0,
+          className: "block outline-none focus-visible:outline-2 focus-visible:outline-primary",
+          onPointerEnter: () => setOpen(true),
+          onPointerDown: () => setOpen(true),
+          onPointerLeave: (e) => e.pointerType !== "touch" && setOpen(false),
+          onFocus: () => setOpen(true),
+          onBlur: () => setOpen(false),
+          children: [
+            arc(rOuter, outerW, 0, 100, "text-line"),
+            arc(rOuter, outerW, warnAt, dangerAt, "text-warn opacity-50", chunk3K2VEKQR_cjs.entryAnim(motion, "fade", 1)),
+            arc(rOuter, outerW, dangerAt, 100, "text-danger opacity-50", chunk3K2VEKQR_cjs.entryAnim(motion, "fade", 2)),
+            arc(rInner, innerW, 0, 100, "text-muted-bg"),
+            arc(rInner, innerW, 0, pct, toneClass[tone], { ...chunk3K2VEKQR_cjs.entryAnim(motion, "sweep"), className: chunkFTHFEMX6_cjs.cn(chunk3K2VEKQR_cjs.tweenClass(motion), chunk3K2VEKQR_cjs.entryAnim(motion, "sweep").className) })
+          ]
+        }
+      ),
+      tipOn && /* @__PURE__ */ jsxRuntime.jsx(chunk3K2VEKQR_cjs.ChartTooltipFor, { option: tooltip, ctx, x: c, y: 0, id: tipId, container: box }),
       /* @__PURE__ */ jsxRuntime.jsxs("div", { "aria-hidden": true, className: "absolute inset-0 grid place-content-center text-center", children: [
         /* @__PURE__ */ jsxRuntime.jsx("span", { className: "text-2xl leading-tight text-fg tabular-nums", children: pctText }),
         subtext && /* @__PURE__ */ jsxRuntime.jsx("span", { className: "text-xs text-muted", children: subtext })
@@ -1153,31 +1395,50 @@ function DetailsLink({ href, onClick, children }) {
 function UtilizationCard(props) {
   const { t } = useChartLaf();
   const u = t.components.dashboard.utilization;
-  const { title, filter, detailsHref, onDetails, headingLevel = 3, className } = props;
+  const { title, filter, detailsHref, onDetails, headingLevel = 3, animate, tooltip, className } = props;
   const label = props.chartLabel ?? (typeof title === "string" ? title : u.segments);
-  return /* @__PURE__ */ jsxRuntime.jsxs(chunk77S32ZEH_cjs.Card, { className, children: [
-    /* @__PURE__ */ jsxRuntime.jsxs(chunk77S32ZEH_cjs.CardHeader, { children: [
-      /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.CardTitle, { as: `h${headingLevel}`, className: "flex-1", children: title }),
-      filter && /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.CardActions, { children: filter })
+  return /* @__PURE__ */ jsxRuntime.jsxs(chunk3K2VEKQR_cjs.Card, { className, children: [
+    /* @__PURE__ */ jsxRuntime.jsxs(chunk3K2VEKQR_cjs.CardHeader, { children: [
+      /* @__PURE__ */ jsxRuntime.jsx(chunk3K2VEKQR_cjs.CardTitle, { as: `h${headingLevel}`, className: "flex-1", children: title }),
+      filter && /* @__PURE__ */ jsxRuntime.jsx(chunk3K2VEKQR_cjs.CardActions, { children: filter })
     ] }),
-    /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.CardBody, { className: "grid gap-2", children: props.variant === "donut" ? /* @__PURE__ */ jsxRuntime.jsx(ThresholdDonut, { value: props.value, max: props.max, warnAt: props.warnAt, dangerAt: props.dangerAt, subtext: props.subtext, label }) : /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
+    /* @__PURE__ */ jsxRuntime.jsx(chunk3K2VEKQR_cjs.CardBody, { className: "grid gap-2", children: props.variant === "donut" ? /* @__PURE__ */ jsxRuntime.jsx(ThresholdDonut, { value: props.value, max: props.max, warnAt: props.warnAt, dangerAt: props.dangerAt, subtext: props.subtext, label, animate, tooltip }) : /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
       props.subtitle && /* @__PURE__ */ jsxRuntime.jsx("div", { className: "text-fg", children: props.subtitle }),
       props.alertText && /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex items-center gap-2 text-sm", children: [
         /* @__PURE__ */ jsxRuntime.jsx(lucideReact.AlertCircle, { "aria-hidden": true, className: "size-4 shrink-0 text-danger" }),
         props.alertHref || props.onAlertClick ? /* @__PURE__ */ jsxRuntime.jsx(DetailsLink, { href: props.alertHref, onClick: props.onAlertClick, children: props.alertText }) : /* @__PURE__ */ jsxRuntime.jsx("span", { children: props.alertText })
       ] }),
-      /* @__PURE__ */ jsxRuntime.jsx(SegmentedBar, { segments: props.segments, label, formatValue: props.formatValue })
+      /* @__PURE__ */ jsxRuntime.jsx(SegmentedBar, { segments: props.segments, label, formatValue: props.formatValue, animate, tooltip })
     ] }) }),
-    (detailsHref || onDetails) && /* @__PURE__ */ jsxRuntime.jsx(chunk77S32ZEH_cjs.CardFooter, { children: /* @__PURE__ */ jsxRuntime.jsx(DetailsLink, { href: detailsHref, onClick: onDetails, children: u.seeDetails }) })
+    (detailsHref || onDetails) && /* @__PURE__ */ jsxRuntime.jsx(chunk3K2VEKQR_cjs.CardFooter, { children: /* @__PURE__ */ jsxRuntime.jsx(DetailsLink, { href: detailsHref, onClick: onDetails, children: u.seeDetails }) })
   ] });
 }
 
+Object.defineProperty(exports, "ChartTooltip", {
+  enumerable: true,
+  get: function () { return chunk3K2VEKQR_cjs.ChartTooltip; }
+});
+Object.defineProperty(exports, "ChartTooltipFor", {
+  enumerable: true,
+  get: function () { return chunk3K2VEKQR_cjs.ChartTooltipFor; }
+});
+Object.defineProperty(exports, "useChartMotion", {
+  enumerable: true,
+  get: function () { return chunk3K2VEKQR_cjs.useChartMotion; }
+});
+Object.defineProperty(exports, "usePrefersReducedMotion", {
+  enumerable: true,
+  get: function () { return chunk3K2VEKQR_cjs.usePrefersReducedMotion; }
+});
+Object.defineProperty(exports, "useTooltipDismiss", {
+  enumerable: true,
+  get: function () { return chunk3K2VEKQR_cjs.useTooltipDismiss; }
+});
 exports.AreaChart = AreaChart;
 exports.BarChart = BarChart;
 exports.CHART_TONES = CHART_TONES;
 exports.ChartCard = ChartCard;
 exports.ChartLegend = ChartLegend;
-exports.ChartTooltip = ChartTooltip;
 exports.DonutChart = DonutChart;
 exports.Heatmap = Heatmap;
 exports.LineChart = LineChart;

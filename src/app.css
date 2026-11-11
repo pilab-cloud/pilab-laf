@@ -726,3 +726,84 @@
     transform: translateY(0) scale(1);
   }
 }
+
+/* Chart motion (lib/charts). Charts set --laf-dur / --laf-ease on their root and --laf-delay per item; the classes are only
+   applied while animation is on (animate prop, prefers-reduced-motion) and are cancelled here as a backstop. */
+@keyframes laf-chart-fade {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes laf-chart-grow-y {
+  from {
+    transform: scaleY(0);
+  }
+}
+
+@keyframes laf-chart-grow-x {
+  from {
+    transform: scaleX(0);
+  }
+}
+
+@keyframes laf-chart-reveal {
+  from {
+    clip-path: inset(-4px 100% -4px -4px);
+  }
+  to {
+    clip-path: inset(-4px -4px -4px -4px);
+  }
+}
+
+@keyframes laf-chart-sweep {
+  from {
+    stroke-dasharray: 0 1000;
+  }
+}
+
+.laf-anim {
+  animation-duration: var(--laf-dur, 600ms);
+  animation-timing-function: var(--laf-ease, ease-out);
+  animation-delay: var(--laf-delay, 0ms);
+  animation-fill-mode: backwards;
+}
+
+.laf-anim-fade {
+  animation-name: laf-chart-fade;
+}
+
+.laf-anim-grow-y {
+  animation-name: laf-chart-grow-y;
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+}
+
+.laf-anim-grow-x {
+  animation-name: laf-chart-grow-x;
+  transform-box: fill-box;
+  transform-origin: 0 50%;
+}
+
+.laf-anim-reveal {
+  animation-name: laf-chart-reveal;
+}
+
+.laf-anim-sweep {
+  animation-name: laf-chart-sweep;
+}
+
+.laf-tween {
+  transition-property: x, y, width, height, flex-grow, stroke-dasharray, opacity, fill-opacity;
+  transition-duration: calc(var(--laf-dur, 600ms) * 0.6);
+  transition-timing-function: var(--laf-ease, ease-out);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .laf-anim {
+    animation: none;
+  }
+  .laf-tween {
+    transition: none;
+  }
+}

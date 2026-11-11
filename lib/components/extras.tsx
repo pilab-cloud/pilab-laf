@@ -13,6 +13,8 @@ import { Popover, PopoverContent, PopoverTrigger } from "./overlay";
 import { Combobox, type ComboboxOption } from "./combobox";
 import { useVirtualizer } from "@tanstack/react-virtual";
 import { observeRectWithFallback } from "./virtual";
+import { entryAnim, motionVars, useChartMotion, type ChartAnimate } from "../charts/chart-motion";
+import { ChartTooltipFor, useTooltipDismiss, type ChartTooltipContext, type ChartTooltipOption } from "../charts/chart-tooltip";
 import { useLaf } from "../i18n";
 
 /* ── Banner (global): lives in alerts.tsx ── */
@@ -588,16 +590,63 @@ export function KeyValueEditor({
 }
 
 /* ── Charts: sparkline & line/area chart (SVG) ── */
-export function Sparkline({ data, label, className }: { data: number[]; label: string; className?: string }) {
+export interface SparklineProps {
+  data: number[];
+  label: string;
+  /** Line draws in on mount; off under `prefers-reduced-motion`. Default on. */
+  animate?: ChartAnimate;
+  /** Tooltip with the nearest value on hover/tap; `false` (default) keeps the sparkline a plain, non-focusable image. */
+  tooltip?: ChartTooltipOption;
+  /** Formats the tooltip value. */
+  formatValue?: (v: number) => string;
+  /** Tooltip header per point (default "1", "2", …). */
+  xLabels?: string[];
+  className?: string;
+}
+
+export function Sparkline({ data, label, animate, tooltip = false, formatValue = (v) => String(Math.round(v * 100) / 100), xLabels, className }: SparklineProps) {
   const w = 100;
   const h = 24;
+  const motion = useChartMotion(animate);
+  const box = React.useRef<HTMLSpanElement>(null);
+  const [hover, setHover] = React.useState<number | null>(null);
+  useTooltipDismiss(hover !== null, box, () => setHover(null));
+  const tipId = React.useId();
   const min = Math.min(...data);
   const span = Math.max(...data) - min || 1;
-  const pts = data.map((d, i) => `${(i / Math.max(1, data.length - 1)) * w},${h - 2 - ((d - min) / span) * (h - 4)}`);
+  const xy = (d: number, i: number) => [(i / Math.max(1, data.length - 1)) * w, h - 2 - ((d - min) / span) * (h - 4)] as const;
+  const pts = data.map((d, i) => xy(d, i).join(","));
+  const enter = entryAnim(motion, "reveal");
+  const at = (e: React.PointerEvent) => {
+    const r = e.currentTarget.getBoundingClientRect();
+    return Math.min(data.length - 1, Math.max(0, Math.round(((e.clientX - r.left) / (r.width || 1)) * (data.length - 1))));
+  };
+  const ctx: ChartTooltipContext | null =
+    hover === null || data[hover] === undefined
+      ? null
+      : { point: { label: xLabels?.[hover] ?? String(hover + 1), x: hover, value: data[hover]!, formatted: formatValue(data[hover]!) }, index: hover, series: [{ id: "value", name: label, value: data[hover]!, formatted: formatValue(data[hover]!), tone: "text-primary" }] };
+  const tipOn = !!ctx && tooltip !== false;
+  const [width, setWidth] = React.useState(96);
+  React.useLayoutEffect(() => {
+    if (box.current) setWidth(box.current.clientWidth || 96);
+  }, [hover]);
   return (
-    <svg viewBox={`0 0 ${w} ${h}`} role="img" aria-label={label} className={cn("h-6 w-24 text-primary", className)} preserveAspectRatio="none">
-      <polyline points={pts.join(" ")} fill="none" stroke="currentColor" strokeWidth="1.5" vectorEffect="non-scaling-stroke" />
-    </svg>
+    <span ref={box} className={cn("relative inline-block h-6 w-24 align-middle", className)} data-animate={motion.enabled ? "on" : "off"} style={motionVars(motion)}>
+      <svg
+        viewBox={`0 0 ${w} ${h}`}
+        role="img"
+        aria-label={label}
+        aria-describedby={tipOn ? tipId : undefined}
+        className="block size-full text-primary"
+        preserveAspectRatio="none"
+        onPointerMove={tooltip === false ? undefined : (e) => setHover(at(e))}
+        onPointerDown={tooltip === false ? undefined : (e) => setHover(at(e))}
+        onPointerLeave={tooltip === false ? undefined : (e) => e.pointerType !== "touch" && setHover(null)}
+      >
+        <polyline points={pts.join(" ")} fill="none" stroke="currentColor" strokeWidth="1.5" vectorEffect="non-scaling-stroke" className={enter.className} style={enter.style} />
+      </svg>
+      {tipOn && hover !== null && <ChartTooltipFor option={tooltip} ctx={ctx} x={(xy(data[hover]!, hover)[0] / w) * width} y={0} id={tipId} container={box} />}
+    </span>
   );
 }
 

@@ -1,6 +1,7 @@
 import { ArrowDown, ArrowUp, Minus } from "lucide-react";
 import * as React from "react";
 import { cn } from "../cn";
+import { entryAnim, motionVars, tweenClass, useChartMotion, type ChartAnimate } from "../charts/chart-motion";
 import { useLafDefaults } from "../i18n";
 import { dashboardEn } from "../messages/dashboard.en";
 import { Button } from "./button";
@@ -160,12 +161,15 @@ export interface RadialGaugeProps {
   formatValue?: (v: number) => string;
   /** Diameter in px. */
   size?: number;
-  /** Hide the visible centre text (it stays in `aria-valuetext`). */
+  /** The arc sweeps in and tweens on value changes; off under `prefers-reduced-motion`. Default on. */
+  animate?: ChartAnimate;
   className?: string;
 }
 
 /** Radial meter (270° dial; the older half-dial `Gauge` is unchanged); colour follows `thresholds`, and the state is also spelled out as text. */
-export function RadialGauge({ value, min = 0, max = 100, unit, label, thresholds, formatValue = (v) => String(Math.round(v * 10) / 10), size = 128, className }: RadialGaugeProps) {
+export function RadialGauge({ value, min = 0, max = 100, unit, label, thresholds, formatValue = (v) => String(Math.round(v * 10) / 10), size = 128, animate, className }: RadialGaugeProps) {
+  const motion = useChartMotion(animate);
+  const sweep = entryAnim(motion, "sweep");
   const { t } = useLaf();
   const g = t.components.dashboard.gauge;
   const frac = max > min ? Math.min(1, Math.max(0, (value - min) / (max - min))) : 0;
@@ -184,8 +188,9 @@ export function RadialGauge({ value, min = 0, max = 100, unit, label, thresholds
       aria-valuemax={max}
       aria-valuenow={value}
       aria-valuetext={`${g.valueText(text, `${formatValue(max)}${unit ?? ""}`)}${stateText ? `, ${stateText}` : ""}`}
+      data-animate={motion.enabled ? "on" : "off"}
       className={cn("relative inline-grid shrink-0 place-items-center", className)}
-      style={{ width: size, height: size }}
+      style={{ width: size, height: size, ...motionVars(motion) }}
     >
       <svg viewBox="0 0 100 100" aria-hidden className="absolute inset-0 size-full" data-tone={tone}>
         <circle cx="50" cy="50" r={R} fill="none" stroke="var(--bg-muted)" strokeWidth="8" strokeLinecap="butt" strokeDasharray={`${ARC * C} ${C}`} transform="rotate(135 50 50)" />
@@ -199,7 +204,8 @@ export function RadialGauge({ value, min = 0, max = 100, unit, label, thresholds
           strokeLinecap="butt"
           strokeDasharray={`${ARC * C * frac} ${C}`}
           transform="rotate(135 50 50)"
-          className={cn(toneStroke[tone], "motion-safe:transition-[stroke-dasharray] motion-safe:duration-500")}
+          className={cn(toneStroke[tone], tweenClass(motion), sweep.className)}
+          style={sweep.style}
         />
         {thresholds?.map((th) => (
           <line key={`${th.tone}-${th.value}`} {...mark(th.value)} stroke="var(--border-strong)" strokeWidth="1.5" />
@@ -221,7 +227,7 @@ export interface GaugeCardProps extends Omit<CardProps, "title" | "children" | "
   onRetry?: () => void;
 }
 
-export function GaugeCard({ title, description, loading, error, onRetry, value, min, max, unit, thresholds, formatValue, size, className, ...rest }: GaugeCardProps) {
+export function GaugeCard({ title, description, loading, error, onRetry, value, min, max, unit, thresholds, formatValue, size, animate, className, ...rest }: GaugeCardProps) {
   const { t } = useLaf();
   return (
     <Card variant="default" compact {...rest} className={className} aria-busy={loading || undefined}>
@@ -236,7 +242,7 @@ export function GaugeCard({ title, description, loading, error, onRetry, value, 
         ) : error ? (
           <ErrorBlock message={typeof error === "string" ? error : t.components.dashboard.metric.error} onRetry={onRetry} />
         ) : (
-          <RadialGauge value={value} min={min} max={max} unit={unit} label={title} thresholds={thresholds} formatValue={formatValue} size={size} />
+          <RadialGauge value={value} min={min} max={max} unit={unit} label={title} thresholds={thresholds} formatValue={formatValue} size={size} animate={animate} />
         )}
         {description && <CardDescription className="text-center">{description}</CardDescription>}
       </CardBody>

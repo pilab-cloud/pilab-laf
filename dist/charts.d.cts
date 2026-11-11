@@ -1,9 +1,30 @@
-import { T as TimeSeriesChartProps } from './perf-panel-uUu6HJmZ.cjs';
-export { C as ChartRange, a as ChartUnit, P as PerfMetric, b as PerfPanel, c as PerfPanelLabels, d as PerfPanelProps, e as Point, f as TimeSeries, g as TimeSeriesChart, h as TimeSeriesChartLabels, i as downsample, j as formatUnit, l as lttb, p as presetToMs, s as seriesToCsv } from './perf-panel-uUu6HJmZ.cjs';
+import { C as ChartAnimate, a as ChartTooltipOption, T as TimeSeriesChartProps } from './perf-panel-WnUE1l-N.cjs';
+export { b as ChartMotion, c as ChartRange, d as ChartTooltip, e as ChartTooltipContext, f as ChartTooltipFor, g as ChartTooltipPoint, h as ChartTooltipSeries, i as ChartUnit, P as PerfMetric, j as PerfPanel, k as PerfPanelLabels, l as PerfPanelProps, m as Point, n as TimeSeries, o as TimeSeriesChart, p as TimeSeriesChartLabels, q as TooltipRow, r as downsample, s as formatUnit, t as lttb, u as presetToMs, v as seriesToCsv, w as useChartMotion, x as usePrefersReducedMotion, y as useTooltipDismiss } from './perf-panel-WnUE1l-N.cjs';
 import * as React from 'react';
 import { C as CardProps } from './card-D00VCi3j.cjs';
 
-declare function StackedBarChart({ data, series, label, formatValue, width, barHeight, className, }: {
+/** Categorical palette: the label colours (`--label-n`) so charts follow the theme and stay ≥ 3:1 on the background. */
+declare const CHART_TONES: readonly ["text-label-9", "text-label-5", "text-label-3", "text-label-1", "text-label-7", "text-label-11", "text-label-2", "text-label-6"];
+declare const chartTone: (i: number) => "text-label-9" | "text-label-5" | "text-label-3" | "text-label-1" | "text-label-7" | "text-label-11" | "text-label-2" | "text-label-6";
+interface LegendItem {
+    id: string;
+    name: string;
+    /** Tailwind `text-*` class used as the swatch colour. */
+    tone: string;
+    dash?: string;
+    value?: React.ReactNode;
+}
+/** Legend; with `onToggle` the entries are toggle buttons (`aria-pressed`) that hide/show a series. */
+declare function ChartLegend({ items, hidden, onToggle, onHover, label, className }: {
+    items: LegendItem[];
+    hidden?: string[];
+    onToggle?: (id: string) => void; /** Called with the entry id on hover/focus and `null` on leave/blur (drives series emphasis). */
+    onHover?: (id: string | null) => void;
+    label?: string;
+    className?: string;
+}): React.JSX.Element;
+
+declare function StackedBarChart({ data, series, label, formatValue, width, barHeight, animate, tooltip, className, }: {
     data: {
         name: string;
         values: number[];
@@ -13,9 +34,13 @@ declare function StackedBarChart({ data, series, label, formatValue, width, barH
     formatValue?: (v: number) => string;
     width?: number;
     barHeight?: number;
+    /** Segments grow in (staggered per row) and re-size smoothly; off under `prefers-reduced-motion`. Default on. */
+    animate?: ChartAnimate;
+    /** Tooltip per segment (hover, tap, arrow keys): `false`, a render function or `{formatter, header}`. Default on. */
+    tooltip?: ChartTooltipOption;
     className?: string;
 }): React.JSX.Element;
-declare function Heatmap({ rows, columns, values, label, max, formatValue, cell, className, }: {
+declare function Heatmap({ rows, columns, values, label, max, formatValue, cell, animate, tooltip, className, }: {
     rows: string[];
     columns: string[];
     values: number[][];
@@ -23,6 +48,10 @@ declare function Heatmap({ rows, columns, values, label, max, formatValue, cell,
     max?: number;
     formatValue?: (v: number) => string;
     cell?: number;
+    /** Cells fade in as a diagonal wave and re-tint smoothly; off under `prefers-reduced-motion`. Default on. */
+    animate?: ChartAnimate;
+    /** Tooltip per cell (hover, tap, focus): `false`, a render function or `{formatter, header}`. Default on. */
+    tooltip?: ChartTooltipOption;
     className?: string;
 }): React.JSX.Element;
 
@@ -57,13 +86,17 @@ interface BarChartProps {
     width?: number;
     /** Show the legend (entries toggle their series); default true. */
     legend?: boolean;
+    /** Entry (bars grow from the baseline) and value-change animation; off under `prefers-reduced-motion`. Default on. */
+    animate?: ChartAnimate;
+    /** Tooltip per category: `false`, a render function or `{formatter, header}`. Default on. */
+    tooltip?: ChartTooltipOption;
     loading?: boolean;
     error?: boolean | string;
     onRetry?: () => void;
     className?: string;
 }
 /** Grouped, stacked, vertical or horizontal bars. Focus the chart and use the arrow keys to walk the categories. */
-declare function BarChart({ categories, series, stacked, orientation, formatValue, label, height, width: widthProp, legend, loading, error, onRetry, className }: BarChartProps): React.JSX.Element;
+declare function BarChart({ categories, series, stacked, orientation, formatValue, label, height, width: widthProp, legend, animate, tooltip, loading, error, onRetry, className }: BarChartProps): React.JSX.Element;
 
 interface DonutDatum {
     id: string;
@@ -83,13 +116,17 @@ interface DonutChartProps {
     /** Ring thickness in px. */
     thickness?: number;
     legend?: boolean;
+    /** Arcs sweep in; value changes tween; off under `prefers-reduced-motion`. Default on. */
+    animate?: ChartAnimate;
+    /** Tooltip per segment: `false`, a render function or `{formatter, header}`. Default on. */
+    tooltip?: ChartTooltipOption;
     loading?: boolean;
     error?: boolean | string;
     onRetry?: () => void;
     className?: string;
 }
 /** Donut with centre label and legend; arrow keys walk the segments, the legend toggles them. */
-declare function DonutChart({ data, centerLabel, centerValue, formatValue, label, size, thickness, legend, loading, error, onRetry, className }: DonutChartProps): React.JSX.Element;
+declare function DonutChart({ data, centerLabel, centerValue, formatValue, label, size, thickness, legend, animate, tooltip, loading, error, onRetry, className }: DonutChartProps): React.JSX.Element;
 
 interface ChartCardRange {
     value: string;
@@ -129,39 +166,6 @@ interface ChartCardProps extends Omit<CardProps, "title" | "children" | "onSelec
 /** Card chrome for charts: title, range selector, legend toggle, export/refresh and shared empty/loading/error states. */
 declare function ChartCard({ title, description, headingLevel, ranges, range: rangeProp, defaultRange, onRangeChange, legendToggle, legend: legendProp, onLegendChange, onExport, onRefresh, refreshing, loading, error, onRetry, empty, actions, footer, children, className, ...rest }: ChartCardProps): React.JSX.Element;
 
-/** Categorical palette: the label colours (`--label-n`) so charts follow the theme and stay ≥ 3:1 on the background. */
-declare const CHART_TONES: readonly ["text-label-9", "text-label-5", "text-label-3", "text-label-1", "text-label-7", "text-label-11", "text-label-2", "text-label-6"];
-declare const chartTone: (i: number) => "text-label-9" | "text-label-5" | "text-label-3" | "text-label-1" | "text-label-7" | "text-label-11" | "text-label-2" | "text-label-6";
-interface LegendItem {
-    id: string;
-    name: string;
-    /** Tailwind `text-*` class used as the swatch colour. */
-    tone: string;
-    dash?: string;
-    value?: React.ReactNode;
-}
-/** Legend; with `onToggle` the entries are toggle buttons (`aria-pressed`) that hide/show a series. */
-declare function ChartLegend({ items, hidden, onToggle, label, className }: {
-    items: LegendItem[];
-    hidden?: string[];
-    onToggle?: (id: string) => void;
-    label?: string;
-    className?: string;
-}): React.JSX.Element;
-interface TooltipRow {
-    name: string;
-    value: string;
-    tone?: string;
-}
-/** Visual tooltip (hidden from AT: the same text is announced through the chart's live region). */
-declare function ChartTooltip({ x, y, title, rows, className }: {
-    x: number;
-    y: number;
-    title?: React.ReactNode;
-    rows: TooltipRow[];
-    className?: string;
-}): React.JSX.Element;
-
 interface BarSegment {
     id: string;
     name: string;
@@ -178,10 +182,14 @@ interface SegmentedBarProps {
     legend?: boolean;
     /** Bar thickness in px. */
     height?: number;
+    /** Segments grow in and re-size smoothly; off under `prefers-reduced-motion`. Default on. */
+    animate?: ChartAnimate;
+    /** Tooltip per segment (hover, tap, arrow keys): `false`, a render function or `{formatter, header}`. Default on. */
+    tooltip?: ChartTooltipOption;
     className?: string;
 }
-/** One horizontal stacked bar with proportional segments; colours are backed by the legend names and values. */
-declare function SegmentedBar({ segments, label, formatValue, legend, height, className }: SegmentedBarProps): React.JSX.Element;
+/** One horizontal stacked bar with proportional segments; colours are backed by the legend names and values. Focus it and use the arrow keys to walk the segments. */
+declare function SegmentedBar({ segments, label, formatValue, legend, height, animate, tooltip, className }: SegmentedBarProps): React.JSX.Element;
 
 interface ThresholdDonutProps {
     /** Current usage in the same unit as `max`. */
@@ -197,6 +205,10 @@ interface ThresholdDonutProps {
     size?: number;
     /** Show the legend list beside the ring. */
     legend?: boolean;
+    /** The usage arc sweeps in and re-sweeps on change; off under `prefers-reduced-motion`. Default on. */
+    animate?: ChartAnimate;
+    /** Tooltip with the usage and thresholds (hover, tap, focus): `false`, a render function or `{formatter, header}`. Default on. */
+    tooltip?: ChartTooltipOption;
     className?: string;
 }
 declare function thresholdTone(pct: number, warnAt: number, dangerAt: number): "danger" | "warn" | "ok";
@@ -204,7 +216,7 @@ declare function thresholdTone(pct: number, warnAt: number, dangerAt: number): "
  * Usage ring with the value in the centre. The outer ring shows the warning and critical bands as muted arcs; the
  * inner arc is the usage, coloured by the band it is in. The legend lists the thresholds with numbers, so colour is never alone.
  */
-declare function ThresholdDonut({ value, max, warnAt, dangerAt, subtext, label, size, legend, className }: ThresholdDonutProps): React.JSX.Element;
+declare function ThresholdDonut({ value, max, warnAt, dangerAt, subtext, label, size, legend, animate, tooltip, className }: ThresholdDonutProps): React.JSX.Element;
 
 interface UtilizationBase {
     title: React.ReactNode;
@@ -214,6 +226,10 @@ interface UtilizationBase {
     detailsHref?: string;
     onDetails?: () => void;
     headingLevel?: 2 | 3 | 4;
+    /** Forwarded to the bar / ring: entry + value-change animation (default on, off under reduced motion). */
+    animate?: ChartAnimate;
+    /** Forwarded to the bar / ring tooltip. */
+    tooltip?: ChartTooltipOption;
     className?: string;
 }
 interface UtilizationBarCardProps extends UtilizationBase {
@@ -242,4 +258,4 @@ type UtilizationCardProps = UtilizationBarCardProps | UtilizationDonutCardProps;
 /** PatternFly-style utilization card: `variant="bar"` (segmented severity bar) or `variant="donut"` (threshold ring). */
 declare function UtilizationCard(props: UtilizationCardProps): React.JSX.Element;
 
-export { AreaChart, type AreaChartProps, BarChart, type BarChartProps, type BarSegment, type BarSeries, CHART_TONES, ChartCard, type ChartCardContext, type ChartCardProps, type ChartCardRange, ChartLegend, ChartTooltip, DonutChart, type DonutChartProps, type DonutDatum, Heatmap, type LegendItem, LineChart, type LineChartProps, SegmentedBar, type SegmentedBarProps, StackedBarChart, ThresholdDonut, type ThresholdDonutProps, TimeSeriesChartProps, type TooltipRow, type UtilizationBarCardProps, UtilizationCard, type UtilizationCardProps, type UtilizationDonutCardProps, chartTone, thresholdTone };
+export { AreaChart, type AreaChartProps, BarChart, type BarChartProps, type BarSegment, type BarSeries, CHART_TONES, ChartAnimate, ChartCard, type ChartCardContext, type ChartCardProps, type ChartCardRange, ChartLegend, ChartTooltipOption, DonutChart, type DonutChartProps, type DonutDatum, Heatmap, type LegendItem, LineChart, type LineChartProps, SegmentedBar, type SegmentedBarProps, StackedBarChart, ThresholdDonut, type ThresholdDonutProps, TimeSeriesChartProps, type UtilizationBarCardProps, UtilizationCard, type UtilizationCardProps, type UtilizationDonutCardProps, chartTone, thresholdTone };

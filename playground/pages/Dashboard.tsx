@@ -21,6 +21,8 @@ import {
   NotificationCenter,
   PageHeader,
   PageSection,
+  Sparkline,
+  Switch,
   Dropdown,
   DropdownItem,
   MenuToggle,
@@ -36,7 +38,7 @@ import {
   type NavEntry,
   type NotificationItem,
 } from "../../lib";
-import { AreaChart, BarChart, ChartCard, DonutChart, Heatmap, LineChart, UtilizationCard, type TimeSeries } from "../../lib/charts";
+import { AreaChart, BarChart, ChartCard, DonutChart, Heatmap, LineChart, SegmentedBar, ThresholdDonut, UtilizationCard, type TimeSeries } from "../../lib/charts";
 
 const USER = { name: "Paál Gyula", email: "gyula@pilab.hu", src: "/paalgyula.jpg" };
 const NOW = Date.UTC(2026, 0, 15, 12, 0, 0);
@@ -64,6 +66,66 @@ const activity = [
   { id: "a3", who: "Linus T", what: "scaled worker pool to 12 nodes", at: "10:58" },
   { id: "a4", who: "Grace Hopper", what: "rotated the API signing key", at: "09:41" },
 ];
+
+const SHIFT = [
+  { donut: [540, 310, 190, 60], bars: [[12, 18, 14, 22], [20, 16, 24, 19], [6, 9, 7, 11]], seg: [6, 3, 4, 12], cpu: 62 },
+  { donut: [320, 480, 150, 110], bars: [[18, 11, 20, 14], [14, 22, 12, 25], [9, 5, 12, 8]], seg: [2, 9, 8, 5], cpu: 91 },
+];
+
+/** Animation & tooltip playground: toggle `animate`, replay the entry animation, and tween between two data sets. */
+function MotionSection() {
+  const [animate, setAnimate] = React.useState(true);
+  const [run, setRun] = React.useState(0);
+  const [set, setSet] = React.useState(0);
+  const d = SHIFT[set]!;
+  return (
+    <PageSection aria-label="Animation and tooltips" className="grid gap-4">
+      <Panel
+        title="Animation & tooltips"
+        headingLevel={2}
+        actions={
+          <div className="flex items-center gap-3">
+            <Switch checked={animate} onChange={(e) => setAnimate(e.target.checked)}>
+              Animate
+            </Switch>
+            <Button size="sm" variant="secondary" onClick={() => setRun((n) => n + 1)}>
+              Replay
+            </Button>
+            <Button size="sm" variant="secondary" onClick={() => setSet((n) => (n + 1) % SHIFT.length)}>
+              Update data
+            </Button>
+          </div>
+        }
+      >
+        <p className="mt-0 text-sm text-muted">
+          Hover, tap or focus a chart (arrow keys, Escape) for its tooltip. Entry animations replay with “Replay”; “Update data” tweens to new values. Everything stops under reduced motion.
+        </p>
+        <div key={run} className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+          <BarChart
+            label="Deployments (animated)"
+            animate={animate}
+            height={180}
+            categories={["W1", "W2", "W3", "W4"]}
+            series={[
+              { id: "plat", name: "Platform", data: d.bars[0]! },
+              { id: "apps", name: "Apps", data: d.bars[1]! },
+              { id: "data", name: "Data", data: d.bars[2]! },
+            ]}
+          />
+          <DonutChart label="Traffic (animated)" animate={animate} size={160} data={["Europe", "North America", "Asia", "Other"].map((name, i) => ({ id: name, name, value: d.donut[i]! }))} formatValue={(v) => `${v}k`} />
+          <div className="grid content-start gap-4">
+            <SegmentedBar label="Recommendations" animate={animate} segments={["Low", "Important", "Moderate", "Critical"].map((name, i) => ({ id: name, name, value: d.seg[i]! }))} />
+            <div className="flex items-center gap-3 text-sm">
+              <Sparkline label="Trend" data={spark(set + 1)} animate={animate} tooltip className="shrink-0" />
+              <span className="text-muted">Sparkline with tooltip</span>
+            </div>
+          </div>
+          <ThresholdDonut label="CPU (animated)" animate={animate} value={d.cpu} size={140} />
+        </div>
+      </Panel>
+    </PageSection>
+  );
+}
 
 function Content() {
   const { toast } = useToasts();
@@ -196,6 +258,7 @@ function Content() {
         />
         <UtilizationCard variant="donut" title="CPU usage" headingLevel={2} value={80} max={100} warnAt={60} dangerAt={90} subtext="of 100 GBps" detailsHref="#details" />
       </PageSection>
+      <MotionSection />
       <PageSection aria-label="Activity" className="grid gap-4 lg:grid-cols-2">
         <ChartCard headingLevel={2} title="Requests by hour" description="Average over the week">
           <div className="overflow-x-auto">

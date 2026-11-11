@@ -25,7 +25,7 @@ import {
   type ToastOptions,
 } from "../lib";
 import { hu } from "../lib/locales/hu";
-import { AreaChart, BarChart, ChartCard, DonutChart, SegmentedBar, ThresholdDonut, UtilizationCard } from "../lib/charts";
+import { AreaChart, BarChart, ChartCard, DonutChart, Heatmap, SegmentedBar, ThresholdDonut, UtilizationCard } from "../lib/charts";
 
 const wrap = (ui: React.ReactNode, locale: "en" | "hu" = "en") => render(<LafProvider locale={locale} messages={locale === "hu" ? hu : undefined}>{ui}</LafProvider>);
 
@@ -142,7 +142,7 @@ describe("metrics", () => {
     const meter = screen.getByRole("meter", { name: "CPU" });
     expect(meter).toHaveAttribute("aria-valuenow", "92");
     expect(meter.getAttribute("aria-valuetext")).toMatch(/Critical/);
-    expect(meter.querySelector("circle:last-of-type")?.getAttribute("class")).toMatch(/motion-safe:/);
+    expect(meter.querySelector("circle:last-of-type")?.getAttribute("class")).toMatch(/laf-tween/);
     expect(await axe(container)).toHaveNoViolations();
   });
 
@@ -280,7 +280,7 @@ describe("charts", () => {
     donut.focus();
     fireEvent.keyDown(donut, { key: "ArrowRight" });
     expect(screen.getAllByText("EU: 60 (60%)").length).toBeGreaterThan(0);
-    expect(container.querySelectorAll("rect.motion-safe\\:transition-\\[height\\,width\\,y\\,x\\]").length).toBeGreaterThan(0);
+    expect(container.querySelectorAll("rect.laf-tween.laf-anim-grow-x").length).toBeGreaterThan(0);
     expect(await axe(container)).toHaveNoViolations();
   });
 
@@ -335,6 +335,139 @@ describe("charts", () => {
     expect(screen.getByRole("button", { name: "Adattábla megjelenítése" })).toBeInTheDocument();
     expect(await axe(container)).toHaveNoViolations();
     document.documentElement.dir = "ltr";
+  });
+});
+
+describe("chart animation & tooltips", () => {
+  const bar = { categories: ["A", "B", "C"], series: [{ id: "x", name: "Alpha", data: [1, 2, 3] }, { id: "y", name: "Beta", data: [3, 2, 1] }] };
+  const donut = [{ id: "a", name: "EU", value: 60 }, { id: "b", name: "US", value: 40 }];
+  const segments = [{ id: "low", name: "Low", value: 6 }, { id: "crit", name: "Critical", value: 12 }];
+  const T0 = Date.UTC(2026, 0, 1);
+  const points = Array.from({ length: 5 }, (_, i) => [T0 + i * 60_000, i + 1] as [number, number]);
+  const series = [{ id: "a", name: "Alpha", unit: "count" as const, points }, { id: "b", name: "Beta", unit: "count" as const, points }];
+  const matchMedia = window.matchMedia;
+  afterEach(() => {
+    window.matchMedia = matchMedia;
+  });
+  const reduceMotion = () => {
+    window.matchMedia = ((q: string) => ({ matches: q.includes("reduce"), media: q, addEventListener() {}, removeEventListener() {} })) as never;
+  };
+  const all = (animate?: boolean) => (
+    <>
+      <BarChart label="Bars" {...bar} animate={animate} />
+      <DonutChart label="Donut" data={donut} animate={animate} />
+      <SegmentedBar label="Seg" segments={segments} animate={animate} />
+      <ThresholdDonut label="Ring" value={50} animate={animate} />
+      <RadialGauge label="Gauge" value={50} animate={animate} />
+      <Heatmap label="Heat" rows={["Mon"]} columns={["00", "12"]} values={[[1, 9]]} animate={animate} />
+      <AreaChart label="Area" series={series} animate={animate} />
+    </>
+  );
+
+  it("animates by default (entry classes, data-animate=on) and a custom config sets the timing", () => {
+    const { container } = wrap(all());
+    expect(container.querySelectorAll('[data-animate="off"]').length).toBe(0);
+    expect(container.querySelectorAll(".laf-anim").length).toBeGreaterThan(10);
+    const timed = wrap(<BarChart label="Timed" {...bar} animate={{ duration: 900, stagger: 100, easing: "linear" }} />);
+    expect(timed.container.querySelector<SVGElement>("svg")!.style.getPropertyValue("--laf-dur")).toBe("900ms");
+    expect(timed.container.querySelector("rect.laf-anim-grow-y")).not.toBeNull();
+    expect(timed.container.querySelectorAll<SVGElement>("rect.laf-anim-grow-y")[2]!.style.getPropertyValue("--laf-delay")).toBe("100ms");
+  });
+
+  it("animate={false} and prefers-reduced-motion turn every animation off", () => {
+    const off = wrap(all(false));
+    expect(off.container.querySelectorAll(".laf-anim, .laf-tween").length).toBe(0);
+    expect(off.container.querySelectorAll('[data-animate="on"]').length).toBe(0);
+    off.unmount();
+    reduceMotion();
+    const rm = wrap(all(true));
+    expect(rm.container.querySelectorAll(".laf-anim, .laf-tween").length).toBe(0);
+    expect(rm.container.querySelectorAll('[data-animate="off"]').length).toBeGreaterThan(5);
+  });
+
+  it("hover shows a per-segment tooltip (role=tooltip, linked by aria-describedby), dims the others and clears on leave / outside press", () => {
+    wrap(<DonutChart label="Regions" data={donut} />);
+    const svg = screen.getByRole("img", { name: "Regions" });
+    const arcs = svg.querySelectorAll("path");
+    fireEvent.pointerEnter(arcs[0]!);
+    const tip = screen.getByRole("tooltip");
+    expect(tip).toHaveTextContent("EU");
+    expect(tip).toHaveTextContent("60 (60%)");
+    expect(tip.className).toMatch(/pointer-events-none/);
+    expect(svg.getAttribute("aria-describedby")).toContain(tip.id);
+    expect(arcs[1]).toHaveClass("opacity-40");
+    fireEvent.pointerLeave(svg);
+    expect(screen.queryByRole("tooltip")).toBeNull();
+    fireEvent.pointerEnter(arcs[1]!);
+    expect(screen.getByRole("tooltip")).toHaveTextContent("US");
+    fireEvent.pointerDown(document.body);
+    expect(screen.queryByRole("tooltip")).toBeNull();
+  });
+
+  it("keyboard: arrows move the tooltip between segments, it is announced, Escape dismisses", () => {
+    wrap(<SegmentedBar label="Severity" segments={segments} />);
+    const bar = screen.getByRole("img", { name: /Severity/ });
+    bar.focus();
+    fireEvent.keyDown(bar, { key: "ArrowRight" });
+    expect(screen.getByRole("tooltip")).toHaveTextContent("Low");
+    expect(screen.getAllByText(/Low: 6 \(33\.3%\)/).length).toBeGreaterThan(0);
+    fireEvent.keyDown(bar, { key: "ArrowRight" });
+    expect(screen.getByRole("tooltip")).toHaveTextContent("Critical");
+    fireEvent.keyDown(bar, { key: "Home" });
+    expect(screen.getByRole("tooltip")).toHaveTextContent("Low");
+    fireEvent.keyDown(bar, { key: "Escape" });
+    expect(screen.queryByRole("tooltip")).toBeNull();
+  });
+
+  it("custom render function, {formatter, header} and tooltip={false}", () => {
+    const render = vi.fn(({ point, series: rows, index }: { point: { label: string }; series: { name: string }[]; index: number }) => <span>{`custom ${point.label} #${index} ${rows.map((r) => r.name).join("+")}`}</span>);
+    const { rerender } = wrap(<BarChart label="Deploys" {...bar} tooltip={render} />);
+    const svg = screen.getByRole("img", { name: "Deploys" });
+    fireEvent.keyDown(svg, { key: "ArrowRight" });
+    fireEvent.keyDown(svg, { key: "ArrowRight" });
+    expect(screen.getByRole("tooltip")).toHaveTextContent("custom B #1 Alpha+Beta");
+    const again = (tooltip: React.ComponentProps<typeof BarChart>["tooltip"]) => rerender(<LafProvider><BarChart label="Deploys" {...bar} tooltip={tooltip} /></LafProvider>);
+    again({ header: (c) => `Week ${c.point.label}`, formatter: (r) => `${r.formatted}!` });
+    expect(screen.getByRole("tooltip")).toHaveTextContent("Week B");
+    expect(screen.getByRole("tooltip")).toHaveTextContent("2!");
+    again(false);
+    expect(screen.queryByRole("tooltip")).toBeNull();
+    expect(screen.getByRole("img", { name: "Deploys" }).getAttribute("aria-describedby")).not.toMatch(/tip/);
+  });
+
+  it("time series: keyboard crosshair shows a shared multi-series tooltip, Escape dismisses, data table fallback stays", async () => {
+    const { container } = wrap(<AreaChart label="Traffic" series={series} />);
+    const svg = screen.getByRole("img", { name: "Traffic" });
+    svg.focus();
+    fireEvent.keyDown(svg, { key: "ArrowRight" });
+    fireEvent.keyDown(svg, { key: "ArrowRight" });
+    const tip = screen.getByRole("tooltip");
+    expect(tip).toHaveTextContent("Alpha");
+    expect(tip).toHaveTextContent("Beta");
+    fireEvent.keyDown(svg, { key: "Escape" });
+    expect(screen.queryByRole("tooltip")).toBeNull();
+    fireEvent.click(screen.getByRole("button", { name: "Show data" }));
+    expect(screen.getByRole("table")).toBeInTheDocument();
+    expect(await axe(container)).toHaveNoViolations();
+  });
+
+  it("heatmap cells show a tooltip on focus and Escape hides it", () => {
+    wrap(<Heatmap label="Load" rows={["Mon"]} columns={["00", "12"]} values={[[1, 9]]} />);
+    const cell = screen.getByRole("gridcell", { name: "Mon 00: 1" });
+    fireEvent.focus(cell);
+    expect(screen.getByRole("tooltip")).toHaveTextContent("Mon · 00");
+    expect(cell.getAttribute("aria-describedby")).toBe(screen.getByRole("tooltip").id);
+    fireEvent.keyDown(cell, { key: "Escape" });
+    expect(screen.queryByRole("tooltip")).toBeNull();
+  });
+
+  it("ThresholdDonut and UtilizationCard forward the props and stay axe clean with an open tooltip", async () => {
+    const { container } = wrap(<UtilizationCard variant="donut" title="CPU" value={80} animate={false} />);
+    const ring = screen.getByRole("img", { name: /CPU/ });
+    fireEvent.focus(ring);
+    expect(screen.getByRole("tooltip")).toHaveTextContent("Warning");
+    expect(container.querySelector(".laf-anim")).toBeNull();
+    expect(await axe(container)).toHaveNoViolations();
   });
 });
 

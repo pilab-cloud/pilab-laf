@@ -1,12 +1,12 @@
 # Charts catalogue (`@pilab/laf/charts`)
 
 Visx-based, SVG, theme-aware (label palette via `--label-n`, so light/dark and custom themes just work), tree-shakeable
-(entry budget: 30 kB gzip, visx/radix external). Every chart follows the same accessibility contract:
+(entry budget: 36 kB gzip, visx/radix external). Every chart follows the same accessibility contract:
 
 - the plot is `role="img"` with an `aria-label` and is focusable; arrow keys / Home / End move a tooltip between data
   points, Escape hides it, and the focused datum is announced through a polite live region;
 - a "Show data table" toggle renders the same data as a real `<table>` (also reachable without a pointer);
-- animations are `motion-safe:` only (`prefers-reduced-motion` disables them); loading/empty/error states are shared;
+- animations are on by default and off under `prefers-reduced-motion` or `animate={false}`; loading/empty/error states are shared;
 - plots are always laid out left-to-right (numbers and time axes do not mirror); legends, cards and text follow `dir`.
 
 Status: ✅ shipped · 🟡 partial · 🗺 planned
@@ -74,3 +74,35 @@ Planned shape for the missing charts (same contract: `label`, `loading`/`error`/
 ```
 
 Shared building blocks (exported): `ChartLegend`, `ChartTooltip`, `chartTone(i)` / `CHART_TONES`.
+
+## Animation
+
+Every chart (`AreaChart`, `LineChart`, `TimeSeriesChart`, `BarChart`, `DonutChart`, `SegmentedBar`, `ThresholdDonut`, `UtilizationCard`, `StackedBarChart`, `Heatmap`, `RadialGauge`, `GaugeCard`, `Gauge`, `Sparkline`) takes `animate?: boolean | { duration?: number; easing?: string; stagger?: number }` (default `true`; duration 600 ms, stagger 40 ms).
+
+| Effect | Charts |
+|---|---|
+| Entry: left-to-right reveal of lines/areas (staggered per series) | `AreaChart`, `LineChart`, `Sparkline` |
+| Entry: bars grow from the baseline, segments grow from their start (staggered) | `BarChart`, `StackedBarChart`, `SegmentedBar` |
+| Entry: arcs sweep | `DonutChart`, `ThresholdDonut`, `RadialGauge`, `Gauge` |
+| Entry: cell fade as a diagonal wave | `Heatmap` |
+| Value change: tween between data updates (bar/segment geometry and arcs; line/area points when the point count is unchanged) | all |
+| Hover emphasis: others are dimmed (hovered category/segment/cell, legend-hovered or pointer-nearest series) | all with a legend or tooltip |
+
+It is CSS/SVG based (`.laf-anim*` / `.laf-tween` in `app.css`, driven by `--laf-dur`, `--laf-ease`, `--laf-delay`), only moves transforms, opacity and stroke dashes (no layout shift) and needs no extra dependency. `animate={false}` and `prefers-reduced-motion: reduce` remove the classes entirely (`data-animate="off"` on the chart). Hooks: `useChartMotion(animate)`, `usePrefersReducedMotion()`.
+
+## Tooltips
+
+`tooltip?: false | true | ((ctx) => ReactNode) | { formatter?, header? }` (default on; `Sparkline` default off, gauges have none).
+
+```tsx
+<BarChart tooltip={({ point, series, index }) => <b>{point.label}: {series.map((s) => s.formatted).join(" / ")}</b>} … />
+<AreaChart tooltip={{ header: (c) => `At ${c.point.label}`, formatter: (s) => `${s.formatted} req` }} … />
+<DonutChart tooltip={false} … />
+```
+
+`ctx` is `{ point: { label, x?, value?, formatted? }, series: { id, name, value, formatted, tone }[], index }`; values are already formatted with the chart's `formatValue` / the `useLaf` locale formatters.
+
+- Time/line/area: crosshair plus one shared tooltip listing every series at the nearest point by x; bar, donut, segmented bar, stacked bar, heatmap and threshold donut: one tooltip per category/segment/cell.
+- Input: hover, tap (touch: stays until an outside press), keyboard (focus the chart, ← → ↑ ↓ / Home / End move between points; heatmap cells are individually focusable), Escape dismisses. The focused datum is also announced in a polite live region and the "Show data table" fallback is unchanged.
+- The tooltip is `role="tooltip"`, referenced by the chart's `aria-describedby` while open, `pointer-events: none` (no flicker), portalled to `<body>` (or the `LafProvider` portal container) with fixed coordinates, so an `overflow-hidden` card never clips it; it flips above/below (side/side for crosshairs) and is clamped to the viewport.
+- Exports: `ChartTooltip` (low-level, `container` enables the portal/clamping), `ChartTooltipFor`, `useTooltipDismiss`, types `ChartTooltipOption`, `ChartTooltipContext`, `ChartTooltipPoint`, `ChartTooltipSeries`, `ChartAnimate`, `ChartMotion`.

@@ -4,6 +4,10 @@ import { cn } from "../cn";
 import { Button } from "../components/button";
 import { useLafDefaults } from "../i18n";
 import { dashboardEn } from "../messages/dashboard.en";
+import { useTooltipDismiss } from "./chart-tooltip";
+
+export * from "./chart-motion";
+export * from "./chart-tooltip";
 
 const lafDefaults = { dashboard: dashboardEn };
 export const useChartLaf = () => useLafDefaults(lafDefaults);
@@ -30,9 +34,11 @@ export function useChartWidth(fixed: number | undefined, initial = 480) {
 }
 
 /** Roving "active datum" for charts: arrows/Home/End move it, Escape clears it, hover sets it. */
-export function useActiveIndex(count: number) {
+export function useActiveIndex(count: number, containerRef?: React.RefObject<Element | null>) {
   const [active, setActive] = React.useState<number | null>(null);
   const [keyboard, setKeyboard] = React.useState(false);
+  const fallback = React.useRef<Element>(null);
+  useTooltipDismiss(active !== null, containerRef ?? fallback, () => (setActive(null), setKeyboard(false)));
   const onKeyDown = (e: React.KeyboardEvent) => {
     if (!count) return;
     const cur = active ?? -1;
@@ -63,7 +69,7 @@ export interface LegendItem {
 }
 
 /** Legend; with `onToggle` the entries are toggle buttons (`aria-pressed`) that hide/show a series. */
-export function ChartLegend({ items, hidden = [], onToggle, label, className }: { items: LegendItem[]; hidden?: string[]; onToggle?: (id: string) => void; label?: string; className?: string }) {
+export function ChartLegend({ items, hidden = [], onToggle, onHover, label, className }: { items: LegendItem[]; hidden?: string[]; onToggle?: (id: string) => void; /** Called with the entry id on hover/focus and `null` on leave/blur (drives series emphasis). */ onHover?: (id: string | null) => void; label?: string; className?: string }) {
   const { t } = useChartLaf();
   const c = t.components.dashboard.chart;
   return (
@@ -78,7 +84,7 @@ export function ChartLegend({ items, hidden = [], onToggle, label, className }: 
         return (
           <li key={it.id}>
             {onToggle ? (
-              <button type="button" aria-pressed={!off} aria-label={c.toggleSeries(it.name)} onClick={() => onToggle(it.id)} className={cn("inline-flex items-center gap-1.5 rounded-sm border-0 bg-transparent p-0.5 text-muted outline-none hover:text-fg focus-visible:ring-2 focus-visible:ring-primary/50", off && "line-through opacity-70")}>
+              <button type="button" onPointerEnter={() => onHover?.(it.id)} onPointerLeave={() => onHover?.(null)} onFocus={() => onHover?.(it.id)} onBlur={() => onHover?.(null)} aria-pressed={!off} aria-label={c.toggleSeries(it.name)} onClick={() => onToggle(it.id)} className={cn("inline-flex items-center gap-1.5 rounded-sm border-0 bg-transparent p-0.5 text-muted outline-none hover:text-fg focus-visible:ring-2 focus-visible:ring-primary/50", off && "line-through opacity-70")}>
                 {swatch}
                 <span>{it.name}</span>
                 {it.value !== undefined && <b className="font-mono text-fg">{it.value}</b>}
@@ -94,30 +100,6 @@ export function ChartLegend({ items, hidden = [], onToggle, label, className }: 
         );
       })}
     </ul>
-  );
-}
-
-export interface TooltipRow {
-  name: string;
-  value: string;
-  tone?: string;
-}
-
-/** Visual tooltip (hidden from AT: the same text is announced through the chart's live region). */
-export function ChartTooltip({ x, y, title, rows, className }: { x: number; y: number; title?: React.ReactNode; rows: TooltipRow[]; className?: string }) {
-  return (
-    <div aria-hidden className={cn("pointer-events-none absolute z-10 min-w-28 -translate-x-1/2 rounded-sm border border-line-strong bg-menu px-2 py-1.5 text-xs text-fg shadow-(--shadow-card)", className)} style={{ left: x, top: y }}>
-      {title && <div className="mb-1 font-medium">{title}</div>}
-      {rows.map((r) => (
-        <div key={r.name} className="flex items-center justify-between gap-3">
-          <span className="inline-flex items-center gap-1.5 text-muted">
-            {r.tone && <span className={cn("size-2 rounded-xs bg-current", r.tone)} />}
-            {r.name}
-          </span>
-          <b className="font-mono">{r.value}</b>
-        </div>
-      ))}
-    </div>
   );
 }
 
@@ -142,6 +124,7 @@ export function ChartFrame({
   onRetry,
   height,
   plotRef,
+  animate,
   className,
 }: {
   label: string;
@@ -155,6 +138,8 @@ export function ChartFrame({
   onRetry?: () => void;
   height: number;
   plotRef?: React.Ref<HTMLDivElement>;
+  /** Resolved motion state, exposed as `data-animate` for styling and tests. */
+  animate?: boolean;
   className?: string;
 }) {
   const { t } = useChartLaf();
@@ -176,7 +161,7 @@ export function ChartFrame({
     <div className="grid size-full place-items-center text-sm text-muted">{c.empty}</div>
   ) : null;
   return (
-    <figure aria-label={label} aria-busy={loading || undefined} className={cn("m-0 grid min-w-0 grid-cols-1 gap-2", className)}>
+    <figure aria-label={label} aria-busy={loading || undefined} data-animate={animate === undefined ? undefined : animate ? "on" : "off"} className={cn("m-0 grid min-w-0 grid-cols-1 gap-2", className)}>
       <div ref={plotRef} dir="ltr" className="relative min-w-0" style={{ height }}>
         {status ?? plot}
       </div>

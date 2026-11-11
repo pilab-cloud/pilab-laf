@@ -23,7 +23,7 @@ async function bundle(code: string, extra: string[] = []) {
   return { text, gzip: gzipSync(text).length };
 }
 
-const BUDGET_KB = 30;
+const BUDGET_KB = 36; // charts entry (was 30; animation + tooltip pipeline added ~4 kB)
 const entry = 'from "./lib/index.ts"';
 
 describe("tree-shaking (design §2.2)", () => {

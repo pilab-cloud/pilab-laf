@@ -5,6 +5,7 @@ import { format, matchesAccept } from "../utils";
 import { Badge } from "./display";
 import { Input } from "./form";
 import { RelativeTime } from "./primitives";
+import { entryAnim, motionVars, tweenClass, useChartMotion, type ChartAnimate } from "../charts/chart-motion";
 import { useLaf } from "../i18n";
 
 /* ── Kbd ── */
@@ -346,16 +347,18 @@ export function AlarmList({
 }
 
 /* ── Charts: gauge, donut, bar ── */
-export function Gauge({ value, max = 100, label, warnAt = 70, dangerAt = 90 }: { value: number; max?: number; label: string; warnAt?: number; dangerAt?: number }) {
+export function Gauge({ value, max = 100, label, warnAt = 70, dangerAt = 90, animate }: { value: number; max?: number; label: string; warnAt?: number; dangerAt?: number; /** Arc sweeps in and tweens on change; off under `prefers-reduced-motion`. Default on. */ animate?: ChartAnimate }) {
+  const motion = useChartMotion(animate);
+  const sweep = entryAnim(motion, "sweep");
   const pct = Math.min(100, Math.max(0, (value / max) * 100));
   const tone = pct >= dangerAt ? "text-danger" : pct >= warnAt ? "text-warn" : "text-ok";
   const r = 40;
   const c = Math.PI * r;
   return (
     <figure className="m-0 inline-block text-center">
-      <svg viewBox="0 0 100 56" role="meter" aria-label={label} aria-valuenow={value} aria-valuemin={0} aria-valuemax={max} className="w-32">
+      <svg viewBox="0 0 100 56" style={motionVars(motion)} data-animate={motion.enabled ? "on" : "off"} role="meter" aria-label={label} aria-valuenow={value} aria-valuemin={0} aria-valuemax={max} className="w-32">
         <path d="M10 50 A40 40 0 0 1 90 50" fill="none" stroke="var(--bg-muted)" strokeWidth="8" />
-        <path d="M10 50 A40 40 0 0 1 90 50" fill="none" stroke="currentColor" strokeWidth="8" strokeDasharray={`${(pct / 100) * c} ${c}`} className={tone} />
+        <path d="M10 50 A40 40 0 0 1 90 50" fill="none" stroke="currentColor" strokeWidth="8" strokeDasharray={`${(pct / 100) * c} ${c}`} className={cn(tone, tweenClass(motion), sweep.className)} style={sweep.style} />
       </svg>
       <figcaption className="-mt-3 font-mono text-lg text-fg">{Math.round(pct)}%</figcaption>
       <div className="text-xs text-muted">{label}</div>

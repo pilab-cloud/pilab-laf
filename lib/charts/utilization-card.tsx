@@ -3,7 +3,7 @@ import * as React from "react";
 import { Card, CardActions, CardBody, CardFooter, CardHeader, CardTitle } from "../components/card";
 import { SegmentedBar, type BarSegment } from "./segmented-bar";
 import { ThresholdDonut } from "./threshold-donut";
-import { useChartLaf } from "./chart-kit";
+import { useChartLaf, type ChartAnimate, type ChartTooltipOption } from "./chart-kit";
 
 interface UtilizationBase {
   title: React.ReactNode;
@@ -13,6 +13,10 @@ interface UtilizationBase {
   detailsHref?: string;
   onDetails?: () => void;
   headingLevel?: 2 | 3 | 4;
+  /** Forwarded to the bar / ring: entry + value-change animation (default on, off under reduced motion). */
+  animate?: ChartAnimate;
+  /** Forwarded to the bar / ring tooltip. */
+  tooltip?: ChartTooltipOption;
   className?: string;
 }
 
@@ -61,7 +65,7 @@ function DetailsLink({ href, onClick, children }: { href?: string; onClick?: () 
 export function UtilizationCard(props: UtilizationCardProps) {
   const { t } = useChartLaf();
   const u = t.components.dashboard.utilization;
-  const { title, filter, detailsHref, onDetails, headingLevel = 3, className } = props;
+  const { title, filter, detailsHref, onDetails, headingLevel = 3, animate, tooltip, className } = props;
   const label = props.chartLabel ?? (typeof title === "string" ? title : u.segments);
   return (
     <Card className={className}>
@@ -73,7 +77,7 @@ export function UtilizationCard(props: UtilizationCardProps) {
       </CardHeader>
       <CardBody className="grid gap-2">
         {props.variant === "donut" ? (
-          <ThresholdDonut value={props.value} max={props.max} warnAt={props.warnAt} dangerAt={props.dangerAt} subtext={props.subtext} label={label} />
+          <ThresholdDonut value={props.value} max={props.max} warnAt={props.warnAt} dangerAt={props.dangerAt} subtext={props.subtext} label={label} animate={animate} tooltip={tooltip} />
         ) : (
           <>
             {props.subtitle && <div className="text-fg">{props.subtitle}</div>}
@@ -89,7 +93,7 @@ export function UtilizationCard(props: UtilizationCardProps) {
                 )}
               </div>
             )}
-            <SegmentedBar segments={props.segments} label={label} formatValue={props.formatValue} />
+            <SegmentedBar segments={props.segments} label={label} formatValue={props.formatValue} animate={animate} tooltip={tooltip} />
           </>
         )}
       </CardBody>

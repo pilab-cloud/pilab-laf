@@ -14,6 +14,8 @@ See [`docs/MIGRATION.md`](docs/MIGRATION.md).
 - Per-component label sets (account, admin, tracker, vSphere objects, charts) in `messages.components` with Hungarian translations; `useLafDefaults`.
 - Rules tests: logical (RTL-safe) CSS classes, no unguarded fixed widths ≥ 320 px, `hu` long-string sweep, `dir="rtl"` smoke test. `src/app.css` and components use logical properties (`ms-`/`me-`/`ps-`/`pe-`/`start-`/`end-`).
 
+- Chart animation & tooltips: every chart (`AreaChart`, `LineChart`/`TimeSeriesChart`, `BarChart`, `DonutChart`, `SegmentedBar`, `ThresholdDonut`, `UtilizationCard`, `StackedBarChart`, `Heatmap`, `RadialGauge`/`GaugeCard`, `Gauge`, `Sparkline`) takes `animate` (`boolean | {duration, easing, stagger}`, default on; always off under `prefers-reduced-motion`) and `tooltip` (`false | true | render({point, series, index}) | {formatter, header}`; `Sparkline` defaults to off, gauges have no tooltip). Entry draw-in/grow/sweep/fade, smooth value-change tweens, hover/legend emphasis, shared crosshair tooltip for time series, per-segment tooltips elsewhere (hover, tap, focus/arrow keys, Escape, outside press), `role="tooltip"` + `aria-describedby`, viewport-clamped portal that is never clipped by `overflow-hidden` cards. New exports: `ChartTooltipFor`, `useTooltipDismiss`, `useChartMotion`, `usePrefersReducedMotion`, types `ChartAnimate`, `ChartMotion`, `ChartTooltipOption`, `ChartTooltipContext`, `ChartTooltipPoint`, `ChartTooltipSeries`. `ChartTooltip` gains `children`/`id`/`container`/`placement`; `ChartLegend` gains `onHover`; `Heatmap` is now wrapped in a positioned `div`; `Sparkline` is wrapped in a `span` (`className` moves there). Demo section "Animation & tooltips" in `?demo=dashboard`.
+
 ### Removed (breaking)
 - `DataGridLegacy`, `GridColumnLegacy`, `GridSortLegacy`; the old `TreeTable` (`TreeTableV2` is now `TreeTable`); `DataGrid` single-object `sort` and string `selected` (arrays only).
 
@@ -25,7 +27,7 @@ See [`docs/MIGRATION.md`](docs/MIGRATION.md).
 | Entry | Size | Budget |
 |---|---|---|
 | core (everything) | about 187 kB | ≤ 220 kB |
-| `/charts` | 21.7 kB | ≤ 30 kB |
+| `/charts` | 34.5 kB | ≤ 36 kB |
 | `/editor` | 18.8 kB | ≤ 24 kB |
 | `/dnd` | 16.8 kB | ≤ 30 kB |
 | `/topology` | 13.2 kB | ≤ 20 kB |

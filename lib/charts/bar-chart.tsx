@@ -3,7 +3,7 @@ import { Group } from "@visx/group";
 import { scaleBand, scaleLinear } from "@visx/scale";
 import * as React from "react";
 import { cn } from "../cn";
-import { chartTone, ChartFrame, ChartLegend, ChartTooltip, useActiveIndex, useChartLaf, useChartWidth, type LegendItem } from "./chart-kit";
+import { chartTone, ChartFrame, ChartLegend, ChartTooltipFor, entryAnim, motionVars, tweenClass, useActiveIndex, useChartLaf, useChartMotion, useChartWidth, type ChartAnimate, type ChartTooltipContext, type ChartTooltipOption, type LegendItem } from "./chart-kit";
 
 export interface BarSeries {
   id: string;
@@ -24,6 +24,10 @@ export interface BarChartProps {
   width?: number;
   /** Show the legend (entries toggle their series); default true. */
   legend?: boolean;
+  /** Entry (bars grow from the baseline) and value-change animation; off under `prefers-reduced-motion`. Default on. */
+  animate?: ChartAnimate;
+  /** Tooltip per category: `false`, a render function or `{formatter, header}`. Default on. */
+  tooltip?: ChartTooltipOption;
   loading?: boolean;
   error?: boolean | string;
   onRetry?: () => void;
@@ -35,14 +39,17 @@ const M = { top: 8, right: 12, bottom: 24, left: 44 };
 const tick = { fill: "currentColor", fontSize: 10 } as const;
 
 /** Grouped, stacked, vertical or horizontal bars. Focus the chart and use the arrow keys to walk the categories. */
-export function BarChart({ categories, series, stacked, orientation = "vertical", formatValue = (v) => String(Math.round(v * 10) / 10), label, height = 240, width: widthProp, legend = true, loading, error, onRetry, className }: BarChartProps) {
+export function BarChart({ categories, series, stacked, orientation = "vertical", formatValue = (v) => String(Math.round(v * 10) / 10), label, height = 240, width: widthProp, legend = true, animate, tooltip = true, loading, error, onRetry, className }: BarChartProps) {
   const { t } = useChartLaf();
   const c = t.components.dashboard.chart;
   const [wrap, width] = useChartWidth(widthProp);
   const [hidden, setHidden] = React.useState<string[]>([]);
   const svgRef = React.useRef<SVGSVGElement>(null);
   const hintId = React.useId();
-  const nav = useActiveIndex(categories.length);
+  const nav = useActiveIndex(categories.length, wrap);
+  const motion = useChartMotion(animate);
+  const [emph, setEmph] = React.useState<string | null>(null);
+  const tipId = React.useId();
   const horizontal = orientation === "horizontal";
   const margin = { ...M, left: horizontal ? 72 : M.left };
   const shown = series.filter((s) => !hidden.includes(s.id));
@@ -86,6 +93,15 @@ export function BarChart({ categories, series, stacked, orientation = "vertical"
   const rows = (i: number) => shown.map((s) => ({ name: s.name, value: formatValue(s.data[i] ?? 0), tone: tones(s) }));
   const cat = nav.active === null ? null : categories[nav.active];
   const announce = cat === null || cat === undefined ? "" : `${cat}: ${rows(nav.active!).map((r) => c.point(r.name, r.value)).join(", ")}`;
+  const ctx: ChartTooltipContext | null =
+    nav.active === null || cat === null || cat === undefined
+      ? null
+      : {
+          point: { label: cat, x: cat },
+          index: nav.active,
+          series: shown.map((s) => ({ id: s.id, name: s.name, value: s.data[nav.active!] ?? 0, formatted: formatValue(s.data[nav.active!] ?? 0), tone: tones(s) })),
+        };
+  const tipOn = !!ctx && tooltip !== false;
   const bandCenter = nav.active === null ? 0 : (band(categories[nav.active]!) ?? 0) + band.bandwidth() / 2;
   const tipX = horizontal ? margin.left + innerW / 2 : margin.left + bandCenter;
   const tipY = horizontal ? margin.top + bandCenter + 8 : margin.top;
@@ -107,12 +123,13 @@ export function BarChart({ categories, series, stacked, orientation = "vertical"
       className={className}
       height={height}
       plotRef={wrap}
+      animate={motion.enabled}
       loading={loading}
       error={error}
       onRetry={onRetry}
       empty={!categories.length || !series.length}
       announce={nav.keyboard ? announce : ""}
-      legend={legend && <ChartLegend items={legendItems} hidden={hidden} onToggle={(id) => setHidden((h) => (h.includes(id) ? h.filter((x) => x !== id) : [...h, id]))} />}
+      legend={legend && <ChartLegend items={legendItems} hidden={hidden} onHover={setEmph} onToggle={(id) => setHidden((h) => (h.includes(id) ? h.filter((x) => x !== id) : [...h, id]))} />}
       table={{ head: [c.category, ...series.map((s) => s.name)], rows: categories.map((name, i) => [name, ...series.map((s) => formatValue(s.data[i] ?? 0))]) }}
       plot={
         <>
@@ -122,13 +139,15 @@ export function BarChart({ categories, series, stacked, orientation = "vertical"
             height={height}
             role="img"
             aria-label={label}
-            aria-describedby={hintId}
+            aria-describedby={tipOn ? `${hintId} ${tipId}` : hintId}
             tabIndex={0}
+            style={motionVars(motion)}
             className="text-muted outline-none select-none focus-visible:outline-2 focus-visible:outline-primary"
             onKeyDown={nav.onKeyDown}
             onBlur={nav.onBlur}
+            onPointerDown={onPointerMove}
             onPointerMove={onPointerMove}
-            onPointerLeave={() => !nav.keyboard && nav.setActive(null)}
+            onPointerLeave={(e) => e.pointerType !== "touch" && !nav.keyboard && nav.setActive(null)}
           >
             <Group left={margin.left} top={margin.top}>
               {val.ticks(4).map((tv) => (
@@ -137,9 +156,11 @@ export function BarChart({ categories, series, stacked, orientation = "vertical"
               {nav.active !== null && (
                 <rect data-active={categories[nav.active]} x={horizontal ? 0 : band(categories[nav.active]!)! - 2} y={horizontal ? band(categories[nav.active]!)! - 2 : 0} width={horizontal ? innerW : band.bandwidth() + 4} height={horizontal ? band.bandwidth() + 4 : innerH} fill="var(--bg-muted)" opacity={0.6} />
               )}
-              {rects.map((r) => (
-                <rect key={r.key} x={r.x} y={r.y} width={Math.max(r.w, 0)} height={Math.max(r.h, 0)} rx={1} fill="currentColor" className={cn(tones(r.s), "motion-safe:transition-[height,width,y,x] motion-safe:duration-300")} />
-              ))}
+              {rects.map((r) => {
+                const enter = entryAnim(motion, horizontal ? "grow-x" : "grow-y", r.ci);
+                const dim = (nav.active !== null && nav.active !== r.ci) || (emph !== null && emph !== r.s.id);
+                return <rect key={r.key} data-bar={r.key} x={r.x} y={r.y} width={Math.max(r.w, 0)} height={Math.max(r.h, 0)} rx={1} fill="currentColor" className={cn(tones(r.s), tweenClass(motion), enter.className, dim && "opacity-40")} style={enter.style} />;
+              })}
               {horizontal ? (
                 <>
                   <AxisLeft scale={band} stroke="var(--border-strong)" tickStroke="var(--border-strong)" tickLabelProps={{ ...tick, textAnchor: "end", dy: "0.33em" }} />
@@ -153,7 +174,7 @@ export function BarChart({ categories, series, stacked, orientation = "vertical"
               )}
             </Group>
           </svg>
-          {nav.active !== null && <ChartTooltip x={tipX} y={tipY} title={categories[nav.active]} rows={rows(nav.active)} />}
+          {tipOn && <ChartTooltipFor option={tooltip} ctx={ctx} x={tipX} y={tipY} id={tipId} container={wrap} />}
           <span id={hintId} className="sr-only">{c.keyboardHint}</span>
         </>
       }
