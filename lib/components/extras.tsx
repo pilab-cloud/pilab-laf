@@ -439,10 +439,13 @@ export function Chip({
   removeLabel,
   tone = "neutral",
   color,
+  icon,
   children,
 }: {
   onRemove?: () => void;
   removeLabel?: string;
+  /** Leading icon; sized to the text (0.75rem) with inline padding so it never touches the border. */
+  icon?: React.ReactNode;
   tone?: keyof typeof chipTone;
   /** Label palette slot; overrides `tone`. */
   color?: LabelSlot;
@@ -450,9 +453,14 @@ export function Chip({
 }) {
   return (
     <span
-      className={cn("inline-flex h-6 items-center gap-1 rounded-sm border px-2 text-xs", !color && chipTone[tone])}
+      className={cn("inline-flex h-6 items-center gap-1.5 rounded-sm border px-2 text-xs [&_svg]:size-3 [&_svg]:shrink-0", icon && "ps-1.5", !color && chipTone[tone])}
       style={color ? labelSlotStyle(color) : undefined}
     >
+      {icon && (
+        <span aria-hidden className="inline-flex shrink-0 items-center">
+          {icon}
+        </span>
+      )}
       {children}
       {onRemove && (
         <button type="button" aria-label={removeLabel ?? "Remove"} onClick={onRemove} className="opacity-70 hover:opacity-100">

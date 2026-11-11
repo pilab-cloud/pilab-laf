@@ -1,21 +1,21 @@
-import { ThresholdDonut } from './chunk-BD3BSZZQ.js';
-import { Progress, Kbd, Stepper, SecretDisplay, ConfirmDialog, DefinitionList, CopyButton, InlineEdit, FileDropzone, TreeView, MenuSpecItems } from './chunk-AUBFJ3N2.js';
-export { AlarmList, BarChart, ConfirmDialog, ConsoleFrame, CopyButton, DatastoreBrowser, DateTimeInput, DefinitionList, Donut, ErrorSummary, EventConsole, FileDropzone, FormField, Gauge, HardwareEditor, InlineEdit, Kbd, PasswordField, PermissionAssignDialog, Progress, SecretDisplay, SnapshotTree, Stepper, TreeView } from './chunk-AUBFJ3N2.js';
-import { DropdownMenuSeparator, Avatar, Combobox, Badge, DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuLabel, DropdownMenuItem, RadioGroup, Popover, PopoverTrigger, PopoverContent, TabsList, TabsTrigger, uiEn, Breadcrumb, Drawer, DrawerTrigger, DrawerContent, Dialog, DialogContent, Skeleton, Select, EmptyState, RelativeTime, IconButton, Alert, Field, Input, Checkbox, DialogClose, StatusDot, Tabs, TabsContent, Panel, SplitPane, LABEL_SLOTS, AvatarGroup, Chip, Textarea, dialogBase, dialogSizes, TooltipProvider, Card, Sparkline, useChartMotion, entryAnim, tweenClass, motionVars, CardHeader, CardTitle, CardBody, CardDescription, PopoverClose, SearchInput, SplitButton, VirtualList, dashboardEn, TruncatedText, Tooltip } from './chunk-GG3HQY6A.js';
-export { Accordion, Alert, AlertGroup, Avatar, AvatarGroup, Badge, Banner, Breadcrumb, ButtonGroup, Card, CardActions, CardBody, CardDescription, CardFooter, CardGrid, CardHeader, CardTitle, Checkbox, Chip, Combobox, Dialog, DialogClose, DialogContent, DialogTrigger, Drawer, DrawerClose, DrawerContent, DrawerTrigger, DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger, EmptyState, ExpandableCard, Field, IconButton, InfiniteList, Input, KeyValueEditor, LineChart, LogViewer, NumberInput, PageHead, Panel, PermissionMatrix, Popover, PopoverClose, PopoverContent, PopoverTrigger, Radio, RadioGroup, RelativeTime, SearchInput, SegmentedControl, Select, SelectMenu, Skeleton, Slider, Sparkline, Spinner, SplitButton, SplitPane, Stat, StatGrid, StatusDot, Switch, Tabs, TabsContent, TabsList, TabsTrigger, TagInput, TenantSwitcher, Textarea as TextArea, Input as TextInput, Textarea, TimeRangePicker, ToastProvider, Tooltip, TooltipProvider, TruncatedText, VirtualList, dialogBase, dialogSizes, formatRelative, observeRectWithFallback, useToast, useToasts } from './chunk-GG3HQY6A.js';
-import { diffLines, useControllableState } from './chunk-S3G7Q24I.js';
-export { diffLines, format, matchesAccept, useControllableState } from './chunk-S3G7Q24I.js';
+import { ThresholdDonut } from './chunk-UKIYTAJI.js';
+import { Progress, Kbd, Stepper, SecretDisplay, ConfirmDialog, DefinitionList, CopyButton, InlineEdit, FileDropzone, TreeView, MenuSpecItems } from './chunk-Q6AORUFX.js';
+export { AlarmList, BarChart, ConfirmDialog, ConsoleFrame, CopyButton, DatastoreBrowser, DateTimeInput, DefinitionList, Donut, ErrorSummary, EventConsole, FileDropzone, FormField, Gauge, HardwareEditor, InlineEdit, Kbd, PasswordField, PermissionAssignDialog, Progress, SecretDisplay, SnapshotTree, Stepper, TreeView } from './chunk-Q6AORUFX.js';
+import { DropdownMenuSeparator, Avatar, Combobox, Badge, DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuLabel, DropdownMenuItem, RadioGroup, Popover, PopoverTrigger, PopoverContent, TabsList, TabsTrigger, uiEn, Breadcrumb, Drawer, DrawerTrigger, DrawerContent, Dialog, DialogContent, Skeleton, Select, EmptyState, RelativeTime, IconButton, Alert, Field, Input, Checkbox, DialogClose, StatusDot, Tabs, TabsContent, Panel, SplitPane, LABEL_SLOTS, AvatarGroup, Chip, Textarea, dialogBase, dialogSizes, TooltipProvider, Card, Sparkline, useChartMotion, entryAnim, tweenClass, motionVars, CardHeader, CardTitle, CardBody, CardDescription, PopoverClose, SearchInput, SplitButton, Banner, VirtualList, dashboardEn, TruncatedText, Tooltip } from './chunk-EGD6GBRI.js';
+export { Accordion, Alert, AlertGroup, Avatar, AvatarGroup, Badge, Banner, Breadcrumb, ButtonGroup, Card, CardActions, CardBody, CardDescription, CardFooter, CardGrid, CardHeader, CardTitle, Checkbox, Chip, Combobox, Dialog, DialogClose, DialogContent, DialogTrigger, Drawer, DrawerClose, DrawerContent, DrawerTrigger, DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger, EmptyState, ExpandableCard, Field, IconButton, InfiniteList, Input, KeyValueEditor, LineChart, LogViewer, NumberInput, PageHead, Panel, PermissionMatrix, Popover, PopoverClose, PopoverContent, PopoverTrigger, Radio, RadioGroup, RelativeTime, SearchInput, SegmentedControl, Select, SelectMenu, Skeleton, Slider, Sparkline, Spinner, SplitButton, SplitPane, Stat, StatGrid, StatusDot, Switch, Tabs, TabsContent, TabsList, TabsTrigger, TagInput, TenantSwitcher, Textarea as TextArea, Input as TextInput, Textarea, TimeRangePicker, ToastProvider, Tooltip, TooltipProvider, TruncatedText, VirtualList, dialogBase, dialogSizes, formatRelative, observeRectWithFallback, useToast, useToasts } from './chunk-EGD6GBRI.js';
+import { diffLines, useControllableState } from './chunk-DG76WAIG.js';
+export { diffLines, format, matchesAccept, useControllableState } from './chunk-DG76WAIG.js';
 import { Button } from './chunk-2O5Y6D5F.js';
 export { Button, buttonVariants } from './chunk-2O5Y6D5F.js';
-import { ObjectIcon, objectStateMeta } from './chunk-ZV7VBOGZ.js';
-export { ClusterGlyph, DatacenterGlyph, DiskArrayGlyph, FirewallGlyph, HddGlyph, IscsiGlyph, LoadBalancerGlyph, LunGlyph, NasGlyph, NfsGlyph, NvmeGlyph, ObjectIcon, RaidGlyph, RouterGlyph, SanGlyph, ServerGlyph, SsdGlyph, StateBadge, TemplateGlyph, UplinkGlyph, VSwitchGlyph, VdiskGlyph, VlanGlyph, VmGlyph, VnicGlyph, VolumeGlyph, VpnGlyph, objectKinds, objectStateMeta, objectStates, registerObjectKind } from './chunk-ZV7VBOGZ.js';
-import { useLaf, usePortalContainer, useLafDefaults } from './chunk-IIQMUFUD.js';
-export { LafProvider, createFormatters, en, useLaf, useLafDefaults, usePortalContainer } from './chunk-IIQMUFUD.js';
+import { ObjectIcon, objectStateMeta } from './chunk-6EDG7MDV.js';
+export { ClusterGlyph, DatacenterGlyph, DiskArrayGlyph, FirewallGlyph, HddGlyph, IscsiGlyph, LoadBalancerGlyph, LunGlyph, NasGlyph, NfsGlyph, NvmeGlyph, ObjectIcon, RaidGlyph, RouterGlyph, SanGlyph, ServerGlyph, SsdGlyph, StateBadge, TemplateGlyph, UplinkGlyph, VSwitchGlyph, VdiskGlyph, VlanGlyph, VmGlyph, VnicGlyph, VolumeGlyph, VpnGlyph, objectKinds, objectStateMeta, objectStates, registerObjectKind } from './chunk-6EDG7MDV.js';
+import { useLaf, usePortalContainer, useLafDefaults } from './chunk-PTV6E3H5.js';
+export { LafProvider, createFormatters, en, useLaf, useLafDefaults, usePortalContainer } from './chunk-PTV6E3H5.js';
 import { cn } from './chunk-3TRXGDSZ.js';
 export { cn } from './chunk-3TRXGDSZ.js';
-import { ChevronDown, ChevronLeft, ChevronRight, KeyRound, Tablet, Laptop, Smartphone, Check, Copy, LogOut, Search, Fingerprint, MoreHorizontal, ChevronUp, Menu as Menu$1, Bookmark, Star, Pencil, Trash2, X, Rows3, Columns3, ArrowUp, ArrowDown, RefreshCw, Loader2, Plus, ShieldCheck, Bell, PanelLeft, SmilePlus, MessageSquare, AlertCircle, TriangleAlert, CheckCircle2, Monitor, Moon, Sun, ChevronsUp, ChevronsDown, ChevronsRight, ChevronsLeft, LayoutGrid, Circle, TimerOff, WifiOff, ServerCrash, FileQuestion, LockKeyhole, ExternalLink, Minus } from 'lucide-react';
+import { ChevronDown, ChevronLeft, ChevronRight, KeyRound, Tablet, Laptop, Smartphone, Check, Copy, LogOut, Search, Fingerprint, MoreHorizontal, ChevronUp, Menu as Menu$1, Bookmark, Star, Pencil, Trash2, X, Rows3, Columns3, ArrowUp, ArrowDown, RefreshCw, Loader2, Plus, ShieldCheck, Bell, PanelLeft, SmilePlus, MessageSquare, AlertCircle, TriangleAlert, CheckCircle2, Monitor, Moon, Sun, ChevronsUp, ChevronsDown, ChevronsRight, ChevronsLeft, LayoutGrid, WifiOff, ChevronsUpDown, Circle, TimerOff, ServerCrash, FileQuestion, LockKeyhole, ExternalLink, Minus } from 'lucide-react';
 import { jsxs, jsx, Fragment } from 'react/jsx-runtime';
-import * as React28 from 'react';
+import * as React31 from 'react';
 import * as ContextPrimitive from '@radix-ui/react-context-menu';
 import * as DialogPrimitive3 from '@radix-ui/react-dialog';
 import * as DropdownPrimitive from '@radix-ui/react-dropdown-menu';
@@ -116,12 +116,12 @@ function UserSelector({
   const placeholder = placeholderProp ?? t.searchUsers;
   const label = labelProp ?? t.users;
   const limitReached = max !== void 0 && value.length >= max;
-  const known = React28.useRef(/* @__PURE__ */ new Map());
+  const known = React31.useRef(/* @__PURE__ */ new Map());
   const toOption = (u) => {
     known.current.set(u.id, u);
     return { value: u.id, label: u.name, description: u.email };
   };
-  const search = React28.useCallback(
+  const search = React31.useCallback(
     async (q) => (await onSearch(q)).map(toOption),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [onSearch]
@@ -180,7 +180,7 @@ var iconTone = { ok: "ok", warn: "warn", danger: "danger", neutral: "" };
 var badgeTone = { ok: "ok", warn: "warn", danger: "danger", neutral: "neutral" };
 function AuditLog({ events }) {
   const days = [...new Set(events.map((e) => e.day))];
-  return /* @__PURE__ */ jsx("div", { className: "audit", children: days.map((day) => /* @__PURE__ */ jsxs(React28.Fragment, { children: [
+  return /* @__PURE__ */ jsx("div", { className: "audit", children: days.map((day) => /* @__PURE__ */ jsxs(React31.Fragment, { children: [
     /* @__PURE__ */ jsx("div", { className: "audit-day", children: day }),
     events.filter((e) => e.day === day).map((e) => /* @__PURE__ */ jsxs("details", { className: "audit-row", children: [
       /* @__PURE__ */ jsxs("summary", { children: [
@@ -284,7 +284,7 @@ function OtpInput({
   className,
   ...props
 }) {
-  const [inner, setInner] = React28.useState(defaultValue);
+  const [inner, setInner] = React31.useState(defaultValue);
   const current = value ?? inner;
   const { t: laf } = useLaf();
   return /* @__PURE__ */ jsx(
@@ -330,8 +330,8 @@ function CodeDisplay({
   const { t: laf } = useLaf();
   const copyLabel = copyLabelProp ?? laf.copyCode;
   const copiedLabel = copiedLabelProp ?? laf.copied;
-  const [copied, setCopied] = React28.useState(false);
-  React28.useEffect(() => {
+  const [copied, setCopied] = React31.useState(false);
+  React31.useEffect(() => {
     if (!copied) return;
     const t = window.setTimeout(() => setCopied(false), 2e3);
     return () => window.clearTimeout(t);
@@ -432,9 +432,9 @@ function TaskPanel({
     openTarget: laf.vsOpenTarget,
     ...labelsProp
   };
-  const [scope, setScope] = React28.useState("all");
-  const [status, setStatus] = React28.useState("all");
-  const [open, setOpen] = React28.useState(() => /* @__PURE__ */ new Set());
+  const [scope, setScope] = React31.useState("all");
+  const [status, setStatus] = React31.useState("all");
+  const [open, setOpen] = React31.useState(() => /* @__PURE__ */ new Set());
   const visible = tasks.filter(
     (t) => (scope === "all" || t.initiator === currentUser) && (status === "all" || t.status === status)
   );
@@ -576,12 +576,12 @@ function CommandPalette({
   const portalContainer = usePortalContainer();
   const placeholder = placeholderProp ?? t.commandPlaceholder;
   const emptyText = emptyTextProp ?? t.noResults;
-  const [query, setQuery] = React28.useState("");
-  const [active, setActive] = React28.useState(0);
-  const [remote, setRemote] = React28.useState(null);
-  const [pending, setPending] = React28.useState(false);
-  const listId = React28.useId();
-  React28.useEffect(() => {
+  const [query, setQuery] = React31.useState("");
+  const [active, setActive] = React31.useState(0);
+  const [remote, setRemote] = React31.useState(null);
+  const [pending, setPending] = React31.useState(false);
+  const listId = React31.useId();
+  React31.useEffect(() => {
     const onKey = (e) => {
       if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
         e.preventDefault();
@@ -591,13 +591,13 @@ function CommandPalette({
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [open, onOpenChange]);
-  React28.useEffect(() => {
+  React31.useEffect(() => {
     if (!open) {
       setQuery("");
       setRemote(null);
     }
   }, [open]);
-  React28.useEffect(() => {
+  React31.useEffect(() => {
     if (!search || !open || !query) {
       setRemote(null);
       setPending(false);
@@ -622,7 +622,7 @@ function CommandPalette({
     };
   }, [search, query, open]);
   const q = query.toLowerCase();
-  const sections = React28.useMemo(() => {
+  const sections = React31.useMemo(() => {
     const out = [];
     if (!q) {
       if (recent?.length) out.push({ heading: t.recent, items: recent });
@@ -640,7 +640,7 @@ function CommandPalette({
     return out;
   }, [commands, remote, q, query, recent, t.recent]);
   const results = sections.flatMap((s) => s.items.map((c) => ({ c, section: s })));
-  React28.useEffect(() => setActive(0), [query]);
+  React31.useEffect(() => setActive(0), [query]);
   const run = (c) => {
     onOpenChange(false);
     c.onSelect();
@@ -716,7 +716,7 @@ function CommandPalette({
   ] }) });
 }
 function DiffView({ before, after, label, mode = "split" }) {
-  const ops = React28.useMemo(() => diffLines(before, after), [before, after]);
+  const ops = React31.useMemo(() => diffLines(before, after), [before, after]);
   const wrap = "overflow-auto rounded-md border border-line bg-black/30 font-mono text-[0.8125rem]";
   if (mode === "unified")
     return /* @__PURE__ */ jsx("div", { role: "group", "aria-label": label, className: wrap, children: ops.map((op, i) => /* @__PURE__ */ jsxs("div", { className: cn("px-3 whitespace-pre", op.type === "del" && "bg-danger-bg text-danger", op.type === "add" && "bg-ok-bg text-ok"), children: [
@@ -765,12 +765,12 @@ function MfaEnrolment({ qr, secret, recoveryCodes, onVerify, onRegisterPasskey, 
     genericError: "Something went wrong. Try again.",
     ...labels
   };
-  const [step, setStep] = React28.useState(0);
-  const [method, setMethod] = React28.useState("totp");
-  const [code, setCode] = React28.useState("");
-  const [error, setError] = React28.useState();
-  const [busy, setBusy] = React28.useState(false);
-  const [stored, setStored] = React28.useState(false);
+  const [step, setStep] = React31.useState(0);
+  const [method, setMethod] = React31.useState("totp");
+  const [code, setCode] = React31.useState("");
+  const [error, setError] = React31.useState();
+  const [busy, setBusy] = React31.useState(false);
+  const [stored, setStored] = React31.useState(false);
   const steps = [
     { id: "m", label: l.method },
     ...method === "totp" ? [
@@ -876,14 +876,14 @@ function DatePicker(props) {
   const { t: laf, timeZone } = useLaf();
   const label = labelProp ?? laf.chooseDate;
   const placeholder = placeholderProp ?? laf.datePlaceholder;
-  const [open, setOpen] = React28.useState(false);
+  const [open, setOpen] = React31.useState(false);
   const range = mode === "range" ? props.value ?? {} : {};
   const single = mode === "range" ? void 0 : props.value;
   const day = mode === "range" ? range.from : single?.slice(0, 10);
   const time = mode === "datetime" ? single?.slice(11, 16) || "00:00" : "00:00";
   const base = day ? /* @__PURE__ */ new Date(`${day}T00:00:00`) : /* @__PURE__ */ new Date();
-  const [view, setView] = React28.useState({ y: base.getFullYear(), m: base.getMonth() });
-  const [typed, setTyped] = React28.useState(null);
+  const [view, setView] = React31.useState({ y: base.getFullYear(), m: base.getMonth() });
+  const [typed, setTyped] = React31.useState(null);
   const first = new Date(view.y, view.m, 1);
   const offset = (first.getDay() + 6) % 7;
   const days = new Date(view.y, view.m + 1, 0).getDate();
@@ -992,7 +992,7 @@ function StackedBarChart({
   label
 }) {
   const max = Math.max(...data.map((d) => d.values.reduce((a, b) => a + b, 0)), 1);
-  const tones = ["bg-primary", "bg-ok", "bg-warn", "bg-danger"];
+  const tones2 = ["bg-primary", "bg-ok", "bg-warn", "bg-danger"];
   return /* @__PURE__ */ jsxs("figure", { "aria-label": label, className: "m-0 grid gap-2", children: [
     /* @__PURE__ */ jsx("ul", { className: "m-0 grid list-none gap-2 p-0", children: data.map((d) => /* @__PURE__ */ jsxs("li", { className: "grid grid-cols-[6rem_1fr] items-center gap-2 text-xs text-muted", children: [
       /* @__PURE__ */ jsx("span", { className: "truncate", children: d.name }),
@@ -1000,14 +1000,14 @@ function StackedBarChart({
         "span",
         {
           title: `${series[i]}: ${v}`,
-          className: cn("block h-full", tones[i % tones.length]),
+          className: cn("block h-full", tones2[i % tones2.length]),
           style: { width: `${v / max * 100}%` }
         },
         i
       )) })
     ] }, d.name)) }),
     /* @__PURE__ */ jsx("figcaption", { className: "flex gap-3 text-xs text-muted", children: series.map((s, i) => /* @__PURE__ */ jsxs("span", { className: "inline-flex items-center gap-1", children: [
-      /* @__PURE__ */ jsx("span", { className: cn("size-2 rounded-sm", tones[i % tones.length]), "aria-hidden": true }),
+      /* @__PURE__ */ jsx("span", { className: cn("size-2 rounded-sm", tones2[i % tones2.length]), "aria-hidden": true }),
       " ",
       s
     ] }, s)) })
@@ -1072,7 +1072,7 @@ function DockedTaskPanel({
 }) {
   const { t: laf } = useLaf();
   const title = titleProp ?? laf.recentTasks;
-  const [open, setOpen] = React28.useState(defaultOpen);
+  const [open, setOpen] = React31.useState(defaultOpen);
   const running = tasks.filter((t) => t.status === "running").length;
   return /* @__PURE__ */ jsxs("section", { "aria-label": title, className: "absolute inset-x-0 bottom-0 border-t border-line bg-surface", children: [
     /* @__PURE__ */ jsxs(
@@ -1225,35 +1225,35 @@ function disabledProps(d) {
   return d ? { disabled: true, title: typeof d === "string" ? d : void 0 } : {};
 }
 function renderItems(P, items) {
-  const X8 = P;
+  const X9 = P;
   return items.map((it, i) => {
     const key = "id" in it && it.id || `${it.type}-${i}`;
     switch (it.type) {
       case "separator":
-        return /* @__PURE__ */ jsx(X8.Separator, { className: "dropdown-sep" }, key);
+        return /* @__PURE__ */ jsx(X9.Separator, { className: "dropdown-sep" }, key);
       case "label":
-        return /* @__PURE__ */ jsx(X8.Label, { className: "dropdown-label", children: it.label }, key);
+        return /* @__PURE__ */ jsx(X9.Label, { className: "dropdown-label", children: it.label }, key);
       case "checkbox":
-        return /* @__PURE__ */ jsxs(X8.CheckboxItem, { className: cn(itemCls, "relative ps-8"), checked: it.checked, onCheckedChange: it.onCheckedChange, ...disabledProps(it.disabled), children: [
-          /* @__PURE__ */ jsx(X8.ItemIndicator, { className: "absolute start-3 inline-flex", children: /* @__PURE__ */ jsx(Check, { className: "size-3.5", "aria-hidden": true }) }),
+        return /* @__PURE__ */ jsxs(X9.CheckboxItem, { className: cn(itemCls, "relative ps-8"), checked: it.checked, onCheckedChange: it.onCheckedChange, ...disabledProps(it.disabled), children: [
+          /* @__PURE__ */ jsx(X9.ItemIndicator, { className: "absolute start-3 inline-flex", children: /* @__PURE__ */ jsx(Check, { className: "size-3.5", "aria-hidden": true }) }),
           it.label
         ] }, key);
       case "radio":
-        return /* @__PURE__ */ jsx(X8.RadioGroup, { value: it.value, onValueChange: it.onValueChange, children: it.options.map((o) => /* @__PURE__ */ jsxs(X8.RadioItem, { value: o.value, className: cn(itemCls, "relative ps-8"), children: [
-          /* @__PURE__ */ jsx(X8.ItemIndicator, { className: "absolute start-3.5 inline-flex", children: /* @__PURE__ */ jsx(Circle, { className: "size-2 fill-current", "aria-hidden": true }) }),
+        return /* @__PURE__ */ jsx(X9.RadioGroup, { value: it.value, onValueChange: it.onValueChange, children: it.options.map((o) => /* @__PURE__ */ jsxs(X9.RadioItem, { value: o.value, className: cn(itemCls, "relative ps-8"), children: [
+          /* @__PURE__ */ jsx(X9.ItemIndicator, { className: "absolute start-3.5 inline-flex", children: /* @__PURE__ */ jsx(Circle, { className: "size-2 fill-current", "aria-hidden": true }) }),
           o.label
         ] }, o.value)) }, key);
       case "submenu":
-        return /* @__PURE__ */ jsxs(X8.Sub, { children: [
-          /* @__PURE__ */ jsxs(X8.SubTrigger, { className: itemCls, ...disabledProps(it.disabled), children: [
+        return /* @__PURE__ */ jsxs(X9.Sub, { children: [
+          /* @__PURE__ */ jsxs(X9.SubTrigger, { className: itemCls, ...disabledProps(it.disabled), children: [
             it.icon,
             it.label,
             /* @__PURE__ */ jsx(ChevronRight, { className: "ms-auto size-3.5 rtl:rotate-180", "aria-hidden": true })
           ] }),
-          /* @__PURE__ */ jsx(X8.Portal, { children: /* @__PURE__ */ jsx(X8.SubContent, { sideOffset: 2, alignOffset: -4, className: contentCls, children: renderItems(P, it.items) }) })
+          /* @__PURE__ */ jsx(X9.Portal, { children: /* @__PURE__ */ jsx(X9.SubContent, { sideOffset: 2, alignOffset: -4, className: contentCls, children: renderItems(P, it.items) }) })
         ] }, key);
       default:
-        return /* @__PURE__ */ jsxs(X8.Item, { className: cn(itemCls, it.danger && "danger"), onSelect: () => it.onSelect(), ...disabledProps(it.disabled), children: [
+        return /* @__PURE__ */ jsxs(X9.Item, { className: cn(itemCls, it.danger && "danger"), onSelect: () => it.onSelect(), ...disabledProps(it.disabled), children: [
           it.icon,
           it.label,
           it.shortcut && /* @__PURE__ */ jsx(MenuShortcut, { children: it.shortcut })
@@ -1280,8 +1280,8 @@ function ContextMenuFor({ items, children, disabled }) {
   ] });
 }
 function useUnsavedChangesGuard(dirty) {
-  const [queued, setQueued] = React28.useState(null);
-  React28.useEffect(() => {
+  const [queued, setQueued] = React31.useState(null);
+  React31.useEffect(() => {
     if (!dirty) return;
     const onBeforeUnload = (e) => {
       e.preventDefault();
@@ -1290,7 +1290,7 @@ function useUnsavedChangesGuard(dirty) {
     window.addEventListener("beforeunload", onBeforeUnload);
     return () => window.removeEventListener("beforeunload", onBeforeUnload);
   }, [dirty]);
-  const guard = React28.useCallback(
+  const guard = React31.useCallback(
     (action) => {
       if (!dirty) {
         action();
@@ -1301,12 +1301,12 @@ function useUnsavedChangesGuard(dirty) {
     },
     [dirty]
   );
-  const confirm = React28.useCallback(() => {
+  const confirm = React31.useCallback(() => {
     const action = queued;
     setQueued(null);
     action?.();
   }, [queued]);
-  const cancel = React28.useCallback(() => setQueued(null), []);
+  const cancel = React31.useCallback(() => setQueued(null), []);
   return { pending: queued !== null, dirty, guard, confirm, cancel };
 }
 function UnsavedChangesDialog({
@@ -1342,7 +1342,7 @@ function FormSection({
   children,
   className
 }) {
-  const id = React28.useId();
+  const id = React31.useId();
   return /* @__PURE__ */ jsxs("section", { "aria-labelledby": `${id}-t`, className: cn("grid gap-4 border-b border-line py-6 first:pt-0 last:border-b-0", className), children: [
     /* @__PURE__ */ jsxs("header", { children: [
       /* @__PURE__ */ jsx("h2", { id: `${id}-t`, className: "text-base font-semibold text-fg", children: title }),
@@ -1556,16 +1556,16 @@ function Wizard({
     defaultValue: defaultCurrent,
     onChange: onCurrentChange
   });
-  const [errors, setErrors] = React28.useState([]);
-  const [failed, setFailed] = React28.useState({});
-  const [busy, setBusy] = React28.useState(false);
+  const [errors, setErrors] = React31.useState([]);
+  const [failed, setFailed] = React31.useState({});
+  const [busy, setBusy] = React31.useState(false);
   const guard = useUnsavedChangesGuard(!!dirty);
-  const headingRef = React28.useRef(null);
-  const mounted = React28.useRef(false);
-  const errId = React28.useId();
+  const headingRef = React31.useRef(null);
+  const mounted = React31.useRef(false);
+  const errId = React31.useId();
   const step = steps[current];
   const last = current === steps.length - 1;
-  React28.useEffect(() => {
+  React31.useEffect(() => {
     if (mounted.current) headingRef.current?.focus();
     mounted.current = true;
   }, [current]);
@@ -1743,7 +1743,7 @@ function ErrorPage({
     }
   );
 }
-var LafErrorBoundary = class extends React28.Component {
+var LafErrorBoundary = class extends React31.Component {
   state = { error: null };
   static getDerivedStateFromError(error) {
     return { error };
@@ -1921,7 +1921,7 @@ var newId = () => typeof crypto !== "undefined" && "randomUUID" in crypto ? cryp
 function useSavedViews(opts = {}) {
   const { storageKey: storageKey2 = "pilab.savedViews", storage: storageProp } = opts;
   const storage = storageProp === null ? void 0 : storageProp ?? localStorageAdapter();
-  const [initial] = React28.useState(() => opts.views === void 0 ? readStored(storage, storageKey2) : { views: [] });
+  const [initial] = React31.useState(() => opts.views === void 0 ? readStored(storage, storageKey2) : { views: [] });
   const [views, setViews] = useControllableState({
     value: opts.views,
     defaultValue: opts.defaultViews && initial.views.length === 0 ? opts.defaultViews : initial.views,
@@ -1933,8 +1933,8 @@ function useSavedViews(opts = {}) {
     onChange: opts.onDefaultViewChange
   });
   const persist = opts.views === void 0 && !!storage;
-  const first = React28.useRef(true);
-  React28.useEffect(() => {
+  const first = React31.useRef(true);
+  React31.useEffect(() => {
     if (first.current) {
       first.current = false;
       return;
@@ -1966,10 +1966,10 @@ function useSavedViews(opts = {}) {
 function SavedViews({ query, onApply, labels: labelsProp, className, ...opts }) {
   const l = { ...defaultViewLabels, ...labelsProp };
   const sv = useSavedViews(opts);
-  const [open, setOpen] = React28.useState(false);
-  const [name, setName] = React28.useState("");
-  const [renaming, setRenaming] = React28.useState(null);
-  const [renameValue, setRenameValue] = React28.useState("");
+  const [open, setOpen] = React31.useState(false);
+  const [name, setName] = React31.useState("");
+  const [renaming, setRenaming] = React31.useState(null);
+  const [renameValue, setRenameValue] = React31.useState("");
   const commitRename = () => {
     if (renaming && renameValue.trim()) sv.rename(renaming, renameValue);
     setRenaming(null);
@@ -2100,26 +2100,26 @@ function FilterBar({
 }) {
   const { views: viewLabels, ...barLabels } = labelsProp ?? {};
   const l = { ...defaultLabels, ...barLabels };
-  const id = React28.useId();
+  const id = React31.useId();
   const [query, setQuery] = useControllableState({
     value,
     defaultValue,
     onChange: (q) => onChange?.(q, parseFilter(q))
   });
-  const [draft, setDraft] = React28.useState("");
-  const [open, setOpen] = React28.useState(false);
-  const [active, setActive] = React28.useState(0);
-  const [asyncOpts, setAsyncOpts] = React28.useState([]);
-  const inputRef = React28.useRef(null);
-  const userNavigated = React28.useRef(false);
-  const root = React28.useRef(null);
-  const parsed = React28.useMemo(() => parseFilter(query), [query]);
+  const [draft, setDraft] = React31.useState("");
+  const [open, setOpen] = React31.useState(false);
+  const [active, setActive] = React31.useState(0);
+  const [asyncOpts, setAsyncOpts] = React31.useState([]);
+  const inputRef = React31.useRef(null);
+  const userNavigated = React31.useRef(false);
+  const root = React31.useRef(null);
+  const parsed = React31.useMemo(() => parseFilter(query), [query]);
   const tokens = parsed.tokens;
   const svOpts = savedViews === false ? void 0 : savedViews ?? {};
-  const defaultViewRef = React28.useRef(void 0);
+  const defaultViewRef = React31.useRef(void 0);
   const applyDefault = applyDefaultView && !!svOpts && !query && value === void 0;
-  const defaultInit = React28.useRef(false);
-  React28.useEffect(() => {
+  const defaultInit = React31.useRef(false);
+  React31.useEffect(() => {
     if (defaultInit.current || !applyDefault) return;
     defaultInit.current = true;
     const st = svOpts?.storage === null ? void 0 : svOpts?.storage ?? localStorageAdapter();
@@ -2137,7 +2137,7 @@ function FilterBar({
   const valuePart = colon > 0 ? body.slice(colon + 1) : "";
   const lastSegment = field && (field.multiple ?? true) ? valuePart.slice(valuePart.lastIndexOf(",") + 1) : valuePart;
   const lastQuery = lastSegment.replace(/^(>=|<=|>|<)/, "").replace(/^"/, "");
-  React28.useEffect(() => {
+  React31.useEffect(() => {
     if (!field || typeof field.options !== "function") {
       setAsyncOpts([]);
       return;
@@ -2152,7 +2152,7 @@ function FilterBar({
       window.clearTimeout(h);
     };
   }, [field, lastQuery]);
-  const suggestions = React28.useMemo(() => {
+  const suggestions = React31.useMemo(() => {
     if (!open) return [];
     const prefix = neg ? "-" : "";
     if (colon < 0) {
@@ -2170,7 +2170,7 @@ function FilterBar({
       commit: true
     }));
   }, [open, fields, body, colon, field, asyncOpts, lastQuery, lastSegment, draft, neg]);
-  React28.useEffect(() => setActive(0), [draft]);
+  React31.useEffect(() => setActive(0), [draft]);
   const commitDraft = (text) => {
     const add = parseFilter(text).tokens;
     if (add.length) emit([...tokens, ...add]);
@@ -2425,11 +2425,11 @@ function BarItem({ it }) {
 var keyOf = (it, i) => "id" in it ? it.id : `${it.type}-${i}`;
 function ActionBar({ items, label, className, labels }) {
   const actions = labels?.actions ?? "Actions";
-  const ref = React28.useRef(null);
-  const widths = React28.useRef([]);
-  const moreW = React28.useRef(0);
-  const [visible, setVisible] = React28.useState(items.length);
-  const measure = React28.useCallback(() => {
+  const ref = React31.useRef(null);
+  const widths = React31.useRef([]);
+  const moreW = React31.useRef(0);
+  const [visible, setVisible] = React31.useState(items.length);
+  const measure = React31.useCallback(() => {
     const el = ref.current;
     if (!el) return;
     el.querySelectorAll("[data-ab]").forEach((c) => {
@@ -2448,14 +2448,14 @@ function ActionBar({ items, label, className, labels }) {
     }
     setVisible(n);
   }, [items.length]);
-  React28.useLayoutEffect(() => {
+  React31.useLayoutEffect(() => {
     widths.current = [];
     setVisible(items.length);
   }, [items]);
-  React28.useLayoutEffect(() => {
+  React31.useLayoutEffect(() => {
     measure();
   });
-  React28.useEffect(() => {
+  React31.useEffect(() => {
     const el = ref.current;
     if (!el || typeof ResizeObserver === "undefined") return;
     const ro = new ResizeObserver(() => setVisible(items.length));
@@ -2554,9 +2554,9 @@ var ACTION_W = 40;
 var EXPAND_W = 32;
 var interactive = "button,a,input,select,textarea,[role=button],[role=menuitem]";
 var textOf = (n, fallback) => typeof n === "string" || typeof n === "number" ? String(n) : fallback;
-var GridContext = React28.createContext(null);
+var GridContext = React31.createContext(null);
 function useGrid() {
-  const c = React28.useContext(GridContext);
+  const c = React31.useContext(GridContext);
   if (!c) throw new Error("Grid toolbar components must be rendered inside <DataGrid toolbar={\u2026}>");
   return c;
 }
@@ -2674,8 +2674,8 @@ function DataGrid(props) {
   const SG = { ...laf.components.portal.serverGrid, ...props.labels };
   const selectAllLabel = props.labels?.selectAll ?? laf.selectAllRows;
   const selectRowLabel = props.labels?.selectRow ?? laf.selectRow;
-  const uid = React28.useId();
-  const persisted = React28.useMemo(() => readView(viewKey), [viewKey]);
+  const uid = React31.useId();
+  const persisted = React31.useMemo(() => readView(viewKey), [viewKey]);
   const [sort, setSort] = useControllableState({ value: props.sort, defaultValue: [], onChange: props.onSortChange });
   const [selected, setSelected] = useControllableState({ value: props.selected, defaultValue: [], onChange: props.onSelectedChange });
   const [visibility, setVisibility] = useControllableState({
@@ -2688,8 +2688,8 @@ function DataGrid(props) {
   const [filters, setFilters] = useControllableState({ value: props.filters, defaultValue: [], onChange: props.onFiltersChange });
   const [search, setSearch] = useControllableState({ value: props.search, defaultValue: "", onChange: props.onSearchChange });
   const [density, setDensity] = useControllableState({ value: props.density, defaultValue: persisted.density ?? "default", onChange: props.onDensityChange });
-  const [expandedIds, setExpandedIds] = React28.useState(() => /* @__PURE__ */ new Set());
-  React28.useEffect(() => {
+  const [expandedIds, setExpandedIds] = React31.useState(() => /* @__PURE__ */ new Set());
+  React31.useEffect(() => {
     if (!viewKey || typeof window === "undefined") return;
     try {
       window.localStorage.setItem(storageKey(viewKey), JSON.stringify({ columnVisibility: visibility, columnOrder: order, columnSizing: sizing, density }));
@@ -2697,9 +2697,9 @@ function DataGrid(props) {
     }
   }, [viewKey, visibility, order, sizing, density]);
   const selectable = props.selectable ?? (props.selected !== void 0 || !!props.onSelectedChange || !!bulkActions);
-  const selectedSet = React28.useMemo(() => new Set(selected), [selected]);
-  const colById = React28.useMemo(() => new Map(columns.map((c) => [c.id, c])), [columns]);
-  const defs = React28.useMemo(
+  const selectedSet = React31.useMemo(() => new Set(selected), [selected]);
+  const colById = React31.useMemo(() => new Map(columns.map((c) => [c.id, c])), [columns]);
+  const defs = React31.useMemo(
     () => columns.map((c) => ({
       id: c.id,
       accessorFn: c.accessor ?? ((r) => r[c.id]),
@@ -2713,7 +2713,7 @@ function DataGrid(props) {
     [columns]
   );
   const wrap = (get, set) => (u) => set(typeof u === "function" ? u(get()) : u);
-  const sorting = React28.useMemo(() => sort.map((s) => ({ id: s.id, desc: s.dir === "desc" })), [sort]);
+  const sorting = React31.useMemo(() => sort.map((s) => ({ id: s.id, desc: s.dir === "desc" })), [sort]);
   const columnFilters = filters;
   const table = useLegacyTable({
     data: rows,
@@ -2759,9 +2759,9 @@ function DataGrid(props) {
   const overscan = typeof virtual === "object" ? virtual.overscan ?? 8 : 8;
   const virtualOn = virtual === void 0 ? n > 200 : virtual !== false;
   const viewportH = height ?? 480;
-  const scrollRef = React28.useRef(null);
+  const scrollRef = React31.useRef(null);
   const fallbackH = typeof viewportH === "number" ? viewportH : 480;
-  const estimate = React28.useCallback((i) => rowH + (modelRows[i] && expandedIds.has(modelRows[i].id) ? 120 : 0), [rowH, modelRows, expandedIds]);
+  const estimate = React31.useCallback((i) => rowH + (modelRows[i] && expandedIds.has(modelRows[i].id) ? 120 : 0), [rowH, modelRows, expandedIds]);
   const virtualizer = useVirtualizer({
     count: virtualOn ? n : 0,
     getScrollElement: () => scrollRef.current,
@@ -2785,15 +2785,15 @@ function DataGrid(props) {
       return h > 0 ? h : estimate(Number(el.dataset.index ?? 0));
     }
   });
-  const [active, setActive] = React28.useState(-1);
-  const anchor = React28.useRef(0);
-  const [menu, setMenu] = React28.useState(null);
+  const [active, setActive] = React31.useState(-1);
+  const anchor = React31.useRef(0);
+  const [menu, setMenu] = React31.useState(null);
   const activeIdx = Math.min(active, n - 1);
   const reveal = (i) => {
     if (virtualOn) virtualizer.scrollToIndex(i, { align: "auto" });
     else scrollRef.current?.querySelector(`[data-row-index="${i}"]`)?.scrollIntoView?.({ block: "nearest" });
   };
-  const ids = React28.useMemo(() => modelRows.map((r) => r.id), [modelRows]);
+  const ids = React31.useMemo(() => modelRows.map((r) => r.id), [modelRows]);
   const select = (i, mods, checkbox = false) => {
     const id = ids[i];
     if (id === void 0) return;
@@ -2915,7 +2915,7 @@ function DataGrid(props) {
     base.splice(to, 0, base.splice(from, 1)[0]);
     setOrder(base);
   };
-  const dragId = React28.useRef(null);
+  const dragId = React31.useRef(null);
   const setFilter = (id, value) => setFilters([...filters.filter((f) => f.id !== id), ...value === void 0 || value === "" ? [] : [{ id, value }]]);
   const hasFilters = columns.some((c) => c.filter);
   const ctx = {
@@ -3197,7 +3197,7 @@ function DataGrid(props) {
             e.preventDefault();
             scrollRef.current?.focus();
           },
-          children: menuItems.map((m) => /* @__PURE__ */ jsxs(React28.Fragment, { children: [
+          children: menuItems.map((m) => /* @__PURE__ */ jsxs(React31.Fragment, { children: [
             m.separatorBefore && /* @__PURE__ */ jsx(DropdownMenuSeparator, {}),
             /* @__PURE__ */ jsxs(DropdownMenuItem, { danger: m.danger, disabled: m.disabled, onSelect: () => m.onSelect(), children: [
               m.icon,
@@ -3232,10 +3232,10 @@ function TreeTable({
 }) {
   const [open, setOpen] = useControllableState({ value: expanded, defaultValue: defaultExpanded ?? [], onChange: onExpandedChange });
   const [sort, setSort] = useControllableState({ value: sortProp, defaultValue: [], onChange: onSortChange });
-  const openSet = React28.useMemo(() => new Set(open), [open]);
+  const openSet = React31.useMemo(() => new Set(open), [open]);
   const treeCol = treeColumn ?? columns[0]?.id;
-  const getters = React28.useMemo(() => new Map(columns.map((c) => [c.id, c.accessor ?? ((r) => r[c.id])])), [columns]);
-  const flat = React28.useMemo(() => {
+  const getters = React31.useMemo(() => new Map(columns.map((c) => [c.id, c.accessor ?? ((r) => r[c.id])])), [columns]);
+  const flat = React31.useMemo(() => {
     const out = [];
     const cmp = (x, y) => {
       for (const s of sort) {
@@ -3258,8 +3258,8 @@ function TreeTable({
     walk(nodes, 1);
     return out;
   }, [nodes, openSet, sort, getters]);
-  const toggle = React28.useCallback((id) => setOpen((prev) => prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]), [setOpen]);
-  const cols = React28.useMemo(
+  const toggle = React31.useCallback((id) => setOpen((prev) => prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]), [setOpen]);
+  const cols = React31.useMemo(
     () => columns.map((c) => {
       const base = { ...c, cell: (f) => c.cell(f.node.data), accessor: (f) => getters.get(c.id)(f.node.data), filter: void 0 };
       if (c.id !== treeCol) return base;
@@ -3409,8 +3409,8 @@ var useLaf2 = () => useLafDefaults(lafDefaults4);
 var deviceIcon2 = { phone: Smartphone, laptop: Laptop, tablet: Tablet, key: KeyRound };
 function SessionList({ sessions, onRevoke, onRevokeOthers, showUser, labels }) {
   const l = { ...useLaf2().t.components.account.sessions, ...labels };
-  const [confirm, setConfirm] = React28.useState(false);
-  const [pending, setPending] = React28.useState(false);
+  const [confirm, setConfirm] = React31.useState(false);
+  const [pending, setPending] = React31.useState(false);
   const others = sessions.filter((s) => !s.current).length;
   return /* @__PURE__ */ jsxs("div", { className: "grid gap-3", children: [
     onRevokeOthers && /* @__PURE__ */ jsx("div", { className: "flex justify-end", children: /* @__PURE__ */ jsx(Button, { variant: "secondary", size: "sm", leftIcon: /* @__PURE__ */ jsx(LogOut, {}), disabled: others === 0, onClick: () => setConfirm(true), children: l.revokeOthers }) }),
@@ -3479,17 +3479,17 @@ function SessionList({ sessions, onRevoke, onRevokeOthers, showUser, labels }) {
 }
 function ApiKeyManager({ keys, scopes, expiryPresets = [30, 90, 365, null], onCreate, onRevoke, onRotate, labels }) {
   const l = { ...useLaf2().t.components.account.apiKeys, ...labels };
-  const [form, setForm] = React28.useState(false);
-  const [name, setName] = React28.useState("");
-  const [expiry, setExpiry] = React28.useState(expiryPresets[0] ?? null);
-  const [picked, setPicked] = React28.useState([]);
-  const [busy, setBusy] = React28.useState(false);
-  const [error, setError] = React28.useState();
-  const [secret, setSecret] = React28.useState();
-  const [ack, setAck] = React28.useState(false);
-  const [revoking, setRevoking] = React28.useState();
-  const nameId = React28.useId();
-  const expId = React28.useId();
+  const [form, setForm] = React31.useState(false);
+  const [name, setName] = React31.useState("");
+  const [expiry, setExpiry] = React31.useState(expiryPresets[0] ?? null);
+  const [picked, setPicked] = React31.useState([]);
+  const [busy, setBusy] = React31.useState(false);
+  const [error, setError] = React31.useState();
+  const [secret, setSecret] = React31.useState();
+  const [ack, setAck] = React31.useState(false);
+  const [revoking, setRevoking] = React31.useState();
+  const nameId = React31.useId();
+  const expId = React31.useId();
   const reveal = (s) => {
     setSecret(s);
     setAck(false);
@@ -3609,9 +3609,9 @@ function ApiKeyManager({ keys, scopes, expiryPresets = [30, 90, 365, null], onCr
 }
 function SecurityFactors({ password, totp, passkeys, recovery, labels }) {
   const l = { ...useLaf2().t.components.account.factors, ...labels };
-  const [removal, setRemoval] = React28.useState();
-  const [codes, setCodes] = React28.useState();
-  const [ack, setAck] = React28.useState(false);
+  const [removal, setRemoval] = React31.useState();
+  const [codes, setCodes] = React31.useState();
+  const [ack, setAck] = React31.useState(false);
   const factorCount = (totp?.enabled ? 1 : 0) + (passkeys?.items.length ?? 0);
   const last = factorCount === 1;
   return /* @__PURE__ */ jsxs("div", { className: "grid gap-4", children: [
@@ -3719,12 +3719,12 @@ function SecurityFactors({ password, totp, passkeys, recovery, labels }) {
 }
 function ReauthDialog({ open, onOpenChange, onReauth, passkey, labels }) {
   const l = { ...useLaf2().t.components.account.reauth, ...labels };
-  const [method, setMethod] = React28.useState(passkey ? "passkey" : "password");
-  const [pw, setPw] = React28.useState("");
-  const [busy, setBusy] = React28.useState(false);
-  const [error, setError] = React28.useState();
-  const id = React28.useId();
-  React28.useEffect(() => {
+  const [method, setMethod] = React31.useState(passkey ? "passkey" : "password");
+  const [pw, setPw] = React31.useState("");
+  const [busy, setBusy] = React31.useState(false);
+  const [error, setError] = React31.useState();
+  const id = React31.useId();
+  React31.useEffect(() => {
     if (!open) {
       setPw("");
       setError(void 0);
@@ -3785,15 +3785,15 @@ function SessionExpiryDialog({ expiresAt, warnBeforeMs = 3e5, onStay, onSignOut,
   const { format: format2, t: laf } = useLaf2();
   const l = { ...laf.components.account.expiry, ...labels };
   const target = new Date(expiresAt).getTime();
-  const [now, setNow] = React28.useState(() => Date.now());
-  const expired = React28.useRef(false);
-  React28.useEffect(() => {
+  const [now, setNow] = React31.useState(() => Date.now());
+  const expired = React31.useRef(false);
+  React31.useEffect(() => {
     setNow(Date.now());
     const t = setInterval(() => setNow(Date.now()), 1e3);
     return () => clearInterval(t);
   }, [target]);
   const left = Math.max(0, target - now);
-  React28.useEffect(() => {
+  React31.useEffect(() => {
     if (left > 0) expired.current = false;
     else if (!expired.current && now >= target) {
       expired.current = true;
@@ -3917,10 +3917,10 @@ function isCidr(s) {
   return parseCidr(s) !== null;
 }
 function NetInput({ validate, message, label, hint, errorMessage, value, defaultValue = "", onChange, className, id, ...rest }) {
-  const auto = React28.useId();
+  const auto = React31.useId();
   const inputId = id ?? auto;
   const [val, setVal] = useControllableState({ value, defaultValue, onChange });
-  const [touched, setTouched] = React28.useState(false);
+  const [touched, setTouched] = React31.useState(false);
   const invalid = touched && val !== "" && !validate(val);
   const input = /* @__PURE__ */ jsx(
     Input,
@@ -3964,10 +3964,10 @@ function AllowListEditor({ value, defaultValue = [], onChange, label: labelProp,
   const { t: laf } = useLaf3();
   const label = labelProp ?? laf.components.admin.allowList;
   const L = { ...laf.components.admin.network, ...l };
-  const id = React28.useId();
+  const id = React31.useId();
   const [list, setList] = useControllableState({ value, defaultValue, onChange });
-  const [draft, setDraft] = React28.useState("");
-  const [error, setError] = React28.useState();
+  const [draft, setDraft] = React31.useState("");
+  const [error, setError] = React31.useState();
   const add = () => {
     const entry = draft.trim();
     if (!entry) return;
@@ -4013,7 +4013,7 @@ function AllowListEditor({ value, defaultValue = [], onChange, label: labelProp,
 }
 var ROW = 32;
 function TransferColumn({ title, items, checked, setChecked, L, height }) {
-  const [q, setQ] = React28.useState("");
+  const [q, setQ] = React31.useState("");
   const needle = q.trim().toLowerCase();
   const shown = needle ? items.filter((i) => i.label.toLowerCase().includes(needle)) : items;
   const n = items.filter((i) => checked.has(i.id)).length;
@@ -4054,8 +4054,8 @@ function TransferColumn({ title, items, checked, setChecked, L, height }) {
 function TransferList({ items, value, defaultValue = [], onChange, labels, height = 224 }) {
   const L = { ...useLaf3().t.components.admin.transfer, ...labels };
   const [sel, setSel] = useControllableState({ value, defaultValue, onChange });
-  const [leftChecked, setLeftChecked] = React28.useState(/* @__PURE__ */ new Set());
-  const [rightChecked, setRightChecked] = React28.useState(/* @__PURE__ */ new Set());
+  const [leftChecked, setLeftChecked] = React31.useState(/* @__PURE__ */ new Set());
+  const [rightChecked, setRightChecked] = React31.useState(/* @__PURE__ */ new Set());
   const chosen = new Set(sel);
   const left = items.filter((i) => !chosen.has(i.id));
   const right = sel.map((id) => items.find((i) => i.id === id)).filter((i) => !!i);
@@ -4104,10 +4104,10 @@ function contrastRatio(a, b) {
 }
 function ColorField({ value, defaultValue = DEFAULT_PRIMARY, onChange, cardColor = DEFAULT_CARD, onPrimaryColor = DEFAULT_ON_PRIMARY, minCardRatio = 3, minTextRatio = 4.5, labels }) {
   const L = { ...useLaf3().t.components.admin.color, ...labels };
-  const id = React28.useId();
+  const id = React31.useId();
   const [accepted, setAccepted] = useControllableState({ value, defaultValue, onChange });
-  const [draft, setDraft] = React28.useState(accepted);
-  React28.useEffect(() => setDraft(accepted), [accepted]);
+  const [draft, setDraft] = React31.useState(accepted);
+  React31.useEffect(() => setDraft(accepted), [accepted]);
   const hex = normalizeHex(draft);
   const onCard = hex ? contrastRatio(hex, cardColor) : 0;
   const onText = hex ? contrastRatio(hex, onPrimaryColor) : 0;
@@ -4145,8 +4145,8 @@ function ColorField({ value, defaultValue = DEFAULT_PRIMARY, onChange, cardColor
 function BrandingEditor({ value, defaultValue = { productName: "", primary: DEFAULT_PRIMARY }, onChange, maxLogoSize = 512 * 1024, cardColor, onPrimaryColor, labels }) {
   const L = { ...useLaf3().t.components.admin.branding, ...labels };
   const [b, setB] = useControllableState({ value, defaultValue, onChange });
-  const nameId = React28.useId();
-  const [files, setFiles] = React28.useState([]);
+  const nameId = React31.useId();
+  const [files, setFiles] = React31.useState([]);
   return /* @__PURE__ */ jsxs("div", { className: "grid gap-6 md:grid-cols-2", children: [
     /* @__PURE__ */ jsxs("div", { className: "grid content-start gap-4", children: [
       /* @__PURE__ */ jsx(Field, { label: L.productName, htmlFor: nameId, children: /* @__PURE__ */ jsx(Input, { id: nameId, value: b.productName, onChange: (e) => setB({ ...b, productName: e.target.value }) }) }),
@@ -4226,10 +4226,10 @@ function NotificationCenter({ items, onMarkRead, onMarkAllRead, onViewAll, onOpe
     ] })
   ] });
 }
-var HotkeysContext = React28.createContext(null);
+var HotkeysContext = React31.createContext(null);
 function HotkeysProvider({ scopes = ["global"], children }) {
-  const store = React28.useRef({ items: /* @__PURE__ */ new Set(), subs: /* @__PURE__ */ new Set() });
-  const value = React28.useMemo(
+  const store = React31.useRef({ items: /* @__PURE__ */ new Set(), subs: /* @__PURE__ */ new Set() });
+  const value = React31.useMemo(
     () => ({
       scopes,
       register(entry) {
@@ -4252,9 +4252,9 @@ function HotkeysProvider({ scopes = ["global"], children }) {
   return /* @__PURE__ */ jsx(HotkeysContext.Provider, { value, children });
 }
 function useRegisteredHotkeys() {
-  const ctx = React28.useContext(HotkeysContext);
-  const [, bump] = React28.useReducer((n) => n + 1, 0);
-  React28.useEffect(() => {
+  const ctx = React31.useContext(HotkeysContext);
+  const [, bump] = React31.useReducer((n) => n + 1, 0);
+  React31.useEffect(() => {
     bump();
     return ctx?.subscribe(bump);
   }, [ctx]);
@@ -4292,14 +4292,14 @@ var isTypingTarget = (t) => {
 var SEQUENCE_TIMEOUT = 1e3;
 function useHotkeys(map, opts = {}) {
   const { scope = "global", enabled = true, allowInInputs = false, descriptions } = opts;
-  const ctx = React28.useContext(HotkeysContext);
-  const mapRef = React28.useRef(map);
+  const ctx = React31.useContext(HotkeysContext);
+  const mapRef = React31.useRef(map);
   mapRef.current = map;
-  const descRef = React28.useRef(descriptions);
+  const descRef = React31.useRef(descriptions);
   descRef.current = descriptions;
   const active = scope === "global" || (ctx?.scopes ?? ["global"]).includes(scope);
   const keys = Object.keys(map).join("\0");
-  React28.useEffect(() => {
+  React31.useEffect(() => {
     if (!enabled || !active) return;
     const offs = keys.split("\0").filter(Boolean).map((combo) => ctx?.register({ combo, description: descRef.current?.[combo], scope }));
     const mac = isMacPlatform();
@@ -4474,7 +4474,7 @@ function ObjectPage({
 }
 var NARROW = "(max-width: 859px)";
 function useNarrow() {
-  return React28.useSyncExternalStore(
+  return React31.useSyncExternalStore(
     (cb) => {
       if (typeof window === "undefined" || !window.matchMedia) return () => {
       };
@@ -4502,7 +4502,7 @@ function InventoryLayout({
   const { t: laf } = useLaf();
   const mqNarrow = useNarrow();
   const narrow = narrowProp ?? mqNarrow;
-  const [drawer, setDrawer] = React28.useState(false);
+  const [drawer, setDrawer] = React31.useState(false);
   const treeTitle = treeLabel ?? laf.vsInventoryTree;
   const main = bottom ? /* @__PURE__ */ jsx(
     SplitPane,
@@ -4595,8 +4595,8 @@ function LabelPicker({
   disabled
 }) {
   const l = withLabels(useLaf4().t.components.tracker.labelPicker, text);
-  const [slot, setSlot] = React28.useState(1);
-  const byId = React28.useMemo(() => new Map(labels.map((x) => [x.id, x])), [labels]);
+  const [slot, setSlot] = React31.useState(1);
+  const byId = React31.useMemo(() => new Map(labels.map((x) => [x.id, x])), [labels]);
   const options = labels.map((x) => ({ value: x.id, label: x.name, description: x.description }));
   return /* @__PURE__ */ jsxs("div", { className: "grid gap-2", children: [
     /* @__PURE__ */ jsx(
@@ -4642,7 +4642,7 @@ function Reactions({
   text
 }) {
   const l = withLabels(useLaf4().t.components.tracker.reaction, text);
-  const [open, setOpen] = React28.useState(false);
+  const [open, setOpen] = React31.useState(false);
   return /* @__PURE__ */ jsxs("div", { className: "flex flex-wrap items-center gap-1", children: [
     reactions.map((r) => /* @__PURE__ */ jsx(Tip, { content: l.reactedBy(r.emoji, r.users), children: /* @__PURE__ */ jsxs(
       "button",
@@ -4695,8 +4695,8 @@ function ActivityTimeline({
   text
 }) {
   const l = withLabels(useLaf4().t.components.tracker.timeline, text);
-  const [expanded, setExpanded] = React28.useState(/* @__PURE__ */ new Set());
-  const rows = React28.useMemo(() => {
+  const [expanded, setExpanded] = React31.useState(/* @__PURE__ */ new Set());
+  const rows = React31.useMemo(() => {
     const out = [];
     let run = [];
     const flush = () => {
@@ -4724,7 +4724,7 @@ function ActivityTimeline({
       if (r.type === "event") return eventRow(r);
       if (r.type === "run") {
         const open = expanded.has(r.id);
-        return /* @__PURE__ */ jsxs(React28.Fragment, { children: [
+        return /* @__PURE__ */ jsxs(React31.Fragment, { children: [
           open && r.events.map(eventRow),
           /* @__PURE__ */ jsx("li", { children: /* @__PURE__ */ jsx(
             "button",
@@ -4771,10 +4771,10 @@ function ActivityTimeline({
 }
 function OptionPicker({ options, value, onChange, multiple, label, compact, searchable = true, shortcut, disabled, text, className }) {
   const l = withLabels(useLaf4().t.components.tracker.optionPicker, text);
-  const [open, setOpen] = React28.useState(false);
-  const trigger = React28.useRef(null);
+  const [open, setOpen] = React31.useState(false);
+  const trigger = React31.useRef(null);
   const selected = options.filter((o) => value.includes(o.value));
-  React28.useEffect(() => {
+  React31.useEffect(() => {
     if (!shortcut || disabled) return;
     const onKey = (e) => {
       if (e.key !== shortcut || e.ctrlKey || e.metaKey || e.altKey) return;
@@ -5140,32 +5140,32 @@ function Stack({ gap = "md", className, ...props }) {
 function StackItem({ fill, className, ...props }) {
   return /* @__PURE__ */ jsx("div", { className: cn(fill && "flex-1", className), ...props });
 }
-var DlContext = React28.createContext({ layout: "vertical", compact: false });
+var DlContext = React31.createContext({ layout: "vertical", compact: false });
 var gridCols = { 1: "grid-cols-1", 2: "grid-cols-1 sm:grid-cols-2", 3: "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3", 4: "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4" };
 function DescriptionList({ layout = "vertical", columns = 2, compact = false, className, ...props }) {
-  const ctx = React28.useMemo(() => ({ layout, compact }), [layout, compact]);
+  const ctx = React31.useMemo(() => ({ layout, compact }), [layout, compact]);
   return /* @__PURE__ */ jsx(DlContext.Provider, { value: ctx, children: /* @__PURE__ */ jsx("dl", { className: cn("m-0 grid", compact ? "gap-x-4 gap-y-2" : "gap-x-6 gap-y-3.5", layout === "grid" ? gridCols[columns] : "grid-cols-1", className), ...props }) });
 }
 function DescriptionListGroup({ className, ...props }) {
-  const { layout } = React28.useContext(DlContext);
+  const { layout } = React31.useContext(DlContext);
   return /* @__PURE__ */ jsx("div", { className: cn("min-w-0", layout === "horizontal" && "grid grid-cols-[minmax(6rem,12rem)_1fr] gap-x-4", className), ...props });
 }
 function DescriptionListTerm({ icon, className, children, ...props }) {
-  const { layout, compact } = React28.useContext(DlContext);
+  const { layout, compact } = React31.useContext(DlContext);
   return /* @__PURE__ */ jsxs("dt", { className: cn("flex items-center gap-1.5 text-[0.6875rem] tracking-wider text-subtle uppercase", layout !== "horizontal" && (compact ? "mb-0" : "mb-0.5"), className), ...props, children: [
     icon,
     children
   ] });
 }
 function DescriptionListDescription({ mono, className, ...props }) {
-  const { compact } = React28.useContext(DlContext);
+  const { compact } = React31.useContext(DlContext);
   return /* @__PURE__ */ jsx("dd", { className: cn("m-0 min-w-0 break-words text-fg", compact ? "text-xs" : "text-sm", mono && "font-mono break-all", className), ...props });
 }
 function nodeText(node) {
   if (node == null || typeof node === "boolean") return "";
   if (typeof node === "string" || typeof node === "number") return String(node);
   if (Array.isArray(node)) return node.map(nodeText).join("");
-  if (React28.isValidElement(node)) return nodeText(node.props.children);
+  if (React31.isValidElement(node)) return nodeText(node.props.children);
   return "";
 }
 function CodeBlockCode({ children }) {
@@ -5229,7 +5229,7 @@ function ClipboardCopy({
   const m = t.components.content.clipboard;
   const [text, setText] = useControllableState({ value, defaultValue: defaultValue ?? nodeText(children), onChange });
   const [open, setOpen] = useControllableState({ value: expanded, defaultValue: defaultExpanded, onChange: onExpandedChange });
-  const id = React28.useId();
+  const id = React31.useId();
   const copyProps = { value: text, label: hoverTip ?? m.copy, copiedLabel: clickTip ?? m.copied };
   const report = onCopy ? { onClickCapture: () => onCopy(text) } : {};
   if (variant === "inline-compact") {
@@ -5309,7 +5309,7 @@ function HelperTextItem({ variant = "default", icon, className, children, ...pro
 function FormHelperText({ className, ...props }) {
   return /* @__PURE__ */ jsx("div", { className: cn("mt-1", className), ...props });
 }
-var MenuToggle = React28.forwardRef(function MenuToggle2({ variant = "default", hideCaret, expanded, children, ...props }, ref) {
+var MenuToggle = React31.forwardRef(function MenuToggle2({ variant = "default", hideCaret, expanded, children, ...props }, ref) {
   return /* @__PURE__ */ jsxs(Button, { ref, type: "button", variant: variant === "primary" ? "primary" : variant === "plain" ? "ghost" : "secondary", "aria-expanded": expanded, ...props, children: [
     children,
     !hideCaret && /* @__PURE__ */ jsx(ChevronDown, { className: "size-4", "aria-hidden": true })
@@ -5340,12 +5340,12 @@ function DropdownItem({ icon, description, children, ...props }) {
   ] });
 }
 var DropdownSeparator = DropdownMenuSeparator;
-var ModalContext = React28.createContext({ setHasDescription() {
+var ModalContext = React31.createContext({ setHasDescription() {
 } });
 function Modal({ open, defaultOpen, onOpenChange, onClose, trigger, size = "md", "aria-label": ariaLabel, className, children }) {
   const { portalContainer } = useLaf();
-  const [hasDescription, setHasDescription] = React28.useState(false);
-  const ctx = React28.useMemo(() => ({ setHasDescription }), []);
+  const [hasDescription, setHasDescription] = React31.useState(false);
+  const ctx = React31.useMemo(() => ({ setHasDescription }), []);
   return /* @__PURE__ */ jsxs(
     DialogPrimitive3.Root,
     {
@@ -5377,9 +5377,9 @@ var ModalTrigger = DialogPrimitive3.Trigger;
 var ModalClose = DialogPrimitive3.Close;
 function ModalHeader({ title, description, className, children }) {
   const { t } = useLaf();
-  const { setHasDescription } = React28.useContext(ModalContext);
+  const { setHasDescription } = React31.useContext(ModalContext);
   const has = !!description;
-  React28.useEffect(() => {
+  React31.useEffect(() => {
     setHasDescription(has);
     return () => setHasDescription(false);
   }, [has, setHasDescription]);
@@ -5401,11 +5401,11 @@ function ModalFooter({ className, ...props }) {
 var lafDefaults9 = { ui: uiEn };
 function useAppFrameLabels(labels) {
   const ui = useLafDefaults(lafDefaults9).t.components.ui.appFrame;
-  return React28.useMemo(() => ({ ...ui, ...labels }), [ui, labels]);
+  return React31.useMemo(() => ({ ...ui, ...labels }), [ui, labels]);
 }
 var NARROW_QUERY = "(max-width: 859px)";
 function useMediaQuery(query) {
-  return React28.useSyncExternalStore(
+  return React31.useSyncExternalStore(
     (cb) => {
       if (typeof window === "undefined" || !window.matchMedia) return () => {
       };
@@ -5434,7 +5434,7 @@ function writeStored(key, value) {
 }
 var noop = () => {
 };
-var AppFrameContext = React28.createContext({
+var AppFrameContext = React31.createContext({
   active: false,
   isMobile: false,
   sidebarOpen: true,
@@ -5446,7 +5446,7 @@ var AppFrameContext = React28.createContext({
   navigated: noop
 });
 function useAppFrame() {
-  return React28.useContext(AppFrameContext);
+  return React31.useContext(AppFrameContext);
 }
 var placementOf = (p) => p === "left" || p === "start" ? "start" : p === "bottom" ? "bottom" : "end";
 function AppFrame({
@@ -5468,29 +5468,29 @@ function AppFrame({
   children
 }) {
   const l = useAppFrameLabels(labels);
-  const uid = React28.useId();
+  const uid = React31.useId();
   const mainId = mainIdProp ?? `${uid}-main`;
   const sidebarId = `${uid}-sidebar`;
   const isMobile = useMediaQuery(NARROW_QUERY);
   const storageKey2 = persistKey ? `${persistKey}:sidebar` : void 0;
-  const [initialOpen] = React28.useState(() => {
+  const [initialOpen] = React31.useState(() => {
     const stored = readStored2(storageKey2);
     return stored === null ? defaultSidebarOpen : stored === "1";
   });
   const [desktopOpen, setDesktopOpenRaw] = useControllableState({ value: sidebarOpen, defaultValue: initialOpen, onChange: onSidebarOpenChange });
-  const setDesktopOpen = React28.useCallback(
+  const setDesktopOpen = React31.useCallback(
     (open2) => {
       setDesktopOpenRaw(open2);
       writeStored(storageKey2, open2 ? "1" : "0");
     },
     [setDesktopOpenRaw, storageKey2]
   );
-  const [mobileOpen, setMobileOpen] = React28.useState(false);
-  React28.useEffect(() => {
+  const [mobileOpen, setMobileOpen] = React31.useState(false);
+  React31.useEffect(() => {
     if (!isMobile) setMobileOpen(false);
   }, [isMobile]);
-  const sidebarRef = React28.useRef(null);
-  React28.useEffect(() => {
+  const sidebarRef = React31.useRef(null);
+  React31.useEffect(() => {
     if (!isMobile || !mobileOpen) return;
     const opener = document.activeElement;
     sidebarRef.current?.querySelector('[tabindex="0"], a[href], button:not([disabled])')?.focus();
@@ -5505,8 +5505,8 @@ function AppFrame({
   }, [isMobile, mobileOpen]);
   const open = isMobile ? mobileOpen : desktopOpen;
   const rail = !isMobile && sidebarCollapse === "rail" && !desktopOpen;
-  const setOpen = React28.useCallback((o) => isMobile ? setMobileOpen(o) : setDesktopOpen(o), [isMobile, setDesktopOpen]);
-  const ctx = React28.useMemo(
+  const setOpen = React31.useCallback((o) => isMobile ? setMobileOpen(o) : setDesktopOpen(o), [isMobile, setDesktopOpen]);
+  const ctx = React31.useMemo(
     () => ({
       active: true,
       isMobile,
@@ -5520,7 +5520,7 @@ function AppFrame({
     }),
     [isMobile, open, setOpen, rail, sidebarId, mainId]
   );
-  const placement = placementOf(drawerPlacement ?? (React28.isValidElement(drawer) ? drawer.props.placement : void 0));
+  const placement = placementOf(drawerPlacement ?? (React31.isValidElement(drawer) ? drawer.props.placement : void 0));
   const sidebarVisible = isMobile ? mobileOpen : desktopOpen || sidebarCollapse === "rail";
   return /* @__PURE__ */ jsx(AppFrameContext.Provider, { value: ctx, children: /* @__PURE__ */ jsxs("div", { className: cn("relative flex h-dvh min-h-0 flex-col overflow-hidden", className), children: [
     /* @__PURE__ */ jsx(
@@ -5620,16 +5620,16 @@ var modeIcon = { light: Sun, dark: Moon, system: Monitor };
 var modes = ["light", "dark", "system"];
 function ThemeToggle({ value, defaultValue = "system", onChange, onResolvedChange, persistKey, apply = true, variant = "menu", labels, className }) {
   const l = useAppFrameLabels(labels);
-  const [initial] = React28.useState(() => {
+  const [initial] = React31.useState(() => {
     const s = readStored2(persistKey);
     return s === "light" || s === "dark" || s === "system" ? s : defaultValue;
   });
   const [mode, setMode] = useControllableState({ value, defaultValue: initial, onChange });
   const systemDark = useMediaQuery(DARK_QUERY);
   const resolved = mode === "system" ? systemDark ? "dark" : "light" : mode;
-  const onResolved = React28.useRef(onResolvedChange);
+  const onResolved = React31.useRef(onResolvedChange);
   onResolved.current = onResolvedChange;
-  React28.useEffect(() => {
+  React31.useEffect(() => {
     if (typeof apply === "function") apply(resolved);
     else if (apply) document.documentElement.dataset.theme = resolved;
     onResolved.current?.(resolved);
@@ -5693,7 +5693,7 @@ function FooterAnchor({ link, hint }) {
 }
 function AppFooter({ start, center, end, copyright, version, build, links, linkGroups, status, variant = "default", labels, className }) {
   const l = useAppFrameLabels(labels);
-  const uid = React28.useId();
+  const uid = React31.useId();
   const b = typeof build === "string" ? { commit: build } : build;
   const buildText = b && [b.env, b.commit, b.date].filter(Boolean).join(" \xB7 ");
   const compact = variant === "compact";
@@ -5806,20 +5806,20 @@ function NavTree({ items, label, current, onSelect, expanded: expandedProp, defa
   const l = useAppFrameLabels(labels);
   const frame = useAppFrame();
   const rail = collapsed ?? frame.rail;
-  const uid = React28.useId();
+  const uid = React31.useId();
   const currentId = currentOf(items, current);
   const [expandedIds, setExpanded] = useControllableState({
     value: expandedProp,
     defaultValue: defaultExpanded ?? (currentId ? ancestorsOf(items, currentId) ?? [] : []),
     onChange: onExpandedChange
   });
-  const expanded = React28.useMemo(() => new Set(expandedIds), [expandedIds]);
-  const [activeId, setActiveId] = React28.useState();
+  const expanded = React31.useMemo(() => new Set(expandedIds), [expandedIds]);
+  const [activeId, setActiveId] = React31.useState();
   const rows = visibleRows(items, expanded, rail);
   const active = rows.find((r) => r.item.id === activeId)?.item.id ?? rows.find((r) => r.item.id === currentId)?.item.id ?? rows[0]?.item.id;
-  const rootRef = React28.useRef(null);
-  const typed = React28.useRef({ text: "", timer: 0 });
-  React28.useEffect(() => () => clearTimeout(typed.current.timer), []);
+  const rootRef = React31.useRef(null);
+  const typed = React31.useRef({ text: "", timer: 0 });
+  React31.useEffect(() => () => clearTimeout(typed.current.timer), []);
   const focusRow = (id) => {
     setActiveId(id);
     [...rootRef.current?.querySelectorAll("[data-nav-id]") ?? []].find((el) => el.dataset.navId === id)?.focus();
@@ -6056,11 +6056,11 @@ function DrawerPanel({
   const [collapsed, setCollapsed] = useControllableState({ value: collapsedProp, defaultValue: defaultCollapsed, onChange: onCollapsedChange });
   const [size, setSize] = useControllableState({ value: sizeProp, defaultValue: defaultSize, onChange: onSizeChange });
   const clamp = (n) => Math.min(maxSize, Math.max(minSize, n));
-  const titleId = React28.useId();
-  const ref = React28.useRef(null);
-  const wasOpen = React28.useRef(open);
-  const opener = React28.useRef(null);
-  React28.useEffect(() => {
+  const titleId = React31.useId();
+  const ref = React31.useRef(null);
+  const wasOpen = React31.useRef(open);
+  const opener = React31.useRef(null);
+  React31.useEffect(() => {
     if (!manageFocus) return;
     if (open && !wasOpen.current) {
       opener.current = document.activeElement;
@@ -6070,7 +6070,7 @@ function DrawerPanel({
     }
     wasOpen.current = open;
   }, [open, manageFocus]);
-  const drag = React28.useRef(null);
+  const drag = React31.useRef(null);
   const isRtl = () => !!ref.current && getComputedStyle(ref.current).direction === "rtl";
   const grow = (dx, dy) => {
     if (bottom) return -dy;
@@ -6186,7 +6186,7 @@ function Delta({ delta, goodWhen, period }) {
 }
 function MetricCard({ label, value, unit, delta, goodWhen = "up", period, icon, sparkline, loading, error, onRetry, className, ...rest }) {
   const { t } = useLaf5();
-  const id = React28.useId();
+  const id = React31.useId();
   const m = t.components.dashboard.metric;
   const interactive2 = !!rest.href || !!rest.onClick;
   return /* @__PURE__ */ jsxs(Card, { variant: "default", compact: true, ...rest, loading: false, "aria-busy": loading || void 0, ...interactive2 ? {} : { role: "group", "aria-labelledby": id }, className: cn("gap-1.5", className), children: [
@@ -6515,8 +6515,8 @@ function PortalLayout({
 }) {
   const { t } = useLafDefaults(portalDefaults2);
   const L = { ...t.components.portal.layout, ...labels };
-  const [paletteOpen, setPaletteOpen] = React28.useState(false);
-  const go = React28.useCallback(
+  const [paletteOpen, setPaletteOpen] = React31.useState(false);
+  const go = React31.useCallback(
     (to, e) => {
       if (!onNavigate) return;
       if (e) {
@@ -6532,9 +6532,9 @@ function PortalLayout({
     ...linkProps(to),
     ...render ? { render: (p) => render({ ...p, to, href: hrefFor(to) }) } : {}
   });
-  const match = React28.useMemo(() => resolvePortalRoute(routes, path), [routes, path]);
-  const breadcrumbs = React28.useMemo(() => portalBreadcrumbs(routes, path, { homeLabel: L.home, homePath, link }), [routes, path, L.home, homePath, hrefFor, render, onNavigate]);
-  const navItems = React28.useMemo(
+  const match = React31.useMemo(() => resolvePortalRoute(routes, path), [routes, path]);
+  const breadcrumbs = React31.useMemo(() => portalBreadcrumbs(routes, path, { homeLabel: L.home, homePath, link }), [routes, path, L.home, homePath, hrefFor, render, onNavigate]);
+  const navItems = React31.useMemo(
     () => portalNavEntries(routes, path, {
       link: (r) => ({
         href: hrefFor(r.path),
@@ -6546,7 +6546,7 @@ function PortalLayout({
   );
   const title = match.route ? resolve(match.route.title, match.params) : "";
   const ctx = { route: match.route, tab: match.tab, params: match.params, breadcrumbs, title };
-  const commands = React28.useMemo(() => {
+  const commands = React31.useMemo(() => {
     const flat = [];
     const walk = (list) => list.forEach((r) => r.disabled || (!r.path.includes(":") && !r.path.includes("*") && flat.push(r), r.children && walk(r.children)));
     walk(routes);
@@ -6638,7 +6638,7 @@ function PortalLayout({
       tabs && tabs.length > 0 && /* @__PURE__ */ jsx(PortalTabs, { tabs, current: match.tab?.path ?? route.path, linkProps, render, label: L.pageSections })
     ] });
   })();
-  const footerNode = footer && (React28.isValidElement(footer) ? footer : /* @__PURE__ */ jsx(AppFooter, { ...footer }));
+  const footerNode = footer && (React31.isValidElement(footer) ? footer : /* @__PURE__ */ jsx(AppFooter, { ...footer }));
   return /* @__PURE__ */ jsxs(Fragment, { children: [
     /* @__PURE__ */ jsx(
       AppFrame,
@@ -6849,25 +6849,25 @@ function useServerGrid(options) {
   const adapter = urlOpts?.adapter ?? browserSearchParams;
   const prefix = urlOpts?.prefix ?? "";
   const urlMode = urlOpts?.history ?? "replace";
-  const defaults = React28.useRef({ sort: initialSort ?? [], filters: initialFilters ?? [], search: initialSearch ?? "", page: initialPage ?? 1, pageSize: pageSizeOption });
-  const [core, setCore] = React28.useState(() => urlOpts ? serverGridFromSearchParams(adapter.read(), defaults.current, prefix) : defaults.current);
-  const [input, setInput] = React28.useState(core.search);
-  const [tick, setTick] = React28.useState(0);
-  const [data, setData] = React28.useState(null);
-  const [status, setStatus] = React28.useState({ loading: enabled, error: null });
-  const fetcherRef = React28.useRef(fetcher);
+  const defaults = React31.useRef({ sort: initialSort ?? [], filters: initialFilters ?? [], search: initialSearch ?? "", page: initialPage ?? 1, pageSize: pageSizeOption });
+  const [core, setCore] = React31.useState(() => urlOpts ? serverGridFromSearchParams(adapter.read(), defaults.current, prefix) : defaults.current);
+  const [input, setInput] = React31.useState(core.search);
+  const [tick, setTick] = React31.useState(0);
+  const [data, setData] = React31.useState(null);
+  const [status, setStatus] = React31.useState({ loading: enabled, error: null });
+  const fetcherRef = React31.useRef(fetcher);
   fetcherRef.current = fetcher;
-  const onErrorRef = React28.useRef(options.onError);
+  const onErrorRef = React31.useRef(options.onError);
   onErrorRef.current = options.onError;
-  const timer = React28.useRef(void 0);
-  const pending = React28.useRef(input);
-  const cursors = React28.useRef({ key: "", byPage: {} });
-  React28.useEffect(() => () => clearTimeout(timer.current), []);
-  const commitSearch = React28.useCallback((value) => {
+  const timer = React31.useRef(void 0);
+  const pending = React31.useRef(input);
+  const cursors = React31.useRef({ key: "", byPage: {} });
+  React31.useEffect(() => () => clearTimeout(timer.current), []);
+  const commitSearch = React31.useCallback((value) => {
     clearTimeout(timer.current);
     setCore((c) => c.search === value ? c : { ...c, search: value, page: 1 });
   }, []);
-  const setSearch = React28.useCallback(
+  const setSearch = React31.useCallback(
     (value) => {
       setInput(value);
       pending.current = value;
@@ -6877,13 +6877,13 @@ function useServerGrid(options) {
     },
     [debounceMs, commitSearch]
   );
-  const flushSearch = React28.useCallback(() => commitSearch(pending.current), [commitSearch]);
-  const setSort = React28.useCallback((sort) => setCore((c) => ({ ...c, sort, page: 1 })), []);
-  const setFilters = React28.useCallback((filters) => setCore((c) => ({ ...c, filters, page: 1 })), []);
-  const setPageSize = React28.useCallback((pageSize) => setCore((c) => c.pageSize === pageSize ? c : { ...c, pageSize, page: 1 }), []);
-  const setPage = React28.useCallback((page) => setCore((c) => page < 1 || c.page === page ? c : { ...c, page }), []);
-  const refresh = React28.useCallback(() => setTick((n) => n + 1), []);
-  const reset = React28.useCallback(() => {
+  const flushSearch = React31.useCallback(() => commitSearch(pending.current), [commitSearch]);
+  const setSort = React31.useCallback((sort) => setCore((c) => ({ ...c, sort, page: 1 })), []);
+  const setFilters = React31.useCallback((filters) => setCore((c) => ({ ...c, filters, page: 1 })), []);
+  const setPageSize = React31.useCallback((pageSize) => setCore((c) => c.pageSize === pageSize ? c : { ...c, pageSize, page: 1 }), []);
+  const setPage = React31.useCallback((page) => setCore((c) => page < 1 || c.page === page ? c : { ...c, page }), []);
+  const refresh = React31.useCallback(() => setTick((n) => n + 1), []);
+  const reset = React31.useCallback(() => {
     clearTimeout(timer.current);
     const d = defaults.current;
     pending.current = d.search;
@@ -6892,7 +6892,7 @@ function useServerGrid(options) {
   }, []);
   const queryKey = JSON.stringify([core.sort, core.pageSize, core.filters, core.search]);
   const requestKey = `${queryKey}|${core.page}`;
-  React28.useEffect(() => {
+  React31.useEffect(() => {
     if (!enabled) return;
     if (cursors.current.key !== queryKey) cursors.current = { key: queryKey, byPage: {} };
     const ac = new AbortController();
@@ -6920,18 +6920,18 @@ function useServerGrid(options) {
   }, [core, tick, enabled]);
   const total = data?.total;
   const pageCount = total === void 0 ? void 0 : Math.max(1, Math.ceil(total / core.pageSize));
-  React28.useEffect(() => {
+  React31.useEffect(() => {
     if (data?.key === requestKey && pageCount !== void 0 && core.page > pageCount) setCore((c) => ({ ...c, page: pageCount }));
   }, [data, requestKey, pageCount, core.page]);
-  const urlRef = React28.useRef({ adapter, prefix, urlMode });
+  const urlRef = React31.useRef({ adapter, prefix, urlMode });
   urlRef.current = { adapter, prefix, urlMode };
-  React28.useEffect(() => {
+  React31.useEffect(() => {
     if (!urlOpts) return;
     const params = serverGridToSearchParams(core, new URLSearchParams(adapter.read()), defaults.current, prefix);
     const next = params.toString();
     if (next !== new URLSearchParams(adapter.read()).toString()) adapter.write(next, urlMode);
   }, [core]);
-  React28.useEffect(() => {
+  React31.useEffect(() => {
     if (!urlOpts || !adapter.subscribe) return;
     return adapter.subscribe(() => {
       const { adapter: a, prefix: p } = urlRef.current;
@@ -6942,7 +6942,7 @@ function useServerGrid(options) {
     });
   }, [!!urlOpts, adapter]);
   const stale = data !== null && data.key !== requestKey;
-  const rows = React28.useMemo(() => data && (keepPreviousData || !stale) ? data.rows : [], [data, keepPreviousData, stale]);
+  const rows = React31.useMemo(() => data && (keepPreviousData || !stale) ? data.rows : [], [data, keepPreviousData, stale]);
   const hasNext = total !== void 0 ? core.page < (pageCount ?? 1) : data?.nextCursor !== void 0 ? !!data.nextCursor : rows.length >= core.pageSize;
   const errorText = status.error === null ? void 0 : `${SG.loadFailed} ${status.error instanceof Error ? status.error.message : ""}`.trim();
   const pagination = {
@@ -7032,7 +7032,7 @@ function ServerDataGrid({
   const { t } = useLafDefaults(portalDefaults3);
   const SG = { ...t.components.portal.serverGrid, ...grid.labels };
   const ctl = useServerGrid({ fetcher, initialSort, initialFilters, initialSearch, initialPage, pageSize, debounceMs, urlSync, enabled, keepPreviousData, onError });
-  React28.useImperativeHandle(controllerRef, () => ctl);
+  React31.useImperativeHandle(controllerRef, () => ctl);
   const { gridProps } = ctl;
   const pagination = pageSizes ? { ...gridProps.pagination, pageSizes } : gridProps.pagination;
   const hasToolbar = searchable || !!filterFields || !!toolbarStart || !!toolbarEnd || refreshable;
@@ -7258,7 +7258,7 @@ function DetailsCard({ title, items, columns = 2, ...rest }) {
 }
 function SideCard({ empty, children, ...rest }) {
   const { t } = useLaf7();
-  const hasContent = React28.Children.toArray(children).length > 0;
+  const hasContent = React31.Children.toArray(children).length > 0;
   return /* @__PURE__ */ jsx(CardFrame, { ...rest, children: hasContent ? children : /* @__PURE__ */ jsx("p", { className: "m-0 text-sm text-muted", children: empty ?? t.components.overview.empty }) });
 }
 function CountCard({ items, count, ...rest }) {
@@ -7296,7 +7296,7 @@ function UtilizationColumn({
   const { t } = useLaf7();
   const m = t.components.overview.utilization;
   const Heading = `h${headingLevel}`;
-  const id = React28.useId();
+  const id = React31.useId();
   const used$ = centerSubtext ?? m.used;
   const thresholds = [
     ...okTone === "ok" ? [{ value: 0, tone: "ok" }] : [],
@@ -7418,7 +7418,7 @@ var settingsEn = {
 function useSettingsText() {
   const { t } = useLaf();
   const over = t.components.settings;
-  return React28.useMemo(
+  return React31.useMemo(
     () => Object.fromEntries(
       Object.entries(settingsEn).map(([k, v]) => [k, { ...v, ...over?.[k] }])
     ),
@@ -7437,7 +7437,7 @@ function SettingsSection({ id, title, description, children, className }) {
 }
 function SettingRow({ label, help, htmlFor, error, overridden, onReset, layout = "auto", className, children }) {
   const t = useSettingsText().row;
-  const uid = React28.useId();
+  const uid = React31.useId();
   const labelId = `${uid}-label`;
   const helpId = `${uid}-help`;
   const errId = `${uid}-err`;
@@ -7489,7 +7489,7 @@ function SettingsDialog({
     defaultValue: defaultActiveSection ?? sections[0]?.id ?? "",
     onChange: onActiveSectionChange
   });
-  const [busy, setBusy] = React28.useState(false);
+  const [busy, setBusy] = React31.useState(false);
   const guard = useUnsavedChangesGuard(dirty && !!open);
   const active = sections.find((s) => s.id === activeId) ?? sections[0];
   const close = () => {
@@ -7576,8 +7576,8 @@ function DeviceList({
   className
 }) {
   const t = useSettingsText().deviceList;
-  const [selected, setSelected] = React28.useState([]);
-  const [expanded, setExpanded] = React28.useState(null);
+  const [selected, setSelected] = React31.useState([]);
+  const [expanded, setExpanded] = React31.useState(null);
   const nameOf = (item) => getLabel?.(item) ?? getId(item);
   const ids = value.map(getId);
   const live = selected.filter((id) => ids.includes(id));
@@ -7626,7 +7626,7 @@ function DeviceList({
         const name = nameOf(item);
         const open = expanded === id && !!renderEditor;
         const st = status?.(item);
-        return /* @__PURE__ */ jsxs(React28.Fragment, { children: [
+        return /* @__PURE__ */ jsxs(React31.Fragment, { children: [
           /* @__PURE__ */ jsxs("tr", { className: "border-b border-line last:border-b-0", children: [
             selectable && /* @__PURE__ */ jsx("td", { className: "p-2", children: /* @__PURE__ */ jsx(
               Checkbox,
@@ -7665,6 +7665,931 @@ function DeviceList({
   ] });
 }
 
-export { AccountItem, AccountList, ActionBar, ActionGroup, ActionToolbar, ActivityTimeline, AdminShell, AllowListEditor, ApiKeyManager, AppFooter, AppFrame, AppSwitcher, AuditLog, AuthFooter, BrandHeader, BrandingEditor, CapacityBar, CidrInput, ClientInfo, ClipboardCopy, CodeBlock, CodeBlockCode, CodeDisplay, CodeEditor, CodeEditorLite, CodeInput, ColorField, CommandPalette, ContextMenu, ContextMenuContent, ContextMenuFor, ContextMenuItem, ContextMenuSeparator, ContextMenuTrigger, CountCard, DataGrid, DatePicker, DescriptionList, DescriptionListDescription, DescriptionListGroup, DescriptionListTerm, DetailPage, DetailsCard, DeviceList, DeviceSelector, DeviceSteps, DiffView, Divider, DnsRecordTable, DockedTaskPanel, DrawerPanel, Dropdown, DropdownGroup, DropdownItem, DropdownList, DropdownSeparator, ErrorPage, FilterBar, Flex, FlexItem, Form, FormFooter, FormGroup, FormHelperText, FormPage, FormSection, GaugeCard, Grid, GridColumnsMenu, GridDensityToggle, GridItem, GridSearch, HealthGrid, Heatmap, HelperText, HelperTextItem, HotkeysProvider, HoverCard, IdentityCard, InfoBox, InlineDrawer, InventoryLayout, IpInput, IssueCard, IssueRow, Label, LabelPicker, LabelSwatch, LafErrorBoundary, LanguageSwitcher, Masthead, MastheadActions, MastheadBrand, MastheadContent, MastheadToggle, Menu, MenuShortcut, MenuToggle, MetricCard, MetricGrid, MfaEnrolment, MobileNav, Modal, ModalBody, ModalClose, ModalFooter, ModalHeader, ModalTrigger, NavGroup, NavLink, NavTree, NotificationCenter, ObjectHeader, ObjectPage, OptionPicker, OtpInput, OverflowTabs, PageHeader, PageSection, Pagination, PortalHome, PortalLayout, PowerState, ProgressCard, ProgressSummary, PropertiesPane, QueueStatusBadge, QuotaBar, RadialGauge, Reactions, ReauthDialog, ResourceOverviewLayout, SavedViews, ScopeList, SecurityFactors, ServerDataGrid, ServiceTile, SessionExpiryDialog, SessionList, SettingRow, SettingsDialog, SettingsSection, ShortcutHelp, SideCard, Sidebar, SocialButton, SocialButtons, SocialDivider, Stack, StackItem, StackedBarChart, StatusSummaryCard, SubNav, Table, TaskPanel, ThemeToggle, Title4 as Title, Toolbar, ToolbarActions, ToolbarBulk, ToolbarContent, ToolbarDivider, ToolbarFilterChips, ToolbarGroup, ToolbarItem, ToolbarSpacer, TopBar, TopologyGraph, TraceTimeline, TransferList, TreeTable, UnsavedChangesDialog, UserCell, UserMenu, UserSelector, UtilizationColumn, UtilizationPanel, Wizard, WizardReview, browserSearchParams, contrastRatio, formatHotkey, gaugeTone, highlight, isCidr, isIPv4, isIPv6, isIp, isMacPlatform, normalizeHex, parseCidr, parseFilter, parseHotkey, portalBreadcrumbs, portalNavEntries, resolvePortalRoute, serializeFilter, serializeToken, serverGridFromSearchParams, serverGridToSearchParams, useAppFrame, useHotkeys, useRegisteredHotkeys, useSavedViews, useServerGrid, useUnsavedChangesGuard };
+// lib/messages/autocomplete.en.ts
+var autocompleteEn = {
+  autocomplete: {
+    clear: "Clear",
+    create: (q) => `Create \u201C${q}\u201D`,
+    empty: "No results",
+    loading: "Loading\u2026",
+    error: "Couldn't load options",
+    retry: "Retry",
+    remove: (name) => `Remove ${name}`,
+    toggle: "Show options"
+  },
+  chips: {
+    duplicate: (tag) => `\u201C${tag}\u201D is already added`,
+    max: (n) => `At most ${n} items allowed`,
+    invalid: (tag) => `\u201C${tag}\u201D is not valid`,
+    remove: (tag) => `Remove ${tag}`
+  },
+  quickSearch: {
+    label: "Search inventory",
+    placeholder: "Search inventory\u2026",
+    loading: "Searching\u2026",
+    empty: (q) => `No results for \u201C${q}\u201D`,
+    error: "Search failed",
+    retry: "Retry",
+    recent: "Recent searches",
+    clearRecent: "Clear recent searches",
+    hint: "Type to search VMs, hosts, datastores and networks",
+    results: (n) => n === 1 ? "1 result" : `${n} results`
+  }
+};
+function useMessages() {
+  const { t } = useLaf();
+  const over = t.components.autocomplete;
+  return React31.useMemo(() => Object.fromEntries(Object.entries(autocompleteEn).map(([k, v]) => [k, { ...v, ...over?.[k] }])), [over]);
+}
+function useAsyncSource(load, query, enabled, debounceMs) {
+  const [state, setState] = React31.useState({ items: [], loading: false, error: null });
+  const [attempt, setAttempt] = React31.useState(0);
+  const loadRef = React31.useRef(load);
+  loadRef.current = load;
+  const active = !!load && enabled;
+  React31.useEffect(() => {
+    if (!active) {
+      setState((s) => s.loading || s.error ? { ...s, loading: false, error: null } : s);
+      return;
+    }
+    const controller = new AbortController();
+    setState((s) => ({ ...s, loading: true, error: null }));
+    const timer = window.setTimeout(async () => {
+      try {
+        const items = await loadRef.current(query, controller.signal);
+        if (!controller.signal.aborted) setState({ items, loading: false, error: null });
+      } catch (error) {
+        if (!controller.signal.aborted) setState((s) => ({ ...s, loading: false, error }));
+      }
+    }, debounceMs);
+    return () => {
+      window.clearTimeout(timer);
+      controller.abort();
+    };
+  }, [active, query, debounceMs, attempt]);
+  const retry = React31.useCallback(() => setAttempt((n) => n + 1), []);
+  return { ...state, retry };
+}
+var optionId = (listId, i) => `${listId}-opt-${i}`;
+function Popup({ open, onOpenChange, anchor, anchorRef, children, className }) {
+  const container = usePortalContainer();
+  return /* @__PURE__ */ jsxs(PopoverPrimitive.Root, { open, onOpenChange, children: [
+    /* @__PURE__ */ jsx(PopoverPrimitive.Anchor, { asChild: true, children: anchor }),
+    /* @__PURE__ */ jsx(PopoverPrimitive.Portal, { container, children: /* @__PURE__ */ jsx(
+      PopoverPrimitive.Content,
+      {
+        sideOffset: 4,
+        align: "start",
+        collisionPadding: 8,
+        onOpenAutoFocus: (e) => e.preventDefault(),
+        onCloseAutoFocus: (e) => e.preventDefault(),
+        onInteractOutside: (e) => {
+          if (anchorRef.current?.contains(e.target)) e.preventDefault();
+        },
+        className: cn("z-50 min-w-(--radix-popover-trigger-width) max-w-[min(32rem,calc(100vw-1rem))]", className),
+        children
+      }
+    ) })
+  ] });
+}
+function ListboxBody({
+  listId,
+  label,
+  sections,
+  active,
+  onActive,
+  multiselectable,
+  busy,
+  status,
+  footer
+}) {
+  let index = 0;
+  const hasEntries = sections.some((s) => s.entries.length);
+  const renderEntry = (e) => {
+    const i = index++;
+    return /* @__PURE__ */ jsxs(
+      "div",
+      {
+        id: optionId(listId, i),
+        role: "option",
+        "aria-selected": e.selected ?? false,
+        "aria-disabled": e.disabled || void 0,
+        "data-active": i === active || void 0,
+        onMouseDown: (ev) => ev.preventDefault(),
+        onMouseMove: () => i !== active && !e.disabled && onActive(i),
+        onClick: () => !e.disabled && e.onPick(),
+        className: cn("dropdown-item cursor-pointer data-[active]:bg-surface-hover data-[active]:text-fg aria-disabled:cursor-default aria-disabled:opacity-50", e.selected && "font-semibold"),
+        children: [
+          e.node,
+          e.selected && /* @__PURE__ */ jsx("span", { "aria-hidden": true, className: "ms-auto text-primary", children: "\u2713" })
+        ]
+      },
+      e.key
+    );
+  };
+  return /* @__PURE__ */ jsxs("div", { className: "dropdown-menu max-h-72 w-full overflow-auto", children: [
+    hasEntries && /* @__PURE__ */ jsx("div", { id: listId, role: "listbox", "aria-label": label, "aria-multiselectable": multiselectable || void 0, "aria-busy": busy || void 0, children: sections.map(
+      (s) => s.heading ? /* @__PURE__ */ jsxs("div", { role: "group", "aria-labelledby": `${listId}-h-${s.key}`, children: [
+        /* @__PURE__ */ jsx("div", { id: `${listId}-h-${s.key}`, role: "presentation", className: "dropdown-label", children: s.heading }),
+        s.entries.map(renderEntry)
+      ] }, s.key) : s.entries.map(renderEntry)
+    ) }),
+    status && /* @__PURE__ */ jsxs("div", { role: status.kind === "error" ? "alert" : "status", className: cn("flex items-center gap-2 px-3 py-2 text-sm", status.kind === "error" ? "text-danger" : "text-muted"), children: [
+      /* @__PURE__ */ jsx("span", { children: status.text }),
+      status.retry && /* @__PURE__ */ jsx("button", { type: "button", className: "ms-auto text-primary hover:underline", onMouseDown: (e) => e.preventDefault(), onClick: status.retry.onClick, children: status.retry.label })
+    ] }),
+    footer
+  ] });
+}
+var flatten = (sections) => sections.flatMap((s) => s.entries);
+function scrollActiveIntoView(listId, active) {
+  if (active >= 0) document.getElementById(optionId(listId, active))?.scrollIntoView?.({ block: "nearest" });
+}
+var defaultFilter = (o, q) => !q || `${o.label} ${o.description ?? ""}`.toLowerCase().includes(q.toLowerCase());
+function Autocomplete(props) {
+  const { label, options = [], loadOptions, debounceMs = 250, minChars = 0, filter = defaultFilter, freeSolo, onCreate, clearable, placeholder, disabled, invalid, renderOption, open: openProp, onOpenChange, id, className, multiple } = props;
+  const m = useMessages().autocomplete;
+  const listId = React31.useId();
+  const anchorRef = React31.useRef(null);
+  const inputRef = React31.useRef(null);
+  const [raw, setRaw] = useControllableState({
+    value: props.value,
+    defaultValue: props.defaultValue ?? (multiple ? [] : null),
+    onChange: props.onChange
+  });
+  const selected = React31.useMemo(() => multiple ? raw ?? [] : raw ? [raw] : [], [raw, multiple]);
+  const commit = (list2) => setRaw(multiple ? list2 : list2[0] ?? null);
+  const [open, setOpen] = useControllableState({ value: openProp, defaultValue: false, onChange: onOpenChange });
+  const [text, setText] = React31.useState("");
+  const [typing, setTyping] = React31.useState(false);
+  const [active, setActive] = React31.useState(0);
+  const query = typing ? text.trim() : "";
+  const inputValue = typing ? text : multiple ? "" : selected[0]?.label ?? "";
+  const canCreate = !!freeSolo || !!onCreate;
+  const remote = useAsyncSource(loadOptions, query, open && query.length >= minChars, debounceMs);
+  const list = React31.useMemo(() => loadOptions ? remote.items : options.filter((o) => filter(o, query)), [loadOptions, remote.items, options, filter, query]);
+  const isSelected = (o) => selected.some((s) => s.value === o.value);
+  const closeAndReset = () => {
+    setOpen(false);
+    setTyping(false);
+    setText("");
+  };
+  const pick = (o) => {
+    if (o.disabled) return;
+    if (multiple) {
+      commit(isSelected(o) ? selected.filter((s) => s.value !== o.value) : [...selected, o]);
+      setText("");
+      setTyping(false);
+    } else {
+      commit([o]);
+      closeAndReset();
+    }
+  };
+  const create = (q) => {
+    const existing = list.find((o) => o.label.toLowerCase() === q.toLowerCase());
+    if (existing) return pick(existing);
+    const made = onCreate?.(q) ?? { value: q, label: q };
+    if (multiple && isSelected(made)) return setText("");
+    pick(made);
+  };
+  const showCreate = canCreate && !!query && !list.some((o) => o.label.toLowerCase() === query.toLowerCase());
+  const sections = React31.useMemo(() => {
+    const groups = /* @__PURE__ */ new Map();
+    for (const o of list) {
+      const g = o.group ?? "";
+      const sel = isSelected(o);
+      const entry = {
+        key: o.value,
+        disabled: o.disabled,
+        selected: sel,
+        onPick: () => pick(o),
+        node: renderOption ? renderOption(o, { selected: sel }) : /* @__PURE__ */ jsxs(Fragment, { children: [
+          /* @__PURE__ */ jsx("span", { children: o.label }),
+          o.description && /* @__PURE__ */ jsx("span", { className: "ms-2 text-xs text-subtle", children: o.description })
+        ] })
+      };
+      groups.set(g, [...groups.get(g) ?? [], entry]);
+    }
+    const out = [...groups.entries()].map(([g, entries2]) => ({ key: g || "_", heading: g || void 0, entries: entries2 }));
+    if (showCreate) out.push({ key: "__create", entries: [{ key: "__create", onPick: () => create(query), node: m.create(query) }] });
+    return out;
+  }, [list, showCreate, query, selected, renderOption, m]);
+  const entries = flatten(sections);
+  React31.useEffect(() => {
+    setActive(freeSolo && query ? -1 : 0);
+  }, [query, freeSolo, open]);
+  React31.useEffect(() => {
+    if (active >= entries.length) setActive(entries.length - 1);
+  }, [active, entries.length]);
+  React31.useEffect(() => scrollActiveIntoView(listId, active), [listId, active]);
+  const loading = !!loadOptions && remote.loading;
+  const status = remote.error ? { kind: "error", text: m.error, retry: { label: m.retry, onClick: remote.retry } } : loading && !entries.length ? { kind: "loading", text: m.loading } : !entries.length ? { kind: "empty", text: m.empty } : null;
+  const move = (delta) => {
+    if (!open) return setOpen(true);
+    if (!entries.length) return;
+    const len = entries.length;
+    let i = active === -1 && delta < 0 ? len : active;
+    for (let n = 0; n < len; n++) {
+      i = (i + delta + len) % len;
+      if (!entries[i].disabled) break;
+    }
+    setActive(i);
+  };
+  const onKeyDown = (e) => {
+    switch (e.key) {
+      case "ArrowDown":
+        e.preventDefault();
+        return move(1);
+      case "ArrowUp":
+        e.preventDefault();
+        return move(-1);
+      case "Home":
+      case "End":
+        if (!open || !entries.length) return;
+        e.preventDefault();
+        return setActive(e.key === "Home" ? 0 : entries.length - 1);
+      case "Enter":
+        if (open && active >= 0 && entries[active]) {
+          e.preventDefault();
+          entries[active].onPick();
+        } else if (freeSolo && query) {
+          e.preventDefault();
+          create(query);
+        }
+        return;
+      case "Escape":
+        if (open) {
+          e.preventDefault();
+          closeAndReset();
+        }
+        return;
+      case "Backspace":
+        if (multiple && !text && selected.length) commit(selected.slice(0, -1));
+        return;
+    }
+  };
+  const hasValue = selected.length > 0 || !!text;
+  const expanded = open && (entries.length > 0 || !!status);
+  return /* @__PURE__ */ jsx(
+    Popup,
+    {
+      open: expanded,
+      onOpenChange: (o) => !o && closeAndReset(),
+      anchorRef,
+      anchor: /* @__PURE__ */ jsxs("div", { ref: anchorRef, className: cn("form-input flex flex-wrap items-center gap-1.5 focus-within:border-primary", invalid && "error", disabled && "opacity-60", className), children: [
+        multiple && selected.map((s) => /* @__PURE__ */ jsx(Chip, { removeLabel: m.remove(s.label), onRemove: disabled ? void 0 : () => commit(selected.filter((x) => x.value !== s.value)), children: s.label }, s.value)),
+        /* @__PURE__ */ jsx(
+          "input",
+          {
+            ref: inputRef,
+            id,
+            role: "combobox",
+            "aria-label": label,
+            "aria-autocomplete": "list",
+            "aria-haspopup": "listbox",
+            "aria-expanded": expanded,
+            "aria-controls": expanded && entries.length ? listId : void 0,
+            "aria-activedescendant": expanded && active >= 0 && entries[active] ? optionId(listId, active) : void 0,
+            "aria-invalid": invalid || void 0,
+            autoComplete: "off",
+            className: "min-w-24 flex-1 border-0 bg-transparent p-0 text-fg outline-none",
+            placeholder: multiple && selected.length ? void 0 : placeholder,
+            disabled,
+            value: inputValue,
+            onChange: (e) => {
+              setText(e.target.value);
+              setTyping(true);
+              setOpen(true);
+            },
+            onFocus: () => setOpen(true),
+            onBlur: closeAndReset,
+            onKeyDown
+          }
+        ),
+        clearable && hasValue && !disabled && /* @__PURE__ */ jsx(
+          "button",
+          {
+            type: "button",
+            "aria-label": m.clear,
+            className: "text-muted hover:text-fg",
+            onMouseDown: (e) => e.preventDefault(),
+            onClick: () => {
+              commit([]);
+              setText("");
+              setTyping(false);
+              inputRef.current?.focus();
+            },
+            children: /* @__PURE__ */ jsx(X, { className: "size-3.5", "aria-hidden": true })
+          }
+        ),
+        /* @__PURE__ */ jsx(
+          "button",
+          {
+            type: "button",
+            tabIndex: -1,
+            "aria-label": m.toggle,
+            disabled,
+            className: "text-muted",
+            onMouseDown: (e) => e.preventDefault(),
+            onClick: () => {
+              inputRef.current?.focus();
+              setOpen(!open);
+            },
+            children: /* @__PURE__ */ jsx(ChevronDown, { className: "size-4", "aria-hidden": true })
+          }
+        )
+      ] }),
+      children: /* @__PURE__ */ jsx(ListboxBody, { listId, label, sections, active, onActive: setActive, multiselectable: multiple, busy: loading, status })
+    }
+  );
+}
+function ChipsInput({
+  value: valueProp,
+  defaultValue,
+  onChange,
+  label,
+  placeholder,
+  max,
+  validate,
+  keepInvalid,
+  duplicates = "reject",
+  delimiters = ["Enter", ","],
+  splitPattern = /[,\s]+/,
+  addOnBlur = true,
+  icon,
+  normalize,
+  disabled,
+  className
+}) {
+  const m = useMessages().chips;
+  const [value, setValue] = useControllableState({ value: valueProp, defaultValue: defaultValue ?? [], onChange });
+  const [text, setText] = React31.useState("");
+  const [error, setError] = React31.useState();
+  const errorId = React31.useId();
+  const invalidMsg = (chip) => validate?.(chip);
+  const add = (raw) => {
+    const chips = raw.split(splitPattern).map((c) => normalize ? normalize(c.trim()) : c.trim()).filter(Boolean);
+    if (!chips.length) return setText("");
+    const next = [...value];
+    for (const c of chips) {
+      if (next.includes(c) && duplicates !== "allow") {
+        if (duplicates === "ignore") continue;
+        return setError(m.duplicate(c));
+      }
+      const err = invalidMsg(c);
+      if (err && !keepInvalid) return setError(err);
+      if (max !== void 0 && next.length >= max) return setError(m.max(max));
+      next.push(c);
+    }
+    setError(void 0);
+    setValue(next);
+    setText("");
+  };
+  const remove = (i) => {
+    setError(void 0);
+    setValue(value.filter((_, j) => j !== i));
+  };
+  return /* @__PURE__ */ jsxs("div", { className: cn("grid gap-1", className), children: [
+    /* @__PURE__ */ jsxs("div", { className: cn("form-input flex flex-wrap items-center gap-1.5 focus-within:border-primary", error && "error", disabled && "opacity-60"), children: [
+      value.map((c, i) => {
+        const err = invalidMsg(c);
+        return /* @__PURE__ */ jsx("span", { title: err, "data-invalid": err ? "" : void 0, className: "inline-flex", children: /* @__PURE__ */ jsx(Chip, { tone: err ? "danger" : "neutral", icon: icon?.(c), removeLabel: m.remove(c), onRemove: disabled ? void 0 : () => remove(i), children: c }) }, `${c}-${i}`);
+      }),
+      /* @__PURE__ */ jsx(
+        "input",
+        {
+          "aria-label": label,
+          "aria-invalid": !!error || void 0,
+          "aria-describedby": error ? errorId : void 0,
+          placeholder,
+          disabled,
+          className: "min-w-24 flex-1 border-0 bg-transparent p-0 text-fg outline-none",
+          value: text,
+          onChange: (e) => {
+            setText(e.target.value);
+            if (error) setError(void 0);
+          },
+          onBlur: () => addOnBlur && text.trim() && add(text),
+          onKeyDown: (e) => {
+            if (delimiters.includes(e.key) && text.trim()) {
+              e.preventDefault();
+              add(text);
+            } else if (e.key === "Backspace" && !text && value.length) remove(value.length - 1);
+          },
+          onPaste: (e) => {
+            const pasted = e.clipboardData.getData("text");
+            if (!pasted) return;
+            e.preventDefault();
+            add(text + pasted);
+          }
+        }
+      )
+    ] }),
+    error && /* @__PURE__ */ jsx("p", { id: errorId, className: "field-error", role: "alert", children: error })
+  ] });
+}
+function QuickSearch({ search, onSelect, recent: recentProp, onRecentChange, maxRecent = 5, debounceMs = 200, hotkey = true, label: labelProp, placeholder, className }) {
+  const { t } = useLaf();
+  const m = useMessages().quickSearch;
+  const label = labelProp ?? m.label;
+  const listId = React31.useId();
+  const anchorRef = React31.useRef(null);
+  const inputRef = React31.useRef(null);
+  const [query, setQuery] = React31.useState("");
+  const [open, setOpen] = React31.useState(false);
+  const [active, setActive] = React31.useState(0);
+  const [recent, setRecent] = useControllableState({ value: recentProp, defaultValue: [], onChange: onRecentChange });
+  const [shortcut, setShortcut] = React31.useState("Ctrl K");
+  React31.useEffect(() => {
+    if (/Mac|iPhone|iPad/.test(navigator.platform)) setShortcut("\u2318K");
+  }, []);
+  React31.useEffect(() => {
+    if (!hotkey) return;
+    const onKey = (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
+        e.preventDefault();
+        inputRef.current?.focus();
+        inputRef.current?.select();
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [hotkey]);
+  const q = query.trim();
+  const remote = useAsyncSource(search, q, open && !!q, debounceMs);
+  const results = q ? remote.items : [];
+  const choose = (r) => {
+    setRecent([r, ...recent.filter((x) => x.id !== r.id)].slice(0, maxRecent));
+    setQuery("");
+    setOpen(false);
+    inputRef.current?.blur();
+    onSelect(r);
+  };
+  const sections = React31.useMemo(() => {
+    const toEntry = (r) => ({
+      key: r.id,
+      onPick: () => choose(r),
+      node: /* @__PURE__ */ jsxs(Fragment, { children: [
+        /* @__PURE__ */ jsx(ObjectIcon, { kind: r.kind, state: r.state }),
+        /* @__PURE__ */ jsx("span", { className: "min-w-0 truncate font-medium", children: r.name }),
+        r.path && /* @__PURE__ */ jsx("span", { className: "min-w-0 truncate text-xs text-subtle", children: r.path }),
+        r.state && /* @__PURE__ */ jsx("span", { className: "ms-auto shrink-0 text-xs text-muted", children: t[objectStateMeta[r.state].text] })
+      ] })
+    });
+    if (!q) return recent.length ? [{ key: "recent", heading: m.recent, entries: recent.map(toEntry) }] : [];
+    const groups = /* @__PURE__ */ new Map();
+    for (const r of results) groups.set(r.group ?? r.kind, [...groups.get(r.group ?? r.kind) ?? [], r]);
+    return [...groups.entries()].map(([g, items]) => ({ key: g, heading: g, entries: items.map(toEntry) }));
+  }, [q, recent, results, m, t]);
+  const entries = flatten(sections);
+  React31.useEffect(() => setActive(0), [q, open]);
+  React31.useEffect(() => {
+    if (active >= entries.length) setActive(Math.max(0, entries.length - 1));
+  }, [active, entries.length]);
+  React31.useEffect(() => scrollActiveIntoView(listId, active), [listId, active]);
+  const loading = !!q && remote.loading;
+  const status = q ? remote.error ? { kind: "error", text: m.error, retry: { label: m.retry, onClick: remote.retry } } : loading && !entries.length ? { kind: "loading", text: m.loading } : !entries.length ? { kind: "empty", text: m.empty(q) } : null : entries.length ? null : { kind: "empty", text: m.hint };
+  const expanded = open;
+  const onKeyDown = (e) => {
+    switch (e.key) {
+      case "ArrowDown":
+      case "ArrowUp": {
+        e.preventDefault();
+        if (!open) return setOpen(true);
+        if (entries.length) setActive((i) => (i + (e.key === "ArrowDown" ? 1 : -1) + entries.length) % entries.length);
+        return;
+      }
+      case "Enter":
+        if (open && entries[active]) {
+          e.preventDefault();
+          entries[active].onPick();
+        }
+        return;
+      case "Escape":
+        if (open) setOpen(false);
+        else if (query) setQuery("");
+        else inputRef.current?.blur();
+        e.preventDefault();
+        return;
+    }
+  };
+  const footer = !q && recent.length ? /* @__PURE__ */ jsx("div", { className: "border-t border-line px-3 py-1.5", children: /* @__PURE__ */ jsx("button", { type: "button", className: "text-xs text-primary hover:underline", onMouseDown: (e) => e.preventDefault(), onClick: () => setRecent([]), children: m.clearRecent }) }) : null;
+  return /* @__PURE__ */ jsxs(
+    Popup,
+    {
+      open: expanded,
+      onOpenChange: setOpen,
+      anchorRef,
+      anchor: /* @__PURE__ */ jsxs("div", { ref: anchorRef, role: "search", className: cn("form-input flex w-full max-w-full items-center gap-2 transition-[width] focus-within:border-primary sm:w-48 sm:focus-within:w-72", className), children: [
+        /* @__PURE__ */ jsx(Search, { className: "size-4 shrink-0 text-muted", "aria-hidden": true }),
+        /* @__PURE__ */ jsx(
+          "input",
+          {
+            ref: inputRef,
+            role: "combobox",
+            "aria-label": label,
+            "aria-autocomplete": "list",
+            "aria-haspopup": "listbox",
+            "aria-expanded": expanded,
+            "aria-controls": expanded && entries.length ? listId : void 0,
+            "aria-activedescendant": expanded && entries[active] ? optionId(listId, active) : void 0,
+            autoComplete: "off",
+            className: "min-w-0 flex-1 border-0 bg-transparent p-0 text-fg outline-none",
+            placeholder: placeholder ?? m.placeholder,
+            value: query,
+            onChange: (e) => {
+              setQuery(e.target.value);
+              setOpen(true);
+            },
+            onFocus: () => setOpen(true),
+            onBlur: () => setOpen(false),
+            onKeyDown
+          }
+        ),
+        hotkey && !open && !query && /* @__PURE__ */ jsx(Kbd, { "aria-hidden": true, children: shortcut })
+      ] }),
+      children: [
+        /* @__PURE__ */ jsx(ListboxBody, { listId, label, sections, active, onActive: setActive, busy: loading, status, footer }),
+        q && !loading && !remote.error && entries.length > 0 && /* @__PURE__ */ jsx("span", { className: "sr-only", role: "status", children: m.results(entries.length) })
+      ]
+    }
+  );
+}
+
+// lib/messages/realtime.en.ts
+var realtimeEn = {
+  state: {
+    connecting: "Connecting",
+    open: "Live",
+    reconnecting: "Reconnecting",
+    closed: "Disconnected",
+    error: "Connection failed"
+  },
+  badge: {
+    group: "Connection status",
+    reconnect: "Reconnect",
+    announce: (state) => `Connection status: ${state}`,
+    offline: "Offline"
+  },
+  stale: {
+    paused: "Live updates paused",
+    pausedSince: (ago) => `Live updates paused \u2014 last update ${ago}`,
+    reconnect: "Reconnect",
+    justNow: "just now",
+    seconds: (n) => `${n} s ago`,
+    minutes: (n) => `${n} min ago`,
+    hours: (n) => `${n} h ago`
+  }
+};
+function useRealtimeText() {
+  const { t } = useLaf();
+  const over = t.components.realtime;
+  return React31.useMemo(
+    () => Object.fromEntries(Object.entries(realtimeEn).map(([k, v]) => [k, { ...v, ...over?.[k] }])),
+    [over]
+  );
+}
+function backoffDelay(attempt, { initial = 1e3, max = 3e4, factor = 2, jitter = 0.5 } = {}, random = Math.random) {
+  const base = Math.min(max, initial * factor ** Math.max(0, attempt - 1));
+  return Math.round(base * (1 - jitter) + base * jitter * random());
+}
+var isOffline = () => typeof navigator !== "undefined" && navigator.onLine === false;
+var isHidden = () => typeof document !== "undefined" && document.visibilityState === "hidden";
+function useConnectionState(options) {
+  const { enabled = true, pauseWhenHidden = false } = options;
+  const opts = React31.useRef(options);
+  opts.current = options;
+  const [view, setView] = React31.useState(() => ({
+    state: enabled ? "connecting" : "closed",
+    attempt: 0,
+    offline: isOffline()
+  }));
+  const stateRef = React31.useRef(view.state);
+  const listeners = React31.useRef(/* @__PURE__ */ new Set());
+  const api = React31.useRef({ start() {
+  }, stop() {
+  } });
+  React31.useEffect(() => {
+    let gen = 0;
+    let conn;
+    let timer;
+    let attempt = 0;
+    let manualClosed = !enabled;
+    let alive = true;
+    const patch = (p) => {
+      if (!alive) return;
+      if (p.state && p.state !== stateRef.current) {
+        const prev = stateRef.current;
+        stateRef.current = p.state;
+        opts.current.onStateChange?.(p.state, prev);
+      }
+      setView((v) => ({ ...v, ...p }));
+    };
+    const teardown = () => {
+      gen++;
+      if (timer !== void 0) clearTimeout(timer);
+      timer = void 0;
+      const c = conn;
+      conn = void 0;
+      try {
+        c?.close();
+      } catch {
+      }
+    };
+    const paused = () => pauseWhenHidden && isHidden();
+    const schedule = (error) => {
+      attempt += 1;
+      const max = opts.current.backoff?.maxAttempts;
+      if (max !== void 0 && attempt > max) {
+        patch({ state: "error", attempt, nextRetryAt: void 0, error });
+        return;
+      }
+      if (isOffline() || paused()) {
+        patch({ state: paused() && !isOffline() ? "closed" : "reconnecting", attempt, nextRetryAt: void 0, error });
+        return;
+      }
+      const delay = backoffDelay(attempt, opts.current.backoff, opts.current.random);
+      patch({ state: "reconnecting", attempt, nextRetryAt: Date.now() + delay, error });
+      timer = setTimeout(() => {
+        timer = void 0;
+        start("reconnecting");
+      }, delay);
+    };
+    function start(initial = "connecting") {
+      teardown();
+      const mine = gen;
+      patch({ state: initial, nextRetryAt: void 0 });
+      const handlers = {
+        open() {
+          if (mine !== gen) return;
+          attempt = 0;
+          patch({ state: "open", attempt: 0, nextRetryAt: void 0, error: void 0 });
+          opts.current.onOpen?.();
+        },
+        message(data) {
+          if (mine !== gen) return;
+          patch({ lastMessageAt: Date.now() });
+          for (const l of [...listeners.current]) l(data);
+          opts.current.onMessage?.(data);
+        },
+        close(error) {
+          if (mine !== gen) return;
+          teardown();
+          opts.current.onClose?.(error);
+          schedule(error);
+        },
+        latency(ms) {
+          if (mine === gen) patch({ latency: ms });
+        }
+      };
+      try {
+        const c = opts.current.connect(handlers);
+        if (mine !== gen) c?.close();
+        else conn = c || void 0;
+      } catch (e) {
+        handlers.close(e);
+      }
+    }
+    const resume = () => {
+      if (manualClosed || paused()) return;
+      attempt = 0;
+      start("connecting");
+    };
+    const onOffline = () => {
+      patch({ offline: true });
+      if (manualClosed) return;
+      teardown();
+      patch({ state: "reconnecting", nextRetryAt: void 0 });
+    };
+    const onOnline = () => {
+      patch({ offline: false });
+      resume();
+    };
+    const onVisibility = () => {
+      if (!pauseWhenHidden || manualClosed) return;
+      if (isHidden()) {
+        teardown();
+        patch({ state: "closed", nextRetryAt: void 0 });
+      } else if (!isOffline()) resume();
+    };
+    api.current = {
+      start: () => {
+        manualClosed = false;
+        attempt = 0;
+        start("connecting");
+      },
+      stop: (state) => {
+        manualClosed = true;
+        teardown();
+        patch({ state, nextRetryAt: void 0 });
+      }
+    };
+    window.addEventListener("offline", onOffline);
+    window.addEventListener("online", onOnline);
+    document.addEventListener("visibilitychange", onVisibility);
+    if (!manualClosed) {
+      if (isOffline()) patch({ state: "reconnecting" });
+      else if (paused()) patch({ state: "closed" });
+      else start("connecting");
+    }
+    return () => {
+      alive = false;
+      window.removeEventListener("offline", onOffline);
+      window.removeEventListener("online", onOnline);
+      document.removeEventListener("visibilitychange", onVisibility);
+      teardown();
+    };
+  }, [enabled, pauseWhenHidden]);
+  const reconnect = React31.useCallback(() => api.current.start(), []);
+  const close = React31.useCallback(() => api.current.stop("closed"), []);
+  const subscribe = React31.useCallback((l) => {
+    listeners.current.add(l);
+    return () => void listeners.current.delete(l);
+  }, []);
+  return { ...view, reconnect, close, subscribe };
+}
+var useRealtime = useConnectionState;
+var RealtimeContext = React31.createContext(null);
+function RealtimeProvider({ children, ...options }) {
+  const value = useConnectionState(options);
+  return /* @__PURE__ */ jsx(RealtimeContext.Provider, { value, children });
+}
+function useRealtimeContext() {
+  const ctx = React31.useContext(RealtimeContext);
+  if (!ctx) throw new Error("useRealtimeContext must be used inside <RealtimeProvider>");
+  return ctx;
+}
+function useRealtimeMessage(listener) {
+  const { subscribe } = useRealtimeContext();
+  const ref = React31.useRef(listener);
+  ref.current = listener;
+  React31.useEffect(() => subscribe((d) => ref.current(d)), [subscribe]);
+}
+var tones = { connecting: "primary", open: "ok", reconnecting: "warn", closed: "neutral", error: "danger" };
+function ConnectionBadge({ connection, compact, className }) {
+  const text = useRealtimeText();
+  const ctx = React31.useContext(RealtimeContext);
+  const conn = connection ?? ctx;
+  if (!conn) throw new Error("ConnectionBadge needs a `connection` prop or a <RealtimeProvider>");
+  const { state, offline } = conn;
+  const label = offline && state !== "open" ? text.badge.offline : text.state[state];
+  const [announced, setAnnounced] = React31.useState("");
+  const first = React31.useRef(true);
+  React31.useEffect(() => {
+    if (first.current) {
+      first.current = false;
+      return;
+    }
+    setAnnounced(text.badge.announce(text.state[state]));
+  }, [state, text]);
+  const canReconnect = state !== "open" && state !== "connecting";
+  return /* @__PURE__ */ jsxs("div", { role: "group", "aria-label": text.badge.group, className: cn("relative inline-flex items-center gap-2", className), children: [
+    /* @__PURE__ */ jsx(StatusDot, { tone: tones[state], pulse: state === "connecting" || state === "reconnecting", label, srOnly: compact }),
+    canReconnect && (compact ? /* @__PURE__ */ jsx(Button, { variant: "ghost", size: "sm", "aria-label": text.badge.reconnect, onClick: conn.reconnect, leftIcon: offline ? /* @__PURE__ */ jsx(WifiOff, { className: "size-4", "aria-hidden": true }) : /* @__PURE__ */ jsx(RefreshCw, { className: "size-4", "aria-hidden": true }) }) : /* @__PURE__ */ jsx(Button, { variant: "secondary", size: "sm", onClick: conn.reconnect, leftIcon: /* @__PURE__ */ jsx(RefreshCw, { className: "size-4", "aria-hidden": true }), children: text.badge.reconnect })),
+    /* @__PURE__ */ jsx("span", { role: "status", "aria-live": "polite", className: "sr-only", children: announced })
+  ] });
+}
+function useAgo(at, text) {
+  const [, tick] = React31.useReducer((n) => n + 1, 0);
+  React31.useEffect(() => {
+    const id = setInterval(tick, 15e3);
+    return () => clearInterval(id);
+  }, []);
+  if (at === void 0) return void 0;
+  const s = Math.max(0, Math.round((Date.now() - at) / 1e3));
+  if (s < 5) return text.justNow;
+  if (s < 60) return text.seconds(s);
+  if (s < 3600) return text.minutes(Math.floor(s / 60));
+  return text.hours(Math.floor(s / 3600));
+}
+function StaleDataBanner({ connection, banner, className }) {
+  const text = useRealtimeText();
+  const ctx = React31.useContext(RealtimeContext);
+  const conn = connection ?? ctx;
+  if (!conn) throw new Error("StaleDataBanner needs a `connection` prop or a <RealtimeProvider>");
+  const ago = useAgo(conn.lastMessageAt, text.stale);
+  if (conn.state === "open" || conn.state === "connecting" && conn.lastMessageAt === void 0) return null;
+  const message = ago ? text.stale.pausedSince(ago) : text.stale.paused;
+  const action = /* @__PURE__ */ jsx(Button, { variant: "secondary", size: "sm", onClick: conn.reconnect, leftIcon: /* @__PURE__ */ jsx(RefreshCw, { className: "size-4", "aria-hidden": true }), children: text.stale.reconnect });
+  const tone = conn.state === "error" ? "danger" : "warning";
+  return banner ? /* @__PURE__ */ jsx(Banner, { tone, action, className, children: message }) : /* @__PURE__ */ jsx(Alert, { tone, role: "status", actions: action, className, children: message });
+}
+
+// lib/messages/simple-table.en.ts
+var simpleTableEn = {
+  table: {
+    sortBy: (column) => `Sort by ${column}`,
+    selectAll: "Select all rows",
+    selectRow: (label) => label ? `Select ${label}` : "Select row",
+    actions: "Actions",
+    empty: "No rows to show",
+    loading: "Loading rows"
+  }
+};
+function useTableText() {
+  const { t } = useLaf();
+  const over = t.components.simpleTable;
+  return React31.useMemo(() => ({ ...simpleTableEn.table, ...over?.table }), [over]);
+}
+var alignClass = { start: "text-start", center: "text-center", end: "text-end" };
+function nextSort(current, id) {
+  if (current?.id !== id) return { id, direction: "asc" };
+  return current.direction === "asc" ? { id, direction: "desc" } : null;
+}
+function SimpleTable({
+  columns,
+  rows,
+  getRowId,
+  sort,
+  onSortChange,
+  selectable,
+  selected,
+  onSelectedChange,
+  getRowLabel,
+  rowActions,
+  density = "comfortable",
+  stickyHeader,
+  maxHeight,
+  loading,
+  loadingRows = 5,
+  empty,
+  caption,
+  captionHidden,
+  pagination,
+  className,
+  ...rest
+}) {
+  const text = useTableText();
+  const [inner, setInner] = React31.useState([]);
+  const ids = selected ?? inner;
+  const setIds = (next) => {
+    if (selected === void 0) setInner(next);
+    onSelectedChange?.(next);
+  };
+  const rowIds = rows.map(getRowId);
+  const chosen = rowIds.filter((id) => ids.includes(id)).length;
+  const allRef = React31.useRef(null);
+  React31.useEffect(() => {
+    if (allRef.current) allRef.current.indeterminate = chosen > 0 && chosen < rowIds.length;
+  });
+  const toggleAll = () => setIds(chosen === rowIds.length ? ids.filter((id) => !rowIds.includes(id)) : [.../* @__PURE__ */ new Set([...ids, ...rowIds])]);
+  const toggleRow = (id) => setIds(ids.includes(id) ? ids.filter((x) => x !== id) : [...ids, id]);
+  const span = columns.length + (selectable ? 1 : 0) + (rowActions ? 1 : 0);
+  const pad2 = density === "dense" ? "[&_td]:px-3 [&_td]:py-1 [&_th]:px-3 [&_th]:py-1.5" : "";
+  const thSticky = stickyHeader && "[&_th]:sticky [&_th]:top-0 [&_th]:z-10";
+  return /* @__PURE__ */ jsxs("div", { className: cn("relative w-full min-w-0", className), children: [
+    /* @__PURE__ */ jsx("div", { className: cn("table-wrap relative overflow-x-auto", maxHeight && "overflow-y-auto"), style: maxHeight ? { maxHeight } : void 0, children: /* @__PURE__ */ jsxs("table", { className: cn("table", pad2, thSticky), "aria-busy": loading || void 0, "aria-label": rest["aria-label"], children: [
+      caption && /* @__PURE__ */ jsx("caption", { className: cn("px-4 py-2 text-start text-sm text-muted", captionHidden && "sr-only"), children: caption }),
+      /* @__PURE__ */ jsx("thead", { children: /* @__PURE__ */ jsxs("tr", { children: [
+        selectable && /* @__PURE__ */ jsx("th", { scope: "col", className: "w-10", children: /* @__PURE__ */ jsx(Checkbox, { ref: allRef, "aria-label": text.selectAll, checked: rowIds.length > 0 && chosen === rowIds.length, disabled: rowIds.length === 0, onChange: toggleAll }) }),
+        columns.map((c) => {
+          const active = sort?.id === c.id ? sort : null;
+          const name = c.headerText ?? (typeof c.header === "string" ? c.header : c.id);
+          return /* @__PURE__ */ jsx(
+            "th",
+            {
+              scope: "col",
+              "aria-sort": c.sortable ? active ? active.direction === "asc" ? "ascending" : "descending" : "none" : void 0,
+              className: cn(alignClass[c.align ?? "start"], c.className),
+              style: c.width !== void 0 ? { width: c.width } : void 0,
+              children: c.sortable ? /* @__PURE__ */ jsxs(
+                "button",
+                {
+                  type: "button",
+                  "aria-label": text.sortBy(name),
+                  onClick: () => onSortChange?.(nextSort(sort, c.id)),
+                  className: cn("inline-flex items-center gap-1 border-0 bg-transparent p-0 font-[inherit] text-[length:inherit] tracking-[inherit] text-inherit uppercase outline-none hover:text-fg focus-visible:ring-2 focus-visible:ring-primary/50", c.align === "end" && "flex-row-reverse"),
+                  children: [
+                    c.header,
+                    active ? active.direction === "asc" ? /* @__PURE__ */ jsx(ArrowUp, { className: "size-3.5", "aria-hidden": true }) : /* @__PURE__ */ jsx(ArrowDown, { className: "size-3.5", "aria-hidden": true }) : /* @__PURE__ */ jsx(ChevronsUpDown, { className: "size-3.5 opacity-50", "aria-hidden": true })
+                  ]
+                }
+              ) : c.header
+            },
+            c.id
+          );
+        }),
+        rowActions && /* @__PURE__ */ jsx("th", { scope: "col", className: "w-px", children: /* @__PURE__ */ jsx("span", { className: "sr-only", children: text.actions }) })
+      ] }) }),
+      /* @__PURE__ */ jsx("tbody", { children: loading ? Array.from({ length: loadingRows }, (_, i) => /* @__PURE__ */ jsx("tr", { children: Array.from({ length: span }, (_2, j) => /* @__PURE__ */ jsx("td", { children: /* @__PURE__ */ jsx(Skeleton, { className: "w-full max-w-40" }) }, j)) }, i)) : rows.length === 0 ? /* @__PURE__ */ jsx("tr", { children: /* @__PURE__ */ jsx("td", { colSpan: span, className: "py-8 text-center text-muted", children: empty ?? text.empty }) }) : rows.map((row, i) => {
+        const id = rowIds[i];
+        const isSel = ids.includes(id);
+        return /* @__PURE__ */ jsxs("tr", { "aria-selected": selectable ? isSel : void 0, className: cn(isSel && "[&_td]:bg-primary-light"), children: [
+          selectable && /* @__PURE__ */ jsx("td", { className: "w-10", children: /* @__PURE__ */ jsx(Checkbox, { "aria-label": text.selectRow(getRowLabel?.(row)), checked: isSel, onChange: () => toggleRow(id) }) }),
+          columns.map((c) => {
+            const content = c.cell ? c.cell(row, i) : row[c.id];
+            const cls = cn(alignClass[c.align ?? "start"], c.className);
+            return c.rowHeader ? /* @__PURE__ */ jsx("th", { scope: "row", className: cn("border-b border-line bg-transparent px-4 py-3 text-sm font-medium tracking-normal text-fg normal-case", cls), children: content }, c.id) : /* @__PURE__ */ jsx("td", { className: cls, children: content }, c.id);
+          }),
+          rowActions && /* @__PURE__ */ jsx("td", { className: "cell-actions text-end whitespace-nowrap", children: rowActions(row) })
+        ] }, id);
+      }) })
+    ] }) }),
+    loading && /* @__PURE__ */ jsx("span", { role: "status", className: "sr-only", children: text.loading }),
+    pagination && /* @__PURE__ */ jsx("div", { className: "mt-3", children: /* @__PURE__ */ jsx(Pagination, { ...pagination }) })
+  ] });
+}
+
+export { AccountItem, AccountList, ActionBar, ActionGroup, ActionToolbar, ActivityTimeline, AdminShell, AllowListEditor, ApiKeyManager, AppFooter, AppFrame, AppSwitcher, AuditLog, AuthFooter, Autocomplete, BrandHeader, BrandingEditor, CapacityBar, ChipsInput, CidrInput, ClientInfo, ClipboardCopy, CodeBlock, CodeBlockCode, CodeDisplay, CodeEditor, CodeEditorLite, CodeInput, ColorField, CommandPalette, ConnectionBadge, ContextMenu, ContextMenuContent, ContextMenuFor, ContextMenuItem, ContextMenuSeparator, ContextMenuTrigger, CountCard, DataGrid, DatePicker, DescriptionList, DescriptionListDescription, DescriptionListGroup, DescriptionListTerm, DetailPage, DetailsCard, DeviceList, DeviceSelector, DeviceSteps, DiffView, Divider, DnsRecordTable, DockedTaskPanel, DrawerPanel, Dropdown, DropdownGroup, DropdownItem, DropdownList, DropdownSeparator, ErrorPage, FilterBar, Flex, FlexItem, Form, FormFooter, FormGroup, FormHelperText, FormPage, FormSection, GaugeCard, Grid, GridColumnsMenu, GridDensityToggle, GridItem, GridSearch, HealthGrid, Heatmap, HelperText, HelperTextItem, HotkeysProvider, HoverCard, IdentityCard, InfoBox, InlineDrawer, InventoryLayout, IpInput, IssueCard, IssueRow, Label, LabelPicker, LabelSwatch, LafErrorBoundary, LanguageSwitcher, Masthead, MastheadActions, MastheadBrand, MastheadContent, MastheadToggle, Menu, MenuShortcut, MenuToggle, MetricCard, MetricGrid, MfaEnrolment, MobileNav, Modal, ModalBody, ModalClose, ModalFooter, ModalHeader, ModalTrigger, NavGroup, NavLink, NavTree, NotificationCenter, ObjectHeader, ObjectPage, OptionPicker, OtpInput, OverflowTabs, PageHeader, PageSection, Pagination, PortalHome, PortalLayout, PowerState, ProgressCard, ProgressSummary, PropertiesPane, QueueStatusBadge, QuickSearch, QuotaBar, RadialGauge, Reactions, RealtimeProvider, ReauthDialog, ResourceOverviewLayout, SavedViews, ScopeList, SecurityFactors, ServerDataGrid, ServiceTile, SessionExpiryDialog, SessionList, SettingRow, SettingsDialog, SettingsSection, ShortcutHelp, SideCard, Sidebar, SimpleTable, SocialButton, SocialButtons, SocialDivider, Stack, StackItem, StackedBarChart, StaleDataBanner, StatusSummaryCard, SubNav, Table, TaskPanel, ThemeToggle, Title4 as Title, Toolbar, ToolbarActions, ToolbarBulk, ToolbarContent, ToolbarDivider, ToolbarFilterChips, ToolbarGroup, ToolbarItem, ToolbarSpacer, TopBar, TopologyGraph, TraceTimeline, TransferList, TreeTable, UnsavedChangesDialog, UserCell, UserMenu, UserSelector, UtilizationColumn, UtilizationPanel, Wizard, WizardReview, backoffDelay, browserSearchParams, contrastRatio, formatHotkey, gaugeTone, highlight, isCidr, isIPv4, isIPv6, isIp, isMacPlatform, normalizeHex, parseCidr, parseFilter, parseHotkey, portalBreadcrumbs, portalNavEntries, resolvePortalRoute, serializeFilter, serializeToken, serverGridFromSearchParams, serverGridToSearchParams, useAppFrame, useConnectionState, useHotkeys, useRealtime, useRealtimeContext, useRealtimeMessage, useRegisteredHotkeys, useSavedViews, useServerGrid, useUnsavedChangesGuard };
 //# sourceMappingURL=index.js.map
 //# sourceMappingURL=index.js.map

@@ -1,0 +1,30 @@
+export const autocompleteEn = {
+  autocomplete: {
+    clear: "Clear",
+    create: (q: string) => `Create “${q}”`,
+    empty: "No results",
+    loading: "Loading…",
+    error: "Couldn't load options",
+    retry: "Retry",
+    remove: (name: string) => `Remove ${name}`,
+    toggle: "Show options",
+  },
+  chips: {
+    duplicate: (tag: string) => `“${tag}” is already added`,
+    max: (n: number) => `At most ${n} items allowed`,
+    invalid: (tag: string) => `“${tag}” is not valid`,
+    remove: (tag: string) => `Remove ${tag}`,
+  },
+  quickSearch: {
+    label: "Search inventory",
+    placeholder: "Search inventory…",
+    loading: "Searching…",
+    empty: (q: string) => `No results for “${q}”`,
+    error: "Search failed",
+    retry: "Retry",
+    recent: "Recent searches",
+    clearRecent: "Clear recent searches",
+    hint: "Type to search VMs, hosts, datastores and networks",
+    results: (n: number) => (n === 1 ? "1 result" : `${n} results`),
+  },
+};

@@ -275,6 +275,76 @@ var mailHu = {
   timeline: { label: "K\xE9zbes\xEDt\xE9si id\u0151vonal", elapsed: (ms) => `+${ms}`, empty: "Nincs r\xF6gz\xEDtett l\xE9p\xE9s" }
 };
 
+// lib/locales/autocomplete.hu.ts
+var autocompleteHu = {
+  autocomplete: {
+    clear: "T\xF6rl\xE9s",
+    create: (q) => `\u201E${q}\u201D l\xE9trehoz\xE1sa`,
+    empty: "Nincs tal\xE1lat",
+    loading: "Bet\xF6lt\xE9s\u2026",
+    error: "A lehet\u0151s\xE9gek bet\xF6lt\xE9se nem siker\xFClt",
+    retry: "\xDAjra",
+    remove: (name) => `${name} elt\xE1vol\xEDt\xE1sa`,
+    toggle: "Lehet\u0151s\xE9gek megjelen\xEDt\xE9se"
+  },
+  chips: {
+    duplicate: (tag) => `\u201E${tag}\u201D m\xE1r hozz\xE1 van adva`,
+    max: (n) => `Legfeljebb ${n} elem adhat\xF3 meg`,
+    invalid: (tag) => `\u201E${tag}\u201D \xE9rv\xE9nytelen`,
+    remove: (tag) => `${tag} elt\xE1vol\xEDt\xE1sa`
+  },
+  quickSearch: {
+    label: "Keres\xE9s a lelt\xE1rban",
+    placeholder: "Keres\xE9s a lelt\xE1rban\u2026",
+    loading: "Keres\xE9s\u2026",
+    empty: (q) => `Nincs tal\xE1lat erre: \u201E${q}\u201D`,
+    error: "A keres\xE9s nem siker\xFClt",
+    retry: "\xDAjra",
+    recent: "Legut\xF3bbi keres\xE9sek",
+    clearRecent: "Legut\xF3bbi keres\xE9sek t\xF6rl\xE9se",
+    hint: "\xCDrjon be valamit virtu\xE1lis g\xE9pek, hosztok, adatt\xE1rol\xF3k \xE9s h\xE1l\xF3zatok keres\xE9s\xE9hez",
+    results: (n) => `${n} tal\xE1lat`
+  }
+};
+
+// lib/locales/realtime.hu.ts
+var realtimeHu = {
+  state: {
+    connecting: "Kapcsol\xF3d\xE1s",
+    open: "\xC9l\u0151",
+    reconnecting: "\xDAjrakapcsol\xF3d\xE1s",
+    closed: "Sz\xE9tkapcsolva",
+    error: "A kapcsolat sikertelen"
+  },
+  badge: {
+    group: "Kapcsolat \xE1llapota",
+    reconnect: "\xDAjrakapcsol\xF3d\xE1s",
+    announce: (state) => `Kapcsolat \xE1llapota: ${state}`,
+    offline: "Nincs h\xE1l\xF3zat"
+  },
+  stale: {
+    paused: "Az \xE9l\u0151 friss\xEDt\xE9sek sz\xFCnetelnek",
+    pausedSince: (ago) => `Az \xE9l\u0151 friss\xEDt\xE9sek sz\xFCnetelnek \u2014 utols\xF3 friss\xEDt\xE9s ${ago}`,
+    reconnect: "\xDAjrakapcsol\xF3d\xE1s",
+    justNow: "\xE9pp most",
+    seconds: (n) => `${n} mp-e`,
+    minutes: (n) => `${n} perce`,
+    hours: (n) => `${n} \xF3r\xE1ja`
+  }
+};
+
+// lib/locales/simple-table.hu.ts
+var simpleTableHu = {
+  table: {
+    sortBy: (column) => `Rendez\xE9s: ${column}`,
+    selectAll: "\xD6sszes sor kijel\xF6l\xE9se",
+    selectRow: (label) => label ? `${label} kijel\xF6l\xE9se` : "Sor kijel\xF6l\xE9se",
+    actions: "M\u0171veletek",
+    empty: "Nincs megjelen\xEDthet\u0151 sor",
+    loading: "Sorok bet\xF6lt\xE9se"
+  }
+};
+
 // lib/locales/console.hu.ts
 var consoleHu = {
   terminal: {
@@ -620,7 +690,7 @@ var vsphereObjectsHu = {
 
 // lib/locales/hu.ts
 var hu = {
-  components: { account: accountHu, admin: adminHu, tracker: trackerHu, vsphereObjects: vsphereObjectsHu, charts: chartsHu, ui: uiHu, content: contentHu, dashboard: dashboardHu, portal: portalHu, mail: mailHu, console: consoleHu, settings: settingsHu, overview: overviewHu },
+  components: { account: accountHu, admin: adminHu, tracker: trackerHu, vsphereObjects: vsphereObjectsHu, charts: chartsHu, ui: uiHu, content: contentHu, dashboard: dashboardHu, portal: portalHu, mail: mailHu, console: consoleHu, autocomplete: autocompleteHu, realtime: realtimeHu, simpleTable: simpleTableHu, settings: settingsHu, overview: overviewHu },
   close: "Bez\xE1r\xE1s",
   noResults: "Nincs tal\xE1lat",
   loading: "Bet\xF6lt\xE9s",

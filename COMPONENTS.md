@@ -628,3 +628,5 @@ Pill buttons or circular avatars · gradients other than brand/page · coloured 
 ## 9. Console, interactive charts, settings dialogs
 
 `@pilab/laf/console`: `Terminal`, `VncConsole` (lazy xterm / noVNC; see `docs/console.md`). Charts: `ChartSyncProvider`, `useChartSync`, `useLiveSeries`, zoom/pan/live on `TimeSeriesChart` (`docs/charts.md`). `SettingsDialog`, `SettingsSection`, `SettingRow`, `DeviceList` (`docs/settings-dialog.md`). Demos `?demo=console`, `?demo=settings-dialog`.
+
+`Chip` `icon` prop. `Autocomplete`, `ChipsInput`, `QuickSearch` (`docs/autocomplete.md`); `useConnectionState`, `RealtimeProvider`, `ConnectionBadge`, `StaleDataBanner` (`docs/realtime.md`); `SimpleTable` (`docs/simple-table.md`). Demos `?demo=inputs|realtime|simple-table`.

@@ -6,6 +6,9 @@ import type { chartsEn } from "./messages/charts.en";
 import type { contentEn } from "./messages/content.en";
 import type { dashboardEn } from "./messages/dashboard.en";
 import type { mailEn } from "./messages/mail.en";
+import type { autocompleteEn } from "./messages/autocomplete.en";
+import type { realtimeEn } from "./messages/realtime.en";
+import type { simpleTableEn } from "./messages/simple-table.en";
 import type { consoleEn } from "./messages/console.en";
 import type { settingsEn } from "./messages/settings.en";
 import type { overviewEn } from "./messages/overview.en";
@@ -30,6 +33,9 @@ export interface ComponentMessages {
   portal: typeof portalEn;
   mail: typeof mailEn;
   console: typeof consoleEn;
+  autocomplete: typeof autocompleteEn;
+  realtime: typeof realtimeEn;
+  simpleTable: typeof simpleTableEn;
   settings: typeof settingsEn;
   overview: typeof overviewEn;
 }

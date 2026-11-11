@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { b as ObjectGlyph, a as ObjectState } from './object-icon-DNBqUOgN.cjs';
+import { b as ObjectGlyph, a as ObjectState } from './object-icon-B3VCk4CX.cjs';
 import 'lucide-react';
-import './i18n-DlJBgcx_.cjs';
+import './i18n-BydewGRX.cjs';
 import './perf-panel-oLl-Txms.cjs';
 import './chart-motion-BTO5GOqJ.cjs';
 import './vsphere-objects-CX3SL4vx.cjs';

@@ -1,4 +1,4 @@
-import { s as LafMessages } from '../i18n-D7-T2u5f.js';
+import { s as LafMessages } from '../i18n-Cy4azkBi.js';
 import 'react';
 import '../perf-panel-BIwzrNjF.js';
 import '../chart-motion-BTO5GOqJ.js';

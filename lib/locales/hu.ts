@@ -5,6 +5,9 @@ import { chartsHu } from "./charts.hu";
 import { contentHu } from "./content.hu";
 import { dashboardHu } from "./dashboard.hu";
 import { mailHu } from "./mail.hu";
+import { autocompleteHu } from "./autocomplete.hu";
+import { realtimeHu } from "./realtime.hu";
+import { simpleTableHu } from "./simple-table.hu";
 import { consoleHu } from "./console.hu";
 import { settingsHu } from "./settings.hu";
 import { overviewHu } from "./overview.hu";
@@ -14,7 +17,7 @@ import { uiHu } from "./ui.hu";
 import { vsphereObjectsHu } from "./vsphere-objects.hu";
 
 export const hu: LafMessages = {
-  components: { account: accountHu, admin: adminHu, tracker: trackerHu, vsphereObjects: vsphereObjectsHu, charts: chartsHu, ui: uiHu, content: contentHu, dashboard: dashboardHu, portal: portalHu, mail: mailHu, console: consoleHu, settings: settingsHu, overview: overviewHu },
+  components: { account: accountHu, admin: adminHu, tracker: trackerHu, vsphereObjects: vsphereObjectsHu, charts: chartsHu, ui: uiHu, content: contentHu, dashboard: dashboardHu, portal: portalHu, mail: mailHu, console: consoleHu, autocomplete: autocompleteHu, realtime: realtimeHu, simpleTable: simpleTableHu, settings: settingsHu, overview: overviewHu },
   close: "Bezárás",
   noResults: "Nincs találat",
   loading: "Betöltés",

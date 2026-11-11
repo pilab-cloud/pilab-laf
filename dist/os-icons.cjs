@@ -1,7 +1,7 @@
 'use strict';
 
-var chunk7WP4YDSY_cjs = require('./chunk-7WP4YDSY.cjs');
-var chunkSCEXK6L4_cjs = require('./chunk-SCEXK6L4.cjs');
+var chunkVUZVPUQ7_cjs = require('./chunk-VUZVPUQ7.cjs');
+var chunkQQA4GJXV_cjs = require('./chunk-QQA4GJXV.cjs');
 var chunkFTHFEMX6_cjs = require('./chunk-FTHFEMX6.cjs');
 var simpleIcons = require('simple-icons');
 var jsxRuntime = require('react/jsx-runtime');
@@ -47,7 +47,7 @@ function guestOsToId(guestId) {
   for (const [re, id] of RULES) if (re.test(s)) return id;
   return "unknown";
 }
-var WindowsGlyph = chunk7WP4YDSY_cjs.glyph(
+var WindowsGlyph = chunkVUZVPUQ7_cjs.glyph(
   "WindowsGlyph",
   /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
     /* @__PURE__ */ jsxRuntime.jsx("rect", { x: "3", y: "3.5", width: "8", height: "8", rx: "1" }),
@@ -56,22 +56,22 @@ var WindowsGlyph = chunk7WP4YDSY_cjs.glyph(
     /* @__PURE__ */ jsxRuntime.jsx("rect", { x: "13", y: "13.5", width: "8", height: "7", rx: "1" })
   ] })
 );
-var OracleLinuxGlyph = chunk7WP4YDSY_cjs.glyph(
+var OracleLinuxGlyph = chunkVUZVPUQ7_cjs.glyph(
   "OracleLinuxGlyph",
   /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
     /* @__PURE__ */ jsxRuntime.jsx("rect", { x: "3", y: "7", width: "18", height: "10", rx: "5" }),
     /* @__PURE__ */ jsxRuntime.jsx("path", { d: "M9 9.5v5h4.5" })
   ] })
 );
-var AmazonLinuxGlyph = chunk7WP4YDSY_cjs.glyph("AmazonLinuxGlyph", /* @__PURE__ */ jsxRuntime.jsx("path", { d: "M12 3 20 7.5v9L12 21l-8-4.5v-9zM4 7.5l8 4.5 8-4.5M12 12v9" }));
-var SolarisGlyph = chunk7WP4YDSY_cjs.glyph(
+var AmazonLinuxGlyph = chunkVUZVPUQ7_cjs.glyph("AmazonLinuxGlyph", /* @__PURE__ */ jsxRuntime.jsx("path", { d: "M12 3 20 7.5v9L12 21l-8-4.5v-9zM4 7.5l8 4.5 8-4.5M12 12v9" }));
+var SolarisGlyph = chunkVUZVPUQ7_cjs.glyph(
   "SolarisGlyph",
   /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
     /* @__PURE__ */ jsxRuntime.jsx("circle", { cx: "12", cy: "12", r: "4" }),
     /* @__PURE__ */ jsxRuntime.jsx("path", { d: "M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M5.3 18.7l2.1-2.1M16.6 7.4l2.1-2.1" })
   ] })
 );
-var OvirtGlyph = chunk7WP4YDSY_cjs.glyph(
+var OvirtGlyph = chunkVUZVPUQ7_cjs.glyph(
   "OvirtGlyph",
   /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
     /* @__PURE__ */ jsxRuntime.jsx("rect", { x: "3", y: "4", width: "18", height: "7", rx: "1.5" }),
@@ -79,7 +79,7 @@ var OvirtGlyph = chunk7WP4YDSY_cjs.glyph(
     /* @__PURE__ */ jsxRuntime.jsx("path", { d: "M7 7.5h.01M7 16.5h.01M12 7.5h5M12 16.5h5" })
   ] })
 );
-var UnknownOsGlyph = chunk7WP4YDSY_cjs.glyph(
+var UnknownOsGlyph = chunkVUZVPUQ7_cjs.glyph(
   "UnknownOsGlyph",
   /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
     /* @__PURE__ */ jsxRuntime.jsx("rect", { x: "2.5", y: "3.5", width: "19", height: "17", rx: "2" }),
@@ -194,10 +194,10 @@ function OsIcon({ os, size = 16, variant = "brand", label, className }) {
   );
 }
 function VmOsIcon({ os, size = 16, variant = "brand", state, overlay, label, className }) {
-  const { t } = chunkSCEXK6L4_cjs.useLaf();
-  const stateText = [state, overlay].filter((x) => !!x).map((x) => t[chunk7WP4YDSY_cjs.objectStateMeta[x].text]).join(", ");
+  const { t } = chunkQQA4GJXV_cjs.useLaf();
+  const stateText = [state, overlay].filter((x) => !!x).map((x) => t[chunkVUZVPUQ7_cjs.objectStateMeta[x].text]).join(", ");
   const name = [label, stateText].filter(Boolean).join(", ");
-  const meta = state ? chunk7WP4YDSY_cjs.objectStateMeta[state] : void 0;
+  const meta = state ? chunkVUZVPUQ7_cjs.objectStateMeta[state] : void 0;
   return /* @__PURE__ */ jsxRuntime.jsxs(
     "span",
     {
@@ -210,8 +210,8 @@ function VmOsIcon({ os, size = 16, variant = "brand", state, overlay, label, cla
       style: { width: size, height: size },
       children: [
         /* @__PURE__ */ jsxRuntime.jsx(OsIcon, { os, size, variant, className: meta?.base === "dim" ? "opacity-70" : meta?.base === "faded" ? "opacity-50" : void 0 }),
-        state && /* @__PURE__ */ jsxRuntime.jsx(chunk7WP4YDSY_cjs.StateBadge, { state, px: size, className: "-end-1 -bottom-1" }),
-        overlay && /* @__PURE__ */ jsxRuntime.jsx(chunk7WP4YDSY_cjs.StateBadge, { state: overlay, px: size, className: "-end-1 -top-1" })
+        state && /* @__PURE__ */ jsxRuntime.jsx(chunkVUZVPUQ7_cjs.StateBadge, { state, px: size, className: "-end-1 -bottom-1" }),
+        overlay && /* @__PURE__ */ jsxRuntime.jsx(chunkVUZVPUQ7_cjs.StateBadge, { state: overlay, px: size, className: "-end-1 -top-1" })
       ]
     }
   );

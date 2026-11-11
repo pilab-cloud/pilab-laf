@@ -1,6 +1,6 @@
 'use strict';
 
-var chunkSCEXK6L4_cjs = require('./chunk-SCEXK6L4.cjs');
+var chunkQQA4GJXV_cjs = require('./chunk-QQA4GJXV.cjs');
 var chunkFTHFEMX6_cjs = require('./chunk-FTHFEMX6.cjs');
 var core = require('@dnd-kit/core');
 var sortable = require('@dnd-kit/sortable');
@@ -37,7 +37,7 @@ function Row({
   handle,
   renderItem
 }) {
-  const { t } = chunkSCEXK6L4_cjs.useLaf();
+  const { t } = chunkQQA4GJXV_cjs.useLaf();
   const s = sortable.useSortable({ id });
   const drag = { ...s.attributes, ...s.listeners };
   const gripProps = { ...drag, ref: s.setActivatorNodeRef };
@@ -56,7 +56,7 @@ function Row({
   );
 }
 function SortableList({ items, getId, getLabel, onReorder, renderItem, label, handle = true, className }) {
-  const { t } = chunkSCEXK6L4_cjs.useLaf();
+  const { t } = chunkQQA4GJXV_cjs.useLaf();
   const sensors = core.useSensors(
     core.useSensor(core.PointerSensor, { activationConstraint: { distance: 4 } }),
     core.useSensor(core.KeyboardSensor, { coordinateGetter: sortable.sortableKeyboardCoordinates })
@@ -142,7 +142,7 @@ function CardView({
   );
 }
 function ColumnView({ column, ids, children }) {
-  const { t } = chunkSCEXK6L4_cjs.useLaf();
+  const { t } = chunkQQA4GJXV_cjs.useLaf();
   const { setNodeRef, isOver } = core.useDroppable({ id: column.id });
   const over = column.wipLimit !== void 0 && ids.length > column.wipLimit;
   const headId = React__namespace.useId();
@@ -169,7 +169,7 @@ function ColumnView({ column, ids, children }) {
   );
 }
 function KanbanBoard({ columns, cards, onMove, renderCard, label, className }) {
-  const { t } = chunkSCEXK6L4_cjs.useLaf();
+  const { t } = chunkQQA4GJXV_cjs.useLaf();
   const sensors = core.useSensors(core.useSensor(core.PointerSensor, { activationConstraint: { distance: 5 } }));
   const source = React__namespace.useMemo(() => layoutOf(columns, cards), [columns, cards]);
   const [layout, setLayout] = React__namespace.useState(source);

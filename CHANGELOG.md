@@ -7,6 +7,10 @@ Follows [semver](https://semver.org). Pre-1.0, minor versions may contain breaki
 See [`docs/MIGRATION.md`](docs/MIGRATION.md).
 
 ### Added
+- `Chip` takes an `icon` (clamped to 0.75rem, inline padding so it never touches the border).
+- `Autocomplete` (single/multi, free-solo, async with debounce/abort), `ChipsInput` (TagInput superset: Enter/comma/paste, validation, icons) and `QuickSearch` (masthead inventory search, Ctrl/⌘+K, recents); `docs/autocomplete.md`, `?demo=inputs`.
+- Realtime: `useConnectionState`/`useRealtime` (backoff + jitter, online/offline), `RealtimeProvider`, `ConnectionBadge`, `StaleDataBanner`; `docs/realtime.md`, `?demo=realtime`.
+- `SimpleTable`: column-config table with controlled sort, selection, density, sticky header, loading/empty, pagination; `docs/simple-table.md`, `?demo=simple-table`.
 - `@pilab/laf/console` (new subpath; optional peers `@xterm/xterm`, `@xterm/addon-fit`, `@novnc/novnc`): `Terminal` (xterm.js wrapper, websocket `url` or `transport`, fit, token theme, status/Reconnect, copy/clear/fullscreen) and `VncConsole` (noVNC in `ConsoleFrame`, Ctrl-Alt-Del, view-only, paste-to-remote); lazy engines; consumers import `@xterm/xterm/css/xterm.css`. Demo `?demo=console`, `docs/console.md`.
 - Charts: `ChartSyncProvider`/`useChartSync` share crosshair/tooltip and zoom range between charts; `TimeSeriesChart` gains pan, optional wheel/pinch zoom, double-click/Alt+Home reset, `+`/`-`/Alt+arrow keys, and `live` mode with `useLiveSeries` (rolling window, pause on hover/zoom, "Paused — Resume").
 - `SettingsDialog`/`SettingsSection`/`SettingRow`/`DeviceList`: sectioned settings dialog (nav becomes tabs when narrow, dirty tracking, error badges, async apply, unsaved guard) and editable device list. Demo `?demo=settings-dialog`, `docs/settings-dialog.md`.

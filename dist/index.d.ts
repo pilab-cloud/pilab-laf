@@ -9,15 +9,15 @@ import * as DropdownPrimitive from '@radix-ui/react-dropdown-menu';
 import * as PopoverPrimitive from '@radix-ui/react-popover';
 import * as TabsPrimitive from '@radix-ui/react-tabs';
 import * as TooltipPrimitive from '@radix-ui/react-tooltip';
-import { t as trackerEn, u as uiEn, p as portalEn, N as NotificationCenterProps } from './i18n-D7-T2u5f.js';
-export { A as AccountSession, a as AllowListEditor, b as AllowListEditorProps, c as ApiKeyCreateInput, d as ApiKeyItem, e as ApiKeyManager, f as ApiKeyManagerLabels, g as ApiKeyManagerProps, B as Branding, h as BrandingEditor, i as BrandingEditorLabels, j as BrandingEditorProps, C as CidrInput, k as ColorField, l as ColorFieldLabels, m as ColorFieldProps, n as ComponentMessageOverrides, o as ComponentMessages, D as Device, q as DeviceKind, r as DeviceSelector, I as IpInput, L as LafContextValue, s as LafMessages, v as LafProvider, w as NetworkLabels, x as NotificationCenter, y as NotificationCenterLabels, z as NotificationItem, P as PasskeyItem, R as ReauthDialog, E as ReauthDialogLabels, F as ReauthDialogProps, G as ReauthMethod, S as SecurityFactors, H as SecurityFactorsLabels, J as SecurityFactorsProps, K as SessionExpiryDialog, M as SessionExpiryDialogLabels, O as SessionExpiryDialogProps, Q as SessionList, T as SessionListLabels, U as SessionListProps, V as TransferItem, W as TransferList, X as TransferListLabels, Y as TransferListProps, Z as User, _ as UserSelector, $ as UserSelectorProps, a0 as contrastRatio, a1 as en, a2 as isCidr, a3 as isIPv4, a4 as isIPv6, a5 as isIp, a6 as normalizeHex, a7 as parseCidr, a8 as useLaf, a9 as useLafDefaults, aa as usePortalContainer } from './i18n-D7-T2u5f.js';
+import { t as trackerEn, u as uiEn, p as portalEn, N as NotificationCenterProps } from './i18n-Cy4azkBi.js';
+export { A as AccountSession, a as AllowListEditor, b as AllowListEditorProps, c as ApiKeyCreateInput, d as ApiKeyItem, e as ApiKeyManager, f as ApiKeyManagerLabels, g as ApiKeyManagerProps, B as Branding, h as BrandingEditor, i as BrandingEditorLabels, j as BrandingEditorProps, C as CidrInput, k as ColorField, l as ColorFieldLabels, m as ColorFieldProps, n as ComponentMessageOverrides, o as ComponentMessages, D as Device, q as DeviceKind, r as DeviceSelector, I as IpInput, L as LafContextValue, s as LafMessages, v as LafProvider, w as NetworkLabels, x as NotificationCenter, y as NotificationCenterLabels, z as NotificationItem, P as PasskeyItem, R as ReauthDialog, E as ReauthDialogLabels, F as ReauthDialogProps, G as ReauthMethod, S as SecurityFactors, H as SecurityFactorsLabels, J as SecurityFactorsProps, K as SessionExpiryDialog, M as SessionExpiryDialogLabels, O as SessionExpiryDialogProps, Q as SessionList, T as SessionListLabels, U as SessionListProps, V as TransferItem, W as TransferList, X as TransferListLabels, Y as TransferListProps, Z as User, _ as UserSelector, $ as UserSelectorProps, a0 as contrastRatio, a1 as en, a2 as isCidr, a3 as isIPv4, a4 as isIPv6, a5 as isIp, a6 as normalizeHex, a7 as parseCidr, a8 as useLaf, a9 as useLafDefaults, aa as usePortalContainer } from './i18n-Cy4azkBi.js';
 import { b as ComboboxOption, K as Kbd } from './vsphere-objects-CWkhU0R6.js';
 export { A as AlarmItem, c as AlarmList, B as BarChart, d as Combobox, e as ComboboxProps, f as ConsoleEvent, g as ConsoleFrame, h as ConsoleFrameLabels, a as ConsoleFrameProps, C as ConsoleStatus, D as DatastoreBrowser, i as DatastoreBrowserLabels, j as DatastoreBrowserProps, k as DatastoreEntry, l as DateTimeInput, m as Donut, E as ErrorSummary, n as EventConsole, o as EventConsoleLabels, p as EventConsoleProps, q as EventSeverity, F as FileDropzone, r as FormField, G as Gauge, H as HardwareCapabilities, s as HardwareEditor, t as HardwareEditorLabels, u as HardwareEditorProps, v as HwDevice, w as HwKind, I as InlineEdit, P as PermissionAssignDialog, x as PermissionAssignDialogProps, y as PermissionAssignLabels, z as PermissionAssignment, J as PermissionRole, S as SnapshotNode, L as SnapshotTree, M as SnapshotTreeLabels, N as SnapshotTreeProps, U as UploadFile } from './vsphere-objects-CWkhU0R6.js';
 import { C as ChartAnimate } from './chart-motion-BTO5GOqJ.js';
 import * as ContextPrimitive from '@radix-ui/react-context-menu';
 import { Virtualizer } from '@tanstack/react-virtual';
-import { O as ObjectKind, a as ObjectState, b as ObjectGlyph } from './object-icon-BJ0r6e2e.js';
-export { C as ClusterGlyph, D as DatacenterGlyph, c as ObjectIcon, d as ObjectIconProps, e as ObjectStateMeta, S as ServerGlyph, f as StateBadge, T as TemplateGlyph, V as VmGlyph, o as objectKinds, g as objectStateMeta, h as objectStates, r as registerObjectKind } from './object-icon-BJ0r6e2e.js';
+import { O as ObjectKind, a as ObjectState, b as ObjectGlyph } from './object-icon-DEveVNzx.js';
+export { C as ClusterGlyph, D as DatacenterGlyph, c as ObjectIcon, d as ObjectIconProps, e as ObjectStateMeta, S as ServerGlyph, f as StateBadge, T as TemplateGlyph, V as VmGlyph, o as objectKinds, g as objectStateMeta, h as objectStates, r as registerObjectKind } from './object-icon-DEveVNzx.js';
 import { M as MenuItemSpec$1, a as TreeViewProps } from './tree-Cv6L-PZI.js';
 export { T as TreeDragAdapter, b as TreeDropPosition, c as TreeNode, d as TreeStatus, e as TreeView } from './tree-Cv6L-PZI.js';
 import { C as CardProps } from './card-D00VCi3j.js';
@@ -701,9 +701,11 @@ declare const chipTone: {
     warn: string;
     danger: string;
 };
-declare function Chip({ onRemove, removeLabel, tone, color, children, }: {
+declare function Chip({ onRemove, removeLabel, tone, color, icon, children, }: {
     onRemove?: () => void;
     removeLabel?: string;
+    /** Leading icon; sized to the text (0.75rem) with inline padding so it never touches the border. */
+    icon?: React.ReactNode;
     tone?: keyof typeof chipTone;
     /** Label palette slot; overrides `tone`. */
     color?: LabelSlot;
@@ -3435,4 +3437,248 @@ interface DeviceListProps<T> {
 /** Editable, reorderable list of devices (NICs, uplinks, disks, peers) with inline row editing and bulk remove. */
 declare function DeviceList<T>({ label, value, onChange, getId, getLabel, columns, status, renderEditor, onAdd, addLabel, reorderable, selectable, canRemove, emptyTitle, emptyDescription, className, }: DeviceListProps<T>): React.JSX.Element;
 
-export { Accordion, type AccordionItem, AccountItem, AccountList, ActionBar, type ActionBarProps, ActionGroup, ActionToolbar, type ActionToolbarProps, type ActivityComment, type ActivityEvent, type ActivityItem, ActivityTimeline, AdminShell, Alert, AlertGroup, type AlertProps, type AlertTone, AppFooter, type AppFooterBuild, type AppFooterProps, AppFrame, type AppFrameContextValue, type AppFrameLabels, type AppFrameProps, AppSwitcher, type AppSwitcherProps, type AuditEvent, AuditLog, AuthFooter, Avatar, AvatarGroup, Badge, Banner, BrandHeader, Breadcrumb, type BreadcrumbItemProps, Button, ButtonGroup, type ButtonProps, CapacityBar, type CapacityBarProps, CardProps, type ChartSeries, Checkbox, Chip, ClientInfo, ClipboardCopy, type ClipboardCopyProps, CodeBlock, CodeBlockCode, type CodeBlockProps, CodeDisplay, CodeEditor, CodeEditorLite, CodeInput, ComboboxOption, type Command, CommandPalette, ConfirmDialog, ContextMenu, ContextMenuContent, ContextMenuFor, ContextMenuItem, ContextMenuSeparator, ContextMenuTrigger, CopyButton, CountCard, type CountCardItem, type CountCardProps, DataGrid, type DataGridProps, DatePicker, type DatePickerProps, type DateRangeValue, DefinitionList, DescriptionList, DescriptionListDescription, DescriptionListGroup, type DescriptionListProps, DescriptionListTerm, DetailPage, DetailsCard, type DetailsCardProps, type DetailsItem, type DeviceColumn, DeviceList, type DeviceListProps, type DeviceStatus, DeviceSteps, type DeviceStepsProps, Dialog, DialogClose, DialogContent, type DialogSize, DialogTrigger, type DiffOp, DiffView, DiskArrayGlyph, Divider, type DnsRecord, type DnsRecordState, DnsRecordTable, type DnsRecordTableProps, DockedTaskPanel, Drawer, DrawerClose, DrawerContent, DrawerPanel, type DrawerPanelProps, type DrawerPlacement, DrawerTrigger, Dropdown, DropdownGroup, DropdownItem, DropdownList, DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger, type DropdownProps, DropdownSeparator, EmptyState, ErrorPage, type ErrorVariant, Field, type FieldProps, type Filter, FilterBar, type FilterBarLabels, type FilterBarProps, type FilterField, type FilterOp, type FilterOption, type FilterToken, FirewallGlyph, Flex, FlexItem, type FlexProps, type FooterLink, type FooterLinkGroup, Form, FormFooter, FormGroup, type FormGroupProps, FormHelperText, FormPage, FormSection, Formatters, type Gap, GaugeCard, type GaugeCardProps, type GaugeThreshold, Grid, type GridColumn, GridColumnsMenu, type GridDensity, GridDensityToggle, type GridFilter, type GridFilterRenderer, GridItem, type GridItemProps, type GridLabels, type GridMenuItem, type GridPagination, GridSearch, type GridSort, HddGlyph, HealthGrid, type HealthGridProps, Heatmap, HelperText, HelperTextItem, type HotkeyOptions, HotkeysProvider, HoverCard, IconButton, type IconButtonProps, IdentityCard, type IdentityCardProps, InfiniteList, type InfiniteListProps, InfoBox, InlineDrawer, Input, type InputProps, InventoryLayout, type InventoryLayoutProps, IscsiGlyph, IssueCard, type IssueData, IssueRow, Kbd, type KeyValue, KeyValueEditor, Label, type LabelDef, LabelPicker, type LabelSlot, LabelSwatch, LafErrorBoundary, LanguageSwitcher, LineChart, LoadBalancerGlyph, type LogLine, LogViewer, type LogViewerLabels, LunGlyph, Masthead, MastheadActions, MastheadBrand, type MastheadBrandProps, MastheadContent, MastheadToggle, Menu, type MenuItemSpec, MenuShortcut, MenuToggle, type MenuToggleProps, MetricCard, type MetricCardProps, type MetricDelta, MetricGrid, type MetricTone, type MetricTrend, MfaEnrolment, type MfaEnrolmentProps, type MfaMethod, MobileNav, Modal, ModalBody, ModalClose, ModalFooter, ModalHeader, type ModalProps, ModalTrigger, NasGlyph, type NavDivider, type NavEntry, NavGroup, type NavHeading, type NavItem, NavLink, type NavRenderProps, NavTree, type NavTreeProps, NfsGlyph, NotificationCenterProps, NumberInput, NvmeGlyph, ObjectGlyph, ObjectHeader, type ObjectHeaderProps, ObjectKind, ObjectPage, type ObjectPageCard, type ObjectPageProps, ObjectState, OptionPicker, type OptionPickerProps, OtpInput, OverflowTabs, PageHead, PageHeader, type PageHeaderProps, PageSection, type PageSectionProps, Pagination, type PaginationProps, Panel, type ParsedFilter, PasswordField, type PasswordFieldProps, type PermissionGroup, PermissionMatrix, type PermissionMatrixLabels, type PickerOption, Popover, PopoverClose, PopoverContent, PopoverTrigger, type PortalAnnouncement, type PortalApp, PortalHome, type PortalHomeLabels, type PortalHomeProps, type PortalLabels, PortalLayout, type PortalLayoutProps, type PortalLinkProps, type PortalLinkRenderer, type PortalMatch, type PortalPageContext, type PortalParams, type PortalQuickAction, type PortalRoute, type PortalSearch, type PortalTab, type PortalUser, PowerState, type PowerStateProps, Progress, ProgressCard, type ProgressCardProps, ProgressSummary, PropertiesPane, type PropertyField, type PropertyGroup, type QueueJobStatus, QueueStatusBadge, QuotaBar, type QuotaBarProps, RadialGauge, type RadialGaugeProps, Radio, RadioGroup, type RadioGroupProps, type RadioProps, RaidGlyph, type RaidGlyphProps, type Reaction, Reactions, type RegisteredHotkey, RelativeTime, type ResolvedTheme, ResourceOverviewLayout, type ResourceOverviewLayoutProps, RouterGlyph, SanGlyph, type SavedView, SavedViews, type SavedViewsLabels, type SavedViewsProps, type SavedViewsStorage, ScopeList, SearchInput, SecretDisplay, SegmentedControl, type SegmentedControlProps, type SegmentedItem, Select, type SelectGroup, SelectMenu, type SelectOption, type SelectProps, ServerDataGrid, type ServerDataGridProps, type ServerGridController, type ServerGridFetcher, type ServerGridQuery, type ServerGridRequest, type ServerGridResult, type ServerGridUrlAdapter, type ServerGridUrlOptions, type ServiceHealth, ServiceTile, type ServiceTileProps, SettingRow, type SettingRowProps, SettingsDialog, type SettingsDialogProps, SettingsSection, type SettingsSectionProps, type Severity, ShortcutHelp, SideCard, type SideCardProps, Sidebar, type SidebarProps, Skeleton, Slider, type SliderProps, SocialButton, SocialButtons, SocialDivider, Sparkline, type SparklineProps, Spinner, SplitButton, SplitPane, SsdGlyph, Stack, StackItem, StackedBarChart, Stat, StatGrid, StatusDot, StatusSummaryCard, type StatusSummaryCardProps, type StatusSummaryItem, type Step, Stepper, SubNav, type SubNavGroup, type SubNavItem, Switch, Table, Tabs, TabsContent, TabsList, TabsTrigger, TagInput, type TaskItem, TaskPanel, type TaskStatus, TenantSwitcher, Textarea as TextArea, Input as TextInput, type TextTerm, Textarea, type ThemeMode, ThemeToggle, type ThemeToggleProps, TimeRangePicker, Title, type TitleSize, type ToastOptions, ToastProvider, type ToastTone, Toolbar, type ToolbarAction, ToolbarActions, ToolbarBulk, type ToolbarBulkProps, ToolbarContent, ToolbarDivider, type ToolbarFilter, ToolbarFilterChips, type ToolbarFilterChipsProps, ToolbarGroup, type ToolbarGroupProps, ToolbarItem, type ToolbarMenuItem, type ToolbarProps, ToolbarSpacer, Tooltip, TooltipProvider, TopBar, type TopBarCounter, type TopologyEdge, TopologyGraph, type TopologyNode, type TraceHop, TraceTimeline, type TraceTimelineProps, TreeTable, type TreeTableNode, type TreeTableProps, TreeViewProps, TruncatedText, type UnitOption, UnsavedChangesDialog, type UnsavedChangesGuard, UplinkGlyph, type UseSavedViewsOptions, type UseServerGridOptions, UserCell, UserMenu, UtilizationColumn, type UtilizationColumnProps, UtilizationPanel, type UtilizationPanelProps, VSwitchGlyph, VdiskGlyph, VirtualList, VlanGlyph, VnicGlyph, VolumeGlyph, VpnGlyph, Wizard, type WizardLabels, type WizardProps, WizardReview, type WizardStep, browserSearchParams, buttonVariants, cn, dialogBase, dialogSizes, diffLines, format, formatHotkey, formatRelative, gaugeTone, highlight, isMacPlatform, matchesAccept, observeRectWithFallback, parseFilter, parseHotkey, portalBreadcrumbs, portalNavEntries, resolvePortalRoute, serializeFilter, serializeToken, serverGridFromSearchParams, serverGridToSearchParams, useAppFrame, useControllableState, useHotkeys, useRegisteredHotkeys, useSavedViews, useServerGrid, useToast, useToasts, useUnsavedChangesGuard };
+type AutocompleteOption = ComboboxOption;
+interface AutocompleteBase {
+    /** Accessible name of the combobox. */
+    label: string;
+    /** Static options, filtered locally. Ignored when `loadOptions` is set. */
+    options?: AutocompleteOption[];
+    /** Async source; the signal aborts when the query changes, the popup closes or the component unmounts. */
+    loadOptions?: (query: string, signal: AbortSignal) => Promise<AutocompleteOption[]>;
+    /** Debounce before `loadOptions` runs (default 250 ms). */
+    debounceMs?: number;
+    /** Minimum query length before `loadOptions` runs (default 0). */
+    minChars?: number;
+    /** Local filter for static options. */
+    filter?: (option: AutocompleteOption, query: string) => boolean;
+    /** Allow values that are not in the list: Enter commits the typed text and a "Create" row is offered. */
+    freeSolo?: boolean;
+    /** Builds the option for a typed value; defaults to `{ value: text, label: text }`. Implies the Create row. */
+    onCreate?: (text: string) => AutocompleteOption | void;
+    clearable?: boolean;
+    placeholder?: string;
+    disabled?: boolean;
+    invalid?: boolean;
+    renderOption?: (option: AutocompleteOption, state: {
+        selected: boolean;
+    }) => React.ReactNode;
+    /** Controlled open state; omit for uncontrolled. */
+    open?: boolean;
+    onOpenChange?: (open: boolean) => void;
+    id?: string;
+    className?: string;
+}
+interface AutocompleteSingle extends AutocompleteBase {
+    multiple?: false;
+    value?: AutocompleteOption | null;
+    defaultValue?: AutocompleteOption | null;
+    onChange?: (value: AutocompleteOption | null) => void;
+}
+interface AutocompleteMulti extends AutocompleteBase {
+    multiple: true;
+    value?: AutocompleteOption[];
+    defaultValue?: AutocompleteOption[];
+    onChange?: (value: AutocompleteOption[]) => void;
+}
+type AutocompleteProps = AutocompleteSingle | AutocompleteMulti;
+declare function Autocomplete(props: AutocompleteProps): React.JSX.Element;
+interface ChipsInputProps {
+    value?: string[];
+    defaultValue?: string[];
+    onChange?: (value: string[]) => void;
+    /** Accessible name of the text field. */
+    label: string;
+    placeholder?: string;
+    max?: number;
+    /** Return an error message to mark a chip invalid. */
+    validate?: (chip: string) => string | undefined;
+    /** `false` (default, like TagInput): invalid input is rejected and the message shown. `true`: it is added as a chip in the danger tone. */
+    keepInvalid?: boolean;
+    /** `reject` (default) shows an error, `ignore` skips silently, `allow` keeps repeats. */
+    duplicates?: "reject" | "ignore" | "allow";
+    /** Keys that commit the typed text (default Enter and comma). */
+    delimiters?: string[];
+    /** Splits pasted/typed text into several chips (default commas and whitespace). */
+    splitPattern?: RegExp;
+    /** Commit pending text when the field loses focus (default true). */
+    addOnBlur?: boolean;
+    /** Leading icon per chip. */
+    icon?: (chip: string) => React.ReactNode;
+    /** Normalise a chip before validation, e.g. lower-casing. */
+    normalize?: (chip: string) => string;
+    disabled?: boolean;
+    className?: string;
+}
+declare function ChipsInput({ value: valueProp, defaultValue, onChange, label, placeholder, max, validate, keepInvalid, duplicates, delimiters, splitPattern, addOnBlur, icon, normalize, disabled, className, }: ChipsInputProps): React.JSX.Element;
+interface QuickSearchResult {
+    id: string;
+    /** Inventory kind; picks the `ObjectIcon`. */
+    kind: ObjectKind | (string & {});
+    name: string;
+    /** Inventory path, e.g. `dc-1 / cluster-a`. */
+    path?: string;
+    state?: ObjectState;
+    /** Section heading; defaults to the kind. */
+    group?: string;
+}
+interface QuickSearchProps {
+    search: (query: string, signal: AbortSignal) => Promise<QuickSearchResult[]>;
+    onSelect: (result: QuickSearchResult) => void;
+    /** Recent selections shown while the query is empty. Controlled when set; otherwise kept in memory. */
+    recent?: QuickSearchResult[];
+    onRecentChange?: (recent: QuickSearchResult[]) => void;
+    maxRecent?: number;
+    debounceMs?: number;
+    /** Ctrl/Cmd+K focuses the box (default true). Turn off where a `CommandPalette` owns the shortcut. */
+    hotkey?: boolean;
+    label?: string;
+    placeholder?: string;
+    className?: string;
+}
+declare function QuickSearch({ search, onSelect, recent: recentProp, onRecentChange, maxRecent, debounceMs, hotkey, label: labelProp, placeholder, className }: QuickSearchProps): React.JSX.Element;
+
+type ConnectionState = "connecting" | "open" | "reconnecting" | "closed" | "error";
+/** Passed to the `connect` factory; call these from the transport (WebSocket, SSE, polling, …). */
+interface ConnectionHandlers<M = unknown> {
+    /** The transport is ready; resets the backoff. */
+    open: () => void;
+    /** A message arrived; updates `lastMessageAt` and notifies subscribers. */
+    message: (data?: M) => void;
+    /** The transport dropped. Pass an error to record it. Triggers backoff reconnects. */
+    close: (error?: unknown) => void;
+    /** Report a round-trip time in milliseconds. */
+    latency: (ms: number) => void;
+}
+interface BackoffOptions {
+    /** First retry delay (ms). Default 1000. */
+    initial?: number;
+    /** Delay ceiling (ms). Default 30000. */
+    max?: number;
+    /** Growth per attempt. Default 2. */
+    factor?: number;
+    /** 0–1: fraction of the delay that is randomised. Default 0.5. */
+    jitter?: number;
+    /** Give up (state `error`) after this many failed attempts. Default unlimited. */
+    maxAttempts?: number;
+}
+/** Delay before retry number `attempt` (1-based): exponential, capped, with "equal" jitter. */
+declare function backoffDelay(attempt: number, { initial, max, factor, jitter }?: BackoffOptions, random?: () => number): number;
+interface UseRealtimeOptions<M = unknown> {
+    /** Opens one connection. Return `{ close }`; it is called on cleanup, manual close, offline and before retries. */
+    connect: (handlers: ConnectionHandlers<M>) => {
+        close: () => void;
+    } | void;
+    /** Set false to stay `closed`. Default true. */
+    enabled?: boolean;
+    backoff?: BackoffOptions;
+    /** Close while the tab is hidden and reconnect when visible again. Default false. */
+    pauseWhenHidden?: boolean;
+    /** Injectable for deterministic tests. */
+    random?: () => number;
+    onOpen?: () => void;
+    onMessage?: (data: M) => void;
+    onClose?: (error?: unknown) => void;
+    onStateChange?: (state: ConnectionState, previous: ConnectionState) => void;
+}
+interface RealtimeConnection<M = unknown> {
+    state: ConnectionState;
+    /** Failed attempts since the last successful open. */
+    attempt: number;
+    /** Timestamp (ms) of the next retry while waiting, else undefined. */
+    nextRetryAt?: number;
+    lastMessageAt?: number;
+    /** Last reported round-trip time (ms). */
+    latency?: number;
+    error?: unknown;
+    /** True while the browser reports no network. */
+    offline: boolean;
+    /** Drops the current connection (if any) and connects right now, resetting the backoff. */
+    reconnect: () => void;
+    /** Closes for good until `reconnect()` is called. */
+    close: () => void;
+    subscribe: (listener: (data: M) => void) => () => void;
+}
+declare function useConnectionState<M = unknown>(options: UseRealtimeOptions<M>): RealtimeConnection<M>;
+declare const useRealtime: typeof useConnectionState;
+/** Owns one connection and shares it with every descendant. */
+declare function RealtimeProvider<M = unknown>({ children, ...options }: UseRealtimeOptions<M> & {
+    children?: React.ReactNode;
+}): React.JSX.Element;
+declare function useRealtimeContext<M = unknown>(): RealtimeConnection<M>;
+/** Subscribes to messages of the surrounding `RealtimeProvider` for the component's lifetime. */
+declare function useRealtimeMessage<M = unknown>(listener: (data: M) => void): void;
+interface ConnectionBadgeProps {
+    /** Defaults to the surrounding `RealtimeProvider`. */
+    connection?: RealtimeConnection<any>;
+    /** Dot + icon-only reconnect, for the masthead. */
+    compact?: boolean;
+    className?: string;
+}
+declare function ConnectionBadge({ connection, compact, className }: ConnectionBadgeProps): React.JSX.Element;
+interface StaleDataBannerProps {
+    connection?: RealtimeConnection<any>;
+    /** Render as a page-wide `Banner` instead of an inline `Alert`. */
+    banner?: boolean;
+    className?: string;
+}
+/** Shown while live updates are not flowing (reconnecting, closed or failed); renders nothing when open or first connecting. */
+declare function StaleDataBanner({ connection, banner, className }: StaleDataBannerProps): React.JSX.Element | null;
+
+type SortDirection = "asc" | "desc";
+interface SortState {
+    id: string;
+    direction: SortDirection;
+}
+interface SimpleTableColumn<T> {
+    id: string;
+    header: React.ReactNode;
+    /** Plain-text header used in the sort button's accessible name; defaults to `header` when it is a string. */
+    headerText?: string;
+    /** Cell renderer; defaults to `row[id]`. */
+    cell?: (row: T, index: number) => React.ReactNode;
+    align?: "start" | "center" | "end";
+    /** Any CSS width (e.g. `8rem`, `20%`); keep it below the container on small screens. */
+    width?: string | number;
+    sortable?: boolean;
+    /** Extra classes for the th and td. */
+    className?: string;
+    /** Renders the cell as the row header (`th scope="row"`). */
+    rowHeader?: boolean;
+}
+interface SimpleTableProps<T> {
+    columns: SimpleTableColumn<T>[];
+    rows: T[];
+    getRowId: (row: T) => string;
+    /** Controlled sort; `null` = unsorted. Sorting is the caller's job: reorder `rows` in `onSortChange`. */
+    sort?: SortState | null;
+    /** Cycles asc → desc → none on repeated activation. */
+    onSortChange?: (sort: SortState | null) => void;
+    /** Shows a checkbox column. Pass `selected` + `onSelectedChange` to control it. */
+    selectable?: boolean;
+    selected?: string[];
+    onSelectedChange?: (ids: string[]) => void;
+    /** Accessible row name used in "Select …". */
+    getRowLabel?: (row: T) => string;
+    /** Trailing actions cell for each row (buttons, a menu trigger, …). */
+    rowActions?: (row: T) => React.ReactNode;
+    density?: "dense" | "comfortable";
+    stickyHeader?: boolean;
+    /** Max height of the scroll area (CSS length); needed for `stickyHeader` to have effect vertically. */
+    maxHeight?: string;
+    loading?: boolean;
+    /** Skeleton rows while loading. Default 5. */
+    loadingRows?: number;
+    /** Shown when there are no rows. */
+    empty?: React.ReactNode;
+    caption?: React.ReactNode;
+    /** Keeps the caption for screen readers only. */
+    captionHidden?: boolean;
+    /** Footer pagination, rendered with the kit's `Pagination`. */
+    pagination?: PaginationProps;
+    /** Accessible name for the table when there is no caption. */
+    "aria-label"?: string;
+    className?: string;
+}
+declare function SimpleTable<T>({ columns, rows, getRowId, sort, onSortChange, selectable, selected, onSelectedChange, getRowLabel, rowActions, density, stickyHeader, maxHeight, loading, loadingRows, empty, caption, captionHidden, pagination, className, ...rest }: SimpleTableProps<T>): React.JSX.Element;
+
+export { Accordion, type AccordionItem, AccountItem, AccountList, ActionBar, type ActionBarProps, ActionGroup, ActionToolbar, type ActionToolbarProps, type ActivityComment, type ActivityEvent, type ActivityItem, ActivityTimeline, AdminShell, Alert, AlertGroup, type AlertProps, type AlertTone, AppFooter, type AppFooterBuild, type AppFooterProps, AppFrame, type AppFrameContextValue, type AppFrameLabels, type AppFrameProps, AppSwitcher, type AppSwitcherProps, type AuditEvent, AuditLog, AuthFooter, Autocomplete, type AutocompleteOption, type AutocompleteProps, Avatar, AvatarGroup, type BackoffOptions, Badge, Banner, BrandHeader, Breadcrumb, type BreadcrumbItemProps, Button, ButtonGroup, type ButtonProps, CapacityBar, type CapacityBarProps, CardProps, type ChartSeries, Checkbox, Chip, ChipsInput, type ChipsInputProps, ClientInfo, ClipboardCopy, type ClipboardCopyProps, CodeBlock, CodeBlockCode, type CodeBlockProps, CodeDisplay, CodeEditor, CodeEditorLite, CodeInput, ComboboxOption, type Command, CommandPalette, ConfirmDialog, ConnectionBadge, type ConnectionBadgeProps, type ConnectionHandlers, type ConnectionState, ContextMenu, ContextMenuContent, ContextMenuFor, ContextMenuItem, ContextMenuSeparator, ContextMenuTrigger, CopyButton, CountCard, type CountCardItem, type CountCardProps, DataGrid, type DataGridProps, DatePicker, type DatePickerProps, type DateRangeValue, DefinitionList, DescriptionList, DescriptionListDescription, DescriptionListGroup, type DescriptionListProps, DescriptionListTerm, DetailPage, DetailsCard, type DetailsCardProps, type DetailsItem, type DeviceColumn, DeviceList, type DeviceListProps, type DeviceStatus, DeviceSteps, type DeviceStepsProps, Dialog, DialogClose, DialogContent, type DialogSize, DialogTrigger, type DiffOp, DiffView, DiskArrayGlyph, Divider, type DnsRecord, type DnsRecordState, DnsRecordTable, type DnsRecordTableProps, DockedTaskPanel, Drawer, DrawerClose, DrawerContent, DrawerPanel, type DrawerPanelProps, type DrawerPlacement, DrawerTrigger, Dropdown, DropdownGroup, DropdownItem, DropdownList, DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger, type DropdownProps, DropdownSeparator, EmptyState, ErrorPage, type ErrorVariant, Field, type FieldProps, type Filter, FilterBar, type FilterBarLabels, type FilterBarProps, type FilterField, type FilterOp, type FilterOption, type FilterToken, FirewallGlyph, Flex, FlexItem, type FlexProps, type FooterLink, type FooterLinkGroup, Form, FormFooter, FormGroup, type FormGroupProps, FormHelperText, FormPage, FormSection, Formatters, type Gap, GaugeCard, type GaugeCardProps, type GaugeThreshold, Grid, type GridColumn, GridColumnsMenu, type GridDensity, GridDensityToggle, type GridFilter, type GridFilterRenderer, GridItem, type GridItemProps, type GridLabels, type GridMenuItem, type GridPagination, GridSearch, type GridSort, HddGlyph, HealthGrid, type HealthGridProps, Heatmap, HelperText, HelperTextItem, type HotkeyOptions, HotkeysProvider, HoverCard, IconButton, type IconButtonProps, IdentityCard, type IdentityCardProps, InfiniteList, type InfiniteListProps, InfoBox, InlineDrawer, Input, type InputProps, InventoryLayout, type InventoryLayoutProps, IscsiGlyph, IssueCard, type IssueData, IssueRow, Kbd, type KeyValue, KeyValueEditor, Label, type LabelDef, LabelPicker, type LabelSlot, LabelSwatch, LafErrorBoundary, LanguageSwitcher, LineChart, LoadBalancerGlyph, type LogLine, LogViewer, type LogViewerLabels, LunGlyph, Masthead, MastheadActions, MastheadBrand, type MastheadBrandProps, MastheadContent, MastheadToggle, Menu, type MenuItemSpec, MenuShortcut, MenuToggle, type MenuToggleProps, MetricCard, type MetricCardProps, type MetricDelta, MetricGrid, type MetricTone, type MetricTrend, MfaEnrolment, type MfaEnrolmentProps, type MfaMethod, MobileNav, Modal, ModalBody, ModalClose, ModalFooter, ModalHeader, type ModalProps, ModalTrigger, NasGlyph, type NavDivider, type NavEntry, NavGroup, type NavHeading, type NavItem, NavLink, type NavRenderProps, NavTree, type NavTreeProps, NfsGlyph, NotificationCenterProps, NumberInput, NvmeGlyph, ObjectGlyph, ObjectHeader, type ObjectHeaderProps, ObjectKind, ObjectPage, type ObjectPageCard, type ObjectPageProps, ObjectState, OptionPicker, type OptionPickerProps, OtpInput, OverflowTabs, PageHead, PageHeader, type PageHeaderProps, PageSection, type PageSectionProps, Pagination, type PaginationProps, Panel, type ParsedFilter, PasswordField, type PasswordFieldProps, type PermissionGroup, PermissionMatrix, type PermissionMatrixLabels, type PickerOption, Popover, PopoverClose, PopoverContent, PopoverTrigger, type PortalAnnouncement, type PortalApp, PortalHome, type PortalHomeLabels, type PortalHomeProps, type PortalLabels, PortalLayout, type PortalLayoutProps, type PortalLinkProps, type PortalLinkRenderer, type PortalMatch, type PortalPageContext, type PortalParams, type PortalQuickAction, type PortalRoute, type PortalSearch, type PortalTab, type PortalUser, PowerState, type PowerStateProps, Progress, ProgressCard, type ProgressCardProps, ProgressSummary, PropertiesPane, type PropertyField, type PropertyGroup, type QueueJobStatus, QueueStatusBadge, QuickSearch, type QuickSearchProps, type QuickSearchResult, QuotaBar, type QuotaBarProps, RadialGauge, type RadialGaugeProps, Radio, RadioGroup, type RadioGroupProps, type RadioProps, RaidGlyph, type RaidGlyphProps, type Reaction, Reactions, type RealtimeConnection, RealtimeProvider, type RegisteredHotkey, RelativeTime, type ResolvedTheme, ResourceOverviewLayout, type ResourceOverviewLayoutProps, RouterGlyph, SanGlyph, type SavedView, SavedViews, type SavedViewsLabels, type SavedViewsProps, type SavedViewsStorage, ScopeList, SearchInput, SecretDisplay, SegmentedControl, type SegmentedControlProps, type SegmentedItem, Select, type SelectGroup, SelectMenu, type SelectOption, type SelectProps, ServerDataGrid, type ServerDataGridProps, type ServerGridController, type ServerGridFetcher, type ServerGridQuery, type ServerGridRequest, type ServerGridResult, type ServerGridUrlAdapter, type ServerGridUrlOptions, type ServiceHealth, ServiceTile, type ServiceTileProps, SettingRow, type SettingRowProps, SettingsDialog, type SettingsDialogProps, SettingsSection, type SettingsSectionProps, type Severity, ShortcutHelp, SideCard, type SideCardProps, Sidebar, type SidebarProps, SimpleTable, type SimpleTableColumn, type SimpleTableProps, Skeleton, Slider, type SliderProps, SocialButton, SocialButtons, SocialDivider, type SortDirection, type SortState, Sparkline, type SparklineProps, Spinner, SplitButton, SplitPane, SsdGlyph, Stack, StackItem, StackedBarChart, StaleDataBanner, type StaleDataBannerProps, Stat, StatGrid, StatusDot, StatusSummaryCard, type StatusSummaryCardProps, type StatusSummaryItem, type Step, Stepper, SubNav, type SubNavGroup, type SubNavItem, Switch, Table, Tabs, TabsContent, TabsList, TabsTrigger, TagInput, type TaskItem, TaskPanel, type TaskStatus, TenantSwitcher, Textarea as TextArea, Input as TextInput, type TextTerm, Textarea, type ThemeMode, ThemeToggle, type ThemeToggleProps, TimeRangePicker, Title, type TitleSize, type ToastOptions, ToastProvider, type ToastTone, Toolbar, type ToolbarAction, ToolbarActions, ToolbarBulk, type ToolbarBulkProps, ToolbarContent, ToolbarDivider, type ToolbarFilter, ToolbarFilterChips, type ToolbarFilterChipsProps, ToolbarGroup, type ToolbarGroupProps, ToolbarItem, type ToolbarMenuItem, type ToolbarProps, ToolbarSpacer, Tooltip, TooltipProvider, TopBar, type TopBarCounter, type TopologyEdge, TopologyGraph, type TopologyNode, type TraceHop, TraceTimeline, type TraceTimelineProps, TreeTable, type TreeTableNode, type TreeTableProps, TreeViewProps, TruncatedText, type UnitOption, UnsavedChangesDialog, type UnsavedChangesGuard, UplinkGlyph, type UseRealtimeOptions, type UseSavedViewsOptions, type UseServerGridOptions, UserCell, UserMenu, UtilizationColumn, type UtilizationColumnProps, UtilizationPanel, type UtilizationPanelProps, VSwitchGlyph, VdiskGlyph, VirtualList, VlanGlyph, VnicGlyph, VolumeGlyph, VpnGlyph, Wizard, type WizardLabels, type WizardProps, WizardReview, type WizardStep, backoffDelay, browserSearchParams, buttonVariants, cn, dialogBase, dialogSizes, diffLines, format, formatHotkey, formatRelative, gaugeTone, highlight, isMacPlatform, matchesAccept, observeRectWithFallback, parseFilter, parseHotkey, portalBreadcrumbs, portalNavEntries, resolvePortalRoute, serializeFilter, serializeToken, serverGridFromSearchParams, serverGridToSearchParams, useAppFrame, useConnectionState, useControllableState, useHotkeys, useRealtime, useRealtimeContext, useRealtimeMessage, useRegisteredHotkeys, useSavedViews, useServerGrid, useToast, useToasts, useUnsavedChangesGuard };

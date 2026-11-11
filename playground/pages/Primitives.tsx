@@ -1,4 +1,4 @@
-import { Plus, Trash2 } from "lucide-react";
+import { Cpu, Plus, Server, Trash2 } from "lucide-react";
 import * as React from "react";
 import {
   Accordion,
@@ -54,7 +54,9 @@ export default function Primitives() {
       <Accordion items={[{ id: "a", title: "First", content: "Alpha" }, { id: "b", title: "Second", content: "Beta" }]} />
       <Slider aria-label="CPU" min={0} max={100} step={5} marks={[{ value: 0 }, { value: 50 }, { value: 100 }]} defaultValue={30} withInput />
       <Slider aria-label="Range" value={range} onValueChange={setRange} />
-      <div className="flex gap-2">
+      <div className="flex flex-wrap gap-2">
+        <Chip tone="ok" icon={<Server />}>ok</Chip>
+        <Chip tone="neutral" icon={<Cpu className="size-6" />} onRemove={() => {}}>big icon is clamped</Chip>
         <Chip tone="ok">ok</Chip>
         <Chip tone="warn">warn</Chip>
         <Chip tone="danger" onRemove={() => {}}>danger</Chip>
