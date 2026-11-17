@@ -1,7 +1,7 @@
 @import "tailwindcss";
 @import "./admin.css";
 
-@source "../../3so/shadow-sso/api/webauth/templates";
+@source "../../3so/sso/api/webauth/templates";
 @source "../lib";
 @source "../playground";
 @source "../styleguide.html";
@@ -180,7 +180,9 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    /* "safe" keeps the top of an over-tall auth card reachable on short viewports;
+       plain centering pushes it above the scroll origin. */
+    justify-content: safe center;
     padding: 24px 16px;
     position: relative;
     overflow-x: hidden;
@@ -203,7 +205,7 @@
 
 @layer components {
   /* ── Layout ── */
-  .container {
+  .auth-container {
     @apply relative z-1 w-full;
     max-width: 420px;
   }

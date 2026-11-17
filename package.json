@@ -103,7 +103,7 @@
     "build": "bun run css && tsup",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
-    "sync": "bun run css && cp dist/app.css ../3so/shadow-sso/api/webauth/static/app.css && cp fonts/* ../3so/shadow-sso/api/webauth/static/fonts/",
+    "sync": "bun run css && cp dist/app.css ../3so/sso/api/webauth/static/app.css && cp fonts/* ../3so/sso/api/webauth/static/fonts/",
     "e2e": "playwright test",
     "e2e:update": "playwright test --project=visual-1x --project=visual-2x --update-snapshots",
     "prepublishOnly": "bun run typecheck && bun run test && bun run build",
